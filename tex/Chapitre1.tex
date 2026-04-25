@@ -88,7 +88,6 @@ La gestion des projets, qui inclut l'affectation des équipes et le suivi des re
  Avant de concevoir notre propre solution, nous allons étudier les solutions disponibles sur le marché afin d’analyser les fonctionnalités proposées. Cette démarche permet d’identifier les bonnes pratiques et d’orienter efficacement le développement de notre système.\newline
 Dans ce cadre, nous avons étudié plusieurs solutions existantes. Parmi celles-ci, nous nous sommes intéressés à GLPI, qui constitue un exemple représentatif dans le domaine de la gestion des demandes de maintenance :
 \newline
-    \noindent
         --\hspace{0.5cm}  \textbf{GLPI (Gestion Libre de Parc Informatique) }\par\medskip
             GLPI est une solution de gestion des services informatiques développée en 2003 et maintenue par la société française Teclib. Principalement utilisée par les équipes internes d’une organisation, selon sa configuration, elle permet de recevoir des demandes externes.
             Cette solution assure un système de gestion de tickets qui structure les demandes des utilisateurs. De plus, elle prend en charge différents canaux de communication, garantissant ainsi la centralisation des échanges    
@@ -113,13 +112,13 @@ Dans ce cadre, nous avons étudié plusieurs solutions existantes. Parmi celles-
 
      
 
-
+\newpage
 \subsubsection{Critique de l'existant}
 
 Actuellement, la gestion des contrats de maintenance au sein de la direction de la gestion de SolidMaint se fait à partir d’Excel et par communication via mail. Cette approche présente des failles.
 
 
-\noindent{\textbf{\textcolor{bleuPerso}{Limitations du processus actuel :}}}
+\noindent{\textbf{\textcolor{bleuPerso}{Limitations du processus actuel }}}
 \begin{itemize}[label=\ding{109}]
     \item \textbf{processus fragmenté : } l’utilisation séparée d’Excel et la communication via e-mail fragmentent la gestion. Les informations dispersées compliquent la gestion des composants manquants.  Sans lien structuré entre eux, il devient alors difficile de retrouver l'historique complet d'une intervention.
     \item \textbf{Absence de traçabilité :} L'absence de système de traçabilité rend le suivi des interventions difficile. Cela peut entrainer une perte de visibilité sur l’état en cas de conflit avec un client ou lors d'un audit interne. Ce qui représente un risque pour la crédibilité et la fiabilité de la société.
@@ -130,7 +129,7 @@ Actuellement, la gestion des contrats de maintenance au sein de la direction de 
     \end{itemize}
 
    
- \noindent{\textbf{\textcolor{bleuPerso}{Limitations des solutions existantes :}}}
+ \noindent{\textbf{\textcolor{bleuPerso}{Limitations des solutions existantes }}}
 \begin{itemize}[label=\ding{109}]
     \item \textbf{Complexité d’utilisation :}  Les solutions GLPI et Odoo proposent plusieurs modules, ce qui peut rendre la gestion des demandes plus complexe. Les utilisateurs doivent disposer d’une certaine expérience, ce qui peut ralentir leur adoption au sein de l’organisation.
      \item \textbf{Coût des licences :}  La majorité des services sont payants ou nécessitent un abonnement pour accéder à des fonctionnalités avancées, ce qui représente un coût élevé pour l’organisation.
@@ -142,18 +141,20 @@ Actuellement, la gestion des contrats de maintenance au sein de la direction de 
 
 Dans le contexte des défis exposés, nous proposons la mise en place de SolidMaint, un outil web pour rationaliser le bon déroulement et l'accélération du processus. SolidMaint favorisera une traçabilité mémorable des tâches réalisées tout en offrant une représentation claire des données. 
 En effet, notre application SolidMaint comprend quatre modules principaux :
+\newline
 
 Le premier module, adressé à la \textbf{ Gestion des Utilisateurs}, permettra aux responsables de superviser et de gérer de manière précise les profils des utilisateurs. Ils auront la capacité d’attribuer des connexions spécifiques et de distribuer les rôles avec des conditions rigides. \newline De plus, ce modèle offrira la possibilité de gérer les rôles, les permissions. Ce module permet à chaque utilisateur connecté de consulter et de modifier son propre profil.  
-
+\newline
 
 En ce qui concerne le deuxième module, centré sur la \textbf{ Gestion des engagements}, ce module englobe la Gestion des contrats qui permet au responsable de formaliser les engagements contractuels liant SolidWal Consulting à ses clients. De plus, le responsable configure l’accord du niveau de service (SLA), cette fonctionnalité garantit la qualité fondamentale, liée à la satisfaction client et à la crédibilité de la société.
 Ce module met l’accent sur la Gestion des Projets, le responsable a la possibilité de définir les clients, de détailler les projets. De plus, la fonctionnalité d’affectation des membres de l’équipe à chaque projet garantit ainsi une utilisation efficace des compétences disponibles.
-
+\newline
 
 Dans le cadre du troisième module, centré sur la  \textbf{Gestion des Demandes et des Tickets}, \newline l'objectif principal est de structurer le cycle de vie complet d'une demande client de \newline maintenance depuis sa soumission jusqu'à sa clôture en passant par la validation. Dès qu'une demande est validée, SolidMaint génère automatiquement des tickets, les responsables auront accès pour affecter chaque ticket au membre de l’équipe.  
-
+\newline
 
 Enfin, le quatrième module, consacré à la  \textbf{Gestion des événements}, offrira aux utilisateurs la possibilité de recevoir des informations en temps réel. En intégrant un moteur d'alertes SLA assurant le respect des engagements contractuels, ainsi que la surveillance des dates d'expiration des contrats de maintenance en générant des alertes préventives. De plus, ce module offrira l’optimisation de la prise de décision, garantissant ainsi la réussite globale des activités de l’entreprise.
+\newpage
 \section{Méthodologie adaptée}
 \label{sec:methodologie}
 La méthodologie adoptée est une étape importante car elle garantit la compréhension du projet pour trouver un meilleur résultat qui satisfait les besoins des clients.
@@ -168,7 +169,7 @@ L'approche traditionnelle de la gestion de projet s'articule autour d'une série
 \newline
 La méthodologie Agile est adoptée pour pouvoir répondre rapidement aux commentaires des clients, valorise la collaboration plus que la négociation contractuelle en proposant une version minimale puis intègre des fonctionnalités supplémentaires.
 La méthode agile est une méthode moderne qui offre la souplesse et la performance à la gestion de projet.
-\newpage
+
 
 La méthodologie Agile est adoptée pour répondre rapidement aux retours des clients. Elle valorise la collaboration plutôt que la négociation contractuelle, en proposant d’abord une version minimale, puis en intégrant des fonctionnalités supplémentaires.
 La méthode Agile est une démarche moderne qui offre souplesse et performance dans la gestion de projet.
@@ -252,7 +253,6 @@ Le tableau ci-dessous présente les douze principes Agile qui définissent les v
 \newline --\hspace{0.5cm} La collaboration avec les clients plus que la négociation contractuelle  
 \newline --\hspace{0.5cm} L’adaptation au changement plus que le suivi d’un plan
 \newline Ces valeurs renforcent la prise de décision et favorisent la réactivité dans le travail de l’équipe.
-\newpage
 \subsection{ Les principales méthodes Agiles}
 Le tableau suivant dévoile les différentes méthodes agiles les plus populaires et quelques critères de comparaison.
 \begin{table}[H]
@@ -312,7 +312,6 @@ Nous avons choisi la méthodologie \textbf{SCRUM} comme approche pour la réalis
 Scrum est une méthode agile. Il s'appuie sur le découpage des projets en sprints, qui sont des cycles de développement très courts. Les fonctionnalités sont présentées sous forme de user stories qui décrivent quelles fonctionnalités sont nécessaires et à quel point elles sont importantes.Le principe de Scrum est de maximiser la productivité et d’assurer en même temps la satisfaction du client. Scrum repose aussi sur trois grands principes : la transparence, l’inspection et l’adaptation.
 \subsubsection{Pertinence de SCRUM}
 Le choix de Scrum comme méthodologie pour la réalisation de notre projet est fondé sur plusieurs raisons. En effet, cette méthode propose une approche temporelle et itérative du développement qui facilite la livraison régulière et le suivi de l’avancement à chaque étape. Elle est spécialement adaptée à l’évolution des besoins en assurant la flexibilité.
-\newpage
 \subsubsection{Rôles de SCRUM}
 L’équipe Scrum est auto-organisée et prend les décisions sur la manière dont le travail sera réalisé pour atteindre l’objectif du sprint, elle est composée d'un propriétaire de produit, d'un Scrum Master et d'une équipe de développement :
     \newline Le \textbf{Product Owner}, c’est l’expert du domaine métier du projet qui porte la vision du produit à réaliser. Ce rôle repose sur la représentation de la voix du client et veille à ce que le produit reste aligné sur la vision stratégique de l’organisation.
@@ -353,7 +352,6 @@ L’équipe Scrum est auto-organisée et prend les décisions sur la manière do
         \includegraphics[width=0.4\textwidth,keepaspectratio]{Images/UML.png}
         \caption{Logo UML}
     \end{figure}
-\newpage
     Pour concevoir notre application, nous avons choisi UML comme langage de modélisation et notre choix s’appuie sur plusieurs points forts tels que la communication entre l’équipe et la cohérence architecturale qui se fait de manière simplifiée et standardisée.
 
 \section{Planning prévisionnel (Diagramme de Gantt)}
