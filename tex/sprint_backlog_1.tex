@@ -1,0 +1,272 @@
+\rowcolors{0}{}{}
+\arrayrulecolor{black}
+\renewcommand{\arraystretch}{1.3}
+\small
+
+\begin{longtable}{|C{1cm}|m{6.5cm}|m{7cm}|C{1cm}|}
+\hline
+\textbf{ID US} & \textbf{User Story} & \textbf{Description technique} & \textbf{Effort (j)} \\
+\hline
+\endfirsthead
+
+    \hline
+
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+% Epic 1: Authentification et Sécurité
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 1 - Authentification et Sécurité}} \\
+\hline
+
+US01 & En tant qu'utilisateur, je souhaite m'authentifier avec email et mot de passe afin d'accéder à mes informations de manière sécurisée. & 
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'API du Login
+\item Mettre en place la gestion de session (JWT)
+\item Réaliser l'interface connexion login
+\item Consommer l'API d'authentification
+\item Gérer les tentatives échouées (3 essais) avec verrouillage temporaire
+\end{itemize} & 1 \\
+\hline
+
+US02 & En tant qu'utilisateur, je souhaite réinitialiser mon mot de passe afin de retrouver l'accès à mon compte. & 
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Créer les formulaires "mot de passe oublié" et de réinitialisation
+\item Développer les API associées
+\item Générer un token sécurisé avec expiration
+\item Configurer l'envoi d'email de confirmation
+\end{itemize} & 2 \\
+\hline
+
+US03 & En tant qu'utilisateur, je souhaite m'authentifier via Google ou GitHub afin de me connecter rapidement sans créer de compte. & 
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Intégrer les stratégies OAuth2 via Google et GitHub dans NestJS en utilisant Passport (@nestjs/passport)
+\item Configurer les stratégies avec récupération et validation des données du profil utilisateur
+\item Vérifier l'existence de l'utilisateur en base de données et une demande d'inscription OAuth est envoyée à l'admin
+\item Implémenter les routes /auth/google, /auth/github et leurs callbacks, avec génération d'un JWT
+\item Implémenter les boutons OAuth sur la page de login
+\end{itemize} & 2 \\
+\hline
+
+US04 & En tant qu'utilisateur, je souhaite me déconnecter de la plateforme afin de sécuriser ma session. & 
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint POST /auth/logout avec révocation du refresh token en base
+\item Supprimer les tokens et données utilisateur du localStorage
+\item Réaliser le bouton de déconnexion
+\end{itemize} & 2 \\
+\hline
+
+US05 & En tant qu'utilisateur, je souhaite que mon compte soit protégé contre les tentatives de connexion malveillantes afin de garantir la sécurité de mes données. & 
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Implémenter un système de rate limiting avec compteur de tentatives
+\item Développer la logique de verrouillage temporaire après 3 tentatives échouées
+\item Configurer l'envoi automatique d'email de notification via Nodemailer
+\item Stocker les tentatives en base avec timestamp et IP
+\end{itemize} & 2 \\
+\hline
+
+% Epic 2: Gestion des utilisateurs
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 2 - Gestion des utilisateurs}} \\
+\hline
+
+US06 & En tant qu'utilisateur, je souhaite gérer mon profil afin que mes informations soient toujours à jour. & 
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer les endpoints GET /profil et PUT /profil pour consulter et modifier les informations
+\item Implémenter l'upload de la photo de profil POST /profil/upload-photo
+\item Développer le changement de mot de passe avec vérification de l'ancien
+\item Réaliser l'interface profil côté Next.js avec formulaire prérempli
+\end{itemize} & 2 \\
+\hline
+
+US07 & En tant qu'administrateur, je souhaite créer des utilisateurs afin de gérer les accès au système. & 
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint POST /users pour créer un compte avec la génération automatique d'un mot de passe temporaire hashé via bcrypt
+\item Valider les données d'entrée via class-validator
+\item Réaliser le formulaire d'ajout côté Next.js
+\item Envoyer un e-mail de bienvenue via Nodemailer avec les identifiants générés
+\end{itemize} & 2 \\
+\hline
+
+US08 & En tant qu'administrateur, je souhaite modifier les informations d'un utilisateur afin de maintenir des données à jour. & 
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint PUT /users/:id
+\item Sécuriser l'accès à l'endpoint pour les administrateurs uniquement
+\item Valider les données via class-validator
+\item Réaliser le formulaire de modification
+\end{itemize} & 2 \\
+\hline
+
+US09 & En tant qu'administrateur, je souhaite activer et désactiver un compte utilisateur afin de contrôler l'accès au système. & 
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer les endpoints PATCH /users/:id/desactiver et PATCH /users/:id/reactiver
+\item Implémenter les vérifications de réassignation des tickets et des demandes en cas de désactivation
+\item Envoyer des notifications pour informer l'utilisateur de l'activation ou désactivation de son compte
+\item Réaliser les boutons d'action avec appels des API
+\end{itemize} & 2 \\
+\hline
+
+US10 & En tant qu'administrateur, je souhaite consulter la liste des utilisateurs afin de visualiser et gérer efficacement les comptes. & 
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint GET /users retournant la liste des utilisateurs
+\item Réaliser l'interface d'administration avec gestion
+\end{itemize} & 2 \\
+\hline
+
+US11 & En tant qu'utilisateur, je souhaite consulter l'historique de mes activités afin de suivre mes actions dans le système. & 
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint GET /users/:id/activities pour récupérer l'historique
+\item Implémenter la logique de filtrage dans le backend en utilisant l'opérateur contains
+\item Implémenter une barre de recherche dynamique
+\item Réaliser l'interface timeline avec filtres par date et type d'action
+\end{itemize} & 2 \\
+\hline
+
+% Epic 3: Gestion des rôles et permissions
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 3 - Gestion des rôles et permissions}} \\
+\hline
+
+US12 & En tant qu'administrateur, je souhaite gérer des rôles afin de structurer les accès au système. & 
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer les endpoints CRUD pour la gestion complète des rôles
+\item Implémenter le PermissionsGuard et le décorateur @Permissions pour sécuriser les routes du backend 
+\item Réaliser l'interface de gestion sous forme de matrice
+\end{itemize} & 2 \\
+\hline
+
+US13 & En tant qu'administrateur, je souhaite attribuer des permissions granulaires aux rôles afin de contrôler précisément les accès. & 
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l’endpoint PATCH /roles-permissions/roles/:id/sync pour synchroniser dynamiquement les associations entre un rôle et ses permissions. 
+\item Implémenter la logique de mise à jour atomique                                                                                                                                                                                                                       
+\item Développer l'interface interactive de type "Matrice de contrôle d'accès" 
+
+\end{itemize} & 2 \\
+\hline
+US14 & En tant qu'administrateur, je souhaite consulter la matrice rôles-permissions afin de visualiser rapidement les droits de chaque rôle. & 
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l’endpoint GET /roles-permissions/matrix ) pour récupérer les données 
+\item Implémenter la logique de structuration des données au format JSON                
+\item Réaliser l’interface de visualisation de type "Heatmap" ou "Tableau de bord"
+
+\end{itemize} & 2 \\
+\hline
+
+% Epic 4: Demandes d'inscription OAuth
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 4 - Demandes d'inscription OAuth}} \\
+\hline
+
+US15 & En tant qu'utilisateur externe, je souhaite demander l'accès via OAuth afin de m'inscrire facilement. & 
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint POST /auth/oauth/request pour créer une demande
+\item Enregistrer la demande en base avec statut EN\_ATTENTE
+\item Implémenter l'envoi de notification à l'administrateur via email et in-app
+\item Réaliser l'interface de demande d'accès
+\end{itemize} & 1 \\
+\hline
+
+US16 & En tant qu'administrateur, je souhaite valider ou rejeter les demandes d'inscription OAuth afin de contrôler les accès. & 
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer les endpoints PATCH /auth/oauth/requests/:id/approve et /reject
+\item Implémenter la création automatique du compte utilisateur lors de l'approbation
+\item Configurer l'envoi d'emails de confirmation ou rejet via Nodemailer
+\item Réaliser l'interface de gestion des demandes avec actions d'approbation/rejet
+\end{itemize} & 2 \\
+\hline
+% Epic 4: Demandes d'inscription OAuth
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 5 - Gestion Clients}} \\
+\hline
+ US17 & En tant qu'administrateur, je souhaite créer un profil client afin de centraliser ses informations. &
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l’endpoint POST /clients pour orchestrer la création simultanée du compte CLIENT et du profil entreprise associé.  
+\item  Implémenter un service de récupération automatique de logo (LogoService) établi sur le nom de la société
+\item Intégrer une logique de gestion des projets historiques pour associer des projets passés, des chefs de projets et des membres d'équipe au nouveau client
+\item Réaliser l'interface de formulaire
+\end{itemize} & 2 \\
+\hline
+
+US18 & En tant qu’administrateur, je souhaite consulter la liste des clients  afin de visualiser les clients existants. &
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l’endpoint GET /clients intégrant une logique de filtrage RBAC.
+\item Réaliser une interface de visualisation
+\end{itemize} & 2 \\
+\hline
+US19 & En tant qu'administrateur, je souhaite consulter le profil détaillé d'un client afin de visualiser toutes ses informations. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l’endpoint GET /clients/:id pour récupérer les informations du client.
+\item Réaliser une interface de profil structurée.
+\item Développer des composants spécifiques pour l'affichage des informations secondaires       
+\end{itemize} & 2 \\
+\hline
+US20 & En tant qu'administrateur, je souhaite modifier les informations d'un client afin de maintenir des données à jour. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l’endpoint PATCH /clients/:id permettant la mise à jour des informations des clients. 
+\item Développer des contrôles d'intégrité côté serveur pour valider les formats de données.
+\item Réaliser une interface d'édition fluide.
+\end{itemize} & 2 \\
+\hline
+US21 & En tant qu'administrateur, je souhaite activer et désactiver un compte client afin de contrôler l'accès. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer les endpoints de changement de statut (POST /desactiver, POST /reactiver)
+\item Implémenter la vérification pour bloquer l'opération si le client possède des contrats actifs, des demandes en attente ou des tickets non résolus.  
+\item Intégrer le EmailService pour l'envoi automatique de notifications transactionnelles de changement de statut.                           
+\end{itemize} & 2 \\
+\hline
+US22 & En tant qu'administrateur, je souhaite ajouter des notes privées sur un client afin de conserver des informations internes. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer un endpoint POST /clients/:id/notes permettant d'ajouter  es chaînes de caractères dans le tableau notesPrivees.
+\item Réaliser une interface de type "Bloc-notes" ou "Journal interne" dans le profil client.
+\item Sécuriser l'accès à ces informations au niveau du backend pour garantir que ces notes ne soient jamais exposées au client lui-même    
+\end{itemize} & 2 \\
+\hline
+US23 & En tant qu'administrateur, je souhaite imprimer l'annuaire d'un client afin de disposer d'une version papier. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint POST /clients pour créer un client avec validation des données
+\end{itemize} & 2 \\
+\hline
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 5 - Gestion des projets et équipes}} \\
+\hline
+US24 & En tant qu'administrateur, je souhaite créer un projet rattaché à un client afin d'organiser les interventions. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint POST /clients pour créer un client avec validation des données
+\end{itemize} & 2 \\
+\hline
+US25 & En tant qu'administrateur, je souhaite consulter la liste des projets afin de piloter l'activité. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint POST /clients pour créer un client avec validation des données
+\end{itemize} & 2 \\
+\hline
+US26 & En tant qu'administrateur, je souhaite affecter des développeurs à un projet afin de constituer l'équipe. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint POST /clients pour créer un client avec validation des données
+\end{itemize} & 2 \\
+\hline
+US27 & En tant que membre d'équipe, je souhaite consulter les informations du projet afin de comprendre le contexte. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint POST /clients pour créer un client avec validation des données
+\end{itemize} & 2 \\
+\hline
+\multicolumn{3}{|r|}{\textbf{Total Sprint 1 :}} & \textbf{34 j} \\
+\hline
+
+\end{longtable}

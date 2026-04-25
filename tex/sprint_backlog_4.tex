@@ -1,0 +1,152 @@
+\rowcolors{0}{}{}
+\arrayrulecolor{black}
+\renewcommand{\arraystretch}{1.3}
+\small
+
+\begin{longtable}{|C{1cm}|m{6.5cm}|m{5cm}|C{1.5cm}|}
+\hline
+\textbf{ID US} & \textbf{User Story} & \textbf{Description technique} & \textbf{Effort (j)} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{ID US} & \textbf{User Story} & \textbf{Description technique} & \textbf{Effort (j)} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+% Epic 10: Messagerie
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 10 - Messagerie et collaboration}} \\
+\hline
+
+US67 & En tant qu'utilisateur, je souhaite accéder à une messagerie intégrée afin de communiquer avec mon équipe. & Sidebar avec channels, indicateurs messages non lus, statut présence utilisateurs & 2 \\
+\hline
+
+US68 & En tant qu'utilisateur, je souhaite envoyer des messages dans un channel afin de communiquer. & Éditeur riche, mentions @, pièces jointes, livraison via WebSocket & 2 \\
+\hline
+
+US69 & En tant qu'utilisateur, je souhaite répondre à un message afin de créer un fil de discussion. & Thread dédié pour réponses, notifications uniquement aux participants & 2 \\
+\hline
+
+US70 & En tant qu'utilisateur, je souhaite mentionner des collègues afin d'attirer leur attention. & Autocomplétion @nom, notification push, badge mention non lue & 1 \\
+\hline
+
+US71 & En tant qu'utilisateur, je souhaite éditer mes messages afin de corriger des erreurs. & Édition possible dans les 15min, indicateur "(modifié)", historique modifications & 1 \\
+\hline
+
+US72 & En tant qu'utilisateur, je souhaite supprimer mes messages afin de retirer du contenu inapproprié. & Suppression avec confirmation, remplacement par "[Message supprimé]", conservation pour audit & 1 \\
+\hline
+
+US73 & En tant qu'utilisateur, je souhaite épingler des messages importants afin de les retrouver facilement. & Épinglage (permission requise), limite 10 par channel, possibilité désépinglage & 1 \\
+\hline
+
+US74 & En tant que chef de projet, je souhaite voir qui est en ligne dans mon équipe afin de savoir qui je peux solliciter. & Liste membres en ligne, filtrage par projet/équipe, dernière activité & 1 \\
+\hline
+
+US75 & En tant qu'utilisateur, je souhaite voir qui est en ligne afin de savoir qui est disponible. & Indicateur statut (EN\_LIGNE, ABSENT, NE\_PAS\_DERANGER), modifiable & 1 \\
+\hline
+
+% Epic 11: Gestion des documents
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 11 - Gestion des documents}} \\
+\hline
+
+US76 & En tant qu'utilisateur, je souhaite uploader des documents afin de centraliser les fichiers. & Upload drag \& drop, association contrat/projet/ticket, métadonnées (titre, description, tags) & 2 \\
+\hline
+
+US77 & En tant qu'utilisateur, je souhaite télécharger des documents afin de les consulter hors ligne. & Téléchargement individuel/multiple (ZIP), vérification permissions, enregistrement consultation & 1 \\
+\hline
+
+US78 & En tant qu'utilisateur, je souhaite gérer les versions des documents afin d'assurer la traçabilité. & Upload nouvelle version, numérotation auto (v1, v2), commentaire obligatoire & 2 \\
+\hline
+
+US79 & En tant qu'utilisateur, je souhaite consulter l'historique des consultations afin de voir qui a accédé au document. & Historique pour traçabilité (qui, quand, durée) & 1 \\
+\hline
+
+US80 & En tant qu'utilisateur, je souhaite archiver des documents afin de nettoyer la vue active. & Archivage avec confirmation, conservation données, restauration possible & 1 \\
+\hline
+
+US81 & En tant qu'utilisateur, je souhaite être alerté si un fichier identique existe déjà afin d'éviter les doublons. & Calcul hash à l'upload, alerte si doublon, options (remplacer/créer version/annuler) & 2 \\
+\hline
+
+US82 & En tant que chef de projet, je souhaite générer automatiquement un PV à partir d'un ticket afin de documenter les interventions. & Génération PDF professionnel (logo, en-tête, description, actions, temps, signature électronique) & 3 \\
+\hline
+
+US83 & En tant que client, je souhaite télécharger les PV de mes tickets afin de conserver une trace des interventions. & Accès PV depuis ticket, historique consultable, notification email à génération & 1 \\
+\hline
+
+% Epic 12: Notifications
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 12 - Notifications et alertes}} \\
+\hline
+
+US84 & En tant qu'utilisateur, je souhaite recevoir des notifications in-app afin d'être informé en temps réel. & Icône avec compteur, dropdown listant notifications, marquage lu/non lu, accès direct élément & 2 \\
+\hline
+
+US85 & En tant qu'utilisateur, je souhaite recevoir des notifications par email afin d'être informé hors connexion. & Préférences fréquence (temps réel/digest), templates professionnels & 2 \\
+\hline
+
+US86 & En tant que membre technique, je souhaite recevoir des notifications Slack afin d'être alerté sur mon outil de travail. & Configuration Slack par contrat/projet, webhook URL, événements sélectionnables & 2 \\
+\hline
+
+US87 & En tant qu'utilisateur, je souhaite recevoir des notifications push navigateur afin d'être alerté même hors onglet. & Demande permission, notifications événements critiques, clic ouvre application & 2 \\
+\hline
+
+US88 & En tant qu'utilisateur, je souhaite consulter l'historique de mes notifications afin de retrouver une information. & Liste complète avec filtres (type/statut/période), recherche, pagination & 1 \\
+\hline
+
+% Epic 13: Rapports
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 13 - Rapports}} \\
+\hline
+
+US93 & En tant qu'administrateur, je souhaite générer un rapport d'activité mensuel afin de présenter les statistiques. & Rapport (tickets traités, temps passé, respect SLA), export PDF/Excel, graphiques & 3 \\
+\hline
+
+US94 & En tant qu'administrateur, je souhaite générer des rapports de conformité SLA afin de justifier les performances. & Rapport taux respect par contrat/période, détail par ticket, calcul pénalités, PDF professionnel & 3 \\
+\hline
+
+US95 & En tant que chef de projet, je souhaite générer des rapports d'activité afin de présenter l'avancement. & Rapport par projet/équipe/période (tickets traités, temps passé), graphiques évolution & 2 \\
+\hline
+
+% Epic 15: Versioning avancé
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 15 - Versioning avancé}} \\
+\hline
+
+US98 & En tant qu'utilisateur, je souhaite créer une nouvelle version d'un document afin de maintenir l'historique. & Upload avec commentaire obligatoire, numérotation auto (v1.0, v1.1, v2.0), conservation versions & 2 \\
+\hline
+
+US99 & En tant qu'utilisateur, je souhaite comparer deux versions d'un document afin de voir les différences. & Sélection deux versions, affichage côte à côte, mise en évidence modifications & 2 \\
+\hline
+
+US100 & En tant qu'administrateur, je souhaite voir qui a consulté un document afin de suivre sa diffusion. & Liste consultations (date/heure/utilisateur, durée), statistiques & 1 \\
+\hline
+
+% Epic 16: Intelligence Artificielle
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 16 - Assistance intelligente}} \\
+\hline
+
+US101 & En tant que client, je souhaite que le système suggère automatiquement une catégorie pour ma demande. & Analyse titre/description, suggestion catégorie, acceptation/modification possible & 3 \\
+\hline
+
+US102 & En tant qu'administrateur, je souhaite que le modèle de suggestion s'améliore afin d'offrir des recommandations précises. & Apprentissage des validations/rejets, réentraînement périodique, suivi métriques précision & 3 \\
+\hline
+
+US103 & En tant que chef de projet, je souhaite que le système suggère une priorité afin de traiter les demandes efficacement. & Analyse contenu et contexte client, suggestion priorité, ajustable par chef projet & 2 \\
+\hline
+
+US104 & En tant que développeur, je souhaite des suggestions de solutions basées sur le passé afin de résoudre plus rapidement. & Identification tickets similaires, suggestion solutions précédentes, acceptation/rejet & 3 \\
+\hline
+
+US105 & En tant que développeur, je souhaite évaluer la pertinence des suggestions afin d'améliorer la qualité. & Système notation (utile/pas utile), collecte retours, ajustement modèle & 2 \\
+\hline
+
+US106 & En tant qu'administrateur, je souhaite que le système détecte automatiquement les doublons afin d'éviter les demandes redondantes. & Analyse similarité à création, signalement doublons, liaison automatique demandes similaires & 2 \\
+\hline
+
+\multicolumn{3}{|r|}{\textbf{Total Sprint 4 :}} & \textbf{64 j} \\
+\hline
+
+\end{longtable}

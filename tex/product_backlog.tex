@@ -1,0 +1,401 @@
+\rowcolors{0}{}{}
+\arrayrulecolor{black}
+\renewcommand{\arraystretch}{1.2}
+\small
+
+% Au début de la longtable, remplace l'en-tête par :
+\begin{longtable}{|C{1cm}|C{3cm}|M{1.2cm}|m{4.5cm}|m{4.5cm}|M{1.3cm}|}
+    \caption{Product Backlog} \label{tab:product_backlog} \\
+    \hline
+    \rowcolor{lightblue}
+    \textbf{ID Epic} & \textbf{Épic} & \textbf{ID US} & \multicolumn{1}{c|}{\textbf{User Story}} & \multicolumn{1}{c|}{\textbf{Critères d'acceptation}} & \textbf{Priorité} \\
+    \hline
+    \endfirsthead
+
+    \hline
+    \endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+% Epic 1: Authentification et Sécurité
+\multirow{5}{*}{\centering 1} & \multirow{5}{2.5cm}{\centering Authentification et Sécurité} 
+& US01 & En tant qu'utilisateur, je souhaite m'authentifier avec email et mot de passe afin d'accéder à mes informations de manière sécurisée. 
+& L'utilisateur authentifié avec succès accède à son tableau de bord personnalisé selon son rôle. & +++ \\
+\cline{3-6}
+& & US02 & En tant qu'utilisateur, je souhaite réinitialiser mon mot de passe afin de retrouver l'accès à mon compte. 
+& L'utilisateur reçoit un email avec un lien valide 24h et peut définir un nouveau mot de passe conforme aux règles de sécurité. & +++ \\
+\cline{3-6}
+& & US03 & En tant qu'utilisateur, je souhaite m'authentifier via Google ou GitHub afin de me connecter rapidement sans créer de compte. 
+& L'utilisateur peut se connecter via son compte Google ou GitHub et accéder immédiatement à l'application. & ++ \\
+\cline{3-6}
+& & US04 & En tant qu'utilisateur, je souhaite me déconnecter de la plateforme afin de sécuriser ma session. 
+& Après déconnexion, l'utilisateur ne peut plus accéder aux pages protégées sans se reconnecter. & ++ \\
+\cline{3-6}
+& & US05 & En tant qu'utilisateur, je souhaite que mon compte soit protégé contre les tentatives de connexion malveillantes afin de garantir la sécurité de mes données. 
+& Après 3 tentatives échouées, le compte est temporairement verrouillé et l'utilisateur reçoit une notification par email. & +++ \\
+\hline
+
+% Epic 2: Gestion des utilisateurs et profils
+2 & Gestion des utilisateurs et profils 
+& US06 & En tant qu'utilisateur, je souhaite gérer mon profil afin que mes informations soient toujours à jour. 
+& L'utilisateur peut modifier et sauvegarder ses informations personnelles qui sont validées avant enregistrement. & ++ \\
+\cline{3-6}
+& & US07 & En tant qu'administrateur, je souhaite créer des utilisateurs afin de gérer les accès au système. 
+& Le nouvel utilisateur reçoit un email d'invitation avec un mot de passe temporaire pour sa première connexion. & +++ \\
+\cline{3-6}
+& & US08 & En tant qu'administrateur, je souhaite modifier les informations d'un utilisateur afin de maintenir des données à jour. 
+& Les modifications sont enregistrées avec traçabilité et l'utilisateur concerné est notifié des changements. & ++ \\
+\cline{3-6}
+& & US09 & En tant qu'administrateur, je souhaite activer et désactiver un compte utilisateur afin de contrôler l'accès au système. 
+& Un compte désactivé ne peut plus se connecter et l'utilisateur reçoit une notification du changement de statut. & +++ \\
+\cline{3-6}
+& & US10 & En tant qu'administrateur, je souhaite consulter la liste des utilisateurs afin de visualiser et gérer efficacement les comptes. 
+& La liste complète des utilisateurs est affichée avec possibilité de filtrer, rechercher et exporter les données. & ++ \\
+\cline{3-6}
+& & US11 & En tant qu'utilisateur, je souhaite consulter l'historique de mes activités afin de suivre mes actions dans le système. 
+& L'utilisateur visualise toutes ses actions passées avec possibilité de filtrer par date et type d'action. & ++ \\
+\hline
+
+% Epic 3: Gestion des rôles et permissions 
+\multirow{5}{*}{\centering 3} & \multirow{5}{2.5cm}{\centering Gestion des rôles et permissions} 
+& US12 & En tant qu'administrateur, je souhaite gérer des rôles afin de structurer les accès au système. 
+& L'administrateur peut créer, modifier et archiver des rôles avec vérification des utilisateurs associés. & +++ \\
+\cline{3-6}
+& & US13 & En tant qu'administrateur, je souhaite attribuer des permissions granulaires aux rôles afin de contrôler précisément les accès. 
+& L'administrateur sélectionne les permissions par catégorie et visualise un aperçu avant validation. & +++ \\
+\cline{3-6}
+& & US14 & En tant qu'administrateur, je souhaite consulter la matrice rôles-permissions afin de visualiser rapidement les droits de chaque rôle. 
+& La matrice affiche clairement tous les rôles et leurs permissions avec possibilité de filtrer et exporter. & ++ \\
+\hline
+
+% Epic 4: Demandes d'inscription OAuth
+\multirow{2}{*}{\centering 4} & \multirow{2}{2.5cm}{\centering Gestion des demandes d'inscription OAuth} 
+& US15 & En tant qu'utilisateur externe, je souhaite demander l'accès via OAuth afin de m'inscrire facilement. 
+& La demande est enregistrée et l'administrateur reçoit une notification pour traitement. & ++ \\
+\cline{3-6}
+& & US16 & En tant qu'administrateur, je souhaite valider ou rejeter les demandes d'inscription OAuth afin de contrôler les accès. 
+& L'utilisateur reçoit un email de confirmation ou rejet et peut accéder à l'application si validé. & +++ \\
+\hline
+
+% Epic 5: Gestion des clients
+\multirow{7}{*}{\centering 5} & \multirow{7}{2.5cm}{\centering Gestion des clients} 
+& US17 & En tant qu'administrateur, je souhaite créer un profil client afin de centraliser ses informations. 
+& Le profil client est créé avec toutes les informations nécessaires et un identifiant unique est généré. & +++ \\
+\cline{3-6}
+& & US18 & En tant qu’administrateur, je souhaite consulter la liste des clients  afin de visualiser les clients existants. 
+& La liste complète des clients est accessible avec possibilité de filtrer, rechercher et exporter. & ++ \\
+\cline{3-6}
+& & US19 & En tant qu'administrateur, je souhaite consulter le profil détaillé d'un client afin de visualiser toutes ses informations. 
+& Toutes les informations du client sont affichées incluant contrats, projets et historique des interactions. & ++ \\
+\cline{3-6}
+& & US20 & En tant qu'administrateur, je souhaite modifier les informations d'un client afin de maintenir des données à jour. 
+& Les modifications sont enregistrées avec traçabilité et le client est notifié si ses coordonnées changent. & ++ \\
+\cline{3-6}
+& & US21 & En tant qu'administrateur, je souhaite activer et désactiver un compte client afin de contrôler l'accès. 
+& Un compte client désactivé ne peut plus accéder au système et reçoit une notification du changement. & +++ \\
+\cline{3-6}
+& & US22 & En tant qu'administrateur, je souhaite ajouter des notes privées sur un client afin de conserver des informations internes. 
+& Les notes sont enregistrées avec date et auteur, visibles uniquement par l'équipe interne. & + \\
+\cline{3-6}
+& & US23 & En tant qu'administrateur, je souhaite imprimer l'annuaire d'un client afin de disposer d'une version papier. 
+& Un document PDF professionnel contenant toutes les informations du client est généré. & + \\
+\hline
+
+% Epic 6: Gestion des projets et équipes
+\multirow{4}{*}{\centering 6} & \multirow{4}{2.5cm}{\centering Gestion des projets et équipes} 
+& US24 & En tant qu'administrateur, je souhaite créer un projet rattaché à un client afin d'organiser les interventions. 
+& Le projet est créé et rattaché au client avec un chef de projet assigné. & +++ \\
+\cline{3-6}
+& & US25 & En tant qu'administrateur, je souhaite consulter la liste des projets afin de piloter l'activité. 
+& La liste complète des projets est affichée avec possibilité de filtrer par client, statut ou chef de projet. & ++ \\
+\cline{3-6}
+& & US26 & En tant qu'administrateur, je souhaite affecter des développeurs à un projet afin de constituer l'équipe. 
+& Les développeurs sont affectés au projet et peuvent visualiser les informations du projet. & +++ \\
+\cline{3-6}
+& & US27 & En tant que membre d'équipe, je souhaite consulter les informations du projet afin de comprendre le contexte. 
+& Toutes les informations du projet sont accessibles incluant client, objectifs, équipe et contrat. & ++ \\
+\hline
+
+7 & Gestion des contrats de maintenance & US28 & En tant qu'administrateur, je souhaite créer un contrat de maintenance afin de formaliser les engagements de service avec le client. 
+& Le contrat est créé avec client, dates, type SLA, cycle facturation et configuration des alertes d'expiration. & +++ \\
+\cline{3-6}
+& & US29 & En tant qu'administrateur, je souhaite consulter la liste des contrats afin de suivre les engagements contractuels.
+& La liste affiche tous les contrats avec filtres, indicateurs visuels d'expiration et possibilité d'export. & ++ \\
+\cline{3-6}
+& & US30 & En tant qu'administrateur, je souhaite recevoir des alertes avant l'expiration des contrats afin d'anticiper les renouvellements. 
+& Des alertes automatiques sont envoyées à J-30, J-15 et J-7 par email, in-app et Slack. & +++ \\
+\cline{3-6}
+& & US31 & En tant qu'administrateur, je souhaite archiver un contrat afin de conserver l'historique. 
+& Le contrat est archivé avec un changement de statut, avec possibilité de restauration ultérieure. & ++ \\
+\cline{3-6}
+& & US32 & En tant que client, je souhaite demander la résiliation de mon contrat afin d'interrompre le service. 
+& La demande de résiliation est créée avec motif et date souhaitée, l'administrateur reçoit une notification et peut traiter la demande. & +++ \\
+\cline{3-6}
+& & US33 & En tant qu'administrateur, je souhaite résilier un contrat afin de l'interrompre avant terme. 
+& Le contrat est résilié avec date et motif, les tickets ouverts sont clôturés et le client est notifié. & +++ \\
+\cline{3-6}
+& & US34 & En tant qu'administrateur, je souhaite renouveler un contrat afin de prolonger la relation. 
+& Un nouveau contrat est créé à partir de l'existant avec lien entre les deux et notification au client. & +++ \\
+\cline{3-6}
+& & US35 & En tant que chef de projet, je souhaite consulter les contrats dans un calendrier afin de visualiser les dates d'expiration.
+& La vue calendrier mensuel/annuel affiche les contrats avec code couleur selon l'échéance et export iCal. & ++ \\
+\cline{3-6}
+& & US36 & En tant qu'administrateur, je souhaite centraliser les documents d'un contrat afin de les retrouver facilement.
+& Les documents sont uploadés avec versioning automatique et associés au contrat. & + \\
+\cline{3-6}
+& & US37 & En tant qu'administrateur, je souhaite configurer les règles SLA globales afin de définir les standards. 
+& Les délais de réponse et résolution sont configurés par priorité (MINEUR, MAJEUR, CRITIQUE). & +++ \\
+\hline
+
+% Epic 8: Gestion des demandes clients
+8 & Gestion des demandes clients 
+& US38 & En tant que client, je souhaite soumettre une demande de maintenance afin de signaler un besoin. 
+& La demande est créée avec pièces jointes (max 5), un numéro unique est généré et une confirmation est envoyée. & +++ \\
+\cline{3-6}
+& & US39 & En tant que chef de projet, je souhaite consulter les demandes en attente afin de les traiter. 
+& La liste filtrée affiche les demandes EN\_ATTENTE triées par date avec indicateurs de priorité. & +++ \\
+\cline{3-6}
+& & US40 & En tant que chef de projet, je souhaite valider une demande afin de la convertir en ticket. 
+& La demande est validée avec définition de catégorie et priorité, un ticket lié est créé automatiquement. & +++ \\
+\cline{3-6}
+& & US41 & En tant que chef de projet, je souhaite demander des informations complémentaires afin de clarifier une demande. 
+& La demande passe en statut INFOS\_REQUISES avec questions et relance automatique après 48h. & ++ \\
+\cline{3-6}
+& & US42 & En tant que client, je souhaite compléter ma demande afin de fournir les informations manquantes. 
+& Le client répond au formulaire et la demande retourne automatiquement au statut EN\_ATTENTE. & ++ \\
+\cline{3-6}
+& & US43 & En tant que chef de projet, je souhaite requalifier une demande afin de corriger sa catégorie ou sa priorité. 
+& Le type et la priorité sont modifiés avec justification obligatoire et traçabilité. & ++ \\
+\cline{3-6}
+& & US44 & En tant qu'utilisateur, je souhaite commenter une demande afin de communiquer sur le contexte. 
+& Les commentaires sont ajoutés avec éditeur riche, mentions @utilisateur et pièces jointes possibles. & ++ \\
+\cline{3-6}
+& & US45 & En tant qu'utilisateur, je souhaite consulter l'historique d'une demande afin de suivre son évolution. 
+& La timeline affiche tous les événements (création, validation, commentaires, conversion) avec filtres. & ++ \\
+\hline
+
+% Epic 9: Gestion des tickets
+9 & Gestion des tickets 
+& US46 & En tant que développeur, je souhaite visualiser mes tickets dans un tableau Kanban afin de gérer mes tâches. 
+& Colonnes OUVERT, EN\_COURS, EN\_REVUE, RESOLU, FERME. Drag \& drop et indicateurs SLA. & +++ \\
+\cline{3-6}
+& & US47 & En tant que chef de projet, je souhaite assigner un ticket à un développeur afin de répartir la charge. 
+& Sélection du développeur avec vérification disponibilité/compétences, alerte surcharge. & +++ \\
+\cline{3-6}
+& & US48 & En tant que chef de projet, je souhaite assigner un ticket à plusieurs développeurs afin de collaborer sur des tâches complexes. 
+& Sélection multiple, rôles principal/support, répartition du temps estimé. & ++ \\
+\cline{3-6}
+& & US49 & En tant que développeur, je souhaite me désassigner d'un ticket afin de libérer ma charge. 
+& Désassignation avec motif obligatoire, retour du statut à OUVERT, notification chef projet. & ++ \\
+\cline{3-6}
+& & US50 & En tant que développeur, je souhaite démarrer un chronomètre sur un ticket afin de tracker mon temps. 
+& Bouton Démarrer, création d'une session de travail, indicateur visuel de chrono actif. & +++ \\
+\cline{3-6}
+& & US51 & En tant que développeur, je souhaite mettre en pause mon chronomètre afin de gérer les interruptions. 
+& Bouton Pause, enregistrement du temps écoulé, reprise possible. & ++ \\
+\cline{3-6}
+& & US52 & En tant que développeur, je souhaite arrêter le chronomètre afin de finaliser ma session. 
+& Arrêt avec commentaire optionnel, ajout de la session à l'historique, notification si dépassement. & +++ \\
+\cline{3-6}
+& & US53 & En tant que développeur, je souhaite ajouter manuellement une session de travail afin de corriger des oublis. 
+& Formulaire avec date, heures, durée et commentaire obligatoire, validation sans chevauchement. & ++ \\
+\cline{3-6}
+& & US54 & En tant que développeur, je souhaite changer le statut d'un ticket afin de refléter l'avancement. 
+& Workflow OUVERT → EN\_COURS → EN\_REVUE → RESOLU → FERME, notification parties prenantes. & +++ \\
+\cline{3-6}
+& & US55 & En tant que client, je souhaite valider la résolution d'un ticket afin de confirmer que le problème est résolu. 
+& Validation avec commentaire, fermeture du ticket, notification au développeur. & +++ \\
+\cline{3-6}
+& & US56 & En tant que chef de projet, je souhaite rouvrir un ticket fermé afin de traiter un problème récurrent. 
+& Réouverture avec motif, réinitialisation du SLA, notification des assignés. & ++ \\
+\cline{3-6}
+& & US57 & En tant que chef de projet, je souhaite consulter le temps passé par ticket afin d'analyser la productivité. 
+& Temps total et détaillé par développeur avec graphiques. & ++ \\
+\cline{3-6}
+& & US58 & En tant que développeur, je souhaite signaler un blocage afin d'alerter sur un obstacle. 
+& Signalement avec type, description et impact, notification urgence au chef de projet, pause SLA. & +++ \\
+\cline{3-6}
+& & US59 & En tant que membre d'équipe, je souhaite résoudre un blocage afin de permettre au développeur de reprendre son travail. 
+& Le blocage est résolu avec commentaire obligatoire, le chrono SLA reprend et l'action est tracée. & ++ \\
+\cline{3-6}
+& & US60 & En tant que développeur, je souhaite demander une extension de délai SLA afin de disposer de plus de temps. 
+& La demande d'extension est créée avec durée et justification pour validation par le chef de projet. & ++ \\
+\cline{3-6}
+& & US61 & En tant que chef de projet, je souhaite approuver ou rejeter les demandes d'extension SLA. 
+& La liste des demandes en attente est affichée, l'approbation ou rejet avec commentaire met à jour automatiquement le SLA. & ++ \\
+\cline{3-6}
+& & US62 & En tant qu'utilisateur, je souhaite commenter un ticket avec mentions afin de communiquer efficacement. 
+& Les commentaires sont ajoutés avec éditeur riche, autocomplétion @utilisateur et distinction internes/externes. & +++ \\
+\cline{3-6}
+& & US63 & En tant qu'utilisateur, je souhaite ajouter des pièces jointes aux tickets afin de fournir du contexte. 
+& Les fichiers sont ajoutés par drag \& drop (images/PDF/logs, max 10MB) avec prévisualisation. & ++ \\
+\cline{3-6}
+& & US64 & En tant que développeur, je souhaite être informé lorsqu'un autre utilisateur modifie le même ticket. 
+& Une notification temps réel via WebSocket affiche un toast et un indicateur "X est en train d'éditer". & ++ \\
+\cline{3-6}
+& & US65 & En tant qu'utilisateur, je souhaite consulter l'historique complet d'un ticket afin de comprendre son évolution. 
+& La timeline chronologique inversée affiche tous les événements avec filtres par type et export PDF. & ++ \\
+\hline
+
+% Epic 10: Messagerie et collaboration
+10 & Messagerie et collaboration 
+& US66 & En tant qu'utilisateur, je souhaite accéder à une messagerie intégrée afin de communiquer avec mon équipe. 
+& La sidebar affiche les channels avec indicateurs de messages non lus et statut de présence des utilisateurs. & ++ \\
+\cline{3-6}
+& & US67 & En tant qu'utilisateur, je souhaite envoyer des messages dans un channel afin de communiquer. 
+& Les messages sont envoyés avec éditeur riche, mentions @, pièces jointes et livraison via WebSocket. & +++ \\
+\cline{3-6}
+& & US68 & En tant qu'utilisateur, je souhaite répondre à un message afin de créer un fil de discussion. 
+& Un thread dédié est créé pour les réponses avec notifications uniquement aux participants. & ++ \\
+\cline{3-6}
+& & US69 & En tant qu'utilisateur, je souhaite mentionner des collègues afin d'attirer leur attention. 
+& L'autocomplétion @nom fonctionne, une notification push est envoyée et un badge mention non lue s'affiche. & +++ \\
+\cline{3-6}
+& & US70 & En tant qu'utilisateur, je souhaite éditer mes messages afin de corriger des erreurs. 
+& L'édition est possible dans les 15min avec indicateur "(modifié)" et historique des modifications. & + \\
+\cline{3-6}
+& & US71 & En tant qu'utilisateur, je souhaite supprimer mes messages afin de retirer du contenu inapproprié. 
+& Le message est supprimé avec confirmation, remplacé par "[Message supprimé]" et conservé pour audit. & + \\
+\cline{3-6}
+& & US72 & En tant qu'utilisateur, je souhaite épingler des messages importants afin de les retrouver facilement. 
+& Les messages sont épinglés (permission requise) avec limite de 10 par channel et possibilité de désépinglage. & ++ \\
+\cline{3-6}
+& & US73 & En tant que chef de projet, je souhaite voir qui est en ligne dans mon équipe afin de savoir qui je peux solliciter. 
+& La liste des membres en ligne est affichée avec filtrage par projet/équipe et dernière activité. & ++ \\
+\cline{3-6}
+& & US74 & En tant qu'utilisateur, je souhaite voir qui est en ligne afin de savoir qui est disponible. 
+& L'indicateur de statut (EN\_LIGNE, ABSENT, NE\_PAS\_DERANGER) est affiché et modifiable. & ++ \\
+\hline
+
+% Epic 11: Gestion des documents
+11 & Gestion des documents 
+& US75 & En tant qu'utilisateur, je souhaite uploader des documents afin de centraliser les fichiers. 
+& Les documents sont uploadés par drag \& drop avec association à contrat/projet/ticket et métadonnées (titre, description, tags). & ++ \\
+\cline{3-6}
+& & US76 & En tant qu'utilisateur, je souhaite télécharger des documents afin de les consulter hors ligne. 
+& Le téléchargement individuel ou multiple (ZIP) est possible avec vérification des permissions et enregistrement de la consultation. & ++ \\
+\cline{3-6}
+& & US77 & En tant qu'utilisateur, je souhaite gérer les versions des documents afin d'assurer la traçabilité. 
+& Une nouvelle version est uploadée avec numérotation automatique (v1, v2) et commentaire obligatoire. & ++ \\
+\cline{3-6}
+& & US78 & En tant qu'utilisateur, je souhaite consulter l'historique des consultations afin de voir qui a accédé au document. 
+& L'historique des consultations est disponible pour traçabilité. & + \\
+\cline{3-6}
+& & US79 & En tant qu'utilisateur, je souhaite archiver des documents afin de nettoyer la vue active. 
+& Le document est archivé avec confirmation, les données sont conservées et la restauration est possible. & + \\
+\cline{3-6}
+& & US80 & En tant qu'utilisateur, je souhaite être alerté si un fichier identique existe déjà afin d'éviter les doublons. 
+& Le hash du fichier est calculé à l'upload, une alerte s'affiche si doublon avec options remplacer/créer version/annuler. & ++ \\
+\cline{3-6}
+& & US81 & En tant que chef de projet, je souhaite générer automatiquement un PV à partir d'un ticket afin de documenter les interventions. 
+& Un PDF professionnel est généré avec logo, en-tête, description, actions, temps passé et signature électronique. & +++ \\
+\cline{3-6}
+& & US82 & En tant que client, je souhaite télécharger les PV de mes tickets afin de conserver une trace des interventions. 
+& Le PV est accessible depuis le ticket, l'historique est consultable et une notification email est envoyée à la génération. & ++ \\
+\hline
+
+% Epic 12: Notifications
+\newpage
+\multirow{6}{*}{\centering 12} & \multirow{6}{2.5cm}{\centering Notifications et alertes} 
+& US83 & En tant qu'utilisateur, je souhaite recevoir des notifications in-app afin d'être informé en temps réel. 
+& L'icône avec compteur affiche un dropdown listant les notifications avec marquage lu/non lu et accès direct à l'élément. & +++ \\
+\cline{3-6}
+& & US84 & En tant qu'utilisateur, je souhaite recevoir des notifications par email afin d'être informé hors connexion. 
+& Les préférences de fréquence (temps réel/digest) sont configurables avec templates professionnels. & ++ \\
+\cline{3-6}
+& & US85 & En tant que membre technique, je souhaite recevoir des notifications Slack afin d'être alerté sur mon outil de travail. 
+& La configuration Slack par contrat/projet est possible avec webhook URL et événements sélectionnables. & ++ \\
+\cline{3-6}
+& & US86 & En tant qu'utilisateur, je souhaite recevoir des notifications push navigateur afin d'être alerté même hors onglet. 
+& La permission est demandée, les notifications pour événements critiques sont envoyées et le clic ouvre l'application. & ++ \\
+\cline{3-6}
+& & US87 & En tant qu'utilisateur, je souhaite consulter l'historique de mes notifications afin de retrouver une information. 
+& La liste complète des notifications est affichée avec filtres par type/statut/période, recherche et pagination. & ++ \\
+\hline
+
+% Epic 13: Dashboards et rapports
+13 & Dashboards et rapports 
+& US88 & En tant qu'administrateur, je souhaite consulter un dashboard global afin de piloter le système. 
+& Les KPIs (utilisateurs actifs, tickets ouverts, taux SLA, CA) sont affichés avec graphiques, alertes et filtres par période. & +++ \\
+\cline{3-6}
+& & US89 & En tant que chef de projet, je souhaite consulter un dashboard d'équipe afin de piloter l'activité. 
+& La vue d'équipe affiche la charge de travail par développeur, performance SLA et temps passé vs estimé. & +++ \\
+\cline{3-6}
+& & US90 & En tant que développeur, je souhaite consulter mon dashboard personnel afin d'organiser ma journée. 
+& Les tickets assignés sont affichés avec priorités, chronomètre actif, temps passé et échéances SLA. & ++ \\
+\cline{3-6}
+& & US91 & En tant que client, je souhaite consulter mon dashboard afin de suivre mes projets. 
+& Les contrats actifs, demandes et tickets en cours, statistiques, documents récents et contacts équipe sont affichés. & ++ \\
+\cline{3-6}
+& & US92 & En tant qu'administrateur, je souhaite générer un rapport d'activité mensuel afin de présenter les statistiques. 
+& Le rapport contient tickets traités, temps passé et respect SLA avec export PDF/Excel et graphiques. & +++ \\
+\cline{3-6}
+& & US93 & En tant qu'administrateur, je souhaite générer des rapports de conformité SLA afin de justifier les performances. 
+& Le rapport affiche le taux de respect par contrat/période avec détail par ticket, calcul pénalités et PDF professionnel. & +++ \\
+\cline{3-6}
+& & US94 & En tant que chef de projet, je souhaite générer des rapports d'activité afin de présenter l'avancement. 
+& Le rapport par projet/équipe/période affiche tickets traités, temps passé et graphiques d'évolution. & ++ \\
+\hline
+
+% Epic 14: Historique et audit trail
+\multirow{2}{*}{\centering 14} & \multirow{2}{2.5cm}{\centering Historique et traçabilité} 
+& US95 & En tant qu'administrateur, je souhaite consulter l'historique complet de toutes les actions afin d'assurer la traçabilité. 
+& Toutes les actions CRUD sont enregistrées avec utilisateur, date, IP, action, entité et valeurs modifiées. & +++ \\
+\cline{3-6}
+& & US96 & En tant qu'administrateur, je souhaite exporter les logs d'audit afin de répondre aux exigences de conformité. 
+& L'export CSV/JSON est possible avec filtrage par période/utilisateur/action, signature numérique et chiffrement. & ++ \\
+\hline
+
+% Epic 15: Versioning avancé
+\multirow{3}{*}{\centering 15} & \multirow{3}{2.5cm}{\centering Versioning avancé} 
+& US97 & En tant qu'utilisateur, je souhaite créer une nouvelle version d'un document afin de maintenir l'historique. 
+& Une nouvelle version est uploadée avec commentaire obligatoire, numérotation auto (v1.0, v1.1, v2.0) et conservation des versions précédentes. & ++ \\
+\cline{3-6}
+& & US98 & En tant qu'utilisateur, je souhaite comparer deux versions d'un document afin de voir les différences. 
+& Deux versions sont sélectionnées et affichées côte à côte avec mise en évidence des modifications. & + \\
+\cline{3-6}
+& & US99 & En tant qu'administrateur, je souhaite voir qui a consulté un document afin de suivre sa diffusion. 
+& La liste des consultations affiche date/heure/utilisateur et durée de consultation avec statistiques. & ++ \\
+\hline
+
+% Epic 16: IA et automatisation
+\multirow{6}{*}{\centering 16} & \multirow{6}{2.5cm}{\centering Assistance intelligente} 
+& US100 & En tant que client, je souhaite que le système suggère automatiquement une catégorie pour ma demande. 
+& Le titre et la description sont analysés, une catégorie est suggérée et le client peut l'accepter ou la modifier. & +++ \\
+\cline{3-6}
+& & US101 & En tant qu'administrateur, je souhaite que le modèle de suggestion s'améliore afin d'offrir des recommandations précises. 
+& Le modèle apprend des validations/rejets, se réentraîne périodiquement et les métriques de précision sont suivies. & ++ \\
+\cline{3-6}
+& & US102 & En tant que chef de projet, je souhaite que le système suggère une priorité afin de traiter les demandes efficacement. 
+& Le contenu et le contexte client sont analysés, une priorité est suggérée et ajustable par le chef de projet. & ++ \\
+\cline{3-6}
+& & US103 & En tant que développeur, je souhaite des suggestions de solutions basées sur le passé afin de résoudre plus rapidement. 
+& Les tickets similaires sont identifiés, les solutions précédentes sont suggérées et peuvent être acceptées ou ignorées. & ++ \\
+\cline{3-6}
+& & US104 & En tant que développeur, je souhaite évaluer la pertinence des suggestions afin d'améliorer la qualité. 
+& Un système de notation (utile/pas utile) collecte les retours et ajuste le modèle. & + \\
+\cline{3-6}
+& & US105 & En tant qu'administrateur, je souhaite que le système détecte automatiquement les doublons afin d'éviter les demandes redondantes. 
+& La similarité est analysée à la création, les doublons sont signalés et les demandes similaires sont liées automatiquement. & ++ \\
+\hline
+
+% Epic 17: Gestion des sous-tâches
+\multirow{4}{*}{\centering 17} & \multirow{4}{2.5cm}{\centering Gestion des sous-tâches} 
+& US106 & En tant qu'utilisateur, je souhaite créer des sous-tâches pour décomposer un ticket afin de mieux organiser le travail. 
+& Les sous-tâches sont créées avec titre/description/estimation et la progression globale est calculée automatiquement. & ++ \\
+\cline{3-6}
+& & US107 & En tant que chef de projet, je souhaite assigner des sous-tâches à différents développeurs afin de paralléliser le travail. 
+& Chaque sous-tâche est assignée indépendamment, les développeurs sont notifiés et le temps individuel est suivi. & ++ \\
+\cline{3-6}
+& & US108 & En tant qu'utilisateur, je souhaite suivre la progression via les sous-tâches afin de visualiser l'avancement détaillé. 
+& La barre de progression affiche le statut de chaque sous-tâche et identifie les sous-tâches bloquantes. & ++ \\
+\cline{3-6}
+& & US109 & En tant que système, je souhaite fermer automatiquement le ticket parent lorsque toutes les sous-tâches sont terminées. 
+& La vérification est automatique à chaque changement de statut, le ticket parent passe à RESOLU et le client est notifié. & ++ \\
+\hline
+
+\end{longtable}

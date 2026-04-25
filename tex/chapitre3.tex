@@ -1,0 +1,407 @@
+\chapter{Sprint 1 : Gestion des Utilisateurs et Authentification}
+
+\vspace{2cm}
+
+{\Large\bfseries Plan}
+
+\vspace{0.3cm}
+
+\section*{}
+\addcontentsline{toc}{section}{Plan}
+
+\begin{enumerate}[label=\textbf{\arabic*}, leftmargin=2.5cm, itemsep=0.5cm]
+    \item \hyperref[sec:backlog_sprint1]{\textbf{Backlog du Sprint 1}} \dotfill \textbf{\pageref{sec:backlog_sprint1}}
+    
+    \item \hyperref[sec:analyse_sprint1]{\textbf{Analyse}} \dotfill \textbf{\pageref{sec:analyse_sprint1}}
+    
+    \item \hyperref[sec:conception_sprint1]{\textbf{Conception}} \dotfill \textbf{\pageref{sec:conception_sprint1}}
+    
+    \item \hyperref[sec:realisation_sprint1]{\textbf{Réalisation}} \dotfill \textbf{\pageref{sec:realisation_sprint1}}
+    
+    \item \hyperref[sec:tests_sprint1]{\textbf{Tests}} \dotfill \textbf{\pageref{sec:tests_sprint1}}
+\end{enumerate}
+
+\vfill
+
+\newpage
+
+\section*{Introduction}
+
+Dans ce chapitre, nous abordons le premier sprint du projet SolidMaint, couvrant la période du 17 février au 11 mars 2026, soit trois semaines de travail consacrées à la mise en place des fondations de l'application. Nous commencerons par la présentation du backlog du sprint regroupant dix-sept user stories réparties en quatre epics, suivie de la phase d'analyse et de conception portant sur le système d'authentification et la gestion des utilisateurs par rôles (RBAC), puis de la phase de réalisation des interfaces et des choix d'implémentation, et enfin des tests conduits pour valider les fonctionnalités livrées.
+% ─────────────────────────────────────────────────────────────────────────────
+% SECTION 1 : BACKLOG DU SPRINT 1
+% ─────────────────────────────────────────────────────────────────────────────
+
+\section*{Sprint Backlog}
+\label{sec:backlog_sprint1}
+
+Le tableau ci-dessous présente le Sprint Backlog détaillé avec les descriptions techniques et l'effort estimé pour chaque user story.
+
+\input{tex/sprint_backlog_1}
+
+\newpage
+
+% ─────────────────────────────────────────────────────────────────────────────
+% SECTION 2 : ANALYSE
+% ─────────────────────────────────────────────────────────────────────────────
+
+\section{Analyse}
+\label{sec:analyse_sprint1}
+
+\subsection{Diagramme des cas d'utilisation du premier sprint}
+
+La figure ci-dessous montre le diagramme de cas d'utilisation du premier sprint :
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=1.0\textwidth,height=0.85\textheight,keepaspectratio]{Images/Diagramme_cas_utilisation_sprint1.png}
+        \caption{Diagramme des cas d'utilisation du premier sprint}
+        \label{fig:use_case_sprint1}
+\end{figure}
+
+Nous allons accompagner les cas d'utilisation d'un texte descriptif pour expliquer le scénario de chaque cas ainsi que ses exceptions.
+
+\newpage
+
+\subsection{Description textuelle de cas d'utilisation « Changer mot de passe »}
+\begin{table}[H]
+\centering
+\caption{Description textuelle de cas d'utilisation « Changer mot de passe »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Changer mot de passe \\
+\hline
+\textbf{Acteurs} & Utilisateurs \\
+\hline
+\textbf{Préconditions} & Utilisateur possède déjà un compte \\
+\hline
+\textbf{Postconditions} & Le mot de passe est réinitialisé \\
+\hline
+
+\textbf{Scénario principal} & 
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt]
+\item Le système affiche un formulaire de changement de mot de passe.
+\item L'utilisateur saisit son e-mail.
+\item L'utilisateur clique sur le bouton « Réinitialiser le mot de passe ».
+\item Le système vérifie l'existence de l'email.
+\item Le système envoie un e-mail à l'utilisateur.
+\item L'utilisateur clique sur le lien reçu par e-mail.
+\item Le système affiche le formulaire de réinitialisation de mot de passe.
+\item L'utilisateur saisit son nouveau mot de passe deux fois pour confirmation.
+\item Le système valide et enregistre le nouveau mot de passe.
+\item Le système envoie un e-mail de confirmation à l'utilisateur.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénarios d'exception} & 
+\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$] 
+\item L'utilisateur saisit un e-mail qui ne correspond à aucun compte existant. 
+\item L'utilisateur a rempli un champ invalide, ou a laissé un champ vide.
+\item Le lien de réinitialisation est expiré.           
+\item L'utilisateur ne confirme pas correctement le mot de passe.
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Description des cas d'utilisation « Gérer utilisateurs »}
+\subsubsection{Raffinement de cas d'utilisation « Gérer utilisateurs »}
+Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de gestion des utilisateurs :    
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/Gérer utilisateur.drawio.png}
+        \caption{Diagramme des cas d'utilisation « Gérer utilisateurs »}
+        \label{fig:gerer_utilisateurs}
+\end{figure}
+
+\subsubsection{Description textuelle de cas d'utilisation « Consulter liste utilisateurs »}
+\begin{table}[H]
+\centering
+\caption{Description textuelle « Consulter liste utilisateurs »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Consulter liste utilisateurs \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} & Utilisateur authentifié\\
+\hline
+\textbf{Postconditions} & Liste des utilisateurs affichée\\
+\hline
+\textbf{Scénario principal} & 
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+    \item L'administrateur accède à la section "Utilisateurs".   
+    \item Le système affiche les utilisateurs sous forme de grille (par défaut) ou de liste selon le choix de l'utilisateur.
+    \item L'administrateur recherche un utilisateur en saisissant des informations clés dans la barre de recherche ou par des boutons de filtre (par statut, par rôle). 
+    \item Le système filtre la liste.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} & L'administrateur clique sur le bouton « Exporter ». \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Description textuelle de cas d'utilisation « Ajouter utilisateur »}
+
+\begin{table}[H]
+\centering
+\caption{Description textuelle « Ajouter utilisateur »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Ajouter utilisateur \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} & Utilisateur authentifié\newline Liste des utilisateurs affichée\\
+\hline
+\textbf{Postconditions} & Utilisateur est ajouté\\
+\hline
+\textbf{Scénario principal} & 
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+    \item L'administrateur clique sur le bouton "Nouvel Utilisateur".      
+    \item Le système affiche le formulaire d'ajout.
+    \item L'administrateur remplit le formulaire. 
+    \item L'administrateur valide le formulaire en cliquant sur (Créer le compte). 
+    \item Le système affiche le message de succès.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénarios d'exception} & 
+\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$] 
+\item L'administrateur a rempli un champ invalide, ou a laissé un champ vide.
+\item L'administrateur saisit un e-mail déjà utilisé dans un autre compte.
+\item L'administrateur tente de fermer la fenêtre alors qu'il a commencé à saisir des données.
+\end{itemize} \\
+\hline
+\textbf{Scénarios alternatifs} & Le système génère un mot de passe temporaire. \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Description textuelle de cas d'utilisation « Modifier utilisateur »}
+
+\begin{table}[H]
+\centering
+\caption{Description textuelle « Modifier utilisateur »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Modifier utilisateur \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} & Utilisateur authentifié\newline Liste des utilisateurs affichée\\
+\hline
+\textbf{Postconditions} & L'utilisateur est modifié\\
+\hline
+\textbf{Scénario principal} & 
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+    \item L'administrateur consulte le profil de l'utilisateur choisi.                 
+    \item L'administrateur clique sur le bouton (Modifier).                                                       
+    \item Le système affiche le formulaire de modification.  
+    \item L'administrateur modifie les informations souhaitées. 
+    \item L'administrateur clique sur le bouton (Enregistrer).
+    \item Le système fait la mise à jour.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} & L'administrateur supprime leur dernier rôle.\newline L'utilisateur tente d'ajouter un rôle qui ne correspond pas au parcours métier. \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Description textuelle de cas d'utilisation « Désactiver un utilisateur »}
+
+\begin{table}[H]
+\centering
+\caption{Description textuelle « Désactiver un utilisateur »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Désactiver un utilisateur \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} & Utilisateur authentifié\newline Liste des utilisateurs affichée\newline L'utilisateur à désactiver doit être actuellement Actif\\
+\hline
+\textbf{Postconditions} & Le compte est désactivé\\
+\hline
+\textbf{Scénario principal} & 
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+    \item L'administrateur choisit un compte dans la liste.                 
+    \item L'administrateur clique sur l'action (Désactiver).                                                     
+    \item Le système vérifie si l'utilisateur possède des tickets actifs ou des demandes en attente.  
+    \item Le système affiche une boîte de dialogue de confirmation. 
+    \item L'administrateur confirme l'action.
+    \item Le système met à jour le statut de l'utilisateur.
+    \item Le système envoie un e-mail automatique à l'utilisateur pour l'informer de la suspension de son compte.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} & L'administrateur réassigne les tickets ou les demandes. \\
+\hline
+\textbf{Scénarios d'exception} & 
+\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$] 
+\item L'utilisateur tente de désactiver un utilisateur qui possède des tickets actifs ou des demandes en attente.
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Description des cas d'utilisation « Gérer profil »}
+\subsubsection{Raffinement de cas d'utilisation « Gérer Profil »}
+Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de gestion de profil :    
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/Gérer Profil.drawio.png}
+        \caption{Raffinement de cas d'utilisation « Gérer Profil »}
+        \label{fig:gerer_profil}
+\end{figure}
+
+\subsubsection{Description textuelle de cas d'utilisation « Consulter Profil »}
+
+\begin{table}[H]
+\centering
+\caption{Description textuelle « Consulter profil »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Consulter profil \\
+\hline
+\textbf{Acteurs} & Utilisateur \\
+\hline
+\textbf{Préconditions} & Utilisateur authentifié\\
+\hline
+\textbf{Postconditions} & Le profil choisi est consulté\\
+\hline
+\textbf{Scénario principal pour consulter son propre profil} & 
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+    \item L'utilisateur clique sur (Voir le profil).                  
+    \item Le système affiche la page personnelle.                                                   
+    \item L'utilisateur consulte ses données et son historique de modification.  
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Consulter le profil d'un utilisateur} & 
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+    \item L'administrateur choisit un utilisateur dans la liste puis clique sur (Voir profil).                          
+    \item Le système affiche les informations de l'employé.                                                 
+\end{enumerate} 
+\end{minipage}\\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Description textuelle de cas d'utilisation « Modifier Profil »}
+
+\begin{table}[H]
+\centering
+\caption{Description textuelle « Modifier le Profil »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Modifier le Profil \\
+\hline
+\textbf{Acteurs} & Administrateur, Utilisateur \\
+\hline
+\textbf{Préconditions} & Utilisateur authentifié\\
+\hline
+\textbf{Postconditions} & Le Profil est modifié\\
+\hline
+\textbf{Scénario principal pour Modifier le profil d'un utilisateur} & 
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+    \item L'administrateur accède au profil de l'utilisateur.                         
+    \item L'administrateur modifie les accès en ajoutant et retirant des rôles système.                                                      
+    \item L'administrateur change le statut du compte (désactiver ou activer).  
+    \item Le système valide chaque action. 
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénario principal pour Modifier son propre profil} & 
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+    \item L'utilisateur accède à sa page "Mon profil".                                               
+    \item L'utilisateur met à jour sa photo de profil ou ses coordonnées.                                                      
+    \item L'utilisateur change son mot de passe en saisissant son ancien mot de passe pour validation.   
+    \item L'utilisateur ajoute ou définit un nouvel e-mail et choisit lequel serait le principal. 
+    \item Le système enregistre les changements. 
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénarios d'exception} & 
+\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$] 
+\item L'administrateur veut retirer le dernier rôle. 
+\item L'utilisateur veut modifier ses propres rôles.
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+
+\newpage
+
+% ─────────────────────────────────────────────────────────────────────────────
+% SECTION 3 : CONCEPTION
+% ─────────────────────────────────────────────────────────────────────────────
+
+\section{Conception}
+\label{sec:conception_sprint1}
+
+\subsection{Diagrammes de séquence}
+
+Cette section présentera les diagrammes de séquence détaillant les interactions entre les différents composants du système pour les cas d'utilisation principaux du Sprint 1.
+
+\textit{[À compléter avec les diagrammes de séquence]}
+
+\subsection{Modèle de données}
+
+Cette section présentera le modèle de données relatif à la gestion des utilisateurs, rôles et permissions.
+
+\textit{[À compléter avec le schéma de base de données]}
+
+\newpage
+
+% ─────────────────────────────────────────────────────────────────────────────
+% SECTION 4 : RÉALISATION
+% ─────────────────────────────────────────────────────────────────────────────
+
+\section{Réalisation}
+\label{sec:realisation_sprint1}
+
+\subsection{Architecture technique}
+
+Cette section présentera l'architecture technique mise en place pour le Sprint 1, incluant la structure des modules frontend et backend.
+
+\textit{[À compléter avec les détails d'implémentation]}
+
+\subsection{Interfaces utilisateur}
+
+Cette section présentera les principales interfaces développées durant le Sprint 1.
+
+\textit{[À compléter avec les captures d'écran]}
+
+\newpage
+
+% ─────────────────────────────────────────────────────────────────────────────
+% SECTION 5 : TESTS
+% ─────────────────────────────────────────────────────────────────────────────
+
+\section{Tests}
+\label{sec:tests_sprint1}
+
+\subsection{Tests unitaires}
+
+Cette section présentera les tests unitaires réalisés pour valider les fonctionnalités du Sprint 1.
+
+\textit{[À compléter avec les résultats des tests]}
+
+\subsection{Tests d'intégration}
+
+Cette section présentera les tests d'intégration effectués pour s'assurer du bon fonctionnement global du système.
+
+\textit{[À compléter avec les résultats des tests]}
