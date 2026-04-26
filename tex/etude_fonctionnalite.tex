@@ -1,0 +1,185 @@
+\section{Authentification et Gestion de Compte}
+\subsection{Connexion au système}
+
+Le système met à disposition plusieurs modalités d'authentification afin d'assurer un accès à la fois sûr et souple. Les utilisateurs peuvent se connecter avec leurs identifiants habituels (adresse électronique et mot de passe) ou choisir une authentification via des fournisseurs tiers tels que Google ou GitHub. Cette variété d'options s'adapte aux préférences de chacun tout en maintenant un niveau de sécurité élevé.
+\newline
+Lors de la première connexion, le système génère automatiquement un jeton d'accès sécurisé, valable pour une durée limitée. Pour éviter des déconnexions répétées, un mécanisme de renouvellement automatique des jetons est prévu, ce qui permet de conserver la session active sans interruption. En cas d'inactivité prolongée ou de déconnexion volontaire, tous les jetons associés au compte sont invalidés afin de protéger les données.
+
+\subsection{Gestion du mot de passe}
+La plateforme met en œuvre un dispositif complet de gestion des mots de passe afin de protéger les comptes des utilisateurs. En cas d'oubli, l'utilisateur peut lancer une procédure de réinitialisation en indiquant son adresse email. Le système génère alors un lien sécurisé, à usage unique et valable une heure, qu'il envoie à l'adresse fournie.
+\newline
+Ce lien permet de définir un nouveau mot de passe tout en révoquant automatiquement tous les jetons de réinitialisation précédents. Une fois la mise à jour effectuée, l'utilisateur reçoit un email de confirmation attestant du succès de l'opération.
+\newline
+Pour renforcer la sécurité des comptes, un changement de mot de passe est imposé lors de la première connexion pour les comptes créés par un administrateur. Au moment de la création, un mot de passe temporaire est généré automatiquement et transmis par email. Lors de la première authentification, une fenêtre modale s'affiche et bloque l'accès à l'application tant que l'utilisateur n'a pas défini son propre mot de passe. Ce mécanisme garantit que seul l'utilisateur légitime connaît le mot de passe définitif et prévient toute utilisation non autorisée du compte.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/soumission demande d'inscription.png}
+    \caption{Authentification et Gestion de Compte}
+    \label{fig:authentification_gestion_compte}
+\end{figure}
+
+\vspace{0.5cm}
+
+\newpage
+\section{Gestion des utilisateurs}
+\subsection{Gestion des comptes utilisateurs}
+Notre application permet à l'administrateur de gérer les comptes utilisateurs, en créant des comptes via un formulaire dans lequel les coordonnées sont renseignées et les rôles attribués. Le système génère un mot de passe aléatoire, puis une notification par mail est envoyée à l'utilisateur pour confirmer la création du compte. Ce module permet aux utilisateurs de mettre à jour leurs informations à tout moment avec la possibilité de consulter l'historique de toutes les modifications réalisées.
+\newline
+Enfin, l'administrateur peut activer et désactiver des comptes. Cette action permet de bloquer l'accès d'un utilisateur à l'application tout en conservant ses données historiques. Avant toute désactivation, le système vérifie s'il existe une charge de travail en cours. Si c'est le cas, le responsable réaffecte la tâche à un autre. Lors de chaque activation ou désactivation, un e-mail est envoyé afin d'informer l'utilisateur de cette action. 
+\newline
+Chaque utilisateur peut téléverser une photo de profil avec la possibilité de la modifier à sa convenance.
+\newline
+Au fil du temps, le nombre d'utilisateurs augmente. Pour cette raison, notre plateforme propose un système de filtrage et de recherche basé sur plusieurs critères, afin de faciliter la tâche du responsable.
+
+\subsection{Gestion demandes d'inscription}
+Au fur et à mesure que la plateforme grandit, la liste des utilisateurs s'allonge et les retrouver devient vite fastidieux. Pour que le responsable ne perde pas de temps à faire défiler des dizaines de profils, un système de recherche et de filtrage est là pour cibler rapidement la bonne personne selon plusieurs critères.
+
+Notre application permet à l'administrateur de gérer les demandes d'inscription en attente. 
+Ce module présente la liste complète des demandes avec les informations essentielles de chaque candidat. 
+
+L'administrateur a la possibilité de consulter les détails de chaque demande pour prendre la bonne décision.
+
+L'administrateur peut approuver la demande d'inscription, ce qui active directement le compte utilisateur et un rôle par défaut lui est attribué, et ensuite un e-mail de confirmation est envoyé. L'administrateur peut aussi rejeter la demande si elle ne répond pas aux critères d'acceptation, dans ce cas, la demande est archivée et l'utilisateur en est notifié par e-mail. Enfin, l'administrateur peut choisir de laisser la demande en attente s'il souhaite obtenir des informations complémentaires avant de prendre sa décision.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/insctiption-creation utilisateur.png}
+    \caption{Gestion des utilisateurs}
+    \label{fig:gestion_utilisateurs}
+\end{figure}
+
+\vspace{0.5cm}
+
+\newpage
+\section{Rôles et Permissions}
+
+Les permissions constituent le niveau de granularité le plus fin du système de contrôle d'accès. À chaque opération de l'application (création d'un ticket, modification d'un contrat, consultation d'un rapport, etc.) correspond une permission dédiée. Les rôles regroupent ensuite plusieurs permissions et délimitent avec précision les actions autorisées ou interdites pour les utilisateurs.
+\newline
+Cette conception rend l'évolution du système plus souple. Les administrateurs peuvent élaborer de nouveaux rôles sur mesure en agrégeant des permissions selon les besoins de l'organisation. Ils peuvent aussi ajuster les permissions d'un rôle existant sans affecter les autres rôles. 
+\newline
+Le module repose sur un principe simple selon lequel chaque utilisateur se voit attribuer un ou plusieurs rôles qui définissent ce qu'il peut faire dans l'application.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/gestion permissions.png}
+    \caption{Rôles et permissions}
+    \label{fig:roles_permissions}
+\end{figure}
+
+\vspace{0.5cm} 
+
+\section{Gestion des clients}
+Quand un admin veut créer un compte client, il remplit les informations de base et le système s'occupe du reste, il envoie un mot de passe provisoire directement par mail. Pour le logo, pas besoin de le chercher soi-même, il est récupéré automatiquement en ligne, et si le résultat ne convient pas, on peut toujours en mettre un manuellement.
+
+Lors de la création, le système exige l'enregistrement d'au moins un projet livré avec validation stricte des dates, chef de projet, membres d'équipe, documentation et liste d'accès. Des projets supplémentaires peuvent être ajoutés ultérieurement. Pour chaque projet, un organigramme visuel et interactif est automatiquement généré, affichant la hiérarchie complète : client en haut, chef de projet au centre, et équipe en bas. Cet organigramme permet de visualiser rapidement tous les contacts avec leurs coordonnées (email, téléphone) et d'identifier immédiatement qui contacter en cas de problème. Il est accessible en un clic depuis la liste des projets.
+
+Avant toute désactivation d'un compte, le système vérifie qu'aucun contrat, demande ou ticket n'est en cours. La réactivation, si nécessaire, rétablit l'accès sans délai. Les employés peuvent également laisser des notes confidentielles sur chaque client, chacune tracée avec l'auteur, la date et le rôle.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/gestion client.png}
+    \caption{Gestion des Clients}
+    \label{fig:gestion_clients}
+\end{figure}
+
+\section{Gestion des contrats de maintenance}
+Ce module facilite la gestion administrative et contractuelle des contrats de maintenance. Il offre la possibilité de créer un contrat. Pour faciliter la saisie et éviter les erreurs, notre application propose une option d'import automatique à partir d'un fichier PDF. Elle extrait intelligemment les données du contrat et préremplit le formulaire de création, permettant ainsi au responsable de vérifier puis de valider les informations. Afin d'éviter la duplication des contrats lors de l'upload, nous avons intégré un mécanisme basé sur le calcul d'empreinte SHA-256, qui offre la comparaison avec les contrats existants. Ce processus garantit l'unicité des contrats.
+\newline
+Afin d'anticiper les renouvellements, l'application met en place un système d'alertes automatiques. Chaque jour, le système identifie les contrats actifs approchant de leur date d'expiration. Une notification est alors envoyée pour informer que la date de fin est proche (30 jours, 15 jours, 7 jours avant expiration).
+\newline
+Si le client demande la résiliation du contrat, une demande est envoyée au responsable, qui peut ensuite la confirmer.
+\newline
+L'administrateur peut archiver manuellement le contrat à condition que celui-ci ne fasse pas l'objet d'une demande de maintenance en cours.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/gestion contrat.png}
+    \caption{Gestion des contrats de maintenance}
+    \label{fig:gestion_contrats}
+\end{figure}
+
+\newpage
+\section{Gestion des demandes d'intervention}
+Ce module permet aux clients de soumettre une demande d'intervention. Notre application impose certaines règles à respecter, notamment le fait que le client peut soumettre une nouvelle demande de même type pour un même projet, à condition de respecter un intervalle minimum de vingt-quatre heures entre deux demandes.
+\newline
+Notre application vérifie que le contrat couvre le type de la demande soumise, en limitant le nombre de demandes pour minimiser la charge au responsable.
+\newline
+Une fois la demande soumise, une notification est envoyée au responsable ainsi qu'au client. Le responsable peut alors examiner la demande et ajuster la priorité afin d'accélérer son traitement. Si la demande est validée, elle est convertie en ticket, et dans le cas contraire, si des informations complémentaires sont requises, une notification est envoyée au client qui peut alors modifier la description de sa demande pour la rendre plus claire. 
+\newline
+Toute demande envoyée au responsable reste en attente pendant un certain délai. Des notifications sont envoyées au responsable pour qu'il l'examine. Ce qui garantit la rapidité de résolution.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/gestion demande.png}
+    \caption{Gestion des demandes d'intervention}
+    \label{fig:gestion_demandes}
+\end{figure}
+
+\section{Gestion des tickets de maintenance}
+\subsection{Cycle de vie et assignation}
+Le système organise les tickets selon un cycle de vie structuré en cinq statuts. Au départ, il est créé avec le statut OUVERT. Dès qu'un développeur accepte de s'en occuper et démarre le chronomètre, il passe EN COURS. Une fois le travail fait, il est mis EN REVUE pour que le chef de projet puisse vérifier. Si tout est bon, il devient RESOLU et reste dans cet état cinq jours. Passé ce délai sans remarque, il bascule automatiquement en FERME.
+
+Pour l'assignation, chaque rôle a ses droits. Un admin peut toucher à tous les tickets sans restriction. Un chef de projet, lui, se limite à ceux de ses propres projets. Quant aux développeurs, ils peuvent se les attribuer eux-mêmes. Pour éviter qu'un seul développeur se retrouve noyé sous le travail, le système bloque toute assignation au-delà de cinq tickets actifs, avec un message qui précise clairement la situation.
+
+Si un développeur ne démarre pas le chronomètre dans le délai prévu, le système envoie une première relance et prévient le chef de projet. Au bout de vingt-quatre heures sans réaction, une escalade est déclenchée et le chef de projet est invité à envisager une réaffectation. Un développeur peut aussi se désassigner d'un ticket, mais il doit fournir une justification. Dans ce cas, tous les chronomètres liés sont arrêtés et le ticket revient automatiquement au statut OUVERT.
+
+\newpage
+\subsection{Chronomètre et calcul SLA}
+Chaque ticket dispose d'un chronomètre pour suivre le temps de travail réel. Dès qu'un développeur le démarre pour la première fois, le ticket passe automatiquement EN COURS et un commentaire système confirme la prise en charge. Chaque session est enregistrée avec sa date de début, sa date de fin et sa durée. Le temps total cumulé est calculé automatiquement et le temps en cours s'affiche en temps réel. Le développeur peut aussi renseigner un pourcentage d'avancement pour tenir l'équipe informée.
+
+Pour les délais SLA, tout se calcule selon la priorité du ticket. Chaque niveau de priorité a son propre délai de réponse et de résolution. Le calcul démarre au moment où le premier développeur lance le chronomètre. Un indicateur visuel avec pourcentage permet de suivre l'évolution en continu. Quand le ticket est résolu, le calcul se fige à cette date. Cinq jours avant l'expiration du délai, le système envoie automatiquement une alerte aux développeurs concernés et au chef de projet.
+
+\subsection{Communication et collaboration}
+La section commentaires permet à chacun de contribuer à la résolution du ticket selon son rôle. Les développeurs et administrateurs peuvent enrichir leurs messages avec des pièces jointes (captures d'écran, logs ou documents), tandis que les clients gardent la possibilité de commenter leurs propres tickets pour apporter des précisions ou confirmer qu'un problème est résolu. Chaque échange est clairement identifié : auteur, photo de profil, rôle et horodatage sont affichés pour garder un fil de discussion lisible et traçable. Une fonctionnalité de brouillon permet par ailleurs de ne pas perdre un message en cours de rédaction, en le sauvegardant automatiquement jusqu'à son envoi.
+
+Tous les fichiers partagés dans les commentaires sont automatiquement regroupés dans une section dédiée. Plutôt que de remonter l'historique entier pour retrouver un document, les utilisateurs accèdent directement aux pièces jointes, consultent leurs métadonnées et les téléchargent en un clic. Il est également possible d'y déposer de nouveaux fichiers à tout moment, ce qui en fait un espace centralisé pratique pour toutes les ressources liées au ticket.
+
+\subsection{Fonctionnalités avancées}
+Quand un ticket est marqué comme résolu, le client n'est pas forcément obligé d'accepter la clôture immédiate. S'il a besoin de plus de temps pour vérifier que tout fonctionne correctement, il peut demander une extension en précisant simplement pourquoi. Le délai est alors repoussé de sept jours, sans validation manuelle requise. Et pour ne pas être pris de court, il reçoit un rappel trois jours avant la fermeture automatique, lui laissant le temps de réagir s'il constate encore un souci. 
+
+Ensuite, pour les problèmes qui ne se règlent pas en une seule demande, le système permet de rattacher plusieurs tickets entre eux lorsqu'ils parlent du même contexte ou quand un nouveau problème vient d'un ticket existant. Le ticket rattaché reprend automatiquement le contrat du premier ticket, et n'importe qui (client ou équipe) peut créer ce rattachement. Cela évite de tout mélanger et garde un historique clair pour chaque problème. Enfin, pour éviter les conflits si deux personnes modifient le même ticket en même temps, un verrouillage technique a été ajouté, ce qui garantit que les données restent fiables.
+
+\section{Tableaux de bord et reportage}
+Ce module offre une meilleure visibilité sur l'application. Il met à disposition trois tableaux de bord distincts, chacun étant adapté au rôle de l'utilisateur connecté.
+\newline
+Chaque tableau de bord propose des indicateurs et des graphiques pertinents permettant à l'utilisateur de suivre rapidement l'activité de la plateforme et d'avoir une vision claire de son évolution. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/dashboard.png}
+    \caption{Tableau de bord et reportage}
+    \label{fig:dashboard}
+\end{figure}
+
+\section{Suivi et Traçabilité}
+Le système maintient un historique exhaustif de toutes les actions sur les tickets et un journal d'activité global pour toutes les opérations. Chaque modification est enregistrée avec l'utilisateur responsable, le type d'action, les valeurs avant et après modification, et la date précise. Le système propose des tableaux de bord personnalisés selon le rôle avec indicateurs de performance, distribution des tickets, charge de travail, et analyses de tendances. Un mécanisme complet de notifications permet aux utilisateurs de recevoir des alertes personnalisables et de rester informés en temps réel de toutes les activités importantes.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/Suivie et tracabilite.png}
+    \caption{Suivi et Traçabilité}
+    \label{fig:suivi_tracabilite}
+\end{figure}
+
+\section{Notifications Système}
+Ce module permet l'intégration d'un système de notification qui informe les utilisateurs en temps réel des événements importants.
+\newline
+Notre application propose deux types de canaux de communication : les notifications internes en temps réel, et les notifications par e-mail pour les événements tels que l'inscription.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/notification.png}
+    \caption{Notifications Système}
+    \label{fig:notifications}
+\end{figure}
+
+\newpage
+\section{Gestion documentaire}
+Ce module centralise tous les documents importants tels que les contrats et les procès-verbaux. L'utilisateur peut déposer des fichiers pour chaque ticket. Selon ses droits d'accès, il peut consulter la liste des documents, grâce à une recherche par mots-clés ainsi qu'à des filtres (type, date, auteur) retrouver un document rapidement.
+\newline
+À chaque modification d'un document, l'ancienne version est conservée avec la date et le nom de l'utilisateur ayant effectué la modification. L'utilisateur peut également consulter l'historique des accès à travers une frise chronologique.
+\newline
+La principale innovation de ce module est la génération automatique des procès-verbaux à partir des informations du ticket (temps passé, description, solution). Cette génération s'effectue lorsque le ticket est résolu ou terminé : l'utilisateur clique sur un bouton, et le système collecte automatiquement les informations nécessaires afin de générer un fichier PDF.
+\newline
+Enfin, grâce à ce module, nous évitons la perte de documents dans les emails ou sur les disques durs, et garantissons une meilleure traçabilité ainsi qu'une valeur de preuve en cas de litige.

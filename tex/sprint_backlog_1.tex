@@ -23,7 +23,7 @@
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 1 - Authentification et Sécurité}} \\
 \hline
 
-US01 & En tant qu'utilisateur, je souhaite m'authentifier avec email et mot de passe afin d'accéder à mes informations de manière sécurisée. & 
+US01 & En tant qu'\textbf{utilisateur}, je souhaite m'authentifier avec email et mot de passe afin d'accéder à mes informations de manière sécurisée. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'API du Login
@@ -34,7 +34,7 @@ US01 & En tant qu'utilisateur, je souhaite m'authentifier avec email et mot de p
 \end{itemize} & 1 \\
 \hline
 
-US02 & En tant qu'utilisateur, je souhaite réinitialiser mon mot de passe afin de retrouver l'accès à mon compte. & 
+US02 & En tant qu'\textbf{utilisateur}, je souhaite réinitialiser mon mot de passe afin de retrouver l'accès à mon compte. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Créer les formulaires "mot de passe oublié" et de réinitialisation
@@ -44,7 +44,7 @@ US02 & En tant qu'utilisateur, je souhaite réinitialiser mon mot de passe afin 
 \end{itemize} & 2 \\
 \hline
 
-US03 & En tant qu'utilisateur, je souhaite m'authentifier via Google ou GitHub afin de me connecter rapidement sans créer de compte. & 
+US03 & En tant qu'\textbf{utilisateur}, je souhaite m'authentifier via Google ou GitHub afin de me connecter rapidement sans créer de compte. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Intégrer les stratégies OAuth2 via Google et GitHub dans NestJS en utilisant Passport (@nestjs/passport)
@@ -55,7 +55,7 @@ US03 & En tant qu'utilisateur, je souhaite m'authentifier via Google ou GitHub a
 \end{itemize} & 2 \\
 \hline
 
-US04 & En tant qu'utilisateur, je souhaite me déconnecter de la plateforme afin de sécuriser ma session. & 
+US04 & En tant qu'\textbf{utilisateur}, je souhaite me déconnecter de la plateforme afin de sécuriser ma session. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint POST /auth/logout avec révocation du refresh token en base
@@ -64,7 +64,7 @@ US04 & En tant qu'utilisateur, je souhaite me déconnecter de la plateforme afin
 \end{itemize} & 2 \\
 \hline
 
-US05 & En tant qu'utilisateur, je souhaite que mon compte soit protégé contre les tentatives de connexion malveillantes afin de garantir la sécurité de mes données. & 
+US05 & En tant qu'\textbf{utilisateur}, je souhaite que mon compte soit protégé contre les tentatives de connexion malveillantes afin de garantir la sécurité de mes données. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Implémenter un système de rate limiting avec compteur de tentatives
@@ -78,7 +78,7 @@ US05 & En tant qu'utilisateur, je souhaite que mon compte soit protégé contre 
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 2 - Gestion des utilisateurs}} \\
 \hline
 
-US06 & En tant qu'utilisateur, je souhaite gérer mon profil afin que mes informations soient toujours à jour. & 
+US06 & En tant qu'\textbf{utilisateur}, je souhaite gérer mon profil afin que mes informations soient toujours à jour. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer les endpoints GET /profil et PUT /profil pour consulter et modifier les informations
@@ -88,7 +88,7 @@ US06 & En tant qu'utilisateur, je souhaite gérer mon profil afin que mes inform
 \end{itemize} & 2 \\
 \hline
 
-US07 & En tant qu'administrateur, je souhaite créer des utilisateurs afin de gérer les accès au système. & 
+US07 & En tant qu'\textbf{administrateur}, je souhaite créer des utilisateurs afin de gérer les accès au système. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint POST /users pour créer un compte avec la génération automatique d'un mot de passe temporaire hashé via bcrypt
@@ -98,7 +98,7 @@ US07 & En tant qu'administrateur, je souhaite créer des utilisateurs afin de g�
 \end{itemize} & 2 \\
 \hline
 
-US08 & En tant qu'administrateur, je souhaite modifier les informations d'un utilisateur afin de maintenir des données à jour. & 
+US08 & En tant qu'\textbf{administrateur}, je souhaite modifier les informations d'un utilisateur afin de maintenir des données à jour. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint PUT /users/:id
@@ -108,7 +108,7 @@ US08 & En tant qu'administrateur, je souhaite modifier les informations d'un uti
 \end{itemize} & 2 \\
 \hline
 
-US09 & En tant qu'administrateur, je souhaite activer et désactiver un compte utilisateur afin de contrôler l'accès au système. & 
+US09 & En tant qu'\textbf{administrateur}, je souhaite activer et désactiver un compte utilisateur afin de contrôler l'accès au système. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer les endpoints PATCH /users/:id/desactiver et PATCH /users/:id/reactiver
@@ -118,7 +118,7 @@ US09 & En tant qu'administrateur, je souhaite activer et désactiver un compte u
 \end{itemize} & 2 \\
 \hline
 
-US10 & En tant qu'administrateur, je souhaite consulter la liste des utilisateurs afin de visualiser et gérer efficacement les comptes. & 
+US10 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des utilisateurs afin de visualiser et gérer efficacement les comptes. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint GET /users retournant la liste des utilisateurs
@@ -126,7 +126,7 @@ US10 & En tant qu'administrateur, je souhaite consulter la liste des utilisateur
 \end{itemize} & 2 \\
 \hline
 
-US11 & En tant qu'utilisateur, je souhaite consulter l'historique de mes activités afin de suivre mes actions dans le système. & 
+US11 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique de mes activités afin de suivre mes actions dans le système. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint GET /users/:id/activities pour récupérer l'historique
@@ -140,7 +140,7 @@ US11 & En tant qu'utilisateur, je souhaite consulter l'historique de mes activit
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 3 - Gestion des rôles et permissions}} \\
 \hline
 
-US12 & En tant qu'administrateur, je souhaite gérer des rôles afin de structurer les accès au système. & 
+US12 & En tant qu'\textbf{administrateur}, je souhaite gérer des rôles afin de structurer les accès au système. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer les endpoints CRUD pour la gestion complète des rôles
@@ -149,7 +149,7 @@ US12 & En tant qu'administrateur, je souhaite gérer des rôles afin de structur
 \end{itemize} & 2 \\
 \hline
 
-US13 & En tant qu'administrateur, je souhaite attribuer des permissions granulaires aux rôles afin de contrôler précisément les accès. & 
+US13 & En tant qu'\textbf{administrateur}, je souhaite attribuer des permissions granulaires aux rôles afin de contrôler précisément les accès. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l’endpoint PATCH /roles-permissions/roles/:id/sync pour synchroniser dynamiquement les associations entre un rôle et ses permissions. 
@@ -158,7 +158,7 @@ US13 & En tant qu'administrateur, je souhaite attribuer des permissions granulai
 
 \end{itemize} & 2 \\
 \hline
-US14 & En tant qu'administrateur, je souhaite consulter la matrice rôles-permissions afin de visualiser rapidement les droits de chaque rôle. & 
+US14 & En tant qu'\textbf{administrateur}, je souhaite consulter la matrice rôles-permissions afin de visualiser rapidement les droits de chaque rôle. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l’endpoint GET /roles-permissions/matrix ) pour récupérer les données 
@@ -172,7 +172,7 @@ US14 & En tant qu'administrateur, je souhaite consulter la matrice rôles-permis
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 4 - Demandes d'inscription OAuth}} \\
 \hline
 
-US15 & En tant qu'utilisateur externe, je souhaite demander l'accès via OAuth afin de m'inscrire facilement. & 
+US15 & En tant qu'\textbf{utilisateur externe}, je souhaite demander l'accès via OAuth afin de m'inscrire facilement. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint POST /auth/oauth/request pour créer une demande
@@ -182,7 +182,7 @@ US15 & En tant qu'utilisateur externe, je souhaite demander l'accès via OAuth a
 \end{itemize} & 1 \\
 \hline
 
-US16 & En tant qu'administrateur, je souhaite valider ou rejeter les demandes d'inscription OAuth afin de contrôler les accès. & 
+US16 & En tant qu'\textbf{administrateur}, je souhaite valider ou rejeter les demandes d'inscription OAuth afin de contrôler les accès. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer les endpoints PATCH /auth/oauth/requests/:id/approve et /reject
@@ -194,7 +194,7 @@ US16 & En tant qu'administrateur, je souhaite valider ou rejeter les demandes d'
 % Epic 4: Demandes d'inscription OAuth
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 5 - Gestion Clients}} \\
 \hline
- US17 & En tant qu'administrateur, je souhaite créer un profil client afin de centraliser ses informations. &
+ US17 & En tant qu'\textbf{administrateur}, je souhaite créer un profil client afin de centraliser ses informations. &
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l’endpoint POST /clients pour orchestrer la création simultanée du compte CLIENT et du profil entreprise associé.  
@@ -211,57 +211,57 @@ US18 & En tant qu’administrateur, je souhaite consulter la liste des clients  
 \item Réaliser une interface de visualisation
 \end{itemize} & 2 \\
 \hline
-US19 & En tant qu'administrateur, je souhaite consulter le profil détaillé d'un client afin de visualiser toutes ses informations. &
+US19 & En tant qu'\textbf{administrateur}, je souhaite consulter le profil détaillé d'un client afin de visualiser toutes ses informations. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l’endpoint GET /clients/:id pour récupérer les informations du client.
 \item Réaliser une interface de profil structurée.
 \item Développer des composants spécifiques pour l'affichage des informations secondaires       
 \end{itemize} & 2 \\
 \hline
-US20 & En tant qu'administrateur, je souhaite modifier les informations d'un client afin de maintenir des données à jour. &
+US20 & En tant qu'\textbf{administrateur}, je souhaite modifier les informations d'un client afin de maintenir des données à jour. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l’endpoint PATCH /clients/:id permettant la mise à jour des informations des clients. 
 \item Développer des contrôles d'intégrité côté serveur pour valider les formats de données.
 \item Réaliser une interface d'édition fluide.
 \end{itemize} & 2 \\
 \hline
-US21 & En tant qu'administrateur, je souhaite activer et désactiver un compte client afin de contrôler l'accès. &
+US21 & En tant qu'\textbf{administrateur}, je souhaite activer et désactiver un compte client afin de contrôler l'accès. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer les endpoints de changement de statut (POST /desactiver, POST /reactiver)
 \item Implémenter la vérification pour bloquer l'opération si le client possède des contrats actifs, des demandes en attente ou des tickets non résolus.  
 \item Intégrer le EmailService pour l'envoi automatique de notifications transactionnelles de changement de statut.                           
 \end{itemize} & 2 \\
 \hline
-US22 & En tant qu'administrateur, je souhaite ajouter des notes privées sur un client afin de conserver des informations internes. &
+US22 & En tant qu'\textbf{administrateur}, je souhaite ajouter des notes privées sur un client afin de conserver des informations internes. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer un endpoint POST /clients/:id/notes permettant d'ajouter  es chaînes de caractères dans le tableau notesPrivees.
 \item Réaliser une interface de type "Bloc-notes" ou "Journal interne" dans le profil client.
 \item Sécuriser l'accès à ces informations au niveau du backend pour garantir que ces notes ne soient jamais exposées au client lui-même    
 \end{itemize} & 2 \\
 \hline
-US23 & En tant qu'administrateur, je souhaite imprimer l'annuaire d'un client afin de disposer d'une version papier. &
+US23 & En tant qu'\textbf{administrateur}, je souhaite imprimer l'annuaire d'un client afin de disposer d'une version papier. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint POST /clients pour créer un client avec validation des données
 \end{itemize} & 2 \\
 \hline
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 5 - Gestion des projets et équipes}} \\
 \hline
-US24 & En tant qu'administrateur, je souhaite créer un projet rattaché à un client afin d'organiser les interventions. &
+US24 & En tant qu'\textbf{administrateur}, je souhaite créer un projet rattaché à un client afin d'organiser les interventions. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint POST /clients pour créer un client avec validation des données
 \end{itemize} & 2 \\
 \hline
-US25 & En tant qu'administrateur, je souhaite consulter la liste des projets afin de piloter l'activité. &
+US25 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des projets afin de piloter l'activité. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint POST /clients pour créer un client avec validation des données
 \end{itemize} & 2 \\
 \hline
-US26 & En tant qu'administrateur, je souhaite affecter des développeurs à un projet afin de constituer l'équipe. &
+US26 & En tant qu'\textbf{administrateur}, je souhaite affecter des développeurs à un projet afin de constituer l'équipe. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint POST /clients pour créer un client avec validation des données
 \end{itemize} & 2 \\
 \hline
-US27 & En tant que membre d'équipe, je souhaite consulter les informations du projet afin de comprendre le contexte. &
+US27 & En tant que \textbf{membre d'équipe}, je souhaite consulter les informations du projet afin de comprendre le contexte. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint POST /clients pour créer un client avec validation des données
 \end{itemize} & 2 \\
