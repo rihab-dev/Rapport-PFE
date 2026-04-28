@@ -1,42 +1,23 @@
-\chapter{Sprint 1 : Gestion des Utilisateurs et Authentification}
-
-\vspace{2cm}
-
-{\Large\bfseries Plan}
-
-\vspace{0.3cm}
-
-\section*{}
-\addcontentsline{toc}{section}{Plan}
-
-\begin{enumerate}[label=\textbf{\arabic*}, leftmargin=2.5cm, itemsep=0.5cm]
-    \item \hyperref[sec:backlog_sprint1]{\textbf{Backlog du Sprint 1}} \dotfill \textbf{\pageref{sec:backlog_sprint1}}
-    
-    \item \hyperref[sec:analyse_sprint1]{\textbf{Analyse}} \dotfill \textbf{\pageref{sec:analyse_sprint1}}
-    
-    \item \hyperref[sec:conception_sprint1]{\textbf{Conception}} \dotfill \textbf{\pageref{sec:conception_sprint1}}
-    
-    \item \hyperref[sec:realisation_sprint1]{\textbf{Réalisation}} \dotfill \textbf{\pageref{sec:realisation_sprint1}}
-    
-    \item \hyperref[sec:tests_sprint1]{\textbf{Tests}} \dotfill \textbf{\pageref{sec:tests_sprint1}}
-\end{enumerate}
-
-\vfill
-
-\newpage
 
 \section*{Introduction}
+Dans le chapitre précédent, nous avons défini les besoins liés à notre solution. Ensuite, nous avons réparti les différentes tâches du projet afin que les phases de travail soient correctement planifiées.
+\newline Au cours de ce chapitre, nous présenterons les fonctionnalités liées à la gestion des utilisateurs, retenues dans le cadre du premier sprint de notre projet.
 
-Dans ce chapitre, nous abordons le premier sprint du projet \textbf{SolidMaint}, couvrant la période du 17 février au 11 mars 2026, soit trois semaines de travail consacrées à la mise en place des fondations de l'application. Nous commencerons par la présentation du backlog du sprint regroupant dix-sept user stories réparties en quatre epics, suivie de la phase d'analyse et de conception portant sur le système d'authentification et la gestion des utilisateurs par rôles (RBAC), puis de la phase de réalisation des interfaces et des choix d'implémentation, et enfin des tests conduits pour valider les fonctionnalités livrées.
+% Dans ce chapitre, nous abordons le premier sprint du projet \textbf{SolidMaint}, couvrant la période du 17 février au 11 mars 2026, soit trois semaines de travail consacrées à la mise en place des fondations de l'application. Nous commencerons par la présentation du backlog du sprint regroupant dix-sept user stories réparties en quatre epics, suivie de la phase d'analyse et de conception portant sur le système d'authentification et la gestion des utilisateurs par rôles (RBAC), puis de la phase de réalisation des interfaces et des choix d'implémentation, et enfin des tests conduits pour valider les fonctionnalités livrées.
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 1 : BACKLOG DU SPRINT 1
 % ─────────────────────────────────────────────────────────────────────────────
-
-\section*{Sprint Backlog}
+\section{Sprint Planning Meeting }
+La planification du sprint est essentielle à la réussite de notre solution, au bout de laquelle on clarifie les différentes fonctionnalités à implémenter lors du sprint à venir. Cette partie est efficace afin de préparer des objectifs clairs ; Dans ce contexte, nous présentons l’objectif du sprint dans la section suivante.
+\newline
+\subsection{Objectif du Sprint}
+L’objectif de ce sprint est de placer les tâches fonctionnelles et sécuritaires de la solution, en implémentant les mécanismes d’authentification et de sécurisation des accès ainsi que les fonctionnalités de gestion des utilisateurs et de leurs profils, et afin d’assurer un contrôle efficace des accès et des permissions en introduisant l’administration du système à travers la gestion des comptes utilisateurs et des rôles.
+\subsubsection{Backlog du premier sprint}
 \label{sec:backlog_sprint1}
 
-Le tableau ci-dessous présente le Sprint Backlog détaillé avec les descriptions techniques et l'effort estimé pour chaque user story.
-
+Voici l’ensemble des fonctionnalités issues du Product Backlog, qui seront réalisées dans le cadre de ce sprint.
+\newline
+\textbf{1 : Effort faible, 2 : Effort moyen, 3 : Effort élevé}
 \input{tex/sprint_backlog_1}
 
 \newpage
@@ -46,6 +27,8 @@ Le tableau ci-dessous présente le Sprint Backlog détaillé avec les descriptio
 % ─────────────────────────────────────────────────────────────────────────────
 
 \section{Analyse}
+Dans le processus de développement, l’analyse joue un rôle important ; elle permet d’identifier les exigences du système et de traduire les besoins exprimés en spécifications claires et cohérentes.
+C’est pour cela que nous allons présenter les diagrammes ainsi que les tableaux descriptifs des cas d’utilisation
 \label{sec:analyse_sprint1}
 
 \subsection{Diagramme des cas d'utilisation du premier sprint}
