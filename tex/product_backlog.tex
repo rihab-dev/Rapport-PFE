@@ -142,82 +142,82 @@
 & Un nouveau contrat est créé à partir de l'existant avec lien entre les deux et notification au client. & +++ \\
 \cline{3-6}
 & & US35 & En tant que \textbf{chef de projet}, je souhaite consulter les contrats dans un calendrier afin de visualiser les dates d'expiration.
-& La vue calendrier mensuel/annuel affiche les contrats avec code couleur selon l'échéance et export iCal. & ++ \\
+& Le calendrier affiche les contrats avec leur date d'expiration. Les contrats proches de l'expiration sont mis en évidence. L'administrateur peut exporter le calendrier. & ++ \\
 \cline{3-6}
 & & US36 & En tant qu'\textbf{administrateur}, je souhaite centraliser les documents d'un contrat afin de les retrouver facilement.
-& Les documents sont uploadés avec versioning automatique et associés au contrat. & + \\
+& L'administrateur peut téléverser des documents liés au contrat. Le système conserve l'historique des versions. Les documents sont accessibles depuis la fiche contrat. & + \\
 \cline{3-6}
 & & US37 & En tant qu'\textbf{administrateur}, je souhaite configurer les règles SLA globales afin de définir les standards. 
-& Les délais de réponse et résolution sont configurés par priorité (MINEUR, MAJEUR, CRITIQUE). & +++ \\
+& L'administrateur définit des délais de réponse selon l'urgence. L'administrateur définit des délais de résolution selon l'urgence. Les délais configurés s'appliquent automatiquement aux nouveaux tickets. & +++ \\
 \hline
 
 % Epic 8: Gestion des demandes clients
 8 & Gestion des demandes clients 
 & US38 & En tant que \textbf{client}, je souhaite soumettre une demande de maintenance afin de signaler un besoin. 
-& La demande est créée avec pièces jointes (max 5), un numéro unique est généré et une confirmation est envoyée. & +++ \\
+& Le client peut joindre des fichiers à sa demande. Le système génère un numéro unique de suivi. Le client reçoit une confirmation de réception. & +++ \\
 \cline{3-6}
 & & US39 & En tant que \textbf{chef de projet}, je souhaite consulter les demandes en attente afin de les traiter. 
-& La liste filtrée affiche les demandes EN\_ATTENTE triées par date avec indicateurs de priorité. & +++ \\
+& Le chef de projet visualise toutes les demandes nécessitant un traitement. Les demandes sont triées par date de création. Les demandes urgentes sont identifiables visuellement. & +++ \\
 \cline{3-6}
 & & US40 & En tant que \textbf{chef de projet}, je souhaite valider une demande afin de la convertir en ticket. 
-& La demande est validée avec définition de catégorie et priorité, un ticket lié est créé automatiquement. & +++ \\
+& Le chef de projet peut approuver une demande. Le chef de projet définit la catégorie et la priorité. Un ticket est automatiquement créé et lié à la demande. & +++ \\
 \cline{3-6}
 & & US41 & En tant que \textbf{chef de projet}, je souhaite demander des informations complémentaires afin de clarifier une demande. 
-& La demande passe en statut INFOS\_REQUISES avec questions et relance automatique après 48h. & ++ \\
+& Le chef de projet peut solliciter des précisions au client. Le client est notifié de la demande d'informations. Un rappel est envoyé si aucune réponse après 48h. & ++ \\
 \cline{3-6}
 & & US42 & En tant que \textbf{client}, je souhaite compléter ma demande afin de fournir les informations manquantes. 
-& Le client répond au formulaire et la demande retourne automatiquement au statut EN\_ATTENTE. & ++ \\
+& Le client peut répondre aux questions posées. Le chef de projet est notifié de la réponse. La demande redevient disponible pour traitement. & ++ \\
 \cline{3-6}
 & & US43 & En tant que \textbf{chef de projet}, je souhaite requalifier une demande afin de corriger sa catégorie ou sa priorité. 
-& Le type et la priorité sont modifiés avec justification obligatoire et traçabilité. & ++ \\
+& Le chef de projet peut modifier la catégorie d'une demande. Le chef de projet peut ajuster la priorité. Une justification est obligatoire pour toute modification. Toutes les modifications sont tracées. & ++ \\
 \cline{3-6}
 & & US44 & En tant qu'\textbf{utilisateur}, je souhaite commenter une demande afin de communiquer sur le contexte. 
-& Les commentaires sont ajoutés avec éditeur riche, mentions @utilisateur et pièces jointes possibles. & ++ \\
+& L'utilisateur peut ajouter des commentaires à une demande. L'utilisateur peut joindre des fichiers aux commentaires. Les autres parties prenantes sont notifiées des nouveaux commentaires. & ++ \\
 \cline{3-6}
 & & US45 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique d'une demande afin de suivre son évolution. 
-& La timeline affiche tous les événements (création, validation, commentaires, conversion) avec filtres. & ++ \\
+& L'utilisateur visualise tous les événements liés à la demande. L'historique affiche la date et l'auteur de chaque action. L'utilisateur peut filtrer l'historique par type d'événement. & ++ \\
 \hline
 
 % Epic 9: Gestion des tickets
 9 & Gestion des tickets 
 & US46 & En tant que \textbf{développeur}, je souhaite visualiser mes tickets dans un tableau Kanban afin de gérer mes tâches. 
-& Colonnes OUVERT, EN\_COURS, EN\_REVUE, RESOLU, FERME. Drag \& drop et indicateurs SLA. & +++ \\
+& Le développeur visualise ses tickets organisés par état d'avancement. Le développeur peut déplacer un ticket d'un état à un autre. Le développeur voit si un ticket risque de dépasser son délai. & +++ \\
 \cline{3-6}
 & & US47 & En tant que \textbf{chef de projet}, je souhaite assigner un ticket à un développeur afin de répartir la charge. 
-& Sélection du développeur avec vérification disponibilité/compétences, alerte surcharge. & +++ \\
+& Le chef de projet sélectionne un développeur disponible. Le système alerte si le développeur a déjà trop de tickets. Le développeur assigné est notifié immédiatement. & +++ \\
 \cline{3-6}
 & & US48 & En tant que \textbf{chef de projet}, je souhaite assigner un ticket à plusieurs développeurs afin de collaborer sur des tâches complexes. 
-& Sélection multiple, rôles principal/support, répartition du temps estimé. & ++ \\
+& Le chef de projet peut assigner plusieurs développeurs au même ticket. Le chef de projet définit le rôle de chaque développeur. Le temps estimé est réparti entre les développeurs. & ++ \\
 \cline{3-6}
 & & US49 & En tant que \textbf{développeur}, je souhaite me désassigner d'un ticket afin de libérer ma charge. 
-& Désassignation avec motif obligatoire, retour du statut à OUVERT, notification chef projet. & ++ \\
+& Le développeur doit fournir un motif pour se désassigner. Le ticket redevient disponible pour assignation. Le chef de projet est notifié de la désassignation. & ++ \\
 \cline{3-6}
 & & US50 & En tant que \textbf{développeur}, je souhaite démarrer un chronomètre sur un ticket afin de tracker mon temps. 
-& Bouton Démarrer, création d'une session de travail, indicateur visuel de chrono actif. & +++ \\
+& Le développeur peut démarrer le suivi du temps de travail. Une session de travail est créée avec l'heure de début. Le développeur voit le temps écoulé en temps réel. & +++ \\
 \cline{3-6}
 & & US51 & En tant que \textbf{développeur}, je souhaite mettre en pause mon chronomètre afin de gérer les interruptions. 
-& Bouton Pause, enregistrement du temps écoulé, reprise possible. & ++ \\
+& Le développeur peut suspendre temporairement le suivi du temps. Le temps écoulé est enregistré. Le développeur peut reprendre le suivi ultérieurement. & ++ \\
 \cline{3-6}
 & & US52 & En tant que \textbf{développeur}, je souhaite arrêter le chronomètre afin de finaliser ma session. 
-& Arrêt avec commentaire optionnel, ajout de la session à l'historique, notification si dépassement. & +++ \\
+& Le développeur peut arrêter le suivi du temps. Le développeur peut ajouter un commentaire sur le travail effectué. La session est ajoutée à l'historique. Le développeur est alerté si le temps dépasse l'estimation. & +++ \\
 \cline{3-6}
 & & US53 & En tant que \textbf{développeur}, je souhaite ajouter manuellement une session de travail afin de corriger des oublis. 
-& Formulaire avec date, heures, durée et commentaire obligatoire, validation sans chevauchement. & ++ \\
+& Le développeur peut enregistrer une session de travail passée. Le développeur doit fournir la date, l'heure et la durée. Le développeur doit justifier l'ajout manuel. Le système vérifie qu'il n'y a pas de chevauchement avec d'autres sessions. & ++ \\
 \cline{3-6}
 & & US54 & En tant que \textbf{développeur}, je souhaite changer le statut d'un ticket afin de refléter l'avancement. 
-& Workflow OUVERT → EN\_COURS → EN\_REVUE → RESOLU → FERME, notification parties prenantes. & +++ \\
+& Le développeur peut faire progresser un ticket selon le workflow défini. Le système empêche les transitions invalides. Toutes les parties prenantes sont notifiées lors d'un changement. L'historique des changements est conservé. & +++ \\
 \cline{3-6}
 & & US55 & En tant que \textbf{client}, je souhaite valider la résolution d'un ticket afin de confirmer que le problème est résolu. 
-& Validation avec commentaire, fermeture du ticket, notification au développeur. & +++ \\
+& Le client peut confirmer que le problème est résolu. Le client peut ajouter un commentaire de validation. Le ticket est fermé après validation. Le développeur est notifié de la validation. & +++ \\
 \cline{3-6}
 & & US56 & En tant que \textbf{chef de projet}, je souhaite rouvrir un ticket fermé afin de traiter un problème récurrent. 
-& Réouverture avec motif, réinitialisation du SLA, notification des assignés. & ++ \\
+& Le chef de projet doit justifier la réouverture. Le délai SLA est réinitialisé. Les développeurs assignés sont notifiés. & ++ \\
 \cline{3-6}
 & & US57 & En tant que \textbf{chef de projet}, je souhaite consulter le temps passé par ticket afin d'analyser la productivité. 
-& Temps total et détaillé par développeur avec graphiques. & ++ \\
+& Le chef de projet visualise le temps total passé sur chaque ticket. Le chef de projet voit le détail par développeur. Les données sont présentées sous forme de graphiques. & ++ \\
 \cline{3-6}
 & & US58 & En tant que \textbf{développeur}, je souhaite signaler un blocage afin d'alerter sur un obstacle. 
-& Signalement avec type, description et impact, notification urgence au chef de projet, pause SLA. & +++ \\
+& Le développeur peut signaler un obstacle bloquant. Le développeur précise le type et l'impact du blocage. Le chef de projet reçoit une notification urgente. Le délai SLA est suspendu pendant le blocage. & +++ \\
 \cline{3-6}
 & & US59 & En tant que \textbf{membre d'équipe}, je souhaite résoudre un blocage afin de permettre au développeur de reprendre son travail. 
 & Le blocage est résolu avec commentaire obligatoire, le chrono SLA reprend et l'action est tracée. & ++ \\
@@ -244,157 +244,157 @@
 % Epic 10: Messagerie et collaboration
 10 & Messagerie et collaboration 
 & US66 & En tant qu'\textbf{utilisateur}, je souhaite accéder à une messagerie intégrée afin de communiquer avec mon équipe. 
-& La sidebar affiche les channels avec indicateurs de messages non lus et statut de présence des utilisateurs. & ++ \\
+& L'utilisateur visualise les canaux de discussion disponibles. L'utilisateur voit le nombre de messages non lus. L'utilisateur identifie les membres présents. & ++ \\
 \cline{3-6}
 & & US67 & En tant qu'\textbf{utilisateur}, je souhaite envoyer des messages dans un channel afin de communiquer. 
-& Les messages sont envoyés avec éditeur riche, mentions @, pièces jointes et livraison via WebSocket. & +++ \\
+& L'utilisateur peut rédiger et envoyer des messages. L'utilisateur peut joindre des fichiers. Les messages sont reçus instantanément par les autres membres. & +++ \\
 \cline{3-6}
 & & US68 & En tant qu'\textbf{utilisateur}, je souhaite répondre à un message afin de créer un fil de discussion. 
-& Un thread dédié est créé pour les réponses avec notifications uniquement aux participants. & ++ \\
+& L'utilisateur peut répondre à un message spécifique. Les réponses sont regroupées dans un fil dédié. Seuls les participants au fil reçoivent les notifications. & ++ \\
 \cline{3-6}
 & & US69 & En tant qu'\textbf{utilisateur}, je souhaite mentionner des collègues afin d'attirer leur attention. 
-& L'autocomplétion @nom fonctionne, une notification push est envoyée et un badge mention non lue s'affiche. & +++ \\
+& L'utilisateur peut mentionner un collègue dans un message. Le collègue mentionné reçoit une notification. Le message mentionné est mis en évidence pour le destinataire. & +++ \\
 \cline{3-6}
 & & US70 & En tant qu'\textbf{utilisateur}, je souhaite éditer mes messages afin de corriger des erreurs. 
-& L'édition est possible dans les 15min avec indicateur "(modifié)" et historique des modifications. & + \\
+& L'utilisateur peut modifier un message récemment envoyé. Le message modifié est identifiable. L'historique des modifications est conservé. & + \\
 \cline{3-6}
 & & US71 & En tant qu'\textbf{utilisateur}, je souhaite supprimer mes messages afin de retirer du contenu inapproprié. 
-& Le message est supprimé avec confirmation, remplacé par "[Message supprimé]" et conservé pour audit. & + \\
+& L'utilisateur peut supprimer ses propres messages. Une confirmation est demandée avant suppression. Le message supprimé reste visible pour l'audit. & + \\
 \cline{3-6}
 & & US72 & En tant qu'\textbf{utilisateur}, je souhaite épingler des messages importants afin de les retrouver facilement. 
-& Les messages sont épinglés (permission requise) avec limite de 10 par channel et possibilité de désépinglage. & ++ \\
+& L'utilisateur autorisé peut épingler un message. Les messages épinglés sont facilement accessibles. L'utilisateur peut retirer l'épinglage. & ++ \\
 \cline{3-6}
 & & US73 & En tant que \textbf{chef de projet}, je souhaite voir qui est en ligne dans mon équipe afin de savoir qui je peux solliciter. 
-& La liste des membres en ligne est affichée avec filtrage par projet/équipe et dernière activité. & ++ \\
+& Le chef de projet visualise les membres actuellement connectés. Le chef de projet peut filtrer par équipe ou projet. Le chef de projet voit l'heure de dernière activité. & ++ \\
 \cline{3-6}
 & & US74 & En tant qu'\textbf{utilisateur}, je souhaite voir qui est en ligne afin de savoir qui est disponible. 
-& L'indicateur de statut (EN\_LIGNE, ABSENT, NE\_PAS\_DERANGER) est affiché et modifiable. & ++ \\
+& L'utilisateur voit le statut de disponibilité des autres membres. L'utilisateur peut modifier son propre statut. Le statut est visible par tous les membres. & ++ \\
 \hline
 
 % Epic 11: Gestion des documents
 11 & Gestion des documents 
 & US75 & En tant qu'\textbf{utilisateur}, je souhaite uploader des documents afin de centraliser les fichiers. 
-& Les documents sont uploadés par drag \& drop avec association à contrat/projet/ticket et métadonnées (titre, description, tags). & ++ \\
+& L'utilisateur peut téléverser des documents. L'utilisateur peut associer un document à un contrat, projet ou ticket. L'utilisateur peut ajouter un titre, une description et des tags. & ++ \\
 \cline{3-6}
 & & US76 & En tant qu'\textbf{utilisateur}, je souhaite télécharger des documents afin de les consulter hors ligne. 
-& Le téléchargement individuel ou multiple (ZIP) est possible avec vérification des permissions et enregistrement de la consultation. & ++ \\
+& L'utilisateur peut télécharger un document individuel. L'utilisateur peut télécharger plusieurs documents simultanément. Le système vérifie les permissions avant le téléchargement. La consultation est enregistrée pour traçabilité. & ++ \\
 \cline{3-6}
 & & US77 & En tant qu'\textbf{utilisateur}, je souhaite gérer les versions des documents afin d'assurer la traçabilité. 
-& Une nouvelle version est uploadée avec numérotation automatique (v1, v2) et commentaire obligatoire. & ++ \\
+& L'utilisateur peut téléverser une nouvelle version d'un document existant. Le système numérote automatiquement les versions. L'utilisateur doit fournir un commentaire pour chaque nouvelle version. & ++ \\
 \cline{3-6}
 & & US78 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique des consultations afin de voir qui a accédé au document. 
-& L'historique des consultations est disponible pour traçabilité. & + \\
+& L'utilisateur visualise qui a consulté le document. L'utilisateur voit la date et l'heure de chaque consultation. & + \\
 \cline{3-6}
 & & US79 & En tant qu'\textbf{utilisateur}, je souhaite archiver des documents afin de nettoyer la vue active. 
-& Le document est archivé avec confirmation, les données sont conservées et la restauration est possible. & + \\
+& L'utilisateur peut archiver un document. Une confirmation est demandée avant archivage. Le document archivé peut être restauré ultérieurement. & + \\
 \cline{3-6}
 & & US80 & En tant qu'\textbf{utilisateur}, je souhaite être alerté si un fichier identique existe déjà afin d'éviter les doublons. 
-& Le hash du fichier est calculé à l'upload, une alerte s'affiche si doublon avec options remplacer/créer version/annuler. & ++ \\
+& Le système détecte les fichiers identiques lors du téléversement. L'utilisateur est alerté si un doublon existe. L'utilisateur peut choisir de remplacer, créer une version ou annuler. & ++ \\
 \cline{3-6}
 & & US81 & En tant que \textbf{chef de projet}, je souhaite générer automatiquement un PV à partir d'un ticket afin de documenter les interventions. 
-& Un PDF professionnel est généré avec logo, en-tête, description, actions, temps passé et signature électronique. & +++ \\
+& Le chef de projet peut générer un procès-verbal depuis un ticket. Le document contient toutes les informations du ticket et les actions réalisées. Le document peut être signé électroniquement. & +++ \\
 \cline{3-6}
 & & US82 & En tant que \textbf{client}, je souhaite télécharger les PV de mes tickets afin de conserver une trace des interventions. 
-& Le PV est accessible depuis le ticket, l'historique est consultable et une notification email est envoyée à la génération. & ++ \\
+& Le client peut accéder aux procès-verbaux depuis ses tickets. Le client visualise l'historique de tous les PV générés. Le client reçoit une notification lors de la génération d'un nouveau PV. & ++ \\
 \hline
 
 % Epic 12: Notifications
 \multirow{6}{*}{\centering 12} & \multirow{6}{2.5cm}{\centering Notifications et alertes} 
 & US83 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications in-app afin d'être informé en temps réel. 
-& L'icône avec compteur affiche un dropdown listant les notifications avec marquage lu/non lu et accès direct à l'élément. & +++ \\
+& L'utilisateur visualise le nombre de notifications non lues. L'utilisateur peut consulter la liste des notifications. L'utilisateur peut marquer une notification comme lue. L'utilisateur peut accéder directement à l'élément concerné. & +++ \\
 \cline{3-6}
 & & US84 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications par email afin d'être informé hors connexion. 
-& Les préférences de fréquence (temps réel/digest) sont configurables avec templates professionnels. & ++ \\
+& L'utilisateur peut configurer la fréquence des notifications email. L'utilisateur reçoit des emails pour les événements importants. & ++ \\
 \cline{3-6}
 & & US85 & En tant que \textbf{membre technique}, je souhaite recevoir des notifications Slack afin d'être alerté sur mon outil de travail. 
-& La configuration Slack par contrat/projet est possible avec webhook URL et événements sélectionnables. & ++ \\
+& L'administrateur peut configurer l'intégration Slack par contrat ou projet. Les événements importants sont envoyés sur Slack. & ++ \\
 \cline{3-6}
 & & US86 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications push navigateur afin d'être alerté même hors onglet. 
-& La permission est demandée, les notifications pour événements critiques sont envoyées et le clic ouvre l'application. & ++ \\
+& L'utilisateur peut autoriser les notifications navigateur. L'utilisateur reçoit des alertes pour les événements critiques. L'utilisateur peut accéder à l'application en cliquant sur la notification. & ++ \\
 \cline{3-6}
 & & US87 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique de mes notifications afin de retrouver une information. 
-& La liste complète des notifications est affichée avec filtres par type/statut/période, recherche et pagination. & ++ \\
+& L'utilisateur visualise toutes ses notifications passées. L'utilisateur peut filtrer par type ou période. L'utilisateur peut rechercher dans l'historique. & ++ \\
 \hline
 
 % Epic 13: Dashboards et rapports
 13 & Dashboards et rapports 
 & US88 & En tant qu'\textbf{administrateur}, je souhaite consulter un dashboard global afin de piloter le système. 
-& Les KPIs (utilisateurs actifs, tickets ouverts, taux SLA, CA) sont affichés avec graphiques, alertes et filtres par période. & +++ \\
+& L'administrateur visualise les indicateurs clés du système. L'administrateur peut filtrer les données par période. L'administrateur identifie les alertes nécessitant une action. & +++ \\
 \cline{3-6}
 & & US89 & En tant que \textbf{chef de projet}, je souhaite consulter un dashboard d'équipe afin de piloter l'activité. 
-& La vue d'équipe affiche la charge de travail par développeur, performance SLA et temps passé vs estimé. & +++ \\
+& Le chef de projet visualise la charge de travail de son équipe. Le chef de projet suit la performance par rapport aux délais. Le chef de projet compare le temps passé au temps estimé. & +++ \\
 \cline{3-6}
 & & US90 & En tant que \textbf{développeur}, je souhaite consulter mon dashboard personnel afin d'organiser ma journée. 
-& Les tickets assignés sont affichés avec priorités, chronomètre actif, temps passé et échéances SLA. & ++ \\
+& Le développeur visualise ses tickets assignés. Le développeur voit ses priorités du jour. Le développeur suit son temps de travail. Le développeur identifie les échéances proches. & ++ \\
 \cline{3-6}
 & & US91 & En tant que \textbf{client}, je souhaite consulter mon dashboard afin de suivre mes projets. 
-& Les contrats actifs, demandes et tickets en cours, statistiques, documents récents et contacts équipe sont affichés. & ++ \\
+& Le client visualise ses contrats actifs. Le client suit l'état de ses demandes et tickets. Le client accède à ses documents récents. Le client identifie ses contacts dans l'équipe. & ++ \\
 \cline{3-6}
 & & US92 & En tant qu'\textbf{administrateur}, je souhaite générer un rapport d'activité mensuel afin de présenter les statistiques. 
-& Le rapport contient tickets traités, temps passé et respect SLA avec export PDF/Excel et graphiques. & +++ \\
+& L'administrateur génère un rapport pour une période donnée. Le rapport contient les tickets traités et le temps passé. Le rapport indique le respect des délais. Le rapport peut être exporté. & +++ \\
 \cline{3-6}
 & & US93 & En tant qu'\textbf{administrateur}, je souhaite générer des rapports de conformité SLA afin de justifier les performances. 
-& Le rapport affiche le taux de respect par contrat/période avec détail par ticket, calcul pénalités et PDF professionnel. & +++ \\
+& L'administrateur génère un rapport de conformité par contrat. Le rapport affiche le taux de respect des délais. Le rapport détaille les tickets en dépassement. & +++ \\
 \cline{3-6}
 & & US94 & En tant que \textbf{chef de projet}, je souhaite générer des rapports d'activité afin de présenter l'avancement. 
-& Le rapport par projet/équipe/période affiche tickets traités, temps passé et graphiques d'évolution. & ++ \\
+& Le chef de projet génère un rapport pour son équipe ou projet. Le rapport affiche les tickets traités et le temps passé. Le rapport présente l'évolution de l'activité. & ++ \\
 \hline
 
 % Epic 14: Historique et audit trail
 \multirow{2}{*}{\centering 14} & \multirow{2}{2.5cm}{\centering Historique et traçabilité} 
 & US95 & En tant qu'\textbf{administrateur}, je souhaite consulter l'historique complet de toutes les actions afin d'assurer la traçabilité. 
-& Toutes les actions CRUD sont enregistrées avec utilisateur, date, IP, action, entité et valeurs modifiées. & +++ \\
+& L'administrateur visualise toutes les actions effectuées dans le système. L'historique indique l'utilisateur, la date et l'action réalisée. L'historique conserve les valeurs avant et après modification. & +++ \\
 \cline{3-6}
 & & US96 & En tant qu'\textbf{administrateur}, je souhaite exporter les logs d'audit afin de répondre aux exigences de conformité. 
-& L'export CSV/JSON est possible avec filtrage par période/utilisateur/action, signature numérique et chiffrement. & ++ \\
+& L'administrateur peut exporter l'historique des actions. L'administrateur peut filtrer par période, utilisateur ou type d'action. Les données exportées sont sécurisées. & ++ \\
 \hline
 
 % Epic 15: Versioning avancé
 \multirow{3}{*}{\centering 15} & \multirow{3}{2.5cm}{\centering Versioning avancé} 
 & US97 & En tant qu'\textbf{utilisateur}, je souhaite créer une nouvelle version d'un document afin de maintenir l'historique. 
-& Une nouvelle version est uploadée avec commentaire obligatoire, numérotation auto (v1.0, v1.1, v2.0) et conservation des versions précédentes. & ++ \\
+& L'utilisateur peut téléverser une nouvelle version d'un document. L'utilisateur doit fournir un commentaire pour la nouvelle version. Le système numérote automatiquement les versions. Toutes les versions précédentes sont conservées. & ++ \\
 \cline{3-6}
 & & US98 & En tant qu'\textbf{utilisateur}, je souhaite comparer deux versions d'un document afin de voir les différences. 
-& Deux versions sont sélectionnées et affichées côte à côte avec mise en évidence des modifications. & + \\
+& L'utilisateur peut sélectionner deux versions à comparer. Les deux versions sont affichées côte à côte. Les modifications sont mises en évidence. & + \\
 \cline{3-6}
 & & US99 & En tant qu'\textbf{administrateur}, je souhaite voir qui a consulté un document afin de suivre sa diffusion. 
-& La liste des consultations affiche date/heure/utilisateur et durée de consultation avec statistiques. & ++ \\
+& L'administrateur visualise la liste des consultations du document. L'historique indique la date, l'heure et l'utilisateur. Des statistiques de consultation sont disponibles. & ++ \\
 \hline
 
 % Epic 16: IA et automatisation
 \multirow{6}{*}{\centering 16} & \multirow{6}{2.5cm}{\centering Assistance intelligente} 
 & US100 & En tant que \textbf{client}, je souhaite que le système suggère automatiquement une catégorie pour ma demande. 
-& Le titre et la description sont analysés, une catégorie est suggérée et le client peut l'accepter ou la modifier. & +++ \\
+& Le système analyse le contenu de la demande. Le système propose une catégorie appropriée. Le client peut accepter ou modifier la suggestion. & +++ \\
 \cline{3-6}
 & & US101 & En tant qu'\textbf{administrateur}, je souhaite que le modèle de suggestion s'améliore afin d'offrir des recommandations précises. 
-& Le modèle apprend des validations/rejets, se réentraîne périodiquement et les métriques de précision sont suivies. & ++ \\
+& Le système apprend des validations et rejets des suggestions. Le modèle se réentraîne périodiquement. La précision des suggestions est mesurée. & ++ \\
 \cline{3-6}
 & & US102 & En tant que \textbf{chef de projet}, je souhaite que le système suggère une priorité afin de traiter les demandes efficacement. 
-& Le contenu et le contexte client sont analysés, une priorité est suggérée et ajustable par le chef de projet. & ++ \\
+& Le système analyse le contenu et le contexte de la demande. Le système propose un niveau de priorité. Le chef de projet peut ajuster la priorité suggérée. & ++ \\
 \cline{3-6}
 & & US103 & En tant que \textbf{développeur}, je souhaite des suggestions de solutions basées sur le passé afin de résoudre plus rapidement. 
-& Les tickets similaires sont identifiés, les solutions précédentes sont suggérées et peuvent être acceptées ou ignorées. & ++ \\
+& Le système identifie les tickets similaires résolus. Le système suggère les solutions précédemment appliquées. Le développeur peut accepter ou ignorer les suggestions. & ++ \\
 \cline{3-6}
 & & US104 & En tant que \textbf{développeur}, je souhaite évaluer la pertinence des suggestions afin d'améliorer la qualité. 
-& Un système de notation (utile/pas utile) collecte les retours et ajuste le modèle. & + \\
+& Le développeur peut noter la pertinence d'une suggestion. Les retours sont collectés pour améliorer le système. Le modèle s'ajuste en fonction des évaluations. & + \\
 \cline{3-6}
 & & US105 & En tant qu'\textbf{administrateur}, je souhaite que le système détecte automatiquement les doublons afin d'éviter les demandes redondantes. 
-& La similarité est analysée à la création, les doublons sont signalés et les demandes similaires sont liées automatiquement. & ++ \\
+& Le système analyse la similarité lors de la création d'une demande. Le système signale les demandes potentiellement identiques. Les demandes similaires sont automatiquement liées. & ++ \\
 \hline
 
 % Epic 17: Gestion des sous-tâches
 \multirow{4}{*}{\centering 17} & \multirow{4}{2.5cm}{\centering Gestion des sous-tâches} 
 & US106 & En tant qu'\textbf{utilisateur}, je souhaite créer des sous-tâches pour décomposer un ticket afin de mieux organiser le travail. 
-& Les sous-tâches sont créées avec titre/description/estimation et la progression globale est calculée automatiquement. & ++ \\
+& L'utilisateur peut créer des sous-tâches pour un ticket. Chaque sous-tâche a un titre, une description et une estimation. La progression globale est calculée automatiquement. & ++ \\
 \cline{3-6}
 & & US107 & En tant que \textbf{chef de projet}, je souhaite assigner des sous-tâches à différents développeurs afin de paralléliser le travail. 
-& Chaque sous-tâche est assignée indépendamment, les développeurs sont notifiés et le temps individuel est suivi. & ++ \\
+& Le chef de projet peut assigner chaque sous-tâche indépendamment. Les développeurs assignés sont notifiés. Le temps de travail est suivi individuellement par sous-tâche. & ++ \\
 \cline{3-6}
 & & US108 & En tant qu'\textbf{utilisateur}, je souhaite suivre la progression via les sous-tâches afin de visualiser l'avancement détaillé. 
-& La barre de progression affiche le statut de chaque sous-tâche et identifie les sous-tâches bloquantes. & ++ \\
+& L'utilisateur visualise l'état de chaque sous-tâche. La progression globale du ticket est affichée. Les sous-tâches bloquantes sont identifiées. & ++ \\
 \cline{3-6}
 & & US109 & En tant que \textbf{système}, je souhaite fermer automatiquement le ticket parent lorsque toutes les sous-tâches sont terminées. 
-& La vérification est automatique à chaque changement de statut, le ticket parent passe à RESOLU et le client est notifié. & ++ \\
+& Le système vérifie l'état des sous-tâches à chaque changement. Le ticket parent est automatiquement marqué comme résolu quand toutes les sous-tâches sont terminées. Le client est notifié de la résolution. & ++ \\
 \hline
 
 \end{longtable}
