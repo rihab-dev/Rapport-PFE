@@ -16,7 +16,7 @@ Forte d'une équipe dynamique et diversifiée et de profils reconnus, l’entrep
         \caption{Logo SolidWall Consulting}
         \label{fig:Logo SolidWall Consulting}
 \end{figure}
-
+\newpage
 \subsection{ Services de l’organisme}
 \textbf{SolidWall Consulting} propose des services conseil pour accompagner ses clients dans la réalisation de leurs projets et assure la qualité de ses prestations ainsi que le développement de solutions numériques. 
 
@@ -38,150 +38,122 @@ Pour mieux comprendre les besoins, nous allons étudier les solutions existantes
 
 
 \subsubsection{Étude de l'existant}
-L'étude de l'existant est une étape cruciale avant de commencer notre projet, parce qu'elle vise à mieux comprendre l'environnement et le critiquer pour respecter les exigences de l'entreprise. Il est nécessaire de clarifier la situation actuelle, d'insister sur les critiques puis de proposer des solutions.
+L’étude de l’existant est une étape cruciale avant de commencer notre projet, car elle vise à mieux comprendre l’environnement et à analyser ses limites, afin de proposer des solutions adaptées aux exigences de l’entreprise.
+
+Il est nécessaire de clarifier la situation actuelle et de souligner ses limites afin de définir des solutions appropriées.
 \newline
-\paragraph{\hspace{1cm} \textcolor{bleuPerso} {Étude de l'existant au niveau de l'entreprise}}~\newline
-\noindent
---\hspace{0.5cm} \textbf{Processus de gestion des contrats de maintenance :}
-L'entreprise utilise actuellement des documents Word  pour stocker et suivre les informations relatives aux contrats. Ces documents permettent aux responsables de créer des contrats qui formalisent la relation entre l'entreprise et ses clients et qui définissent les engagements de chaque partie concernant les services de maintenance. 
+\begin{enumerate}[label=\textcolor{bleuPerso}{\alph*)}, labelsep=0.5em]
+            \item   \textcolor{bleuPerso} {Étude de l'existant au niveau de l'entreprise}~\newline
+            \noindent
+            --\hspace{0.5cm} \textbf{Processus de gestion des contrats de maintenance :}
+            L'entreprise utilise actuellement des documents Word  pour stocker et suivre les informations relatives aux contrats. Ces documents permettent aux responsables de créer des contrats qui formalisent la relation entre l'entreprise et ses clients et qui définissent les engagements de chaque partie concernant les services de maintenance. 
 
-\noindent
---\hspace{0.5cm} \textbf{Processus de gestion des demandes clients :}
-le processus des demandes de maintenance repose actuellement sur des échanges par e-mail ou messagerie instantanée. Le client qui désire demander une évolution ou signaler un problème n'a que le choix de rédiger un message sans formulaire structuré, cette approche engendre une perte fréquente d'informations. 
+            \noindent
+            --\hspace{0.5cm} \textbf{Processus de gestion des demandes clients :}
+            le processus des demandes de maintenance repose actuellement sur des échanges par e-mail ou messagerie instantanée. Le client qui désire demander une évolution ou signaler un problème n'a que le choix de rédiger un message sans formulaire structuré, cette approche engendre une perte fréquente d'informations. 
 
-\noindent
---\hspace{0.5cm} \textbf{Processus de suivi des tickets de maintenance :}
-L'utilisation des fils de discussion dans des messageries (email) avec l'augmentation du nombre de clients, l'organisation atteint rapidement ses limites, l'affectation des tickets aux développeurs est réalisée manuellement par le responsable souvent via un message direct sans traçabilité.
+            \noindent
+            --\hspace{0.5cm} \textbf{Processus de suivi des tickets de maintenance :}
+            L'utilisation des fils de discussion dans des messageries (email) avec l'augmentation du nombre de clients, l'organisation atteint rapidement ses limites, l'affectation des tickets aux développeurs est réalisée manuellement par le responsable souvent via un message direct sans traçabilité.
 
-\noindent
---\hspace{0.5cm} \textbf{Processus de la gestion des projets et des équipes :}
-La gestion des projets, qui inclut l'affectation des équipes et le suivi des relations avec les clients, repose sur  des échanges d'e-mails pour les mises à jour de statut. Cette dispersion des informations entre plusieurs outils rend difficile pour les responsables d'avoir une vue d'ensemble en temps réel sur l'état des projets.
+            \noindent
+            --\hspace{0.5cm} \textbf{Processus de la gestion des projets et des équipes :}
+            La gestion des projets, qui inclut l'affectation des équipes et le suivi des relations avec les clients, repose sur  des échanges d'e-mails pour les mises à jour de statut. Cette dispersion des informations entre plusieurs outils rend difficile pour les responsables d'avoir une vue d'ensemble en temps réel sur l'état des projets.
 
-\noindent
---\hspace{0.5cm} \textbf{Processus de traçabilité des actions et des documents :}
- Les documents contractuels sont stockés de manière non structurée, soit dans des répertoires locaux, soit sur des espaces de stockage cloud, sans convention de nommage ni gestion des versions.   De plus, aucun historique des modifications n'est conservé. 
-\newline
+            \noindent
+            --\hspace{0.5cm} \textbf{Processus de traçabilité des actions et des documents :}
+            Les documents contractuels sont stockés de manière non structurée, soit dans des répertoires locaux, soit sur des espaces de stockage cloud, sans convention de nommage ni gestion des versions.   De plus, aucun historique des modifications n'est conservé. 
+            \newline
 
-\paragraph{\hspace{1cm} \textcolor{bleuPerso} {Étude de l'existant à l'échelle internationale} }~\newline 
- Avant de concevoir notre propre solution, nous allons étudier les solutions disponibles sur le marché afin d'analyser les fonctionnalités proposées. Cette démarche permet d'identifier les bonnes pratiques et d'orienter efficacement le développement de notre système.\newline
-Dans ce cadre, nous avons étudié plusieurs solutions existantes couvrant différents segments du marché : solutions open-source, solutions SaaS et solutions enterprise.
-\newline
-
-\textbf{\underline{Solutions Open-Source}}
-\newline
-Les solutions open-source offrent l'avantage d'être gratuites en version communautaire et permettent une personnalisation complète du code source. Cependant, elles nécessitent souvent des compétences techniques avancées pour leur déploiement et leur maintenance. Parmi les solutions open-source les plus représentatives, nous avons étudié \textbf{GLPI} et \textbf{Odoo}.
-\newline
-        --\hspace{0.5cm}  \textbf{GLPI (Gestion Libre de Parc Informatique) }\par\medskip
-            Cette solution de gestion des services informatiques a été développée en 2003 et est maintenue par la société française Teclib. Principalement utilisée par les équipes internes d'une organisation, selon sa configuration, elle permet de recevoir des demandes externes.
-            Elle assure un système de gestion de tickets qui structure les demandes des utilisateurs. De plus, elle prend en charge différents canaux de communication, garantissant ainsi la centralisation des échanges. La version communautaire est gratuite, mais nécessite une formation de \textbf{2 à 3 jours} pour les administrateurs. La version entreprise avec support professionnel coûte à partir de \textbf{1500€ par an}.
-            \begin{figure}[H]
-                \centering
-                \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/GLPI.png}
-                \caption{Interface de GLPI }
-                \label{fig:GLPI}
-            \end{figure}
-   \noindent
-   Par la suite, nous nous sommes intéressés à la solution \textbf{Odoo}, qui couvre plusieurs besoins de gestion d'entreprise.\newline
-        --\hspace{0.5cm} \textbf{Odoo}\par\medskip
-            Cette plateforme de gestion d'entreprise a été développée en 2005 et est basée en Belgique. Elle couvre différents besoins métiers des entreprises, notamment à travers un module Helpdesk qui assure la gestion des demandes de maintenance sous forme de tickets organisés et suivis selon différents statuts. Elle peut créer les tickets via plusieurs canaux tels que l'email ou les formulaires en ligne.\newline La plateforme intègre également des fonctionnalités d'automatisation, notamment l'attribution automatique des tickets et l'envoi d'alertes. Cependant, elle propose plus de \textbf{30 modules}, ce qui rend la navigation complexe pour les nouveaux utilisateurs. Le module Helpdesk coûte à partir de \textbf{24€ par utilisateur et par mois}.
-            \begin{figure}[H]
-                \centering
-                \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/odoo.png}
-                \caption{Interface de Odoo}
-                \label{fig:Odoo}
-            \end{figure}
+    \item  \textcolor{bleuPerso} {Étude de l'existant à l'échelle internationale}~\newline
+            Avant de concevoir notre propre solution, nous allons étudier les solutions disponibles sur le marché afin d'analyser les fonctionnalités proposées. Cette démarche permet d'identifier les bonnes pratiques et d'orienter efficacement le développement de notre système.\newline
+            Dans ce cadre, nous avons étudié plusieurs solutions existantes couvrant différents segments du marché : solutions open-source, solutions SaaS et solutions enterprise.
+            \newpage
+            \textbf{\underline{Solutions Open-Source}}
+            \newline
+            Les solutions open-source offrent l'avantage d'être gratuites en version communautaire et permettent une personnalisation complète du code source. Cependant, elles nécessitent souvent des compétences techniques avancées pour leur déploiement et leur maintenance. Parmi les solutions open-source les plus représentatives, nous avons étudié \textbf{GLPI} .
+            \newline
+                    --\hspace{0.5cm}  \textbf{GLPI (Gestion Libre de Parc Informatique) }\par\medskip
+                        Cette solution de gestion des services informatiques a été développée en 2003 et est maintenue par la société française Teclib. Principalement utilisée par les équipes internes d'une organisation, selon sa configuration, elle permet de recevoir des demandes externes.
+                        Elle assure un système de gestion de tickets qui structure les demandes des utilisateurs. De plus, elle prend en charge différents canaux de communication, garantissant ainsi la centralisation des échanges. La version communautaire est gratuite, mais nécessite une formation de \textbf{2 à 3 jours} pour les administrateurs. La version entreprise avec support professionnel coûte à partir de \textbf{1500€ par an}.
+                        \begin{figure}[H]
+                            \centering
+                            \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/GLPI.png}
+                            \caption{Interface de GLPI }
+                            \label{fig:GLPI}
+                        \end{figure}
+            \noindent
             
+                        
+            Après l’étude de la solution open-source, nous nous intéressons maintenant à la solution SaaS, qui représente une alternative aux solutions précédentes.
+            \newline
 
-\textbf{\underline{Solutions SaaS (Software as a Service)}}
-\newline
+            \textbf{\underline{Solution SaaS (Software as a Service)}}
+            \newline
 
-Les solutions SaaS sont hébergées dans le cloud et accessibles via un navigateur web. Elles se caractérisent par leur facilité de déploiement, leur maintenance assurée par le fournisseur et un modèle de tarification par abonnement mensuel ou annuel. Dans cette catégorie, nous avons analysé \textbf{Freshdesk} et \textbf{Zoho Desk}.
-\newline
+            La solution SaaS est hébergée dans le cloud et accessible via un navigateur web. Elle se caractérise par sa facilité  de déploiement, sa maintenance assurée par le fournisseur et un modèle de tarification par abonnement mensuel ou annuel. Dans cette catégorie, nous avons analysé \textbf{Freshdesk} .
+            \newpage
 
-        --\hspace{0.5cm}  \textbf{Freshdesk}\par\medskip
-            Cette solution cloud de service desk est développée par Freshworks, une entreprise indienne. Elle offre une interface intuitive pour la gestion des tickets avec support multicanal (email, chat, téléphone, réseaux sociaux). La plateforme propose des fonctionnalités d'automatisation avancées et d'intelligence artificielle (IA) pour la catégorisation automatique des tickets. Elle propose un plan gratuit limité, et ses plans payants démarrent à partir de \textbf{15€ par agent et par mois}.
-            \begin{figure}[H]
-                \centering
-                \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/FreshDesk.png}
-                \caption{Interface de Freshdesk}
-                \label{fig:freshdesk}
-            \end{figure}
-   \noindent
-   Dans le même segment SaaS, nous avons également analysé \textbf{Zoho Desk}, qui se positionne comme une alternative intéressante.
-   \newline
+                    --\hspace{0.5cm}  \textbf{Freshdesk}\par\medskip
+                        Cette solution cloud de service desk a été développée en 2011 et est maintenue par la société indienne Freshworks. Elle propose une interface intuitive pour la gestion des tickets avec support multicanal (courriel, chat, téléphone, réseaux sociaux). La solution propose des fonctionnalités d'automatisation avancées et d'intelligence artificielle (IA) pour la catégorisation automatique des tickets. Elle propose un plan gratuit limité, et ses plans payants démarrent à partir de \textbf{15€ par agent et par mois}.
+                        \begin{figure}[H]
+                            \centering
+                            \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/FreshDesk.png}
+                            \caption{Interface de Freshdesk}
+                            \label{fig:freshdesk}
+                        \end{figure}
+            \noindent
+            
+            \textbf{\underline{Solutions Enterprise}}
+            \newline
 
-        --\hspace{0.5cm} \textbf{Zoho Desk}\par\medskip
-            Cette plateforme fait partie de l'écosystème Zoho, une entreprise indienne, et offre une solution complète de gestion du service client. Elle se distingue par son intégration native avec les autres produits Zoho (CRM, Projects, Analytics). La solution propose des fonctionnalités d'IA pour suggérer des réponses et détecter les sentiments des clients. Les tarifs démarrent à partir de \textbf{14€ par agent et par mois}.
-            \begin{figure}[H]
-                \centering
-                \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/ZohoDesk.png}
-                \caption{Interface de Zoho Desk}
-                \label{fig:zohodesk}
-            \end{figure}
+            La solution enterprise est conçue pour les grandes organisations et propose des fonctionnalités avancées de gestion des services IT. Elle se distingue par sa robustesse, son évolutivité et sa conformité aux normes ITIL, mais implique des coûts d'acquisition et de maintenance élevés. Nous avons examiné une solution majeure de cette catégorie : \textbf{Jira Service Management}.
+            \newline
 
-\textbf{\underline{Solutions Enterprise}}
-\newline
-
-Les solutions enterprise sont conçues pour les grandes organisations et offrent des fonctionnalités avancées de gestion des services IT. Elles se distinguent par leur robustesse, leur évolutivité et leur conformité aux normes ITIL, mais impliquent des coûts d'acquisition et de maintenance élevés. Nous avons examiné deux solutions majeures de cette catégorie : \textbf{Jira Service Management} et \textbf{ServiceNow}.
-\newline
-
-        --\hspace{0.5cm}  \textbf{Jira Service Management (Atlassian)}\par\medskip
-            Cette solution est développée par Atlassian, une entreprise australienne leader mondial dans les outils de gestion de projet. Elle offre une intégration parfaite avec l'écosystème Atlassian (Jira Software, Confluence). La plateforme propose des fonctionnalités avancées de gestion des incidents, des changements et des actifs. Elle intègre des capacités d'IA pour l'automatisation et la prédiction. Les tarifs démarrent à partir de \textbf{20€ par agent et par mois}, mais peuvent rapidement augmenter avec les fonctionnalités avancées.
-            \begin{figure}[H]
-                \centering
-                \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/appJira.png}
-                \caption{Interface de Jira Service Management}
-                \label{fig:jira}
-            \end{figure}
-   \noindent
-   Enfin, nous avons étudié \textbf{ServiceNow}, qui représente le haut de gamme des solutions enterprise.\newline
-        --\hspace{0.5cm} \textbf{ServiceNow}\par\medskip
-            Cette plateforme enterprise américaine est la plus complète et la plus coûteuse du marché. Elle offre une solution globale de gestion des services d'entreprise allant bien au-delà du simple service desk. La plateforme propose des capacités d'automatisation avancées, d'IA et d'intégration avec pratiquement tous les systèmes d'entreprise. Cependant, sa complexité et son coût (à partir de \textbf{100€ par utilisateur et par mois}) la réservent aux grandes entreprises.
-            \begin{figure}[H]
-                \centering
-                \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/ServiceDesk.png}
-                \caption{Interface de ServiceNow}
-                \label{fig:servicenow}
-            \end{figure}
-
+                    --\hspace{0.5cm}  \textbf{Jira Service Management (Atlassian)}\par\medskip
+                        Cette solution est développée en 2002 et est maintenue par Atlassian, une entreprise australienne leader mondial dans les outils de gestion de projet. Elle propose une intégration parfaite avec l'écosystème Atlassian (Jira Software, Confluence). La solution assure des fonctionnalités avancées de gestion des incidents, des changements et des actifs. Elle intègre des capacités d'IA pour l'automatisation et la prédiction. Les tarifs démarrent à partir de \textbf{20 € par agent et par mois}, mais peuvent rapidement augmenter avec les fonctionnalités avancées.
+                        \begin{figure}[H]
+                            \centering
+                            \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/appJira.png}
+                            \caption{Interface de Jira Service Management}
+                            \label{fig:jira}
+                        \end{figure}
+            \noindent
+\end{enumerate}
 
 
 \subsubsection{Critique de l'existant}
 
-Actuellement, la gestion des contrats de maintenance au sein de la direction de la gestion de \textbf{SolidMaint} se fait à partir d'Excel et par communication via mail. Cette approche présente des failles.
-
+Actuellement, la gestion des contrats de maintenance au sein de la direction de gestion  
+SolidMaint se fait par échange de courriels. Cette approche présente certaines limites.
 
 \noindent{\textbf{\textcolor{bleuPerso}{Limitations du processus actuel }}}
 \begin{itemize}[label=\ding{109}]
-    \item \textbf{processus fragmenté : } l'utilisation séparée d'Excel et la communication via e-mail fragmentent la gestion. Les informations dispersées compliquent la gestion des composants manquants.  Sans lien structuré entre eux, il devient alors difficile de retrouver l'historique complet d'une intervention.
-    \item \textbf{Absence de traçabilité :} L'absence de système de traçabilité rend le suivi des interventions difficile. Cela peut entrainer une perte de visibilité sur l'état en cas de conflit avec un client ou lors d'un audit interne. Ce qui représente un risque pour la crédibilité et la fiabilité de la société.
-     \item \textbf{Absence de sécurité :}   Utiliser des outils généralistes pour gérer des données sensibles expose l'entreprise à des risques de sécurité. Ces plateformes ne garantissent pas les niveaux de sécurité nécessaires pour protéger efficacement les informations confidentielles.
-      \item \textbf{Risque de perte d'informations :} En raison de la fragmentation de processus, il existe un risque accru de perte d'informations importantes. Les documents considérable sont stockés de manière non structurée, ce qui peut être difficile à suivre et à consolider.
-     \item \textbf{Complexité de la communication : } la communication entre l'équipe et avec les clients repose sur des échanges dispersés (emails, messages), ce qui rend le flux des demandes et de configuration flou et entraîne un retard dans le traitement des interventions.
+    \item \textbf{processus fragmenté : } La communication via e-mail fragmente la gestion. Les informations étant dispersées, le suivi des composants manquants devient complexe.  En l’absence de structure centralisée, il devient difficile de retrouver l'historique complet d'une intervention.
+    \item \textbf{Absence de traçabilité :} L'absence de système de traçabilité rend le suivi des interventions difficile. Cela peut entraîner une perte de visibilité sur leur état, en cas de conflit avec un client ou lors d'un audit interne, ce qui représente un risque pour la crédibilité et la fiabilité de la société.
+     \item \textbf{Absence de sécurité :}   La sécurité des données est insuffisante lorsque des outils généralistes sont utilisés pour gérer des données sensibles, ce qui expose l'entreprise à des risques de sécurité. Ces outils ne garantissent pas les niveaux de sécurité nécessaires pour protéger efficacement les informations confidentielles.
+      \item \textbf{Risque de perte d'informations :} En raison de la fragmentation des processus, il existe un risque accru de perte d'informations importantes. Les documents sont stockés de manière non structurée, ce qui rend leur suivi et leur consolidation difficiles.
+     \item \textbf{Complexité de la communication : } la communication au sein de l’équipe et avec les clients repose sur des échanges dispersés (courriels, messages), ce qui rend le flux des demandes peu clair et entraîne des retards dans le traitement des interventions.
     
     \end{itemize}
 
-   
+   \newpage
  \noindent{\textbf{\textcolor{bleuPerso}{Limitations des solutions existantes }}}
 \begin{itemize}[label=\ding{109}]
     \item \textbf{Complexité d'utilisation et courbe d'apprentissage :}  
     \begin{itemize}[nosep, leftmargin=1.2cm, topsep=0pt, itemsep=1pt, label={--}]
         \item GLPI nécessite une formation de \textbf{2 à 3 jours} pour les administrateurs et présente une interface peu intuitive pour les utilisateurs finaux.
-        \item Odoo propose plus de \textbf{30 modules}, ce qui rend la navigation complexe et nécessite un temps d'adaptation important.
-        \item ServiceNow, bien que très puissant, est reconnu pour sa complexité et nécessite des consultants certifiés pour sa mise en œuvre et sa maintenance.
         \item Jira Service Management requiert une connaissance de l'écosystème Atlassian pour une utilisation optimale.
     \end{itemize}
     
      \item \textbf{Coût des licences et investissement financier :}  
      \begin{itemize}[nosep, leftmargin=1.2cm, topsep=0pt, itemsep=1pt, label={--}]
-        \item Odoo et Helpdesk : à partir de \textbf{24€ par utilisateur et par mois}
+        \item Helpdesk : à partir de \textbf{24€ par utilisateur et par mois}
         \item Jira Service Management : à partir de \textbf{20€ par agent et par mois}
         \item Freshdesk : à partir de \textbf{15€ par agent et par mois} (version gratuite très limitée)
-        \item Zoho Desk : à partir de \textbf{14€ par agent et par mois}
-        \item ServiceNow : à partir de \textbf{100€ par utilisateur et par mois}
         \item GLPI : Gratuit (version communautaire) mais version entreprise avec support à partir de \textbf{1500€ par an}
     \end{itemize}
-    Pour une équipe de 10 utilisateurs, le coût annuel peut varier de \textbf{1680€} (Zoho Desk) à \textbf{12000€} (ServiceNow), sans compter les coûts de formation et de personnalisation.
+    Pour une équipe de 10 utilisateurs, le coût annuel peut varier de \textbf{1500€} à \textbf{12000€} , sans compter les coûts de formation et de personnalisation.
     
     \item \textbf{Dépendance aux extensions et problèmes d'intégration :} 
     \begin{itemize}[nosep, leftmargin=1.2cm, topsep=0pt, itemsep=1pt, label={--}]
@@ -203,21 +175,21 @@ Le tableau suivant présente une analyse comparative détaillée des principales
     \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{3.5cm}|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|}
     \hline
     \rowcolor{blue!20}
-    \textbf{Critères} & \textbf{GLPI} & \textbf{Odoo} & \textbf{Jira SM} & \textbf{Freshdesk} & \textbf{ServiceNow} \\
+    \textbf{Critères} & \textbf{GLPI}  & \textbf{Jira SM} & \textbf{Freshdesk} \\
     \hline
-    Gestion tickets & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
+    Gestion tickets & \checkmark  & \checkmark & \checkmark \\
     \hline
-    Gestion contrats & Limité & \checkmark & Limité & $\times$ & \checkmark \\
+    Gestion contrats & Limité  & Limité & $\times$  \\
     \hline
-    Messagerie intégrée & $\times$ & \checkmark & Limité & \checkmark & \checkmark \\
+    Messagerie intégrée & $\times$  & Limité & \checkmark \\
     \hline
-    IA/Suggestions & $\times$ & Limité & \checkmark & \checkmark & Avancé \\
+    IA/Suggestions & $\times$  & \checkmark & \checkmark  \\
     \hline
-    Facilité d'utilisation & Moyenne & Difficile & Moyenne & Facile & Difficile \\
+    Facilité d'utilisation & Moyenne  & Moyenne & Facile  \\
     \hline
-    Coût (10 users/an) & 1500€ & 2880€ & 2000€ & 1800€ & 12000€ \\
+    Coût (10 users/an) & 1500€  & 2000€ & 1800€ \\
     \hline
-    Open-source & \checkmark & Limité & $\times$ & $\times$ & $\times$ \\
+    Open-source & \checkmark  & $\times$ & $\times$  \\
     \hline
     \end{tabularx}
     \caption{Tableau comparatif des solutions de gestion de maintenance existantes}
@@ -226,7 +198,6 @@ Le tableau suivant présente une analyse comparative détaillée des principales
 
 \noindent\textbf{Note sur les coûts :} Les tarifs indiqués correspondent au coût total annuel pour une équipe de 10 utilisateurs, calculés selon les grilles tarifaires officielles de chaque éditeur. Ces montants incluent uniquement les fonctionnalités de base et peuvent augmenter significativement avec l'ajout de modules complémentaires, de support premium ou de services de personnalisation.
 
-\newpage
 \subsubsection{Solution proposée}
 
 Dans le contexte des défis exposés, nous proposons la mise en place de \textbf{SolidMaint}, une solution web pour optimiser et accélérer le processus de gestion des contrats de maintenance. \textbf{SolidMaint} favorisera une traçabilité complète des tâches réalisées tout en offrant une représentation claire des données. 
@@ -239,7 +210,7 @@ Le premier module, dédié à l'\textbf{Authentification et Gestion des Utilisat
 Par ailleurs, le deuxième module, centré sur la \textbf{Gestion des Clients, Projets et Contrats}, englobera trois composantes essentielles. Premièrement, la \textbf{Gestion des Clients} permettra de centraliser les informations des entreprises clientes et de maintenir un annuaire complet avec la possibilité d'ajouter des notes internes et de gérer le statut des comptes. Deuxièmement, la \textbf{Gestion des Projets} permettra d'organiser les interventions par client, d'affecter les équipes de développement et de suivre l'avancement des travaux. Troisièmement, la \textbf{Gestion des Contrats de Maintenance} formalisera les engagements contractuels liant SolidWall Consulting à ses clients, avec la configuration des accords de niveau de service définissant les délais de réponse et de résolution par priorité. Ce module comportera également un système de traçabilité complet pour assurer l'enregistrement de toutes les actions avec possibilité d'export pour conformité réglementaire.
 \newline
 
-En outre, le troisième module, centré sur la \textbf{Gestion des Demandes et des Tickets}, constituera le cœur métier de la plateforme. L'objectif principal sera de structurer le cycle de vie complet d'une demande client de maintenance depuis sa soumission jusqu'à sa clôture en passant par la validation. Les clients pourront soumettre des demandes avec pièces jointes, que les chefs de projet pourront valider, requalifier ou compléter par des informations supplémentaires. Dès qu'une demande sera validée, \textbf{SolidMaint} générera automatiquement un ticket lié. Les responsables pourront alors affecter les tickets aux développeurs via une interface visuelle intuitive. Le module proposera un système de suivi du temps passé, la gestion des blocages, les demandes d'extension de délai, ainsi que la possibilité de décomposer les tickets complexes en sous-tâches. Des tableaux de bord personnalisés par rôle permettront de piloter l'activité et de suivre les indicateurs de performance.
+En outre, le troisième module, centré sur la \textbf{Gestion des Demandes et des Tickets}, constituera le cœur métier de la plateforme. L'objectif principal sera de structurer le cycle de vie complet d'une demande client de maintenance depuis sa soumission jusqu'à sa clôture en passant par la validation. Les clients pourront soumettre des demandes avec pièces jointes, les chefs de projet pourront valider, requalifier ou compléter une demande par des informations supplémentaires. Dès qu'une demande sera validée, \textbf{SolidMaint} générera automatiquement un ticket lié. Les responsables pourront alors affecter les tickets aux développeurs via une interface visuelle intuitive. Le module proposera un système de suivi du temps passé, la gestion des blocages, les demandes d'extension de délai, ainsi que la possibilité de décomposer les tickets complexes en sous-tâches. Des tableaux de bord personnalisés par rôle permettront de piloter l'activité et de suivre les indicateurs de performance.
 \newline
 
 Enfin, le quatrième module, consacré à la \textbf{Collaboration, Documentation et Intelligence Artificielle}, regroupera les fonctionnalités avancées de la plateforme. Il comprendra une messagerie intégrée permettant la communication en temps réel entre l'équipe et les clients, avec support des fils de discussion, des mentions d'utilisateurs et des indicateurs de présence. Le module inclura également un système complet de gestion documentaire avec versioning automatique, détection de doublons, et génération automatique de procès-verbaux professionnels. 
@@ -251,19 +222,19 @@ En somme, \textbf{SolidMaint} se positionne comme une solution robuste et intég
 \newpage
 \section{Méthodologie adaptée}
 \label{sec:methodologie}
-La méthodologie adoptée est une étape importante car elle garantit la compréhension du projet pour trouver un meilleur résultat qui satisfait les besoins des clients.
+La méthodologie adoptée est une étape importante car elle garantit la compréhension du projet afin d’obtenir un meilleur résultat qui satisfait les besoins des clients.
 \newline
 
-\noindent Ainsi, il est important de reposer sur un langage de modélisation unifié pour formaliser les solutions de manière claire. D'aboutir à une représentation abstraite et simplifiée du projet
-\subsubsection{Méthodologie traditionnelle}
+\noindent Ainsi, il est important de reposer sur un langage de modélisation unifié pour formaliser les solutions de manière claire. 
+\subsection{Méthodologie traditionnelle}
 L'approche traditionnelle de la gestion de projet s'articule autour d'une série d'étapes consécutives, où l'approbation de la phase précédente est essentielle pour progresser vers la suivante. Cette méthode suppose que les projets gérés de manière traditionnelle se déroulent en phases distinctes et structurées. Cette logique est représentée par divers modèles de cycle de vie, incluant le cycle en cascade, le cycle en V et le cycle en spirale.
 
-\subsubsection{Méthodologie Agile}
+\subsection{Méthodologie Agile}
 « La méthodologie Agile décompose le travail en phases, mettant l'accent sur la livraison continue et l'amélioration. Agile profite aux équipes en permettant une planification adaptative, une exécution rapide et une évaluation continue, garantissant des résultats plus réactifs et plus réussis. » [3]
 \newline
 La méthodologie Agile est adoptée pour répondre rapidement aux retours des clients. Elle valorise la collaboration plutôt que la négociation contractuelle, en proposant d'abord une version minimale, puis en intégrant des fonctionnalités supplémentaires. La méthode Agile est une démarche moderne qui offre souplesse et performance dans la gestion de projet.
 \newline
-\noindent Afin d'assurer une meilleure qualité et l'efficacité de la solution, nous avons choisi \textbf{les méthodologies agiles} qui portent sur la forte collaboration des clients dès le début.
+\noindent Afin d'assurer une meilleure qualité et l’efficacité de la solution, nous avons choisi \textbf{les méthodologies agiles} qui portent sur la forte collaboration des clients dès le début.
 
 \subsubsection{Les douze principes de l'Agile}
 Le tableau ci-dessous présente les douze principes Agile qui définissent les valeurs clés pour le développement des logiciels.
@@ -334,7 +305,7 @@ Le tableau ci-dessous présente les douze principes Agile qui définissent les v
         \caption{les valeurs agiles}
     \end{figure}
 
-    Cette image marque les quatre valeurs importantes de la méthode agile qui sont des principes clés dans la gestion des projets, constituent un gain en productivité. Les valeurs Agile sous-tendent l'accent sur :
+    Cette image présente les quatre valeurs importantes de la méthode agile qui constituent des principes clés dans la gestion des projets et un gain en productivité. Les valeurs Agile mettent l’accent sur :
 
     \noindent
          --\hspace{0.5cm} Les individus et leurs interactions plus que les processus et les outils
@@ -342,8 +313,8 @@ Le tableau ci-dessous présente les douze principes Agile qui définissent les v
 \newline --\hspace{0.5cm} La collaboration avec les clients plus que la négociation contractuelle  
 \newline --\hspace{0.5cm} L'adaptation au changement plus que le suivi d'un plan
 \newline Ces valeurs renforcent la prise de décision et favorisent la réactivité dans le travail de l'équipe.
-\subsection{ Les principales méthodes Agiles}
-Le tableau suivant dévoile les différentes méthodes agiles les plus populaires et quelques critères de comparaison.
+\subsubsection{ Les principales méthodes Agiles}
+Le tableau suivant met en évidence les différentes méthodes agiles les plus populaires et quelques critères de comparaison.
 \begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.6} % Espace vertical pour aérer les cellules
@@ -376,7 +347,7 @@ Le tableau suivant dévoile les différentes méthodes agiles les plus populaire
     \caption{Les principales méthodes Agiles.}
     \label{tab:methodes_agiles}
 \end{table}
-\subsubsection{Choix de la méthode de travail}
+\subsection{Choix de la méthode de travail}
 Nous avons choisi la méthodologie \textbf{SCRUM} comme approche pour la réalisation de notre projet, notre choix est fondé sur de nombreux avantages qui répondent à nos besoins, notamment : 
 
 
@@ -395,16 +366,18 @@ Nous avons choisi la méthodologie \textbf{SCRUM} comme approche pour la réalis
 \end{figure}
 
 \subsection{Fondements de SCRUM }
-Scrum est une méthode agile. Il s'appuie sur le découpage des projets en sprints, qui sont des cycles de développement très courts. Les fonctionnalités sont présentées sous forme de user stories qui décrivent quelles fonctionnalités sont nécessaires et à quel point elles sont importantes.Le principe de Scrum est de maximiser la productivité et d'assurer en même temps la satisfaction du client. Scrum repose aussi sur trois grands principes : la transparence, l'inspection et l'adaptation.
-\subsubsection{Pertinence de SCRUM}
+Scrum est une méthode agile. Elle s'appuie sur le découpage des projets en sprints, qui sont des cycles de développement très courts. Les fonctionnalités sont présentées sous forme de user stories qui décrivent quelles fonctionnalités sont nécessaires et à quel point elles sont importantes. Le principe de Scrum est de maximiser la productivité et d'assurer en même temps la satisfaction du client. Scrum repose aussi sur trois grands principes : la transparence, l'inspection et l'adaptation.
+\subsection{Pertinence de SCRUM}
 Le choix de Scrum comme méthodologie pour la réalisation de notre projet est fondé sur plusieurs raisons. En effet, cette méthode propose une approche temporelle et itérative du développement qui facilite la livraison régulière et le suivi de l'avancement à chaque étape. Elle est spécialement adaptée à l'évolution des besoins en assurant la flexibilité.
-\subsubsection{Rôles de SCRUM}
-L'équipe Scrum est auto-organisée et prend les décisions sur la manière dont le travail sera réalisé pour atteindre l'objectif du sprint, elle est composée d'un propriétaire de produit, d'un Scrum Master et d'une équipe de développement :
-    \newline Le \textbf{Product Owner}, c'est l'expert du domaine métier du projet qui porte la vision du produit à réaliser. Ce rôle repose sur la représentation de la voix du client et veille à ce que le produit reste aligné sur la vision stratégique de l'organisation.
-    \newline Le \textbf{Scrum Master}, Son objectif est d'assurer la productivité de l'équipe dans l'application de Scrum. Sa collaboration avec l'équipe vise à maximiser la performance globale, en alignant les efforts sur les objectifs stratégiques.    
-    \newline L' \textbf{Équipe de développement}, ce sont les personnes chargées de la réalisation du sprint, ayant pour mission de transformer les besoins exprimés en fonctionnalités utilisables du produit.     
+\subsection{Rôles de SCRUM}
+L’équipe Scrum est auto-organisée et prend les décisions sur la manière dont le travail sera
+réalisé afin d'atteindre l’objectif du sprint. Elle est composée d’un propriétaire de produit, d’un 
+Scrum Master et d’une équipe de développement :
+    \newline Le \textbf{Product Owner} est l'expert du domaine métier du projet qui porte la vision du produit à réaliser. Ce rôle repose sur la représentation de la voix du client et veille à ce que le produit reste aligné sur la vision stratégique de l'organisation.
+    \newline Le \textbf{Scrum Master} a pour objectif d’assurer la productivité de l’équipe dans l’application de Scrum. Sa collaboration avec l’équipe vise à maximiser la performance globale, en alignant les efforts sur les objectifs stratégiques.
+    \newline L' \textbf{Équipe de développement} est constituée des personnes chargées de la réalisation du sprint, ayant pour mission de transformer les besoins exprimés en fonctionnalités utilisables du produit.
 
-    \subsubsection{Evènements Scrum}
+    \subsection{Evènements Scrum}
     Ce sont des rendez-vous clés qui rythment le projet Scrum, créent une routine de transparence et d'inspection, et permettent à l'équipe de s'adapter pour livrer la meilleure valeur possible.
     \begin{itemize}[nosep, left=0pt, label=\textbullet]
         \item \textbf{Sprint :} Un sprint est une itération de développement d'une durée fixe (généralement \textbf{2 à 4 semaines}) durant laquelle une version potentiellement livrable du produit est réalisée.
@@ -414,15 +387,15 @@ L'équipe Scrum est auto-organisée et prend les décisions sur la manière dont
         \item \textbf{Sprint Rétrospective :} Réunion d'amélioration continue où l'équipe analyse le déroulement du sprint, identifie ce qui a bien fonctionné et ce qui doit être amélioré.
     \end{itemize}
 
-    \subsubsection{Artéfacts Scrum}
+    \subsection{Artéfacts Scrum}
     Ce sont les supports d'information qui matérialisent le travail, la valeur et l'avancement du projet, garantissant une transparence totale entre l'équipe et les parties prenantes.
     \begin{itemize}[nosep, left=0pt, label=\textbullet]
         \item \textbf{Product Backlog :} Liste priorisée de toutes les fonctionnalités, évolutions, corrections et tâches à réaliser pour le produit.
         \item \textbf{Sprint Backlog :} Sous-ensemble du Product Backlog sélectionné pour le sprint en cours, accompagné d'un plan pour livrer l'incrément.
         \item \textbf{Incrément :} Somme de tous les éléments du Product Backlog terminés durant un sprint et les sprints précédents, représentant une version utilisable du produit.
     \end{itemize}
-
-    \subsubsection{Cycle de vie}
+\newpage
+    \subsection{Cycle de vie}
     Le cycle de vie Scrum se compose de sprints successifs, chacun comprenant une planification, le développement, des réunions quotidiennes, une revue et une rétrospective. Ce processus itératif permet d'adapter le produit en continu aux besoins du client et d'améliorer l'équipe à chaque itération.
 
     \begin{figure}[H]
@@ -440,8 +413,8 @@ L'équipe Scrum est auto-organisée et prend les décisions sur la manière dont
         \includegraphics[width=0.4\textwidth,keepaspectratio]{Images/UML.png}
         \caption{Logo UML}
     \end{figure}
-    Pour concevoir notre application, nous avons choisi UML comme langage de modélisation et notre choix s'appuie sur plusieurs points forts tels que la communication entre l'équipe et la cohérence architecturale qui se fait de manière simplifiée et standardisée.
-
+    Pour concevoir notre application, nous avons choisi UML comme langage de modélisation. Ce choix s'appuie sur plusieurs points forts tels que la communication entre l'équipe et la cohérence architecturale qui se fait de manière simplifiée et standardisée.
+\newpage
 \section{Planning prévisionnel (Diagramme de Gantt)}
 \label{sec:planning}
 « Un diagramme de Gantt est un outil d'organisation et de gestion de projets. Il s'agit d'un diagramme à barres horizontales qui présente toutes les tâches d'un projet en fonction d'un calendrier. Il aide les chefs de projet à visualiser les tâches requises et à suivre l'avancement de leur projet. » [5]
@@ -451,6 +424,9 @@ L'équipe Scrum est auto-organisée et prend les décisions sur la manière dont
         \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/Diagramme_Gantt.png}
         \caption{Diagramme de Gantt}
     \end{figure}
+    \section*{Conclusion}
+    Nous avons débuté notre rapport par ce chapitre, dans lequel nous avons présenté le cadre du projet ainsi que la structure d’accueil SolidMaint, et décrit le contexte du projet. Enfin, nous avons défini le choix de la méthodologie de gestion de projet ainsi que le langage de modélisation adopté.
+    \newline Pour la suite, nous abordons le chapitre intitulé « Préparation du projet ».
 \newpage
 \section*{Références}
 
@@ -468,10 +444,8 @@ L'équipe Scrum est auto-organisée et prend les décisions sur la manière dont
 
 [7] Freshworks. Freshdesk - Customer Support Software. Disponible sur : \url{https://www.freshworks.com/freshdesk/} (Consulté le 21/04/2026)
 
-[8] Zoho Corporation. Zoho Desk - Help Desk Software. Disponible sur : \url{https://www.zoho.com/desk/} (Consulté le 21/04/2026)
 
 [9] Atlassian. Jira Service Management. Disponible sur : \url{https://www.atlassian.com/software/jira/service-management} (Consulté le 21/04/2026)
 
-[10] ServiceNow. IT Service Management. Disponible sur : \url{https://www.servicenow.com/products/itsm.html} (Consulté le 21/04/2026)
 
 [11] AXELOS. ITIL 4 Foundation - IT Service Management. Disponible sur : \url{https://www.axelos.com/certifications/itil-service-management} (Consulté le 21/04/2026)

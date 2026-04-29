@@ -1,7 +1,7 @@
 ﻿
 \section*{Introduction}
 
-Ce chapitre présente l'analyse et la spécification des besoins de notre plateforme de gestion des contrats de maintenance **SolidMaint**. Nous commencerons par identifier les acteurs du système et spécifier leurs besoins fonctionnels et non fonctionnels, puis nous procéderons à la modélisation UML de ces besoins. Ensuite, nous détaillerons l'approche de pilotage du projet avec la méthodologie Scrum, incluant la planification des sprints et la présentation du Product Backlog. Enfin, nous présenterons l'environnement de développement choisi ainsi que l'architecture technique de l'application.
+Ce chapitre présente l'analyse et la spécification des besoins de notre plateforme de gestion des contrats de maintenance \textbf{SolidMaint}. Nous commencerons par identifier les acteurs du système et spécifier leurs besoins fonctionnels et non fonctionnels, puis nous procéderons à la modélisation UML de ces besoins. Ensuite, nous détaillerons l'approche de pilotage du projet avec la méthodologie Scrum, incluant la planification des sprints et la présentation du Product Backlog. Enfin, nous présenterons l'environnement de développement choisi ainsi que l'architecture technique de l'application.
 
 
 \section{Spécification des besoins}
@@ -11,17 +11,24 @@ L'étape de spécification des besoins est importante pour prouver qu'un besoin 
 
 \subsection{Identification des acteurs}
 Un acteur représente une personne, une organisation ou un autre système qui interagit avec le système. Les acteurs définis dans notre projet sont les suivants :
+\newline
 
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=4pt, label=$\bullet$]
-    \item \textbf{Administrateur :} Gère les utilisateurs, les rôles et les permissions, les clients, les projets ainsi que les contrats de maintenance. Il configure les paramètres système et supervise l'ensemble de la plateforme.
+    \item \textbf{Visiteur :} S'authentifie via un fournisseur OAuth (Google, GitHub), soumet une demande de création de compte à l'administrateur, puis attend la validation avant d'accéder à la plateforme.
     
-    \item \textbf{Chef de projet :} Traite les demandes de maintenance soumises par les clients, les approuve ou les rejette, crée et assigne les tickets aux développeurs, suit l'avancement des travaux et assure le respect des SLA.
-    
-    \item \textbf{Développeur :} Traite les tickets qui lui sont assignés, enregistre le temps de travail, met à jour le statut des tickets, ajoute des commentaires et consulte les documents techniques liés aux interventions.
-    
+    \item \textbf{Utilisateur :} Accède aux fonctionnalités communes telles que l’authentification sécurisée, la gestion du profil, la réception des notifications et la consultation de son historique d’activités.
+
     \item \textbf{Client :} Soumet des demandes de maintenance, consulte l'état d'avancement de ses demandes et tickets, et communique avec l'équipe projet via la messagerie intégrée.
 
-    \item \textbf{Utilisateur :} Accède aux fonctionnalités communes telles que l’authentification sécurisée, la gestion du profil, la réception des notifications et la consultation de son historique d’activités.
+    \item \textbf{Développeur :} Traite les tickets qui lui sont assignés, signale les blocages, met à jour le statut des tickets, ajoute des commentaires et consulte les documents techniques liés aux interventions.
+
+    \item \textbf{Chef de projet :} Traite les demandes de maintenance soumises par les clients et assigne les tickets aux développeurs, suit l'avancement des travaux et assure le respect des SLA.
+
+    \item \textbf{Administrateur :} Gère les utilisateurs, les rôles et les permissions, les clients, les projets ainsi que les contrats de maintenance. Il configure les paramètres système et supervise l'ensemble de la plateforme.
+    
+    
+    
+
 \end{itemize}
 
  \begin{figure}[H]
@@ -79,8 +86,6 @@ L'architecture sera conçue avec une approche modulaire permettant une évolutio
 Au niveau de la base de données, nous implémenterons une stratégie d'indexation appropriée sur les colonnes fréquemment interrogées (identifiants, dates, statuts, clés étrangères). L'utilisation de \textbf{Prisma ORM} permettra de générer des requêtes SQL optimisées et d'exploiter les fonctionnalités avancées de PostgreSQL telles que les index composites et les index partiels pour les requêtes complexes.
 \newline
 Afin d'éviter les problèmes de requêtes N+1, les relations entre entités seront chargées de manière sélective via les mécanismes \textbf{select} et \textbf{include} de Prisma. Les requêtes complexes utiliseront le chargement anticipé (\textit{eager loading}) pour minimiser le nombre d'appels à la base de données.
-\newline
-Enfin, nous implémenterons la division du code (\textit{code splitting}) et le chargement différé (\textit{lazy loading}) des composants pour réduire la taille du paquet JavaScript initial. Les requêtes API seront optimisées via le préchargement (\textit{prefetching}) et la mise en cache côté client, minimisant les appels réseau redondants.
 
 % \item \textbf{Disponibilité :}
 % 
@@ -111,11 +116,7 @@ Enfin, afin de garantir la qualité du code, nous viserons une couverture de tes
 
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION II : MODÉLISATION DES BESOINS
-% ─────────────────────────────────────────────────────────────────────────────
-
-% ─────────────────────────────────────────────────────────────────────────────
-% SECTION II : MODÉLISATION DES BESOINS (CORRIGÉE)
-% ─────────────────────────────────────────────────────────────────────────────
+% ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
 \section{Modélisation des besoins }
 \label{sec:modelisation_besoins}
@@ -134,6 +135,7 @@ La figure \ref{fig:use_case} présente le diagramme de cas d'utilisation global 
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION III : PILOTAGE AVEC SCRUM
 % ─────────────────────────────────────────────────────────────────────────────
+\newpage
 \section{Pilotage du projet avec Scrum}
 \label{sec:pilotage_scrum}
 
@@ -171,7 +173,7 @@ Comme évoqué dans le premier chapitre, le Product Backlog constitue l'un des a
 
 Un sprint représente une période de développement durant laquelle l'équipe s'engage à livrer un ensemble cohérent de fonctionnalités opérationnelles. Cette approche itérative permet d'obtenir des retours réguliers et d'ajuster les priorités au fil de l'avancement.
 
-Notre projet est organisé en \textbf{4 sprints} de \textbf{3 à 4 semaines} chacun, couvrant une période totale de développement de \textbf{3,5 mois}. Chaque sprint commence par une réunion de planification (Sprint Planning) où l'équipe sélectionne les user stories du Product Backlog à réaliser, et se termine par une revue de sprint (Sprint Review) et une rétrospective (Sprint Retrospective).
+\noindent Notre projet est organisé en \textbf{4 sprints} de \textbf{3 à 4 semaines} chacun, couvrant une période totale de développement de \textbf{3,5 mois}. Chaque sprint commence par une réunion de planification (Sprint Planning) où l'équipe sélectionne les user stories du Product Backlog à réaliser, et se termine par une revue de sprint (Sprint Review) et une rétrospective (Sprint Retrospective).
 
 La figure \ref{fig:planification_sprints} illustre le déroulement chronologique de nos sprints.
 
@@ -574,7 +576,7 @@ On va commencer par la présentation de l’environnement matériel et logiciel 
 }
 
 \cadretechCanva{Images/canva.png}{\textbf{Canva : } « est une plateforme de conception et de communication visuelle en ligne dont la mission est de permettre à chacun dans le monde de concevoir n’importe quoi et de publier n’importe où. » |20|}
-
+\newpage
 \section{Architecture de l’application}
 \subsection{Architecture physique}
 L’architecture système est un ensemble de décisions de conception qui définit l’interaction des composants entre eux. Le choix de l’architecture est très sensible car elle permet d’optimiser les performances du système et facilite l’évolution du système en fonction des volumes de données. La figure ci-dessous montre l’architecture de notre application : 
@@ -597,6 +599,10 @@ Nous avons choisi cette architecture afin de maintenir l’indépendance des mod
         \caption{Architecture monolithe modulaire}
         \label{fig:Architecture monolithe modulaire}
     \end{figure}
+
+    \section{Conclusion}
+    Dans ce chapitre, nous avons décrit les acteurs du projet et élaboré le backlog du produit.                     Après avoir identifié les besoins fonctionnels et non fonctionnels ainsi que présenté les environnements matériels et logiciels utilisés et les outils de développement adoptés.                                  
+    \newline Au cours du prochain chapitre, nous allons entamer le premier sprint, gestion des utilisateurs.
 \newpage
 
 \begin{itemize}
