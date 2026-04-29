@@ -36,7 +36,7 @@ C’est pour cela que nous allons présenter les diagrammes ainsi que les tablea
 La figure ci-dessous montre le diagramme de cas d'utilisation du premier sprint :
 \begin{figure}[H]
         \centering
-        \includegraphics[width=1.0\textwidth,height=0.85\textheight,keepaspectratio]{Images/Diagramme_cas_utilisation_sprint1.png}
+        \includegraphics[width=1.0\textwidth,height=0.95\textheight,keepaspectratio]{Images/Diagramme_cas_utilisation_sprint1.png}
         \caption{Diagramme des cas d'utilisation du premier sprint}
         \label{fig:use_case_sprint1}
 \end{figure}
@@ -55,7 +55,7 @@ Nous allons accompagner les cas d'utilisation d'un texte descriptif pour expliqu
 \hline
 \textbf{Acteurs} & Utilisateurs \\
 \hline
-\textbf{Préconditions} & Utilisateur possède déjà un compte \\
+\textbf{Préconditions} & L'utilisateur possède déjà un compte \\
 \hline
 \textbf{Postconditions} & Le mot de passe est réinitialisé \\
 \hline
@@ -74,6 +74,7 @@ Nous allons accompagner les cas d'utilisation d'un texte descriptif pour expliqu
 \item Le système valide et enregistre le nouveau mot de passe.
 \item Le système envoie un e-mail de confirmation à l'utilisateur.
 \end{enumerate}
+\vspace{2pt}
 \end{minipage} \\
 \hline
 \textbf{Scénarios d'exception} & 
@@ -82,6 +83,55 @@ Nous allons accompagner les cas d'utilisation d'un texte descriptif pour expliqu
 \item L'utilisateur a rempli un champ invalide, ou a laissé un champ vide.
 \item Le lien de réinitialisation est expiré.           
 \item L'utilisateur ne confirme pas correctement le mot de passe.
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Description textuelle de cas d'utilisation « Demander accès via OAuth »}
+
+\begin{table}[H]
+\centering
+\caption{Description textuelle « Demander accès via OAuth »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Demander accès via OAuth \\
+\hline
+\textbf{Acteurs} & Visiteur \\
+\hline
+\textbf{Préconditions} & Le visiteur n'a pas de compte dans le système\\
+\hline
+\textbf{Postconditions} & Une demande d'inscription est créée et en attente de validation par un administrateur\\
+\hline
+\textbf{Scénario principal} & 
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item Le visiteur accède à la page de connexion.
+\item Le visiteur sélectionne le rôle souhaité (Client, Développeur, Chef de projet).
+\item Le visiteur clique sur "Se connecter avec Google" ou "Se connecter avec GitHub".
+\item Le système redirige le visiteur vers le fournisseur OAuth sélectionné.
+\item Le visiteur s'authentifie et autorise l'application à accéder à ses informations.
+\item Le fournisseur OAuth redirige le visiteur vers l'application avec un code d'autorisation.
+\item Le système échange le code d'autorisation contre un access token.
+\item Le système récupère les informations du profil utilisateur (email, prénom, nom, photo).
+\item Le système vérifie si un compte existe déjà avec cet email.
+\item Si aucun compte n'existe : le système crée une nouvelle demande d'inscription en attente de validation.
+\item Le système envoie un e-mail de notification à tous les administrateurs actifs.
+\item Le système envoie un e-mail de confirmation au visiteur.
+\item Le système redirige le visiteur vers la page de connexion avec un message "Demande en attente de validation".
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\item Compte existant actif : le système connecte directement l'utilisateur.
+\item Demande déjà soumise : le système affiche "Votre demande est déjà en attente" sans créer de doublon.
+\item Annulation OAuth : le visiteur annule l'autorisation, le système redirige vers la page de connexion.
+\end{itemize} \\
+\hline
+\textbf{Scénarios d'exception} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$] 
+\item Email non disponible : le fournisseur OAuth ne fournit pas l'email, le système affiche un message d'erreur.
+\item Fournisseur OAuth indisponible : le système affiche un message d'erreur technique.
 \end{itemize} \\
 \hline
 \end{tabular}
@@ -108,7 +158,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} & Administrateur \\
 \hline
-\textbf{Préconditions} & Utilisateur authentifié\\
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de consulter les utilisateurs\\
 \hline
 \textbf{Postconditions} & Liste des utilisateurs affichée\\
 \hline
@@ -120,6 +170,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
     \item L'administrateur recherche un utilisateur en saisissant des informations clés dans la barre de recherche ou par des boutons de filtre (par statut, par rôle). 
     \item Le système filtre la liste.
 \end{enumerate}
+\vspace{2pt}
 \end{minipage} \\
 \hline
 \textbf{Scénarios alternatifs} & L'administrateur clique sur le bouton « Exporter ». \\
@@ -138,7 +189,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} & Administrateur \\
 \hline
-\textbf{Préconditions} & Utilisateur authentifié\newline Liste des utilisateurs affichée\\
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de créer des utilisateurs\newline Liste des utilisateurs affichée\\
 \hline
 \textbf{Postconditions} & Utilisateur est ajouté\\
 \hline
@@ -151,6 +202,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
     \item L'administrateur valide le formulaire en cliquant sur (Créer le compte). 
     \item Le système affiche le message de succès.
 \end{enumerate}
+\vspace{2pt}
 \end{minipage} \\
 \hline
 \textbf{Scénarios d'exception} & 
@@ -176,7 +228,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} & Administrateur \\
 \hline
-\textbf{Préconditions} & Utilisateur authentifié\newline Liste des utilisateurs affichée\\
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de modifier les utilisateurs\newline Liste des utilisateurs affichée\\
 \hline
 \textbf{Postconditions} & L'utilisateur est modifié\\
 \hline
@@ -190,6 +242,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
     \item L'administrateur clique sur le bouton (Enregistrer).
     \item Le système fait la mise à jour.
 \end{enumerate}
+\vspace{2pt}
 \end{minipage} \\
 \hline
 \textbf{Scénarios alternatifs} & L'administrateur supprime leur dernier rôle.\newline L'utilisateur tente d'ajouter un rôle qui ne correspond pas au parcours métier. \\
@@ -208,7 +261,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} & Administrateur \\
 \hline
-\textbf{Préconditions} & Utilisateur authentifié\newline Liste des utilisateurs affichée\newline L'utilisateur à désactiver doit être actuellement Actif\\
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de désactiver les utilisateurs\newline Liste des utilisateurs affichée\newline L'utilisateur à désactiver doit être actuellement Actif\\
 \hline
 \textbf{Postconditions} & Le compte est désactivé\\
 \hline
@@ -223,6 +276,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
     \item Le système met à jour le statut de l'utilisateur.
     \item Le système envoie un e-mail automatique à l'utilisateur pour l'informer de la suspension de son compte.
 \end{enumerate}
+\vspace{2pt}
 \end{minipage} \\
 \hline
 \textbf{Scénarios alternatifs} & L'administrateur réassigne les tickets ou les demandes. \\
@@ -257,7 +311,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} & Utilisateur \\
 \hline
-\textbf{Préconditions} & Utilisateur authentifié\\
+\textbf{Préconditions} & L'utilisateur est authentifié\\
 \hline
 \textbf{Postconditions} & Le profil choisi est consulté\\
 \hline
@@ -268,6 +322,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
     \item Le système affiche la page personnelle.                                                   
     \item L'utilisateur consulte ses données et son historique de modification.  
 \end{enumerate}
+\vspace{2pt}
 \end{minipage} \\
 \hline
 \textbf{Consulter le profil d'un utilisateur} & 
@@ -292,7 +347,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} & Administrateur, Utilisateur \\
 \hline
-\textbf{Préconditions} & Utilisateur authentifié\\
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de modifier son propre profil ou celui d'autres utilisateurs (selon le rôle)\\
 \hline
 \textbf{Postconditions} & Le Profil est modifié\\
 \hline
@@ -304,6 +359,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
     \item L'administrateur change le statut du compte (désactiver ou activer).  
     \item Le système valide chaque action. 
 \end{enumerate}
+\vspace{2pt}
 \end{minipage} \\
 \hline
 \textbf{Scénario principal pour Modifier son propre profil} & 
@@ -315,6 +371,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
     \item L'utilisateur ajoute ou définit un nouvel e-mail et choisit lequel serait le principal. 
     \item Le système enregistre les changements. 
 \end{enumerate}
+\vspace{2pt}
 \end{minipage} \\
 \hline
 \textbf{Scénarios d'exception} & 
@@ -322,6 +379,669 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \item L'administrateur veut retirer le dernier rôle. 
 \item L'utilisateur veut modifier ses propres rôles.
 \end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Description des cas d'utilisation « Gérer rôles »}
+
+\subsubsection{Raffinement de cas d'utilisation « Gérer rôles »}
+Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de gestion des rôles :
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth,keepaspectratio]{Images/gere role.drawio.png}
+\caption{Raffinement de cas d'utilisation « Gérer rôles »}
+\label{fig:gerer_roles}
+\end{figure}
+
+\subsubsection{Description textuelle de cas d'utilisation « Consulter liste rôles »}
+
+\begin{table}[H]
+\centering
+\caption{Description textuelle « Consulter liste rôles »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Consulter liste rôles \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de consulter les rôles\\
+\hline
+\textbf{Postconditions} & Liste des rôles affichée\\
+\hline
+\textbf{Scénario principal} & \begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'administrateur accède à la section "Gestion Rôles".   
+\item Le système affiche la liste des rôles avec leurs descriptions et le nombre d'utilisateurs assignés.
+\item L'administrateur recherche un rôle en saisissant des informations clés dans la barre de recherche. 
+\item Le système filtre la liste.
+\item L'administrateur peut consulter les permissions associées à chaque rôle.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} & L'administrateur clique sur un rôle pour voir les utilisateurs qui le possèdent. \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Description textuelle de cas d'utilisation « Ajouter rôle »}
+
+\begin{table}[H]
+\centering
+\caption{Description textuelle « Ajouter rôle »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Ajouter rôle \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de créer des rôles\newline Liste des rôles affichée\\
+\hline
+\textbf{Postconditions} & Rôle est ajouté\\
+\hline
+\textbf{Scénario principal} & \begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'administrateur clique sur le bouton "Nouveau Rôle".      
+\item Le système affiche le formulaire d'ajout.
+\item L'administrateur saisit le nom du rôle et sa description. 
+\item L'administrateur sélectionne les permissions à associer au rôle. 
+\item L'administrateur valide le formulaire en cliquant sur (Créer le rôle). 
+\item Le système enregistre le nouveau rôle.
+\item Le système attribue automatiquement les permissions de base.
+\item Le système affiche le message de succès.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios d'exception} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$] 
+\item L'administrateur a rempli un champ invalide, ou a laissé un champ obligatoire vide.
+\item L'administrateur saisit un nom de rôle déjà existant.
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Description textuelle de cas d'utilisation « Modifier rôle »}
+
+\begin{table}[H]
+\centering
+\caption{Description textuelle « Modifier rôle »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Modifier rôle \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de modifier les rôles\newline Liste des rôles affichée\\
+\hline
+\textbf{Postconditions} & Le rôle est modifié\\
+\hline
+\textbf{Scénario principal} & \begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'administrateur sélectionne le rôle à modifier.                 
+\item L'administrateur clique sur le bouton (Modifier).                                                       
+\item Le système affiche le formulaire de modification avec les informations actuelles.  
+\item L'administrateur modifie le nom, la description ou les permissions associées. 
+\item L'administrateur clique sur le bouton (Enregistrer).
+\item Le système met à jour le rôle.
+\item Le système affiche le message de succès.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios d'exception} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$] 
+\item L'administrateur tente de retirer toutes les permissions d'un rôle.
+\item L'administrateur modifie un rôle système protégé.
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Description textuelle de cas d'utilisation « Archiver rôle »}
+
+\begin{table}[H]
+\centering
+\caption{Description textuelle « Archiver rôle »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Archiver rôle \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission d'archiver les rôles\newline Le rôle ne doit pas être assigné à des utilisateurs\\
+\hline
+\textbf{Postconditions} & Le rôle est archivé\\
+\hline
+\textbf{Scénario principal} & \begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'administrateur sélectionne un rôle dans la liste.
+\item L'administrateur clique sur l'action (Archiver).
+\item Le système vérifie que le rôle n'est pas assigné à des utilisateurs.
+\item Le système affiche une confirmation.
+\item L'administrateur confirme l'action.
+\item Le système marque le rôle comme archivé.
+\item Le système affiche le message de succès.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios d'exception} & Le rôle est encore assigné à des utilisateurs. \\
+\hline
+\textbf{Scénarios alternatifs} & L'administrateur restaure un rôle archivé. \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Description textuelle de cas d'utilisation « Supprimer rôle »}
+
+\begin{table}[H]
+\centering
+\caption{Description textuelle « Supprimer rôle »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Supprimer rôle \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de supprimer les rôles\newline Liste des rôles affichée\newline Le rôle doit être archivé\newline Le rôle ne doit pas être un rôle système protégé\\
+\hline
+\textbf{Postconditions} & Le rôle est supprimé définitivement\\
+\hline
+\textbf{Scénario principal} & \begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'administrateur filtre la liste pour afficher les rôles archivés.
+\item L'administrateur sélectionne un rôle archivé dans la liste.                 
+\item L'administrateur clique sur l'action (Supprimer définitivement).
+\item Le système affiche une boîte de dialogue de confirmation. 
+\item L'administrateur confirme l'action.
+\item Le système supprime le rôle et toutes ses liaisons de la base de données.
+\item Le système affiche le message de succès.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} & L'administrateur restaure le rôle archivé au lieu de le supprimer (action "Restaurer"). \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Description textuelle de cas d'utilisation « Attribuer rôle à utilisateur »}
+
+\begin{table}[H]
+\centering
+\caption{Description textuelle « Attribuer rôle à utilisateur »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Attribuer rôle à utilisateur \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission d'attribuer des rôles\newline Utilisateur et rôle existent\\
+\hline
+\textbf{Postconditions} & Le rôle est attribué à l'utilisateur\\
+\hline
+\textbf{Scénario principal} & \begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'administrateur consulte le profil d'un utilisateur.
+\item L'administrateur clique sur "Ajouter un rôle".
+\item Le système affiche la liste des rôles disponibles.
+\item L'administrateur sélectionne un rôle.
+\item L'administrateur valide la sélection.
+\item Le système vérifie les règles d'exclusivité (CLIENT ne peut pas avoir CHEF\_PROJET/DEVELOPPEUR/ADMIN).
+\item Le système crée l'attribution.
+\item Le système affiche le message de succès.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} & L'administrateur peut aussi attribuer le rôle depuis les détails du rôle en sélectionnant un ou plusieurs utilisateurs à qui l'attribuer. \\
+\hline
+\textbf{Scénarios d'exception} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$] 
+\item Le rôle est déjà attribué à cet utilisateur.
+\item Violation des règles d'exclusivité des rôles.
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Description textuelle de cas d'utilisation « Retirer rôle d'un utilisateur »}
+
+\begin{table}[H]
+\centering
+\caption{Description textuelle « Retirer rôle utilisateur »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Retirer rôle utilisateur \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de retirer des rôles\newline Le rôle est attribué à l'utilisateur\\
+\hline
+\textbf{Postconditions} & Le rôle est retiré de l'utilisateur\\
+\hline
+\textbf{Scénario principal} & \begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'administrateur consulte le profil d'un utilisateur.
+\item L'administrateur visualise les rôles actuels de l'utilisateur.
+\item L'administrateur clique sur l'icône de suppression d'un rôle.
+\item Le système affiche une confirmation.
+\item L'administrateur confirme l'action.
+\item Le système retire le rôle.
+\item Le système affiche le message de succès.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios d'exception} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$] 
+\item L'administrateur tente de retirer le dernier rôle de l'utilisateur.
+\item Le rôle n'est pas attribué à cet utilisateur.
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Description des cas d'utilisation « Gérer permissions »}
+
+\subsubsection{Raffinement de cas d'utilisation « Gérer permissions »}
+Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de gestion des permissions :
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth,keepaspectratio]{Images/gerer permession.drawio.png}
+\caption{Raffinement de cas d'utilisation « Gérer permissions »}
+\label{fig:gerer_permissions}
+\end{figure}
+
+\subsubsection{Description textuelle de cas d'utilisation « Consulter liste des permissions »}
+
+\begin{table}[H]
+\centering
+\caption{Description textuelle « Consulter liste des permissions »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Consulter liste des permissions \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de consulter les permissions\\
+\hline
+\textbf{Postconditions} & Liste des permissions affichée\\
+\hline
+\textbf{Scénario principal} & 
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'administrateur accède à la section "Permissions".   
+\item Le système affiche une matrice avec les rôles en horizontal et les catégories de permissions en vertical.
+\item L'administrateur peut visualiser quelles permissions sont attribuées à chaque rôle (cases cochées).
+\item L'administrateur peut filtrer par catégorie de permissions ou par rôle.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\item L'administrateur sélectionne la vue "Par rôle" pour afficher une liste des rôles avec leurs permissions respectives organisées par catégorie.
+\item L'administrateur clique sur le bouton « Exporter » pour télécharger la matrice des permissions.
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Description textuelle de cas d'utilisation « Attribuer permission à rôle »}
+
+\begin{table}[H]
+\centering
+\caption{Description textuelle « Attribuer permission à rôle »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Attribuer permission à rôle \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission d'attribuer des permissions aux rôles\newline Rôle et permission existent\\
+\hline
+\textbf{Postconditions} & La permission est ajoutée au rôle\\
+\hline
+\textbf{Scénario principal} & 
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'administrateur consulte un rôle spécifique.
+\item L'administrateur clique sur l'onglet "Permissions".
+\item Le système affiche toutes les permissions organisées par catégorie avec des cases à cocher.
+\item L'administrateur coche les permissions à attribuer.
+\item L'administrateur clique sur "Enregistrer".
+\item Le système crée les liaisons.
+\item Le système affiche le message de succès.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} & L'administrateur utilise la matrice des permissions pour cocher les cases correspondant aux permissions à attribuer pour plusieurs rôles simultanément. \\
+\hline
+\textbf{Scénarios d'exception} & La permission est déjà attribuée au rôle. \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Description textuelle de cas d'utilisation « Retirer permission d'un rôle »}
+
+\begin{table}[H]
+\centering
+\caption{Description textuelle « Retirer permission rôle »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Retirer permission rôle \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de retirer des permissions aux rôles\newline La permission est attribuée au rôle\\
+\hline
+\textbf{Postconditions} & La permission est retirée du rôle\\
+\hline
+\textbf{Scénario principal} & 
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'administrateur consulte un rôle spécifique.
+\item L'administrateur clique sur l'onglet "Permissions".
+\item Le système affiche toutes les permissions organisées par catégorie avec des cases à cocher.
+\item L'administrateur décoche les permissions à retirer.
+\item L'administrateur clique sur "Enregistrer".
+\item Le système retire les permissions décochées.
+\item Le système affiche le message de succès.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} & L'administrateur utilise la matrice des permissions pour décocher les cases correspondant aux permissions à retirer pour plusieurs rôles simultanément. \\
+\hline
+\textbf{Scénarios d'exception} & La permission n'est pas attribuée à ce rôle. \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\subsection{Description des cas d'utilisation « Gérer clients »}
+
+\subsubsection{Raffinement de cas d'utilisation « Gérer clients »}
+Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de gestion des clients :
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth,keepaspectratio]{Images/gerer client.drawio.png}
+\caption{Raffinement de cas d'utilisation « Gérer clients »}
+\label{fig:gerer_clients}
+\end{figure}
+
+\subsubsection{Description textuelle de cas d'utilisation « Consulter liste clients »}
+
+\begin{table}[H]
+\centering
+\caption{Description textuelle « Consulter liste clients »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Consulter liste clients \\
+\hline
+\textbf{Acteurs} & Administrateur, Chef de projet \\
+\hline
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de consulter les clients\\
+\hline
+\textbf{Postconditions} & Liste des clients affichée\\
+\hline
+\textbf{Scénario principal} & 
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'utilisateur accède à la section "Clients".   
+\item Le système affiche les clients sous forme de grille (par défaut).
+\item L'utilisateur peut basculer entre trois modes d'affichage : grille, liste, ou vue par société.
+\item L'utilisateur recherche un client en saisissant des informations clés dans la barre de recherche ou par des boutons de filtre (par statut, par secteur d'activité). 
+\item Le système filtre les résultats.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\item L'utilisateur sélectionne la vue "Par société" pour regrouper les clients par société et visualiser les contacts associés à chaque société.
+\item L'utilisateur clique sur le bouton « Exporter » pour télécharger la liste des clients (CSV, Excel).
+\item L'utilisateur clique sur le bouton « Importer » pour ajouter plusieurs clients via un fichier (CSV, Excel).
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Description textuelle de cas d'utilisation « Ajouter client »}
+
+\begin{table}[H]
+\centering
+\caption{Description textuelle « Ajouter client »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Ajouter client \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de créer des clients\newline Liste des clients affichée\\
+\hline
+\textbf{Postconditions} & Client est ajouté\\
+\hline
+\textbf{Scénario principal} & 
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'administrateur clique sur le bouton "Nouveau Client".      
+\item Le système affiche le formulaire d'ajout.
+\item L'administrateur remplit les informations personnelles du client (prénom, nom, e-mail, mot de passe). 
+\item L'administrateur sélectionne une société existante dans la liste déroulante ou crée une nouvelle société.
+\item Si nouvelle société : l'administrateur remplit les informations de la société (nom, adresse, secteur d'activité, téléphone, site web).
+\item Le système récupère automatiquement le logo de la société via une API externe en utilisant le nom de la société ou le domaine du site web.
+\item L'administrateur valide le formulaire en cliquant sur (Créer le client). 
+\item Le système crée l'utilisateur et son profil client associé à la société.
+\item Le système envoie un e-mail de bienvenue avec les identifiants.
+\item Le système affiche le message de succès.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\item L'administrateur télécharge manuellement le logo de la société au lieu d'utiliser la récupération automatique.
+\end{itemize} \\
+\hline
+\textbf{Scénarios d'exception} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$] 
+\item L'administrateur a rempli un champ invalide, ou a laissé un champ obligatoire vide.
+\item L'administrateur saisit un e-mail déjà utilisé pour un autre utilisateur.
+\item L'administrateur tente de fermer la fenêtre alors qu'il a commencé à saisir des données.
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Description textuelle de cas d'utilisation « Modifier client »}
+
+\begin{table}[H]
+\centering
+\caption{Description textuelle « Modifier client »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Modifier client \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de modifier les clients\newline Liste des clients affichée\\
+\hline
+\textbf{Postconditions} & Le client est modifié\\
+\hline
+\textbf{Scénario principal} & \begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'administrateur consulte la fiche du client choisi.                 
+\item L'administrateur clique sur le bouton (Modifier).                                                       
+\item Le système affiche le formulaire de modification.  
+\item L'administrateur modifie les informations souhaitées. 
+\item L'administrateur clique sur le bouton (Enregistrer).
+\item Le système met à jour les informations du client.
+\item Le système affiche le message de succès.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios d'exception} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$] 
+\item L'administrateur saisit un e-mail déjà utilisé par un autre utilisateur.
+\item L'administrateur tente de modifier un client ayant des contrats actifs sans validation.
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Description textuelle de cas d'utilisation « Consulter profil client »}
+
+\begin{table}[H]
+\centering
+\caption{Description textuelle « Consulter profil client »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Consulter profil client \\
+\hline
+\textbf{Acteurs} & Administrateur, Chef de projet, Client (son propre profil) \\
+\hline
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de consulter les profils clients ou consulte son propre profil\newline Pour Chef de projet : le client doit être associé à au moins un de ses projets\\
+\hline
+\textbf{Postconditions} & Profil client consulté\\
+\hline
+\textbf{Scénario principal} & 
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'utilisateur accède au profil du client.
+\item Le système affiche les informations personnelles et société.
+\item Le système affiche les statistiques et éléments accessibles selon le rôle de l'utilisateur.
+\item L'utilisateur peut naviguer vers les éléments disponibles (projets, demandes, tickets, documents).
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Restrictions d'accès} & 
+\begin{minipage}[t]{\linewidth}
+\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\item Administrateur : accès complet (contrats, projets, demandes, tickets, notes privées, documents).
+\item Chef de projet : accès limité aux projets où il est assigné et aux demandes/tickets liés à ces projets uniquement.
+\item Client : accès à son propre profil, ses projets, demandes et tickets.
+\end{itemize}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\item L'utilisateur exporte les informations du profil en PDF.
+\item L'utilisateur clique sur "Contacter" pour envoyer un e-mail ou un message via la messagerie interne de l'application.
+\item L'utilisateur clique sur l'adresse de la société pour visualiser sa localisation sur une carte interactive.
+\item L'administrateur ajoute une note privée sur le client.
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Description textuelle de cas d'utilisation « Désactiver client »}
+
+\begin{table}[H]
+\centering
+\caption{Description textuelle « Désactiver un client »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Désactiver un client \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de désactiver les clients\newline Liste des clients affichée\newline Le client à désactiver doit être actuellement Actif\\
+\hline
+\textbf{Postconditions} & Le compte client est désactivé\\
+\hline
+\textbf{Scénario principal} & \begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'administrateur choisit un client dans la liste.                 
+\item L'administrateur clique sur l'action (Désactiver).                                                     
+\item Le système vérifie si le client possède des contrats actifs, des demandes en cours ou des tickets actifs.  
+\item Le système affiche une boîte de dialogue de confirmation avec les détails des contrats, demandes et tickets actifs. 
+\item L'administrateur confirme l'action.
+\item Le système met à jour le statut du client.
+\item Le système révoque les sessions actives (suppression des refresh tokens).
+\item Le système envoie un e-mail automatique au contact principal du client pour l'informer de la désactivation.
+\item Le système affiche le message de succès.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios d'exception} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$] 
+\item L'administrateur tente de désactiver un client qui possède des contrats actifs sans les clôturer.
+\item L'administrateur tente de désactiver un client ayant des demandes en attente de traitement.
+\item L'administrateur tente de désactiver un client ayant des tickets actifs non résolus.
+\end{itemize} \\
+\hline
+\textbf{Scénarios alternatifs} & L'administrateur clôture les contrats, traite les demandes et résout les tickets avant la désactivation. \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Description textuelle de cas d'utilisation « Réactiver client »}
+
+\begin{table}[H]
+\centering
+\caption{Description textuelle « Réactiver un client »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Réactiver un client \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de réactiver les clients\newline Le compte client doit être désactivé\\
+\hline
+\textbf{Postconditions} & Le compte client est réactivé\\
+\hline
+\textbf{Scénario principal} & \begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'administrateur consulte la liste des clients désactivés.
+\item L'administrateur sélectionne un client à réactiver.
+\item L'administrateur clique sur l'action (Réactiver le compte).
+\item Le système affiche une confirmation.
+\item L'administrateur confirme l'action.
+\item Le système réactive le compte.
+\item Le système envoie un e-mail au client.
+\item Le système affiche le message de succès.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios d'exception} & Le client est déjà actif. \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Description textuelle de cas d'utilisation « Gérer notes privées client »}
+
+\begin{table}[H]
+\centering
+\caption{Description textuelle « Gérer notes privées client »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Gérer notes privées client \\
+\hline
+\textbf{Acteurs} & Administrateur, Chef de projet \\
+\hline
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de gérer les notes privées des clients\newline Profil client consulté\\
+\hline
+\textbf{Postconditions} & Notes privées mises à jour\\
+\hline
+\textbf{Scénario principal} & 
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'utilisateur accède au profil du client.
+\item L'utilisateur consulte la section "Notes privées".
+\item Pour ajouter une note : l'utilisateur clique sur "Ajouter", saisit le contenu et valide.
+\item Pour supprimer une note : l'utilisateur clique sur l'icône de suppression et confirme.
+\item Le système enregistre les modifications.
+\item Le système affiche le message de succès.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} & Les membres de l'équipe (Développeur, Technicien) peuvent consulter (lecture seule) les notes privées du client dans la section détails du ticket pour avoir le contexte nécessaire au traitement. \\
+\hline
+\textbf{Scénarios d'exception} & L'utilisateur tente d'ajouter une note vide. \\
 \hline
 \end{tabular}
 \end{table}

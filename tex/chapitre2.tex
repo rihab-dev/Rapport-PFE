@@ -13,11 +13,13 @@ L'étape de spécification des besoins est importante pour prouver qu'un besoin 
 Un acteur représente une personne, une organisation ou un autre système qui interagit avec le système. Les acteurs définis dans notre projet sont les suivants :
 
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=4pt, label=$\bullet$]
+    \item \textbf{Visiteur :} S'authentifie via un fournisseur OAuth (Google, GitHub), soumet une demande de création de compte à l'administrateur, puis attend la validation avant d'accéder à la plateforme.
+    
     \item \textbf{Administrateur :} Gère les utilisateurs, les rôles et les permissions, les clients, les projets ainsi que les contrats de maintenance. Il configure les paramètres système et supervise l'ensemble de la plateforme.
     
-    \item \textbf{Chef de projet :} Traite les demandes de maintenance soumises par les clients, les approuve ou les rejette, crée et assigne les tickets aux développeurs, suit l'avancement des travaux et assure le respect des SLA.
+    \item \textbf{Chef de projet :} Traite les demandes de maintenance soumises par les clients et assigne les tickets aux développeurs, suit l'avancement des travaux et assure le respect des SLA.
     
-    \item \textbf{Développeur :} Traite les tickets qui lui sont assignés, enregistre le temps de travail, met à jour le statut des tickets, ajoute des commentaires et consulte les documents techniques liés aux interventions.
+    \item \textbf{Développeur :} Traite les tickets qui lui sont assignés, signale les blocages, met à jour le statut des tickets, ajoute des commentaires et consulte les documents techniques liés aux interventions.
     
     \item \textbf{Client :} Soumet des demandes de maintenance, consulte l'état d'avancement de ses demandes et tickets, et communique avec l'équipe projet via la messagerie intégrée.
 
@@ -79,8 +81,6 @@ L'architecture sera conçue avec une approche modulaire permettant une évolutio
 Au niveau de la base de données, nous implémenterons une stratégie d'indexation appropriée sur les colonnes fréquemment interrogées (identifiants, dates, statuts, clés étrangères). L'utilisation de \textbf{Prisma ORM} permettra de générer des requêtes SQL optimisées et d'exploiter les fonctionnalités avancées de PostgreSQL telles que les index composites et les index partiels pour les requêtes complexes.
 \newline
 Afin d'éviter les problèmes de requêtes N+1, les relations entre entités seront chargées de manière sélective via les mécanismes \textbf{select} et \textbf{include} de Prisma. Les requêtes complexes utiliseront le chargement anticipé (\textit{eager loading}) pour minimiser le nombre d'appels à la base de données.
-\newline
-Enfin, nous implémenterons la division du code (\textit{code splitting}) et le chargement différé (\textit{lazy loading}) des composants pour réduire la taille du paquet JavaScript initial. Les requêtes API seront optimisées via le préchargement (\textit{prefetching}) et la mise en cache côté client, minimisant les appels réseau redondants.
 
 % \item \textbf{Disponibilité :}
 % 
