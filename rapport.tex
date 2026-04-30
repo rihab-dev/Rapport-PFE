@@ -33,12 +33,12 @@
 \usepackage{capt-of}
 \usepackage{float}
 \usepackage{etoolbox}
-
+\usepackage{subcaption}
 % ============================================================
 %  MINITOC — sommaire par chapitre
 % ============================================================
 \usepackage[french]{minitoc}
-\mtcsetdepth{minitoc}{2}
+\mtcsetdepth{minitoc}{1}
 \mtcsetrules{minitoc}{off}
 \mtcsetfont{minitoc}{*}{\small\rmfamily\color{primary}}
 \mtcsetfont{minitoc}{section}{\small\bfseries\rmfamily\color{primary}}
@@ -195,7 +195,7 @@
     right=2.5cm,
     headheight=25pt
 }
-\setstretch{1.3}
+\setstretch{1.5}
 
 % Numérotation en chiffres romains
 \renewcommand{\thechapter}{\Roman{chapter}}
@@ -276,8 +276,8 @@
 \input{tex/chapitre2}
 
 % ---- Chapitre 3 ----
-\hiddenpart{Conception}
-\chaptercover{3}{Conception}
+\hiddenpart{Gestion des Utilisateurs et Authentification}
+\chaptercover{3}{Gestion des Utilisateurs et Authentification}
 \input{tex/chapitre3}
 
 % ---- Chapitre 4 ----
