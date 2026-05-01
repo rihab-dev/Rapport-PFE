@@ -41,14 +41,14 @@ L'étude de l'existant constitue une étape fondamentale de notre démarche proj
 \begin{enumerate}[label=\textcolor{bleuPerso}{\alph*)}, labelsep=0.5em]
             \item   \textcolor{bleuPerso} {Étude de l'existant au niveau de l'entreprise}~\newline
             \noindent
-            --\hspace{0.5cm} \textbf{Processus de gestion des contrats de maintenance :}
+            --\hspace{0.5cm} \textbf{Processus de gestion des contrats de maintenance }
             \newline
             L'entreprise utilise actuellement des documents Word  pour stocker et suivre les informations relatives aux contrats. Ces documents permettent aux responsables de formaliser la relation contractuelle avec les clients et de définir les engagements de chaque partie concernant les services de maintenance. 
 
             \noindent
-            --\hspace{0.5cm} \textbf{Processus de gestion des demandes clients :}
+            --\hspace{0.5cm} \textbf{Processus de gestion des demandes clients }
             \newline
-            Le processus des demandes de maintenance repose actuellement sur des échanges non structurés via WhatsApp, des messageries instantanées ou des appels téléphoniques. Lorsque le client souhaite signaler un problème, il est obligé de rédiger un message sans recourir à un formulaire structuré.
+            Le processus des demandes de maintenance repose actuellement sur des échanges via WhatsApp, des messageries instantanées ou des appels téléphoniques. Lorsque le client souhaite signaler un problème, il envoie un message décrivant sa demande au responsable concerné.
            \newline Afin de mieux illustrer ce mode de fonctionnement, la figure ci-dessous présente un exemple de traitement des demandes clients dans le système actuel.
             \begin{figure}[H]
    
@@ -56,17 +56,17 @@ L'étude de l'existant constitue une étape fondamentale de notre démarche proj
     
         \centering
         \includegraphics[width=\linewidth, height=0.25\textheight, keepaspectratio]{Images/demande de maintenance.png}
-        \caption{demande de maintenance effectuée via l’application WhatsApp}
+        \caption{Demande de maintenance effectuée via l’application WhatsApp}
         \label{subfig:capture}
     \hfill
     
     \caption{Exemples de demandes de maintenance}
-    \label{fig:demandes_maintenance}
+    \label{fig:Exemples de demandes de maintenance}
 \end{figure}
             \noindent
-            --\hspace{0.5cm} \textbf{Processus de suivi des tickets de maintenance :}
+            --\hspace{0.5cm} \textbf{Processus de suivi des tickets de maintenance }
             \newline
-Le suivi des interventions repose sur des fils de discussion par e-mail qui deviennent rapidement ingérables avec l’augmentation du nombre de clients. L’affectation des tickets aux développeurs s’effectue manuellement par le responsable, généralement via un message direct, sans aucune traçabilité des décisions prises.
+Le suivi des interventions repose sur des fils de discussion par e-mail. L'affectation des tickets aux développeurs s'effectue par le responsable, généralement via un message direct.
 \newline Afin d’illustrer plus concrètement ce processus de gestion, un exemple de suivi des tickets de maintenance réalisé sous forme du fichier Excel est présenté ci-dessous.
 
 \begin{figure}[H]
@@ -75,8 +75,8 @@ Le suivi des interventions repose sur des fils de discussion par e-mail qui devi
     \caption{Exemple de suivi des interventions à l’aide d’un fichier Excel}
     \label{subfig:excel}
 \end{figure}
-            --\hspace{0.5cm} \textbf{Processus de traçabilité des actions et des documents :}
-Les documents contractuels sont stockés de manière non structurée dans des répertoires locaux ou sur des espaces de stockage cloud, sans convention de nommage ni gestion des versions. Aucun historique des modifications n'est conservé, ce qui compromet la traçabilité des évolutions contractuelles.
+            --\hspace{0.5cm} \textbf{Processus de traçabilité des actions et des documents }
+ \newline Les documents contractuels sont stockés dans des répertoires locaux ou sur des espaces de stockage cloud. Les fichiers sont organisés selon les pratiques de chaque responsable, et les modifications sont effectuées directement sur les documents existants.
             \newline
 
     \item  \textcolor{bleuPerso} {Étude de l'existant à l'échelle internationale}~\newline
@@ -146,7 +146,7 @@ L'investissement financier représente un obstacle majeur. Les tarifs s'échelon
 
 Les solutions du marché souffrent d'une architecture modulaire générant des coûts cachés. De nombreuses fonctionnalités avancées nécessitent des extensions payantes supplémentaires. Les mises à jour engendrent des problèmes de compatibilité, et l'intégration avec des systèmes existants nécessite souvent des développements spécifiques onéreux.
 
-\subsubsection{Analyse comparative des solutions}
+\subsubsection{Tableau comparative des solutions}
 
 Ces limitations se reflètent clairement dans l'analyse comparative des principales solutions du marché. Le tableau suivant synthétise les forces et faiblesses de chaque solution selon des critères fonctionnels, techniques et financiers :
 
@@ -218,7 +218,10 @@ Afin de mieux comprendre le fonctionnement de cette approche, il convient de pr�
 \subsubsection{Principes de la méthodologie classique}
  Cette approche repose sur une organisation linéaire où chaque phase doit être validée avant progression. Elle exige une définition exhaustive des besoins en phase initiale et une planification servant de base à la gestion. Le contrôle et la validation s'effectuent de manière progressive tout au long du cycle de vie.
 \newline Dans ce contexte, la méthodologie Agile a été adoptée comme une alternative à cette approche.
-        \subsection{Méthodologie Agile}
+
+
+
+\subsection{Méthodologie Agile}
 
 « La méthodologie Agile décompose le travail en phases, mettant l'accent sur la livraison continue et l'amélioration. Agile profite aux équipes en permettant une planification adaptative, une exécution rapide et une évaluation continue, garantissant des résultats plus réactifs et plus réussis. » [3]
 \newline
@@ -241,6 +244,12 @@ Cette figure présente les quatre valeurs principales de la méthode Agile qui m
 \newline --\hspace{0.5cm} La collaboration avec les clients plus que la négociation contractuelle  
 \newline --\hspace{0.5cm} L'adaptation au changement plus que le suivi d'un plan
 \newline À partir de ces valeurs, plusieurs méthodes Agile ont été développées et peuvent être comparées selon différents critères.
+
+\subsection{Choix de la méthode de travail}
+Après avoir présenté les différentes approches et méthodes de gestion de projet, il convient de justifier les choix adoptés dans le cadre de ce travail.
+\subsubsection{Choix de l’approche Agile}
+Le domaine de la maintenance impose des besoins variables et imprévisibles, rendant impossible une planification exhaustive. Cette réalité justifie l'adoption d'une méthodologie agile privilégiant la flexibilité et la collaboration continue avec les clients. Parmi les méthodes disponibles, Scrum offre le cadre itératif le plus adapté à notre contexte.
+
 \subsubsection{ Les principales méthodes Agiles}
 Le tableau suivant met en évidence les méthodes Agile les plus couramment utilisées, selon différents critères de comparaison.
 \begin{table}[H]
@@ -275,10 +284,7 @@ Le tableau suivant met en évidence les méthodes Agile les plus couramment util
     \caption{Les principales méthodes Agiles.}
     \label{tab:methodes_agiles}
 \end{table}
-\subsection{Choix de la méthode de travail}
-Après avoir présenté les différentes approches et méthodes de gestion de projet, il convient de justifier les choix adoptés dans le cadre de ce travail.
-\subsubsection{Choix de l’approche Agile}
-Le domaine de la maintenance impose des besoins variables et imprévisibles, rendant impossible une planification exhaustive. Cette réalité justifie l'adoption d'une méthodologie agile privilégiant la flexibilité et la collaboration continue avec les clients. Parmi les méthodes disponibles, Scrum offre le cadre itératif le plus adapté à notre contexte.
+
 \subsubsection{Choix de la méthode Scrum}
 Scrum a été retenue comme cadre de travail pour structurer le développement en itérations courtes tout en s'adaptant aux changements fréquents. Cette méthode offre plusieurs avantages décisifs :
 \noindent
@@ -291,8 +297,8 @@ Scrum a été retenue comme cadre de travail pour structurer le développement e
 \begin{figure}[H]
         \centering
         \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/les piliers de la methodologie.png}
-        \caption{les piliers de la méthodologie}
-        \label{fig:les piliers de la méthodologie}
+        \caption{les piliers de la méthode Scrum}
+        \label{fig:les piliers de la méthode Scrum}
 \end{figure}
 
 \subsection{Fondements de SCRUM }

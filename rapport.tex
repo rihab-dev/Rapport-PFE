@@ -197,11 +197,11 @@
 }
 \setstretch{1.5}
 
-% Numérotation en chiffres romains
+% Numérotation personnalisée
 \renewcommand{\thechapter}{\Roman{chapter}}
-\renewcommand{\thesection}{\thechapter.\Roman{section}}
-\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
-\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsection}{\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{subsection}.\arabic{subsubsection}}
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{3}
 
