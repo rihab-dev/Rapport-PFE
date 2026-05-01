@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.4.20)  1 MAY 2026 15:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.4.20)  1 MAY 2026 18:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -101,119 +101,102 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1371.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1372.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1373.
 )
-(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
-Package: colortbl 2022/06/20 v1.0f Color table columns (DPC)
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbluration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 274.
 
-(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
-Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
-\col@sep=\dimen151
-\ar@mcellbox=\box51
-\extrarowheight=\dimen152
-\NC@list=\toks21
-\extratabsurround=\skip50
-\backup@length=\skip51
-\ar@cellbox=\box52
+(C:\Users\Eya\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
+File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
 )
-\everycr=\toks22
-\minrowclearance=\skip52
-\rownum=\count271
+(C:\Users\Eya\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
+Package xcolor Info: Model `RGB' extended on input line 1365.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
 )
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/dvipsnam.def
+(C:\Users\Eya\AppData\Local\Programs\MiKTeX\tex/latex/colortbl\colortbl.sty
+Package: colortbl 2024/10/29 v1.0k Color table columns (DPC)
+
+(C:\Users\Eya\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
+Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
+\col@sep=\dimen159
+\ar@mcellbox=\box53
+\extrarowheight=\dimen160
+\NC@list=\toks20
+\extratabsurround=\skip51
+\backup@length=\skip52
+\ar@cellbox=\box54
+)
+\everycr=\toks21
+\minrowclearance=\skip53
+\rownum=\count293
+)
+(C:\Users\Eya\AppData\Local\Programs\MiKTeX\tex/latex/graphics\dvipsnam.def
 File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
 )
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+(C:\Users\Eya\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
-Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+(C:\Users\Eya\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks22
 )
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+(C:\Users\Eya\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+
+(C:\Users\Eya\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(C:\Users\Eya\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 107.
+Package graphics Info: Driver file: pdftex.def on input line 106.
 )
-\Gin@req@height=\dimen153
-\Gin@req@width=\dimen154
-)
-(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty
-Package: enumitem 2019/06/20 v3.9 Customized lists
-\labelindent=\skip53
-\enit@outerparindent=\dimen155
+\Gin@req@height=\dimen161
+\Gin@req@width=\dimen162
+) (C:\Users\Eya\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty
+Package: enumitem 2025/02/06 v3.11 Customized lists
+\labelindent=\skip54
+\enit@outerparindent=\dimen163
 \enit@toks=\toks23
-\enit@inbox=\box53
-\enit@count@id=\count272
-\enitdp@description=\count273
-)
-(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
-Package: geometry 2020/01/02 v5.9 Page Geometry
+\enit@inbox=\box55
+\enit@count@id=\count294
+\enitdp@description=\count295
+) (C:\Users\Eya\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+Package: geometry 2026/03/07 v6.0 Page Geometry
 
-(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(C:\Users\Eya\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 
-(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
-Package: iftex 2022/02/03 v1.0f TeX engine tests
+(C:\Users\Eya\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
 ))
-\Gm@cnth=\count274
-\Gm@cntv=\count275
-\c@Gm@tempcnt=\count276
-\Gm@bindingoffset=\dimen156
-\Gm@wd@mp=\dimen157
-\Gm@odd@mp=\dimen158
-\Gm@even@mp=\dimen159
-\Gm@layoutwidth=\dimen160
-\Gm@layoutheight=\dimen161
-\Gm@layouthoffset=\dimen162
-\Gm@layoutvoffset=\dimen163
+\Gm@cnth=\count296
+\Gm@cntv=\count297
+\c@Gm@tempcnt=\count298
+\Gm@bindingoffset=\dimen164
+\Gm@wd@mp=\dimen165
+\Gm@odd@mp=\dimen166
+\Gm@even@mp=\dimen167
+\Gm@layoutwidth=\dimen168
+\Gm@layoutheight=\dimen169
+\Gm@layouthoffset=\dimen170
+\Gm@layoutvoffset=\dimen171
 \Gm@dimlist=\toks24
-)
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjustbox.sty
-Package: adjustbox 2022/10/17 v1.3a Adjusting TeX boxes (trim, clip, ...)
 
-(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
-Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
+(C:\Users\Eya\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
 
-(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
-(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
-\XKV@toks=\toks25
-\XKV@tempa@toks=\toks26
-)
-\XKV@depth=\count277
-File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
-))
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjcalc.sty
-Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
--ends (calc, etex, pgfmath)
-)
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/trimclip.sty
-Package: trimclip 2020/08/19 v1.2 Trim and clip general TeX material
+! LaTeX Error: File `adjustbox.sty' not found.
 
-(/usr/share/texlive/texmf-dist/tex/latex/collectbox/collectbox.sty
-Package: collectbox 2022/10/17 v0.4c Collect macro arguments as boxes
-\collectedbox=\box54
-)
-\tc@llx=\dimen164
-\tc@lly=\dimen165
-\tc@urx=\dimen166
-\tc@ury=\dimen167
-Package trimclip Info: Using driver 'tc-pdftex.def'.
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
 
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
-File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
-))
-\adjbox@Width=\dimen168
-\adjbox@Height=\dimen169
-\adjbox@Depth=\dimen170
-\adjbox@Totalheight=\dimen171
-\adjbox@pwidth=\dimen172
-\adjbox@pheight=\dimen173
-\adjbox@pdepth=\dimen174
-\adjbox@ptotalheight=\dimen175
-
-(/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
-Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
+Enter file name: /10/18 v1.2 Conditionals for odd/even page detection
 \c@checkoddpage=\count278
 )
 (/usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty
@@ -1066,7 +1049,7 @@ Package minitoc Info: I0033
 \openout4 = `rapport.mtc6'.
 
 (./tex/page_de_garde.tex
-<example-image.pdf, id=617, 321.2pt x 240.9pt>
+<example-image.pdf, id=621, 321.2pt x 240.9pt>
 File: example-image.pdf Graphic file (type pdf)
 <use example-image.pdf>
 Package pdftex.def Info: example-image.pdf  used on input line 7.
@@ -1092,7 +1075,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-<Images/SolidWall.png, id=618, 200.75pt x 200.75pt>
+<Images/SolidWall.png, id=622, 200.75pt x 200.75pt>
 File: Images/SolidWall.png Graphic file (type png)
 <use Images/SolidWall.png>
 Package pdftex.def Info: Images/SolidWall.png  used on input line 12.
@@ -1106,7 +1089,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.34 ...ication des acteurs}{23}{subsection.2.1.1}
+l.32 ...{II}Préparation du projet}{19}{chapter.2}
                                                   % [1
 
 ]
@@ -1114,20 +1097,25 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.67 ...ateurs et Authentification}{60}{chapter.3}
+l.68 ...ateurs et Authentification}{58}{chapter.3}
                                                   % [2]
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.99 ... d'un rôle »}{89}{subsubsection.3.2.7.4}
+l.100 ...d'un rôle »}{87}{subsubsection.3.2.7.4}
                                                   % [3]
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.131 ...ts d'intégration}{108}{subsection.4.4.2}
-                                                  % [4])
+l.132 ...ts d'intégration}{106}{subsection.4.4.2}
+                                                  % [4]
+Overfull \hbox (0.71979pt too wide) detected at line 158
+\T1/ptm/m/n/12 VI.IV 
+ []
+
+)
 \tf@toc=\write6
 \openout6 = `rapport.toc'.
 
@@ -1177,131 +1165,105 @@ Overfull \hbox (113.811pt too wide) in paragraph at lines 270--270
 (./rapport.mtc1) [3] (./tex/Chapitre1.tex
 File: Images/SolidWall.png Graphic file (type png)
 <use Images/SolidWall.png>
-Package pdftex.def Info: Images/SolidWall.png  used on input line 13.
+Package pdftex.def Info: Images/SolidWall.png  used on input line 11.
 (pdftex.def)             Requested size: 145.11053pt x 145.11882pt.
  [4]
 Underfull \hbox (badness 10000) in paragraph at lines 39--41
 
  []
 
-[5]
-<Images/demande de maintenance.png, id=851, 724.20563pt x 776.9025pt>
+<Images/demande de maintenance.png, id=854, 724.20563pt x 776.9025pt>
 File: Images/demande de maintenance.png Graphic file (type png)
 <use Images/demande de maintenance.png>
 Package pdftex.def Info: Images/demande de maintenance.png  used on input line 
-55.
+58.
 (pdftex.def)             Requested size: 170.40935pt x 182.80919pt.
-<Images/demande de maintenance sous format excel.png, id=853, 1371.1225pt x 644
+[5]
+<Images/demande de maintenance sous format excel.png, id=861, 1371.1225pt x 644
 .4075pt>
 File: Images/demande de maintenance sous format excel.png Graphic file (type pn
 g)
 <use Images/demande de maintenance sous format excel.png>
 Package pdftex.def Info: Images/demande de maintenance sous format excel.png  u
-sed on input line 62.
+sed on input line 74.
 (pdftex.def)             Requested size: 217.64758pt x 102.29117pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 78--82
+Underfull \hbox (badness 10000) in paragraph at lines 78--81
 
  []
 
 [6 <./Images/demande de maintenance.png> <./Images/demande de maintenance sous 
-format excel.png>] [7]
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 9
-3.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+format excel.png>]
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 8
+7.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-<Images/GLPI.png, id=867, 2872.7325pt x 1634.105pt>
+<Images/GLPI.png, id=869, 2872.7325pt x 1634.105pt>
 File: Images/GLPI.png Graphic file (type png)
 <use Images/GLPI.png>
-Package pdftex.def Info: Images/GLPI.png  used on input line 96.
+Package pdftex.def Info: Images/GLPI.png  used on input line 90.
 (pdftex.def)             Requested size: 338.58632pt x 192.59332pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 103--105
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 106--108
-
- []
-
-[8 <./Images/GLPI.png>]
-<Images/FreshDesk.png, id=874, 1348.03625pt x 803.0pt>
+[7 <./Images/GLPI.png>]
+<Images/FreshDesk.png, id=878, 1348.03625pt x 803.0pt>
 File: Images/FreshDesk.png Graphic file (type png)
 <use Images/FreshDesk.png>
-Package pdftex.def Info: Images/FreshDesk.png  used on input line 115.
+Package pdftex.def Info: Images/FreshDesk.png  used on input line 103.
 (pdftex.def)             Requested size: 338.58632pt x 201.68071pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 121--123
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 124--126
-
- []
-
-<Images/appJira.png, id=875, 2196.205pt x 1148.29pt>
+<Images/appJira.png, id=879, 2196.205pt x 1148.29pt>
 File: Images/appJira.png Graphic file (type png)
 <use Images/appJira.png>
-Package pdftex.def Info: Images/appJira.png  used on input line 131.
+Package pdftex.def Info: Images/appJira.png  used on input line 113.
 (pdftex.def)             Requested size: 338.58632pt x 177.01942pt.
-[9 <./Images/FreshDesk.png>] [10 <./Images/appJira.png>]
-Overfull \hbox (6.50668pt too wide) in paragraph at lines 163--164
+ [8 <./Images/FreshDesk.png>] [9 <./Images/appJira.png>]
+Overfull \hbox (3.24896pt too wide) in paragraph at lines 143--144
 []\T1/ptm/m/n/12 (-20) L'investissement fi-nan-cier re-pr�-sente un obs-tacle m
-a-jeur. Les ta-rifs s'�che-lonnent de \T1/ptm/b/n/12 (-20) 15\TS1/ptm/b/n/12 (-
-20) �\T1/ptm/b/n/12 (-20) /agent/mois
+a-jeur. Les ta-rifs s'�che-lonnent de 15\TS1/ptm/m/n/12 (-20) �\T1/ptm/m/n/12 (
+-20) /agent/mois
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 185--187
+
+ []
+
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 210--211
+
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 207--209
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 224--226
-
- []
-
-[12] [13]
-Underfull \hbox (badness 10000) in paragraph at lines 233--235
-
- []
-
-[14]
-<Images/4-valeur-agile.png, id=909, 1453.43pt x 738.76pt>
+<Images/4-valeur-agile.png, id=904, 1453.43pt x 738.76pt>
 File: Images/4-valeur-agile.png Graphic file (type png)
 <use Images/4-valeur-agile.png>
-Package pdftex.def Info: Images/4-valeur-agile.png  used on input line 312.
+Package pdftex.def Info: Images/4-valeur-agile.png  used on input line 232.
 (pdftex.def)             Requested size: 338.58632pt x 172.0981pt.
- [15 <./Images/4-valeur-agile.png>]
+ [12] [13 <./Images/4-valeur-agile.png>]
 <Images/les piliers de la methodologie.png, id=917, 589.4522pt x 386.19281pt>
 File: Images/les piliers de la methodologie.png Graphic file (type png)
 <use Images/les piliers de la methodologie.png>
 Package pdftex.def Info: Images/les piliers de la methodologie.png  used on inp
-ut line 371.
+ut line 293.
 (pdftex.def)             Requested size: 338.58632pt x 221.8352pt.
- [16] [17 <./Images/les piliers de la methodologie.png>] [18]
-<Images/processus_scrum.png, id=933, 1442.38875pt x 618.81187pt>
+ [14 <./Images/les piliers de la methodologie.png>] [15]
+<Images/processus_scrum.png, id=928, 1442.38875pt x 618.81187pt>
 File: Images/processus_scrum.png Graphic file (type png)
 <use Images/processus_scrum.png>
-Package pdftex.def Info: Images/processus_scrum.png  used on input line 411.
+Package pdftex.def Info: Images/processus_scrum.png  used on input line 333.
 (pdftex.def)             Requested size: 290.22107pt x 124.50612pt.
-<Images/UML.png, id=934, 263.98625pt x 191.71625pt>
+<Images/UML.png, id=929, 263.98625pt x 191.71625pt>
 File: Images/UML.png Graphic file (type png)
 <use Images/UML.png>
-Package pdftex.def Info: Images/UML.png  used on input line 421.
+Package pdftex.def Info: Images/UML.png  used on input line 343.
 (pdftex.def)             Requested size: 193.47578pt x 140.5075pt.
- [19 <./Images/processus_scrum.png> <./Images/UML.png>]
-<Images/Diagramme_Gantt.png, id=944, 1064.47687pt x 551.05875pt>
+ [16 <./Images/processus_scrum.png>] [17 <./Images/UML.png>]
+<Images/Diagramme_Gantt.png, id=942, 1064.47687pt x 551.05875pt>
 File: Images/Diagramme_Gantt.png Graphic file (type png)
 <use Images/Diagramme_Gantt.png>
-Package pdftex.def Info: Images/Diagramme_Gantt.png  used on input line 432.
+Package pdftex.def Info: Images/Diagramme_Gantt.png  used on input line 354.
 (pdftex.def)             Requested size: 338.58632pt x 175.27452pt.
-
-[20 <./Images/Diagramme_Gantt.png>]) [21]
+ [18 <./Images/Diagramme_Gantt.png>]) [19]
 \openout4 = `rapport.mtc'.
 
 \openout4 = `rapport.mtc'.
@@ -1311,111 +1273,111 @@ Overfull \hbox (113.811pt too wide) in paragraph at lines 275--275
 [][][]  
  []
 
-(./rapport.mtc2) [22] (./tex/chapitre2.tex
-<Images/acteur visiteur.png, id=985, 55.70813pt x 85.06781pt>
+(./rapport.mtc2) [20] (./tex/chapitre2.tex
+<Images/acteur visiteur.png, id=984, 55.70813pt x 85.06781pt>
 File: Images/acteur visiteur.png Graphic file (type png)
 <use Images/acteur visiteur.png>
 Package pdftex.def Info: Images/acteur visiteur.png  used on input line 18.
 (pdftex.def)             Requested size: 42.67912pt x 65.1727pt.
-<Images/acteur user.png, id=986, 55.70813pt x 84.315pt>
+<Images/acteur user.png, id=985, 55.70813pt x 84.315pt>
 File: Images/acteur user.png Graphic file (type png)
 <use Images/acteur user.png>
 Package pdftex.def Info: Images/acteur user.png  used on input line 26.
 (pdftex.def)             Requested size: 42.67912pt x 64.59595pt.
-<Images/acteur client.png, id=987, 57.21375pt x 86.57344pt>
+<Images/acteur client.png, id=986, 57.21375pt x 86.57344pt>
 File: Images/acteur client.png Graphic file (type png)
 <use Images/acteur client.png>
 Package pdftex.def Info: Images/acteur client.png  used on input line 33.
 (pdftex.def)             Requested size: 42.67912pt x 64.58247pt.
-<Images/acteur dev.png, id=988, 57.21375pt x 84.315pt>
+<Images/acteur dev.png, id=987, 57.21375pt x 84.315pt>
 File: Images/acteur dev.png Graphic file (type png)
 <use Images/acteur dev.png>
 Package pdftex.def Info: Images/acteur dev.png  used on input line 42.
 (pdftex.def)             Requested size: 42.67912pt x 62.8977pt.
-<Images/acteur chef.png, id=989, 57.21375pt x 84.315pt>
+<Images/acteur chef.png, id=988, 57.21375pt x 84.315pt>
 File: Images/acteur chef.png Graphic file (type png)
 <use Images/acteur chef.png>
 Package pdftex.def Info: Images/acteur chef.png  used on input line 49.
 (pdftex.def)             Requested size: 42.67912pt x 62.8977pt.
-<Images/acteur admin.png, id=990, 57.96657pt x 84.315pt>
+<Images/acteur admin.png, id=989, 57.96657pt x 84.315pt>
 File: Images/acteur admin.png Graphic file (type png)
 <use Images/acteur admin.png>
 Package pdftex.def Info: Images/acteur admin.png  used on input line 56.
 (pdftex.def)             Requested size: 42.67912pt x 62.07947pt.
- [23 <./Images/acteur visiteur.png> <./Images/acteur user.png> <./Images/acteur
+ [21 <./Images/acteur visiteur.png> <./Images/acteur user.png> <./Images/acteur
  client.png> <./Images/acteur dev.png> <./Images/acteur chef.png> <./Images/act
 eur admin.png>]
 (./tex/etude_fonctionnalite.tex
-<Images/soumission_demande_inscription.png, id=1002, 1064.47687pt x 480.29437pt
+<Images/soumission_demande_inscription.png, id=1001, 1064.47687pt x 480.29437pt
 >
 File: Images/soumission_demande_inscription.png Graphic file (type png)
 <use Images/soumission_demande_inscription.png>
 Package pdftex.def Info: Images/soumission_demande_inscription.png  used on inp
 ut line 7.
 (pdftex.def)             Requested size: 338.58632pt x 152.76659pt.
-<Images/inscription_creation_utilisateur.png, id=1003, 397.485pt x 204.765pt>
+<Images/inscription_creation_utilisateur.png, id=1002, 397.485pt x 204.765pt>
 File: Images/inscription_creation_utilisateur.png Graphic file (type png)
 <use Images/inscription_creation_utilisateur.png>
 Package pdftex.def Info: Images/inscription_creation_utilisateur.png  used on i
 nput line 20.
 (pdftex.def)             Requested size: 338.58632pt x 174.42911pt.
- [24 <./Images/soumission_demande_inscription.png>]
-<Images/gestion_permissions.png, id=1010, 1064.47687pt x 459.21562pt>
+ [22 <./Images/soumission_demande_inscription.png>]
+<Images/gestion_permissions.png, id=1009, 1064.47687pt x 459.21562pt>
 File: Images/gestion_permissions.png Graphic file (type png)
 <use Images/gestion_permissions.png>
 Package pdftex.def Info: Images/gestion_permissions.png  used on input line 33.
 
 (pdftex.def)             Requested size: 338.58632pt x 146.0621pt.
- [25 <./Images/inscription_creation_utilisateur.png> <./Images/gestion_permissi
+ [23 <./Images/inscription_creation_utilisateur.png> <./Images/gestion_permissi
 ons.png>]
-<Images/gestion_client.png, id=1020, 1064.47687pt x 451.6875pt>
+<Images/gestion_client.png, id=1018, 1064.47687pt x 451.6875pt>
 File: Images/gestion_client.png Graphic file (type png)
 <use Images/gestion_client.png>
 Package pdftex.def Info: Images/gestion_client.png  used on input line 46.
 (pdftex.def)             Requested size: 338.58632pt x 143.66763pt.
-<Images/gestion_contrat.png, id=1021, 505.89pt x 268.00125pt>
+<Images/gestion_contrat.png, id=1019, 505.89pt x 268.00125pt>
 File: Images/gestion_contrat.png Graphic file (type png)
 <use Images/gestion_contrat.png>
 Package pdftex.def Info: Images/gestion_contrat.png  used on input line 57.
 (pdftex.def)             Requested size: 338.58632pt x 179.37178pt.
- [26 <./Images/gestion_client.png> <./Images/gestion_contrat.png>]
-<Images/gestion_demande.png, id=1030, 511.15968pt x 261.97874pt>
+ [24 <./Images/gestion_client.png> <./Images/gestion_contrat.png>]
+<Images/gestion_demande.png, id=1028, 511.15968pt x 261.97874pt>
 File: Images/gestion_demande.png Graphic file (type png)
 <use Images/gestion_demande.png>
 Package pdftex.def Info: Images/gestion_demande.png  used on input line 68.
 (pdftex.def)             Requested size: 338.58632pt x 173.5301pt.
-<Images/dashboard.png, id=1031, 382.42876pt x 136.25906pt>
+<Images/dashboard.png, id=1029, 382.42876pt x 136.25906pt>
 File: Images/dashboard.png Graphic file (type png)
 <use Images/dashboard.png>
 Package pdftex.def Info: Images/dashboard.png  used on input line 83.
 (pdftex.def)             Requested size: 338.58632pt x 120.64435pt.
 
-[27 <./Images/gestion_demande.png>]
-<Images/suivi_tracabilite.png, id=1038, 1064.47687pt x 484.81125pt>
+[25 <./Images/gestion_demande.png>]
+<Images/suivi_tracabilite.png, id=1037, 1064.47687pt x 484.81125pt>
 File: Images/suivi_tracabilite.png Graphic file (type png)
 <use Images/suivi_tracabilite.png>
 Package pdftex.def Info: Images/suivi_tracabilite.png  used on input line 90.
 (pdftex.def)             Requested size: 338.58632pt x 154.20326pt.
-<Images/notification.png, id=1039, 1064.47687pt x 393.72093pt>
+<Images/notification.png, id=1038, 1064.47687pt x 393.72093pt>
 File: Images/notification.png Graphic file (type png)
 <use Images/notification.png>
 Package pdftex.def Info: Images/notification.png  used on input line 97.
 (pdftex.def)             Requested size: 338.58632pt x 125.23029pt.
-) [28 <./Images/dashboard.png> <./Images/suivi_tracabilite.png> <./Images/notif
+) [26 <./Images/dashboard.png> <./Images/suivi_tracabilite.png> <./Images/notif
 ication.png>]
-<Images/diagramme_cas_utilisation.png, id=1051, 1046.91125pt x 1242.6425pt>
+<Images/diagramme_cas_utilisation.png, id=1050, 1046.91125pt x 1242.6425pt>
 File: Images/diagramme_cas_utilisation.png Graphic file (type png)
 <use Images/diagramme_cas_utilisation.png>
 Package pdftex.def Info: Images/diagramme_cas_utilisation.png  used on input li
-ne 126.
+ne 124.
 (pdftex.def)             Requested size: 483.69366pt x 574.12537pt.
- [29] [30 <./Images/diagramme_cas_utilisation.png>]
-<Images/Equipe_Scrum.png, id=1062, 676.77844pt x 227.34938pt>
+ [27] [28 <./Images/diagramme_cas_utilisation.png>]
+<Images/Equipe_Scrum.png, id=1061, 676.77844pt x 227.34938pt>
 File: Images/Equipe_Scrum.png Graphic file (type png)
 <use Images/Equipe_Scrum.png>
-Package pdftex.def Info: Images/Equipe_Scrum.png  used on input line 143.
+Package pdftex.def Info: Images/Equipe_Scrum.png  used on input line 141.
 (pdftex.def)             Requested size: 435.32422pt x 146.242pt.
- [31 <./Images/Equipe_Scrum.png>]
+ [29 <./Images/Equipe_Scrum.png>]
 (./tex/product_backlog.tex
 Overfull \hbox (34.96622pt too wide) in alignment at lines 7--12
  [] [] [] [] [] [] 
@@ -1445,193 +1407,193 @@ Overfull \hbox (34.96622pt too wide) in alignment at lines 21--387
  [] [] [] [] [] [] 
  []
 
-[32] [33] [34] [35] [36] [37] [38] [39] [40] [41] [42] [43] [44] [45] [46]
-[47] [48] [49] [50])
-<Images/Scrum planning.jpg, id=1152, 1445.4pt x 813.0375pt>
+[30] [31] [32] [33] [34] [35] [36] [37] [38] [39] [40] [41] [42] [43] [44]
+[45] [46] [47] [48])
+<Images/Scrum planning.jpg, id=1150, 1445.4pt x 813.0375pt>
 File: Images/Scrum planning.jpg Graphic file (type jpg)
 <use Images/Scrum planning.jpg>
-Package pdftex.def Info: Images/Scrum planning.jpg  used on input line 178.
+Package pdftex.def Info: Images/Scrum planning.jpg  used on input line 176.
 (pdftex.def)             Requested size: 386.95897pt x 217.66217pt.
- [51] [52 <./Images/Scrum planning.jpg>] [53] [54]
-<Images/nestjs.png, id=1170, 228.855pt x 221.82875pt>
+ [49] [50 <./Images/Scrum planning.jpg>] [51] [52]
+<Images/nestjs.png, id=1169, 228.855pt x 221.82875pt>
 File: Images/nestjs.png Graphic file (type png)
 <use Images/nestjs.png>
-Package pdftex.def Info: Images/nestjs.png  used on input line 343.
+Package pdftex.def Info: Images/nestjs.png  used on input line 341.
 (pdftex.def)             Requested size: 42.67912pt x 41.366pt.
 
-Overfull \hbox (0.79999pt too wide) in paragraph at lines 343--343
+Overfull \hbox (0.79999pt too wide) in paragraph at lines 341--341
 [][] 
  []
 
-<Images/nextjs.png, id=1171, 141.52875pt x 143.78719pt>
+<Images/nextjs.png, id=1170, 141.52875pt x 143.78719pt>
 File: Images/nextjs.png Graphic file (type png)
 <use Images/nextjs.png>
-Package pdftex.def Info: Images/nextjs.png  used on input line 346.
+Package pdftex.def Info: Images/nextjs.png  used on input line 344.
 (pdftex.def)             Requested size: 42.67912pt x 43.36028pt.
 
-Overfull \hbox (0.79999pt too wide) in paragraph at lines 346--346
+Overfull \hbox (0.79999pt too wide) in paragraph at lines 344--344
 [][] 
  []
 
-<Images/React-icon.png, id=1172, 963.6pt x 858.20625pt>
+<Images/React-icon.png, id=1171, 963.6pt x 858.20625pt>
 File: Images/React-icon.png Graphic file (type png)
 <use Images/React-icon.png>
-Package pdftex.def Info: Images/React-icon.png  used on input line 350.
+Package pdftex.def Info: Images/React-icon.png  used on input line 348.
 (pdftex.def)             Requested size: 42.67912pt x 38.00214pt.
+
+Overfull \hbox (0.79999pt too wide) in paragraph at lines 348--348
+[][] 
+ []
+
+<Images/Tailwind.png, id=1172, 1284.8pt x 785.93625pt>
+File: Images/Tailwind.png Graphic file (type png)
+<use Images/Tailwind.png>
+Package pdftex.def Info: Images/Tailwind.png  used on input line 350.
+(pdftex.def)             Requested size: 42.67912pt x 26.10747pt.
 
 Overfull \hbox (0.79999pt too wide) in paragraph at lines 350--350
 [][] 
  []
 
-<Images/Tailwind.png, id=1173, 1284.8pt x 785.93625pt>
-File: Images/Tailwind.png Graphic file (type png)
-<use Images/Tailwind.png>
-Package pdftex.def Info: Images/Tailwind.png  used on input line 352.
-(pdftex.def)             Requested size: 42.67912pt x 26.10747pt.
-
-Overfull \hbox (0.79999pt too wide) in paragraph at lines 352--352
-[][] 
- []
-
-<Images/chadcn.png, id=1174, 602.25pt x 602.25pt>
+<Images/chadcn.png, id=1173, 602.25pt x 602.25pt>
 File: Images/chadcn.png Graphic file (type png)
 <use Images/chadcn.png>
-Package pdftex.def Info: Images/chadcn.png  used on input line 355.
+Package pdftex.def Info: Images/chadcn.png  used on input line 353.
 (pdftex.def)             Requested size: 42.67912pt x 42.67642pt.
 
-Overfull \hbox (0.79999pt too wide) in paragraph at lines 355--355
+Overfull \hbox (0.79999pt too wide) in paragraph at lines 353--353
 [][] 
  []
 
-[55 <./Images/nestjs.png> <./Images/nextjs.png> <./Images/React-icon.png> <./Im
+[53 <./Images/nestjs.png> <./Images/nextjs.png> <./Images/React-icon.png> <./Im
 ages/Tailwind.png>]
-<Images/Visual_Studio_Code.png, id=1185, 501.875pt x 501.875pt>
+<Images/Visual_Studio_Code.png, id=1183, 501.875pt x 501.875pt>
 File: Images/Visual_Studio_Code.png Graphic file (type png)
 <use Images/Visual_Studio_Code.png>
-Package pdftex.def Info: Images/Visual_Studio_Code.png  used on input line 383.
+Package pdftex.def Info: Images/Visual_Studio_Code.png  used on input line 381.
 
 (pdftex.def)             Requested size: 42.67795pt x 42.67795pt.
 
-Overfull \hbox (0.79999pt too wide) in paragraph at lines 383--383
+Overfull \hbox (0.79999pt too wide) in paragraph at lines 381--381
 [][] 
  []
 
-<Images/gitlab.png, id=1186, 225.84375pt x 225.84375pt>
+<Images/gitlab.png, id=1184, 225.84375pt x 225.84375pt>
 File: Images/gitlab.png Graphic file (type png)
 <use Images/gitlab.png>
-Package pdftex.def Info: Images/gitlab.png  used on input line 401.
+Package pdftex.def Info: Images/gitlab.png  used on input line 399.
 (pdftex.def)             Requested size: 42.67642pt x 42.67642pt.
 
-Overfull \hbox (0.79999pt too wide) in paragraph at lines 401--401
+Overfull \hbox (0.79999pt too wide) in paragraph at lines 399--399
 [][] 
  []
 
-<Images/uml.png, id=1187, 263.98625pt x 191.71625pt>
+<Images/uml.png, id=1185, 263.98625pt x 191.71625pt>
 File: Images/uml.png Graphic file (type png)
 <use Images/uml.png>
-Package pdftex.def Info: Images/uml.png  used on input line 419.
+Package pdftex.def Info: Images/uml.png  used on input line 417.
 (pdftex.def)             Requested size: 56.90497pt x 41.32642pt.
 
-Overfull \hbox (0.79999pt too wide) in paragraph at lines 419--419
+Overfull \hbox (0.79999pt too wide) in paragraph at lines 417--417
 [][] 
  []
 
-<Images/lucidchart.png, id=1188, 148.555pt x 148.555pt>
+<Images/lucidchart.png, id=1186, 148.555pt x 148.555pt>
 File: Images/lucidchart.png Graphic file (type png)
 <use Images/lucidchart.png>
-Package pdftex.def Info: Images/lucidchart.png  used on input line 438.
+Package pdftex.def Info: Images/lucidchart.png  used on input line 436.
 (pdftex.def)             Requested size: 42.67862pt x 42.67862pt.
 
-Overfull \hbox (0.79999pt too wide) in paragraph at lines 438--438
+Overfull \hbox (0.79999pt too wide) in paragraph at lines 436--436
 [][] 
  []
 
-<Images/swagger.png, id=1189, 225.84375pt x 225.84375pt>
+<Images/swagger.png, id=1187, 225.84375pt x 225.84375pt>
 File: Images/swagger.png Graphic file (type png)
 <use Images/swagger.png>
-Package pdftex.def Info: Images/swagger.png  used on input line 456.
+Package pdftex.def Info: Images/swagger.png  used on input line 454.
 (pdftex.def)             Requested size: 42.67642pt x 42.67642pt.
 
-Overfull \hbox (0.79999pt too wide) in paragraph at lines 456--456
+Overfull \hbox (0.79999pt too wide) in paragraph at lines 454--454
 [][] 
  []
 
-<Images/prisma.png, id=1190, 360.34625pt x 141.52875pt>
+<Images/prisma.png, id=1188, 360.34625pt x 141.52875pt>
 File: Images/prisma.png Graphic file (type png)
 <use Images/prisma.png>
-Package pdftex.def Info: Images/prisma.png  used on input line 476.
+Package pdftex.def Info: Images/prisma.png  used on input line 474.
 (pdftex.def)             Requested size: 56.90329pt x 22.3492pt.
 
-Overfull \hbox (0.79999pt too wide) in paragraph at lines 476--476
+Overfull \hbox (0.79999pt too wide) in paragraph at lines 474--474
 [][] 
  []
 
-<Images/postgres.png, id=1191, 221.82875pt x 228.855pt>
+<Images/postgres.png, id=1189, 221.82875pt x 228.855pt>
 File: Images/postgres.png Graphic file (type png)
 <use Images/postgres.png>
-Package pdftex.def Info: Images/postgres.png  used on input line 495.
+Package pdftex.def Info: Images/postgres.png  used on input line 493.
 (pdftex.def)             Requested size: 41.366pt x 42.67624pt.
 
-Overfull \hbox (0.79999pt too wide) in paragraph at lines 495--495
+Overfull \hbox (0.79999pt too wide) in paragraph at lines 493--493
 [][] 
  []
 
-<Images/Neon.png, id=1192, 225.84375pt x 225.84375pt>
+<Images/Neon.png, id=1190, 225.84375pt x 225.84375pt>
 File: Images/Neon.png Graphic file (type png)
 <use Images/Neon.png>
-Package pdftex.def Info: Images/Neon.png  used on input line 514.
+Package pdftex.def Info: Images/Neon.png  used on input line 512.
 (pdftex.def)             Requested size: 42.67642pt x 42.67642pt.
 
-Overfull \hbox (0.79999pt too wide) in paragraph at lines 514--514
+Overfull \hbox (0.79999pt too wide) in paragraph at lines 512--512
 [][] 
  []
 
-[56 <./Images/chadcn.png (PNG copy)> <./Images/Visual_Studio_Code.png> <./Image
+[54 <./Images/chadcn.png (PNG copy)> <./Images/Visual_Studio_Code.png> <./Image
 s/gitlab.png> <./Images/uml.png> <./Images/lucidchart.png> <./Images/swagger.pn
 g> <./Images/prisma.png> <./Images/postgres.png> <./Images/Neon.png>]
-<Images/Notion.png, id=1203, 225.84375pt x 225.84375pt>
+<Images/Notion.png, id=1201, 225.84375pt x 225.84375pt>
 File: Images/Notion.png Graphic file (type png)
 <use Images/Notion.png>
-Package pdftex.def Info: Images/Notion.png  used on input line 536.
+Package pdftex.def Info: Images/Notion.png  used on input line 534.
 (pdftex.def)             Requested size: 42.67642pt x 42.67642pt.
 
-Overfull \hbox (0.79999pt too wide) in paragraph at lines 536--536
+Overfull \hbox (0.79999pt too wide) in paragraph at lines 534--534
 [][] 
  []
 
-<Images/latex.png, id=1204, 210.7875pt x 240.9pt>
+<Images/latex.png, id=1202, 210.7875pt x 240.9pt>
 File: Images/latex.png Graphic file (type png)
 <use Images/latex.png>
-Package pdftex.def Info: Images/latex.png  used on input line 557.
+Package pdftex.def Info: Images/latex.png  used on input line 555.
 (pdftex.def)             Requested size: 37.34186pt x 42.67642pt.
 
-Overfull \hbox (0.79999pt too wide) in paragraph at lines 557--557
+Overfull \hbox (0.79999pt too wide) in paragraph at lines 555--555
 [][] 
  []
 
-<Images/canva.png, id=1205, 377.91188pt x 368.1253pt>
+<Images/canva.png, id=1203, 377.91188pt x 368.1253pt>
 File: Images/canva.png Graphic file (type png)
 <use Images/canva.png>
-Package pdftex.def Info: Images/canva.png  used on input line 577.
+Package pdftex.def Info: Images/canva.png  used on input line 575.
 (pdftex.def)             Requested size: 43.81358pt x 42.67897pt.
 
-Overfull \hbox (0.79999pt too wide) in paragraph at lines 577--577
+Overfull \hbox (0.79999pt too wide) in paragraph at lines 575--575
 [][] 
  []
 
-[57 <./Images/Notion.png> <./Images/latex.png> <./Images/canva.png>]
-<Images/architecture.png, id=1213, 385.44pt x 294.34969pt>
+[55 <./Images/Notion.png> <./Images/latex.png> <./Images/canva.png>]
+<Images/architecture.png, id=1212, 385.44pt x 294.34969pt>
 File: Images/architecture.png Graphic file (type png)
 <use Images/architecture.png>
-Package pdftex.def Info: Images/architecture.png  used on input line 585.
+Package pdftex.def Info: Images/architecture.png  used on input line 583.
 (pdftex.def)             Requested size: 338.58632pt x 258.56589pt.
-<Images/Modular Monoith.png, id=1214, 1445.4pt x 813.0375pt>
+<Images/Modular Monoith.png, id=1213, 1445.4pt x 813.0375pt>
 File: Images/Modular Monoith.png Graphic file (type png)
 <use Images/Modular Monoith.png>
-Package pdftex.def Info: Images/Modular Monoith.png  used on input line 597.
+Package pdftex.def Info: Images/Modular Monoith.png  used on input line 595.
 (pdftex.def)             Requested size: 338.58632pt x 190.45595pt.
- [58 <./Images/architecture.png>] [59 <./Images/Modular Monoith.png (PNG copy)>
-]) [60]
+ [56 <./Images/architecture.png>] [57 <./Images/Modular Monoith.png (PNG copy)>
+]) [58]
 \openout4 = `rapport.mtc'.
 
 \openout4 = `rapport.mtc'.
@@ -1641,7 +1603,17 @@ Overfull \hbox (113.811pt too wide) in paragraph at lines 280--280
 [][][]  
  []
 
-(./rapport.mtc3) [61] (./tex/chapitre3.tex
+(./rapport.mtc3
+Overfull \hbox (3.10905pt too wide) detected at line 41
+\T1/ptm/b/n/10.95 III.III 
+ []
+
+
+Overfull \hbox (2.49605pt too wide) detected at line 44
+\T1/ptm/b/n/10.95 III.IV 
+ []
+
+) [59] (./tex/chapitre3.tex
 Underfull \hbox (badness 10000) in paragraph at lines 11--13
 
  []
@@ -1756,15 +1728,15 @@ Overfull \hbox (7.32077pt too wide) in alignment at lines 20--270
  [] [] [] [] 
  []
 
-[62] [63] [64] [65] [66] [67] [68]) [69]
-<Images/Diagramme_cas_utilisation_sprint1.png, id=1295, 869.2475pt x 522.95375p
+[60] [61] [62] [63] [64] [65] [66]) [67]
+<Images/Diagramme_cas_utilisation_sprint1.png, id=1294, 869.2475pt x 522.95375p
 t>
 File: Images/Diagramme_cas_utilisation_sprint1.png Graphic file (type png)
 <use Images/Diagramme_cas_utilisation_sprint1.png>
 Package pdftex.def Info: Images/Diagramme_cas_utilisation_sprint1.png  used on 
 input line 39.
 (pdftex.def)             Requested size: 483.71138pt x 291.0088pt.
- [70 <./Images/Diagramme_cas_utilisation_sprint1.png>]
+ [68 <./Images/Diagramme_cas_utilisation_sprint1.png>]
 Overfull \hbox (10.97357pt too wide) in paragraph at lines 52--89
  [][] 
  []
@@ -1774,8 +1746,8 @@ Overfull \hbox (10.97357pt too wide) in paragraph at lines 98--140
  [][] 
  []
 
-[71] [72]
-<Images/Gérer utilisateur.drawio.png, id=1335, 646.415pt x 451.6875pt>
+[69] [70]
+<Images/Gérer utilisateur.drawio.png, id=1334, 646.415pt x 451.6875pt>
 File: Images/Gérer utilisateur.drawio.png Graphic file (type png)
 <use Images/Gérer utilisateur.drawio.png>
 Package pdftex.def Info: Images/Gérer utilisateur.drawio.png  used on input li
@@ -1786,29 +1758,29 @@ Overfull \hbox (10.97357pt too wide) in paragraph at lines 158--182
  [][] 
  []
 
-[73 <./Images/Gérer utilisateur.drawio.png>]
+[71 <./Images/Gérer utilisateur.drawio.png>]
 Overfull \hbox (10.97357pt too wide) in paragraph at lines 189--221
  [][] 
  []
 
-[74]
+[72]
 Overfull \hbox (10.97357pt too wide) in paragraph at lines 228--254
  [][] 
  []
 
-[75]
+[73]
 Overfull \hbox (10.97357pt too wide) in paragraph at lines 261--293
  [][] 
  []
 
-[76]
-<Images/Gérer Profil.drawio.png, id=1374, 606.265pt x 314.17375pt>
+[74]
+<Images/Gérer Profil.drawio.png, id=1373, 606.265pt x 314.17375pt>
 File: Images/Gérer Profil.drawio.png Graphic file (type png)
 <use Images/Gérer Profil.drawio.png>
 Package pdftex.def Info: Images/Gérer Profil.drawio.png  used on input line 30
 4.
 (pdftex.def)             Requested size: 386.95897pt x 200.5288pt.
- [77]
+ [75]
 Overfull \hbox (10.97357pt too wide) in paragraph at lines 314--343
  [][] 
  []
@@ -1818,13 +1790,13 @@ Overfull \hbox (10.97357pt too wide) in paragraph at lines 350--390
  [][] 
  []
 
-[78 <./Images/Gérer Profil.drawio.png>]
-<Images/gere role.drawio.png, id=1399, 819.06pt x 432.61626pt>
+[76 <./Images/Gérer Profil.drawio.png>]
+<Images/gere role.drawio.png, id=1398, 819.06pt x 432.61626pt>
 File: Images/gere role.drawio.png Graphic file (type png)
 <use Images/gere role.drawio.png>
 Package pdftex.def Info: Images/gere role.drawio.png  used on input line 401.
 (pdftex.def)             Requested size: 386.95897pt x 204.39246pt.
- [79]
+ [77]
 Overfull \hbox (10.97357pt too wide) in paragraph at lines 411--435
  [][] 
  []
@@ -1834,33 +1806,33 @@ Overfull \hbox (10.97357pt too wide) in paragraph at lines 442--472
  [][] 
  []
 
-[80 <./Images/gere role.drawio.png>]
+[78 <./Images/gere role.drawio.png>]
 Overfull \hbox (10.97357pt too wide) in paragraph at lines 479--508
  [][] 
  []
 
-[81]
+[79]
 Overfull \hbox (10.97357pt too wide) in paragraph at lines 515--543
  [][] 
  []
 
-[82]
+[80]
 Overfull \hbox (10.97357pt too wide) in paragraph at lines 550--576
  [][] 
  []
 
-[83]
+[81]
 Overfull \hbox (10.97357pt too wide) in paragraph at lines 583--615
  [][] 
  []
 
-[84]
+[82]
 Overfull \hbox (10.97357pt too wide) in paragraph at lines 622--651
  [][] 
  []
 
-[85]
-<Images/gerer permession.drawio.png, id=1491, 859.21pt x 352.31625pt>
+[83]
+<Images/gerer permession.drawio.png, id=1489, 859.21pt x 352.31625pt>
 File: Images/gerer permession.drawio.png Graphic file (type png)
 <use Images/gerer permession.drawio.png>
 Package pdftex.def Info: Images/gerer permession.drawio.png  used on input line
@@ -1871,24 +1843,24 @@ Overfull \hbox (10.97357pt too wide) in paragraph at lines 670--697
  [][] 
  []
 
-[86 <./Images/gerer permession.drawio.png>]
+[84 <./Images/gerer permession.drawio.png>]
 Overfull \hbox (10.97357pt too wide) in paragraph at lines 704--733
  [][] 
  []
 
-[87]
+[85]
 Overfull \hbox (10.97357pt too wide) in paragraph at lines 740--769
  [][] 
  []
 
-[88]
-<Images/gerer client.drawio.png, id=1527, 879.285pt x 502.87875pt>
+[86]
+<Images/gerer client.drawio.png, id=1526, 879.285pt x 502.87875pt>
 File: Images/gerer client.drawio.png Graphic file (type png)
 <use Images/gerer client.drawio.png>
 Package pdftex.def Info: Images/gerer client.drawio.png  used on input line 779
 .
 (pdftex.def)             Requested size: 386.95897pt x 221.3057pt.
- [89]
+ [87]
 Overfull \hbox (10.97357pt too wide) in paragraph at lines 789--818
  [][] 
  []
@@ -1898,39 +1870,39 @@ Overfull \hbox (10.97357pt too wide) in paragraph at lines 825--863
  [][] 
  []
 
-[90 <./Images/gerer client.drawio.png>]
+[88 <./Images/gerer client.drawio.png>]
 Overfull \hbox (10.97357pt too wide) in paragraph at lines 870--899
  [][] 
  []
 
-[91]
+[89]
 Overfull \hbox (10.97357pt too wide) in paragraph at lines 906--945
  [][] 
  []
 
-[92]
+[90]
 Overfull \hbox (10.97357pt too wide) in paragraph at lines 952--986
  [][] 
  []
 
-[93]
+[91]
 Overfull \hbox (10.97357pt too wide) in paragraph at lines 993--1020
  [][] 
  []
 
-[94]
+[92]
 Overfull \hbox (10.97357pt too wide) in paragraph at lines 1027--1055
  [][] 
  []
 
-[95] [96] [97] [98] (./tex/tests_sprint1.tex
-<Images/E2E_Gestion_Utilisateur.png, id=1637, 575.90157pt x 352.31625pt>
+[93] [94] [95] [96] (./tex/tests_sprint1.tex
+<Images/E2E_Gestion_Utilisateur.png, id=1635, 575.90157pt x 352.31625pt>
 File: Images/E2E_Gestion_Utilisateur.png Graphic file (type png)
 <use Images/E2E_Gestion_Utilisateur.png>
 Package pdftex.def Info: Images/E2E_Gestion_Utilisateur.png  used on input line
  3.
 (pdftex.def)             Requested size: 338.58632pt x 207.13904pt.
-)) [99 <./Images/E2E_Gestion_Utilisateur.png>]
+)) [97 <./Images/E2E_Gestion_Utilisateur.png>]
 \openout4 = `rapport.mtc'.
 
 \openout4 = `rapport.mtc'.
@@ -1940,7 +1912,17 @@ Overfull \hbox (113.811pt too wide) in paragraph at lines 285--285
 [][][]  
  []
 
-(./rapport.mtc4) [100] (./tex/chapitre4.tex (./tex/sprint_backlog_2.tex
+(./rapport.mtc4
+Overfull \hbox (0.90836pt too wide) detected at line 7
+\T1/ptm/b/n/10.95 IV.III 
+ []
+
+
+Overfull \hbox (0.29535pt too wide) detected at line 10
+\T1/ptm/b/n/10.95 IV.IV 
+ []
+
+) [98] (./tex/chapitre4.tex (./tex/sprint_backlog_2.tex
 Underfull \hbox (badness 2856) in paragraph at lines 55--56
 []\T1/ptm/m/n/10.95 (+20) Mise en place d'une API
  []
@@ -2015,7 +1997,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 128--129
 []\T1/ptm/m/n/10.95 (+20) Impl�mentation de m�-ca-
  []
 
-[101] [102] [103]) [104] [105] [106] [107]) [108]
+[99] [100] [101]) [102] [103] [104] [105]) [106]
 \openout4 = `rapport.mtc'.
 
 \openout4 = `rapport.mtc'.
@@ -2025,7 +2007,7 @@ Overfull \hbox (113.811pt too wide) in paragraph at lines 290--290
 [][][]  
  []
 
-(./rapport.mtc5) [109] (./tex/chapitre5.tex (./tex/sprint_backlog_3.tex
+(./rapport.mtc5) [107] (./tex/chapitre5.tex (./tex/sprint_backlog_3.tex
 Underfull \hbox (badness 10000) in paragraph at lines 27--27
 []|\T1/ptm/m/n/10.95 (+20) Formulaire de sou-mis-sion,
  []
@@ -2127,7 +2109,7 @@ Underfull \hbox (badness 1242) in paragraph at lines 125--125
 1/ptm/m/n/10.95 (+20) , je sou-haite
  []
 
-[110] [111] [112]) [113] [114] [115] [116]) [117]
+[108] [109] [110]) [111] [112] [113] [114]) [115]
 \openout4 = `rapport.mtc'.
 
 \openout4 = `rapport.mtc'.
@@ -2137,7 +2119,17 @@ Overfull \hbox (113.811pt too wide) in paragraph at lines 295--295
 [][][]  
  []
 
-(./rapport.mtc6) [118] (./tex/chapitre6.tex [119] (./tex/sprint_backlog_4.tex
+(./rapport.mtc6
+Overfull \hbox (2.49605pt too wide) detected at line 7
+\T1/ptm/b/n/10.95 VI.III 
+ []
+
+
+Overfull \hbox (1.88304pt too wide) detected at line 10
+\T1/ptm/b/n/10.95 VI.IV 
+ []
+
+) [116] (./tex/chapitre6.tex [117] (./tex/sprint_backlog_4.tex
 Underfull \hbox (badness 10000) in paragraph at lines 30--30
 []|\T1/ptm/m/n/10.95 (+20) �diteur riche, men-tions @,
  []
@@ -2337,7 +2329,7 @@ Overfull \hbox (1.35783pt too wide) in paragraph at lines 146--146
  []|\T1/ptm/m/n/10.95 (-20) US106| 
  []
 
-[120] [121] [122] [123]) [124] [125] [126] [127])
+[118] [119] [120] [121]) [122] [123] [124] [125])
 Package minitoc Info: I0009
 (minitoc)             Listing minitoc auxiliary files. 
 (minitoc)             Creating the rapport.maf file.
@@ -2354,24 +2346,20 @@ Package minitoc(hints) Warning: W0024
 (minitoc(hints))                Some hints have been written 
 (minitoc(hints))                in the rapport.log file.
 
-[128] (./rapport.aux)
+[126] (./rapport.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `rapport.out' has not changed.
-(rerunfilecheck)             Checksum: CE4C5DADB93D34DE1610466557CB668D;42174.
+(rerunfilecheck)             Checksum: 5919E0502AC2004A8A97C315F1354092;44056.
  ) 
 Here is how much of TeX's memory you used:
- 32240 strings out of 476153
- 583767 string characters out of 5794326
+ 32216 strings out of 476153
+ 583413 string characters out of 5794326
  2169975 words of memory out of 5000000
- 52571 multiletter control sequences out of 15000+600000
- 649650 words of font info for 453 fonts, out of 8000000 for 9000
+ 52558 multiletter control sequences out of 15000+600000
+ 649352 words of font info for 447 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  88i,15n,117p,1004b,852s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></us
@@ -2381,10 +2369,10 @@ nts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw
 /times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on rapport.pdf (134 pages, 4952284 bytes).
+Output written on rapport.pdf (132 pages, 4950024 bytes).
 PDF statistics:
- 1932 PDF objects out of 2073 (max. 8388607)
+ 1930 PDF objects out of 2073 (max. 8388607)
  1662 compressed objects within 17 object streams
- 532 named destinations out of 1000 (max. 500000)
- 88544 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 531 named destinations out of 1000 (max. 500000)
+ 88552 words of extra memory for PDF output out of 89155 (max. 10000000)
 
