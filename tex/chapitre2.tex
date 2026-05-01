@@ -1,8 +1,7 @@
 ﻿
 \section*{Introduction}
 
-Ce chapitre présente l'analyse et la spécification des besoins de notre plateforme de gestion des contrats de maintenance \textbf{SolidMaint}. Nous commencerons par identifier les acteurs du système et spécifier leurs besoins fonctionnels et non fonctionnels, puis nous procéderons à la modélisation UML de ces besoins. Ensuite, nous détaillerons l'approche de pilotage du projet avec la méthodologie Scrum, incluant la planification des sprints et la présentation du Product Backlog. Enfin, nous présenterons l'environnement de développement choisi ainsi que l'architecture technique de l'application.
-
+Ce chapitre présente l'analyse et la spécification des besoins de notre plateforme \textbf{SolidMaint}. Nous identifierons les acteurs du système et leurs besoins fonctionnels et non fonctionnels, puis procéderons à la modélisation UML. Nous détaillerons ensuite l'approche de pilotage Scrum avec la planification des sprints, et présenterons l'environnement de développement ainsi que l'architecture technique de l'application.
 
 \section{Spécification des besoins}
 \label{sec:specification_besoins}
@@ -10,37 +9,62 @@ L'étape de spécification des besoins est importante pour prouver qu'un besoin 
 \newline Pour cela nous allons identifier les acteurs, leurs besoins fonctionnels et les besoins non fonctionnels.
 
 \subsection{Identification des acteurs}
-Un acteur représente une personne, une organisation ou un autre système qui interagit avec le système. Les acteurs définis dans notre projet sont les suivants :
-\newline
+Un acteur représente une personne, une organisation ou un autre système qui interagit avec le système. Notre projet identifie six acteurs principaux :
 
-\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=4pt, label=$\bullet$]
-    \item \textbf{Visiteur :} S'authentifie via un fournisseur OAuth (Google, GitHub), soumet une demande de création de compte à l'administrateur, puis attend la validation avant d'accéder à la plateforme.
-    
-    \item \textbf{Utilisateur :} Accède aux fonctionnalités communes telles que l’authentification sécurisée, la gestion du profil, la réception des notifications et la consultation de son historique d’activités.
-
-    \item \textbf{Client :} Soumet des demandes de maintenance, consulte l'état d'avancement de ses demandes et tickets, et communique avec l'équipe projet via la messagerie intégrée.
-
-    \item \textbf{Développeur :} Traite les tickets qui lui sont assignés, signale les blocages, met à jour le statut des tickets, ajoute des commentaires et consulte les documents techniques liés aux interventions.
-
-    \item \textbf{Chef de projet :} Traite les demandes de maintenance soumises par les clients et assigne les tickets aux développeurs, suit l'avancement des travaux et assure le respect des SLA.
-
-    \item \textbf{Administrateur :} Gère les utilisateurs, les rôles et les permissions, les clients, les projets ainsi que les contrats de maintenance. Il configure les paramètres système et supervise l'ensemble de la plateforme.
-    
-    
-    
-
-\end{itemize}
-
- \begin{figure}[H]
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.32\textwidth}
         \centering
-        \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/acteur.png}
-        \caption{Représentation des acteurs en UML}
-        \label{fig:acteurs}
-    \end{figure}
+        \includegraphics[width=1.5cm,keepaspectratio]{Images/acteur visiteur.png}\\
+        \vspace{0.2cm}
+        \textbf{Visiteur}\\
+        \footnotesize{Soumet une demande de création de compte et attend la validation}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \includegraphics[width=1.5cm,keepaspectratio]{Images/acteur user.png}
+        \textbf{Utilisateur}
+        \footnotesize{Accède aux fonctionnalités communes: authentification, gestion du profil, notifications et historique d’activités}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \includegraphics[width=1.5cm,keepaspectratio]{Images/acteur client.png}
+        \textbf{Client}
+        \footnotesize{Soumet des demandes de maintenance, consulte l'état d'avancement et communique avec l'équipe projet}
+    \end{minipage}
+    
+    \vspace{0.7cm}
+    
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \includegraphics[width=1.5cm,keepaspectratio]{Images/acteur dev.png}
+        \textbf{Développeur}
+        \footnotesize{Traite les tickets assignés, signale les blocages, met à jour les statuts et consulte la documentation technique}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \includegraphics[width=1.5cm,keepaspectratio]{Images/acteur chef.png}
+        \textbf{Chef de projet}
+        \footnotesize{Traite les demandes clients, assigne les tickets aux développeurs et assure le respect des SLA}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \includegraphics[width=1.5cm,keepaspectratio]{Images/acteur admin.png}
+        \textbf{Administrateur}
+        \footnotesize{Gère les utilisateurs, rôles, permissions, clients, projets et contrats. Configure et supervise le système}
+    \end{minipage}
+    
+    \caption{Les six acteurs du système SolidMaint et leurs responsabilités principales}
+    \label{fig:acteurs_grid}
+\end{figure}
+
 \subsection{Identification des besoins fonctionnels}
-Une définition précise des besoins fonctionnels permet d'établir un plan de projet solide. Il s'agit de spécifications qui détaillent les opérations que le service doit être capable d'exécuter.
-\newline
-Cette section présente les besoins fonctionnels de notre plateforme \textbf{SolidMaint} organisés par modules métier. Chaque module regroupe un ensemble cohérent de fonctionnalités permettant de répondre aux besoins spécifiques des différents acteurs du système.
+
+L'identification des besoins fonctionnels constitue une étape fondamentale dans la conception de \textbf{SolidMaint}. Ces spécifications définissent précisément les opérations que la plateforme doit être capable d'exécuter pour répondre aux exigences métier de SolidWall Consulting.
 
 \input{tex/etude_fonctionnalite}
 
@@ -51,41 +75,15 @@ Les critères que notre plateforme doit satisfaire sont :
 \begin{itemize}[label=$\blacktriangleright$]
 \item \textbf{Ergonomie :}
 
-L'ergonomie sera une priorité essentielle pour garantir une expérience utilisateur optimale. Nous développerons l'interface avec \textbf{shadcn/ui} et \textbf{Tailwind CSS}, assurant une cohérence visuelle et une utilisabilité maximale.
-\newline
-Nous intégrerons un système de thématisation dynamique permettant de basculer entre mode clair et mode sombre. Cette fonctionnalité réduira la fatigue oculaire lors d'utilisations prolongées et s'adaptera aux préférences individuelles des utilisateurs.
-\newline
-Nous implémenterons une architecture \textit{responsive} via les \textit{breakpoints} de \textbf{Tailwind CSS}, garantissant une adaptation automatique de l'interface aux différentes résolutions d'écran (ordinateur de bureau, tablette, mobile). Les composants seront conçus pour assurer une expérience fluide sur tous les supports.
-\newline
-Nous exploiterons les composants réactifs basés sur \textbf{React} pour permettre des mises à jour en temps réel sans rechargement de page. Les transitions et animations seront subtiles et fonctionnelles, guidant l'utilisateur de manière intuitive sans le distraire de ses tâches principales.
-\newline
-Par ailleurs, un système de retour d'information (\textit{feedback}) sera mis en place pour informer l'utilisateur du résultat de ses actions via des messages de confirmation (« Ticket créé avec succès ! », « Votre profil a été mis à jour. », « Votre message a bien été envoyé ! »), garantissant ainsi une communication claire de l'état du système.
+L'interface intégrera \textbf{shadcn/ui} et \textbf{Tailwind CSS} pour assurer une cohérence visuelle et une utilisabilité optimale. Un système de thématisation dynamique (mode clair/sombre) et une architecture responsive garantiront une adaptation automatique aux différentes résolutions d'écran. Les composants React permettront des mises à jour en temps réel sans rechargement, avec des transitions subtiles et un système de retour d'information clair pour guider l'utilisateur.
 
 \item \textbf{Sécurité :}
 
-La sécurité sera une priorité absolue pour notre application. Nous intégrerons des mesures robustes telles que le hachage des mots de passe avec \textbf{bcrypt} (facteur de coût 10) et l'utilisation de jetons d'accès JWT (\textit{JSON Web Token}) pour l'authentification.
-\newline
-Afin de garantir une authentification sécurisée, l'application prendra en charge la connexion via Google et GitHub grâce au protocole OAuth 2.0.
-\newline
-Par ailleurs, la génération d'un jeton de réinitialisation de mot de passe sera associée à une durée de validité de 24 heures et à un usage unique. Afin d'assurer un audit complet, notre application garantira la journalisation de toutes les actions avec les informations nécessaires pour identifier l'acteur ainsi que l'action réalisée.
-\newline
-Nous implémenterons des protections contre les attaques courantes : validation et échappement des entrées utilisateur contre les injections \textbf{XSS}, et requêtes paramétrées via \textbf{Prisma ORM} contre les injections SQL.
-\newline
-Lors de la création d'un contrat avec l'option de téléversement, chaque fichier téléversé sera vérifié à l'aide d'un \textit{hash} SHA-256, permettant de détecter les doublons et d'éviter les téléversements multiples d'un même contrat, garantissant ainsi l'unicité contractuelle.
-\newline
-Enfin, lors de la création d'un utilisateur, le système générera automatiquement un mot de passe temporaire sécurisé. Par conséquent, lors de sa première connexion, l'utilisateur sera contraint de le modifier afin de renforcer la sécurité de son compte.
+La sécurité intégrera des mesures robustes : hachage des mots de passe avec \textbf{bcrypt} (facteur 10), authentification JWT et OAuth 2.0 (Google, GitHub). Les protections incluront la validation contre les injections XSS, les requêtes paramétrées via \textbf{Prisma ORM} contre les injections SQL, et la vérification SHA-256 des fichiers téléversés. La journalisation complète des actions et la génération de mots de passe temporaires sécurisés renforceront la traçabilité et l'intégrité du système.
 
 \item \textbf{Performance :}
 
-Les performances de notre plateforme seront optimisées à plusieurs niveaux pour garantir des temps de réponse rapides et une expérience utilisateur fluide.
-\newline
-% À VÉRIFIER : L'architecture sera conçue pour supporter une charge de 1000 utilisateurs simultanés avec possibilité d'évolution horizontale via l'ajout de serveurs supplémentaires. Cette approche garantira la scalabilité de la plateforme en fonction de la croissance du nombre d'utilisateurs et du volume de données.
-% \newline
-L'architecture sera conçue avec une approche modulaire permettant une évolution horizontale via l'ajout de serveurs supplémentaires si nécessaire. Cette approche garantira la scalabilité de la plateforme en fonction de la croissance du nombre d'utilisateurs et du volume de données.
-\newline
-Au niveau de la base de données, nous implémenterons une stratégie d'indexation appropriée sur les colonnes fréquemment interrogées (identifiants, dates, statuts, clés étrangères). L'utilisation de \textbf{Prisma ORM} permettra de générer des requêtes SQL optimisées et d'exploiter les fonctionnalités avancées de PostgreSQL telles que les index composites et les index partiels pour les requêtes complexes.
-\newline
-Afin d'éviter les problèmes de requêtes N+1, les relations entre entités seront chargées de manière sélective via les mécanismes \textbf{select} et \textbf{include} de Prisma. Les requêtes complexes utiliseront le chargement anticipé (\textit{eager loading}) pour minimiser le nombre d'appels à la base de données.
+L'architecture modulaire permettra une évolution horizontale avec scalabilité selon la croissance des utilisateurs et du volume de données. L'optimisation de la base de données s'appuiera sur une stratégie d'indexation appropriée (identifiants, dates, statuts) et l'utilisation de \textbf{Prisma ORM} pour générer des requêtes SQL optimisées. Le chargement sélectif des relations via les mécanismes \textbf{select} et \textbf{include} évitera les problèmes de requêtes N+1, garantissant des temps de réponse rapides.
 
 % \item \textbf{Disponibilité :}
 % 
@@ -105,11 +103,7 @@ Afin d'éviter les problèmes de requêtes N+1, les relations entre entités ser
 
 \item \textbf{Maintenabilité :}
 
-La maintenabilité sera assurée par l'adoption de bonnes pratiques de développement et une architecture modulaire facilitant l'évolution du système. Le code source sera structuré selon les principes SOLID et les conventions de codage de chaque technologie (\textbf{Next.js}, \textbf{NestJS}), garantissant la lisibilité et la facilité de modification.
-\newline
-Nous implémenterons une documentation technique complète pour les API \textit{backend} générée automatiquement via \textbf{Swagger/OpenAPI}. Cette documentation sera maintenue à jour automatiquement lors de chaque modification du code, assurant sa cohérence avec l'implémentation.
-\newline
-Enfin, afin de garantir la qualité du code, nous viserons une couverture de tests minimale de 80\% : tests unitaires avec \textbf{Jest} pour les fonctions métier, tests d'intégration pour les API \textit{backend}, et tests end-to-end avec \textbf{Playwright} pour les parcours utilisateur critiques. Ces tests seront exécutés automatiquement avant chaque déploiement.
+L'architecture modulaire et l'adoption des principes SOLID avec les conventions \textbf{Next.js} et \textbf{NestJS} garantiront la lisibilité et la facilité de modification du code. La documentation technique sera générée automatiquement via \textbf{Swagger/OpenAPI} et maintenue à jour lors de chaque modification. Une couverture de tests minimale de 80\% sera assurée : tests unitaires avec \textbf{Jest}, tests d'intégration pour les API, et tests end-to-end avec \textbf{Playwright}, exécutés automatiquement avant chaque déploiement.
 \end{itemize}
 
 
@@ -173,7 +167,7 @@ Comme évoqué dans le premier chapitre, le Product Backlog constitue l'un des a
 
 Un sprint représente une période de développement durant laquelle l'équipe s'engage à livrer un ensemble cohérent de fonctionnalités opérationnelles. Cette approche itérative permet d'obtenir des retours réguliers et d'ajuster les priorités au fil de l'avancement.
 
-\noindent Notre projet est organisé en \textbf{4 sprints} de \textbf{3 à 4 semaines} chacun, couvrant une période totale de développement de \textbf{3,5 mois}. Chaque sprint commence par une réunion de planification (Sprint Planning) où l'équipe sélectionne les user stories du Product Backlog à réaliser, et se termine par une revue de sprint (Sprint Review) et une rétrospective (Sprint Retrospective).
+\noindent Notre projet est organisé en \textbf{4 sprints} de \textbf{3 à 4 semaines} chacun, couvrant une période totale de développement de \textbf{3,5 mois}. La stratégie de répartition suit une logique architecturale : fondations sécuritaires (Sprint 1), gestion contractuelle (Sprint 2), cœur métier opérationnel (Sprint 3), et fonctionnalités avancées (Sprint 4). Chaque sprint commence par une réunion de planification (Sprint Planning) où l'équipe sélectionne les user stories du Product Backlog à réaliser, et se termine par une revue de sprint (Sprint Review) et une rétrospective (Sprint Retrospective).
 
 La figure \ref{fig:planification_sprints} illustre le déroulement chronologique de nos sprints.
 
@@ -184,18 +178,19 @@ La figure \ref{fig:planification_sprints} illustre le déroulement chronologique
     \label{fig:planification_sprints}
 \end{figure}
 
-\subsubsection{Sprint 1 - Gestion des Utilisateurs et Authentification}
+\subsubsection{Sprint 1 - Gestion des Utilisateurs, Clients et Authentification}
 \textbf{Période :} du 17 février au 11 mars (\textbf{3 semaines})
 \newline
-\textbf{Objectif du sprint :} Mettre en place le système d'authentification sécurisé et la gestion complète des utilisateurs avec contrôle d'accès basé sur les rôles (RBAC).
+\textbf{Objectif du sprint :} Mettre en place le système d'authentification sécurisé, la gestion complète des utilisateurs et des clients avec contrôle d'accès basé sur les rôles (RBAC).
 
 \noindent
 \textbf{User Stories sélectionnées :}
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
     \item \textbf{Epic 1 - Authentification et Sécurité} : US01 à US05 (5 user stories)
     \item \textbf{Epic 2 - Gestion des utilisateurs} : US06 à US11 (6 user stories)
-    \item \textbf{Epic 3 - Gestion des rôles et permissions} : US12 à US15 (4 user stories)
-    \item \textbf{Epic 4 - Demandes d'inscription OAuth} : US16 à US17 (2 user stories)
+    \item \textbf{Epic 3 - Gestion des rôles et permissions} : US12 à US14 (3 user stories)
+    \item \textbf{Epic 4 - Demandes d'inscription OAuth} : US15 à US16 (2 user stories)
+    \item \textbf{Epic 5 - Gestion des clients} : US17 à US23 (7 user stories)
 \end{itemize}
 
 \noindent
@@ -204,26 +199,26 @@ La figure \ref{fig:planification_sprints} illustre le déroulement chronologique
     \item Système d'authentification fonctionnel avec support OAuth
     \item Module de gestion des utilisateurs opérationnel
     \item Système RBAC complet avec gestion des rôles et permissions
+    \item Module de gestion des clients avec profils société
 \end{itemize}
 
-\subsubsection{Sprint 2 - Gestion des Clients et Contrats}
+\subsubsection{Sprint 2 - Gestion des Projets et Contrats}
 \textbf{Période :} du 12 mars au 2 avril (\textbf{3 semaines})
 \newline
-\textbf{Objectif du sprint :} Développer la gestion complète des clients, projets et contrats de maintenance avec système d'alertes.
+\textbf{Objectif du sprint :} Développer la gestion complète des projets et contrats de maintenance avec système d'alertes.
 
 \noindent
 \textbf{User Stories sélectionnées :}
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-    \item \textbf{Epic 5 - Gestion des clients} : US18 à US24 (7 user stories)
-    \item \textbf{Epic 6 - Gestion des projets} : US25 à US28 (4 user stories)
-    \item \textbf{Epic 7 - Gestion des contrats} : US29 à US38 (10 user stories)
+    \item \textbf{Epic 6 - Gestion des projets} : US24 à US27 (4 user stories)
+    \item \textbf{Epic 7 - Gestion des contrats} : US28 à US37 (10 user stories)
     \item \textbf{Epic 14 - Historique et traçabilité} : US95 à US96 (2 user stories)
 \end{itemize}
 
 \noindent
 \textbf{Livrables attendus :}
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-    \item Module de gestion des clients et projets
+    \item Module de gestion des projets
     \item Système de gestion des contrats avec SLA et alertes
     \item Système d'audit et traçabilité complet
 \end{itemize}
@@ -236,9 +231,8 @@ La figure \ref{fig:planification_sprints} illustre le déroulement chronologique
 \noindent
 \textbf{User Stories sélectionnées :}
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-    \item \textbf{Epic 8 - Gestion des demandes} : US39 à US46 (8 user stories)
-    \item \textbf{Epic 9 - Gestion des tickets} : US47 à US66 (20 user stories)
-    \item \textbf{Epic 17 - Gestion des sous-tâches} : US106 à US110 (4 user stories)
+    \item \textbf{Epic 8 - Gestion des demandes} : US38 à US45 (8 user stories)
+    \item \textbf{Epic 9 - Gestion des tickets} : US46 à US65 (20 user stories)
     \item \textbf{Epic 13 - Dashboards} : US88 à US91 (4 user stories)
 \end{itemize}
 
@@ -259,9 +253,9 @@ La figure \ref{fig:planification_sprints} illustre le déroulement chronologique
 \noindent
 \textbf{User Stories sélectionnées :}
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-    \item \textbf{Epic 10 - Messagerie} : US67 à US75 (9 user stories)
-    \item \textbf{Epic 11 - Gestion des documents} : US76 à US83 (8 user stories)
-    \item \textbf{Epic 12 - Notifications} : US84 à US88 (5 user stories)
+    \item \textbf{Epic 10 - Messagerie} : US66 à US74 (9 user stories)
+    \item \textbf{Epic 11 - Gestion des documents} : US75 à US82 (8 user stories)
+    \item \textbf{Epic 12 - Notifications} : US83 à US87 (5 user stories)
     \item \textbf{Epic 13 - Rapports} : US92 à US94 (3 user stories)
     \item \textbf{Epic 15 - Versioning avancé} : US97 à US99 (3 user stories)
     \item \textbf{Epic 16 - Intelligence Artificielle} : US100 à US105 (6 user stories)
@@ -276,6 +270,9 @@ La figure \ref{fig:planification_sprints} illustre le déroulement chronologique
     \item Module de génération de rapports
     \item Moteur d'IA pour assistance intelligente
 \end{itemize}
+
+\noindent
+\textbf{Synthèse de la planification :} Cette répartition assure une progression logique où chaque sprint s'appuie sur les livrables précédents. Les dépendances techniques sont respectées (authentification avant tickets, contrats avant demandes), et la valeur métier croît progressivement jusqu'aux fonctionnalités différenciantes du sprint final.
 
 
 % SECTION IV : ENVIRONNEMENT DE DÉVELOPPEMENT
@@ -601,9 +598,12 @@ Nous avons choisi cette architecture afin de maintenir l’indépendance des mod
     \end{figure}
 
     \section{Conclusion}
-    Dans ce chapitre, nous avons décrit les acteurs du projet et élaboré le backlog du produit.                     Après avoir identifié les besoins fonctionnels et non fonctionnels ainsi que présenté les environnements matériels et logiciels utilisés et les outils de développement adoptés.                                  
-    \newline Au cours du prochain chapitre, nous allons entamer le premier sprint, gestion des utilisateurs.
+    Ce chapitre a établi les fondements techniques et méthodologiques de notre projet \textbf{SolidMaint}. L'identification des acteurs et la spécification des besoins fonctionnels et non fonctionnels ont permis de définir précisément les exigences de la plateforme. La modélisation UML et l'approche de pilotage Scrum avec la planification en quatre sprints structurent la démarche de développement.
+    L'environnement de développement choisi et l'architecture modulaire garantissent une solution robuste et évolutive. Ces éléments constituent la base solide pour aborder la phase de réalisation.
+    \newline Le chapitre suivant détaillera l'implémentation du premier sprint consacré à la gestion des utilisateurs et authentification.
+
 \newpage
+\section*{Références}
 
 \begin{itemize}
  \item \textbf{NestJS}, Documentation officielle - \url{https://docs.nestjs.com} % |6|

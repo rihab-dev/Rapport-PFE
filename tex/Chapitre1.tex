@@ -1,10 +1,6 @@
 ﻿
 \section*{Introduction}
-Cette mission a été réalisée dans le cadre de l’élaboration du projet de fin d’études, à l’Institut Supérieur des Études Technologiques de Radès (ISET Radès).
-
-Durant le processus de réalisation de notre projet, l’étude de projet est une étape essentielle et obligatoire puisqu'elle assure le bon déroulement. L'étude de projet doit passer par une phase importante pour analyser l'existant afin de critiquer et d'extraire les besoins qui seront notre référence pour la fixation des objectifs du projet. Dans ce chapitre, nous allons présenter le cadre de projet, l’entreprise d’accueil, l’étude de l’existant et la solution proposée ainsi que les outils de développement et les méthodologies de conception.
-
-
+Ce chapitre pose les fondations du projet en présentant le contexte organisationnel et technique de sa réalisation. Après la présentation de \textbf{SolidWall Consulting}, entreprise d'accueil du stage, nous analysons les processus actuels de gestion de maintenance et leurs limitations. L'étude comparative des solutions du marché permet d'identifier les axes d'amélioration et de définir les contours de \textbf{SolidMaint}. Enfin, nous exposons la méthodologie Scrum, le langage UML et la planification prévisionnelle du développement.
 
 \section{Présentation de l’organisme d’accueil} 
 «Solid Wall Consulting est une société de services informatiques, spécialisée dans le développement web, le développement mobile et l'intégration de solutions et d'infrastructures systèmes « Microsoft ». 
@@ -16,7 +12,7 @@ Forte d'une équipe dynamique et diversifiée et de profils reconnus, l’entrep
         \caption{Logo SolidWall Consulting}
         \label{fig:Logo SolidWall Consulting}
 \end{figure}
-\newpage
+
 \subsection{ Services de SolidWall Consulting}
 \textbf{SolidWall Consulting} propose des services conseil pour accompagner ses clients dans la réalisation de leurs projets et assure la qualité de ses prestations ainsi que le développement de solutions numériques. 
 
@@ -40,9 +36,7 @@ Pour mieux comprendre les besoins, nous allons étudier les solutions existantes
 
 
 \subsubsection{Étude de l'existant}
-L’étude de l’existant est une étape cruciale avant de commencer notre projet, car elle vise à mieux comprendre l’environnement et à analyser ses limites, afin de proposer des solutions adaptées aux exigences de l’entreprise.
-
-Il est nécessaire de clarifier la situation actuelle et de souligner ses limites afin de définir des solutions appropriées.
+L'étude de l'existant constitue une étape fondamentale de notre démarche projet. Elle permet d'identifier les processus actuels, d'analyser leurs limitations et de définir les axes d'amélioration nécessaires pour concevoir une solution parfaitement adaptée aux besoins de SolidWall Consulting.
 \newline
 \begin{enumerate}[label=\textcolor{bleuPerso}{\alph*)}, labelsep=0.5em]
             \item   \textcolor{bleuPerso} {Étude de l'existant au niveau de l'entreprise}~\newline
@@ -138,34 +132,23 @@ SolidMaint se fait par échange de courriels. Cette approche présente certaines
     
     \end{itemize}
 
-   \newpage
  \noindent{\textbf{\textcolor{bleuPerso}{Limitations des solutions existantes }}}
-\begin{itemize}[label=\ding{109}]
-    \item \textbf{Complexité d'utilisation et courbe d'apprentissage :}  
-    \begin{itemize}[nosep, leftmargin=1.2cm, topsep=0pt, itemsep=1pt, label={--}]
-        \item GLPI nécessite une formation de \textbf{2 à 3 jours} pour les administrateurs et présente une interface peu intuitive pour les utilisateurs finaux.
-        \item Jira Service Management requiert une connaissance de l'écosystème Atlassian pour une utilisation optimale.
-    \end{itemize}
-    
-     \item \textbf{Coût des licences et investissement financier :}  
-     \begin{itemize}[nosep, leftmargin=1.2cm, topsep=0pt, itemsep=1pt, label={--}]
-        \item Helpdesk : à partir de \textbf{24€ par utilisateur et par mois}
-        \item Jira Service Management : à partir de \textbf{20€ par agent et par mois}
-        \item Freshdesk : à partir de \textbf{15€ par agent et par mois} (version gratuite très limitée)
-        \item GLPI : Gratuit (version communautaire) mais version entreprise avec support à partir de \textbf{1500€ par an}
-    \end{itemize}
-    Pour une équipe de 10 utilisateurs, le coût annuel peut varier de \textbf{1500€} à \textbf{12000€} , sans compter les coûts de formation et de personnalisation.
-    
-    \item \textbf{Dépendance aux extensions et problèmes d'intégration :} 
-    \begin{itemize}[nosep, leftmargin=1.2cm, topsep=0pt, itemsep=1pt, label={--}]
-        \item De nombreuses fonctionnalités avancées nécessitent des extensions payantes supplémentaires.
-        \item Les mises à jour peuvent engendrer des problèmes de compatibilité avec les extensions tierces.
-        \item L'intégration avec des systèmes existants nécessite souvent des développements spécifiques coûteux.
-    \end{itemize}
-\end{itemize}
+
+\noindent\textbf{Complexité d'utilisation et courbe d'apprentissage}
+
+Les solutions existantes présentent une complexité d'usage importante. GLPI nécessite une formation de 2 à 3 jours pour les administrateurs avec une interface peu intuitive. Jira Service Management requiert une connaissance approfondie de l'écosystème Atlassian, créant une dépendance technique majeure.
+
+\noindent\textbf{Coût des licences et investissement financier}
+
+L'investissement financier représente un obstacle majeur. Les tarifs s'échelonnent de 15€/agent/mois pour Freshdesk à 24€/utilisateur/mois pour Helpdesk, tandis que Jira Service Management coûte 20€/agent/mois. GLPI, bien que gratuit en version communautaire, nécessite 1500€/an minimum pour le support entreprise. Pour une équipe de 10 utilisateurs, le coût annuel varie de 1500€ à 12000€.
+
+\noindent\textbf{Dépendance aux extensions et problèmes d'intégration}
+
+Les solutions du marché souffrent d'une architecture modulaire générant des coûts cachés. De nombreuses fonctionnalités avancées nécessitent des extensions payantes supplémentaires. Les mises à jour engendrent des problèmes de compatibilité, et l'intégration avec des systèmes existants nécessite souvent des développements spécifiques onéreux.
+
 \subsubsection{Analyse comparative des solutions}
 
-Le tableau suivant présente une analyse comparative détaillée des principales solutions existantes étudiées :
+Ces limitations se reflètent clairement dans l'analyse comparative des principales solutions du marché. Le tableau suivant synthétise les forces et faiblesses de chaque solution selon des critères fonctionnels, techniques et financiers :
 
 \begin{table}[H]
     \centering
@@ -190,8 +173,6 @@ Le tableau suivant présente une analyse comparative détaillée des principales
     \hline
     Coût (10 users/an) & 1500€  & 2000€ & 1800€ \\
     \hline
-    Open-source & \checkmark  & $\times$ & $\times$  \\
-    \hline
     \end{tabularx}
     \caption{Tableau comparatif des solutions de gestion de maintenance existantes}
     \label{tab:comparaison_solutions}
@@ -201,26 +182,29 @@ Le tableau suivant présente une analyse comparative détaillée des principales
 
 \subsubsection{Solution proposée}
 
-Dans le contexte des défis exposés, nous proposons la mise en place de \textbf{SolidMaint}, une solution web pour optimiser et accélérer le processus de gestion des contrats de maintenance. \textbf{SolidMaint} favorisera une traçabilité complète des tâches réalisées tout en offrant une représentation claire des données. 
-Notre application \textbf{SolidMaint} comprendra quatre modules principaux :
+Dans le contexte des défis exposés, nous proposons la mise en place de \textbf{SolidMaint}, une solution web intégrée pour optimiser et accélérer le processus de gestion des contrats de maintenance. 
 \newline
 
-Le premier module, dédié à l'\textbf{Authentification et Gestion des Utilisateurs}, constituera le socle sécuritaire de la plateforme. Il permettra aux responsables de superviser et de gérer de manière précise les profils des utilisateurs avec un système d'authentification robuste incluant la connexion classique et l'authentification via des fournisseurs externes. Le module intégrera un système de contrôle d'accès basé sur les rôles permettant d'attribuer des permissions selon les responsabilités de chaque utilisateur. De plus, il offrira la possibilité de gérer les rôles, les permissions et les demandes d'accès. Chaque utilisateur connecté pourra consulter et modifier son propre profil, ainsi que visualiser l'historique de ses activités dans le système.
-\newline
+\textbf{SolidMaint} s'articule autour de quatre modules fonctionnels complémentaires :
 
-Par ailleurs, le deuxième module, centré sur la \textbf{Gestion des Clients, Projets et Contrats}, englobera trois composantes essentielles. Premièrement, la \textbf{Gestion des Clients} permettra de centraliser les informations des entreprises clientes et de maintenir un annuaire complet avec la possibilité d'ajouter des notes internes et de gérer le statut des comptes. Deuxièmement, la \textbf{Gestion des Projets} permettra d'organiser les interventions par client, d'affecter les équipes de développement et de suivre l'avancement des travaux. Troisièmement, la \textbf{Gestion des Contrats de Maintenance} formalisera les engagements contractuels liant SolidWall Consulting à ses clients, avec la configuration des accords de niveau de service définissant les délais de réponse et de résolution par priorité. Ce module comportera également un système de traçabilité complet pour assurer l'enregistrement de toutes les actions avec possibilité d'export pour conformité réglementaire.
-\newline
+\noindent\textbf{Module 1 : Authentification, Gestion des Utilisateurs et Clients}
 
-En outre, le troisième module, centré sur la \textbf{Gestion des Demandes et des Tickets}, constituera le cœur métier de la plateforme. L'objectif principal sera de structurer le cycle de vie complet d'une demande client de maintenance depuis sa soumission jusqu'à sa clôture en passant par la validation. Les clients pourront soumettre des demandes avec pièces jointes, les chefs de projet pourront valider, requalifier ou compléter une demande par des informations supplémentaires. Dès qu'une demande sera validée, \textbf{SolidMaint} générera automatiquement un ticket lié. Les responsables pourront alors affecter les tickets aux développeurs via une interface visuelle intuitive. Le module proposera un système de suivi du temps passé, la gestion des blocages, les demandes d'extension de délai, ainsi que la possibilité de décomposer les tickets complexes en sous-tâches. Des tableaux de bord personnalisés par rôle permettront de piloter l'activité et de suivre les indicateurs de performance.
-\newline
+Ce module constitue le socle sécuritaire de la plateforme avec un système d'authentification robuste et un contrôle d'accès basé sur les rôles (RBAC). Il assure la gestion des profils utilisateurs, des clients et l'historique des activités pour garantir la traçabilité.
 
-Enfin, le quatrième module, consacré à la \textbf{Collaboration, Documentation et Intelligence Artificielle}, regroupera les fonctionnalités avancées de la plateforme. Il comprendra une messagerie intégrée permettant la communication en temps réel entre l'équipe et les clients, avec support des fils de discussion, des mentions d'utilisateurs et des indicateurs de présence. Le module inclura également un système complet de gestion documentaire avec versioning automatique, détection de doublons, et génération automatique de procès-verbaux professionnels. 
+\noindent\textbf{Module 2 : Gestion des Projets et Contrats}
 
-Un système de notifications multicanaux assurera que les utilisateurs reçoivent les alertes importantes, notamment pour les échéances et l'expiration des contrats avec des alertes préventives à \textbf{30, 15 et 7 jours} avant expiration. De surcroît, le module intégrera des fonctionnalités d'intelligence artificielle pour suggérer automatiquement les catégories de demandes, détecter les doublons, recommander des solutions basées sur l'historique et proposer des priorités optimales. Enfin, des rapports d'activité et de conformité pourront être générés pour le pilotage et la justification des performances auprès des clients.
-\newline
+Ce module centralise la gestion des projets et des contrats de maintenance par client. Il garantit la traçabilité complète et optimise le respect des engagements contractuels grâce aux alertes préventives.
 
-En somme, \textbf{SolidMaint} se positionne comme une solution robuste et intégrée qui répond aux limitations identifiées dans les processus actuels et les solutions existantes. En combinant sécurité, traçabilité, collaboration et intelligence artificielle, la plateforme permettra à SolidWall Consulting d'optimiser la gestion de ses contrats de maintenance, d'améliorer la satisfaction client et de garantir le respect des engagements contractuels. Cette solution modulaire et évolutive accompagnera la croissance de l'entreprise tout en assurant une gestion efficace et transparente des services de maintenance.
-\newpage
+\noindent\textbf{Module 3 : Gestion des Demandes et Tickets}
+
+Cœur métier de la plateforme, ce module structure le cycle complet des demandes clients depuis leur soumission jusqu'à leur clôture. Il génère automatiquement des tickets, permet leur affectation aux développeurs et assure le suivi du temps passé.
+
+\noindent\textbf{Module 4 : Collaboration et Intelligence Artificielle}
+
+Ce module regroupe les fonctionnalités avancées : messagerie temps réel, gestion documentaire et notifications multicanaux. Les fonctionnalités d'IA assurent la catégorisation automatique, la priorisation intelligente et la recommandation de solutions basées sur l'historique.
+
+\textbf{SolidMaint} apportera une réponse concrète aux défis identifiés en matière de gestion des contrats, d'interventions et de communication client. Grâce à l'intégration de l'intelligence artificielle et d'une interface intuitive, cette plateforme centralisera tous les processus de maintenance dans un environnement unifié.
+
 \section{Méthodologie adaptée}
 \label{sec:methodologie}
 Le choix méthodologique est déterminant pour la réussite d'un projet de développement. Une méthodologie appropriée structure le travail, optimise la gestion des ressources et garantit la qualité du livrable dans le respect des délais impartis.\newline
@@ -371,8 +355,10 @@ Scrum Master et d’une équipe de développement :
         \caption{Diagramme de Gantt}
     \end{figure}
     \section*{Conclusion}
-    Nous avons débuté notre rapport par ce chapitre, dans lequel nous avons présenté le cadre du projet ainsi que la structure d’accueil SolidMaint, et décrit le contexte du projet. Enfin, nous avons défini le choix de la méthodologie de gestion de projet ainsi que le langage de modélisation adopté.
-    \newline Pour la suite, nous abordons le chapitre intitulé « Préparation du projet ».
+    Ce chapitre a établi le cadre général de notre projet \textbf{SolidMaint} en présentant l'organisme d'accueil SolidWall Consulting et en analysant les enjeux de la gestion des contrats de maintenance. L'étude critique de l'existant a révélé des limitations significatives dans les processus actuels, tandis que l'analyse comparative des solutions du marché a confirmé la pertinence de développer une solution sur mesure.
+    La solution \textbf{SolidMaint} proposée répond à ces défis par une approche intégrée centralisant l'ensemble du cycle de vie des contrats. L'adoption de la méthodologie Scrum et la planification en quatre sprints garantissent une approche itérative et collaborative pour la réalisation du projet.
+    \newline Le chapitre suivant détaillera la spécification des besoins et la modélisation de la solution.
+
 \newpage
 \section*{Références}
 
