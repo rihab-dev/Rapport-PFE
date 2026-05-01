@@ -17,7 +17,7 @@ Forte d'une équipe dynamique et diversifiée et de profils reconnus, l’entrep
         \label{fig:Logo SolidWall Consulting}
 \end{figure}
 \newpage
-\subsection{ Services de l’organisme}
+\subsection{ Services de SolidWall Consulting}
 \textbf{SolidWall Consulting} propose des services conseil pour accompagner ses clients dans la réalisation de leurs projets et assure la qualité de ses prestations ainsi que le développement de solutions numériques. 
 
 L' approche agile de \textbf{SolidWall Consulting} garantit une gestion optimisée et par conséquent, d'un résultat de qualité.
@@ -29,8 +29,10 @@ Pour mettre en valeur la répartition des responsabilités et des fonctions au s
 \section{Cadre du projet}
 \label{sec:cadre_projet}
 \subsection{Contexte du projet}
-Dans le cadre de notre projet de fin d’études à l’\textbf{Institut Supérieur des Études Technologiques de Radès}, nous avons effectué un stage du \textbf{02/02/2026} au \textbf{31/05/2026}.
-\newline Notre objectif, au sein de \textbf{SolidWall Consulting}, est de concevoir \textbf{« SolidMaint : une application web de gestion des contrats de maintenance »}. Cette application constitue une solution complète permettant non seulement la centralisation des contrats, mais également la garantie de la qualité de service, à travers un suivi rigoureux des interventions techniques et le respect des engagements contractuels.
+Dans le cadre de notre projet de fin d’études à l’\textbf{Institut Supérieur des Études Technologiques de Radès}, nous avons effectué un stage de quatre mois au sein de \textbf{SolidWall Consulting}, du 02 février au 31 mai 2026.
+Notre mission consiste à concevoir et à réaliser \textbf{« SolidMaint : une application web de gestion des contrats de maintenance »}.
+\newline
+Cette solution vise à automatiser et à centraliser l’ensemble du processus métier, garantissant ainsi une traçabilité complète des interventions techniques ainsi que le respect rigoureux des engagements contractuels.
 
 % === CHAPITRE 1 : ANALYSE DE L'EXISTANT ===
 \subsection{Analyse de l'existant}
@@ -46,11 +48,13 @@ Il est nécessaire de clarifier la situation actuelle et de souligner ses limite
             \item   \textcolor{bleuPerso} {Étude de l'existant au niveau de l'entreprise}~\newline
             \noindent
             --\hspace{0.5cm} \textbf{Processus de gestion des contrats de maintenance :}
-            L'entreprise utilise actuellement des documents Word  pour stocker et suivre les informations relatives aux contrats. Ces documents permettent aux responsables de créer des contrats qui formalisent la relation entre l'entreprise et ses clients et qui définissent les engagements de chaque partie concernant les services de maintenance. 
+            \newline
+            L'entreprise utilise actuellement des documents Word  pour stocker et suivre les informations relatives aux contrats. Ces documents permettent aux responsables de formaliser la relation contractuelle avec les clients et de définir les engagements de chaque partie concernant les services de maintenance. 
 
             \noindent
             --\hspace{0.5cm} \textbf{Processus de gestion des demandes clients :}
-            Le processus des demandes de maintenance repose actuellement sur des échanges par e-mail, WhatsApp, messagerie instantanée ou appels téléphoniques. Le client souhaitant signaler un problème est contraint de rédiger un message sans recourir à un formulaire structuré, ce qui engendre une perte fréquente d’informations.
+            \newline
+            Le processus des demandes de maintenance repose actuellement sur des échanges non structurés via WhatsApp, des messageries instantanées ou des appels téléphoniques. Lorsque le client souhaite signaler un problème, il est obligé de rédiger un message sans recourir à un formulaire structuré.
 \begin{figure}[H]
     \centering
     
@@ -73,47 +77,29 @@ Il est nécessaire de clarifier la situation actuelle et de souligner ses limite
 \end{figure}
             \noindent
             --\hspace{0.5cm} \textbf{Processus de suivi des tickets de maintenance :}
-            L'utilisation des fils de discussion dans des messageries (email) avec l'augmentation du nombre de clients, l'organisation atteint rapidement ses limites, l'affectation des tickets aux développeurs est réalisée manuellement par le responsable souvent via un message direct sans traçabilité.
-
-            \noindent
-            --\hspace{0.5cm} \textbf{Processus de la gestion des projets et des équipes :}
-            La gestion des projets, qui inclut l'affectation des équipes et le suivi des relations avec les clients, repose sur  des échanges d'e-mails pour les mises à jour de statut. Cette dispersion des informations entre plusieurs outils rend difficile pour les responsables d'avoir une vue d'ensemble en temps réel sur l'état des projets.
-
-            \noindent
+            \newline
+Le suivi des interventions repose sur des fils de discussion par e-mail qui deviennent rapidement ingérables avec l'augmentation du nombre de clients. L'affectation des tickets aux développeurs s'effectue manuellement par le responsable, généralement via un message direct, sans aucune traçabilité des décisions prises.            \noindent
             --\hspace{0.5cm} \textbf{Processus de traçabilité des actions et des documents :}
-            Les documents contractuels sont stockés de manière non structurée, soit dans des répertoires locaux, soit sur des espaces de stockage cloud, sans convention de nommage ni gestion des versions.   De plus, aucun historique des modifications n'est conservé. 
+Les documents contractuels sont stockés de manière non structurée dans des répertoires locaux ou sur des espaces de stockage cloud, sans convention de nommage ni gestion des versions. Aucun historique des modifications n'est conservé, ce qui compromet la traçabilité des évolutions contractuelles.
             \newline
 
     \item  \textcolor{bleuPerso} {Étude de l'existant à l'échelle internationale}~\newline
             Avant de concevoir notre propre solution, nous allons étudier les solutions disponibles sur le marché afin d'analyser les fonctionnalités proposées. Cette démarche permet d'identifier les bonnes pratiques et d'orienter efficacement le développement de notre système.\newline
             Dans ce cadre, nous avons étudié plusieurs solutions existantes couvrant différents segments du marché : solutions open-source, solutions SaaS et solutions enterprise.
-            \newpage
-            \textbf{\underline{Solutions Open-Source}}
-            \newline
-            Les solutions open-source offrent l'avantage d'être gratuites en version communautaire et permettent une personnalisation complète du code source. Cependant, elles nécessitent souvent des compétences techniques avancées pour leur déploiement et leur maintenance. Parmi les solutions open-source les plus représentatives, nous avons étudié \textbf{GLPI} .
             \newline
                     --\hspace{0.5cm}  \textbf{GLPI (Gestion Libre de Parc Informatique) }\par\medskip
-                        Cette solution de gestion des services informatiques a été développée en 2003 et est maintenue par la société française Teclib. Principalement utilisée par les équipes internes d'une organisation, selon sa configuration, elle permet de recevoir des demandes externes.
-                        Elle assure un système de gestion de tickets qui structure les demandes des utilisateurs. De plus, elle prend en charge différents canaux de communication, garantissant ainsi la centralisation des échanges. La version communautaire est gratuite, mais nécessite une formation de \textbf{2 à 3 jours} pour les administrateurs. La version entreprise avec support professionnel coûte à partir de \textbf{1500€ par an}.
-                        \begin{figure}[H]
+Cette solution de gestion des services informatiques, développée en 2003 et maintenue par la société française Teclib, est open source, ce qui signifie que son code est librement accessible et peut être modifié et adapté selon les besoins des utilisateurs. Principalement utilisée par les équipes internes d’une organisation, elle peut également, selon sa configuration, recevoir des demandes externes. Elle assure un système de gestion de tickets structurant les demandes des utilisateurs. De plus, elle prend en charge différents canaux de communication, garantissant ainsi la centralisation des échanges. La version communautaire est gratuite, mais nécessite une formation de 2 à 3 jours pour les administrateurs. La version entreprise, avec support professionnel, coûte à partir de \textbf{1500€} par an.                      
+                       \begin{figure}[H]
                             \centering
                             \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/GLPI.png}
                             \caption{Interface de GLPI }
                             \label{fig:GLPI}
                         \end{figure}
             \noindent
-            
-                        
-            Après l’étude de la solution open-source, nous nous intéressons maintenant à la solution SaaS, qui représente une alternative aux solutions précédentes.
             \newline
-
-            \textbf{\underline{Solution SaaS (Software as a Service)}}
-            \newline
-
-            La solution SaaS est hébergée dans le cloud et accessible via un navigateur web. Elle se caractérise par sa facilité  de déploiement, sa maintenance assurée par le fournisseur et un modèle de tarification par abonnement mensuel ou annuel. Dans cette catégorie, nous avons analysé \textbf{Freshdesk} .
 
                     --\hspace{0.5cm}  \textbf{Freshdesk}\par\medskip
-                        Cette solution cloud de service desk a été développée en 2011 et est maintenue par la société indienne Freshworks. Elle propose une interface intuitive pour la gestion des tickets avec support multicanal (courriel, chat, téléphone, réseaux sociaux). La solution propose des fonctionnalités d'automatisation avancées et d'intelligence artificielle (IA) pour la catégorisation automatique des tickets. Elle propose un plan gratuit limité, et ses plans payants démarrent à partir de \textbf{15€ par agent et par mois}.
+                            Cette solution cloud de service desk, développée en 2011 et maintenue par la société indienne Freshworks, est une solution SaaS, ce qui signifie qu’elle est hébergée dans le cloud et accessible via un navigateur web. Elle se caractérise par sa facilité de déploiement et par une maintenance entièrement assurée par le fournisseur. Elle propose une interface intuitive pour la gestion des tickets avec un support multicanal (courriel, chat, téléphone, réseaux sociaux). De plus, elle intègre des fonctionnalités d’automatisation avancées ainsi que de l’intelligence artificielle (IA) pour la catégorisation automatique des tickets. Elle propose un plan gratuit limité, tandis que ses offres payantes démarrent à partir de \textbf{15€} par agent et par mois.
                         \begin{figure}[H]
                             \centering
                             \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/FreshDesk.png}
@@ -121,15 +107,10 @@ Il est nécessaire de clarifier la situation actuelle et de souligner ses limite
                             \label{fig:freshdesk}
                         \end{figure}
             \noindent
-            
-            \textbf{\underline{Solutions Enterprise}}
-            \newline
-
-            La solution enterprise est conçue pour les grandes organisations et propose des fonctionnalités avancées de gestion des services IT. Elle se distingue par sa robustesse, son évolutivité et sa conformité aux normes ITIL, mais implique des coûts d'acquisition et de maintenance élevés. Nous avons examiné une solution majeure de cette catégorie : \textbf{Jira Service Management}.
             \newline
 
                     --\hspace{0.5cm}  \textbf{Jira Service Management (Atlassian)}\par\medskip
-                        Cette solution est développée en 2002 et est maintenue par Atlassian, une entreprise australienne leader mondial dans les outils de gestion de projet. Elle propose une intégration parfaite avec l'écosystème Atlassian (Jira Software, Confluence). La solution assure des fonctionnalités avancées de gestion des incidents, des changements et des actifs. Elle intègre des capacités d'IA pour l'automatisation et la prédiction. Les tarifs démarrent à partir de \textbf{20 € par agent et par mois}, mais peuvent rapidement augmenter avec les fonctionnalités avancées.
+Cette solution, développée en 2002 et maintenue par Atlassian, une entreprise australienne leader mondial dans les outils de gestion de projet, est une solution enterprise, ce qui signifie qu’elle est conçue pour les grandes organisations. Elle propose une intégration complète avec l’écosystème Atlassian (Jira Software, Confluence). Elle assure des fonctionnalités avancées de gestion des incidents, des changements et des actifs. De plus, elle intègre des capacités d’intelligence artificielle permettant l’automatisation et la prédiction. Les tarifs démarrent à partir de 20 € par agent et par mois, mais peuvent rapidement augmenter selon les fonctionnalités avancées.
                         \begin{figure}[H]
                             \centering
                             \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/appJira.png}
