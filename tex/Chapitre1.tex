@@ -55,22 +55,16 @@ Il est nécessaire de clarifier la situation actuelle et de souligner ses limite
             --\hspace{0.5cm} \textbf{Processus de gestion des demandes clients :}
             \newline
             Le processus des demandes de maintenance repose actuellement sur des échanges non structurés via WhatsApp, des messageries instantanées ou des appels téléphoniques. Lorsque le client souhaite signaler un problème, il est obligé de rédiger un message sans recourir à un formulaire structuré.
-\begin{figure}[H]
-    \centering
+           \newline Afin de mieux illustrer ce mode de fonctionnement, la figure ci-dessous présente un exemple de traitement des demandes clients dans le système actuel.
+            \begin{figure}[H]
+   
     
-    \begin{subfigure}{0.45\textwidth}
+    
         \centering
         \includegraphics[width=\linewidth, height=0.25\textheight, keepaspectratio]{Images/demande de maintenance.png}
-        \caption{Capture d'une demande de maintenance}
+        \caption{demande de maintenance effectuée via l’application WhatsApp}
         \label{subfig:capture}
-    \end{subfigure}
     \hfill
-    \begin{subfigure}{0.45\textwidth}
-        \centering
-        \includegraphics[width=\linewidth, height=0.25\textheight, keepaspectratio]{Images/demande de maintenance sous format excel.png}
-        \caption{Demande de maintenance sous format Excel}
-        \label{subfig:excel}
-    \end{subfigure}
     
     \caption{Exemples de demandes de maintenance}
     \label{fig:demandes_maintenance}
@@ -78,7 +72,15 @@ Il est nécessaire de clarifier la situation actuelle et de souligner ses limite
             \noindent
             --\hspace{0.5cm} \textbf{Processus de suivi des tickets de maintenance :}
             \newline
-Le suivi des interventions repose sur des fils de discussion par e-mail qui deviennent rapidement ingérables avec l'augmentation du nombre de clients. L'affectation des tickets aux développeurs s'effectue manuellement par le responsable, généralement via un message direct, sans aucune traçabilité des décisions prises.            \noindent
+Le suivi des interventions repose sur des fils de discussion par e-mail qui deviennent rapidement ingérables avec l’augmentation du nombre de clients. L’affectation des tickets aux développeurs s’effectue manuellement par le responsable, généralement via un message direct, sans aucune traçabilité des décisions prises.
+\newline Afin d’illustrer plus concrètement ce processus de gestion, un exemple de suivi des tickets de maintenance réalisé sous forme du fichier Excel est présenté ci-dessous.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth, height=0.65\textheight, keepaspectratio]{Images/demande de maintenance sous format excel.png}
+    \caption{Exemple de suivi des interventions à l’aide d’un fichier Excel}
+    \label{subfig:excel}
+\end{figure}
             --\hspace{0.5cm} \textbf{Processus de traçabilité des actions et des documents :}
 Les documents contractuels sont stockés de manière non structurée dans des répertoires locaux ou sur des espaces de stockage cloud, sans convention de nommage ni gestion des versions. Aucun historique des modifications n'est conservé, ce qui compromet la traçabilité des évolutions contractuelles.
             \newline
@@ -97,20 +99,21 @@ Cette solution de gestion des services informatiques, développée en 2003 et ma
                         \end{figure}
             \noindent
             \newline
-
                     --\hspace{0.5cm}  \textbf{Freshdesk}\par\medskip
-                            Cette solution cloud de service desk, développée en 2011 et maintenue par la société indienne Freshworks, est une solution SaaS, ce qui signifie qu’elle est hébergée dans le cloud et accessible via un navigateur web. Elle se caractérise par sa facilité de déploiement et par une maintenance entièrement assurée par le fournisseur. Elle propose une interface intuitive pour la gestion des tickets avec un support multicanal (courriel, chat, téléphone, réseaux sociaux). De plus, elle intègre des fonctionnalités d’automatisation avancées ainsi que de l’intelligence artificielle (IA) pour la catégorisation automatique des tickets. Elle propose un plan gratuit limité, tandis que ses offres payantes démarrent à partir de \textbf{15€} par agent et par mois.
-                        \begin{figure}[H]
-                            \centering
+            Cette solution cloud de service desk, développée en 2011 par la société indienne Freshworks, est une solution SaaS hébergée dans le cloud et accessible via navigateur web. \textbf{Freshdesk} se caractérise par sa facilité de déploiement et une maintenance entièrement assurée par le fournisseur.
+
+            Elle propose une interface intuitive pour la gestion des tickets avec support multicanal (courriel, chat, téléphone, réseaux sociaux). \textbf{Freshdesk} intègre des fonctionnalités d'automatisation avancées et d'intelligence artificielle pour la catégorisation automatique des tickets.
+
+            La solution propose un plan gratuit limité, tandis que les offres payantes démarrent à partir de \textbf{15€ par agent et par mois}                        \begin{figure}[H]
+                                        \centering
                             \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/FreshDesk.png}
                             \caption{Interface de Freshdesk}
                             \label{fig:freshdesk}
                         \end{figure}
             \noindent
             \newline
-
                     --\hspace{0.5cm}  \textbf{Jira Service Management (Atlassian)}\par\medskip
-Cette solution, développée en 2002 et maintenue par Atlassian, une entreprise australienne leader mondial dans les outils de gestion de projet, est une solution enterprise, ce qui signifie qu’elle est conçue pour les grandes organisations. Elle propose une intégration complète avec l’écosystème Atlassian (Jira Software, Confluence). Elle assure des fonctionnalités avancées de gestion des incidents, des changements et des actifs. De plus, elle intègre des capacités d’intelligence artificielle permettant l’automatisation et la prédiction. Les tarifs démarrent à partir de 20 € par agent et par mois, mais peuvent rapidement augmenter selon les fonctionnalités avancées.
+                    Cette solution, développée en 2002 et maintenue par Atlassian, une entreprise australienne leader dans les outils de gestion de projet, cette solution enterprise s'intègre parfaitement à l'écosystème Atlassian (Jira Software, Confluence). Elle propose des fonctionnalités avancées de gestion des incidents, des changements et des actifs, ainsi que des capacités d'IA pour l'automatisation et la prédiction. Les tarifs démarrent à \textbf{20€/agent/mois}, mais augmentent considérablement avec les modules avancés. La maîtrise de l'écosystème Atlassian est nécessaire pour exploiter pleinement ses capacités.
                         \begin{figure}[H]
                             \centering
                             \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/appJira.png}
@@ -130,8 +133,7 @@ SolidMaint se fait par échange de courriels. Cette approche présente certaines
 \begin{itemize}[label=\ding{109}]
     \item \textbf{processus fragmenté : } La communication via e-mail fragmente la gestion. Les informations étant dispersées, le suivi des composants manquants devient complexe.  En l’absence de structure centralisée, il devient difficile de retrouver l'historique complet d'une intervention.
     \item \textbf{Absence de traçabilité :} L'absence de système de traçabilité rend le suivi des interventions difficile. Cela peut entraîner une perte de visibilité sur leur état, en cas de conflit avec un client ou lors d'un audit interne, ce qui représente un risque pour la crédibilité et la fiabilité de la société.
-     \item \textbf{Absence de sécurité :}   La sécurité des données est insuffisante lorsque des outils généralistes sont utilisés pour gérer des données sensibles, ce qui expose l'entreprise à des risques de sécurité. Ces outils ne garantissent pas les niveaux de sécurité nécessaires pour protéger efficacement les informations confidentielles.
-      \item \textbf{Risque de perte d'informations :} En raison de la fragmentation des processus, il existe un risque accru de perte d'informations importantes. Les documents sont stockés de manière non structurée, ce qui rend leur suivi et leur consolidation difficiles.
+    \item \textbf{Risque de perte d'informations :} En raison de la fragmentation des processus, il existe un risque accru de perte d'informations importantes. Les documents sont stockés de manière non structurée, ce qui rend leur suivi et leur consolidation difficiles.
      \item \textbf{Complexité de la communication : } la communication au sein de l’équipe et avec les clients repose sur des échanges dispersés (courriels, messages), ce qui rend le flux des demandes peu clair et entraîne des retards dans le traitement des interventions.
     
     \end{itemize}
@@ -221,99 +223,42 @@ En somme, \textbf{SolidMaint} se positionne comme une solution robuste et intég
 \newpage
 \section{Méthodologie adaptée}
 \label{sec:methodologie}
-La méthodologie adoptée est une étape importante car elle garantit la compréhension du projet afin d’obtenir un meilleur résultat qui satisfait les besoins des clients.
+Le choix méthodologique est déterminant pour la réussite d'un projet de développement. Une méthodologie appropriée structure le travail, optimise la gestion des ressources et garantit la qualité du livrable dans le respect des délais impartis.\newline
+
+\subsection{Méthodologie classique}
+La méthodologie classique de la gestion de projet s’articule autour d’une série d’étapes consécutives, où l'approbation de chaque phase est essentielle pour progresser vers la suivante. Les projets se déroulent selon des phases distinctes et structurées, représentées par différents modèles de cycle de vie : cascade, V ou spirale.
 \newline
+Cette approche convient particulièrement aux projets dont les besoins sont stables et exhaustivement définis dès le départ. Elle offre une planification détaillée facilitant le suivi des délais et des coûts. Cependant, sa rigidité constitue une limitation majeure face aux changements de besoins en cours de développement, rendant difficile l'intégration de retours clients durant le processus.
+\newline
+Afin de mieux comprendre le fonctionnement de cette approche, il convient de présenter ses caractéristiques fondamentales.
+\subsubsection{Principes de la méthodologie classique}
+ Cette approche repose sur une organisation linéaire où chaque phase doit être validée avant progression. Elle exige une définition exhaustive des besoins en phase initiale et une planification servant de base à la gestion. Le contrôle et la validation s'effectuent de manière progressive tout au long du cycle de vie.
+\newline Dans ce contexte, la méthodologie Agile a été adoptée comme une alternative à cette approche.
+        \subsection{Méthodologie Agile}
 
-\noindent Ainsi, il est important de reposer sur un langage de modélisation unifié pour formaliser les solutions de manière claire. 
-\subsection{Méthodologie traditionnelle}
-L'approche traditionnelle de la gestion de projet s'articule autour d'une série d'étapes consécutives, où l'approbation de la phase précédente est essentielle pour progresser vers la suivante. Cette méthode suppose que les projets gérés de manière traditionnelle se déroulent en phases distinctes et structurées. Cette logique est représentée par divers modèles de cycle de vie, incluant le cycle en cascade, le cycle en V et le cycle en spirale.
-
-\subsection{Méthodologie Agile}
 « La méthodologie Agile décompose le travail en phases, mettant l'accent sur la livraison continue et l'amélioration. Agile profite aux équipes en permettant une planification adaptative, une exécution rapide et une évaluation continue, garantissant des résultats plus réactifs et plus réussis. » [3]
 \newline
-La méthodologie Agile est adoptée pour répondre rapidement aux retours des clients. Elle valorise la collaboration plutôt que la négociation contractuelle, en proposant d'abord une version minimale, puis en intégrant des fonctionnalités supplémentaires. La méthode Agile est une démarche moderne qui offre souplesse et performance dans la gestion de projet.
+La méthodologie Agile est adoptée pour répondre rapidement aux retours des clients. Elle valorise la collaboration plutôt que la négociation contractuelle, en proposant d'abord une version minimale, puis en intégrant des fonctionnalités supplémentaires. L'approche Agile est une démarche moderne qui offre souplesse et performance dans la gestion de projet.
 \newline
-\noindent Afin d'assurer une meilleure qualité et l’efficacité de la solution, nous avons choisi \textbf{les méthodologies agiles} qui portent sur la forte collaboration des clients dès le début.
-
-\subsubsection{Les douze principes de l'Agile}
-Le tableau ci-dessous présente les douze principes Agile qui définissent les valeurs clés pour le développement des logiciels.
-
-\begin{table}[H]
-    \centering
-    \renewcommand{\arraystretch}{1.6} % Espace vertical pour aérer les cellules
-    
-    % Couleur des bordures et alternance des couleurs de lignes
-    \arrayrulecolor{gray!70}      % Couleur des lignes du tableau (gris pour rester élégant)
-    \rowcolors{2}{gray!5}{white} 
-    
-    % On ajoute les "|" pour les barres verticales entre les colonnes
-    \begin{tabularx}{\textwidth}{
-        | >{\columncolor{blue!10}\centering\arraybackslash\bfseries}p{1cm} 
-        | >{\raggedright\arraybackslash}X 
-        | }
-        
-        \hline % Ligne horizontale haute
-        \rowcolor{blue!20} \textbf{N°} & \textbf{\large Les 12 principes du Manifeste Agile} \\
-        \hline % Ligne sous l'en-tête
-        
-        1 & Prioriser la satisfaction du client à travers une livraison rapide. \\
-        \hline
-        
-        2 & Accepter les changements même tard dans le développement. \\
-        \hline
-        
-        3 & Livrer fréquemment des versions opérationnelles de l'application. \\
-        \hline
-        
-        4 & Assurer quotidiennement une coopération entre l'équipe du projet et les gens des métiers. \\
-        \hline
-        
-        5 & Construire des projets autour d'individus motivés, leur donnant le soutien nécessaire. \\
-        \hline
-        
-        6 &Favoriser le dialogue direct. \\
-        \hline
-        
-        7 & Mesurer l'avancement du projet en fonction de l'opérationnalité du produit \\
-        \hline
-        
-        8 & Adopter un rythme constant et soutenable par tous les intervenants du projet. \\
-        \hline
-        
-        9 & Contrôler continuellement l'excellence de la conception et la bonne qualité technique. \\
-        \hline
-        
-        10 & Privilégier la simplicité en évitant le travail inutile. \\
-        \hline
-        
-        11 & Auto organiser et responsabiliser les équipes. \\
-        \hline
-        
-        12 & Améliorer régulièrement l'efficacité de l'équipe en ajustant son comportement. \\
-        \hline % Ligne horizontale basse
-        
-    \end{tabularx}
-    \vspace{0.2cm}
-    \caption{Les 12 principes du développement Agile.}
-    \label{tab:principes_agile}
-\end{table}
+Afin de mieux comprendre les fondements de cette approche, il est important de présenter ses valeurs essentielles.
 \subsubsection{Les valeurs agiles}
+Les valeurs de la méthodologie Agile constituent des principes fondamentaux qui guident l’organisation et le fonctionnement des projets agiles. Elles permettent d’améliorer la collaboration, la qualité du travail et la réactivité de l’équipe face aux changements.
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/4-valeur-agile.png}
         \caption{les valeurs agiles}
     \end{figure}
 
-    Cette image présente les quatre valeurs importantes de la méthode agile qui constituent des principes clés dans la gestion des projets et un gain en productivité. Les valeurs Agile mettent l’accent sur :
-
-    \noindent
+Cette figure présente les quatre valeurs principales de la méthode Agile qui mettent l’accent sur :
+\newline    
+\noindent
          --\hspace{0.5cm} Les individus et leurs interactions plus que les processus et les outils
 \newline --\hspace{0.5cm} Des logiciels opérationnels plus qu'une documentation exhaustive
 \newline --\hspace{0.5cm} La collaboration avec les clients plus que la négociation contractuelle  
 \newline --\hspace{0.5cm} L'adaptation au changement plus que le suivi d'un plan
-\newline Ces valeurs renforcent la prise de décision et favorisent la réactivité dans le travail de l'équipe.
+\newline À partir de ces valeurs, plusieurs méthodes Agile ont été développées et peuvent être comparées selon différents critères.
 \subsubsection{ Les principales méthodes Agiles}
-Le tableau suivant met en évidence les différentes méthodes agiles les plus populaires et quelques critères de comparaison.
+Le tableau suivant met en évidence les méthodes Agile les plus couramment utilisées, selon différents critères de comparaison.
 \begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.6} % Espace vertical pour aérer les cellules
@@ -347,15 +292,17 @@ Le tableau suivant met en évidence les différentes méthodes agiles les plus p
     \label{tab:methodes_agiles}
 \end{table}
 \subsection{Choix de la méthode de travail}
-Nous avons choisi la méthodologie \textbf{SCRUM} comme approche pour la réalisation de notre projet, notre choix est fondé sur de nombreux avantages qui répondent à nos besoins, notamment : 
-
-
+Après avoir présenté les différentes approches et méthodes de gestion de projet, il convient de justifier les choix adoptés dans le cadre de ce travail.
+\subsubsection{Choix de l’approche Agile}
+Le domaine de la maintenance impose des besoins variables et imprévisibles, rendant impossible une planification exhaustive. Cette réalité justifie l'adoption d'une méthodologie agile privilégiant la flexibilité et la collaboration continue avec les clients. Parmi les méthodes disponibles, Scrum offre le cadre itératif le plus adapté à notre contexte.
+\subsubsection{Choix de la méthode Scrum}
+Scrum a été retenue comme cadre de travail pour structurer le développement en itérations courtes tout en s'adaptant aux changements fréquents. Cette méthode offre plusieurs avantages décisifs :
 \noindent
-         --\hspace{0.5cm} le travail collaboratif fortement impliqué.
-\newline --\hspace{0.5cm} l'adaptation au changement grâce au cycle itératif.
-\newline --\hspace{0.5cm} la planification et l'exécution des projets prévisibles et efficaces.
-\newline --\hspace{0.5cm} la communication régulière et en toute transparence qui permet à l'équipe d'avancer.
-\newline --\hspace{0.5cm} la détection rapide des erreurs.
+         --\hspace{0.5cm} Collaboration continue entre l'équipe et les parties prenantes
+\newline --\hspace{0.5cm}  Adaptation rapide aux changements grâce aux cycles itératifs
+\newline --\hspace{0.5cm} Livraisons régulières de fonctionnalités opérationnelles
+\newline --\hspace{0.5cm} Détection précoce des problèmes et ajustements immédiats
+\newline --\hspace{0.5cm} Transparence totale sur l'avancement du projet
 
 \begin{figure}[H]
         \centering
@@ -365,16 +312,17 @@ Nous avons choisi la méthodologie \textbf{SCRUM} comme approche pour la réalis
 \end{figure}
 
 \subsection{Fondements de SCRUM }
-Scrum est une méthode agile. Elle s'appuie sur le découpage des projets en sprints, qui sont des cycles de développement très courts. Les fonctionnalités sont présentées sous forme de user stories qui décrivent quelles fonctionnalités sont nécessaires et à quel point elles sont importantes. Le principe de Scrum est de maximiser la productivité et d'assurer en même temps la satisfaction du client. Scrum repose aussi sur trois grands principes : la transparence, l'inspection et l'adaptation.
-\subsection{Pertinence de SCRUM}
-Le choix de Scrum comme méthodologie pour la réalisation de notre projet est fondé sur plusieurs raisons. En effet, cette méthode propose une approche temporelle et itérative du développement qui facilite la livraison régulière et le suivi de l'avancement à chaque étape. Elle est spécialement adaptée à l'évolution des besoins en assurant la flexibilité.
+Scrum est une méthode agile structurant le développement en sprints, cycles courts de 2 à 4 semaines. Les besoins sont exprimés sous forme de user stories décrivant les fonctionnalités attendues et leur priorité. Cette approche vise à maximiser la productivité tout en assurant la satisfaction client par des livraisons régulières.
+\newline
+La méthode repose sur trois piliers fondamentaux : la transparence garantit la visibilité sur l'avancement, l'inspection permet d'évaluer régulièrement le produit et le processus, et l'adaptation autorise les ajustements nécessaires en fonction des retours.
+
 \subsection{Rôles de SCRUM}
 L’équipe Scrum est auto-organisée et prend les décisions sur la manière dont le travail sera
 réalisé afin d'atteindre l’objectif du sprint. Elle est composée d’un propriétaire de produit, d’un 
 Scrum Master et d’une équipe de développement :
     \newline Le \textbf{Product Owner} est l'expert du domaine métier du projet qui porte la vision du produit à réaliser. Ce rôle repose sur la représentation de la voix du client et veille à ce que le produit reste aligné sur la vision stratégique de l'organisation.
     \newline Le \textbf{Scrum Master} a pour objectif d’assurer la productivité de l’équipe dans l’application de Scrum. Sa collaboration avec l’équipe vise à maximiser la performance globale, en alignant les efforts sur les objectifs stratégiques.
-    \newline L' \textbf{Équipe de développement} est constituée des personnes chargées de la réalisation du sprint, ayant pour mission de transformer les besoins exprimés en fonctionnalités utilisables du produit.
+    \newline L' \textbf{équipe de développement} est constituée des personnes chargées de la réalisation du sprint, ayant pour mission de transformer les besoins exprimés en fonctionnalités utilisables du produit.
 
     \subsection{Evènements Scrum}
     Ce sont des rendez-vous clés qui rythment le projet Scrum, créent une routine de transparence et d'inspection, et permettent à l'équipe de s'adapter pour livrer la meilleure valeur possible.
@@ -393,8 +341,7 @@ Scrum Master et d’une équipe de développement :
         \item \textbf{Sprint Backlog :} Sous-ensemble du Product Backlog sélectionné pour le sprint en cours, accompagné d'un plan pour livrer l'incrément.
         \item \textbf{Incrément :} Somme de tous les éléments du Product Backlog terminés durant un sprint et les sprints précédents, représentant une version utilisable du produit.
     \end{itemize}
-\newpage
-    \subsection{Cycle de vie}
+\subsection{Cycle de vie}
     Le cycle de vie Scrum se compose de sprints successifs, chacun comprenant une planification, le développement, des réunions quotidiennes, une revue et une rétrospective. Ce processus itératif permet d'adapter le produit en continu aux besoins du client et d'améliorer l'équipe à chaque itération.
 
     \begin{figure}[H]
@@ -402,9 +349,9 @@ Scrum Master et d’une équipe de développement :
         \includegraphics[width=0.6\textwidth,keepaspectratio]{Images/processus_scrum.png}
         \caption{Cycle de vie Scrum}
     \end{figure}
-
+    
    
-\subsection{Langage de modélisation UML – Unified Modeling Language}
+\section{Langage de modélisation UML – Unified Modeling Language}
 « Le langage de modélisation unifié (UML) est un langage permettant de spécifier, visualiser, construire et documenter les artefacts des systèmes logiciels, ainsi que de modéliser des systèmes métier et d'autres systèmes non logiciels. L'UML représente un ensemble de bonnes pratiques d'ingénierie qui ont fait leurs preuves dans la modélisation de systèmes vastes et complexes. » [4]
 
 \begin{figure}[H]
