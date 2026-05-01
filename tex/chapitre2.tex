@@ -1,8 +1,7 @@
 ﻿
 \section*{Introduction}
 
-Ce chapitre présente l'analyse et la spécification des besoins de notre plateforme de gestion des contrats de maintenance \textbf{SolidMaint}. Nous commencerons par identifier les acteurs du système et spécifier leurs besoins fonctionnels et non fonctionnels, puis nous procéderons à la modélisation UML de ces besoins. Ensuite, nous détaillerons l'approche de pilotage du projet avec la méthodologie Scrum, incluant la planification des sprints et la présentation du Product Backlog. Enfin, nous présenterons l'environnement de développement choisi ainsi que l'architecture technique de l'application.
-
+Ce chapitre présente l'analyse et la spécification des besoins de notre plateforme \textbf{SolidMaint}. Nous identifierons les acteurs du système et leurs besoins fonctionnels et non fonctionnels, puis procéderons à la modélisation UML. Nous détaillerons ensuite l'approche de pilotage Scrum avec la planification des sprints, et présenterons l'environnement de développement ainsi que l'architecture technique de l'application.
 
 \section{Spécification des besoins}
 \label{sec:specification_besoins}
@@ -10,38 +9,62 @@ L'étape de spécification des besoins est importante pour prouver qu'un besoin 
 \newline Pour cela nous allons identifier les acteurs, leurs besoins fonctionnels et les besoins non fonctionnels.
 
 \subsection{Identification des acteurs}
-Un acteur représente une personne, une organisation ou un autre système qui interagit avec le système. Les acteurs définis dans notre projet sont les suivants :
-\newline
+Un acteur représente une personne, une organisation ou un autre système qui interagit avec le système. Notre projet identifie six acteurs principaux :
 
-\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=4pt, label=$\bullet$]
-    \item \textbf{Visiteur :} S'authentifie via un fournisseur OAuth (Google, GitHub), soumet une demande de création de compte à l'administrateur, puis attend la validation avant d'accéder à la plateforme.
-    
-    \item \textbf{Utilisateur :} Accède aux fonctionnalités communes telles que l’authentification sécurisée, la gestion du profil, la réception des notifications et la consultation de son historique d’activités.
-
-    \item \textbf{Client :} Soumet des demandes de maintenance, consulte l'état d'avancement de ses demandes et tickets, et communique avec l'équipe projet via la messagerie intégrée.
-
-    \item \textbf{Développeur :} Traite les tickets qui lui sont assignés, signale les blocages, met à jour le statut des tickets, ajoute des commentaires et consulte les documents techniques liés aux interventions.
-
-    \item \textbf{Chef de projet :} Traite les demandes de maintenance soumises par les clients et assigne les tickets aux développeurs, suit l'avancement des travaux et assure le respect des SLA.
-
-    \item \textbf{Administrateur :} Gère les utilisateurs, les rôles et les permissions, les clients, les projets ainsi que les contrats de maintenance. Il configure les paramètres système et supervise l'ensemble de la plateforme.
-    
-    
-    
-
-\end{itemize}
-
- \begin{figure}[H]
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.32\textwidth}
         \centering
-        \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/acteur.png}
-        \caption{Représentation des acteurs en UML}
-        \label{fig:acteurs}
-    \end{figure}
+        \includegraphics[width=1.5cm,keepaspectratio]{Images/acteur visiteur.png}\\
+        \vspace{0.2cm}
+        \textbf{Visiteur}\\
+        \footnotesize{Soumet une demande de création de compte et attend la validation}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \includegraphics[width=1.5cm,keepaspectratio]{Images/acteur user.png}
+        \textbf{Utilisateur}
+        \footnotesize{Accède aux fonctionnalités communes: authentification, gestion du profil, notifications et historique d’activités}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \includegraphics[width=1.5cm,keepaspectratio]{Images/acteur client.png}
+        \textbf{Client}
+        \footnotesize{Soumet des demandes de maintenance, consulte l'état d'avancement et communique avec l'équipe projet}
+    \end{minipage}
+    
+    \vspace{0.7cm}
+    
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \includegraphics[width=1.5cm,keepaspectratio]{Images/acteur dev.png}
+        \textbf{Développeur}
+        \footnotesize{Traite les tickets assignés, signale les blocages, met à jour les statuts et consulte la documentation technique}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \includegraphics[width=1.5cm,keepaspectratio]{Images/acteur chef.png}
+        \textbf{Chef de projet}
+        \footnotesize{Traite les demandes clients, assigne les tickets aux développeurs et assure le respect des SLA}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \includegraphics[width=1.5cm,keepaspectratio]{Images/acteur admin.png}
+        \textbf{Administrateur}
+        \footnotesize{Gère les utilisateurs, rôles, permissions, clients, projets et contrats. Configure et supervise le système}
+    \end{minipage}
+    
+    \caption{Les six acteurs du système SolidMaint et leurs responsabilités principales}
+    \label{fig:acteurs_grid}
+\end{figure}
+
 \subsection{Identification des besoins fonctionnels}
 
 L'identification des besoins fonctionnels constitue une étape fondamentale dans la conception de \textbf{SolidMaint}. Ces spécifications définissent précisément les opérations que la plateforme doit être capable d'exécuter pour répondre aux exigences métier de SolidWall Consulting.
-
-Notre analyse a permis d'identifier huit fonctionnalités principales qui s'articulent autour des quatre modules architecturaux de la solution. Chaque fonctionnalité répond aux besoins spécifiques des différents acteurs du système tout en contribuant à la cohérence globale de la plateforme.
 
 \input{tex/etude_fonctionnalite}
 
@@ -144,7 +167,7 @@ Comme évoqué dans le premier chapitre, le Product Backlog constitue l'un des a
 
 Un sprint représente une période de développement durant laquelle l'équipe s'engage à livrer un ensemble cohérent de fonctionnalités opérationnelles. Cette approche itérative permet d'obtenir des retours réguliers et d'ajuster les priorités au fil de l'avancement.
 
-\noindent Notre projet est organisé en \textbf{4 sprints} de \textbf{3 à 4 semaines} chacun, couvrant une période totale de développement de \textbf{3,5 mois}. Chaque sprint commence par une réunion de planification (Sprint Planning) où l'équipe sélectionne les user stories du Product Backlog à réaliser, et se termine par une revue de sprint (Sprint Review) et une rétrospective (Sprint Retrospective).
+\noindent Notre projet est organisé en \textbf{4 sprints} de \textbf{3 à 4 semaines} chacun, couvrant une période totale de développement de \textbf{3,5 mois}. La stratégie de répartition suit une logique architecturale : fondations sécuritaires (Sprint 1), gestion contractuelle (Sprint 2), cœur métier opérationnel (Sprint 3), et fonctionnalités avancées (Sprint 4). Chaque sprint commence par une réunion de planification (Sprint Planning) où l'équipe sélectionne les user stories du Product Backlog à réaliser, et se termine par une revue de sprint (Sprint Review) et une rétrospective (Sprint Retrospective).
 
 La figure \ref{fig:planification_sprints} illustre le déroulement chronologique de nos sprints.
 
@@ -165,9 +188,9 @@ La figure \ref{fig:planification_sprints} illustre le déroulement chronologique
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
     \item \textbf{Epic 1 - Authentification et Sécurité} : US01 à US05 (5 user stories)
     \item \textbf{Epic 2 - Gestion des utilisateurs} : US06 à US11 (6 user stories)
-    \item \textbf{Epic 3 - Gestion des rôles et permissions} : US12 à US15 (4 user stories)
-    \item \textbf{Epic 4 - Demandes d'inscription OAuth} : US16 à US17 (2 user stories)
-    \item \textbf{Epic 5 - Gestion des clients} : US18 à US24 (7 user stories)
+    \item \textbf{Epic 3 - Gestion des rôles et permissions} : US12 à US14 (3 user stories)
+    \item \textbf{Epic 4 - Demandes d'inscription OAuth} : US15 à US16 (2 user stories)
+    \item \textbf{Epic 5 - Gestion des clients} : US17 à US23 (7 user stories)
 \end{itemize}
 
 \noindent
@@ -182,14 +205,13 @@ La figure \ref{fig:planification_sprints} illustre le déroulement chronologique
 \subsubsection{Sprint 2 - Gestion des Projets et Contrats}
 \textbf{Période :} du 12 mars au 2 avril (\textbf{3 semaines})
 \newline
-\textbf{Objectif du sprint :} Développer la gestion complète des clients, projets et contrats de maintenance avec système d'alertes.
 \textbf{Objectif du sprint :} Développer la gestion complète des projets et contrats de maintenance avec système d'alertes.
 
 \noindent
 \textbf{User Stories sélectionnées :}
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-    \item \textbf{Epic 6 - Gestion des projets} : US25 à US28 (4 user stories)
-    \item \textbf{Epic 7 - Gestion des contrats} : US29 à US38 (10 user stories)
+    \item \textbf{Epic 6 - Gestion des projets} : US24 à US27 (4 user stories)
+    \item \textbf{Epic 7 - Gestion des contrats} : US28 à US37 (10 user stories)
     \item \textbf{Epic 14 - Historique et traçabilité} : US95 à US96 (2 user stories)
 \end{itemize}
 
@@ -209,9 +231,8 @@ La figure \ref{fig:planification_sprints} illustre le déroulement chronologique
 \noindent
 \textbf{User Stories sélectionnées :}
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-    \item \textbf{Epic 8 - Gestion des demandes} : US39 à US46 (8 user stories)
-    \item \textbf{Epic 9 - Gestion des tickets} : US47 à US66 (20 user stories)
-    \item \textbf{Epic 17 - Gestion des sous-tâches} : US106 à US110 (4 user stories)
+    \item \textbf{Epic 8 - Gestion des demandes} : US38 à US45 (8 user stories)
+    \item \textbf{Epic 9 - Gestion des tickets} : US46 à US65 (20 user stories)
     \item \textbf{Epic 13 - Dashboards} : US88 à US91 (4 user stories)
 \end{itemize}
 
@@ -232,9 +253,9 @@ La figure \ref{fig:planification_sprints} illustre le déroulement chronologique
 \noindent
 \textbf{User Stories sélectionnées :}
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-    \item \textbf{Epic 10 - Messagerie} : US67 à US75 (9 user stories)
-    \item \textbf{Epic 11 - Gestion des documents} : US76 à US83 (8 user stories)
-    \item \textbf{Epic 12 - Notifications} : US84 à US88 (5 user stories)
+    \item \textbf{Epic 10 - Messagerie} : US66 à US74 (9 user stories)
+    \item \textbf{Epic 11 - Gestion des documents} : US75 à US82 (8 user stories)
+    \item \textbf{Epic 12 - Notifications} : US83 à US87 (5 user stories)
     \item \textbf{Epic 13 - Rapports} : US92 à US94 (3 user stories)
     \item \textbf{Epic 15 - Versioning avancé} : US97 à US99 (3 user stories)
     \item \textbf{Epic 16 - Intelligence Artificielle} : US100 à US105 (6 user stories)
@@ -249,6 +270,9 @@ La figure \ref{fig:planification_sprints} illustre le déroulement chronologique
     \item Module de génération de rapports
     \item Moteur d'IA pour assistance intelligente
 \end{itemize}
+
+\noindent
+\textbf{Synthèse de la planification :} Cette répartition assure une progression logique où chaque sprint s'appuie sur les livrables précédents. Les dépendances techniques sont respectées (authentification avant tickets, contrats avant demandes), et la valeur métier croît progressivement jusqu'aux fonctionnalités différenciantes du sprint final.
 
 
 % SECTION IV : ENVIRONNEMENT DE DÉVELOPPEMENT
@@ -574,8 +598,9 @@ Nous avons choisi cette architecture afin de maintenir l’indépendance des mod
     \end{figure}
 
     \section{Conclusion}
-    Dans ce chapitre, nous avons décrit les acteurs du projet et élaboré le backlog du produit. Après avoir identifié les besoins fonctionnels et non fonctionnels ainsi que présenté les environnements matériels et logiciels utilisés et les outils de développement adoptés.                                  
-    \newline Au cours du prochain chapitre, nous allons entamer le premier sprint, gestion des utilisateurs.
+    Ce chapitre a établi les fondements techniques et méthodologiques de notre projet \textbf{SolidMaint}. L'identification des acteurs et la spécification des besoins fonctionnels et non fonctionnels ont permis de définir précisément les exigences de la plateforme. La modélisation UML et l'approche de pilotage Scrum avec la planification en quatre sprints structurent la démarche de développement.
+    L'environnement de développement choisi et l'architecture modulaire garantissent une solution robuste et évolutive. Ces éléments constituent la base solide pour aborder la phase de réalisation.
+    \newline Le chapitre suivant détaillera l'implémentation du premier sprint consacré à la gestion des utilisateurs et authentification.
 
 \newpage
 \section*{Références}

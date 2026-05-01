@@ -1,10 +1,6 @@
 ﻿
 \section*{Introduction}
-Cette mission a été réalisée dans le cadre de l’élaboration du projet de fin d’études, à l’Institut Supérieur des Études Technologiques de Radès (ISET Radès).
-
-Durant le processus de réalisation de notre projet, l’étude de projet est une étape essentielle et obligatoire puisqu'elle assure le bon déroulement. L'étude de projet doit passer par une phase importante pour analyser l'existant afin de critiquer et d'extraire les besoins qui seront notre référence pour la fixation des objectifs du projet. Dans ce chapitre, nous allons présenter le cadre de projet, l’entreprise d’accueil, l’étude de l’existant et la solution proposée ainsi que les outils de développement et les méthodologies de conception.
-
-
+Ce chapitre pose les fondations du projet en présentant le contexte organisationnel et technique de sa réalisation. Nous commençons par la présentation de \textbf{SolidWall Consulting}, entreprise d'accueil du stage, avant d'analyser en détail les processus actuels de gestion de maintenance et leurs limitations. L'étude comparative des solutions du marché (GLPI, Freshdesk, Jira Service Management) permet d'identifier les axes d'amélioration et de définir les contours de \textbf{SolidMaint}. Enfin, nous présentons la méthodologie Scrum adoptée et la planification prévisionnelle du développement.
 
 \section{Présentation de l’organisme d’accueil} 
 «Solid Wall Consulting est une société de services informatiques, spécialisée dans le développement web, le développement mobile et l'intégration de solutions et d'infrastructures systèmes « Microsoft ». 
@@ -158,18 +154,19 @@ SolidMaint se fait par échange de courriels. Cette approche présente certaines
 
 \noindent\textbf{Complexité d'utilisation et courbe d'apprentissage}
 
-Les solutions existantes présentent une complexité d'usage significative qui constitue un frein à leur adoption. GLPI nécessite une formation de \textbf{2 à 3 jours} pour les administrateurs et présente une interface peu intuitive pour les utilisateurs finaux, ce qui ralentit considérablement la prise en main. De même, Jira Service Management requiert une connaissance approfondie de l'écosystème Atlassian pour une utilisation optimale, créant une dépendance technique importante pour l'organisation.
+Les solutions existantes présentent une complexité d'usage importante. \textbf{GLPI} nécessite une formation de \textbf{2 à 3 jours} pour les administrateurs avec une interface peu intuitive. \textbf{Jira Service Management} requiert une connaissance approfondie de l'écosystème Atlassian, créant une dépendance technique majeure.
 
 \noindent\textbf{Coût des licences et investissement financier}
 
-L'investissement financier représente un obstacle majeur pour les entreprises de taille moyenne. Les tarifs s'échelonnent de \textbf{15€ par agent et par mois} pour Freshdesk (version gratuite très limitée) à \textbf{24€ par utilisateur et par mois} pour Helpdesk, tandis que Jira Service Management coûte \textbf{20€ par agent et par mois}. GLPI, bien que gratuit en version communautaire, nécessite un investissement de \textbf{1500€ par an} minimum pour bénéficier du support entreprise. Pour une équipe de 10 utilisateurs, le coût annuel peut ainsi varier de \textbf{1500€} à \textbf{12000€}, sans compter les coûts de formation et de personnalisation qui s'ajoutent à cet investissement initial.
+L'investissement financier représente un obstacle majeur. Les tarifs s'échelonnent de \textbf{15€/agent/mois} pour \textbf{Freshdesk} à \textbf{24€/utilisateur/mois} pour \textbf{Helpdesk}, tandis que \textbf{Jira Service Management} coûte \textbf{20€/agent/mois}. \textbf{GLPI}, bien que gratuit en version communautaire, nécessite \textbf{1500€/an} minimum pour le support entreprise. Pour une équipe de 10 utilisateurs, le coût annuel varie de \textbf{1500€ à 12000€}.
 
 \noindent\textbf{Dépendance aux extensions et problèmes d'intégration}
 
-Les solutions du marché souffrent d'une architecture modulaire qui génère des coûts cachés et des risques techniques. De nombreuses fonctionnalités avancées nécessitent des extensions payantes supplémentaires, augmentant significativement le coût total de possession. Les mises à jour peuvent engendrer des problèmes de compatibilité avec les extensions tierces, créant une instabilité du système. L'intégration avec des systèmes existants nécessite souvent des développements spécifiques coûteux, prolongeant les délais de mise en œuvre et augmentant les risques projet.
+Les solutions du marché souffrent d'une architecture modulaire générant des coûts cachés. De nombreuses fonctionnalités avancées nécessitent des extensions payantes supplémentaires. Les mises à jour engendrent des problèmes de compatibilité, et l'intégration avec des systèmes existants nécessite souvent des développements spécifiques onéreux.
+
 \subsubsection{Analyse comparative des solutions}
 
-Le tableau suivant présente une analyse comparative détaillée des principales solutions existantes étudiées :
+Ces limitations se reflètent clairement dans l'analyse comparative des principales solutions du marché. Le tableau suivant synthétise les forces et faiblesses de chaque solution selon des critères fonctionnels, techniques et financiers :
 
 \begin{table}[H]
     \centering
@@ -194,8 +191,6 @@ Le tableau suivant présente une analyse comparative détaillée des principales
     \hline
     Coût (10 users/an) & 1500€  & 2000€ & 1800€ \\
     \hline
-    Open-source & \checkmark  & $\times$ & $\times$  \\
-    \hline
     \end{tabularx}
     \caption{Tableau comparatif des solutions de gestion de maintenance existantes}
     \label{tab:comparaison_solutions}
@@ -212,20 +207,19 @@ Dans le contexte des défis exposés, nous proposons la mise en place de \textbf
 
 \noindent\textbf{Module 1 : Authentification, Gestion des Utilisateurs et Clients}
 
-Ce module constitue le socle sécuritaire de la plateforme avec un système d'authentification robuste supportant la connexion classique et OAuth 2.0. Il implémente un contrôle d'accès basé sur les rôles (RBAC) permettant d'attribuer des permissions selon les responsabilités de chaque utilisateur. Le module offre également la gestion complète des profils utilisateurs, la gestion des clients avec annuaire centralisé, et l'historique des activités pour assurer la traçabilité des actions.
+Ce module constitue le socle sécuritaire de la plateforme avec un système d'authentification robuste et un contrôle d'accès basé sur les rôles (RBAC). Il assure la gestion des profils utilisateurs, des clients et l'historique des activités pour garantir la traçabilité.
 
 \noindent\textbf{Module 2 : Gestion des Projets et Contrats}
 
-Ce module centralise la gestion des projets pour organiser les interventions par client et la gestion des contrats de maintenance avec configuration des SLA. Il garantit une traçabilité complète avec possibilité d'exports pour la conformité réglementaire, assure le suivi de l'avancement des travaux et optimise le respect des engagements contractuels grâce aux alertes préventives.
+Ce module centralise la gestion des projets et des contrats de maintenance par client. Il garantit la traçabilité complète et optimise le respect des engagements contractuels grâce aux alertes préventives.
 
 \noindent\textbf{Module 3 : Gestion des Demandes et Tickets}
 
-Cœur métier de la plateforme, ce module structure le cycle complet des demandes clients depuis leur soumission jusqu'à leur clôture. Il génère automatiquement des tickets liés aux demandes validées et permet leur affectation aux développeurs. Le module propose le suivi du temps passé, la gestion des blocages et des tableaux de bord personnalisés par rôle.
+Cœur métier de la plateforme, ce module structure le cycle complet des demandes clients depuis leur soumission jusqu'à leur clôture. Il génère automatiquement des tickets, permet leur affectation aux développeurs et assure le suivi du temps passé.
 
 \noindent\textbf{Module 4 : Collaboration et Intelligence Artificielle}
-\newline
 
-Ce module regroupe les fonctionnalités avancées : messagerie temps réel, gestion documentaire avec versioning automatique, et système de notifications multicanaux. Les fonctionnalités d'IA suggèrent automatiquement les catégories de demandes, assurent une priorisation intelligente et recommandent des solutions basées sur l'historique. Le module génère également des rapports d'activité personnalisables.
+Ce module regroupe les fonctionnalités avancées : messagerie temps réel, gestion documentaire et notifications multicanaux. Les fonctionnalités d'IA assurent la catégorisation automatique, la priorisation intelligente et la recommandation de solutions basées sur l'historique.
 
 \textbf{SolidMaint} apportera une réponse concrète aux défis identifiés en matière de gestion des contrats, d'interventions et de communication client. Grâce à l'intégration de l'intelligence artificielle et d'une interface intuitive, cette plateforme centralisera tous les processus de maintenance dans un environnement unifié.
 \newpage
@@ -434,8 +428,10 @@ Scrum Master et d’une équipe de développement :
         \caption{Diagramme de Gantt}
     \end{figure}
     \section*{Conclusion}
-    Nous avons débuté notre rapport par ce chapitre, dans lequel nous avons présenté le cadre du projet ainsi que la structure d’accueil SolidMaint, et décrit le contexte du projet. Enfin, nous avons défini le choix de la méthodologie de gestion de projet ainsi que le langage de modélisation adopté.
-    \newline Pour la suite, nous abordons le chapitre intitulé « Préparation du projet ».
+    Ce chapitre a établi le cadre général de notre projet \textbf{SolidMaint} en présentant l'organisme d'accueil SolidWall Consulting et en analysant les enjeux de la gestion des contrats de maintenance. L'étude critique de l'existant a révélé des limitations significatives dans les processus actuels, tandis que l'analyse comparative des solutions du marché a confirmé la pertinence de développer une solution sur mesure.
+    La solution \textbf{SolidMaint} proposée répond à ces défis par une approche intégrée centralisant l'ensemble du cycle de vie des contrats. L'adoption de la méthodologie Scrum et la planification en quatre sprints garantissent une approche itérative et collaborative pour la réalisation du projet.
+    \newline Le chapitre suivant détaillera la spécification des besoins et la modélisation de la solution.
+
 \newpage
 \section*{Références}
 

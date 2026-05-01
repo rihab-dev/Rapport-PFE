@@ -1,4 +1,4 @@
-\subsubsection{Fonctionnalité 1 : Authentification et Gestion de Compte}
+\subsubsection{Authentification et Gestion de Compte}
 
 Cette composante assure l'authentification sécurisée via identifiants classiques ou OAuth 2.0 (Google, GitHub) avec gestion automatique des jetons d'accès. L'innovation distinctive réside dans l'obligation de changement de mot de passe lors de la première connexion pour les comptes créés par un administrateur. Une interface modale bloque l'accès à l'application jusqu'à la définition d'un mot de passe personnel, garantissant que seul l'utilisateur légitime détient les informations d'authentification définitives.
 
@@ -11,9 +11,9 @@ Cette composante assure l'authentification sécurisée via identifiants classiqu
 
 \vspace{0.5cm}
 
-\subsubsection{Fonctionnalité 2 : Gestion des Utilisateurs et Demandes d'Inscription}
+\subsubsection{Gestion des Utilisateurs et Demandes d'Inscription}
 
-Ce système permet aux administrateurs de gérer le cycle de vie complet des comptes utilisateurs avec création automatisée, gestion des profils et contrôle des activations/désactivations. L'innovation principale réside dans le mécanisme de recherche et filtrage multicritères avancé qui permet de localiser rapidement un utilisateur spécifique parmi une base croissante selon des critères combinés (nom, rôle, statut, date de création). Le traitement des demandes d'inscription s'effectue via une interface centralisée permettant approbation, rejet ou mise en attente avec notifications automatiques.
+Ce système permet aux administrateurs de gérer le cycle de vie complet des comptes utilisateurs avec création automatisée, gestion des profils et contrôle des activations/désactivations. L'innovation principale réside dans le mécanisme de recherche et filtrage multicritères avancé qui permet de localiser rapidement un utilisateur spécifique selon des critères combinés (nom, rôle, statut, date de création). Le traitement des demandes d'inscription s'effectue via une interface centralisée permettant approbation, rejet ou mise en attente avec notifications automatiques.
 
 \begin{figure}[H]
     \centering
@@ -24,7 +24,7 @@ Ce système permet aux administrateurs de gérer le cycle de vie complet des com
 
 \vspace{0.5cm}
 
-\subsubsection{Fonctionnalité 3 : Système de Rôles et Permissions}
+\subsubsection{Système de Rôles et Permissions}
 
 Le contrôle d'accès s'appuie sur un modèle RBAC (Role-Based Access Control) offrant une granularité fine dans la gestion des autorisations. L'innovation majeure réside dans la conception modulaire permettant aux administrateurs de créer des rôles personnalisés en combinant dynamiquement les permissions existantes selon les besoins organisationnels spécifiques. Cette flexibilité permet d'ajuster les autorisations d'un rôle sans impact sur les autres configurations, facilitant l'évolution du système de sécurité.
 
@@ -37,7 +37,7 @@ Le contrôle d'accès s'appuie sur un modèle RBAC (Role-Based Access Control) o
 
 \vspace{0.5cm} 
 
-\subsubsection{Fonctionnalité 4 : Gestion des Clients et Projets}
+\subsubsection{Gestion des Clients et Projets}
 
 Cette composante centralise la gestion des clients avec création automatisée des comptes et récupération automatique des logos d'entreprise depuis les ressources en ligne. L'aspect distinctif est la génération automatique d'organigrammes visuels et interactifs pour chaque projet, présentant la hiérarchie complète (client, chef de projet, équipe) avec accès direct aux coordonnées de tous les interlocuteurs. Cette visualisation facilite l'identification rapide des contacts et optimise la communication en cas de problème, tout en maintenant la traçabilité via des notes confidentielles horodatées.
 
@@ -48,7 +48,7 @@ Cette composante centralise la gestion des clients avec création automatisée d
     \label{fig:gestion_clients}
 \end{figure}
 
-\subsubsection{Fonctionnalité 5 : Gestion des Contrats de Maintenance}
+\subsubsection{Gestion des Contrats de Maintenance}
 
 Ce mécanisme automatise le cycle de vie complet des contrats de maintenance avec système d'alertes préventives échelonnées (30, 15, 7 jours avant expiration). L'innovation majeure réside dans l'import intelligent à partir de fichiers PDF, utilisant l'extraction automatique de données pour pré-remplir les formulaires de création. Un dispositif de détection de doublons basé sur le calcul d'empreintes cryptographiques garantit l'unicité des contrats et prévient toute duplication accidentelle lors des téléversements.
 
@@ -59,7 +59,7 @@ Ce mécanisme automatise le cycle de vie complet des contrats de maintenance ave
     \label{fig:gestion_contrats}
 \end{figure}
 
-\subsubsection{Fonctionnalité 6 : Gestion des Demandes d'Intervention}
+\subsubsection{Gestion des Demandes d'Intervention}
 
 Ce processus structure la soumission des demandes d'intervention avec vérification automatique de couverture contractuelle et validation des types d'intervention éligibles. L'aspect distinctif impose une contrainte temporelle intelligente de vingt-quatre heures entre deux demandes de même type pour un projet identique, prévenant la surcharge des équipes de support. Le workflow de validation intègre un système de relance automatique garantissant le traitement dans les délais impartis avec escalade vers les responsables en cas de dépassement des seuils temporels.
 
@@ -70,13 +70,13 @@ Ce processus structure la soumission des demandes d'intervention avec vérificat
     \label{fig:gestion_demandes}
 \end{figure}
 
-\subsubsection{Fonctionnalité 7 : Gestion Avancée des Tickets de Maintenance}
+\subsubsection{Gestion Avancée des Tickets de Maintenance}
 
-Ce système implémente un workflow structuré avec assignation intelligente limitée à cinq tickets actifs par développeur pour optimiser la charge de travail. L'innovation majeure est le mécanisme de rattachement de tickets complexes permettant de lier plusieurs interventions traitant du même contexte ou de problèmes dérivés. Les tickets rattachés héritent automatiquement du contrat parent et maintiennent un historique cohérent, facilitant la gestion des problèmes récurrents ou multi-composants tout en préservant la traçabilité individuelle de chaque intervention.
+Ce système implémente un workflow structuré avec assignation intelligente limitée à cinq tickets actifs par développeur pour optimiser la charge de travail. L'innovation majeure est le mécanisme de rattachement de tickets complexes permettant de lier plusieurs interventions traitant du même contexte ou de problèmes dérivés. Les tickets rattachés héritent automatiquement du contrat parent et maintiennent un historique cohérent, facilitant la gestion des problèmes récurrents tout en préservant la traçabilité individuelle de chaque intervention.
 
-\subsubsection{Fonctionnalité 8 : Tableaux de Bord, Traçabilité et Documentation}
+\subsubsection{Tableaux de Bord, Traçabilité et Documentation}
 
-Ce module offre des tableaux de bord personnalisés par rôle avec indicateurs clés de performance et visualisations analytiques en temps réel. Il maintient un historique exhaustif de toutes les opérations avec traçabilité complète (utilisateur, action, valeurs avant/après, horodatage) et système de notifications multicanaux (web, email, Slack). L'innovation majeure réside dans la génération automatique de procès-verbaux PDF à partir des informations de tickets (temps passé, description, solution), s'activant lors de la résolution pour produire automatiquement une documentation contractuelle structurée et garantir la valeur probante en cas de litige.
+Ce module offre des tableaux de bord personnalisés par rôle avec indicateurs clés de performance et visualisations analytiques en temps réel. Il maintient un historique exhaustif de toutes les opérations avec traçabilité complète (utilisateur, action, valeurs avant/après, horodatage) et système de notifications multicanaux (web, email, Slack). L'innovation majeure réside dans la génération automatique de procès-verbaux PDF à partir des informations de tickets (temps passé, description, solution), s'activant lors de la résolution pour produire automatiquement une documentation contractuelle structurée.
 
 \begin{figure}[H]
     \centering
