@@ -31,7 +31,6 @@
 \usetikzlibrary{calc}
 \usepackage{pifont}
 \usepackage{capt-of}
-\usepackage{float}
 \usepackage{etoolbox}
 \usepackage{subcaption}
 % ============================================================
@@ -197,8 +196,8 @@
 }
 \setstretch{1.5}
 
-% Numérotation en chiffres romains
-\renewcommand{\thechapter}{\Roman{chapter}}
+% Numérotation en chiffres arabes
+\renewcommand{\thechapter}{\arabic{chapter}}
 \renewcommand{\thesection}{\thechapter.\arabic{section}}
 \renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
 \renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}

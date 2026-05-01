@@ -38,9 +38,7 @@ Pour mieux comprendre les besoins, nous allons étudier les solutions existantes
 
 
 \subsubsection{Étude de l'existant}
-L’étude de l’existant est une étape cruciale avant de commencer notre projet, car elle vise à mieux comprendre l’environnement et à analyser ses limites, afin de proposer des solutions adaptées aux exigences de l’entreprise.
-
-Il est nécessaire de clarifier la situation actuelle et de souligner ses limites afin de définir des solutions appropriées.
+L'étude de l'existant constitue une étape fondamentale de notre démarche projet. Elle permet d'identifier les processus actuels, d'analyser leurs limitations et de définir les axes d'amélioration nécessaires pour concevoir une solution parfaitement adaptée aux besoins de SolidWall Consulting.
 \newline
 \begin{enumerate}[label=\textcolor{bleuPerso}{\alph*)}, labelsep=0.5em]
             \item   \textcolor{bleuPerso} {Étude de l'existant au niveau de l'entreprise}~\newline
@@ -157,29 +155,18 @@ SolidMaint se fait par échange de courriels. Cette approche présente certaines
 
    \newpage
  \noindent{\textbf{\textcolor{bleuPerso}{Limitations des solutions existantes }}}
-\begin{itemize}[label=\ding{109}]
-    \item \textbf{Complexité d'utilisation et courbe d'apprentissage :}  
-    \begin{itemize}[nosep, leftmargin=1.2cm, topsep=0pt, itemsep=1pt, label={--}]
-        \item GLPI nécessite une formation de \textbf{2 à 3 jours} pour les administrateurs et présente une interface peu intuitive pour les utilisateurs finaux.
-        \item Jira Service Management requiert une connaissance de l'écosystème Atlassian pour une utilisation optimale.
-    \end{itemize}
-    
-     \item \textbf{Coût des licences et investissement financier :}  
-     \begin{itemize}[nosep, leftmargin=1.2cm, topsep=0pt, itemsep=1pt, label={--}]
-        \item Helpdesk : à partir de \textbf{24€ par utilisateur et par mois}
-        \item Jira Service Management : à partir de \textbf{20€ par agent et par mois}
-        \item Freshdesk : à partir de \textbf{15€ par agent et par mois} (version gratuite très limitée)
-        \item GLPI : Gratuit (version communautaire) mais version entreprise avec support à partir de \textbf{1500€ par an}
-    \end{itemize}
-    Pour une équipe de 10 utilisateurs, le coût annuel peut varier de \textbf{1500€} à \textbf{12000€} , sans compter les coûts de formation et de personnalisation.
-    
-    \item \textbf{Dépendance aux extensions et problèmes d'intégration :} 
-    \begin{itemize}[nosep, leftmargin=1.2cm, topsep=0pt, itemsep=1pt, label={--}]
-        \item De nombreuses fonctionnalités avancées nécessitent des extensions payantes supplémentaires.
-        \item Les mises à jour peuvent engendrer des problèmes de compatibilité avec les extensions tierces.
-        \item L'intégration avec des systèmes existants nécessite souvent des développements spécifiques coûteux.
-    \end{itemize}
-\end{itemize}
+
+\noindent\textbf{Complexité d'utilisation et courbe d'apprentissage}
+
+Les solutions existantes présentent une complexité d'usage significative qui constitue un frein à leur adoption. GLPI nécessite une formation de \textbf{2 à 3 jours} pour les administrateurs et présente une interface peu intuitive pour les utilisateurs finaux, ce qui ralentit considérablement la prise en main. De même, Jira Service Management requiert une connaissance approfondie de l'écosystème Atlassian pour une utilisation optimale, créant une dépendance technique importante pour l'organisation.
+
+\noindent\textbf{Coût des licences et investissement financier}
+
+L'investissement financier représente un obstacle majeur pour les entreprises de taille moyenne. Les tarifs s'échelonnent de \textbf{15€ par agent et par mois} pour Freshdesk (version gratuite très limitée) à \textbf{24€ par utilisateur et par mois} pour Helpdesk, tandis que Jira Service Management coûte \textbf{20€ par agent et par mois}. GLPI, bien que gratuit en version communautaire, nécessite un investissement de \textbf{1500€ par an} minimum pour bénéficier du support entreprise. Pour une équipe de 10 utilisateurs, le coût annuel peut ainsi varier de \textbf{1500€} à \textbf{12000€}, sans compter les coûts de formation et de personnalisation qui s'ajoutent à cet investissement initial.
+
+\noindent\textbf{Dépendance aux extensions et problèmes d'intégration}
+
+Les solutions du marché souffrent d'une architecture modulaire qui génère des coûts cachés et des risques techniques. De nombreuses fonctionnalités avancées nécessitent des extensions payantes supplémentaires, augmentant significativement le coût total de possession. Les mises à jour peuvent engendrer des problèmes de compatibilité avec les extensions tierces, créant une instabilité du système. L'intégration avec des systèmes existants nécessite souvent des développements spécifiques coûteux, prolongeant les délais de mise en œuvre et augmentant les risques projet.
 \subsubsection{Analyse comparative des solutions}
 
 Le tableau suivant présente une analyse comparative détaillée des principales solutions existantes étudiées :
@@ -218,25 +205,29 @@ Le tableau suivant présente une analyse comparative détaillée des principales
 
 \subsubsection{Solution proposée}
 
-Dans le contexte des défis exposés, nous proposons la mise en place de \textbf{SolidMaint}, une solution web pour optimiser et accélérer le processus de gestion des contrats de maintenance. \textbf{SolidMaint} favorisera une traçabilité complète des tâches réalisées tout en offrant une représentation claire des données. 
-Notre application \textbf{SolidMaint} comprendra quatre modules principaux :
+Dans le contexte des défis exposés, nous proposons la mise en place de \textbf{SolidMaint}, une solution web intégrée pour optimiser et accélérer le processus de gestion des contrats de maintenance. 
 \newline
 
-Le premier module, dédié à l'\textbf{Authentification et Gestion des Utilisateurs}, constituera le socle sécuritaire de la plateforme. Il permettra aux responsables de superviser et de gérer de manière précise les profils des utilisateurs avec un système d'authentification robuste incluant la connexion classique et l'authentification via des fournisseurs externes. Le module intégrera un système de contrôle d'accès basé sur les rôles permettant d'attribuer des permissions selon les responsabilités de chaque utilisateur. De plus, il offrira la possibilité de gérer les rôles, les permissions et les demandes d'accès. Chaque utilisateur connecté pourra consulter et modifier son propre profil, ainsi que visualiser l'historique de ses activités dans le système.
+\textbf{SolidMaint} s'articule autour de quatre modules fonctionnels complémentaires :
+
+\noindent\textbf{Module 1 : Authentification, Gestion des Utilisateurs et Clients}
+
+Ce module constitue le socle sécuritaire de la plateforme avec un système d'authentification robuste supportant la connexion classique et OAuth 2.0. Il implémente un contrôle d'accès basé sur les rôles (RBAC) permettant d'attribuer des permissions selon les responsabilités de chaque utilisateur. Le module offre également la gestion complète des profils utilisateurs, la gestion des clients avec annuaire centralisé, et l'historique des activités pour assurer la traçabilité des actions.
+
+\noindent\textbf{Module 2 : Gestion des Projets et Contrats}
+
+Ce module centralise la gestion des projets pour organiser les interventions par client et la gestion des contrats de maintenance avec configuration des SLA. Il garantit une traçabilité complète avec possibilité d'exports pour la conformité réglementaire, assure le suivi de l'avancement des travaux et optimise le respect des engagements contractuels grâce aux alertes préventives.
+
+\noindent\textbf{Module 3 : Gestion des Demandes et Tickets}
+
+Cœur métier de la plateforme, ce module structure le cycle complet des demandes clients depuis leur soumission jusqu'à leur clôture. Il génère automatiquement des tickets liés aux demandes validées et permet leur affectation aux développeurs. Le module propose le suivi du temps passé, la gestion des blocages et des tableaux de bord personnalisés par rôle.
+
+\noindent\textbf{Module 4 : Collaboration et Intelligence Artificielle}
 \newline
 
-Par ailleurs, le deuxième module, centré sur la \textbf{Gestion des Clients, Projets et Contrats}, englobera trois composantes essentielles. Premièrement, la \textbf{Gestion des Clients} permettra de centraliser les informations des entreprises clientes et de maintenir un annuaire complet avec la possibilité d'ajouter des notes internes et de gérer le statut des comptes. Deuxièmement, la \textbf{Gestion des Projets} permettra d'organiser les interventions par client, d'affecter les équipes de développement et de suivre l'avancement des travaux. Troisièmement, la \textbf{Gestion des Contrats de Maintenance} formalisera les engagements contractuels liant SolidWall Consulting à ses clients, avec la configuration des accords de niveau de service définissant les délais de réponse et de résolution par priorité. Ce module comportera également un système de traçabilité complet pour assurer l'enregistrement de toutes les actions avec possibilité d'export pour conformité réglementaire.
-\newline
+Ce module regroupe les fonctionnalités avancées : messagerie temps réel, gestion documentaire avec versioning automatique, et système de notifications multicanaux. Les fonctionnalités d'IA suggèrent automatiquement les catégories de demandes, assurent une priorisation intelligente et recommandent des solutions basées sur l'historique. Le module génère également des rapports d'activité personnalisables.
 
-En outre, le troisième module, centré sur la \textbf{Gestion des Demandes et des Tickets}, constituera le cœur métier de la plateforme. L'objectif principal sera de structurer le cycle de vie complet d'une demande client de maintenance depuis sa soumission jusqu'à sa clôture en passant par la validation. Les clients pourront soumettre des demandes avec pièces jointes, les chefs de projet pourront valider, requalifier ou compléter une demande par des informations supplémentaires. Dès qu'une demande sera validée, \textbf{SolidMaint} générera automatiquement un ticket lié. Les responsables pourront alors affecter les tickets aux développeurs via une interface visuelle intuitive. Le module proposera un système de suivi du temps passé, la gestion des blocages, les demandes d'extension de délai, ainsi que la possibilité de décomposer les tickets complexes en sous-tâches. Des tableaux de bord personnalisés par rôle permettront de piloter l'activité et de suivre les indicateurs de performance.
-\newline
-
-Enfin, le quatrième module, consacré à la \textbf{Collaboration, Documentation et Intelligence Artificielle}, regroupera les fonctionnalités avancées de la plateforme. Il comprendra une messagerie intégrée permettant la communication en temps réel entre l'équipe et les clients, avec support des fils de discussion, des mentions d'utilisateurs et des indicateurs de présence. Le module inclura également un système complet de gestion documentaire avec versioning automatique, détection de doublons, et génération automatique de procès-verbaux professionnels. 
-
-Un système de notifications multicanaux assurera que les utilisateurs reçoivent les alertes importantes, notamment pour les échéances et l'expiration des contrats avec des alertes préventives à \textbf{30, 15 et 7 jours} avant expiration. De surcroît, le module intégrera des fonctionnalités d'intelligence artificielle pour suggérer automatiquement les catégories de demandes, détecter les doublons, recommander des solutions basées sur l'historique et proposer des priorités optimales. Enfin, des rapports d'activité et de conformité pourront être générés pour le pilotage et la justification des performances auprès des clients.
-\newline
-
-En somme, \textbf{SolidMaint} se positionne comme une solution robuste et intégrée qui répond aux limitations identifiées dans les processus actuels et les solutions existantes. En combinant sécurité, traçabilité, collaboration et intelligence artificielle, la plateforme permettra à SolidWall Consulting d'optimiser la gestion de ses contrats de maintenance, d'améliorer la satisfaction client et de garantir le respect des engagements contractuels. Cette solution modulaire et évolutive accompagnera la croissance de l'entreprise tout en assurant une gestion efficace et transparente des services de maintenance.
+\textbf{SolidMaint} apportera une réponse concrète aux défis identifiés en matière de gestion des contrats, d'interventions et de communication client. Grâce à l'intégration de l'intelligence artificielle et d'une interface intuitive, cette plateforme centralisera tous les processus de maintenance dans un environnement unifié.
 \newpage
 \section{Méthodologie adaptée}
 \label{sec:methodologie}
