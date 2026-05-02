@@ -161,15 +161,14 @@ Comme évoqué dans le premier chapitre, le Product Backlog constitue l'un des a
 \noindent\textbf{Légende des priorités :} + : Faible, ++ : Moyenne, +++ : Élevée.
 \input{tex/product_backlog}
 
-% === FIN DÉPLACEMENT ===
-
+  
 \subsection{Planification des sprints}
 
 Un sprint représente une période de développement durant laquelle l'équipe s'engage à livrer un ensemble cohérent de fonctionnalités opérationnelles. Cette approche itérative permet d'obtenir des retours réguliers et d'ajuster les priorités au fil de l'avancement.
 
-\noindent Notre projet est organisé en \textbf{4 sprints} de \textbf{3 à 4 semaines} chacun, couvrant une période totale de développement de \textbf{3,5 mois}. La stratégie de répartition suit une logique architecturale : fondations sécuritaires (Sprint 1), gestion contractuelle (Sprint 2), cœur métier opérationnel (Sprint 3), et fonctionnalités avancées (Sprint 4). Chaque sprint commence par une réunion de planification (Sprint Planning) où l'équipe sélectionne les user stories du Product Backlog à réaliser, et se termine par une revue de sprint (Sprint Review) et une rétrospective (Sprint Retrospective).
+\noindent Notre projet est organisé en \textbf{4 sprints} de \textbf{3 à 4 semaines} chacun, couvrant une période totale de développement d'\textbf{environ 3 mois et demi}. La stratégie de répartition suit une logique architecturale : fondations sécuritaires (Sprint 1), gestion contractuelle (Sprint 2), cœur métier opérationnel (Sprint 3), et fonctionnalités avancées (Sprint 4). Chaque sprint commence par une réunion de planification (Sprint Planning) où l'équipe sélectionne les user stories du Product Backlog à réaliser, et se termine par une revue de sprint (Sprint Review) et une rétrospective (Sprint Retrospective).
 
-La figure \ref{fig:planification_sprints} illustre le déroulement chronologique de nos sprints.
+La figure suivante présente le déroulement chronologique de nos sprints.
 
 \begin{figure}[H]
     \centering
@@ -208,6 +207,7 @@ La figure \ref{fig:planification_sprints} illustre le déroulement chronologique
 \textbf{Objectif du sprint :} Développer la gestion complète des projets et contrats de maintenance avec système d'alertes.
 
 \noindent
+\newpage
 \textbf{User Stories sélectionnées :}
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
     \item \textbf{Epic 6 - Gestion des projets} : US24 à US27 (4 user stories)
@@ -262,6 +262,7 @@ La figure \ref{fig:planification_sprints} illustre le déroulement chronologique
 \end{itemize}
 
 \noindent
+\newpage
 \textbf{Livrables attendus :}
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
     \item Système de messagerie et collaboration temps réel
@@ -273,7 +274,16 @@ La figure \ref{fig:planification_sprints} illustre le déroulement chronologique
 
 \noindent
 \textbf{Synthèse de la planification :} Cette répartition assure une progression logique où chaque sprint s'appuie sur les livrables précédents. Les dépendances techniques sont respectées (authentification avant tickets, contrats avant demandes), et la valeur métier croît progressivement jusqu'aux fonctionnalités différenciantes du sprint final.
-
+\subsection{Planning prévisionnel (Diagramme de Gantt)}
+\label{sec:planning}
+« Un diagramme de Gantt est un outil d'organisation et de gestion de projets. Il s'agit d'un diagramme à barres horizontales qui présente toutes les tâches d'un projet en fonction d'un calendrier. Il aide les chefs de projet à visualiser les tâches requises et à suivre l'avancement de leur projet. » [5]
+\newline Dans le cadre du développement de notre projet \textbf{SolidMaint}, le planning prévisionnel a été réalisé pour organiser les différentes phases de développement. La figure ci-dessous illustre cette planification :  
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/Diagramme_Gantt.png}
+        \caption{Diagramme de Gantt}
+    \end{figure}
+  
 
 % SECTION IV : ENVIRONNEMENT DE DÉVELOPPEMENT
 % ─────────────────────────────────────────────────────────────────────────────
