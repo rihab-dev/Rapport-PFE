@@ -41,7 +41,7 @@
 \mtcsetdepth{minitoc}{1}
 \mtcsetrules{minitoc}{off}
 \mtcsetfont{minitoc}{*}{\small\rmfamily\color{primary}}
-\mtcsetfont{minitoc}{section}{\small\bfseries\rmfamily\color{primary}}
+\mtcsetfont{minitoc}{section}{\large\bfseries\rmfamily\color{primary}}
 \mtcsetfont{minitoc}{subsection}{\footnotesize\rmfamily\color{secondary}}
 \renewcommand{\mtctitle}{}
 
@@ -62,7 +62,7 @@
 \makeatletter
 \newcommand{\hiddenpart}[1]{%
   \refstepcounter{chapter}%
-  \addcontentsline{toc}{chapter}{\protect\numberline{\thechapter}#1}%
+  \addcontentsline{toc}{chapter}{#1}%
   \chaptermark{#1}%
   \mtcaddchapter%           % enregistre le chapitre dans minitoc
 }

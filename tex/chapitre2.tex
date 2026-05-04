@@ -501,7 +501,7 @@ On va commencer par la présentation de l’environnement matériel et logiciel 
     \vspace{10pt}
 }
 \cadretechPostgres{Images/postgres.png}{\textbf{PostgreSQL : } « est un système de gestion de bases de données objet-relationnelles (SGBD-OR). Il a été pionnier dans de nombreux concepts qui ne sont devenus disponibles que bien plus tard dans certains systèmes de bases de données commerciaux. » |17| }
-
+\newpage
 \newcommand{\cadretechNeon}[2]{%
     \noindent
     \begin{minipage}{2.2cm}
@@ -583,6 +583,30 @@ On va commencer par la présentation de l’environnement matériel et logiciel 
 }
 
 \cadretechCanva{Images/canva.png}{\textbf{Canva : } « est une plateforme de conception et de communication visuelle en ligne dont la mission est de permettre à chacun dans le monde de concevoir n’importe quoi et de publier n’importe où. » |20|}
+
+
+\subsubsection{Outils de test et qualité logicielle}
+\newcommand{\cadretechPlayWrite}[2]{%
+    \noindent
+    \begin{minipage}{2.5cm}
+        \centering
+        \includegraphics[width=2cm, height=1.5cm, keepaspectratio]{#1}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
+        \fbox{%
+            \parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
+                #2%
+            }%
+        }%
+    \end{minipage}
+    \par
+    \vspace{10pt}
+}
+
+\cadretechPlayWrite{Images/Playwright.png}{\textbf{Playwright : } « est un framework de test complet pour les applications web modernes. Il intègre un exécuteur de tests, des assertions, l'isolation et la parallélisation. \newline Playwright est compatible avec Chromium, WebKit et Firefox sous Windows, Linux et macOS, en local ou en intégration continue, avec ou sans interface graphique, et propose une émulation mobile native pour Chrome (Android) et Safari mobile.  » |21|}
+
+
 \newpage
 \section{Architecture de l’application}
 \subsection{Architecture physique}
@@ -603,8 +627,8 @@ Nous avons choisi cette architecture afin de maintenir l’indépendance des mod
  \begin{figure}[H]
         \centering
         \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/Modular Monoith.png}
-        \caption{Architecture monolithe modulaire}
-        \label{fig:Architecture monolithe modulaire}
+        \caption{Architecture monolithique modulairee}
+        \label{fig:Architecture monolithique modulaire}
     \end{figure}
 
     \section{Conclusion}
@@ -632,4 +656,5 @@ Nous avons choisi cette architecture afin de maintenir l’indépendance des mod
  \item \textbf{Notion}, Espace de travail - \url{https://www.dixmilleheures.fr/avis/notion} % |19|
  \item \textbf{LaTeX}, Système de composition - \url{https://www.latex-project.org} % |20|
  \item \textbf{Canva}, Design graphique - \url{https://1password.com/fr/customers/canva} % |21|
+\item \textbf{Playwright}, Framework de test - \url{https://playwright.dev/docs/intro} % |21|
 \end{itemize}
