@@ -1208,19 +1208,15 @@ Nous avons couvert le cas de test suivant :
 
 \subsubsection{Tests End-to-End} 
 Par ces tests, nous visons à valider le bon fonctionnement du processus de désactivation et réactivation d'utilisateurs. En utilisant Playwright, nous avons testé les parcours complets de gestion du statut utilisateur en simulant les actions réelles d'un administrateur. L'objectif est de s'assurer que le système gère correctement les changements de statut et applique les restrictions d'accès appropriées.       
-Nous avons couvert les cas de test suivants :
+Nous avons couvert le cas de test suivant :
 
 \begin{itemize}[label=$\bullet$] 
-    \item Vérification des tickets et demandes en cours avant la désactivation. 
-    \item Vérification de la réassignation des tickets.
-     \item Désactivation d'un utilisateur actif via le menu d'actions avec confirmation.
-      \item Vérification que l'utilisateur désactivé ne peut plus se connecter.
-       \item Réactivation d'un utilisateur désactivé via le menu d'actions avec confirmation. 
-       \item Vérification que l'utilisateur réactivé peut se reconnecter.
+    \item Cas où l'administrateur tente de désactiver un utilisateur actif disposant de tickets/demandes en cours : le système détecte les 9 tickets actifs, affiche le modal de réassignation, procède à l'assignation de chaque ticket au premier développeur/chef de projet disponible, puis finalise la désactivation du compte après confirmation via le bouton « Réassigner et Désactiver ».
+
      \end{itemize}
 \begin{figure}[H]
         \centering
-\includegraphics[width=0.7\textwidth,keepaspectratio]{Images/E2E_Gestion_Utilisateur.png}
+\includegraphics[width=0.7\textwidth,keepaspectratio]{Images/Test e2e desactiver utilisateu.png}
         \caption{Test End-to-End de la gestion des utilisateurs via Playwright}
     \end{figure}
 
