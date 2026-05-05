@@ -1135,21 +1135,9 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 % SECTION 3 : CONCEPTION
 % ─────────────────────────────────────────────────────────────────────────────
 
-\section{Conception}
-\label{sec:conception_sprint1}
+\section{Diagramme de classes de premiére sprint}
 
-\subsection{Diagrammes de séquence}
-
-Cette section présentera les diagrammes de séquence détaillant les interactions entre les différents composants du système pour les cas d'utilisation principaux du Sprint 1.
-
-\textit{[À compléter avec les diagrammes de séquence]}
-
-\subsection{Modèle de données}
-
-Cette section présentera le modèle de données relatif à la gestion des utilisateurs, rôles et permissions.
-
-\textit{[À compléter avec le schéma de base de données]}
-
+\section{Schéma relationnel}
 \newpage
 
 % ─────────────────────────────────────────────────────────────────────────────
@@ -1160,17 +1148,10 @@ Cette section présentera le modèle de données relatif à la gestion des utili
 Dans cette partie, nous présentons les interfaces développées au cours de ce sprint.
 \label{sec:realisation_sprint1}
 
-\subsection{Architecture technique}
+\subsection{Diagramme de compositions}
 
-Cette section présentera l'architecture technique mise en place pour le Sprint 1, incluant la structure des modules frontend et backend.
 
-\textit{[À compléter avec les détails d'implémentation]}
-
-\subsection{Interfaces utilisateur}
-
-Cette section présentera les principales interfaces développées durant le Sprint 1.
-
-\textit{[À compléter avec les captures d'écran]}
+\subsection{Description des interfaces}
 
 \newpage
 
@@ -1190,27 +1171,56 @@ Nous avons réalisé des tests unitaires via Vitest pour tester les règles mét
 
 
 
+\begin{itemize}
+  \item[$\square$]  \textbf{Test de changer mot de passe}
+  
+ \noindent Par ces tests, nous visons à valider le bon fonctionnement des méthodes \textbf{demanderReinitialisationMotDePasse()} et \textbf{reinitialiserMotDePasse()}, qui gèrent le processus de réinitialisation du mot de passe utilisateur.
 
+En utilisant Vitest, nous avons isolé ces tests du reste de l'application afin d'assurer leur indépendance. L'objectif est de s'assurer que ces méthodes traitent correctement les cas d'erreur liés à la sécurité du processus de réinitialisation.
+\newline
+Nous avons couvert les deux cas de test suivants :
+\begin{itemize}
 
+\item[$\bullet$] Cas où l'e-mail fourni n'existe pas dans la base de données.
+\item[$\bullet$] Cas où le token de réinitialisation est invalide car il a été généré depuis plus d'une heure.
+\end{itemize}
 \begin{figure}[H]
         \centering
         \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/Test_unitaire changer mot de passe.png}
         \caption{Test unitaire de changer mot de passe}
     \end{figure}
 
-\subsubsection{Tests d'intégration manuels de l'API}
-Nous avons réalisé des tests API, dont la documentation Swagger facilite l'exécution en offrant une interface permettant de tester directement les endpoints.
 
+\end{itemize}
+
+\subsubsection{Tests d'intégration manuels de l'API}
+Par ce test, nous visons à valider le bon fonctionnement de la méthode \textbf{modifierProfil()} exposée via l'endpoint \textbf{PUT /api/profil}, qui permet à un utilisateur de mettre à jour les informations de son profil.
+
+Nous avons couvert le cas de test suivant :
+\begin{itemize}
+\item[$\bullet$] Cas où l'e-mail fourni dans la requête ne respecte pas le format attendu.
+\end{itemize}
 \begin{figure}[H]
         \centering
         \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/gestion profil Swagger.png}
-        \caption{Test de l'endpoint de récupération du profil utilisateur via Swagger}
+        \caption{Test de mise à jour du profil}
     \end{figure}
 
 \subsubsection{Tests End-to-End} 
-Nous avons testé les parcours critiques à l'aide de Playwright, garantissant ainsi que l'ensemble du système fonctionne correctement du point de vue de l'utilisateur.\begin{figure}[H]
+Par ces tests, nous visons à valider le bon fonctionnement du processus de désactivation et réactivation d'utilisateurs. En utilisant Playwright, nous avons testé les parcours complets de gestion du statut utilisateur en simulant les actions réelles d'un administrateur. L'objectif est de s'assurer que le système gère correctement les changements de statut et applique les restrictions d'accès appropriées.       
+Nous avons couvert les cas de test suivants :
+
+\begin{itemize}[label=$\bullet$] 
+    \item Vérification des tickets et demandes en cours avant la désactivation. 
+    \item Vérification de la réassignation des tickets.
+     \item Désactivation d'un utilisateur actif via le menu d'actions avec confirmation.
+      \item Vérification que l'utilisateur désactivé ne peut plus se connecter.
+       \item Réactivation d'un utilisateur désactivé via le menu d'actions avec confirmation. 
+       \item Vérification que l'utilisateur réactivé peut se reconnecter.
+     \end{itemize}
+\begin{figure}[H]
         \centering
-        \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/E2E_Gestion_Utilisateur.png}
+\includegraphics[width=0.7\textwidth,keepaspectratio]{Images/E2E_Gestion_Utilisateur.png}
         \caption{Test End-to-End de la gestion des utilisateurs via Playwright}
     \end{figure}
 

@@ -38,14 +38,13 @@
 {\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {8.6}Description textuelle de cas d'utilisation « Désactiver client »}{\reset@font\mtcSSSfont 82}{subsubsection.3.2.8.6}}
 {\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {8.7}Description textuelle de cas d'utilisation « Réactiver client »}{\reset@font\mtcSSSfont 82}{subsubsection.3.2.8.7}}
 {\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {8.8}Description textuelle de cas d'utilisation « Gérer notes privées client »}{\reset@font\mtcSSSfont 83}{subsubsection.3.2.8.8}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {III}Conception}{\reset@font\mtcSfont 84}{section.3.3}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Diagrammes de séquence}{\reset@font\mtcSSfont 84}{subsection.3.3.1}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Modèle de données}{\reset@font\mtcSSfont 84}{subsection.3.3.2}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {IV}Réalisation}{\reset@font\mtcSfont 85}{section.3.4}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Architecture technique}{\reset@font\mtcSSfont 85}{subsection.3.4.1}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Interfaces utilisateur}{\reset@font\mtcSSfont 85}{subsection.3.4.2}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {V}Tests et Validation}{\reset@font\mtcSfont 86}{section.3.5}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Stratégie de tests adoptée}{\reset@font\mtcSSfont 86}{subsection.3.5.1}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {1.1}Tests unitaires}{\reset@font\mtcSSSfont 86}{subsubsection.3.5.1.1}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {1.2}Tests d'intégration manuels de l'API}{\reset@font\mtcSSSfont 87}{subsubsection.3.5.1.2}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {1.3}Tests End-to-End}{\reset@font\mtcSSSfont 87}{subsubsection.3.5.1.3}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {III}Diagramme de classes de premiére sprint}{\reset@font\mtcSfont 84}{section.3.3}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {IV}Schéma relationnel}{\reset@font\mtcSfont 84}{section.3.4}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {V}Réalisation}{\reset@font\mtcSfont 85}{section.3.5}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Diagramme de compositions}{\reset@font\mtcSSfont 85}{subsection.3.5.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Description des interfaces}{\reset@font\mtcSSfont 85}{subsection.3.5.2}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {VI}Tests et Validation}{\reset@font\mtcSfont 86}{section.3.6}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Stratégie de tests adoptée}{\reset@font\mtcSSfont 86}{subsection.3.6.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {1.1}Tests unitaires}{\reset@font\mtcSSSfont 86}{subsubsection.3.6.1.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {1.2}Tests d'intégration manuels de l'API}{\reset@font\mtcSSSfont 87}{subsubsection.3.6.1.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {1.3}Tests End-to-End}{\reset@font\mtcSSSfont 87}{subsubsection.3.6.1.3}}
