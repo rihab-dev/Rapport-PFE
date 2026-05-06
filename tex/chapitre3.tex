@@ -1136,8 +1136,36 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 % ─────────────────────────────────────────────────────────────────────────────
 
 \section{Diagramme de classes de premiére sprint}
+\section{ Diagramme de séquence}
+\subsection{Diagramme de séquences du cas d’utilisation « Mot de passe oublié »}
 
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/Diagramme changer Mot de passe.png}
+        \caption{Diagramme de séquence du cas d’utilisation « Mot de passe oublié »}
+        \label{Diagramme de séquence du cas d’utilisation « Mot de passe oublié »}
+\end{figure}
+
+\subsection{Diagramme de séquences du cas d’utilisation « Désactiver utilisateur »}
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/Diaggramme de séquence de Désactiver utilisateur.png}
+        \caption{Diagramme de séquence du cas d’utilisation « Désactiver utilisateur »}
+        \label{Diagramme de séquence du cas d’utilisation « Désactiver utilisateur »}
+\end{figure}
 \section{Schéma relationnel}
+\textbf{Utilisateur} (idUtilisateur, nom, prenom, email, motDePasse, estActif, \textbf{\#idRole})
+\newline
+\textbf{ProfilClient} (idProfilC,\textbf{\#idUtilisateur}, nomSociete, secteurActivite)
+\newline
+\textbf{ProfilEmploye} (idProfilE, \textbf{\#idUtilisateur}, matricule, poste)
+\newline
+\textbf{Projet} (idProjet, nomProjet, statut, \textbf{\#idProfilC}, \textbf{\#idChefProjet})
+\newline
+\textbf{MembreProjet} (\textbf{\#idProjet}, \textbf{\#idProfilE}, dateAffectation)
+
+\textbf{DemandeOAuth} (idDemande, email, fournisseur, statut)
 \newpage
 
 % ─────────────────────────────────────────────────────────────────────────────
