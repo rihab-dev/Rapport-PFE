@@ -25,6 +25,7 @@ Voici l’ensemble des fonctionnalités issues du Product Backlog, qui seront r�
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 2 : ANALYSE
 % ─────────────────────────────────────────────────────────────────────────────
+ \newpage
 
 \section{Analyse}
 Dans le processus de développement, l’analyse joue un rôle important ; elle permet d’identifier les exigences du système et de traduire les besoins exprimés en spécifications claires et cohérentes.
@@ -44,6 +45,63 @@ La figure ci-dessous présente le diagramme de cas d’utilisation du premier sp
 Nous allons accompagner les cas d'utilisation d'un texte descriptif pour expliquer le scénario de chaque cas ainsi que ses exceptions.
 
 \newpage
+
+
+
+\subsection{Description textuelle de cas d'utilisation « Demander accès via OAuth »}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Demander accès via OAuth \\
+\hline
+\textbf{Acteurs} & Visiteur \\
+\hline
+\textbf{Préconditions} & Le visiteur n'a pas de compte dans le système\\
+\hline
+\textbf{Postconditions} & Une demande d'inscription est créée et en attente de validation par un administrateur\\
+\hline
+\textbf{Scénario principal} & 
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item Le visiteur accède à la page de connexion.
+\item Le visiteur sélectionne le rôle souhaité (Client, Développeur, Chef de projet).
+\item Le visiteur clique sur "Se connecter avec Google" ou "Se connecter avec GitHub".
+\item Le système redirige le visiteur vers le fournisseur OAuth sélectionné.
+\item Le visiteur s'authentifie et autorise l'application à accéder à ses informations.
+\item Le fournisseur OAuth redirige le visiteur vers l'application avec un code d'autorisation.
+\item Le système échange le code d'autorisation contre un access token.
+\item Le système récupère les informations du profil utilisateur (email, prénom, nom, photo).
+\item Le système vérifie si un compte existe déjà avec cet email.
+\item Si aucun compte n'existe : le système crée une nouvelle demande d'inscription en attente de validation.
+\item Le système envoie un e-mail de notification à tous les administrateurs actifs.
+\item Le système envoie un e-mail de confirmation au visiteur.
+\item Le système redirige le visiteur vers la page de connexion avec un message "Demande en attente de validation".
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\item Compte existant actif : le système connecte directement l'utilisateur.
+\item Demande déjà soumise : le système affiche "Votre demande est déjà en attente" sans créer de doublon.
+\item Annulation OAuth : le visiteur annule l'autorisation, le système redirige vers la page de connexion.
+\end{itemize} \\
+\hline
+\textbf{Scénarios d'exception} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$] 
+\item Email non disponible : le fournisseur OAuth ne fournit pas l'email, le système affiche un message d'erreur.
+\item Fournisseur OAuth indisponible : le système affiche un message d'erreur technique.
+\end{itemize} \\
+\hline
+\end{tabular}
+\caption{Description textuelle « Demander accès via OAuth »}
+
+\end{table}
+
+\vspace{-0.8cm}
+
 
 \subsection{Description textuelle de cas d'utilisation « Changer mot de passe »}
 La figure ci-dessous présente la description textuelle du cas d’utilisation « Changer le mot de passe » :
@@ -92,61 +150,9 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 
 \end{table}
 \vspace{-0.8cm}
-
-\subsection{Description textuelle de cas d'utilisation « Demander accès via OAuth »}
-
-\begin{table}[H]
-\centering
-\footnotesize
-\renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Demander accès via OAuth »}
-\begin{tabular}{|p{4.5cm}|p{12cm}|}
-\hline
-\textbf{Nom du cas d'utilisation} & Demander accès via OAuth \\
-\hline
-\textbf{Acteurs} & Visiteur \\
-\hline
-\textbf{Préconditions} & Le visiteur n'a pas de compte dans le système\\
-\hline
-\textbf{Postconditions} & Une demande d'inscription est créée et en attente de validation par un administrateur\\
-\hline
-\textbf{Scénario principal} & 
-\begin{minipage}[t]{\linewidth}
-\begin{enumerate}[label=\arabic*., leftmargin=*]
-\item Le visiteur accède à la page de connexion.
-\item Le visiteur sélectionne le rôle souhaité (Client, Développeur, Chef de projet).
-\item Le visiteur clique sur "Se connecter avec Google" ou "Se connecter avec GitHub".
-\item Le système redirige le visiteur vers le fournisseur OAuth sélectionné.
-\item Le visiteur s'authentifie et autorise l'application à accéder à ses informations.
-\item Le fournisseur OAuth redirige le visiteur vers l'application avec un code d'autorisation.
-\item Le système échange le code d'autorisation contre un access token.
-\item Le système récupère les informations du profil utilisateur (email, prénom, nom, photo).
-\item Le système vérifie si un compte existe déjà avec cet email.
-\item Si aucun compte n'existe : le système crée une nouvelle demande d'inscription en attente de validation.
-\item Le système envoie un e-mail de notification à tous les administrateurs actifs.
-\item Le système envoie un e-mail de confirmation au visiteur.
-\item Le système redirige le visiteur vers la page de connexion avec un message "Demande en attente de validation".
-\end{enumerate}
-\vspace{2pt}
-\end{minipage} \\
-\hline
-\textbf{Scénarios alternatifs} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-\item Compte existant actif : le système connecte directement l'utilisateur.
-\item Demande déjà soumise : le système affiche "Votre demande est déjà en attente" sans créer de doublon.
-\item Annulation OAuth : le visiteur annule l'autorisation, le système redirige vers la page de connexion.
-\end{itemize} \\
-\hline
-\textbf{Scénarios d'exception} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$] 
-\item Email non disponible : le fournisseur OAuth ne fournit pas l'email, le système affiche un message d'erreur.
-\item Fournisseur OAuth indisponible : le système affiche un message d'erreur technique.
-\end{itemize} \\
-\hline
-\end{tabular}
-\end{table}
-\vspace{-0.8cm}
-
 \subsection{Analyse de la fonctionnalité « Gérer utilisateurs »}
 Dans cette partie, nous allons présenter les cas d’utilisation relatifs à la gestion des utilisateurs afin de comprendre les principales fonctionnalités du système, ce qui permet d’avoir une vue globale des interactions.
+\newpage
 \subsubsection{Raffinement de cas d'utilisation « Gérer utilisateurs »}
 Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de gestion des utilisateurs :    
 
@@ -162,7 +168,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \centering
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Consulter liste utilisateurs »}
 \begin{tabular}{|p{4.5cm}|p{12cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Consulter liste utilisateurs \\
@@ -187,7 +192,10 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \textbf{Scénarios alternatifs} & L'administrateur clique sur le bouton « Exporter ». \\
 \hline
 \end{tabular}
+\caption{Description textuelle « Consulter liste utilisateurs »}
+
 \end{table}
+
 \vspace{-0.8cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Ajouter utilisateur »}
@@ -196,7 +204,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \centering
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Ajouter utilisateur »}
 \begin{tabular}{|p{4.5cm}|p{12cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Ajouter utilisateur \\
@@ -229,7 +236,10 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \textbf{Scénarios alternatifs} & Le système génère un mot de passe temporaire. \\
 \hline
 \end{tabular}
+\caption{Description textuelle « Ajouter utilisateur »}
+
 \end{table}
+
 \vspace{-0.8cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Modifier utilisateur »}
@@ -238,7 +248,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \centering
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Modifier utilisateur »}
 \begin{tabular}{|p{4.5cm}|p{12cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Modifier utilisateur \\
@@ -265,8 +274,8 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \textbf{Scénarios alternatifs} & L'administrateur supprime leur dernier rôle.\newline L'utilisateur tente d'ajouter un rôle qui ne correspond pas au parcours métier. \\
 \hline
 \end{tabular}
+\caption{Description textuelle « Modifier utilisateur »}
 \end{table}
-\vspace{-0.8cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Désactiver un utilisateur »}
 
@@ -274,7 +283,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \centering
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Désactiver un utilisateur »}
 \begin{tabular}{|p{4.5cm}|p{12cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Désactiver un utilisateur \\
@@ -307,13 +315,17 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{itemize} \\
 \hline
 \end{tabular}
+\caption{Description textuelle « Désactiver un utilisateur »}
+
 \end{table}
+
 \vspace{-0.8cm}
 
 \subsection{Analyse de la fonctionnalité « Gérer profil »}
 Dans cette partie, nous allons présenter les cas d’utilisation relatifs à la gestion des profils afin
 de comprendre les principales fonctionnalités du système, ce qui permet d’avoir une vue globale des
 interactions.
+\newpage
 \subsubsection{Raffinement de cas d'utilisation « Gérer Profil »}
 Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de gestion de profil :    
 
@@ -330,7 +342,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \centering
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Consulter profil »}
 \begin{tabular}{|p{4.5cm}|p{12cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Consulter profil \\
@@ -360,7 +371,10 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{minipage}\\
 \hline
 \end{tabular}
+\caption{Description textuelle « Consulter profil »}
+
 \end{table}
+
 \vspace{-0.8cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Modifier Profil »}
@@ -369,7 +383,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \centering
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Modifier le Profil »}
 \begin{tabular}{|p{4.5cm}|p{12cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Modifier le Profil \\
@@ -410,13 +423,17 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{itemize} \\
 \hline
 \end{tabular}
+\caption{Description textuelle « Modifier le Profil »}
+
 \end{table}
+
 \vspace{-0.8cm}
 
 \subsection{Analyse de la fonctionnalité « Gérer rôles »}
 Dans cette partie, nous allons présenter les cas d’utilisation relatifs à la gestion des rôles afin
 de comprendre les principales fonctionnalités du système, ce qui permet d’avoir une vue globale des
 interactions.
+\newpage
 \subsubsection{Raffinement de cas d'utilisation « Gérer rôles »}
 Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de gestion des rôles :
 
@@ -433,7 +450,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \centering
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Consulter liste rôles »}
 \begin{tabular}{|p{4.5cm}|p{12cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Consulter liste rôles \\
@@ -458,7 +474,10 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \textbf{Scénarios alternatifs} & L'administrateur clique sur un rôle pour voir les utilisateurs qui le possèdent. \\
 \hline
 \end{tabular}
+\caption{Description textuelle « Consulter liste rôles »}
+
 \end{table}
+
 \vspace{-0.8cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Ajouter rôle »}
@@ -467,7 +486,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \centering
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Ajouter rôle »}
 \begin{tabular}{|p{4.5cm}|p{12cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Ajouter rôle \\
@@ -498,7 +516,10 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{itemize} \\
 \hline
 \end{tabular}
+\caption{Description textuelle « Ajouter rôle »}
+
 \end{table}
+
 \vspace{-0.8cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Modifier rôle »}
@@ -507,7 +528,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \centering
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Modifier rôle »}
 \begin{tabular}{|p{4.5cm}|p{12cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Modifier rôle \\
@@ -537,7 +557,10 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{itemize} \\
 \hline
 \end{tabular}
+\caption{Description textuelle « Modifier rôle »}
+
 \end{table}
+
 \vspace{-0.8cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Archiver rôle »}
@@ -546,7 +569,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \centering
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Archiver rôle »}
 \begin{tabular}{|p{4.5cm}|p{12cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Archiver rôle \\
@@ -575,7 +597,10 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \textbf{Scénarios alternatifs} & L'administrateur restaure un rôle archivé. \\
 \hline
 \end{tabular}
+\caption{Description textuelle « Archiver rôle »}
+
 \end{table}
+
 \vspace{-0.8cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Supprimer rôle »}
@@ -584,7 +609,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \centering
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Supprimer rôle »}
 \begin{tabular}{|p{4.5cm}|p{12cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Supprimer rôle \\
@@ -611,7 +635,10 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \textbf{Scénarios alternatifs} & L'administrateur restaure le rôle archivé au lieu de le supprimer (action "Restaurer"). \\
 \hline
 \end{tabular}
+\caption{Description textuelle « Supprimer rôle »}
+
 \end{table}
+
 \vspace{-0.8cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Attribuer rôle à utilisateur »}
@@ -620,7 +647,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \centering
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Attribuer rôle à utilisateur »}
 \begin{tabular}{|p{4.5cm}|p{12cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Attribuer rôle à utilisateur \\
@@ -653,7 +679,10 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{itemize} \\
 \hline
 \end{tabular}
+\caption{Description textuelle « Attribuer rôle à utilisateur »}
+
 \end{table}
+
 \vspace{-0.8cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Retirer rôle d'un utilisateur »}
@@ -662,7 +691,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \centering
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Retirer rôle utilisateur »}
 \begin{tabular}{|p{4.5cm}|p{12cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Retirer rôle utilisateur \\
@@ -692,11 +720,14 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{itemize} \\
 \hline
 \end{tabular}
+\caption{Description textuelle « Retirer rôle utilisateur »}
+
 \end{table}
+
 \vspace{-0.8cm}
 
 \subsection{Description des cas d'utilisation « Gérer permissions »}
-
+\newpage
 \subsubsection{Raffinement de cas d'utilisation « Gérer permissions »}
 Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de gestion des permissions :
 
@@ -713,7 +744,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \centering
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Consulter liste des permissions »}
 \begin{tabular}{|p{4.5cm}|p{12cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Consulter liste des permissions \\
@@ -741,7 +771,10 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{itemize} \\
 \hline
 \end{tabular}
+\caption{Description textuelle « Consulter liste des permissions »}
+
 \end{table}
+
 \vspace{-0.8cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Attribuer permission à rôle »}
@@ -750,7 +783,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \centering
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Attribuer permission à rôle »}
 \begin{tabular}{|p{4.5cm}|p{12cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Attribuer permission à rôle \\
@@ -780,7 +812,10 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \textbf{Scénarios d'exception} & La permission est déjà attribuée au rôle. \\
 \hline
 \end{tabular}
+\caption{Description textuelle « Attribuer permission à rôle »}
+
 \end{table}
+
 \vspace{-0.8cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Retirer permission d'un rôle »}
@@ -789,7 +824,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \centering
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Retirer permission rôle »}
 \begin{tabular}{|p{4.5cm}|p{12cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Retirer permission rôle \\
@@ -819,7 +853,10 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \textbf{Scénarios d'exception} & La permission n'est pas attribuée à ce rôle. \\
 \hline
 \end{tabular}
+\caption{Description textuelle « Retirer permission rôle »}
+
 \end{table}
+
 \vspace{-0.8cm}
 
 
@@ -841,7 +878,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \centering
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Consulter liste clients »}
 \begin{tabular}{|p{4.5cm}|p{12cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Consulter liste clients \\
@@ -871,7 +907,10 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{itemize} \\
 \hline
 \end{tabular}
+\caption{Description textuelle « Consulter liste clients »}
+
 \end{table}
+
 \vspace{-0.8cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Ajouter client »}
@@ -880,7 +919,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \centering
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Ajouter client »}
 \begin{tabular}{|p{4.5cm}|p{12cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Ajouter client \\
@@ -919,7 +957,10 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{itemize} \\
 \hline
 \end{tabular}
+\caption{Description textuelle « Ajouter client »}
+
 \end{table}
+
 \vspace{-0.8cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Modifier client »}
@@ -928,7 +969,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \centering
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Modifier client »}
 \begin{tabular}{|p{4.5cm}|p{12cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Modifier client \\
@@ -958,7 +998,10 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{itemize} \\
 \hline
 \end{tabular}
+\caption{Description textuelle « Modifier client »}
+
 \end{table}
+
 \vspace{-0.8cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Consulter profil client »}
@@ -967,7 +1010,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \centering
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Consulter profil client »}
 \begin{tabular}{|p{4.5cm}|p{12cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Consulter profil client \\
@@ -1007,7 +1049,10 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{itemize} \\
 \hline
 \end{tabular}
+\caption{Description textuelle « Consulter profil client »}
+
 \end{table}
+
 \vspace{-0.8cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Désactiver client »}
@@ -1016,7 +1061,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \centering
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Désactiver un client »}
 \begin{tabular}{|p{4.5cm}|p{12cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Désactiver un client \\
@@ -1051,7 +1095,10 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \textbf{Scénarios alternatifs} & L'administrateur clôture les contrats, traite les demandes et résout les tickets avant la désactivation. \\
 \hline
 \end{tabular}
+\caption{Description textuelle « Désactiver un client »}
+
 \end{table}
+
 \vspace{-0.8cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Réactiver client »}
@@ -1060,7 +1107,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \centering
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Réactiver un client »}
 \begin{tabular}{|p{4.5cm}|p{12cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Réactiver un client \\
@@ -1088,7 +1134,10 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \textbf{Scénarios d'exception} & Le client est déjà actif. \\
 \hline
 \end{tabular}
+\caption{Description textuelle « Réactiver un client »}
+
 \end{table}
+
 \vspace{-0.8cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Gérer notes privées client »}
@@ -1097,7 +1146,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \centering
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Gérer notes privées client »}
 \begin{tabular}{|p{4.5cm}|p{12cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Gérer notes privées client \\
@@ -1126,7 +1174,10 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \textbf{Scénarios d'exception} & L'utilisateur tente d'ajouter une note vide. \\
 \hline
 \end{tabular}
+\caption{Description textuelle « Gérer notes privées client »}
+
 \end{table}
+
 \vspace{-0.8cm}
 
 \newpage
@@ -1157,14 +1208,14 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \section{Schéma relationnel}
 \textbf{Utilisateur} (idUtilisateur, nom, prenom, email, motDePasse, estActif, \textbf{\#idRole})
 \newline
-\textbf{ProfilClient} (idProfilC,\textbf{\#idUtilisateur}, nomSociete, secteurActivite)
+\textbf{ProfilClient} (idProfilC, \textbf{\#idUtilisateur}, nomSociete, secteurActivite)
 \newline
 \textbf{ProfilEmploye} (idProfilE, \textbf{\#idUtilisateur}, matricule, poste)
 \newline
 \textbf{Projet} (idProjet, nomProjet, statut, \textbf{\#idProfilC}, \textbf{\#idChefProjet})
 \newline
 \textbf{MembreProjet} (\textbf{\#idProjet}, \textbf{\#idProfilE}, dateAffectation)
-
+\newline
 \textbf{DemandeOAuth} (idDemande, email, fournisseur, statut)
 \newpage
 
