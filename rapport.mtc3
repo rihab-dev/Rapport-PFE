@@ -1,22 +1,22 @@
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {I}Sprint Planning Meeting }{\reset@font\mtcSfont 59}{section.3.1}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Objectif du Sprint}{\reset@font\mtcSSfont 59}{subsection.3.1.1}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {1.1}Backlog du premier sprint}{\reset@font\mtcSSSfont 59}{subsubsection.3.1.1.1}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {II}Analyse}{\reset@font\mtcSfont 66}{section.3.2}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Diagramme des cas d'utilisation du premier sprint}{\reset@font\mtcSSfont 66}{subsection.3.2.1}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Description textuelle de cas d'utilisation « Demander accès via OAuth »}{\reset@font\mtcSSfont 67}{subsection.3.2.2}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {3}Description textuelle de cas d'utilisation « Changer mot de passe »}{\reset@font\mtcSSfont 67}{subsection.3.2.3}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4}Analyse de la fonctionnalité « Gérer utilisateurs »}{\reset@font\mtcSSfont 68}{subsection.3.2.4}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {I}Sprint Planning Meeting }{\reset@font\mtcSfont 60}{section.3.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Objectif du Sprint}{\reset@font\mtcSSfont 60}{subsection.3.1.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {1.1}Backlog du premier sprint}{\reset@font\mtcSSSfont 60}{subsubsection.3.1.1.1}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {II}Analyse}{\reset@font\mtcSfont 67}{section.3.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Diagramme des cas d'utilisation du premier sprint}{\reset@font\mtcSSfont 67}{subsection.3.2.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Description textuelle de cas d'utilisation « Demander accès via OAuth »}{\reset@font\mtcSSfont 68}{subsection.3.2.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {3}Description textuelle de cas d'utilisation « Changer mot de passe »}{\reset@font\mtcSSfont 68}{subsection.3.2.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4}Analyse de la fonctionnalité « Gérer utilisateurs »}{\reset@font\mtcSSfont 69}{subsection.3.2.4}}
 {\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.1}Raffinement de cas d'utilisation « Gérer utilisateurs »}{\reset@font\mtcSSSfont 69}{subsubsection.3.2.4.1}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.2}Description textuelle de cas d'utilisation « Consulter liste utilisateurs »}{\reset@font\mtcSSSfont 69}{subsubsection.3.2.4.2}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3}Description textuelle de cas d'utilisation « Ajouter utilisateur »}{\reset@font\mtcSSSfont 70}{subsubsection.3.2.4.3}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.4}Description textuelle de cas d'utilisation « Modifier utilisateur »}{\reset@font\mtcSSSfont 70}{subsubsection.3.2.4.4}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.5}Description textuelle de cas d'utilisation « Désactiver un utilisateur »}{\reset@font\mtcSSSfont 71}{subsubsection.3.2.4.5}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {5}Analyse de la fonctionnalité « Gérer profil »}{\reset@font\mtcSSfont 71}{subsection.3.2.5}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.2}Description textuelle de cas d'utilisation « Consulter liste utilisateurs »}{\reset@font\mtcSSSfont 70}{subsubsection.3.2.4.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3}Description textuelle de cas d'utilisation « Ajouter utilisateur »}{\reset@font\mtcSSSfont 71}{subsubsection.3.2.4.3}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.4}Description textuelle de cas d'utilisation « Modifier utilisateur »}{\reset@font\mtcSSSfont 71}{subsubsection.3.2.4.4}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.5}Description textuelle de cas d'utilisation « Désactiver un utilisateur »}{\reset@font\mtcSSSfont 72}{subsubsection.3.2.4.5}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {5}Analyse de la fonctionnalité « Gérer profil »}{\reset@font\mtcSSfont 72}{subsection.3.2.5}}
 {\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {5.1}Raffinement de cas d'utilisation « Gérer Profil »}{\reset@font\mtcSSSfont 72}{subsubsection.3.2.5.1}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {5.2}Description textuelle de cas d'utilisation « Consulter Profil »}{\reset@font\mtcSSSfont 72}{subsubsection.3.2.5.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {5.2}Description textuelle de cas d'utilisation « Consulter Profil »}{\reset@font\mtcSSSfont 73}{subsubsection.3.2.5.2}}
 {\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {5.3}Description textuelle de cas d'utilisation « Modifier Profil »}{\reset@font\mtcSSSfont 73}{subsubsection.3.2.5.3}}
 {\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {6}Analyse de la fonctionnalité « Gérer rôles »}{\reset@font\mtcSSfont 73}{subsection.3.2.6}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {6.1}Raffinement de cas d'utilisation « Gérer rôles »}{\reset@font\mtcSSSfont 74}{subsubsection.3.2.6.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {6.1}Raffinement de cas d'utilisation « Gérer rôles »}{\reset@font\mtcSSSfont 73}{subsubsection.3.2.6.1}}
 {\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {6.2}Description textuelle de cas d'utilisation « Consulter liste rôles »}{\reset@font\mtcSSSfont 74}{subsubsection.3.2.6.2}}
 {\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {6.3}Description textuelle de cas d'utilisation « Ajouter rôle »}{\reset@font\mtcSSSfont 75}{subsubsection.3.2.6.3}}
 {\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {6.4}Description textuelle de cas d'utilisation « Modifier rôle »}{\reset@font\mtcSSSfont 75}{subsubsection.3.2.6.4}}
@@ -44,7 +44,7 @@
 {\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Diagramme de séquences du cas d’utilisation « Désactiver utilisateur »}{\reset@font\mtcSSfont 86}{subsection.3.4.2}}
 {\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {V}Schéma relationnel}{\reset@font\mtcSfont 86}{section.3.5}}
 {\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {VI}Réalisation}{\reset@font\mtcSfont 87}{section.3.6}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Diagramme de compositions}{\reset@font\mtcSSfont 87}{subsection.3.6.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Diagramme de composants}{\reset@font\mtcSSfont 87}{subsection.3.6.1}}
 {\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Description des interfaces}{\reset@font\mtcSSfont 87}{subsection.3.6.2}}
 {\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {VII}Tests et Validation}{\reset@font\mtcSfont 88}{section.3.7}}
 {\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Stratégie de tests adoptée}{\reset@font\mtcSSfont 88}{subsection.3.7.1}}

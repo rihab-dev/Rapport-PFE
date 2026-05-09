@@ -1,12 +1,15 @@
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {I}Analyse}{\reset@font\mtcSfont 95}{section.4.1}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Diagramme des cas d'utilisation du Sprint 2}{\reset@font\mtcSSfont 95}{subsection.4.1.1}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Description textuelle des cas d'utilisation}{\reset@font\mtcSSfont 95}{subsection.4.1.2}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {II}Conception}{\reset@font\mtcSfont 96}{section.4.2}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Diagrammes de séquence}{\reset@font\mtcSSfont 96}{subsection.4.2.1}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Modèle de données}{\reset@font\mtcSSfont 96}{subsection.4.2.2}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {III}Réalisation}{\reset@font\mtcSfont 97}{section.4.3}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Architecture technique}{\reset@font\mtcSSfont 97}{subsection.4.3.1}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Interfaces utilisateur}{\reset@font\mtcSSfont 97}{subsection.4.3.2}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {IV}Tests}{\reset@font\mtcSfont 98}{section.4.4}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Tests unitaires}{\reset@font\mtcSSfont 98}{subsection.4.4.1}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Tests d'intégration}{\reset@font\mtcSSfont 98}{subsection.4.4.2}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {I}Sprint Planning Meeting }{\reset@font\mtcSfont 91}{section.4.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Objectif du Sprint}{\reset@font\mtcSSfont 91}{subsection.4.1.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {1.1}Backlog du deuxième sprint}{\reset@font\mtcSSSfont 91}{subsubsection.4.1.1.1}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {II}Analyse}{\reset@font\mtcSfont 94}{section.4.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Diagramme des cas d'utilisation du deuxième sprint}{\reset@font\mtcSSfont 94}{subsection.4.2.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Description textuelle de cas d'utilisation « »}{\reset@font\mtcSSfont 94}{subsection.4.2.2}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {III}Conception}{\reset@font\mtcSfont 95}{section.4.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Diagrammes de séquence}{\reset@font\mtcSSfont 95}{subsection.4.3.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Modèle de données}{\reset@font\mtcSSfont 95}{subsection.4.3.2}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {IV}Réalisation}{\reset@font\mtcSfont 96}{section.4.4}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Architecture technique}{\reset@font\mtcSSfont 96}{subsection.4.4.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Interfaces utilisateur}{\reset@font\mtcSSfont 96}{subsection.4.4.2}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {V}Tests}{\reset@font\mtcSfont 97}{section.4.5}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Tests unitaires}{\reset@font\mtcSSfont 97}{subsection.4.5.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Tests d'intégration}{\reset@font\mtcSSfont 97}{subsection.4.5.2}}
