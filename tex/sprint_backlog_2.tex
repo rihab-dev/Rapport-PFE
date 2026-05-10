@@ -23,23 +23,34 @@
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 6 - Gestion des projets et équipes}} \\
 \hline
 US24 & En tant qu'\textbf{administrateur}, je souhaite créer un projet rattaché à un client afin d'organiser les interventions. &
+\vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint POST /clients pour créer un client avec validation des données
-\end{itemize} & 2 \\
+\item Développer l'API de création avec validation des données
+\item Gérer les relations projet-client et envoyer les notifications aux membres de l'équipe
+\item Créer le formulaire multi-étapes avec sélection guidée 
+\end{itemize} & 3 \\
 \hline
 US25 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des projets afin de piloter l'activité. &
+\vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint POST /clients pour créer un client avec validation des données
+\item Développer l'API de consultation avec filtres et contrôler l'accès selon le rôle
+\item Récupérer les données enrichies et paginer les résultats
+\item Créer l'interface avec tableau, filtres avancés et proposer les vues multiples (liste/cartes/Kanban)
 \end{itemize} & 2 \\
 \hline
 US26 & En tant qu'\textbf{administrateur}, je souhaite affecter des développeurs à un projet afin de constituer l'équipe. &
+\vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint POST /clients pour créer un client avec validation des données
+\item Développer l'API d'affectation avec workflow de validation
+\item Calculer automatiquement la disponibilité et envoyer les notifications en temps réel à chaque étape
+\item Créer les interfaces de gestion d'équipe avec suivi des propositions
 \end{itemize} & 3 \\
 \hline
 US27 & En tant que \textbf{membre d'équipe}, je souhaite consulter les informations du projet afin de comprendre le contexte. &
+\vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint POST /clients pour créer un client avec validation des données
+\item Développer l'API de détail avec contrôle d'accès 
+\item Créer la page détaillée organisée en sections avec les informations du projet
 \end{itemize} & 1 \\
 \hline
 
@@ -49,57 +60,102 @@ US27 & En tant que \textbf{membre d'équipe}, je souhaite consulter les informat
 \hline
 
 US28 & En tant qu’administrateur, je souhaite créer un contrat de maintenance afin de formaliser les engagements de service avec le client. & 
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'API de création avec deux modes : formulaire manuel et upload PDF avec extraction automatique (pdf-parse + regex)
+\item Implémenter l'extraction des données du PDF (référence, dates, montants, SLA, client, projet) et résolution automatique en base
+\item Créer l'interface avec choix du mode, pré-remplissage automatique du formulaire et stockage avec hashage anti-doublon
+\end{itemize}
 & 2 \\
 \hline
 
-US29 & En tant qu’administrateur, je souhaite consulter la liste des contrats afin de suivre les engagements contractuels. &  & 3 \\
+US29 & En tant qu’administrateur, je souhaite consulter la liste des contrats afin de suivre les engagements contractuels. & 
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'API de consultation avec filtres avancés et contrôle d'accès RBAC
+\item Récupérer les données enrichies avec pagination
+\item Créer l'interface avec tableau, filtres, badges de statut et actions rapides (voir, modifier, archiver)
+\end{itemize}
+& 3 \\
 \hline
 
 US30 & En tant qu’administrateur, je souhaite recevoir des alertes avant l’expiration des contrats afin d’anticiper les renouvellements & 
- & 2 \\
+\vspace{2mm} 
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer le système d'alertes automatiques (30, 15, 7 jours avant expiration) avec CRON job
+\item Envoyer les notifications par email et in-app avec détails du contrat
+\item Créer l'interface d'alertes avec liste des contrats à renouveler
+\end{itemize}
+& 2 \\
 \hline
 
 US31 & En tant qu’administrateur, je souhaite archiver un contrat afin de conserver l’historique. & 
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'API d'archivage avec vérifications (pas de demandes en cours, confirmation requise)
+\item Gérer le changement de statut et conserver les données historiques avec motif d'archivage
+\item Créer le dialogue de confirmation 
+\end{itemize}
  & 3 \\
 \hline
 
 US32 & En tant que client, je souhaite demander la résiliation de mon contrat afin d’interrompre le service.& 
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'API de demande de résiliation avec workflow (demande → validation admin → résiliation)
+\item Envoyer les notifications aux administrateurs et gérer le statut du contrat
+\item Créer le formulaire de demande avec motif obligatoire
+\end{itemize}
  & 1 \\
 \hline
 
 US33 & En tant qu’administrateur, je souhaite résilier un contrat afin de l’interrompre avant terme. & 
- & 2 \\
+\vspace{2mm} 
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'API de résiliation avec validation
+\item Gérer le changement de statut et notifier le client par email
+\item Créer le dialogue de résiliation avec confirmation 
+\end{itemize}
+& 2 \\
 \hline
 
 \hline
 
-US34 & En tant qu’administrateur, je souhaite renouveler un contrat afin de prolonger la relation.& 
- & 3 \\
-\hline
+
 
 US35 & En tant que chef de projet, je souhaite consulter les contrats dans un calendrier afin de visualiser les dates d’expiration& 
- & 1 \\
+\vspace{2mm} 
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'API de récupération des contrats avec dates (début, expiration) filtrées par période
+\item Calculer les indicateurs (contrats expirant bientôt, contrats actifs) pour la vue calendrier
+\item Créer la vue calendrier avec affichage des contrats par mois et code couleur selon le statut
+
+\end{itemize}
+& 1 \\
 \hline
 
-US36 & En tant qu’administrateur, je souhaite centraliser les documents d’un contrat afin de les retrouver facilement. & 
- & 2 \\
-\hline
-
-\hline
-
-US37 & En tant qu’administrateur, je souhaite configurer les règles SLA globales afin de définir les standards & 
- & 2 \\
-\hline
 % Epic 3: Gestion des rôles et permissions
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 14 - Historique et traçabilité}} \\
 \hline
 
 US95 & En tant qu’administrateur, je souhaite consulter l’historique complet de toutes les actions afin d’assurer la traçabilité. & 
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'API de consultation avec pagination, filtres avancés et recherche textuelle
+\item Récupérer les logs enrichis avec informations utilisateur et statistiques (taux de succès, actions fréquentes)
+\item Créer l'interface avec tableau filtrable, timeline, graphiques de statistiques et vue détaillée par entité
+\end{itemize}
  & 3 \\
 \hline
 
 US96 & En tant qu’administrateur, je souhaite exporter les logs d’audit afin de répondre aux exigences de conformité. & 
- & 2 \\
+\vspace{2mm} 
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'API d'export avec formats CSV et JSON, filtres personnalisables et limite de 10 000 enregistrements
+\item Implémenter le nettoyage automatique des logs anciens
+\item Créer l'interface d'export avec sélection de format, prévisualisation et téléchargement direct
+\end{itemize}
+& 2 \\
 \hline
 
 \end{longtable}
