@@ -1487,7 +1487,7 @@ Cette phase d'intégration vise à valider le bon fonctionnement des endpoints d
 \begin{figure}[H]
         \centering
         \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/gestion profil Swagger.png}
-        \caption{Test d'intégration : endpoint PUT /api/profil}
+        \caption{Test de mise à jour du profil}
     \end{figure}
 
 \paragraph{Intégration - Authentification (endpoint POST /api/auth/login)}
