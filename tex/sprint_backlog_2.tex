@@ -3,15 +3,14 @@
 \renewcommand{\arraystretch}{1.3}
 \small
 
-\begin{longtable}{|C{1cm}|m{6.5cm}|m{5cm}|C{1.5cm}|}
+\begin{longtable}{|C{1cm}|m{6.5cm}|m{7cm}|C{1cm}|}
 \hline
-\textbf{ID US} & \textbf{User Story} & \textbf{Description technique} & \textbf{Effort (j)} \\
+\textbf{ID US} & \textbf{User Story} & \textbf{Description technique} & \textbf{Effort} \\
 \hline
 \endfirsthead
 
-\hline
-\textbf{ID US} & \textbf{User Story} & \textbf{Description technique} & \textbf{Effort (j)} \\
-\hline
+    \hline
+
 \endhead
 
 \hline
@@ -20,127 +19,143 @@
 \hline
 \endlastfoot
 
-% Epic 14: Historique et traçabilité
-\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 14 - Historique et traçabilité}} \\
+% Epic 1: Authentification et Sécurité
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 6 - Gestion des projets et équipes}} \\
 \hline
-
-US95 & En tant qu’\textbf{administrateur}, je souhaite consulter l’historique complet de toutes les actions afin d’assurer la traçabilité. & & 2 \\
-\hline
-
-US96 &En tant qu’\textbf{administrateur}, je souhaite exporter les logs d’audit afin de répondre aux exigences de conformité. &  & 2 \\
-\hline
-
-
-
-
-% Epic 7: Gestion des contrats
-\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 7 - Gestion des contrats}} \\
-\hline
-
-US28 & En tant qu'\textbf{administrateur}, je souhaite créer un contrat de maintenance afin de formaliser les engagements de service avec le client. & 
+US24 & En tant qu'\textbf{administrateur}, je souhaite créer un projet rattaché à un client afin d'organiser les interventions. &
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-    \item  Développer l’API de création de contrat de maintenance          
-    \item Mettre en place la gestion des paramètres du contrat (association client, dates, type SLA, cycle de facturation).
-    \item Réaliser l’interface du formulaire complet de création de contrat       
-    \item Configurer le système de notification et d'alertes
-\end{itemize}
-    
-    & 3 \\
+\item Développer l'API de création avec validation des données
+\item Gérer les relations projet-client et envoyer les notifications aux membres de l'équipe
+\item Créer le formulaire multi-étapes avec sélection guidée 
+\end{itemize} & 3 \\
+\hline
+US25 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des projets afin de piloter l'activité. &
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'API de consultation avec filtres et contrôler l'accès selon le rôle
+\item Récupérer les données enrichies et paginer les résultats
+\item Créer l'interface avec tableau, filtres avancés et proposer les vues multiples (liste/cartes/Kanban)
+\end{itemize} & 2 \\
+\hline
+US26 & En tant qu'\textbf{administrateur}, je souhaite affecter des développeurs à un projet afin de constituer l'équipe. &
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'API d'affectation avec workflow de validation
+\item Calculer automatiquement la disponibilité et envoyer les notifications en temps réel à chaque étape
+\item Créer les interfaces de gestion d'équipe avec suivi des propositions
+\end{itemize} & 3 \\
+\hline
+US27 & En tant que \textbf{membre d'équipe}, je souhaite consulter les informations du projet afin de comprendre le contexte. &
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'API de détail avec contrôle d'accès 
+\item Créer la page détaillée organisée en sections avec les informations du projet
+\end{itemize} & 1 \\
 \hline
 
-US29 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des contrats afin de suivre les engagements contractuels. & 
-vspace{2mm}
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-    \item  Mise en place d’une API REST de récupération des contrats avec recherche    
-    \item   développement d’une interface tableau pour l’affichage 
-    \item intégration côté frontend
-    \item implémentation d’une fonctionnalité d’exportation des données.
-    \end{itemize}
 
+% Epic 2: Gestion des utilisateurs
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 7 - Gestion des contrats de maintenance}} \\
+\hline
+
+US28 & En tant qu’administrateur, je souhaite créer un contrat de maintenance afin de formaliser les engagements de service avec le client. & 
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'API de création avec deux modes : formulaire manuel et upload PDF avec extraction automatique (pdf-parse + regex)
+\item Implémenter l'extraction des données du PDF (référence, dates, montants, SLA, client, projet) et résolution automatique en base
+\item Créer l'interface avec choix du mode, pré-remplissage automatique du formulaire et stockage avec hashage anti-doublon
+\end{itemize}
 & 2 \\
 \hline
 
-US30 & En tant qu'\textbf{administrateur}, je souhaite recevoir des alertes avant l'expiration des contrats afin d'anticiper les renouvellements. & 
+US29 & En tant qu’administrateur, je souhaite consulter la liste des contrats afin de suivre les engagements contractuels. & 
+\vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-    \item Mise en place de tâches planifiées (cron jobs) pour le calcul dynamique des échéances (J-30, J-15, J-7)      
-    \item développement d’un service d’envoi de notifications multi-canal  
-    \item réalisation de l’interface dédiée à leur affichage.
-    \end{itemize}
-
-
+\item Développer l'API de consultation avec filtres avancés et contrôle d'accès RBAC
+\item Récupérer les données enrichies avec pagination
+\item Créer l'interface avec tableau, filtres, badges de statut et actions rapides (voir, modifier, archiver)
+\end{itemize}
 & 3 \\
 \hline
 
-US31 & En tant qu'\textbf{administrateur}, je souhaite archiver un contrat afin de conserver l'historique. & 
+US30 & En tant qu’administrateur, je souhaite recevoir des alertes avant l’expiration des contrats afin d’anticiper les renouvellements & 
+\vspace{2mm} 
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-    \item Développement d’une API d’archivage et de restauration des contrats         
-    \item réalisation d’une interface avec modales de confirmation. 
-    \end{itemize}
+\item Développer le système d'alertes automatiques (30, 15, 7 jours avant expiration) avec CRON job
+\item Envoyer les notifications par email et in-app avec détails du contrat
+\item Créer l'interface d'alertes avec liste des contrats à renouveler
+\end{itemize}
+& 2 \\
+\hline
+
+US31 & En tant qu’administrateur, je souhaite archiver un contrat afin de conserver l’historique. & 
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'API d'archivage avec vérifications (pas de demandes en cours, confirmation requise)
+\item Gérer le changement de statut et conserver les données historiques avec motif d'archivage
+\item Créer le dialogue de confirmation 
+\end{itemize}
+ & 3 \\
+\hline
+
+US32 & En tant que client, je souhaite demander la résiliation de mon contrat afin d’interrompre le service.& 
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'API de demande de résiliation avec workflow (demande → validation admin → résiliation)
+\item Envoyer les notifications aux administrateurs et gérer le statut du contrat
+\item Créer le formulaire de demande avec motif obligatoire
+\end{itemize}
  & 1 \\
 \hline
 
-US32 & En tant que \textbf{client}, je souhaite demander la résiliation de mon contrat afin d'interrompre le service. &
+US33 & En tant qu’administrateur, je souhaite résilier un contrat afin de l’interrompre avant terme. & 
+\vspace{2mm} 
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-    \item Développement d’une API de soumission des demandes de résiliation.                
-    \item développement d’une interface formulaire.  
-    \item intégration des appels API. 
-    \end{itemize}
+\item Développer l'API de résiliation avec validation
+\item Gérer le changement de statut et notifier le client par email
+\item Créer le dialogue de résiliation avec confirmation 
+\end{itemize}
+& 2 \\
+\hline
+
+\hline
+
+
+
+US35 & En tant que chef de projet, je souhaite consulter les contrats dans un calendrier afin de visualiser les dates d’expiration& 
+\vspace{2mm} 
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'API de récupération des contrats avec dates (début, expiration) filtrées par période
+\item Calculer les indicateurs (contrats expirant bientôt, contrats actifs) pour la vue calendrier
+\item Créer la vue calendrier avec affichage des contrats par mois et code couleur selon le statut
+
+\end{itemize}
 & 1 \\
 \hline
 
-US33 & En tant qu'\textbf{administrateur}, je souhaite résilier un contrat afin de l'interrompre avant terme. & 
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-    \item Implémentation d’une API de résiliation administrative                    
-    \item   développement d’une interface dédiée côté administration  
-    \item intégration de l’API et configuration de l’envoi automatique d’un avis de résiliation au client
-    \end{itemize}
-& 2 \\
-\hline
-
-US34 & En tant qu'\textbf{administrateur}, je souhaite renouveler un contrat afin de prolonger la relation. & & 2 \\
-\hline
-
-US35 & En tant que \textbf{chef de projet}, je souhaite consulter les contrats dans un calendrier afin de visualiser les dates d'expiration. & 
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-    \item Développement d’une API de récupération des échéances contractuelles                       
-    \item   Réalisation d’une interface de vue calendrier      
-    \item Implémentation d’une fonctionnalité d’exportation des données
-    \end{itemize}
-     & 2 \\
-\hline
-
-US36 & En tant qu'\textbf{administrateur}, je souhaite centraliser les documents d'un contrat afin de les retrouver facilement. & 
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-    \item Développement d’une API de récupération des échéances contractuelles                         
-    \item Implémentation d’un mécanisme de versioning automatique lors de la modification des fichiers     
-    \item  Réalisation d’une interface de gestion des pièces jointes             
-    \item    Intégration de l’API de liaison des documents
-    \end{itemize}
-& 2 \\
-\hline
-
-US37 & En tant qu'\textbf{administrateur},  je souhaite configurer les règles SLA afin de garantir le respect des délais d'intervention et assurer une qualité de service optimale.  & 
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-    \item Développement d’une API de gestion des politiques SLA                         
-    \item Réalisation d’une interface de paramétrage       
-    \item  Intégration de l’API de configuration des règles SLA              
-    \item  Implémentation de mécanismes d’alertes automatiques
-    \end{itemize}
-& 2 \\
-\hline
-
-% Epic 14: Historique et traçabilité
+% Epic 3: Gestion des rôles et permissions
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 14 - Historique et traçabilité}} \\
 \hline
 
-US95 & En tant qu'\textbf{administrateur}, je souhaite consulter l'historique complet de toutes les actions afin d'assurer la traçabilité. &  & 2 \\
+US95 & En tant qu’administrateur, je souhaite consulter l’historique complet de toutes les actions afin d’assurer la traçabilité. & 
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'API de consultation avec pagination, filtres avancés et recherche textuelle
+\item Récupérer les logs enrichis avec informations utilisateur et statistiques (taux de succès, actions fréquentes)
+\item Créer l'interface avec tableau filtrable, timeline, graphiques de statistiques et vue détaillée par entité
+\end{itemize}
+ & 3 \\
 \hline
 
-US96 & En tant qu'\textbf{administrateur}, je souhaite exporter les logs d'audit afin de répondre aux exigences de conformité. &  & 2 \\
-\hline
-
-\multicolumn{3}{|r|}{\textbf{Total Sprint 2 :}} & \textbf{42 j} \\
+US96 & En tant qu’administrateur, je souhaite exporter les logs d’audit afin de répondre aux exigences de conformité. & 
+\vspace{2mm} 
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'API d'export avec formats CSV et JSON, filtres personnalisables et limite de 10 000 enregistrements
+\item Implémenter le nettoyage automatique des logs anciens
+\item Créer l'interface d'export avec sélection de format, prévisualisation et téléchargement direct
+\end{itemize}
+& 2 \\
 \hline
 
 \end{longtable}

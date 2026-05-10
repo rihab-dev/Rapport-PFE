@@ -1,38 +1,48 @@
 
 \section*{Introduction}
 
-Dans ce chapitre, nous abordons le deuxième sprint du projet \textbf{SolidMaint}, couvrant la période du 12 mars au 2 avril 2026, soit trois semaines de développement consacrées aux modules de gestion métier essentiels de l'application. Nous commencerons par la présentation du backlog du sprint regroupant vingt-trois user stories réparties en quatre epics, portant sur la gestion des clients, des projets et des contrats de maintenance avec leurs SLA associés, suivie de la phase d'analyse et de conception de l'architecture et du modèle de données, puis de la réalisation des interfaces utilisateur, et enfin des tests conduits pour valider les fonctionnalités livrées.
+Le chapitre précédent était consacré à la mise en place des éléments de base de notre système. Nous y avons développé l'authentification et la gestion des utilisateurs avec leurs rôles et permissions. Nous avons aussi travaillé sur la gestion des clients et le processus de traitement des demandes d'inscription. L'ensemble de ces fonctionnalités a été testé et validé.
+\newline Dans ce chapitre, nous passons au développement du cœur métier. Il s'agit principalement des contrats de maintenance avec leurs SLA, des projets et de leurs équipes, ainsi que de l'historique qui assure la traçabilité de toutes les modifications.
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 1 : BACKLOG DU SPRINT 2
 % ─────────────────────────────────────────────────────────────────────────────
-
-\section*{Sprint Backlog}
+\section{Sprint Planning Meeting }
+La réunion de planification du deuxième sprint nous a permis de définir les objectifs à atteindre durant les trois prochaines semaines. Nous avons sélectionné les user stories prioritaires et estimé l'effort nécessaire pour chacune d'elles. Cette étape est importante pour que toute l'équipe comprenne bien le travail à réaliser.
+\newline
+\subsection{Objectif du Sprint}
+Ce sprint vise à développer les fonctionnalités essentielles du système. L'objectif principal est de mettre en place la gestion des contrats de maintenance et d'assurer le suivi des engagements de service à travers leurs SLA, de faciliter la collaboration via l'affectation des équipes aux projets, et de garantir la traçabilité complète des opérations effectuées.
+\subsubsection{Backlog du deuxième sprint}
 \label{sec:backlog_sprint2}
 
 Le tableau ci-dessous présente le Sprint Backlog détaillé avec les descriptions techniques et l'effort estimé pour chaque user story.
+\newline
+\textbf{1 : Effort faible, 2 : Effort moyen, 3 : Effort élevé}
 
 \input{tex/sprint_backlog_2}
 
-\newpage
 
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 2 : ANALYSE
 % ─────────────────────────────────────────────────────────────────────────────
 
 \section{Analyse}
+
 \label{sec:analyse_sprint2}
 
-\subsection{Diagramme des cas d'utilisation du Sprint 2}
+\subsection{Diagramme des cas d'utilisation du deuxième sprint}
 
-Cette section présentera le diagramme de cas d'utilisation du deuxième sprint, couvrant la gestion des clients, projets et contrats.
+La figure ci-dessous présente le diagramme de cas d’utilisation du deuxième sprint : 
 
-\textit{[À compléter avec le diagramme de cas d'utilisation]}
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=1.0\textwidth,height=0.95\textheight,keepaspectratio]{Images/diagramme cas utilisation sprint2.png}
+        \caption{Diagramme des cas d'utilisation du deuxième sprint}
+        \label{fig:use_case_sprint2}
+\end{figure}
+Nous allons accompagner les cas d'utilisation d'un texte descriptif pour expliquer le scénario de chaque cas ainsi que ses exceptions.
 
-\subsection{Description textuelle des cas d'utilisation}
+\subsection{Description textuelle de cas d'utilisation « »}
 
-Cette section détaillera les scénarios principaux et alternatifs pour les cas d'utilisation du Sprint 2.
-
-\textit{[À compléter avec les descriptions textuelles]}
 
 \newpage
 
