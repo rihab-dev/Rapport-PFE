@@ -11,55 +11,36 @@ L'étape de spécification des besoins est importante pour prouver qu'un besoin 
 \subsection{Identification des acteurs}
 Un acteur représente une personne, une organisation ou un autre système qui interagit avec le système. Notre projet identifie six acteurs principaux :
 
-\begin{figure}[h!]
+\begin{table}[h!]
     \centering
-    \begin{minipage}{0.32\textwidth}
-        \centering
-        \includegraphics[width=1.5cm,keepaspectratio]{Images/acteur visiteur.png}\\
-        \vspace{0.2cm}
-        \textbf{Visiteur}\\
-        \footnotesize{Soumet une demande de création de compte et attend la validation}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.3\textwidth}
-        \centering
-        \includegraphics[width=1.5cm,keepaspectratio]{Images/acteur user.png}
-        \textbf{Utilisateur}
-        \footnotesize{Accède aux fonctionnalités communes: authentification, gestion du profil, notifications et historique d’activités}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.3\textwidth}
-        \centering
-        \includegraphics[width=1.5cm,keepaspectratio]{Images/acteur client.png}
-        \textbf{Client}
-        \footnotesize{Soumet des demandes de maintenance, consulte l'état d'avancement et communique avec l'équipe projet}
-    \end{minipage}
-    
-    \vspace{0.7cm}
-    
-    \begin{minipage}{0.3\textwidth}
-        \centering
-        \includegraphics[width=1.5cm,keepaspectratio]{Images/acteur dev.png}
-        \textbf{Développeur}
-        \footnotesize{Traite les tickets assignés, signale les blocages, met à jour les statuts et consulte la documentation technique}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.3\textwidth}
-        \centering
-        \includegraphics[width=1.5cm,keepaspectratio]{Images/acteur chef.png}
-        \textbf{Chef de projet}
-        \footnotesize{Traite les demandes clients, assigne les tickets aux développeurs et assure le respect des SLA}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.3\textwidth}
-        \centering
-        \includegraphics[width=1.5cm,keepaspectratio]{Images/acteur admin.png}
-        \textbf{Administrateur}
-        \footnotesize{Gère les utilisateurs, rôles, permissions, clients, projets et contrats. Configure et supervise le système}
-    \end{minipage}
-    
-    \caption{Les six acteurs du système SolidMaint et leurs responsabilités principales}
-    \label{fig:acteurs_grid}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.28\textwidth}|>{\raggedright\arraybackslash}X|}
+        \hline
+        \rowcolor{blue!20}
+        \textbf{Acteur} & \textbf{Rôle} \\
+        \hline
+        Visiteur & Soumet une demande de création de compte et attend la validation. \\
+        \hline
+        Utilisateur & Accède aux fonctionnalités communes : authentification, gestion du profil, notifications et historique d’activités. \\
+        \hline
+        Client & Soumet des demandes de maintenance, consulte l'état d'avancement et communique avec l'équipe projet. \\
+        \hline
+        Développeur & Traite les tickets assignés, signale les blocages, met à jour les statuts et consulte la documentation technique. \\
+        \hline
+        Chef de projet & Traite les demandes clients, assigne les tickets aux développeurs et assure le respect des SLA. \\
+        \hline
+        Administrateur & Gère les utilisateurs, rôles, permissions, clients, projets et contrats. Configure et supervise le système. \\
+        \hline
+    \end{tabularx}
+    \caption{Acteurs du système SolidMaint et leurs rôles}
+    \label{tab:acteurs}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth,keepaspectratio]{Images/acteurs.png}
+    \caption{Illustration des acteurs du système SolidMaint}
+    \label{fig:acteurs}
 \end{figure}
 
 \subsection{Identification des besoins fonctionnels}
@@ -582,32 +563,25 @@ On va commencer par la présentation de l’environnement matériel et logiciel 
     \vspace{10pt}
 }
 
-\cadretechCanva{Images/canva.png}{\textbf{Canva : } « est une plateforme de conception et de communication visuelle en ligne dont la mission est de permettre à chacun dans le monde de concevoir n’importe quoi et de publier n’importe où. » |20|}
+\cadretechCanva{Images/canva.png}{\textbf{Canva : } « est une plateforme 
+de conception et de communication visuelle en ligne dont la mission est 
+de permettre à chacun dans le monde de concevoir n'importe quoi et de 
+publier n'importe où. » |20|}
 
+\vspace{0.4cm}
+Le logo de \textbf{SolidMaint} a été conçu via \textbf{Canva} 
+en cohérence avec la charte visuelle de \textbf{SolidWall 
+Consulting}. Il associe le \textbf{noir} et le \textbf{jaune 
+doré} à des symboles évocateurs de maintenance, de sécurité 
+et de traçabilité.
 
-\subsubsection{Outils de test et qualité logicielle}
-\newcommand{\cadretechPlayWrite}[2]{%
-    \noindent
-    \begin{minipage}{2.5cm}
-        \centering
-        \includegraphics[width=2cm, height=1.5cm, keepaspectratio]{#1}
-    \end{minipage}
-    \hspace{0.5cm}
-    \begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
-        \fbox{%
-            \parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
-                #2%
-            }%
-        }%
-    \end{minipage}
-    \par
-    \vspace{10pt}
-}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.10\textwidth]{Images/solidmaint.png}
+    \caption{Logo de SolidMaint}
+    \label{fig:logo_solidmaint}
+\end{figure}
 
-\cadretechPlayWrite{Images/Playwright.png}{\textbf{Playwright : } « est un framework de test complet pour les applications web modernes. Il intègre un exécuteur de tests, des assertions, l'isolation et la parallélisation. \newline Playwright est compatible avec Chromium, WebKit et Firefox sous Windows, Linux et macOS, en local ou en intégration continue, avec ou sans interface graphique, et propose une émulation mobile native pour Chrome (Android) et Safari mobile.  » |21|}
-
-
-\newpage
 \section{Architecture de l’application}
 \subsection{Architecture physique}
 L’architecture système est un ensemble de décisions de conception qui définit l’interaction des composants entre eux. Le choix de l’architecture est très sensible car elle permet d’optimiser les performances du système et facilite l’évolution du système en fonction des volumes de données. La figure ci-dessous montre l’architecture de notre application : 
