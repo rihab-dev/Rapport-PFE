@@ -9,12 +9,12 @@
 {\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {2.3}Description textuelle de cas d'utilisation « Archiver contrat »}{\reset@font\mtcSSSfont 108}{subsubsection.4.2.2.3}}
 {\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {2.4}Description textuelle de cas d'utilisation « Résilier contrat »}{\reset@font\mtcSSSfont 109}{subsubsection.4.2.2.4}}
 {\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {2.5}Description textuelle de cas d'utilisation « Configurer intégration Slack »}{\reset@font\mtcSSSfont 110}{subsubsection.4.2.2.5}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {III}Conception}{\reset@font\mtcSfont 111}{section.4.3}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Diagrammes de séquence}{\reset@font\mtcSSfont 111}{subsection.4.3.1}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Modèle de données}{\reset@font\mtcSSfont 111}{subsection.4.3.2}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {IV}Réalisation}{\reset@font\mtcSfont 112}{section.4.4}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Architecture technique}{\reset@font\mtcSSfont 112}{subsection.4.4.1}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Interfaces utilisateur}{\reset@font\mtcSSfont 112}{subsection.4.4.2}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {V}Tests}{\reset@font\mtcSfont 113}{section.4.5}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Tests unitaires}{\reset@font\mtcSSfont 113}{subsection.4.5.1}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Tests d'intégration}{\reset@font\mtcSSfont 113}{subsection.4.5.2}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {III}Diagramme de classes de deuxiéme sprint}{\reset@font\mtcSfont 111}{section.4.3}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {IV}Diagramme de séquence}{\reset@font\mtcSfont 111}{section.4.4}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Diagramme de séquences du cas d'utilisation « Résilier contrat »}{\reset@font\mtcSSfont 111}{subsection.4.4.1}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {V}Réalisation}{\reset@font\mtcSfont 112}{section.4.5}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Architecture technique}{\reset@font\mtcSSfont 112}{subsection.4.5.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Interfaces utilisateur}{\reset@font\mtcSSfont 112}{subsection.4.5.2}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {VI}Tests}{\reset@font\mtcSfont 113}{section.4.6}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Tests unitaires}{\reset@font\mtcSSfont 113}{subsection.4.6.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Tests d'intégration}{\reset@font\mtcSSfont 113}{subsection.4.6.2}}
