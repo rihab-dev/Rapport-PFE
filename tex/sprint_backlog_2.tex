@@ -18,19 +18,62 @@
 
 \hline
 \endlastfoot
-
-% Epic 1: Authentification et Sécurité
-\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 6 - Gestion des projets et équipes}} \\
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 5 - Gestion des Clients}} \\
 \hline
-US24 & En tant qu'\textbf{administrateur}, je souhaite créer un projet rattaché à un client afin d'organiser les interventions. &
+ US17 & En tant qu'\textbf{administrateur}, je souhaite créer un profil client afin de centraliser ses informations. &
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l’endpoint POST /clients pour orchestrer la création simultanée du compte CLIENT et du profil entreprise associé.  
+\item  Implémenter un service de récupération automatique de logo (LogoService) établi sur le nom de la société
+\item Intégrer une logique de gestion des projets historiques pour associer des projets passés, des chefs de projets et des membres d'équipe au nouveau client
+\item Réaliser l'interface de formulaire
+\end{itemize} & 1 \\
+\hline
+
+US18 & En tant qu’administrateur, je souhaite consulter la liste des clients  afin de visualiser les clients existants. &
+\vspace{2mm}
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l’endpoint GET /clients intégrant une logique de filtrage RBAC.
+\item Réaliser une interface de visualisation
+\end{itemize} & 2 \\
+\hline
+US19 & En tant qu'\textbf{administrateur}, je souhaite consulter le profil détaillé d'un client afin de visualiser toutes ses informations. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l’endpoint GET /clients/:id pour récupérer les informations du client.
+\item Réaliser une interface de profil structurée.
+\item Développer des composants spécifiques pour l'affichage des informations secondaires       
+\end{itemize} & 1 \\
+\hline
+US20 & En tant qu'\textbf{administrateur}, je souhaite modifier les informations d'un client afin de maintenir des données à jour. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l’endpoint PATCH /clients/:id permettant la mise à jour des informations des clients. 
+\item Développer des contrôles d'intégrité côté serveur pour valider les formats de données.
+\item Réaliser une interface d'édition fluide.
+\end{itemize} & 2 \\
+\hline
+US21 & En tant qu'\textbf{administrateur}, je souhaite activer et désactiver un compte client afin de contrôler l'accès. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer les endpoints de changement de statut (POST /desactiver, POST /reactiver)
+\item Implémenter la vérification pour bloquer l'opération si le client possède des contrats actifs, des demandes en attente ou des tickets non résolus.  
+\item Intégrer le EmailService pour l'envoi automatique de notifications transactionnelles de changement de statut.                           
+\end{itemize} & 3 \\
+\hline
+
+US22 & En tant qu'\textbf{administrateur}, je souhaite imprimer l'annuaire d'un client afin de disposer d'une version papier. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint POST /clients pour créer un client avec validation des données
+\end{itemize} & 1 \\
+\hline
+
+US23 & En tant qu'\textbf{administrateur}, je souhaite créer un projet rattaché à un client afin d'organiser les interventions. &
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'API de création avec validation des données
 \item Gérer les relations projet-client et envoyer les notifications aux membres de l'équipe
 \item Créer le formulaire multi-étapes avec sélection guidée 
 \end{itemize} & 3 \\
-\hline
-US25 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des projets afin de piloter l'activité. &
+\hline 
+US24 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des projets afin de piloter l'activité. &
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'API de consultation avec filtres et contrôler l'accès selon le rôle
@@ -38,7 +81,7 @@ US25 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des pr
 \item Créer l'interface avec tableau, filtres avancés et proposer les vues multiples (liste/cartes/Kanban)
 \end{itemize} & 2 \\
 \hline
-US26 & En tant qu'\textbf{administrateur}, je souhaite affecter des développeurs à un projet afin de constituer l'équipe. &
+US25 & En tant qu'\textbf{administrateur}, je souhaite affecter des développeurs à un projet afin de constituer l'équipe. &
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'API d'affectation avec workflow de validation
@@ -46,7 +89,7 @@ US26 & En tant qu'\textbf{administrateur}, je souhaite affecter des développeur
 \item Créer les interfaces de gestion d'équipe avec suivi des propositions
 \end{itemize} & 3 \\
 \hline
-US27 & En tant que \textbf{membre d'équipe}, je souhaite consulter les informations du projet afin de comprendre le contexte. &
+US26 & En tant que \textbf{membre d'équipe}, je souhaite consulter les informations du projet afin de comprendre le contexte. &
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'API de détail avec contrôle d'accès 
@@ -56,7 +99,7 @@ US27 & En tant que \textbf{membre d'équipe}, je souhaite consulter les informat
 
 
 % Epic 2: Gestion des utilisateurs
-\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 7 - Gestion des contrats de maintenance}} \\
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 7 -Gestion des Contrats}} \\
 \hline
 
 US28 & En tant qu’administrateur, je souhaite créer un contrat de maintenance afin de formaliser les engagements de service avec le client. & 
@@ -133,9 +176,22 @@ US35 & En tant que chef de projet, je souhaite consulter les contrats dans un ca
 \end{itemize}
 & 1 \\
 \hline
+ US36 & En tant que \textbf{client}, je souhaite soumettre un retour d'expérience à l'expiration de mon contrat afin d'exprimer ma satisfaction.&
+ \vspace{2mm} 
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint POST /contrats/:id/feedback pour enregistrer la note, le commentaire et l'intention de renouvellement dans FeedbackExpirationContrat
+\item Implémenter une logique de déclenchement automatique de notification aux administrateurs si le client souhaite renouveler
+\item Réaliser le formulaire de feedback côté client avec affichage conditionnel selon le statut du contrat 
 
+\end{itemize}
+& 1 \\
+\hline
+US37 & En tant qu'\textbf{administrateur}, je souhaite générer un PDF formaté du contrat afin de le partager avec le client.&
+ \vspace{2mm}
+ &2 \\
+ \hline
 % Epic 3: Gestion des rôles et permissions
-\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 14 - Historique et traçabilité}} \\
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 14 - Consulter journal d'activité}} \\
 \hline
 
 US95 & En tant qu’administrateur, je souhaite consulter l’historique complet de toutes les actions afin d’assurer la traçabilité. & 

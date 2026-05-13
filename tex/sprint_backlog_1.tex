@@ -192,57 +192,6 @@ US16 & En tant qu'\textbf{administrateur}, je souhaite valider ou rejeter les de
 \end{itemize} & 3 \\
 \hline
 % Epic 4: Demandes d'inscription OAuth
-\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 5 - Gestion Clients}} \\
-\hline
- US17 & En tant qu'\textbf{administrateur}, je souhaite créer un profil client afin de centraliser ses informations. &
-\vspace{2mm}
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l’endpoint POST /clients pour orchestrer la création simultanée du compte CLIENT et du profil entreprise associé.  
-\item  Implémenter un service de récupération automatique de logo (LogoService) établi sur le nom de la société
-\item Intégrer une logique de gestion des projets historiques pour associer des projets passés, des chefs de projets et des membres d'équipe au nouveau client
-\item Réaliser l'interface de formulaire
-\end{itemize} & 1 \\
-\hline
 
-US18 & En tant qu’administrateur, je souhaite consulter la liste des clients  afin de visualiser les clients existants. &
-\vspace{2mm}
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l’endpoint GET /clients intégrant une logique de filtrage RBAC.
-\item Réaliser une interface de visualisation
-\end{itemize} & 2 \\
-\hline
-US19 & En tant qu'\textbf{administrateur}, je souhaite consulter le profil détaillé d'un client afin de visualiser toutes ses informations. &
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l’endpoint GET /clients/:id pour récupérer les informations du client.
-\item Réaliser une interface de profil structurée.
-\item Développer des composants spécifiques pour l'affichage des informations secondaires       
-\end{itemize} & 1 \\
-\hline
-US20 & En tant qu'\textbf{administrateur}, je souhaite modifier les informations d'un client afin de maintenir des données à jour. &
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l’endpoint PATCH /clients/:id permettant la mise à jour des informations des clients. 
-\item Développer des contrôles d'intégrité côté serveur pour valider les formats de données.
-\item Réaliser une interface d'édition fluide.
-\end{itemize} & 2 \\
-\hline
-US21 & En tant qu'\textbf{administrateur}, je souhaite activer et désactiver un compte client afin de contrôler l'accès. &
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer les endpoints de changement de statut (POST /desactiver, POST /reactiver)
-\item Implémenter la vérification pour bloquer l'opération si le client possède des contrats actifs, des demandes en attente ou des tickets non résolus.  
-\item Intégrer le EmailService pour l'envoi automatique de notifications transactionnelles de changement de statut.                           
-\end{itemize} & 3 \\
-\hline
-US22 & En tant qu'\textbf{administrateur}, je souhaite ajouter des notes privées sur un client afin de conserver des informations internes. &
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer un endpoint POST /clients/:id/notes permettant d'ajouter  es chaînes de caractères dans le tableau notesPrivees.
-\item Réaliser une interface de type "Bloc-notes" ou "Journal interne" dans le profil client.
-\item Sécuriser l'accès à ces informations au niveau du backend pour garantir que ces notes ne soient jamais exposées au client lui-même    
-\end{itemize} & 2 \\
-\hline
-US23 & En tant qu'\textbf{administrateur}, je souhaite imprimer l'annuaire d'un client afin de disposer d'une version papier. &
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint POST /clients pour créer un client avec validation des données
-\end{itemize} & 1 \\
-\hline
 
 \end{longtable}
