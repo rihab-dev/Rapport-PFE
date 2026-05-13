@@ -35,25 +35,266 @@ La figure ci-dessous présente le diagramme de cas d’utilisation du deuxième 
 
 \begin{figure}[H]
         \centering
-        \includegraphics[width=1.0\textwidth,height=0.95\textheight,keepaspectratio]{Images/diagramme cas utilisation sprint2.png}
+        \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/diagramme cas utilisation sprint2.png}
         \caption{Diagramme des cas d'utilisation du deuxième sprint}
         \label{fig:use_case_sprint2}
 \end{figure}
 Nous allons accompagner les cas d'utilisation d'un texte descriptif pour expliquer le scénario de chaque cas ainsi que ses exceptions.
 
-\subsection{Analyse de la fonctionnalité « Gérer contrats »}
-Dans cette partie, nous allons présenter les cas d’utilisation relatifs à la gestion des contrats afin de comprendre les principales fonctionnalités du système, ce qui permet d’avoir une vue globale des interactions.
 
-\subsubsection{Raffinement de cas d'utilisation « Gérer contrats »}
-Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de gestion des contrats :    
+
+\subsection{Analyse de la fonctionnalité « Gérer Contrats »}
+
+Dans cette partie, nous allons présenter les cas d’utilisation relatifs à la gestion des Contrats afin de comprendre
+les principales fonctionnalités du système, ce qui permet d’avoir une vue globale des interactions.
+\subsubsection{Raffinement de cas d'utilisation « Gérer Contrats »}
+Au cours de cette partie, nous allons analyser chaque cas d’utilisation raffiné pour le cas de gestion des Contrats :
 
 \begin{figure}[H]
         \centering
-        \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/Gérer utilisateur.drawio.png}
-        \caption{Diagramme des cas d'utilisation « Gérer utilisateurs »}
-        \label{fig:gerer_utilisateurs}
+        \includegraphics[width=0.9\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme de sequence gestion contrat.png}
+        \caption{Diagramme des cas d'utilisation « Gérer Contrats »}
+        \label{fig:gerer_contrats}
 \end{figure}
 
+\subsubsection{Description textuelle de cas d'utilisation « Créer contrat »}
+\vspace{-0.3cm}
+\begin{table}[h]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1}
+\caption{Description textuelle « Créer contrat »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Créer un contrat \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} & 
+L'utilisateur est authentifié.\newline
+L'utilisateur possède la permission de créer des contrats. \newline
+La liste des contrats est accessible.\\
+\hline
+\textbf{Postconditions} & 
+  Le contrat est enregistré avec le statut ACTIF et une référence générée automatiquement.\newline
+  Le contrat est visible dans la liste des contrats et lié au client sélectionné.\\
+\hline
+\textbf{Scénario principal} & 
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+ \item L'administrateur clique sur « Nouveau » depuis la liste des contrats.
+    \item Le système propose deux modes : \textit{Saisie manuelle} ou \textit{Import PDF}.
+    \item L'administrateur sélectionne \textit{Saisie manuelle} et confirme.
+    \item L'administrateur renseigne les informations du contrat : client, projet, dates, montant, devise et taux de TVA.
+    \item L'administrateur configure le niveau de service (SLA) avec les délais par priorité.
+    \item L'administrateur valide le formulaire.
+    \item Le système enregistre le contrat et redirige vers la liste des contrats.
+  
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} & 
+\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+    \item  L'administrateur choisit le mode 
+    \textit{Import de document} et dépose un fichier PDF. Le système 
+    extrait automatiquement les données et pré-remplit le formulaire. 
+    L'administrateur vérifie les données, sélectionne le client et le 
+    projet, puis valide.
+
+\end{itemize} \\
+\hline
+\textbf{Scénarios d'exception} & 
+\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+         \item  Le système détecte qu'un contrat actif existe déjà pour ce client/projet et affiche un message de blocage.
+    \item  Le système détecte que le client, les dates ou le montant ne sont pas renseignés et affiche un message d'erreur.
+    \item Le système détecte que la date de début est antérieure à aujourd'hui ou que la date d'expiration est antérieure ou égale à la date de début et affiche un message d'erreur.
+    \item Le système détecte que le montant saisi est nul ou non numérique et affiche un message d'erreur.
+  
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+\vspace{-0.3cm}
+
+
+\subsubsection{Description textuelle de cas d'utilisation « Archiver contrat »}
+\vspace{-0.3cm}
+\begin{table}[H]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1}
+\caption{Description textuelle « Archiver contrat »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Archiver un contrat \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} &
+  L'utilisateur est authentifié.\newline
+  L'utilisateur possède la permission d'archiver des contrats.\newline
+  Le contrat est expiré et non encore archivé.\\
+\hline
+\textbf{Postconditions} &
+  Le contrat est marqué comme archivé et n'apparaît plus dans la 
+  liste principale.\newline
+  Le motif d'archivage est enregistré et associé au contrat.\\
+\hline
+\textbf{Scénario principal} &
+  \begin{minipage}[t]{\linewidth}
+  \begin{enumerate}[label=\arabic*., leftmargin=*]
+    \item L'administrateur sélectionne un contrat expiré depuis la liste.
+    \item L'administrateur clique sur « Archivage définitif » dans le 
+    menu contextuel.
+    \item Le système affiche un dialogue de confirmation demandant un 
+    motif d'archivage.
+    \item L'administrateur saisit un motif et confirme.
+    \item Le système archive le contrat et met à jour la liste.
+  \end{enumerate}
+  \vspace{2pt}
+  \end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} &
+  \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+    \item  L'administrateur sélectionne 
+    plusieurs contrats expirés et clique sur « Archiver la sélection ». 
+    Le système archive tous les contrats éligibles et affiche le nombre 
+    de contrats archivés avec succès.
+  \end{itemize} \\
+\hline
+\textbf{Scénarios d'exception} &
+  \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+    \item Le système détecte que le contrat 
+    n'est pas encore expiré et bloque l'action d'archivage.
+    \item  Le système détecte que le motif 
+    saisi contient moins de 10 caractères et désactive le bouton de 
+    confirmation.
+  \end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+\vspace{-0.3cm}
+\subsubsection{Description textuelle de cas d'utilisation « Résilier contrat »}
+\vspace{-0.3cm}
+\begin{table}[H]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1}
+\caption{Description textuelle « Résilier contrat »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Résilier un contrat \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} &
+  L’utilisateur est authentifié.\newline
+  L’utilisateur possède la permission d’archiver des contrats. \newline   
+  Le contrat n'est pas archivé.\newline
+   Le contrat n'est pas déjà résilié. \\
+\hline
+\textbf{Postconditions} &
+  Le contrat est marqué avec le statut RÉSILIÉ.\newline
+  Le contrat est archivé automatiquement.\newline
+  Le client est notifié par email.\\
+\hline
+\textbf{Scénario principal} &
+  \begin{minipage}[t]{\linewidth}
+  \begin{enumerate}[label=\arabic*., leftmargin=*]
+    \item L'administrateur sélectionne un contrat depuis la liste.
+    \item L'administrateur clique sur « Résilier » dans le menu 
+    contextuel.
+    \item Le système affiche un dialogue de confirmation avec un 
+    résumé du contrat et un avertissement d'irréversibilité.
+    \item L'administrateur saisit un motif de résiliation et confirme.
+    \item Le système résilie le contrat, l'archive automatiquement 
+    et notifie le client par email.
+  \end{enumerate}
+  \vspace{2pt}
+  \end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} &
+  \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+    \item 
+    L'administrateur consulte une demande de résiliation en attente 
+    depuis la page « Résiliation en attente ». Il saisit un motif 
+    et confirme la résiliation.
+  \end{itemize} \\
+\hline
+\textbf{Scénarios d'exception} &
+  \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+    \item \textbf Le système détecte que le motif 
+    saisi contient moins de 10 caractères et désactive le bouton de 
+    confirmation.
+  \end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Description textuelle de cas d'utilisation « Configurer intégration Slack »}
+\vspace{-0.3cm}
+\begin{table}[H]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1}
+\caption{Description textuelle « Configurer intégration Slack »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Configurer intégration Slack \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} &
+  L'administrateur est authentifié.\newline
+  Un contrat est sélectionné.\\
+\hline
+\textbf{Postconditions} &
+  La configuration Slack est enregistrée et liée au contrat.\newline
+  Les notifications sont actives selon les préférences choisies.\\
+\hline
+\textbf{Scénario principal} &
+  \begin{minipage}[t]{\linewidth}
+  \begin{enumerate}[label=\arabic*., leftmargin=*]
+    \item L'administrateur clique sur « Intégration Slack » depuis 
+    le menu contextuel du contrat.
+    \item Le système affiche le dialogue de configuration Slack.
+    \item L'administrateur saisit l'URL du webhook et le canal Slack.
+    \item L'administrateur configure les types de notifications 
+    souhaités : ticket créé, mise à jour, résolu, critique seulement.
+    \item L'administrateur clique sur « Configurer ».
+    \item Le système enregistre la configuration et l'associe 
+    au contrat.
+  \end{enumerate}
+  \vspace{2pt}
+  \end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} &
+  \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+    \item
+    Le système détecte qu'une configuration Slack existe déjà pour 
+    ce contrat et pré-remplit le formulaire. L'administrateur modifie 
+    les champs souhaités et clique sur « Mettre à jour ».
+    \item  Après sauvegarde, 
+    l'administrateur clique sur « Tester ». Le système envoie un 
+    message de test sur le canal Slack configuré.
+    \item L'administrateur 
+    clique sur le bouton de suppression. Le système supprime la 
+    configuration Slack du contrat.
+  \end{itemize} \\
+\hline
+\textbf{Scénarios d'exception} &
+  \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+    \item  Le système détecte 
+    que le webhook URL ou le canal ne sont pas renseignés et affiche 
+    un message d'erreur.
+    \item Le système détecte que le webhook 
+    URL est invalide lors du test et affiche un message d'erreur.
+  \end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+\vspace{-0.3cm}
 \newpage
 
 % ─────────────────────────────────────────────────────────────────────────────
