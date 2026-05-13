@@ -177,63 +177,6 @@ La liste des contrats est accessible.\\
 \caption{Description textuelle « Archiver contrat »}
 \end{table}
 \vspace{-0.3cm}
-\subsubsection{Description textuelle de cas d'utilisation « Résilier contrat »}
-\vspace{-0.3cm}
-\begin{table}[H]
-\centering
-\footnotesize
-\renewcommand{\arraystretch}{1}
-
-\begin{tabular}{|p{4.5cm}|p{12cm}|}
-\hline
-\textbf{Nom du cas d'utilisation} & Résilier un contrat \\
-\hline
-\textbf{Acteurs} & Administrateur \\
-\hline
-\textbf{Préconditions} &
-  L’utilisateur est authentifié.\newline
-  L’utilisateur possède la permission d’archiver des contrats. \newline   
-  Le contrat n'est pas archivé.\newline
-   Le contrat n'est pas déjà résilié. \\
-\hline
-\textbf{Postconditions} &
-  Le contrat est marqué avec le statut RÉSILIÉ.\newline
-  Le contrat est archivé automatiquement.\newline
-  Le client est notifié par email.\\
-\hline
-\textbf{Scénario principal} &
-  \begin{minipage}[t]{\linewidth}
-  \begin{enumerate}[label=\arabic*., leftmargin=*]
-    \item L'administrateur sélectionne un contrat depuis la liste.
-    \item L'administrateur clique sur « Résilier » dans le menu 
-    contextuel.
-    \item Le système affiche un dialogue de confirmation avec un 
-    résumé du contrat et un avertissement d'irréversibilité.
-    \item L'administrateur saisit un motif de résiliation et confirme.
-    \item Le système résilie le contrat, l'archive automatiquement 
-    et notifie le client par email.
-  \end{enumerate}
-  \vspace{2pt}
-  \end{minipage} \\
-\hline
-\textbf{Scénarios alternatifs} &
-  \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-    \item 
-    L'administrateur consulte une demande de résiliation en attente 
-    depuis la page « Résiliation en attente ». Il saisit un motif 
-    et confirme la résiliation.
-  \end{itemize} \\
-\hline
-\textbf{Scénarios d'exception} &
-  \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-    \item \textbf Le système détecte que le motif 
-    saisi contient moins de 10 caractères et désactive le bouton de 
-    confirmation.
-  \end{itemize} \\
-\hline
-\end{tabular}
-\caption{Description textuelle « Résilier contrat »}
-\end{table}
 
 \subsubsection{Description textuelle de cas d'utilisation « Configurer intégration Slack »}
 \vspace{-0.3cm}
@@ -298,6 +241,291 @@ La liste des contrats est accessible.\\
 \caption{Description textuelle « Configurer intégration Slack »}
 \end{table}
 \vspace{-0.3cm}
+
+
+
+\subsection{Analyse de la fonctionnalité « Gérer clients »}
+
+\subsubsection{Raffinement de cas d'utilisation « Gérer clients »}
+Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de gestion des clients :
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth,keepaspectratio]{Images/gerer client.drawio.png}
+\caption{Raffinement de cas d'utilisation « Gérer clients »}
+\label{fig:gerer_clients}
+\end{figure}
+
+\subsubsection{Description textuelle de cas d'utilisation « Consulter liste clients »}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1}
+\caption{Description textuelle « Consulter liste clients »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Consulter liste clients \\
+\hline
+\textbf{Acteurs} & Administrateur, Chef de projet \\
+\hline
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de consulter les clients\\
+\hline
+\textbf{Postconditions} & Liste des clients affichée\\
+\hline
+\textbf{Scénario principal} & 
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'utilisateur accède à la section "Clients".   
+\item Le système affiche les clients sous forme de grille (par défaut).
+\item L'utilisateur peut basculer entre trois modes d'affichage : grille, liste, ou vue par société.
+\item L'utilisateur recherche un client en saisissant des informations clés dans la barre de recherche ou par des boutons de filtre (par statut, par secteur d'activité). 
+\item Le système filtre les résultats.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\item L'utilisateur sélectionne la vue "Par société" pour regrouper les clients par société et visualiser les contacts associés à chaque société.
+\item L'utilisateur clique sur le bouton « Exporter » pour télécharger la liste des clients (CSV, Excel).
+\item L'utilisateur clique sur le bouton « Importer » pour ajouter plusieurs clients via un fichier (CSV, Excel).
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+\vspace{-0.3cm}
+
+\subsubsection{Description textuelle de cas d'utilisation « Ajouter client »}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1}
+\caption{Description textuelle « Ajouter client »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Ajouter un client \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} & 
+L'utilisateur est authentifié.\newline
+L'utilisateur possède la permission de créer des clients. \newline
+La liste des clients est accessible.\\
+\hline
+\textbf{Postconditions} & 
+Le client est créé et enregistré dans le système. \newline
+Le profil client associé est initialisé. \newline
+Un message de confirmation est affiché. \\
+\hline
+\textbf{Scénario principal} & 
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'administrateur clique sur le bouton « Nouveau client ».
+\item Le système affiche le formulaire de création.
+\item L'administrateur saisit les informations du client : prénom, nom, e-mail et autres données requises.
+\item L'administrateur renseigne ou sélectionne la société associée au client.
+\item Si nécessaire, l'administrateur complète les informations de la société : nom, adresse, secteur d'activité et téléphone.
+\item Le système peut récupérer automatiquement le logo de la société à partir d'une source externe, ainsi que l'adresse via un service de géocodage, si ces fonctionnalités sont activées.
+\item L'administrateur valide le formulaire en cliquant sur « Créer le client ».
+\item Le système vérifie la validité des données et l'unicité de l'e-mail.
+\item Le système crée le client et associe son profil dans la base de données.
+\item Le système envoie un e-mail de confirmation ou de bienvenue si cette fonctionnalité est prévue.
+\item Le système affiche un message de succès et met à jour la liste des clients.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} & 
+\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\item L'administrateur ajoute manuellement le logo de la société au lieu d'utiliser la récupération automatique.
+\item L'administrateur associe le client à une société existante déjà enregistrée.
+\item L'administrateur saisit manuellement l'adresse de la société lorsque la suggestion automatique du géocodage ne correspond pas.
+\item L'administrateur complète plus tard certaines informations facultatives du client.
+\end{itemize} \\
+\hline
+\textbf{Scénarios d'exception} & 
+\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\item Un champ obligatoire est vide ou contient une valeur invalide.
+\item L'adresse e-mail saisie est déjà utilisée par un autre utilisateur.
+\item Le système rencontre une erreur lors de l'enregistrement du client.
+\item L'administrateur tente de quitter le formulaire alors que des données ont déjà été saisies.
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+\vspace{-0.3cm}
+
+% \subsubsection{Description textuelle de cas d'utilisation « Modifier client »}
+
+% \begin{table}[H]
+% \centering
+% \footnotesize
+% \renewcommand{\arraystretch}{1}
+% \caption{Description textuelle « Modifier client »}
+% \begin{tabular}{|p{4.5cm}|p{12cm}|}
+% \hline
+% \textbf{Nom du cas d'utilisation} & Modifier client \\
+% \hline
+% \textbf{Acteurs} & Administrateur \\
+% \hline
+% \textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de modifier les clients\newline Liste des clients affichée\\
+% \hline
+% \textbf{Postconditions} & Le client est modifié\\
+% \hline
+% \textbf{Scénario principal} & \begin{minipage}[t]{\linewidth}
+% \begin{enumerate}[label=\arabic*., leftmargin=*]
+% \item L'administrateur consulte la fiche du client choisi.                 
+% \item L'administrateur clique sur le bouton (Modifier).                                                       
+% \item Le système affiche le formulaire de modification.  
+% \item L'administrateur modifie les informations souhaitées. 
+% \item L'administrateur clique sur le bouton (Enregistrer).
+% \item Le système met à jour les informations du client.
+% \item Le système affiche le message de succès.
+% \end{enumerate}
+% \vspace{2pt}
+% \end{minipage} \\
+% \hline
+% \textbf{Scénarios d'exception} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$] 
+% \item L'administrateur saisit un e-mail déjà utilisé par un autre utilisateur.
+% \item L'administrateur tente de modifier un client ayant des contrats actifs sans validation.
+% \end{itemize} \\
+% \hline
+% \end{tabular}
+% \end{table}
+% \vspace{-0.8cm}
+
+\subsubsection{Description textuelle de cas d'utilisation « Consulter profil client »}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1}
+\caption{Description textuelle « Consulter profil client »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Consulter profil client \\
+\hline
+\textbf{Acteurs} & Administrateur, Chef de projet, Client (son propre profil) \\
+\hline
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de consulter les profils clients ou consulte son propre profil\newline Pour Chef de projet : le client doit être associé à au moins un de ses projets\\
+\hline
+\textbf{Postconditions} & Profil client consulté\\
+\hline
+\textbf{Scénario principal} & 
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'utilisateur accède au profil du client.
+\item Le système affiche les informations personnelles et société.
+\item Le système affiche les statistiques et éléments accessibles selon le rôle de l'utilisateur.
+\item L'utilisateur peut naviguer vers les éléments disponibles (projets, demandes, tickets, documents).
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Restrictions d'accès} & 
+\begin{minipage}[t]{\linewidth}
+\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\item Administrateur : accès complet (contrats, projets, demandes, tickets, notes privées, documents).
+\item Chef de projet : accès limité aux projets où il est assigné et aux demandes/tickets liés à ces projets uniquement.
+\item Client : accès à son propre profil, ses projets, demandes et tickets.
+\end{itemize}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\item L'utilisateur exporte les informations du profil en PDF.
+\item L'utilisateur clique sur "Contacter" pour envoyer un e-mail ou un message via la messagerie interne de l'application.
+\item L'utilisateur clique sur l'adresse de la société pour visualiser sa localisation sur une carte interactive.
+\item L'administrateur ajoute une note privée sur le client.
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+\vspace{-0.3cm}
+
+\subsubsection{Description textuelle de cas d'utilisation « Désactiver client »}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1}
+\caption{Description textuelle « Désactiver un client »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Désactiver un client \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de désactiver les clients\newline Liste des clients affichée\newline Le client à désactiver doit être actuellement Actif\\
+\hline
+\textbf{Postconditions} & Le compte client est désactivé\\
+\hline
+\textbf{Scénario principal} & \begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'administrateur choisit un client dans la liste.                 
+\item L'administrateur clique sur l'action (Désactiver).                                                     
+\item Le système vérifie si le client possède des contrats actifs, des demandes en cours ou des tickets actifs.  
+\item Le système affiche une boîte de dialogue de confirmation avec les détails des contrats, demandes et tickets actifs. 
+\item L'administrateur confirme l'action.
+\item Le système met à jour le statut du client.
+\item Le système révoque les sessions actives (suppression des refresh tokens).
+\item Le système envoie un e-mail automatique au contact principal du client pour l'informer de la désactivation.
+\item Le système affiche le message de succès.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios d'exception} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$] 
+\item L'administrateur tente de désactiver un client qui possède des contrats actifs sans les clôturer.
+\item L'administrateur tente de désactiver un client ayant des demandes en attente de traitement.
+\item L'administrateur tente de désactiver un client ayant des tickets actifs non résolus.
+\end{itemize} \\
+\hline
+\textbf{Scénarios alternatifs} & L'administrateur clôture les contrats, traite les demandes et résout les tickets avant la désactivation. \\
+\hline
+\end{tabular}
+\end{table}
+\vspace{-0.3cm}
+
+\subsubsection{Description textuelle de cas d'utilisation « Réactiver client »}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1}
+\caption{Description textuelle « Réactiver un client »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Réactiver un client \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de réactiver les clients\newline Le compte client doit être désactivé\\
+\hline
+\textbf{Postconditions} & Le compte client est réactivé\\
+\hline
+\textbf{Scénario principal} & \begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'administrateur consulte la liste des clients désactivés.
+\item L'administrateur sélectionne un client à réactiver.
+\item L'administrateur clique sur l'action (Réactiver le compte).
+\item Le système affiche une confirmation.
+\item L'administrateur confirme l'action.
+\item Le système réactive le compte.
+\item Le système envoie un e-mail au client.
+\item Le système affiche le message de succès.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios d'exception} & Le client est déjà actif. \\
+\hline
+\end{tabular}
+\end{table}
+\vspace{-0.3cm}
+
+
 \newpage
 
 % ─────────────────────────────────────────────────────────────────────────────
