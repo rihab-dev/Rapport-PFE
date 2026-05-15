@@ -346,7 +346,7 @@ Au cours de cette partie, nous allons analyser chaque cas d’utilisation raffin
 
 \begin{figure}[H]
         \centering
-        \includegraphics[width=0.9\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme de cas utilisation gestion contrat.png}
+        \includegraphics[width=0.7\textwidth,height=0.65\textheight,keepaspectratio]{Images/Diagramme de cas utilisation gestion contrat.png}
         \caption{Diagramme des cas d'utilisation « Gérer Contrats »}
         \label{fig:gerer_contrats}
 \end{figure}
@@ -682,14 +682,13 @@ de toutes les opérations effectuées sur la plateforme.
 %─────────────────────────────────────────────────────────────────────────────
 \section{Diagramme de classes du deuxième sprint}
 %─────────────────────────────────────────────────────────────────────────────
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=1\textwidth,keepaspectratio]
-  {Images/diag classe sprint 2.png}
-\caption{Diagramme de classes du Sprint 2}
-\label{fig:diag_classe_sprint2}
-\end{figure}
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=1\textwidth,keepaspectratio]
+%  {Images/diag classe sprint 2.png}
+%\caption{Diagramme de classes du Sprint 2}
+%\label{fig:diag_classe_sprint2}
+%\end{figure}
 
 \section{Diagramme de séquence}
 \subsection{Diagramme de séquences du cas d'utilisation « Demande Résiliation »}
@@ -829,6 +828,52 @@ doublons. Les cas suivants ont été couverts :
   \item La référence générée respecte le format \texttt{CTR-}.
 \end{itemize}
 
+\item[$\square$] \textbf{Module Gestion des clients}
+ \newline
+\hfill\textit{Méthodes : \texttt{mettreAJourClient()} ·
+\texttt{desactiverClient()} · \texttt{reactiverClient()} ·
+\texttt{telechargerLogo()} · \texttt{supprimerLogo()}}
+
+\noindent Cette suite valide les opérations de gestion des clients,
+la gestion des fichiers logo et le service de géocodage. Les cas suivants
+ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item Les informations d'un client existant sont mises à jour : le
+    résultat validé est retourné correctement.
+  \item La mise à jour est effectuée sur un client inexistant : une
+    \texttt{NotFoundException} est levée.
+  \item Un client actif est désactivé : l'opération est réalisée avec
+    succès.
+  \item Un client désactivé est réactivé : l'opération est réalisée avec
+    succès.
+  \item La réactivation est effectuée sur un client inexistant : une
+    \texttt{NotFoundException} est levée.
+  \item Un logo est téléversé pour un client existant : le fichier est
+    traité et stocké correctement.
+  \item Le logo d'un client est supprimé : un message de succès est
+    retourné.
+  \item Le téléversement ou la suppression du logo est effectué sur un
+    client inexistant : une \texttt{NotFoundException} est levée.
+  \item Le service de géocodage est interrogé avec une adresse valide
+    présente en cache : l'adresse est retournée correctement.
+  \item Le service de géocodage est interrogé avec une requête trop courte :
+    un tableau vide est retourné.
+  \item Les résultats du service de géocodage sont mis en cache
+    correctement après la première requête.
+  \item Les résultats filtrés du géocodage éliminent les doublons de type
+    pays.
+\end{itemize}
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.6\textwidth}
+  \centering
+  \includegraphics[width=\textwidth,keepaspectratio]
+    {Images/test unit-ClientTestUnitaire.png}
+  \caption*{\small Gestion des clients}
+\end{minipage}
+\caption{Résultats des tests unitaires — Gestion des clients}
+\end{figure}
 \item[$\square$] \textbf{Module Projets}
 \hfill\textit{Méthodes : \texttt{create()} · \texttt{assignerMembre()} ·
 \texttt{verifierArchivage()}}
@@ -859,13 +904,13 @@ Les cas suivants ont été couverts :
 
 \end{itemize}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.72\textwidth,keepaspectratio]
-  {Images/test-unitaire-contrats-sprint2.png}
-\caption{Résultats des tests unitaires — Contrats et Projets}
-\label{fig:test_unitaires_sprint2}
-\end{figure}
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=0.72\textwidth,keepaspectratio]
+ % {Images/test-unitaire-contrats-sprint2.png}
+%\caption{Résultats des tests unitaires — Contrats et Projets}
+%\label{fig:test_unitaires_sprint2}
+%\end{figure}
 
 %─────────────────────────────────────────────────────────────────────────────
 %─────────────────────────────────────────────────────────────────────────────
@@ -914,14 +959,13 @@ gestion des contrats. Les cas suivants ont été couverts :
 \end{itemize}
 
 \end{itemize}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.65\textwidth,keepaspectratio]
-  {Images/test-integration-contrats-sprint2.png}
-\caption{Tests d'intégration — Gestion des contrats via Swagger}
-\label{fig:test_integration_sprint2}
-\end{figure}
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=0.65\textwidth,keepaspectratio]
+ % {Images/test-integration-contrats-sprint2.png}
+%\caption{Tests d'intégration — Gestion des contrats via Swagger}
+%\label{fig:test_integration_sprint2}
+%\end{figure}
 
 %─────────────────────────────────────────────────────────────────────────────
 %─────────────────────────────────────────────────────────────────────────────
@@ -973,13 +1017,13 @@ d'activités par l'administrateur. Les cas suivants ont été couverts :
 
 \end{itemize}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.70\textwidth,keepaspectratio]
-  {Images/test-e2e-contrats-sprint2.png}
-\caption{Tests End-to-End — Contrats et Journal d'activités via Playwright}
-\label{fig:test_e2e_sprint2}
-\end{figure}
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=0.70\textwidth,keepaspectratio]
+ % {Images/test-e2e-contrats-sprint2.png}
+%\caption{Tests End-to-End — Contrats et Journal d'activités via Playwright}
+%\label{fig:test_e2e_sprint2}
+%\end{figure}
 
 %─────────────────────────────────────────────────────────────────────────────
 \section*{Conclusion}

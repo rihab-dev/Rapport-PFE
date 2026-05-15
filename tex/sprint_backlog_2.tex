@@ -23,77 +23,169 @@
  US17 & En tant qu'\textbf{administrateur}, je souhaite créer un profil client afin de centraliser ses informations. &
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l’endpoint POST /clients pour orchestrer la création simultanée du compte CLIENT et du profil entreprise associé.  
-\item  Implémenter un service de récupération automatique de logo (LogoService) établi sur le nom de la société
-\item Intégrer une logique de gestion des projets historiques pour associer des projets passés, des chefs de projets et des membres d'équipe au nouveau client
-\item Réaliser l'interface de formulaire
+  \item Développer l'endpoint "POST /api/clients"
+   
+    pour créer simultanément le compte utilisateur
+    (\textbf{Utilisateur}) et le profil entreprise
+    (\textbf{ProfilClient})
+  \item Implémenter le service de récupération automatique
+    de logo (\textbf{LogoService}) à partir du nom de la
+    société, avec upload manuel via
+    "POST /api/clients/:id/logo"
+    (traitement Sharp, formats JPG/PNG/GIF/WEBP, 2 Mo max)
+  \item Intégrer le service de géocodage
+    (\textbf{GeocodingService}) via
+    "GET /api/clients/geocode?q=" pour
+    l'autocomplétion d'adresse (ArcGIS, rate limit
+    20 req/min via \textbf{@nestjs/throttler})
+  \item Réaliser le formulaire de création côté Next.js
 \end{itemize} & 1 \\
 \hline
 
 US18 & En tant qu’administrateur, je souhaite consulter la liste des clients  afin de visualiser les clients existants. &
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l’endpoint GET /clients intégrant une logique de filtrage RBAC.
-\item Réaliser une interface de visualisation
+  \item Développer l'endpoint "GET /api/clients"
+     avec filtrage
+    RBAC selon le rôle de l'utilisateur connecté
+    (\textbf{userId} + \textbf{userRoles} passés au service)
+  \item Développer les endpoints de données enrichies par
+    client : "GET /api/clients/:id/projets",
+    "GET /api/clients/:id/contrats",
+    "GET /api/clients/:id/demandes",
+    "GET /api/clients/:id/tickets"
+  \item Réaliser l'interface de visualisation avec vue
+    grille et vue liste côté Next.js
 \end{itemize} & 2 \\
 \hline
 US19 & En tant qu'\textbf{administrateur}, je souhaite consulter le profil détaillé d'un client afin de visualiser toutes ses informations. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l’endpoint GET /clients/:id pour récupérer les informations du client.
-\item Réaliser une interface de profil structurée.
-\item Développer des composants spécifiques pour l'affichage des informations secondaires       
+  \item Développer l'endpoint "GET /api/clients/:id"
+     pour récupérer
+    les informations complètes du client
+  \item Développer l'endpoint
+    "GET /api/clients/:id/business-overview"
+    pour la vue métier consolidée (projets contextuels,
+    contrats, demandes)
+  \item Développer l'endpoint
+    "GET /api/clients/:id/verifier-desactivation"
+    pour vérifier les conditions avant désactivation
+  \item Réaliser l'interface de profil structurée en onglets
+    côté Next.js
 \end{itemize} & 1 \\
 \hline
 US20 & En tant qu'\textbf{administrateur}, je souhaite modifier les informations d'un client afin de maintenir des données à jour. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l’endpoint PATCH /clients/:id permettant la mise à jour des informations des clients. 
-\item Développer des contrôles d'intégrité côté serveur pour valider les formats de données.
-\item Réaliser une interface d'édition fluide.
+  \item Développer l'endpoint "PUT /api/clients/:id"
+     pour la mise à
+    jour des informations du client et de son profil
+    entreprise
+  \item Valider les formats de données côté serveur via
+    \textbf{class-validator}
+  \item Gérer la mise à jour du logo via
+    "POST /api/clients/:id/logo" et la suppression
+    via "DELETE /api/clients/:id/logo"
+  \item Réaliser l'interface d'édition côté Next.js
 \end{itemize} & 2 \\
 \hline
 US21 & En tant qu'\textbf{administrateur}, je souhaite activer et désactiver un compte client afin de contrôler l'accès. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer les endpoints de changement de statut (POST /desactiver, POST /reactiver)
-\item Implémenter la vérification pour bloquer l'opération si le client possède des contrats actifs, des demandes en attente ou des tickets non résolus.  
-\item Intégrer le EmailService pour l'envoi automatique de notifications transactionnelles de changement de statut.                           
+  \item Développer l'endpoint
+    "PATCH /api/clients/:id/desactiver"
+     et
+    "PATCH /api/clients/:id/reactiver"
+    
+  \item Implémenter la vérification préalable via
+    "GET /api/clients/:id/verifier-desactivation"
+    pour bloquer l'opération si le client possède des
+    contrats actifs, des demandes en attente ou des
+    tickets non résolus
+  \item Intégrer \textbf{EmailService} pour l'envoi
+    automatique de notifications de changement de statut
+  \item Réaliser les boutons d'action avec modale de
+    confirmation côté Next.js
 \end{itemize} & 3 \\
 \hline
 
 US22 & En tant qu'\textbf{administrateur}, je souhaite imprimer l'annuaire d'un client afin de disposer d'une version papier. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint POST /clients pour créer un client avec validation des données
+  \item Implémenter l'export CSV des données client
+    (informations société, contrats, projets) via le
+    composant \textbf{ExportCSV} côté frontend
+  \item Utiliser la bibliothèque \textbf{xlsx} pour la
+    génération des fichiers tabulaires
+  \item Réaliser le bouton d'export dans l'interface
+    de liste des clients
 \end{itemize} & 1 \\
 \hline
 
 US23 & En tant qu'\textbf{administrateur}, je souhaite créer un projet rattaché à un client afin d'organiser les interventions. &
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'API de création avec validation des données
-\item Gérer les relations projet-client et envoyer les notifications aux membres de l'équipe
-\item Créer le formulaire multi-étapes avec sélection guidée 
+  \item Développer l'endpoint "POST /api/projets"
+     avec validation
+    des données via \textbf{class-validator}
+  \item Gérer la relation projet-client
+    (\textbf{ProfilClient}) et l'attribution optionnelle
+    d'un chef de projet (\textbf{ProfilEmploye})
+  \item Envoyer des notifications aux membres de l'équipe
+    lors de la création
+  \item Réaliser le formulaire de création côté Next.js
 \end{itemize} & 3 \\
 \hline 
 US24 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des projets afin de piloter l'activité. &
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'API de consultation avec filtres et contrôler l'accès selon le rôle
-\item Récupérer les données enrichies et paginer les résultats
-\item Créer l'interface avec tableau, filtres avancés et proposer les vues multiples (liste/cartes/Kanban)
+  \item Développer l'endpoint "GET /api/projets"
+    (permissions \textbf{projects.read.all} ou
+    \textbf{projects.read.own}) avec filtres par
+    \textbf{search}, \textbf{tags}, \textbf{statutContrat}
+    et \textbf{statutP}
+  \item Appliquer le contrôle d'accès RBAC selon le rôle :
+    ADMIN voit tous les projets, CHEF\_PROJET voit ses
+    projets, DEVELOPPEUR voit ses projets affectés,
+    CLIENT voit ses propres projets
+  \item Réaliser l'interface avec tableau et filtres
+    avancés côté Next.js
 \end{itemize} & 2 \\
 \hline
 US25 & En tant qu'\textbf{administrateur}, je souhaite affecter des développeurs à un projet afin de constituer l'équipe. &
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'API d'affectation avec workflow de validation
-\item Calculer automatiquement la disponibilité et envoyer les notifications en temps réel à chaque étape
-\item Créer les interfaces de gestion d'équipe avec suivi des propositions
+  \item Développer les endpoints de gestion d'équipe :
+   "POST /api/projets/:id/equipe" (ajouter),
+    "PUT /api/projets/:id/equipe/:employeId"
+    (modifier le rôle),
+    "DELETE /api/projets/:id/equipe/:employeId"
+    (retirer) — 
+    / \textbf{teams.developer.remove}
+  \item Implémenter le workflow de proposition/validation :
+    "POST /api/projets/:id/assigner",
+    "POST /api/projets/affectation/:id/valider",
+    "POST /api/projets/affectation/:id/refuser"
+  \item Développer les endpoints de suivi :
+    "GET /api/projets/mes-affectations-envoyees"
+    et "GET /api/projets/statistiques-affectations"
+  \item Envoyer des notifications en temps réel à chaque
+    étape du workflow
+  \item Réaliser les interfaces de gestion d'équipe
+    côté Next.js
 \end{itemize} & 3 \\
 \hline
 US26 & En tant que \textbf{membre d'équipe}, je souhaite consulter les informations du projet afin de comprendre le contexte. &
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'API de détail avec contrôle d'accès 
-\item Créer la page détaillée organisée en sections avec les informations du projet
+  \item Développer l'endpoint "GET /api/projets/:id"
+    (permissions \textbf{projects.read.all} ou
+    \textbf{projects.read.own}) avec contrôle d'accès
+    selon le rôle de l'utilisateur
+  \item Développer "GET /api/projets/:id/equipe"
+     pour consulter
+    les membres et leur charge
+  \item Développer "GET /api/projets/:id/charge"
+    pour visualiser la charge de l'équipe
+  \item Réaliser la page de détail du projet organisée
+    en sections côté Next.js
 \end{itemize} & 1 \\
 \hline
 
@@ -105,90 +197,173 @@ US26 & En tant que \textbf{membre d'équipe}, je souhaite consulter les informat
 US28 & En tant qu’administrateur, je souhaite créer un contrat de maintenance afin de formaliser les engagements de service avec le client. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'API de création avec deux modes : formulaire manuel et upload PDF avec extraction automatique (pdf-parse + regex)
-\item Implémenter l'extraction des données du PDF (référence, dates, montants, SLA, client, projet) et résolution automatique en base
-\item Créer l'interface avec choix du mode, pré-remplissage automatique du formulaire et stockage avec hashage anti-doublon
-\end{itemize}
+  \item Développer l'endpoint "POST /api/contrats"
+     avec upload
+    de fichier via \textbf{FileInterceptor} (PDF, Word,
+    Excel, 10 Mo max) et hashage anti-doublon
+    (\textbf{fichierHash})
+  \item Développer l'endpoint d'extraction PDF
+    "POST /api/contrats/extract-pdf"
+     via
+    \textbf{pdf-parse} + regex pour récupérer
+    automatiquement référence, dates, montants, SLA,
+    client et projet
+  \item Développer l'endpoint d'upload de document scanné
+    "POST /api/contrats/upload-scanne"
+    ,
+    formats PDF/JPG/PNG)
+  \item Réaliser l'interface avec choix du mode
+    (formulaire manuel ou extraction PDF) et
+    pré-remplissage automatique côté Next.js
+\end{itemize} & 2 \\
 & 2 \\
 \hline
 
 US29 & En tant qu’administrateur, je souhaite consulter la liste des contrats afin de suivre les engagements contractuels. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'API de consultation avec filtres avancés et contrôle d'accès RBAC
-\item Récupérer les données enrichies avec pagination
-\item Créer l'interface avec tableau, filtres, badges de statut et actions rapides (voir, modifier, archiver)
-\end{itemize}
-& 3 \\
+  \item Développer l'endpoint "GET /api/contrats"
+    (permissions \textbf{contracts.read.all} ou
+    \textbf{contracts.read.own})
+  \item Développer les endpoints auxiliaires :
+    "GET /api/contrats/clients",
+    "GET /api/contrats/projets?clientId=",
+    "GET /api/contrats/demandes?clientId=\&projetId=",
+   "GET /api/contrats/archived",
+    "GET /api/contrats/client/:clientId"
+  \item Développer "GET /api/contrats/:id/fichier"
+    pour le téléchargement du fichier contrat avec
+    détection automatique du type MIME et streaming
+  \item Réaliser l'interface avec tableau, filtres, badges
+    de statut et actions rapides côté Next.js
+\end{itemize} & 3 \\
 \hline
 
 US30 & En tant qu’administrateur, je souhaite recevoir des alertes avant l’expiration des contrats afin d’anticiper les renouvellements & 
 \vspace{2mm} 
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer le système d'alertes automatiques (30, 15, 7 jours avant expiration) avec CRON job
-\item Envoyer les notifications par email et in-app avec détails du contrat
-\item Créer l'interface d'alertes avec liste des contrats à renouveler
-\end{itemize}
-& 2 \\
+  \item Développer le CRON job d'alertes automatiques
+    déclenchant des notifications à \textbf{J-30, J-15
+    et J-7} avant expiration (champs
+    \textbf{alerte30JoursEnvoyee},
+    \textbf{alerte15JoursEnvoyee},
+    \textbf{alerte7JoursEnvoyee} en base pour éviter
+    les doublons)
+  \item Envoyer les notifications par e-mail
+    (\textbf{Nodemailer}) et in-app
+    (\textbf{NotificationsService})
+  \item Développer "GET /api/contrats/expiration/status"
+    pour récupérer le statut d'expiration des contrats
+    du client connecté
+  \item Réaliser l'interface d'alertes côté Next.js
+    (\textbf{ContratExpirationAlert},
+    \textbf{ContratExpirationModal})
+\end{itemize} & 2 \\
+
 \hline
 
 US31 & En tant qu’administrateur, je souhaite archiver un contrat afin de conserver l’historique. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'API d'archivage avec vérifications (pas de demandes en cours, confirmation requise)
-\item Gérer le changement de statut et conserver les données historiques avec motif d'archivage
-\item Créer le dialogue de confirmation 
-\end{itemize}
- & 3 \\
+  \item Développer l'endpoint
+    "PATCH /api/contrats/:id/archive"
+     avec motif
+    obligatoire (\textbf{minimum 10 caractères})
+  \item Développer l'endpoint de restauration
+    "PATCH /api/contrats/:id/restore"
+    
+  \item Développer l'endpoint de suppression définitive
+    "DELETE /api/contrats/:id"
+    
+  \item Conserver les données historiques avec
+    \textbf{motifArchivage} et \textbf{dateArchivage}
+  \item Réaliser le dialogue de confirmation côté Next.js
+\end{itemize} & 3 \\
 \hline
 
 US32 & En tant que client, je souhaite demander la résiliation de mon contrat afin d’interrompre le service.& 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'API de demande de résiliation avec workflow (demande → validation admin → résiliation)
-\item Envoyer les notifications aux administrateurs et gérer le statut du contrat
-\item Créer le formulaire de demande avec motif obligatoire
-\end{itemize}
- & 1 \\
+  \item Développer l'endpoint
+    "POST /api/contrats/:id/demande-resiliation"
+    avec motif obligatoire (minimum 10 caractères) et
+    e-mail du client requis
+  \item Envoyer une notification par e-mail aux
+    administrateurs et mettre à jour les champs
+    \textbf{dateDemandeResiliation} et
+    \textbf{motifResiliation} en base
+  \item Développer "GET /api/contrats/demandes-resiliation"
+     pour que
+    l'admin consulte les demandes en attente
+  \item Réaliser le formulaire de demande avec motif
+    obligatoire côté Next.js
+\end{itemize} & 1 \\
 \hline
 
 US33 & En tant qu’administrateur, je souhaite résilier un contrat afin de l’interrompre avant terme. & 
 \vspace{2mm} 
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'API de résiliation avec validation
-\item Gérer le changement de statut et notifier le client par email
-\item Créer le dialogue de résiliation avec confirmation 
-\end{itemize}
-& 2 \\
+  \item Développer l'endpoint
+    "PATCH /api/contrats/:id/resilier"
+     avec motif
+    obligatoire (minimum 10 caractères)
+  \item Mettre à jour le statut du contrat et notifier
+    le client par e-mail (\textbf{Nodemailer})
+  \item Journaliser l'action via \textbf{ActivityLog}
+    (\textbf{Action: RESILIER\_CONTRACT})
+  \item Réaliser le dialogue de résiliation avec
+    confirmation côté Next.js
+\end{itemize} & 2 \\
 \hline
 
-\hline
 
 
 
-US35 & En tant que chef de projet, je souhaite consulter les contrats dans un calendrier afin de visualiser les dates d’expiration& 
+
+US34 & En tant que chef de projet, je souhaite consulter les contrats dans un calendrier afin de visualiser les dates d’expiration& 
 \vspace{2mm} 
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'API de récupération des contrats avec dates (début, expiration) filtrées par période
-\item Calculer les indicateurs (contrats expirant bientôt, contrats actifs) pour la vue calendrier
-\item Créer la vue calendrier avec affichage des contrats par mois et code couleur selon le statut
-
-\end{itemize}
-& 1 \\
+  \item Utiliser l'endpoint "GET /api/contrats"
+    avec filtrage côté frontend sur les champs
+    \textbf{dateDebutContratM} et
+    \textbf{dateExpirationContratM}
+  \item Calculer les indicateurs côté frontend :
+    contrats expirant bientôt (J-30), contrats actifs,
+    code couleur selon le statut
+    (\textbf{StatutContrat})
+  \item Réaliser la vue calendrier avec affichage des
+    contrats par mois côté Next.js
+    (composant \textbf{GanttAgendaView} ou
+    \textbf{TimelineAgenda})
+\end{itemize} & 1 \\
 \hline
- US36 & En tant que \textbf{client}, je souhaite soumettre un retour d'expérience à l'expiration de mon contrat afin d'exprimer ma satisfaction.&
+ US35 & En tant que \textbf{client}, je souhaite soumettre un retour d'expérience à l'expiration de mon contrat afin d'exprimer ma satisfaction.&
  \vspace{2mm} 
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint POST /contrats/:id/feedback pour enregistrer la note, le commentaire et l'intention de renouvellement dans FeedbackExpirationContrat
-\item Implémenter une logique de déclenchement automatique de notification aux administrateurs si le client souhaite renouveler
-\item Réaliser le formulaire de feedback côté client avec affichage conditionnel selon le statut du contrat 
-
-\end{itemize}
-& 1 \\
+  \item Développer l'endpoint
+    "POST /api/contrats/:id/feedback"
+     pour
+    enregistrer la note, le commentaire et l'intention
+    de renouvellement dans \textbf{FeedbackExpirationContrat}
+  \item Vérifier que le profil client existe
+     avant
+    d'enregistrer le feedback
+  \item Implémenter la notification automatique aux
+    administrateurs si le client souhaite renouveler
+  \item Journaliser l'action via \textbf{ActivityLog}
+    
+  \item Réaliser le formulaire de feedback côté client
+    avec affichage conditionnel selon le statut du contrat
+\end{itemize} & 1 \\
 \hline
-US37 & En tant qu'\textbf{administrateur}, je souhaite générer un PDF formaté du contrat afin de le partager avec le client.&
+US36 & En tant qu'\textbf{administrateur}, je souhaite générer un PDF formaté du contrat afin de le partager avec le client.&
  \vspace{2mm}
- &2 \\
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+  \item Développer l'endpoint de génération PDF en utilisant la bibliothèque \textbf{PDFMake}
+  \item Inclure les informations du contrat : référence, client, projet, dates, montants (HT, TVA, TTC), type SLA et conditions
+  \item Utiliser le template HTML existant comme base de mise en page
+  \item Réaliser le bouton de génération et de téléchargement côté Next.js (composant \textbf{ContractPDFGenerator})
+\end{itemize} & 2 \\
  \hline
 % Epic 3: Gestion des rôles et permissions
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 14 - Consulter journal d'activité}} \\
@@ -197,20 +372,48 @@ US37 & En tant qu'\textbf{administrateur}, je souhaite générer un PDF formaté
 US95 & En tant qu’administrateur, je souhaite consulter l’historique complet de toutes les actions afin d’assurer la traçabilité. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'API de consultation avec pagination, filtres avancés et recherche textuelle
-\item Récupérer les logs enrichis avec informations utilisateur et statistiques (taux de succès, actions fréquentes)
-\item Créer l'interface avec tableau filtrable, timeline, graphiques de statistiques et vue détaillée par entité
-\end{itemize}
- & 3 \\
+  \item Développer l'endpoint
+   "GET /api/activity-logs"
+     avec pagination
+    (page, limit), filtres
+    (userId, entityType,
+    action, status,
+    startDate, endDate) et recherche
+    textuelle 
+  \item Développer "GET /api/activity-logs/stats"
+    pour les statistiques globales (taux de succès,
+    actions fréquentes, activité horaire)
+  \item Développer "GET /api/activity-logs/user/:userId"
+    et "GET /api/activity-logs/entity/:type/:id"
+    pour les vues filtrées par utilisateur ou entité
+  \item Implémenter la sanitisation automatique des
+    métadonnées sensibles (\textbf{password},
+    \textbf{token}, \textbf{refreshToken} → \textbf{[REDACTED]})
+  \item Réaliser l'interface avec tableau filtrable,
+    timeline et vue détaillée côté Next.js
+\end{itemize} & 3 \\
 \hline
 
 US96 & En tant qu’administrateur, je souhaite exporter les logs d’audit afin de répondre aux exigences de conformité. & 
 \vspace{2mm} 
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'API d'export avec formats CSV et JSON, filtres personnalisables et limite de 10 000 enregistrements
-\item Implémenter le nettoyage automatique des logs anciens
-\item Créer l'interface d'export avec sélection de format, prévisualisation et téléchargement direct
-\end{itemize}
+  \item Développer l'endpoint
+    "GET /api/activity-logs/me/export"
+    avec formats \textbf{CSV} et \textbf{JSON},
+    filtres personnalisables et limite de
+    \textbf{10 000 enregistrements}
+  \item Implémenter le nettoyage automatique des logs
+    anciens via CRON job quotidien à 2h du matin
+    (\textbf{@Cron(EVERY\_DAY\_AT\_2AM)}),
+    rétention configurable via
+    \textbf{ACTIVITY\_LOG\_RETENTION\_DAYS}
+    (défaut : \textbf{90 jours})
+  \item Développer l'endpoint de nettoyage manuel
+    "POST /api/activity-logs/cleanup"
+    
+  \item Réaliser l'interface d'export avec sélection
+    de format et téléchargement direct côté Next.js
+\end{itemize} & 2 \\
 & 2 \\
 \hline
 

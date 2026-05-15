@@ -14,7 +14,7 @@ de sécurisation des accès ainsi que les fonctionnalités de gestion des utilis
 et de leurs profils. Il s'agit également d'assurer un contrôle efficace des accès
 et des permissions en introduisant l'administration du système à travers la gestion
 des comptes utilisateurs, des rôles et des permissions (RBAC).
-\subsubsection{Backlog du premier sprint}
+\subsection{Backlog du premier sprint}
 \label{sec:backlog_sprint1}
 
 Voici l’ensemble des fonctionnalités issues du Product Backlog, qui seront réalisées dans le cadre de ce sprint.
@@ -45,8 +45,8 @@ La figure ci-dessous présente le diagramme de cas d’utilisation du premier sp
 
 Nous allons accompagner les cas d'utilisation d'un texte descriptif pour expliquer le scénario de chaque cas ainsi que ses exceptions.
 
-\subsection{Description textuelle des cas d'utilisation liés à l'authentification}
-La figure ci-dessous présente la description textuelle des cas d'utilisation liés à l'authentification :
+\subsection{Description textuelle de cas d’utilisation «S’authentifier»}
+La figure ci-dessous présente la description textuelle de cas d’utilisation «S’authentifier» :
 
 \begin{table}[H]
 \centering
@@ -388,41 +388,40 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{table}
 \vspace{-0.5cm}
 
-\subsubsection{Description textuelle de cas d'utilisation « Modifier utilisateur »}
-
-\begin{table}[H]
-\centering
-\footnotesize
-\renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Modifier utilisateur »}
-\begin{tabular}{|p{4.5cm}|p{12cm}|}
-\hline
-\textbf{Nom du cas d'utilisation} & Modifier utilisateur \\
-\hline
-\textbf{Acteurs} & Administrateur \\
-\hline
-\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de modifier les utilisateurs\newline Liste des utilisateurs affichée\\
-\hline
-\textbf{Postconditions} & L'utilisateur est modifié\\
-\hline
-\textbf{Scénario principal} & 
-\begin{minipage}[t]{\linewidth}
-\begin{enumerate}[label=\arabic*., leftmargin=*]
-    \item L'administrateur consulte le profil de l'utilisateur choisi.                 
-    \item L'administrateur clique sur le bouton (Modifier).                                                       
-    \item Le système affiche le formulaire de modification.  
-    \item L'administrateur modifie les informations souhaitées. 
-    \item L'administrateur clique sur le bouton (Enregistrer).
-    \item Le système fait la mise à jour.
-\end{enumerate}
-\vspace{2pt}
-\end{minipage} \\
-\hline
-\textbf{Scénarios alternatifs} & L'administrateur supprime leur dernier rôle.\newline L'utilisateur tente d'ajouter un rôle qui ne correspond pas au parcours métier. \\
-\hline
-\end{tabular}
-\end{table}
-\vspace{-0.3cm}
+% \subsubsection{Description textuelle de cas d'utilisation « Modifier utilisateur »}
+% 
+% \begin{table}[H]
+% \centering
+% \footnotesize
+% \renewcommand{\arraystretch}{1}
+% \caption{Description textuelle « Modifier utilisateur »}
+% \begin{tabular}{|p{4.5cm}|p{12cm}|}
+% \hline
+% \textbf{Nom du cas d'utilisation} & Modifier utilisateur \\
+% \hline
+% \textbf{Acteurs} & Administrateur \\
+% \hline
+% \textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de modifier les utilisateurs\newline Liste des utilisateurs affichée\\
+% \hline
+% \textbf{Postconditions} & L'utilisateur est modifié\\
+% \hline
+% \textbf{Scénario principal} & 
+% \begin{minipage}[t]{\linewidth}
+% \begin{enumerate}[label=\arabic*., leftmargin=*]
+%     \item L'administrateur consulte le profil de l'utilisateur choisi.                 
+%     \item L'administrateur clique sur le bouton (Modifier).                                                       
+%     \item Le système affiche le formulaire de modification.  
+%     \item L'administrateur modifie les informations souhaitées. 
+%     \item L'administrateur clique sur le bouton (Enregistrer).
+%     \item Le système fait la mise à jour.
+% \end{enumerate}
+% \vspace{2pt}
+% \end{minipage} \\
+% \hline
+% \textbf{Scénarios alternatifs} & L'administrateur supprime leur dernier rôle.\newline L'utilisateur tente d'ajouter un rôle qui ne correspond pas au parcours métier. \\
+% \hline
+% \end{tabular}
+% \end{table}\vspace{-0.3cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Désactiver un utilisateur »}
 
@@ -475,49 +474,48 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 
 \begin{figure}[H]
         \centering
-        \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/Gérer Profil.drawio.png}
+        \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/Gérer Profil.drawio.png}
         \caption{Raffinement de cas d'utilisation « Gérer Profil »}
         \label{fig:gerer_profil}
 \end{figure}
 
-\subsubsection{Description textuelle de cas d'utilisation « Consulter Profil »}
-
-\begin{table}[H]
-\centering
-\footnotesize
-\renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Consulter profil »}
-\begin{tabular}{|p{4.5cm}|p{12cm}|}
-\hline
-\textbf{Nom du cas d'utilisation} & Consulter profil \\
-\hline
-\textbf{Acteurs} & Utilisateur \\
-\hline
-\textbf{Préconditions} & L'utilisateur est authentifié\\
-\hline
-\textbf{Postconditions} & Le profil choisi est consulté\\
-\hline
-\textbf{Scénario principal pour consulter son propre profil} & 
-\begin{minipage}[t]{\linewidth}
-\begin{enumerate}[label=\arabic*., leftmargin=*]
-    \item L'utilisateur clique sur (Voir le profil).                  
-    \item Le système affiche la page personnelle.                                                   
-    \item L'utilisateur consulte ses données et son historique de modification.  
-\end{enumerate}
-\vspace{2pt}
-\end{minipage} \\
-\hline
-\textbf{Consulter le profil d'un utilisateur} & 
-\begin{minipage}[t]{\linewidth}
-\begin{enumerate}[label=\arabic*., leftmargin=*]
-    \item L'administrateur choisit un utilisateur dans la liste puis clique sur (Voir profil).                          
-    \item Le système affiche les informations de l'employé.                                                 
-\end{enumerate} 
-\end{minipage}\\
-\hline
-\end{tabular}
-\end{table}
-\vspace{-0.3cm}
+% \subsubsection{Description textuelle de cas d'utilisation « Consulter Profil »}
+% 
+% \begin{table}[H]
+% \centering
+% \footnotesize
+% \renewcommand{\arraystretch}{1}
+% \caption{Description textuelle « Consulter profil »}
+% \begin{tabular}{|p{4.5cm}|p{12cm}|}
+% \hline
+% \textbf{Nom du cas d'utilisation} & Consulter profil \\
+% \hline
+% \textbf{Acteurs} & Utilisateur \\
+% \hline
+% \textbf{Préconditions} & L'utilisateur est authentifié\\
+% \hline
+% \textbf{Postconditions} & Le profil choisi est consulté\\
+% \hline
+% \textbf{Scénario principal pour consulter son propre profil} & 
+% \begin{minipage}[t]{\linewidth}
+% \begin{enumerate}[label=\arabic*., leftmargin=*]
+%     \item L'utilisateur clique sur (Voir le profil).                  
+%     \item Le système affiche la page personnelle.                                                   
+%     \item L'utilisateur consulte ses données et son historique de modification.  
+% \end{enumerate}
+% \vspace{2pt}
+% \end{minipage} \\
+% \hline
+% \textbf{Consulter le profil d'un utilisateur} & 
+% \begin{minipage}[t]{\linewidth}
+% \begin{enumerate}[label=\arabic*., leftmargin=*]
+%     \item L'administrateur choisit un utilisateur dans la liste puis clique sur (Voir profil).                          
+%     \item Le système affiche les informations de l'employé.                                                 
+% \end{enumerate} 
+% \end{minipage}\\
+% \hline
+% \end{tabular}
+% \end{table}
 
 \subsubsection{Description textuelle de cas d'utilisation « Modifier Profil »}
 
@@ -1128,6 +1126,7 @@ d'accès basé sur les rôles (RBAC) et la gestion des clients.
 
 % ── 1. Authentification ───────────────────────────────────────────────────────
 \item[$\square$] \textbf{Module Authentification}
+\newline
 \hfill\textit{Méthodes : \texttt{login()} ·
 \texttt{demanderReinitialisationMotDePasse()} ·
 \texttt{reinitialiserMotDePasse()}}
@@ -1156,16 +1155,23 @@ de passe. Les cas suivants ont été couverts :
   \item Le token de réinitialisation a été généré depuis plus d'une heure :
     une \texttt{BadRequestException} est levée.
 \end{itemize}
-
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.48\textwidth}
+  \centering
+  \includegraphics[width=\textwidth,keepaspectratio]
+    {Images/test-unitaire-auth.png}
+  \caption*{\small Auth}
+\end{minipage}
+\end{figure}
 % ── 2. RBAC ───────────────────────────────────────────────────────────────────
 \item[$\square$] \textbf{Module Gestion des rôles et permissions (RBAC)}
-\hfill\textit{Méthodes : \texttt{creerPermission()} ·
-\texttt{attribuerRoleUtilisateur()} ·
-\texttt{obtenirRolesEtPermissions()}}
-
+\newline
+\textit{Méthodes :} \texttt{creerPermission(), attribuerRoleUtilisateur(), obtenirRolesEtPermissions()}
 \noindent Cette suite valide les règles d'exclusivité des rôles, l'unicité
-des permissions et l'intégrité des références. Les cas suivants ont été
-couverts :
+des permissions et l'intégrité des références. 
+\newline
+Les cas suivants ont été couverts :
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
   \item Une permission est créée avec un code unique : elle est enregistrée
@@ -1191,75 +1197,24 @@ couverts :
   \item Le rôle à attribuer est inexistant : une \texttt{NotFoundException}
     est levée.
 \end{itemize}
-
-% ── 3. Gestion des clients ────────────────────────────────────────────────────
-\item[$\square$] \textbf{Module Gestion des clients}
-\hfill\textit{Méthodes : \texttt{mettreAJourClient()} ·
-\texttt{desactiverClient()} · \texttt{reactiverClient()} ·
-\texttt{telechargerLogo()} · \texttt{supprimerLogo()}}
-
-\noindent Cette suite valide les opérations de gestion des clients,
-la gestion des fichiers logo et le service de géocodage. Les cas suivants
-ont été couverts :
-
-\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item Les informations d'un client existant sont mises à jour : le
-    résultat validé est retourné correctement.
-  \item La mise à jour est effectuée sur un client inexistant : une
-    \texttt{NotFoundException} est levée.
-  \item Un client actif est désactivé : l'opération est réalisée avec
-    succès.
-  \item Un client désactivé est réactivé : l'opération est réalisée avec
-    succès.
-  \item La réactivation est effectuée sur un client inexistant : une
-    \texttt{NotFoundException} est levée.
-  \item Un logo est téléversé pour un client existant : le fichier est
-    traité et stocké correctement.
-  \item Le logo d'un client est supprimé : un message de succès est
-    retourné.
-  \item Le téléversement ou la suppression du logo est effectué sur un
-    client inexistant : une \texttt{NotFoundException} est levée.
-  \item Le service de géocodage est interrogé avec une adresse valide
-    présente en cache : l'adresse est retournée correctement.
-  \item Le service de géocodage est interrogé avec une requête trop courte :
-    un tableau vide est retourné.
-  \item Les résultats du service de géocodage sont mis en cache
-    correctement après la première requête.
-  \item Les résultats filtrés du géocodage éliminent les doublons de type
-    pays.
-\end{itemize}
-
-\end{itemize}
-
 \begin{figure}[H]
-\centering
+   \centering
 \begin{minipage}{0.48\textwidth}
   \centering
-  \includegraphics[width=\textwidth,keepaspectratio]
-    {Images/test-unitaire-auth.png}
-  \caption*{\small Auth}
-\end{minipage}
-\hfill
-\begin{minipage}{0.48\textwidth}
-  \centering
-  \includegraphics[width=\textwidth,keepaspectratio]
-    {Images/test-sprint1-moduleRole+Permession.png}
+  \includegraphics[width=\textwidth,keepaspectratio]{Images/test-sprint1-moduleRole+Permession.png}
   \caption*{\small RBAC}
 \end{minipage}
 \caption{Résultats des tests unitaires — Auth et RBAC}
 \label{fig:test_unitaires}
 \end{figure}
+% ── 3. Gestion des clients ────────────────────────────────────────────────────
 
-\begin{figure}[H]
-\centering
-\begin{minipage}{0.6\textwidth}
-  \centering
-  \includegraphics[width=\textwidth,keepaspectratio]
-    {Images/test unit-ClientTestUnitaire.png}
-  \caption*{\small Gestion des clients}
-\end{minipage}
-\caption{Résultats des tests unitaires — Gestion des clients}
-\end{figure}
+\end{itemize}
+
+
+
+
+
 
 % \subsubsection{Tests de sécurité}
 % \label{sec:tests_securite}
@@ -1325,19 +1280,21 @@ effectués via \textbf{Swagger UI} en soumettant des requêtes HTTP réelles
 contre le backend en cours d'exécution, ce qui permet de vérifier le
 comportement de l'API dans des conditions proches de la production.
 
-\vspace{4pt}
-\noindent\textbf{Bilan : 5 tests exécutés — 5 réussis — 0 échec.}
-\vspace{6pt}
+
+%\noindent\textbf{Bilan : 6 tests exécutés — 5 réussis — 0 échec.}
+
 
 \begin{itemize}[leftmargin=0pt]
 
 \item[$\square$] \textbf{Authentification}
+ \newline
 \hfill\textit{Endpoint : \texttt{POST /api/auth/login}}
 
 \noindent Cette suite valide le comportement complet de l'endpoint de
 connexion, notamment le retour des jetons d'authentification, des rôles,
 des permissions associées et la gestion des codes d'erreur HTTP selon les
-différents cas d'entrée. Les cas suivants ont été couverts :
+différents cas d'entrée.
+\newline Les cas suivants ont été couverts :
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
   \item Un utilisateur actif de rôle \texttt{ADMIN} fournit des
@@ -1359,7 +1316,7 @@ différents cas d'entrée. Les cas suivants ont été couverts :
     « Ce compte est désactivé ».
 \end{itemize}
 
-\end{itemize}
+
 
 \begin{figure}[H]
 \centering
@@ -1370,6 +1327,22 @@ différents cas d'entrée. Les cas suivants ont été couverts :
 \label{fig:test_integration}
 \end{figure}
 
+\item[$\square$]  \textbf {Gestion du profil}
+\newline
+\hfill\textit{Endpoint : \texttt{PUT /api/profil}}
+ 
+\noindent Cette suite de tests vise à valider le bon fonctionnement de la méthode \textbf{modifierProfil()} exposée via l'endpoint \textbf{PUT /api/profil}, qui permet à un utilisateur de mettre à jour les informations de son profil.
+\newline
+Lee cas suivant ont été couvert :
+\begin{itemize}
+\item[$\bullet$] Cas où l'e-mail fourni dans la requête ne respecte pas le format attendu.
+\end{itemize}
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/gestion profil Swagger.png}
+        \caption{Test de mise à jour du profil}
+    \end{figure}
+\end{itemize}
 %─────────────────────────────────────────────────────────────────────────────
 \newpage
 %─────────────────────────────────────────────────────────────────────────────
@@ -1381,7 +1354,7 @@ complets dans un navigateur réel piloté par \textbf{Playwright}. Ces tests
 s'exécutent en interaction avec le frontend Next.js, le backend NestJS et
 la base de données PostgreSQL, reproduisant ainsi les conditions réelles
 d'utilisation de la plateforme.
-
+\newline
 \vspace{4pt}
 \noindent\textbf{Bilan : 11 tests exécutés — 11 réussis — 0 échec.}
 \vspace{6pt}
@@ -1390,6 +1363,7 @@ d'utilisation de la plateforme.
 
 % ── 1. Authentification ───────────────────────────────────────────────────────
 \item[$\square$] \textbf{Authentification}
+\newline
 \hfill\textit{10 scénarios : connexion classique, OAuth, déconnexion}
 
 \noindent Cette suite valide le flux complet d'authentification en
@@ -1433,6 +1407,7 @@ suivants ont été couverts :
 
 % ── 2. Désactivation utilisateur ─────────────────────────────────────────────
 \item[$\square$] \textbf{Gestion des utilisateurs}
+\newline
 \hfill\textit{1 scénario : désactivation avec réassignation des tickets}
 
 \noindent Cette suite valide le flux complet de désactivation d'un
