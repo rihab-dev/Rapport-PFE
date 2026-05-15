@@ -196,16 +196,16 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \end{table}
 \vspace{-0.3cm}
 
-\subsection{Analyse de la fonctionnalité « Demander accès via OAuth »}
-Dans cette partie, nous allons présenter les cas d'utilisation raffinés relatifs à la demande d'accès via OAuth afin de comprendre les différentes étapes du processus d'inscription et d'authentification.
+\subsection{Analyse de la fonctionnalité « Demander accès via fournisseur externe »}
+Dans cette partie, nous allons présenter les cas d'utilisation raffinés relatifs à la demande d'accès via fournisseur externe afin de comprendre les différentes étapes du processus d'inscription et d'authentification.
 
-\subsubsection{Raffinement de cas d'utilisation « Demander accès via OAuth »}
+\subsubsection{Raffinement de cas d'utilisation « Demander accés via fournisseur externe »}
 Au cours de cette partie, nous allons analyser les sous-cas d'utilisation pour le processus d'authentification OAuth :
 
 \begin{figure}[H]
         \centering
         \includegraphics[width=0.75\textwidth,height=0.65\textheight,keepaspectratio]{Images/demande insc.png}
-        \caption{Raffinement de cas d'utilisation « Demander accès via OAuth »}
+        \caption{Raffinement de cas d'utilisation « Demander accés via fournisseur externe »}
         \label{fig:oauth_refinement}
 \end{figure}
 
@@ -465,10 +465,10 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{table}
 \vspace{-0.3cm}
 
-\subsection{Analyse de la fonctionnalité « Gérer profil »}
-Dans cette partie, nous allons présenter les cas d’utilisation relatifs à la gestion des profils afin
-de comprendre les principales fonctionnalités du système, ce qui permet d’avoir une vue globale des
-interactions.
+%\subsection{Analyse de la fonctionnalité « Gérer profil »}
+%Dans cette partie, nous allons présenter les cas d’utilisation relatifs à la gestion des profils afin
+%de comprendre les principales fonctionnalités du système, ce qui permet d’avoir une vue globale des
+%interactions.
 %\subsubsection{Raffinement de cas d'utilisation « Gérer Profil »}
 %Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de gestion de profil :    
 
@@ -478,44 +478,43 @@ interactions.
   %      \caption{Raffinement de cas d'utilisation « Gérer Profil »}
    %     \label{fig:gerer_profil}
 %\end{figure}
-\subsubsection{Description textuelle de cas d'utilisation « Consulter Profil »}
-
-\begin{table}[H]
-\centering
-\footnotesize
-\renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Consulter profil »}
-\begin{tabular}{|p{4.5cm}|p{12cm}|}
-\hline
-\textbf{Nom du cas d'utilisation} & Consulter profil \\
-\hline
-\textbf{Acteurs} & Utilisateur \\
-\hline
-\textbf{Préconditions} & L'utilisateur est authentifié\\
-\hline
-\textbf{Postconditions} & Le profil choisi est consulté\\
-\hline
-\textbf{Scénario principal pour consulter son propre profil} & 
-\begin{minipage}[t]{\linewidth}
-\begin{enumerate}[label=\arabic*., leftmargin=*]
-    \item L'utilisateur clique sur (Voir le profil).                  
-    \item Le système affiche la page personnelle.                                                   
-    \item L'utilisateur consulte ses données et son historique de modification.  
-\end{enumerate}
-\vspace{2pt}
-\end{minipage} \\
-\hline
-\textbf{Consulter le profil d'un utilisateur} & 
-\begin{minipage}[t]{\linewidth}
-\begin{enumerate}[label=\arabic*., leftmargin=*]
-    \item L'administrateur choisit un utilisateur dans la liste puis clique sur (Voir profil).                          
-    \item Le système affiche les informations de l'employé.                                                 
-\end{enumerate} 
-\end{minipage}\\
-\hline
-\end{tabular}
-\end{table}
-
+% \subsubsection{Description textuelle de cas d'utilisation « Consulter Profil »}
+% 
+% \begin{table}[H]
+% \centering
+% \footnotesize
+% \renewcommand{\arraystretch}{1}
+% \caption{Description textuelle « Consulter profil »}
+% \begin{tabular}{|p{4.5cm}|p{12cm}|}
+% \hline
+% \textbf{Nom du cas d'utilisation} & Consulter profil \\
+% \hline
+% \textbf{Acteurs} & Utilisateur \\
+% \hline
+% \textbf{Préconditions} & L'utilisateur est authentifié\\
+% \hline
+% \textbf{Postconditions} & Le profil choisi est consulté\\
+% \hline
+% \textbf{Scénario principal pour consulter son propre profil} & 
+% \begin{minipage}[t]{\linewidth}
+% \begin{enumerate}[label=\arabic*., leftmargin=*]
+%     \item L'utilisateur clique sur (Voir le profil).                  
+%     \item Le système affiche la page personnelle.                                                   
+%     \item L'utilisateur consulte ses données et son historique de modification.  
+% \end{enumerate}
+% \vspace{2pt}
+% \end{minipage} \\
+% \hline
+% \textbf{Consulter le profil d'un utilisateur} & 
+% \begin{minipage}[t]{\linewidth}
+% \begin{enumerate}[label=\arabic*., leftmargin=*]
+%     \item L'administrateur choisit un utilisateur dans la liste puis clique sur (Voir profil).                          
+%     \item Le système affiche les informations de l'employé.                                                 
+% \end{enumerate} 
+% \end{minipage}\\
+% \hline
+% \end{tabular}
+% \end{table}
 \subsubsection{Description textuelle de cas d'utilisation « Modifier Profil »}
 
 \begin{table}[H]
@@ -781,7 +780,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{table}
 \vspace{-0.3cm}
 
-\subsubsection{Description textuelle de cas d'utilisation « Retirer rôle d'un utilisateur »}
+\subsubsection{Description textuelle de cas d'utilisation « Retirer rôle utilisateur »}
 
 \begin{table}[H]
 \centering
@@ -989,12 +988,12 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
         \label{fig:deactivate_user_sequence}
 \end{figure}
 
-\subsection{Diagramme d'activité « Authentification et demande d'accès via OAuth »}
+\subsection{Diagramme d'activité « Authentification et Demander accés via fournisseur externe »}
 
 \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth,keepaspectratio]{Images/diag_activites_demande_insc.png}
-        \caption{Diagramme d'activité d'authentification et demande d'accès via OAuth}
+        \caption{Diagramme d'activité d'authentification et Demande accés via fournisseur externe}
         \label{fig:oauth_activity_diagram}
 \end{figure}
 
@@ -1082,7 +1081,7 @@ La matrice des permissions affiche les rôles en colonnes et les catégories
 de permissions en lignes, avec des cases à cocher pour une attribution
 visuelle et intuitive.
 
-\subsubsection{Interface de gestion des demandes d'inscription OAuth}
+\subsubsection{Interface de gestion des Demandes d'accès via fournisseur externe}
 \begin{figure}[H]
 \centering
 %\includegraphics[width=0.85\textwidth,keepaspectratio]{Images/interface_demandes_oauth.png}

@@ -38,7 +38,7 @@ US02 & En tant qu'\textbf{utilisateur}, je souhaite réinitialiser mon mot de pa
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer les endpoints "POST /api/auth/mot-de-passe-oublie et "POST /api/auth/reinitialiser-mot-de-passe"
-  \item Générer un token sécurisé (bcrypt) avec expiration de \textbf{1 heure}, stocké dans \textbf{TokenReinitialisationMotDePasse}
+  \item Générer un token sécurisé (bcrypt) avec expiration de \textbf{1 heure}
   \item Invalider les anciens tokens non utilisés à chaque nouvelle demande
   \item Configurer l'envoi d'un e-mail de réinitialisation et d'un e-mail de confirmation via \textbf{Nodemailer}
   \item Créer les formulaires « mot de passe oublié » et de réinitialisation côté Next.js
@@ -53,7 +53,6 @@ US03 & En tant qu'\textbf{utilisateur}, je souhaite m'authentifier via Google ou
 \item Implémenter les routes "GET /api/auth/google", "GET /api/auth/github" et leurs callbacks
   \item Si l'utilisateur existe en base et est actif : générer les tokens JWT et rediriger vers le frontend avec \textbf{?oauth=success}
 \item Vérifier l'existence de l'utilisateur en base de données et une demande d'inscription OAuth est envoyée à l'admin
-\item Implémenter les routes /auth/google, /auth/github et leurs callbacks, avec génération d'un JWT
 \item Implémenter les boutons OAuth sur la page de login
 \end{itemize} & 3 \\
 \hline
@@ -63,7 +62,7 @@ US04 & En tant qu'\textbf{utilisateur}, je souhaite me déconnecter de la platef
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint "POST /auth/logout" avec révocation du refresh token en base
 \item Supprimer \textbf{accessToken}, \textbf{refreshToken} et \textbf{user} du \textbf{localStorage}
-\item Vider le cache React Query (\texttt{queryClient.clear()})
+\item Vider le cache React Query (\textbf{queryClient.clear()})
 \item Réaliser le bouton de déconnexion 
 \end{itemize} & 1 \\
 \hline
@@ -71,8 +70,8 @@ US04 & En tant qu'\textbf{utilisateur}, je souhaite me déconnecter de la platef
 US05 & En tant qu'\textbf{utilisateur}, je souhaite que mon compte soit protégé contre les tentatives de connexion malveillantes afin de garantir la sécurité de mes données. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-  \item Implémenter le compteur de tentatives échouées (\textbf{tentativesConnexionEchouees}) en base de données
-  \item Verrouiller le compte après \textbf{3 tentatives échouées} pendant \textbf{1 minute} via le champ \textbf{compteVerrouilleJusquA}
+  \item Implémenter le compteur de tentatives échouées en base de données
+  \item Verrouiller le compte après pendant \textbf{1 minute} 
   \item Réinitialiser le compteur à 0 après une connexion réussie
   \item Appliquer le \textbf{rate limiting} global via \textbf{@nestjs/throttler} sur les endpoints publics
 \end{itemize} & 2 \\
@@ -108,9 +107,7 @@ US07 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique de me
   \item Implémenter le filtrage par \textbf{entityType},
     \textbf{action}, \textbf{status}, plage de dates
     et recherche textuelle (\textbf{contains})
-  \item Filtrer les entités sensibles selon le rôle
-    (CLIENT et CHEF\_PROJET ne voient pas les entités
-    \textbf{Client} et \textbf{Utilisateur})
+  
   \item Réaliser l'interface timeline avec filtres
     côté Next.js
 \end{itemize} & 2 \\
@@ -178,11 +175,8 @@ US12 & En tant qu'\textbf{administrateur}, je souhaite gérer des rôles afin de
     \textbf{DELETE /:id}
   \item Implémenter l'archivage "PATCH /:id/archive"
     et la restauration "PATCH /:id/restore"
-  \item Attribuer automatiquement \textbf{5 permissions de base}
-    à chaque nouveau rôle (\textbf{users.read.all},
-    \textbf{profile.read.self}, \textbf{profile.update.self},
-    \textbf{notifications.read},
-    \textbf{notifications.mark.read})
+  \item Attribuer automatiquement \textbf{ permissions de base}
+    à chaque nouveau rôle 
   \item Protéger les rôles système (\textbf{roleSysteme = true})
     contre la suppression et le renommage
   \item Implémenter le \textbf{PermissionsRolesGuard} et le
@@ -214,7 +208,7 @@ US14 & En tant qu'\textbf{administrateur}, je souhaite consulter la matrice rôl
   \item Développer l'endpoint
     "GET /api/admin/roles-permissions/roles"
     retournant les rôles avec leurs permissions imbriquées
-    (\textbf{include: rolePermissions})
+    
   \item Développer l'endpoint
     "GET /api/admin/roles-permissions/permissions"
     retournant toutes les permissions triées par
@@ -237,18 +231,15 @@ US15 & En tant qu'\textbf{utilisateur externe}, je souhaite demander l'accès vi
     Passport (\textbf{GoogleStrategy} /
     \textbf{GithubStrategy}) lors du callback OAuth
   \item Enregistrer la demande en base
-    (\textbf{DemandeInscriptionOAuth}) avec statut
+     avec statut
     \textbf{EN\_ATTENTE} et le rôle souhaité
-    (transmis via \textbf{req.query.state} ou
-    \textbf{req.query.role}, défaut : \textbf{CLIENT})
+    
   \item Détecter les doublons (même email + fournisseur)
     via \textbf{upsert} pour éviter les entrées multiples
   \item Notifier tous les administrateurs actifs par e-mail
-    (\textbf{envoyerEmailDemandeInscriptionAdmin()})
   \item Envoyer un e-mail de confirmation au visiteur
-    (\textbf{envoyerEmailDemandeRecue()})
   \item Afficher un message d'attente côté frontend
-    (\textbf{?oauth=pending})
+    
 \end{itemize} & 3 \\
 \hline
 
@@ -258,8 +249,7 @@ US16 & En tant qu'\textbf{administrateur}, je souhaite valider ou rejeter les de
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
   \item Développer l'endpoint de liste :
     "GET /api/admin/demandes-inscription"
-    avec filtre par statut et compteur
-  "GET /api/admin/demandes-inscription/count-pending"
+    avec filtre par statut 
     
   \item Développer l'endpoint d'approbation :
     "PATCH /api/admin/demandes-inscription/:id/approuver"
