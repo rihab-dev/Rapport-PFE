@@ -1,0 +1,177 @@
+\babel@toc {french}{}\relax 
+\contentsline {section}{Introduction générale}{1}{chapter*.1}%
+\contentsline {section}{Webographie}{2}{chapter*.1}%
+\contentsline {chapter}{Cadre général du projet}{2}{chapter.1}%
+\contentsline {xchapter}{}{2}{chapter.1}%
+\contentsline {section}{\numberline {I}Présentation de l’organisme d’accueil}{4}{section.1.1}%
+\contentsline {subsection}{\numberline {1} Services de SolidWall Consulting}{4}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {2}Organigramme de l’organisme}{5}{subsection.1.1.2}%
+\contentsline {section}{\numberline {II}Cadre du projet}{5}{section.1.2}%
+\contentsline {subsection}{\numberline {1}Contexte du projet}{5}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {2}Analyse de l'existant}{5}{subsection.1.2.2}%
+\contentsline {subsubsection}{\numberline {2.1}Étude de l'existant}{5}{subsubsection.1.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2}Critique de l'existant}{10}{subsubsection.1.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.3}Tableau comparative des solutions}{11}{subsubsection.1.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.4}Solution proposée}{11}{subsubsection.1.2.2.4}%
+\contentsline {section}{\numberline {III}Méthodologie adaptée}{12}{section.1.3}%
+\contentsline {subsection}{\numberline {1}Méthodologie classique}{12}{subsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {1.1}Principes de la méthodologie classique}{12}{subsubsection.1.3.1.1}%
+\contentsline {subsection}{\numberline {2}Méthodologie Agile}{13}{subsection.1.3.2}%
+\contentsline {subsubsection}{\numberline {2.1}Les valeurs agiles}{13}{subsubsection.1.3.2.1}%
+\contentsline {subsection}{\numberline {3}Choix de la méthode de travail}{14}{subsection.1.3.3}%
+\contentsline {subsubsection}{\numberline {3.1}Choix de l’approche Agile}{14}{subsubsection.1.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.2} Les principales méthodes Agiles}{14}{subsubsection.1.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3}Choix de la méthode Scrum}{14}{subsubsection.1.3.3.3}%
+\contentsline {subsection}{\numberline {4}Fondements de SCRUM }{15}{subsection.1.3.4}%
+\contentsline {subsection}{\numberline {5}Rôles de SCRUM}{15}{subsection.1.3.5}%
+\contentsline {subsection}{\numberline {6}Evènements Scrum}{16}{subsection.1.3.6}%
+\contentsline {subsection}{\numberline {7}Artéfacts Scrum}{16}{subsection.1.3.7}%
+\contentsline {subsection}{\numberline {8}Cycle de vie}{16}{subsection.1.3.8}%
+\contentsline {section}{\numberline {IV}Langage de modélisation UML – Unified Modeling Language}{17}{section.1.4}%
+\contentsline {chapter}{Préparation du projet}{18}{chapter.2}%
+\contentsline {xchapter}{}{18}{chapter.2}%
+\contentsline {section}{\numberline {I}Spécification des besoins}{20}{section.2.1}%
+\contentsline {subsection}{\numberline {1}Identification des acteurs}{20}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2}Identification des besoins fonctionnels}{21}{subsection.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1}Authentification et Gestion de Compte}{21}{subsubsection.2.1.2.1}%
+\contentsline {subsubsection}{\numberline {2.2}Gestion des Utilisateurs et Demandes d'Inscription}{22}{subsubsection.2.1.2.2}%
+\contentsline {subsubsection}{\numberline {2.3}Système de Rôles et Permissions}{22}{subsubsection.2.1.2.3}%
+\contentsline {subsubsection}{\numberline {2.4}Gestion des Clients et Projets}{23}{subsubsection.2.1.2.4}%
+\contentsline {subsubsection}{\numberline {2.5}Gestion des Contrats de Maintenance}{23}{subsubsection.2.1.2.5}%
+\contentsline {subsubsection}{\numberline {2.6}Gestion des Demandes d'Intervention}{24}{subsubsection.2.1.2.6}%
+\contentsline {subsubsection}{\numberline {2.7}Gestion Avancée des Tickets de Maintenance}{24}{subsubsection.2.1.2.7}%
+\contentsline {subsubsection}{\numberline {2.8}Tableaux de Bord, Traçabilité et Documentation}{25}{subsubsection.2.1.2.8}%
+\contentsline {subsection}{\numberline {3}Identification des besoins non fonctionnels}{26}{subsection.2.1.3}%
+\contentsline {section}{\numberline {II}Modélisation des besoins}{27}{section.2.2}%
+\contentsline {section}{\numberline {III}Pilotage du projet avec Scrum}{28}{section.2.3}%
+\contentsline {subsection}{\numberline {1}Rôles de SCRUM}{29}{subsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {1.1}Backlog de produit}{29}{subsubsection.2.3.1.1}%
+\contentsline {subsection}{\numberline {2}Planification des sprints}{49}{subsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.1}Sprint 1 -- Gestion des Utilisateurs, Clients et Authentification}{50}{subsubsection.2.3.2.1}%
+\contentsline {subsubsection}{\numberline {2.2}Sprint 2 -- Gestion des Projets et Contrats}{51}{subsubsection.2.3.2.2}%
+\contentsline {subsubsection}{\numberline {2.3}Sprint 3 -- Gestion des Demandes et Tickets}{51}{subsubsection.2.3.2.3}%
+\contentsline {subsubsection}{\numberline {2.4}Sprint 4 -- Collaboration, Documents et IA}{51}{subsubsection.2.3.2.4}%
+\contentsline {subsection}{\numberline {3}Planning prévisionnel (Diagramme de Gantt)}{52}{subsection.2.3.3}%
+\contentsline {section}{\numberline {IV}Environnement de Développement}{53}{section.2.4}%
+\contentsline {subsection}{\numberline {1}Environnement matériel}{53}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2}Environnement logiciel}{53}{subsection.2.4.2}%
+\contentsline {subsubsection}{\numberline {2.1}Langages de programmation et frameworks}{53}{subsubsection.2.4.2.1}%
+\contentsline {subsubsection}{\numberline {2.2}Outils de développement et modélisation}{54}{subsubsection.2.4.2.2}%
+\contentsline {subsubsection}{\numberline {2.3}Systèmes de gestion de bases de données}{54}{subsubsection.2.4.2.3}%
+\contentsline {subsubsection}{\numberline {2.4}Conteneurisation et déploiement}{55}{subsubsection.2.4.2.4}%
+\contentsline {subsubsection}{\numberline {2.5}Outil de gestion de projet Scrum}{55}{subsubsection.2.4.2.5}%
+\contentsline {subsubsection}{\numberline {2.6}Environnement de composition de documents}{56}{subsubsection.2.4.2.6}%
+\contentsline {subsubsection}{\numberline {2.7}Outil de design graphique}{56}{subsubsection.2.4.2.7}%
+\contentsline {section}{\numberline {V}Architecture de l'application}{56}{section.2.5}%
+\contentsline {subsection}{\numberline {1}Architecture physique}{56}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2}Architecture logique}{57}{subsection.2.5.2}%
+\contentsline {section}{\numberline {VI}Conclusion}{58}{section.2.6}%
+\contentsline {chapter}{Gestion des Utilisateurs et Authentification}{59}{chapter.3}%
+\contentsline {xchapter}{}{59}{chapter.3}%
+\contentsline {section}{\numberline {I}Sprint Planning Meeting }{61}{section.3.1}%
+\contentsline {subsection}{\numberline {1}Backlog du premier sprint}{61}{subsection.3.1.1}%
+\contentsline {section}{\numberline {II}Analyse}{68}{section.3.2}%
+\contentsline {subsection}{\numberline {1}Diagramme des cas d'utilisation du premier sprint}{68}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {2}Description textuelle de cas d’utilisation «S’authentifier»}{69}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3}Description textuelle de cas d'utilisation « Changer mot de passe »}{70}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {4}Analyse de la fonctionnalité « Demander accès via fournisseur externe »}{71}{subsection.3.2.4}%
+\contentsline {subsubsection}{\numberline {4.1}Raffinement de cas d'utilisation « Demander accés via fournisseur externe »}{71}{subsubsection.3.2.4.1}%
+\contentsline {subsubsection}{\numberline {4.2}Description textuelle de cas d'utilisation « Soumettre demande d'inscription »}{72}{subsubsection.3.2.4.2}%
+\contentsline {subsubsection}{\numberline {4.3}Description textuelle de cas d'utilisation « Valider demande »}{73}{subsubsection.3.2.4.3}%
+\contentsline {subsection}{\numberline {5}Analyse de la fonctionnalité « Gérer utilisateurs »}{73}{subsection.3.2.5}%
+\contentsline {subsubsection}{\numberline {5.1}Raffinement de cas d'utilisation « Gérer utilisateurs »}{73}{subsubsection.3.2.5.1}%
+\contentsline {subsubsection}{\numberline {5.2}Description textuelle de cas d'utilisation « Consulter liste utilisateurs »}{74}{subsubsection.3.2.5.2}%
+\contentsline {subsubsection}{\numberline {5.3}Description textuelle de cas d'utilisation « Ajouter utilisateur »}{75}{subsubsection.3.2.5.3}%
+\contentsline {subsubsection}{\numberline {5.4}Description textuelle de cas d'utilisation « Désactiver un utilisateur »}{75}{subsubsection.3.2.5.4}%
+\contentsline {subsubsection}{\numberline {5.5}Description textuelle de cas d'utilisation « Modifier Profil »}{76}{subsubsection.3.2.5.5}%
+\contentsline {subsection}{\numberline {6}Analyse de la fonctionnalité « Gérer rôles »}{76}{subsection.3.2.6}%
+\contentsline {subsubsection}{\numberline {6.1}Raffinement de cas d'utilisation « Gérer rôles »}{76}{subsubsection.3.2.6.1}%
+\contentsline {subsubsection}{\numberline {6.2}Description textuelle de cas d'utilisation « Archiver rôle »}{77}{subsubsection.3.2.6.2}%
+\contentsline {subsubsection}{\numberline {6.3}Description textuelle de cas d'utilisation « Attribuer rôle à utilisateur »}{77}{subsubsection.3.2.6.3}%
+\contentsline {subsubsection}{\numberline {6.4}Description textuelle de cas d'utilisation « Retirer rôle utilisateur »}{78}{subsubsection.3.2.6.4}%
+\contentsline {subsection}{\numberline {7}Analyse de la fonctionnalité « Gérer permissions »}{78}{subsection.3.2.7}%
+\contentsline {subsubsection}{\numberline {7.1}Raffinement de cas d'utilisation « Gérer permissions »}{78}{subsubsection.3.2.7.1}%
+\contentsline {subsubsection}{\numberline {7.2}Description textuelle de cas d'utilisation « Consulter liste permissions »}{79}{subsubsection.3.2.7.2}%
+\contentsline {subsubsection}{\numberline {7.3}Description textuelle de cas d'utilisation « Attribuer permission à rôle »}{79}{subsubsection.3.2.7.3}%
+\contentsline {section}{\numberline {III}Diagramme de classes de premiére sprint}{80}{section.3.3}%
+\contentsline {section}{\numberline {IV}Diagramme de séquence}{80}{section.3.4}%
+\contentsline {subsection}{\numberline {1}Diagramme de séquences du cas d'utilisation « S'authentifier »}{81}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {2}Diagramme de séquences du cas d'utilisation « Mot de passe oublié »}{82}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3}Diagramme de séquences du cas d'utilisation « Désactiver utilisateur »}{83}{subsection.3.4.3}%
+\contentsline {subsection}{\numberline {4}Diagramme d'activité « Authentification et Demander accés via fournisseur externe »}{84}{subsection.3.4.4}%
+\contentsline {section}{\numberline {V}Schéma relationnel}{85}{section.3.5}%
+\contentsline {section}{\numberline {VI}Réalisation}{85}{section.3.6}%
+\contentsline {subsection}{\numberline {1}Diagramme de composants}{85}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {2}Description des interfaces}{85}{subsection.3.6.2}%
+\contentsline {subsubsection}{\numberline {2.1}Interface de connexion}{85}{subsubsection.3.6.2.1}%
+\contentsline {subsubsection}{\numberline {2.2}Interface de réinitialisation du mot de passe}{86}{subsubsection.3.6.2.2}%
+\contentsline {subsubsection}{\numberline {2.3}Interface de gestion des utilisateurs}{86}{subsubsection.3.6.2.3}%
+\contentsline {subsubsection}{\numberline {2.4}Interface de gestion des rôles et permissions}{86}{subsubsection.3.6.2.4}%
+\contentsline {subsubsection}{\numberline {2.5}Interface de gestion des Demandes d'accès via fournisseur externe}{86}{subsubsection.3.6.2.5}%
+\contentsline {section}{\numberline {VII}Tests et Validation}{86}{section.3.7}%
+\contentsline {subsection}{\numberline {1}Stratégie de tests adoptée}{87}{subsection.3.7.1}%
+\contentsline {subsubsection}{\numberline {1.1}Tests unitaires}{87}{subsubsection.3.7.1.1}%
+\contentsline {subsubsection}{\numberline {1.2}Tests d'intégration}{89}{subsubsection.3.7.1.2}%
+\contentsline {subsubsection}{\numberline {1.3}Tests End-to-End}{92}{subsubsection.3.7.1.3}%
+\contentsline {chapter}{Réalisation}{93}{chapter.4}%
+\contentsline {xchapter}{}{93}{chapter.4}%
+\contentsline {section}{\numberline {I}Sprint Planning Meeting }{95}{section.4.1}%
+\contentsline {subsection}{\numberline {1}Objectif du Sprint}{95}{subsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {1.1}Backlog du deuxième sprint}{95}{subsubsection.4.1.1.1}%
+\contentsline {section}{\numberline {II}Analyse}{104}{section.4.2}%
+\contentsline {subsection}{\numberline {1}Diagramme des cas d'utilisation du deuxième sprint}{104}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {2}Analyse de la fonctionnalité « Gérer clients »}{105}{subsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {2.1}Raffinement de cas d'utilisation « Gérer clients »}{105}{subsubsection.4.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2}Description textuelle de cas d'utilisation « Ajouter client »}{107}{subsubsection.4.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.3}Description textuelle de cas d'utilisation « Consulter profil client »}{108}{subsubsection.4.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.4}Description textuelle de cas d'utilisation « Désactiver client »}{109}{subsubsection.4.2.2.4}%
+\contentsline {subsection}{\numberline {3}Analyse de la fonctionnalité « Gérer Contrats »}{109}{subsection.4.2.3}%
+\contentsline {subsubsection}{\numberline {3.1}Raffinement de cas d'utilisation « Gérer Contrats »}{109}{subsubsection.4.2.3.1}%
+\contentsline {subsubsection}{\numberline {3.2}Description textuelle de cas d'utilisation « Créer contrat »}{110}{subsubsection.4.2.3.2}%
+\contentsline {subsubsection}{\numberline {3.3}Description textuelle de cas d'utilisation « Archiver contrat »}{110}{subsubsection.4.2.3.3}%
+\contentsline {subsubsection}{\numberline {3.4}Description textuelle de cas d'utilisation « Configurer intégration Slack »}{111}{subsubsection.4.2.3.4}%
+\contentsline {subsection}{\numberline {4}Analyse de la fonctionnalité « Suivre contrats »}{112}{subsection.4.2.4}%
+\contentsline {subsubsection}{\numberline {4.1}Description textuelle du cas d'utilisation « Consulter ses contrats »}{112}{subsubsection.4.2.4.1}%
+\contentsline {subsubsection}{\numberline {4.2}Description textuelle du cas d'utilisation « Soumettre demande de résiliation »}{112}{subsubsection.4.2.4.2}%
+\contentsline {subsection}{\numberline {5}Analyse de la fonctionnalité « Consulter journal d'activités » }{113}{subsection.4.2.5}%
+\contentsline {subsubsection}{\numberline {5.1}Description textuelle du cas d'utilisation « Consulter journal d'activités »}{113}{subsubsection.4.2.5.1}%
+\contentsline {section}{\numberline {III}Diagramme de classes du deuxième sprint}{113}{section.4.3}%
+\contentsline {section}{\numberline {IV}Diagramme de séquence}{113}{section.4.4}%
+\contentsline {subsection}{\numberline {1}Diagramme de séquences du cas d'utilisation « Demande Résiliation »}{114}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {2}Diagramme de séquences du cas d'utilisation « Résilier contrat »}{115}{subsection.4.4.2}%
+\contentsline {section}{\numberline {V}Schéma relationnel}{115}{section.4.5}%
+\contentsline {section}{\numberline {VI}Réalisation}{116}{section.4.6}%
+\contentsline {subsection}{\numberline {1}Architecture technique}{116}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {2}Interfaces utilisateur}{116}{subsection.4.6.2}%
+\contentsline {section}{\numberline {VII}Tests et Validation}{117}{section.4.7}%
+\contentsline {subsubsection}{\numberline {0.1}Tests unitaires}{117}{subsubsection.4.7.0.1}%
+\contentsline {subsubsection}{\numberline {0.2}Tests d'intégration}{119}{subsubsection.4.7.0.2}%
+\contentsline {subsubsection}{\numberline {0.3}Tests End-to-End}{119}{subsubsection.4.7.0.3}%
+\contentsline {chapter}{Chapitre 5}{120}{chapter.5}%
+\contentsline {xchapter}{}{120}{chapter.5}%
+\contentsline {section}{\numberline {I}Analyse}{127}{section.5.1}%
+\contentsline {subsection}{\numberline {1}Diagramme des cas d'utilisation du Sprint 3}{127}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {2}Description textuelle des cas d'utilisation}{127}{subsection.5.1.2}%
+\contentsline {section}{\numberline {II}Conception}{128}{section.5.2}%
+\contentsline {subsection}{\numberline {1}Diagrammes de séquence}{128}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {2}Modèle de données}{128}{subsection.5.2.2}%
+\contentsline {section}{\numberline {III}Réalisation}{129}{section.5.3}%
+\contentsline {subsection}{\numberline {1}Architecture technique}{129}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {2}Interfaces utilisateur}{129}{subsection.5.3.2}%
+\contentsline {section}{\numberline {IV}Tests}{130}{section.5.4}%
+\contentsline {subsection}{\numberline {1}Tests unitaires}{130}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {2}Tests d'intégration}{130}{subsection.5.4.2}%
+\contentsline {chapter}{Chapitre 6}{130}{chapter.6}%
+\contentsline {xchapter}{}{130}{chapter.6}%
+\contentsline {section}{\numberline {I}Analyse}{138}{section.6.1}%
+\contentsline {subsection}{\numberline {1}Diagramme des cas d'utilisation du Sprint 4}{138}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {2}Description textuelle des cas d'utilisation}{138}{subsection.6.1.2}%
+\contentsline {section}{\numberline {II}Conception}{139}{section.6.2}%
+\contentsline {subsection}{\numberline {1}Diagrammes de séquence}{139}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {2}Modèle de données}{139}{subsection.6.2.2}%
+\contentsline {section}{\numberline {III}Réalisation}{140}{section.6.3}%
+\contentsline {subsection}{\numberline {1}Architecture technique}{140}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {2}Interfaces utilisateur}{140}{subsection.6.3.2}%
+\contentsline {section}{\numberline {IV}Tests}{141}{section.6.4}%
+\contentsline {subsection}{\numberline {1}Tests unitaires}{141}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {2}Tests d'intégration}{141}{subsection.6.4.2}%

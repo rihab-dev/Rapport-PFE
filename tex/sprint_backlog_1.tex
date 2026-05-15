@@ -1,9 +1,11 @@
+
 \rowcolors{0}{}{}
 \arrayrulecolor{black}
 \renewcommand{\arraystretch}{1.3}
+\setlength{\extrarowheight}{3pt}
 \small
+\begin{longtable}{|C{1cm}|p{6.5cm}|p{7cm}|C{1cm}|}
 
-\begin{longtable}{|C{1cm}|m{6.5cm}|m{7cm}|C{1cm}|}
 \hline
 \textbf{ID US} & \textbf{User Story} & \textbf{Description technique} & \textbf{Effort} \\
 \hline
@@ -24,7 +26,6 @@
 \hline
 
 US01 & En tant qu'\textbf{utilisateur}, je souhaite m'authentifier avec email et mot de passe afin d'accéder à mes informations de manière sécurisée. & 
-\vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint "POST /api/auth/login"
 \item Mettre en place la gestion de session via \textbf{JWT} (access token 15 min, refresh token 7 jours stocké en base)
@@ -35,7 +36,7 @@ US01 & En tant qu'\textbf{utilisateur}, je souhaite m'authentifier avec email et
 \hline
 
 US02 & En tant qu'\textbf{utilisateur}, je souhaite réinitialiser mon mot de passe afin de retrouver l'accès à mon compte. & 
-\vspace{2mm}
+
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer les endpoints "POST /api/auth/mot-de-passe-oublie et "POST /api/auth/reinitialiser-mot-de-passe"
   \item Générer un token sécurisé (bcrypt) avec expiration de \textbf{1 heure}
@@ -47,7 +48,7 @@ US02 & En tant qu'\textbf{utilisateur}, je souhaite réinitialiser mon mot de pa
 \hline
 
 US03 & En tant qu'\textbf{utilisateur}, je souhaite m'authentifier via Google ou GitHub afin de me connecter rapidement sans créer de compte. & 
-\vspace{2mm}
+
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Intégrer les stratégies OAuth2 via "passport-google-oauth20" et "passport-github2" dans NestJS (\textbf{@nestjs/passport})
 \item Implémenter les routes "GET /api/auth/google", "GET /api/auth/github" et leurs callbacks
@@ -58,7 +59,7 @@ US03 & En tant qu'\textbf{utilisateur}, je souhaite m'authentifier via Google ou
 \hline
 
 US04 & En tant qu'\textbf{utilisateur}, je souhaite me déconnecter de la plateforme afin de sécuriser ma session. & 
-\vspace{2mm}
+
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint "POST /auth/logout" avec révocation du refresh token en base
 \item Supprimer \textbf{accessToken}, \textbf{refreshToken} et \textbf{user} du \textbf{localStorage}
@@ -68,7 +69,7 @@ US04 & En tant qu'\textbf{utilisateur}, je souhaite me déconnecter de la platef
 \hline
 
 US05 & En tant qu'\textbf{utilisateur}, je souhaite que mon compte soit protégé contre les tentatives de connexion malveillantes afin de garantir la sécurité de mes données. & 
-\vspace{2mm}
+
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
   \item Implémenter le compteur de tentatives échouées en base de données
   \item Verrouiller le compte après pendant \textbf{1 minute} 
@@ -82,7 +83,7 @@ US05 & En tant qu'\textbf{utilisateur}, je souhaite que mon compte soit protég�
 \hline
 
 US06 & En tant qu'\textbf{utilisateur}, je souhaite gérer mon profil afin que mes informations soient toujours à jour. & 
-\vspace{2mm}
+
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer les endpoints "GET /api/profil" et "PUT /api/profil" pour consulter et modifier les informations
 \item Implémenter l'upload de la photo de profil "POST /api/profil/upload-photo"
@@ -93,7 +94,7 @@ US06 & En tant qu'\textbf{utilisateur}, je souhaite gérer mon profil afin que m
 \hline
 
 US07 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique de mes activités afin de suivre mes actions dans le système. & 
-\vspace{2mm}
+
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
   \item Développer l'endpoint
     "GET /api/activity-logs/me"
@@ -113,7 +114,7 @@ US07 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique de me
 \end{itemize} & 2 \\
 \hline
 US08 & En tant qu'\textbf{administrateur}, je souhaite créer des utilisateurs afin de gérer les accès au système. & 
-\vspace{2mm}
+
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint "POST /api/users"
 \item Générer automatiquement un mot de passe temporaire haché via \textbf{bcrypt}
@@ -126,7 +127,7 @@ US08 & En tant qu'\textbf{administrateur}, je souhaite créer des utilisateurs a
 \hline
 
 US09 & En tant qu'\textbf{administrateur}, je souhaite modifier les informations d'un utilisateur afin de maintenir des données à jour. & 
-\vspace{2mm}
+
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint "PUT /api/users/:id"
 \item Valider les données via \textbf{class-validator}
@@ -135,7 +136,7 @@ US09 & En tant qu'\textbf{administrateur}, je souhaite modifier les informations
 \hline
 
 US10 & En tant qu'\textbf{administrateur}, je souhaite activer et désactiver un compte utilisateur afin de contrôler l'accès au système. & 
-\vspace{2mm}
+
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer les endpoints "PATCH /api/users/:id/desactiver" et "PATCH /api/users/:id/reactiver"
 \item Implémenter les vérifications de réassignation des tickets et des demandes en cas de désactivation
@@ -145,7 +146,7 @@ US10 & En tant qu'\textbf{administrateur}, je souhaite activer et désactiver un
 \hline
 
 US11 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des utilisateurs afin de visualiser et gérer efficacement les comptes. & 
-\vspace{2mm}
+
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
   \item Développer l'endpoint "GET /api/users"
      retournant les
@@ -167,7 +168,7 @@ US11 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des ut
 \hline
 
 US12 & En tant qu'\textbf{administrateur}, je souhaite gérer des rôles afin de structurer les accès au système. & 
-\vspace{2mm}
+
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
   \item Développer les endpoints CRUD sous
     "/api/admin/roles-permissions/roles" :
@@ -187,7 +188,7 @@ US12 & En tant qu'\textbf{administrateur}, je souhaite gérer des rôles afin de
 \hline
 
 US13 & En tant qu'\textbf{administrateur}, je souhaite attribuer des permissions granulaires aux rôles afin de contrôler précisément les accès. & 
-\vspace{2mm}
+
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
   \item Développer les endpoints d'attribution et de retrait :
     "POST /api/admin/roles-permissions/roles/:roleId/permissions"
@@ -203,7 +204,7 @@ US13 & En tant qu'\textbf{administrateur}, je souhaite attribuer des permissions
 \end{itemize} & 2 \\
 \hline
 US14 & En tant qu'\textbf{administrateur}, je souhaite consulter la matrice rôles-permissions afin de visualiser rapidement les droits de chaque rôle. & 
-\vspace{2mm}
+
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
   \item Développer l'endpoint
     "GET /api/admin/roles-permissions/roles"
@@ -225,7 +226,7 @@ US14 & En tant qu'\textbf{administrateur}, je souhaite consulter la matrice rôl
 \hline
 
 US15 & En tant qu'\textbf{utilisateur externe}, je souhaite demander l'accès via OAuth afin de m'inscrire facilement. & 
-\vspace{2mm}
+
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
   \item La demande est créée automatiquement dans la stratégie
     Passport (\textbf{GoogleStrategy} /
@@ -245,7 +246,7 @@ US15 & En tant qu'\textbf{utilisateur externe}, je souhaite demander l'accès vi
 
 
 US16 & En tant qu'\textbf{administrateur}, je souhaite valider ou rejeter les demandes d'inscription OAuth afin de contrôler les accès. &
-\vspace{2mm}
+
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
   \item Développer l'endpoint de liste :
     "GET /api/admin/demandes-inscription"
