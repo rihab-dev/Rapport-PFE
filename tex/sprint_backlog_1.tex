@@ -26,8 +26,9 @@
 US01 & En tant qu'\textbf{utilisateur}, je souhaite m'authentifier avec email et mot de passe afin d'accéder à mes informations de manière sécurisée. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'API du Login
-\item Mettre en place la gestion de session (JWT)
+\item Développer l'endpoint \texttt{POST /api/auth/login}
+\item Mettre en place la gestion de session via \textbf{JWT}
+    (access token 15 min, refresh token 7 jours stocké en base)
 \item Réaliser l'interface connexion login
 \item Consommer l'API d'authentification
 \item Gérer les tentatives échouées (3 essais) avec verrouillage temporaire
@@ -37,18 +38,31 @@ US01 & En tant qu'\textbf{utilisateur}, je souhaite m'authentifier avec email et
 US02 & En tant qu'\textbf{utilisateur}, je souhaite réinitialiser mon mot de passe afin de retrouver l'accès à mon compte. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Créer les formulaires "mot de passe oublié" et de réinitialisation
-\item Développer les API associées
-\item Générer un token sécurisé avec expiration
-\item Configurer l'envoi d'email de confirmation
+\item Développer les endpoints
+    \texttt{POST /api/auth/mot-de-passe-oublie} et
+    \texttt{POST /api/auth/reinitialiser-mot-de-passe}
+  \item Créer les formulaires « mot de passe oublié » et
+    de réinitialisation côté Next.js
+  \item Générer un token sécurisé (bcrypt) avec expiration
+    de \textbf{1 heure}, stocké dans
+    \texttt{TokenReinitialisationMotDePasse}
+  \item Invalider les anciens tokens non utilisés à chaque
+    nouvelle demande
+  \item Configurer l'envoi d'un e-mail de réinitialisation
+    et d'un e-mail de confirmation via \textbf{Nodemailer}
 \end{itemize} & 2 \\
 \hline
 
 US03 & En tant qu'\textbf{utilisateur}, je souhaite m'authentifier via Google ou GitHub afin de me connecter rapidement sans créer de compte. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Intégrer les stratégies OAuth2 via Google et GitHub dans NestJS en utilisant Passport (@nestjs/passport)
-\item Configurer les stratégies avec récupération et validation des données du profil utilisateur
+\item Intégrer les stratégies OAuth2 via
+    \texttt{passport-google-oauth20} et \texttt{passport-github2}
+    dans NestJS (\texttt{@nestjs/passport})
+\item Implémenter les routes \texttt{GET /api/auth/google},\texttt{GET /api/auth/github} et leurs callbacks
+  \item Si l'utilisateur existe en base et est actif :
+    générer les tokens JWT et rediriger vers le frontend
+    avec \texttt{?oauth=success}
 \item Vérifier l'existence de l'utilisateur en base de données et une demande d'inscription OAuth est envoyée à l'admin
 \item Implémenter les routes /auth/google, /auth/github et leurs callbacks, avec génération d'un JWT
 \item Implémenter les boutons OAuth sur la page de login
@@ -59,59 +73,76 @@ US04 & En tant qu'\textbf{utilisateur}, je souhaite me déconnecter de la platef
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint POST /auth/logout avec révocation du refresh token en base
-\item Supprimer les tokens et données utilisateur du localStorage
-\item Réaliser le bouton de déconnexion
+\item Supprimer \texttt{accessToken}, \texttt{refreshToken}
+    et \texttt{user} du \texttt{localStorage}
+\item Vider le cache React Query (\texttt{queryClient.clear()})
+\item Réaliser le bouton de déconnexion 
 \end{itemize} & 1 \\
 \hline
 
 US05 & En tant qu'\textbf{utilisateur}, je souhaite que mon compte soit protégé contre les tentatives de connexion malveillantes afin de garantir la sécurité de mes données. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Implémenter un système de rate limiting avec compteur de tentatives
-\item Développer la logique de verrouillage temporaire après 3 tentatives échouées
-\item Configurer l'envoi automatique d'email de notification via Nodemailer
-\item Stocker les tentatives en base avec timestamp et IP
+  \item Implémenter le compteur de tentatives échouées
+    (\texttt{tentativesConnexionEchouees}) en base de données
+  \item Verrouiller le compte après \textbf{3 tentatives échouées}
+    pendant \textbf{1 minute} via le champ
+    \texttt{compteVerrouilleJusquA}
+  \item Réinitialiser le compteur à 0 après une connexion réussie
+  \item Appliquer le rate limiting global via
+    \texttt{@nestjs/throttler} sur les endpoints publics
 \end{itemize} & 2 \\
 \hline
 
 % Epic 2: Gestion des utilisateurs
-\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 2 - Gestion des utilisateurs et profils}} \\
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 2 - Gestion des utilisateurs}} \\
 \hline
 
 US06 & En tant qu'\textbf{utilisateur}, je souhaite gérer mon profil afin que mes informations soient toujours à jour. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer les endpoints GET /profil et PUT /profil pour consulter et modifier les informations
-\item Implémenter l'upload de la photo de profil POST /profil/upload-photo
-\item Développer le changement de mot de passe avec vérification de l'ancien
-\item Réaliser l'interface profil côté Next.js avec formulaire prérempli
+\item Développer les endpoints \texttt{GET /api/profil} et \texttt{PUT /api/profil}
+\item Implémenter l'upload de la photo de profil \texttt{POST /api/profil/upload-photo}
+\item Développer le changement de mot de passe via
+    \texttt{POST /api/profil/change-password}
+    avec vérification de l'ancien mot de passe (bcrypt)
+\item Gérer les e-mails secondaires :
+    \texttt{GET/POST/DELETE /api/profil/emails} et
+    \texttt{PATCH /api/profil/emails/principal}
+\item Réaliser l'interface profil côté Next.js  avec formulaire prérempli
 \end{itemize} & 2 \\
 \hline
 
 US07 & En tant qu'\textbf{administrateur}, je souhaite créer des utilisateurs afin de gérer les accès au système. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint POST /users pour créer un compte avec la génération automatique d'un mot de passe temporaire hashé via bcrypt
-\item Valider les données d'entrée via class-validator
-\item Réaliser le formulaire d'ajout côté Next.js
-\item Envoyer un e-mail de bienvenue via Nodemailer avec les identifiants générés
+\item Développer l'endpoint \texttt{POST /api/users}
+\item Générer automatiquement un mot de passe temporaire haché via \textbf{bcrypt} (facteur 10)
+\item Générer un token de réinitialisation (1 heure) et construire le lien de réinitialisation
+\item Créer automatiquement le \texttt{ProfilEmploye}
+    avec matricule \texttt{EMP-\{id\}} si le rôle n'est pas CLIENT
+\item Valider les données d'entrée via \textbf{class-validator}
+  \item Envoyer un e-mail de bienvenue via \textbf{Nodemailer}
+    contenant le mot de passe temporaire et le lien de
+    réinitialisation
+  \item Réaliser le formulaire d'ajout côté Next.js
 \end{itemize} & 3 \\
 \hline
 
 US08 & En tant qu'\textbf{administrateur}, je souhaite modifier les informations d'un utilisateur afin de maintenir des données à jour. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint PUT /users/:id
+\item Développer l'endpoint \texttt{PUT /api/users/:id}
 \item Sécuriser l'accès à l'endpoint pour les administrateurs uniquement
-\item Valider les données via class-validator
-\item Réaliser le formulaire de modification
+\item Valider les données via \textbf{class-validator}
+\item Réaliser le formulaire de modification côté Next.js
 \end{itemize} & 2 \\
 \hline
 
 US09 & En tant qu'\textbf{administrateur}, je souhaite activer et désactiver un compte utilisateur afin de contrôler l'accès au système. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer les endpoints PATCH /users/:id/desactiver et PATCH /users/:id/reactiver
+\item Développer les endpoints \texttt{PATCH /api/users/:id/desactiver} et \texttt{PATCH /api/users/:id/reactiver}
 \item Implémenter les vérifications de réassignation des tickets et des demandes en cas de désactivation
 \item Envoyer des notifications pour informer l'utilisateur de l'activation ou désactivation de son compte
 \item Réaliser les boutons d'action avec appels des API
@@ -121,15 +152,18 @@ US09 & En tant qu'\textbf{administrateur}, je souhaite activer et désactiver un
 US10 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des utilisateurs afin de visualiser et gérer efficacement les comptes. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint GET /users retournant la liste des utilisateurs
-\item Réaliser l'interface d'administration avec gestion
+\item Développer l'endpoint \texttt{GET /api/users}
+\item Réaliser l'interface d'administration avec vue grille
+    et vue liste, filtres par statut et par rôle,
+    barre de recherche dynamique
+
 \end{itemize} & 1 \\
 \hline
 
 US11 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique de mes activités afin de suivre mes actions dans le système. & 
 \vspace{2mm}
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint GET /users/:id/activities pour récupérer l'historique
+\item Développer l'endpoint \texttt{GET /api/users/:id/activities} pour récupérer l'historique
 \item Implémenter la logique de filtrage dans le backend en utilisant l'opérateur contains
 \item Implémenter une barre de recherche dynamique
 \item Réaliser l'interface timeline avec filtres par date et type d'action
@@ -192,57 +226,6 @@ US16 & En tant qu'\textbf{administrateur}, je souhaite valider ou rejeter les de
 \end{itemize} & 3 \\
 \hline
 % Epic 4: Demandes d'inscription OAuth
-\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 5 - Gestion Clients}} \\
-\hline
- US17 & En tant qu'\textbf{administrateur}, je souhaite créer un profil client afin de centraliser ses informations. &
-\vspace{2mm}
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l’endpoint POST /clients pour orchestrer la création simultanée du compte CLIENT et du profil entreprise associé.  
-\item  Implémenter un service de récupération automatique de logo (LogoService) établi sur le nom de la société
-\item Intégrer une logique de gestion des projets historiques pour associer des projets passés, des chefs de projets et des membres d'équipe au nouveau client
-\item Réaliser l'interface de formulaire
-\end{itemize} & 1 \\
-\hline
 
-US18 & En tant qu’administrateur, je souhaite consulter la liste des clients  afin de visualiser les clients existants. &
-\vspace{2mm}
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l’endpoint GET /clients intégrant une logique de filtrage RBAC.
-\item Réaliser une interface de visualisation
-\end{itemize} & 2 \\
-\hline
-US19 & En tant qu'\textbf{administrateur}, je souhaite consulter le profil détaillé d'un client afin de visualiser toutes ses informations. &
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l’endpoint GET /clients/:id pour récupérer les informations du client.
-\item Réaliser une interface de profil structurée.
-\item Développer des composants spécifiques pour l'affichage des informations secondaires       
-\end{itemize} & 1 \\
-\hline
-US20 & En tant qu'\textbf{administrateur}, je souhaite modifier les informations d'un client afin de maintenir des données à jour. &
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l’endpoint PATCH /clients/:id permettant la mise à jour des informations des clients. 
-\item Développer des contrôles d'intégrité côté serveur pour valider les formats de données.
-\item Réaliser une interface d'édition fluide.
-\end{itemize} & 2 \\
-\hline
-US21 & En tant qu'\textbf{administrateur}, je souhaite activer et désactiver un compte client afin de contrôler l'accès. &
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer les endpoints de changement de statut (POST /desactiver, POST /reactiver)
-\item Implémenter la vérification pour bloquer l'opération si le client possède des contrats actifs, des demandes en attente ou des tickets non résolus.  
-\item Intégrer le EmailService pour l'envoi automatique de notifications transactionnelles de changement de statut.                           
-\end{itemize} & 3 \\
-\hline
-US22 & En tant qu'\textbf{administrateur}, je souhaite ajouter des notes privées sur un client afin de conserver des informations internes. &
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer un endpoint POST /clients/:id/notes permettant d'ajouter  es chaînes de caractères dans le tableau notesPrivees.
-\item Réaliser une interface de type "Bloc-notes" ou "Journal interne" dans le profil client.
-\item Sécuriser l'accès à ces informations au niveau du backend pour garantir que ces notes ne soient jamais exposées au client lui-même    
-\end{itemize} & 2 \\
-\hline
-US23 & En tant qu'\textbf{administrateur}, je souhaite imprimer l'annuaire d'un client afin de disposer d'une version papier. &
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint POST /clients pour créer un client avec validation des données
-\end{itemize} & 1 \\
-\hline
 
 \end{longtable}

@@ -1,8 +1,16 @@
 
 \section*{Introduction}
 
-Le chapitre précédent était consacré à la mise en place des éléments de base de notre système. Nous y avons développé l'authentification et la gestion des utilisateurs avec leurs rôles et permissions. Nous avons aussi travaillé sur la gestion des clients et le processus de traitement des demandes d'inscription. L'ensemble de ces fonctionnalités a été testé et validé.
-\newline Dans ce chapitre, nous passons au développement du cœur métier. Il s'agit principalement des contrats de maintenance avec leurs SLA, des projets et de leurs équipes, ainsi que de l'historique qui assure la traçabilité de toutes les modifications.
+Dans le chapitre précédent, nous avons mis en place les fondations du
+système : l'authentification, la gestion des utilisateurs avec leurs rôles
+et permissions, ainsi que le traitement des demandes d'inscription via
+OAuth. L'ensemble de ces fonctionnalités a été testé et validé.
+\newline
+Dans ce chapitre, nous abordons le cœur métier de la plateforme. Il s'agit
+principalement de la gestion des clients, des contrats de maintenance avec
+leurs niveaux de service (SLA), de la gestion des projets et de leurs
+équipes, ainsi que de la traçabilité complète des opérations à travers le
+journal d'activités.
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 1 : BACKLOG DU SPRINT 2
 % ─────────────────────────────────────────────────────────────────────────────
@@ -10,7 +18,12 @@ Le chapitre précédent était consacré à la mise en place des éléments de b
 La réunion de planification du deuxième sprint nous a permis de définir les objectifs à atteindre durant les trois prochaines semaines. Nous avons sélectionné les user stories prioritaires et estimé l'effort nécessaire pour chacune d'elles. Cette étape est importante pour que toute l'équipe comprenne bien le travail à réaliser.
 \newline
 \subsection{Objectif du Sprint}
-Ce sprint vise à développer les fonctionnalités essentielles du système. L'objectif principal est de mettre en place la gestion des contrats de maintenance et d'assurer le suivi des engagements de service à travers leurs SLA, de faciliter la collaboration via l'affectation des équipes aux projets, et de garantir la traçabilité complète des opérations effectuées.
+Ce sprint vise à développer les fonctionnalités essentielles du système.
+L'objectif principal est de mettre en place la gestion complète des clients
+et des contrats de maintenance, d'assurer le suivi des engagements de
+service à travers leurs SLA, de faciliter la collaboration via l'affectation
+des équipes aux projets, et de garantir la traçabilité complète des
+opérations effectuées à travers le journal d'activités.
 \subsubsection{Backlog du deuxième sprint}
 \label{sec:backlog_sprint2}
 
@@ -35,38 +48,710 @@ La figure ci-dessous présente le diagramme de cas d’utilisation du deuxième 
 
 \begin{figure}[H]
         \centering
-        \includegraphics[width=1.0\textwidth,height=0.95\textheight,keepaspectratio]{Images/diagramme cas utilisation sprint2.png}
+        \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/diagramme cas utilisation sprint2.png}
         \caption{Diagramme des cas d'utilisation du deuxième sprint}
         \label{fig:use_case_sprint2}
 \end{figure}
 Nous allons accompagner les cas d'utilisation d'un texte descriptif pour expliquer le scénario de chaque cas ainsi que ses exceptions.
 
-\subsection{Description textuelle de cas d'utilisation « »}
+
+\subsection{Analyse de la fonctionnalité « Gérer clients »}
+
+\subsubsection{Raffinement de cas d'utilisation « Gérer clients »}
+Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de gestion des clients :
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth,keepaspectratio]{Images/gerer client.drawio.png}
+\caption{Raffinement de cas d'utilisation « Gérer clients »}
+\label{fig:gerer_clients}
+\end{figure}
+
+% \subsubsection{Description textuelle de cas d'utilisation « Consulter liste clients »}
+
+% \begin{table}[H]
+% \centering
+% \footnotesize
+% \renewcommand{\arraystretch}{1}
+% \caption{Description textuelle « Consulter liste clients »}
+% \begin{tabular}{|p{4.5cm}|p{12cm}|}
+% \hline
+% \textbf{Nom du cas d'utilisation} & Consulter liste clients \\
+% \hline
+% \textbf{Acteurs} & Administrateur, Chef de projet \\
+% \hline
+% \textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de consulter les clients\\
+% \hline
+% \textbf{Postconditions} & Liste des clients affichée\\
+% \hline
+% \textbf{Scénario principal} & 
+% \begin{minipage}[t]{\linewidth}
+% \begin{enumerate}[label=\arabic*., leftmargin=*]
+% \item L'utilisateur accède à la section "Clients".   
+% \item Le système affiche les clients sous forme de grille (par défaut).
+% \item L'utilisateur peut basculer entre trois modes d'affichage : grille, liste, ou vue par société.
+% \item L'utilisateur recherche un client en saisissant des informations clés dans la barre de recherche ou par des boutons de filtre (par statut, par secteur d'activité). 
+% \item Le système filtre les résultats.
+% \end{enumerate}
+% \vspace{2pt}
+% \end{minipage} \\
+% \hline
+% \textbf{Scénarios alternatifs} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+% \item L'utilisateur sélectionne la vue "Par société" pour regrouper les clients par société et visualiser les contacts associés à chaque société.
+% \item L'utilisateur clique sur le bouton « Exporter » pour télécharger la liste des clients (CSV, Excel).
+% \item L'utilisateur clique sur le bouton « Importer » pour ajouter plusieurs clients via un fichier (CSV, Excel).
+% \end{itemize} \\
+% \hline
+% \end{tabular}
+% \end{table}
+% \vspace{-0.3cm}
+
+\subsubsection{Description textuelle de cas d'utilisation « Ajouter client »}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1}
+\caption{Description textuelle « Ajouter client »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Ajouter un client \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} & 
+L'utilisateur est authentifié.\newline
+L'utilisateur possède la permission de créer des clients. \newline
+La liste des clients est accessible.\\
+\hline
+\textbf{Postconditions} & 
+Le client est créé et enregistré dans le système. \newline
+Le profil client associé est initialisé. \newline
+Un message de confirmation est affiché. \\
+\hline
+\textbf{Scénario principal} & 
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'administrateur clique sur le bouton « Nouveau client ».
+\item Le système affiche le formulaire de création.
+\item L'administrateur saisit les informations du client : prénom, nom, e-mail et autres données requises.
+\item L'administrateur renseigne ou sélectionne la société associée au client.
+\item Si nécessaire, l'administrateur complète les informations de la société : nom, adresse, secteur d'activité et téléphone.
+\item Le système peut récupérer automatiquement le logo de la société à partir d'une source externe, ainsi que l'adresse via un service de géocodage, si ces fonctionnalités sont activées.
+\item L'administrateur valide le formulaire en cliquant sur « Créer le client ».
+\item Le système vérifie la validité des données et l'unicité de l'e-mail.
+\item Le système crée le client et associe son profil dans la base de données.
+\item Le système envoie un e-mail de confirmation ou de bienvenue si cette fonctionnalité est prévue.
+\item Le système affiche un message de succès et met à jour la liste des clients.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} & 
+\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\item L'administrateur ajoute manuellement le logo de la société au lieu d'utiliser la récupération automatique.
+\item L'administrateur associe le client à une société existante déjà enregistrée.
+\item L'administrateur saisit manuellement l'adresse de la société lorsque la suggestion automatique du géocodage ne correspond pas.
+\item L'administrateur complète plus tard certaines informations facultatives du client.
+\end{itemize} \\
+\hline
+\textbf{Scénarios d'exception} & 
+\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\item Un champ obligatoire est vide ou contient une valeur invalide.
+\item L'adresse e-mail saisie est déjà utilisée par un autre utilisateur.
+\item Le système rencontre une erreur lors de l'enregistrement du client.
+\item L'administrateur tente de quitter le formulaire alors que des données ont déjà été saisies.
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+\vspace{-0.3cm}
+
+% \subsubsection{Description textuelle de cas d'utilisation « Modifier client »}
+
+% \begin{table}[H]
+% \centering
+% \footnotesize
+% \renewcommand{\arraystretch}{1}
+% \caption{Description textuelle « Modifier client »}
+% \begin{tabular}{|p{4.5cm}|p{12cm}|}
+% \hline
+% \textbf{Nom du cas d'utilisation} & Modifier client \\
+% \hline
+% \textbf{Acteurs} & Administrateur \\
+% \hline
+% \textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de modifier les clients\newline Liste des clients affichée\\
+% \hline
+% \textbf{Postconditions} & Le client est modifié\\
+% \hline
+% \textbf{Scénario principal} & \begin{minipage}[t]{\linewidth}
+% \begin{enumerate}[label=\arabic*., leftmargin=*]
+% \item L'administrateur consulte la fiche du client choisi.                 
+% \item L'administrateur clique sur le bouton (Modifier).                                                       
+% \item Le système affiche le formulaire de modification.  
+% \item L'administrateur modifie les informations souhaitées. 
+% \item L'administrateur clique sur le bouton (Enregistrer).
+% \item Le système met à jour les informations du client.
+% \item Le système affiche le message de succès.
+% \end{enumerate}
+% \vspace{2pt}
+% \end{minipage} \\
+% \hline
+% \textbf{Scénarios d'exception} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$] 
+% \item L'administrateur saisit un e-mail déjà utilisé par un autre utilisateur.
+% \item L'administrateur tente de modifier un client ayant des contrats actifs sans validation.
+% \end{itemize} \\
+% \hline
+% \end{tabular}
+% \end{table}
+% \vspace{-0.8cm}
+
+\subsubsection{Description textuelle de cas d'utilisation « Consulter profil client »}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1}
+\caption{Description textuelle « Consulter profil client »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Consulter profil client \\
+\hline
+\textbf{Acteurs} & Administrateur, Chef de projet, Client (son propre profil) \\
+\hline
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de consulter les profils clients ou consulte son propre profil\newline Pour Chef de projet : le client doit être associé à au moins un de ses projets\\
+\hline
+\textbf{Postconditions} & Profil client consulté\\
+\hline
+\textbf{Scénario principal} & 
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'utilisateur accède au profil du client.
+\item Le système affiche les informations personnelles et société.
+\item Le système affiche les statistiques et éléments accessibles selon le rôle de l'utilisateur.
+\item L'utilisateur peut naviguer vers les éléments disponibles (projets, demandes, tickets, documents).
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Restrictions d'accès} & 
+\begin{minipage}[t]{\linewidth}
+\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\item Administrateur : accès complet (contrats, projets, demandes, tickets, notes privées, documents).
+\item Chef de projet : accès limité aux projets où il est assigné et aux demandes/tickets liés à ces projets uniquement.
+\item Client : accès à son propre profil, ses projets, demandes et tickets.
+\end{itemize}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\item L'utilisateur exporte les informations du profil en PDF.
+\item L'utilisateur clique sur "Contacter" pour envoyer un e-mail ou un message via la messagerie interne de l'application.
+\item L'utilisateur clique sur l'adresse de la société pour visualiser sa localisation sur une carte interactive.
+\item L'administrateur ajoute une note privée sur le client.
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{table}
+\vspace{-0.3cm}
+
+\subsubsection{Description textuelle de cas d'utilisation « Désactiver client »}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1}
+\caption{Description textuelle « Désactiver un client »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Désactiver un client \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de désactiver les clients\newline Liste des clients affichée\newline Le client à désactiver doit être actuellement Actif\\
+\hline
+\textbf{Postconditions} & Le compte client est désactivé\\
+\hline
+\textbf{Scénario principal} & \begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'administrateur choisit un client dans la liste.                 
+\item L'administrateur clique sur l'action (Désactiver).                                                     
+\item Le système vérifie si le client possède des contrats actifs, des demandes en cours ou des tickets actifs.  
+\item Le système affiche une boîte de dialogue de confirmation avec les détails des contrats, demandes et tickets actifs. 
+\item L'administrateur confirme l'action.
+\item Le système met à jour le statut du client.
+\item Le système révoque les sessions actives (suppression des refresh tokens).
+\item Le système envoie un e-mail automatique au contact principal du client pour l'informer de la désactivation.
+\item Le système affiche le message de succès.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios d'exception} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$] 
+\item L'administrateur tente de désactiver un client qui possède des contrats actifs sans les clôturer.
+\item L'administrateur tente de désactiver un client ayant des demandes en attente de traitement.
+\item L'administrateur tente de désactiver un client ayant des tickets actifs non résolus.
+\end{itemize} \\
+\hline
+\textbf{Scénarios alternatifs} & L'administrateur clôture les contrats, traite les demandes et résout les tickets avant la désactivation. \\
+\hline
+\end{tabular}
+\end{table}
+\vspace{-0.3cm}
+
+% \subsubsection{Description textuelle de cas d'utilisation « Réactiver client »}
+
+% \begin{table}[H]
+% \centering
+% \footnotesize
+% \renewcommand{\arraystretch}{1}
+% \caption{Description textuelle « Réactiver un client »}
+% \begin{tabular}{|p{4.5cm}|p{12cm}|}
+% \hline
+% \textbf{Nom du cas d'utilisation} & Réactiver un client \\
+% \hline
+% \textbf{Acteurs} & Administrateur \\
+% \hline
+% \textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de réactiver les clients\newline Le compte client doit être désactivé\\
+% \hline
+% \textbf{Postconditions} & Le compte client est réactivé\\
+% \hline
+% \textbf{Scénario principal} & \begin{minipage}[t]{\linewidth}
+% \begin{enumerate}[label=\arabic*., leftmargin=*]
+% \item L'administrateur consulte la liste des clients désactivés.
+% \item L'administrateur sélectionne un client à réactiver.
+% \item L'administrateur clique sur l'action (Réactiver le compte).
+% \item Le système affiche une confirmation.
+% \item L'administrateur confirme l'action.
+% \item Le système réactive le compte.
+% \item Le système envoie un e-mail au client.
+% \item Le système affiche le message de succès.
+% \end{enumerate}
+% \vspace{2pt}
+% \end{minipage} \\
+% \hline
+% \textbf{Scénarios d'exception} & Le client est déjà actif. \\
+% \hline
+% \end{tabular}
+% \end{table}
+% \vspace{-0.3cm}
 
 
-\newpage
+\subsection{Analyse de la fonctionnalité « Gérer Contrats »}
 
-% ─────────────────────────────────────────────────────────────────────────────
-% SECTION 3 : CONCEPTION
-% ─────────────────────────────────────────────────────────────────────────────
+Dans cette partie, nous allons présenter les cas d’utilisation relatifs à la gestion des Contrats afin de comprendre
+les principales fonctionnalités du système, ce qui permet d’avoir une vue globale des interactions.
+\subsubsection{Raffinement de cas d'utilisation « Gérer Contrats »}
+Au cours de cette partie, nous allons analyser chaque cas d’utilisation raffiné pour le cas de gestion des Contrats :
 
-\section{Conception}
-\label{sec:conception_sprint2}
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme de cas utilisation gestion contrat.png}
+        \caption{Diagramme des cas d'utilisation « Gérer Contrats »}
+        \label{fig:gerer_contrats}
+\end{figure}
 
-\subsection{Diagrammes de séquence}
+\subsubsection{Description textuelle de cas d'utilisation « Créer contrat »}
+\vspace{-0.3cm}
+\begin{table}[h]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1}
 
-Cette section présentera les diagrammes de séquence détaillant les interactions pour la gestion des clients, projets et contrats.
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Créer un contrat \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} & 
+L'utilisateur est authentifié.\newline
+L'utilisateur possède la permission de créer des contrats. \newline
+La liste des contrats est accessible.\\
+\hline
+\textbf{Postconditions} & 
+  Le contrat est enregistré avec le statut ACTIF et une référence générée automatiquement.\newline
+  Le contrat est visible dans la liste des contrats et lié au client sélectionné.\\
+\hline
+\textbf{Scénario principal} & 
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+ \item L'administrateur clique sur « Nouveau » depuis la liste des contrats.
+    \item Le système propose deux modes : \textit{Saisie manuelle} ou \textit{Import PDF}.
+    \item L'administrateur sélectionne \textit{Saisie manuelle} et confirme.
+    \item L'administrateur renseigne les informations du contrat : client,projet, dates, montant, cycle de facturation (mensuel ou semestriel) et taux de TVA.
+    \item L'administrateur configure le niveau de service (SLA) avec les délais de réponse et de résolution par priorité.
+    \item Le système calcule automatiquement le montant TVA et le montant TTC.
+    \item L'administrateur valide le formulaire.
+    \item Le système enregistre le contrat, émet un événement \texttt{contrat.created} afin de créer le canal de communication associé, puis redirige l’utilisateur vers la liste des contrats.
+  
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} & 
+\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+    \item  L'administrateur choisit le mode 
+    \textit{Import de document} et dépose un fichier PDF. Le système 
+    extrait automatiquement les données et pré-remplit le formulaire. 
+    L'administrateur vérifie les données, sélectionne le client et le 
+    projet, puis valide.
 
-\textit{[À compléter avec les diagrammes de séquence]}
+\end{itemize} \\
+\hline
+\textbf{Scénarios d'exception} & 
+\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+         \item  Le système détecte qu'un contrat actif existe déjà pour ce client/projet et affiche un message de blocage.
+    \item  Le système détecte que le client, les dates ou le montant ne sont pas renseignés et affiche un message d'erreur.
+    \item Le système détecte que la date de début est antérieure à aujourd'hui ou que la date d'expiration est antérieure ou égale à la date de début et affiche un message d'erreur.
+    \item Le système détecte que le montant saisi est nul ou non numérique et affiche un message d'erreur.
+  
+\end{itemize} \\
+\hline
+\end{tabular}
+\caption{Description textuelle « Créer contrat »}
+\end{table}
+\vspace{-0.3cm}
 
-\subsection{Modèle de données}
 
-Cette section présentera le modèle de données relatif à la gestion des clients, projets, contrats et audit.
+\subsubsection{Description textuelle de cas d'utilisation « Archiver contrat »}
+\vspace{-0.3cm}
+\begin{table}[H]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1}
 
-\textit{[À compléter avec le schéma de base de données]}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Archiver un contrat \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} &
+  L'utilisateur est authentifié.\newline
+  L'utilisateur possède la permission d'archiver des contrats.\newline
+  Le contrat est expiré et non encore archivé.\\
+\hline
+\textbf{Postconditions} &
+  Le contrat est marqué comme archivé et n'apparaît plus dans la 
+  liste principale.\newline
+  Le motif d'archivage est enregistré et associé au contrat.\\
+\hline
+\textbf{Scénario principal} &
+  \begin{minipage}[t]{\linewidth}
+  \begin{enumerate}[label=\arabic*., leftmargin=*]
+    \item L'administrateur sélectionne un contrat expiré depuis la liste.
+    \item L'administrateur clique sur « Archivage définitif » dans le 
+    menu contextuel.
+    \item Le système affiche un dialogue de confirmation demandant un 
+    motif d'archivage.
+    \item L'administrateur saisit un motif et confirme.
+    \item Le système archive le contrat et met à jour la liste.
+  \end{enumerate}
+  \vspace{2pt}
+  \end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} &
+  \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+    \item  L'administrateur sélectionne 
+    plusieurs contrats expirés et clique sur « Archiver la sélection ». 
+    Le système archive tous les contrats éligibles et affiche le nombre 
+    de contrats archivés avec succès.
+  \end{itemize} \\
+\hline
+\textbf{Scénarios d'exception} &
+  \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+    \item Le système détecte que le contrat 
+    n'est pas encore expiré et bloque l'action d'archivage.
+    \item  Le système détecte que le motif 
+    saisi contient moins de 10 caractères et désactive le bouton de 
+    confirmation.
+  \end{itemize} \\
+\hline
+\end{tabular}
+\caption{Description textuelle « Archiver contrat »}
+\end{table}
+\vspace{-0.3cm}
 
-\newpage
+\subsubsection{Description textuelle de cas d'utilisation « Configurer intégration Slack »}
+\vspace{-0.3cm}
+\begin{table}[H]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Configurer intégration Slack \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} &
+  L'administrateur est authentifié.\newline
+  Un contrat est sélectionné.\\
+\hline
+\textbf{Postconditions} &
+  La configuration Slack est enregistrée et liée au contrat.\newline
+  Les notifications sont actives selon les préférences choisies.\\
+\hline
+\textbf{Scénario principal} &
+  \begin{minipage}[t]{\linewidth}
+  \begin{enumerate}[label=\arabic*., leftmargin=*]
+    \item L'administrateur clique sur « Intégration Slack » depuis 
+    le menu contextuel du contrat.
+    \item Le système affiche le dialogue de configuration Slack.
+    \item L'administrateur saisit l'URL du webhook et le canal Slack.
+    \item L'administrateur configure les types de notifications 
+    souhaités : ticket créé, mise à jour, résolu, critique seulement.
+    \item L'administrateur clique sur « Configurer ».
+    \item Le système enregistre la configuration et l'associe 
+    au contrat.
+  \end{enumerate}
+  \vspace{2pt}
+  \end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} &
+  \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+    \item
+    Le système détecte qu'une configuration Slack existe déjà pour 
+    ce contrat et pré-remplit le formulaire. L'administrateur modifie 
+    les champs souhaités et clique sur « Mettre à jour ».
+    \item  Après sauvegarde, 
+    l'administrateur clique sur « Tester ». Le système envoie un 
+    message de test sur le canal Slack configuré.
+    \item L'administrateur 
+    clique sur le bouton de suppression. Le système supprime la 
+    configuration Slack du contrat.
+  \end{itemize} \\
+\hline
+\textbf{Scénarios d'exception} &
+  \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+    \item  Le système détecte 
+    que le webhook URL ou le canal ne sont pas renseignés et affiche 
+    un message d'erreur.
+    \item Le système détecte que le webhook 
+    URL est invalide lors du test et affiche un message d'erreur.
+  \end{itemize} \\
+\hline
+\end{tabular}
+\caption{Description textuelle « Configurer intégration Slack »}
+\end{table}
+\vspace{-0.3cm}
 
+%─────────────────────────────────────────────────────────────────────────────
+\subsection{Analyse de la fonctionnalité « Suivre contrats »}
+%─────────────────────────────────────────────────────────────────────────────
+
+Dans cette partie, nous allons présenter les cas d'utilisation relatifs au
+suivi des contrats par le client afin de comprendre les interactions
+disponibles depuis son espace personnel.
+
+\subsubsection{Description textuelle du cas d'utilisation
+  « Consulter ses contrats »}
+\begin{table}[H]
+\centering\footnotesize\renewcommand{\arraystretch}{1}
+\caption{Description textuelle « Consulter ses contrats »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Consulter ses contrats \\\hline
+\textbf{Acteurs} & Client \\\hline
+\textbf{Préconditions} &
+  L'utilisateur est authentifié.\newline
+  L'utilisateur possède la permission \texttt{contracts.read.own}. \\\hline
+\textbf{Postconditions} & La liste des contrats du client est affichée. \\\hline
+\textbf{Scénario principal} &
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+  \item Le client accède à la section « Mes contrats ».
+  \item Le système filtre automatiquement les contrats liés au profil
+    client de l'utilisateur connecté.
+  \item Le système affiche la liste des contrats avec leurs statuts,
+    dates et niveaux SLA.
+  \item Le client sélectionne un contrat pour consulter ses détails.
+  \item Le système affiche les informations complètes : référence,
+    période, montant TTC, conditions SLA et tickets associés.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\\hline
+\textbf{Scénarios alternatifs} &
+\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+  \item Le client télécharge le fichier PDF du contrat via le bouton
+    « Télécharger ».
+  \item Le client consulte le statut d'expiration de ses contrats et
+    reçoit des alertes à J-30, J-15 et J-7 avant l'échéance.
+\end{itemize} \\\hline
+\end{tabular}
+\end{table}
+\vspace{-0.3cm}
+
+\subsubsection{Description textuelle du cas d'utilisation
+  « Soumettre demande de résiliation »}
+\begin{table}[H]
+\centering\footnotesize\renewcommand{\arraystretch}{1}
+\caption{Description textuelle « Soumettre demande de résiliation »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Soumettre demande de résiliation \\\hline
+\textbf{Acteurs} & Client \\\hline
+\textbf{Préconditions} &
+  L'utilisateur est authentifié.\newline
+  Le contrat est actif et appartient au client. \\\hline
+\textbf{Postconditions} &
+  La demande de résiliation est enregistrée.\newline
+  L'administrateur est notifié par e-mail et notification interne. \\\hline
+\textbf{Scénario principal} &
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+  \item Le client accède au détail d'un contrat actif.
+  \item Le client clique sur « Demander la résiliation ».
+  \item Le système affiche un formulaire de saisie du motif.
+  \item Le client saisit un motif (minimum 10 caractères) et confirme.
+  \item Le système enregistre la demande et notifie les administrateurs.
+  \item Le système affiche un message de confirmation au client.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\\hline
+\textbf{Scénarios d'exception} &
+\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+  \item Le motif saisi contient moins de 10 caractères : le bouton de
+    confirmation reste désactivé.
+  \item Le contrat n'est pas actif : l'action est indisponible.
+\end{itemize} \\\hline
+\end{tabular}
+\end{table}
+\vspace{-0.3cm}
+
+%─────────────────────────────────────────────────────────────────────────────
+\subsection{Analyse de la fonctionnalité
+  « Consulter journal d'activités » }
+%─────────────────────────────────────────────────────────────────────────────
+
+Dans cette partie, nous allons présenter les cas d'utilisation relatifs à
+la consultation du journal d'activités, qui assure la traçabilité complète
+de toutes les opérations effectuées sur la plateforme.
+
+\subsubsection{Description textuelle du cas d'utilisation
+  « Consulter journal d'activités »}
+\begin{table}[H]
+\centering\footnotesize\renewcommand{\arraystretch}{1}
+\caption{Description textuelle « Consulter journal d'activités »}
+\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Consulter journal d'activités \\\hline
+\textbf{Acteurs} & Administrateur \\\hline
+\textbf{Préconditions} &
+  L'utilisateur est authentifié.\newline
+  L'utilisateur possède la permission \texttt{logs.read}. \\\hline
+\textbf{Postconditions} &
+  Le journal d'activités est affiché avec les filtres appliqués. \\\hline
+\textbf{Scénario principal} &
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+  \item L'administrateur accède à la section « Journal d'activités ».
+  \item Le système affiche la liste paginée des logs triés par date
+    décroissante, avec pour chaque entrée : la date, l'utilisateur,
+    l'action, le type d'entité, la méthode HTTP, le chemin et le statut.
+  \item L'administrateur applique des filtres : par utilisateur, par
+    type d'entité, par action, par statut (\texttt{SUCCESS} /
+    \texttt{FAILED}), ou par plage de dates.
+  \item Le système filtre et met à jour la liste en temps réel.
+  \item L'administrateur clique sur une entrée pour consulter ses
+    détails complets, incluant les métadonnées associées.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\\hline
+\textbf{Scénarios alternatifs} &
+\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+  \item L'administrateur clique sur « Exporter » pour télécharger les
+    logs au format CSV (jusqu'à 10 000 entrées).
+  \item L'administrateur consulte les statistiques globales : total du
+    jour, taux de succès, utilisateurs uniques, actions les plus
+    fréquentes et activité par heure.
+  \item L'administrateur consulte les statistiques d'un utilisateur
+    spécifique : activité des 30 derniers jours, taux de succès et
+    entités les plus actives.
+\end{itemize} \\\hline
+\textbf{Scénarios d'exception} &
+\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+  \item Aucun log ne correspond aux filtres appliqués : le système
+    affiche un message « Aucun résultat trouvé ».
+\end{itemize} \\\hline
+\end{tabular}
+\end{table}
+\vspace{-0.3cm}
+
+%─────────────────────────────────────────────────────────────────────────────
+\section{Diagramme de classes du deuxième sprint}
+%─────────────────────────────────────────────────────────────────────────────
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth,keepaspectratio]
+  {Images/diag classe sprint 2.png}
+\caption{Diagramme de classes du Sprint 2}
+\label{fig:diag_classe_sprint2}
+\end{figure}
+
+\section{Diagramme de séquence}
+\subsection{Diagramme de séquences du cas d'utilisation « Demande Résiliation »}
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/Diagramme de sequence Demande Resiliation.png}
+        \caption{Diagramme de séquence du cas d'utilisation «  Demande Résiliation »}
+        \label{fig:Diagramme de sequence Demande Resiliation}
+\end{figure}
+\subsection{Diagramme de séquences du cas d'utilisation « Résilier contrat »}
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/Diagramme de sequence de resilier contrat.png}
+        \caption{Diagramme de séquence du cas d'utilisation « Résilier contrat »}
+        \label{fig:Diagramme de sequence de resilier contrat}
+\end{figure}
+
+%─────────────────────────────────────────────────────────────────────────────
+\section{Schéma relationnel}
+%─────────────────────────────────────────────────────────────────────────────
+
+Les entités introduites dans ce sprint complètent le schéma relationnel
+établi lors du premier sprint. Les relations clés sont les suivantes :
+
+\noindent
+\textbf{Contrat} (\underline{idContrat}, referenceContrat,
+  \textbf{\#idProfilClient}, \textbf{\#idProjet}, dateDebutContratM,
+  dateExpirationContratM, montantMensuel, montantSemestriel,
+  cycleFacturation, tauxTVA, montantTVA, montantTTC, typeSLA,
+  conditionsSLA, fichierContrat, fichierHash, statutContratM,
+  estArchive, dateArchivage, motifArchivage, dateDemandeResiliation,
+  motifResiliation, alerte30JoursEnvoyee, alerte15JoursEnvoyee,
+  alerte7JoursEnvoyee, dateCreation)
+\newline
+\textbf{ConfigurationSLAContrat} (\underline{idConfig},
+  \textbf{\#idContrat}, creneauxHoraires, motifPersonnalisation,
+  dateCreation)
+\newline
+\textbf{ReglesDelaiSLA} (\underline{idRegle}, \textbf{\#idConfigContrat},
+  \textbf{\#idConfigGlobale}, priorite, delaiReponseMn,
+  delaiResolutionMn)
+\newline
+\textbf{SlackConfig} (\underline{idSlack}, \textbf{\#idContrat},
+  webhookUrl, canal, notificationsActives, dateCreation)
+\newline
+\textbf{Projet} (\underline{idProjet}, nomProjet, descriptionProjet,
+  statutP, tags, dateDebutP, dateFinP, \textbf{\#idProfilClient},
+  \textbf{\#idChefProjet}, dateCreationP)
+\newline
+\textbf{MembreProjet} (\underline{idMembre}, \textbf{\#idProjet},
+  \textbf{\#idProfilEmploye}, rolesDansProjet, statut, dateAffectation,
+  dateDebut, dateFin)
+\newline
+\textbf{ActivityLog} (\underline{idLog}, \textbf{\#idUtilisateur},
+  action, entityType, entityId, method, path, ipAddress, status,
+  description, metadata, createdAt)
+\newline
+\textbf{FeedbackExpirationContrat} (\underline{idFeedback},
+  \textbf{\#idContrat}, note, commentaire, souhaitRenouveler,
+  raisonsNonRenouvellement, dateCreation)
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 4 : RÉALISATION
 % ─────────────────────────────────────────────────────────────────────────────
@@ -86,23 +771,228 @@ Cette section présentera les principales interfaces développées durant le Spr
 
 \textit{[À compléter avec les captures d'écran]}
 
+
+%─────────────────────────────────────────────────────────────────────────────
 \newpage
-
-% ─────────────────────────────────────────────────────────────────────────────
-% SECTION 5 : TESTS
-% ─────────────────────────────────────────────────────────────────────────────
-
-\section{Tests}
+\section{Tests et Validation}
 \label{sec:tests_sprint2}
+%─────────────────────────────────────────────────────────────────────────────
 
-\subsection{Tests unitaires}
+La phase de test du deuxième sprint valide les fonctionnalités de gestion
+des contrats, des projets et de la traçabilité. Nous avons adopté la même
+stratégie de tests structurée que lors du premier sprint, organisée sur
+trois niveaux complémentaires.
 
-Cette section présentera les tests unitaires réalisés pour valider les fonctionnalités du Sprint 2.
+\subsubsection{Tests unitaires}
+\label{sec:tests_unitaires_sprint2}
 
-\textit{[À compléter avec les résultats des tests]}
+Les tests unitaires ont été réalisés avec \textbf{Vitest} en isolant
+chaque service grâce à des mocks Prisma. Deux modules sont couverts :
+la création de contrats et la gestion des projets.
 
-\subsection{Tests d'intégration}
+\vspace{4pt}
+\noindent\textbf{Bilan : 18 tests exécutés — 18 réussis — 0 échec.}
+\vspace{6pt}
 
-Cette section présentera les tests d'intégration effectués pour s'assurer du bon fonctionnement global du système.
+\begin{itemize}[leftmargin=0pt]
 
-\textit{[À compléter avec les résultats des tests]}
+\item[$\square$] \textbf{Module Contrats}
+\hfill\textit{Méthode : \texttt{create()}}
+
+\noindent Cette suite valide les règles métier de création de contrat :
+validations des entités, des dates, des montants et de la détection des
+doublons. Les cas suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item Des données valides sont soumises : le contrat est créé avec une
+    référence au format \texttt{CTR-\{timestamp\}-\{suffixe\}} et le
+    statut \texttt{ACTIF}.
+  \item Le client fourni est inexistant : une \texttt{NotFoundException}
+    est levée.
+  \item Le projet fourni est inexistant : une \texttt{NotFoundException}
+    est levée.
+  \item Le projet n'appartient pas au client sélectionné : une
+    \texttt{NotFoundException} est levée.
+  \item Un contrat similaire existe déjà pour ce projet : une
+    \texttt{BadRequestException} est levée.
+  \item La date de début est antérieure à aujourd'hui : une
+    \texttt{BadRequestException} est levée avec le message
+    « ne peut pas être dans le passé ».
+  \item La date d'expiration est antérieure à la date de début : une
+    \texttt{BadRequestException} est levée avec le message
+    « doit être postérieure à la date de début ».
+  \item Le montant mensuel est nul ou négatif : une
+    \texttt{BadRequestException} est levée avec le message
+    « doit être supérieur à 0 ».
+  \item Un montant valide est soumis : le montant est enregistré
+    correctement.
+  \item La référence générée respecte le format \texttt{CTR-}.
+\end{itemize}
+
+\item[$\square$] \textbf{Module Projets}
+\hfill\textit{Méthodes : \texttt{create()} · \texttt{assignerMembre()} ·
+\texttt{verifierArchivage()}}
+
+\noindent Cette suite valide les règles métier de création de projet,
+d'affectation des membres et de vérification des conditions d'archivage.
+Les cas suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item Un projet est créé avec des données valides : le chef de projet
+    et les membres sont notifiés par e-mail et notification interne.
+  \item Le client fourni est inexistant : une \texttt{NotFoundException}
+    est levée.
+  \item Le nom du projet est déjà utilisé : une
+    \texttt{ConflictException} est levée.
+  \item Le chef de projet n'est pas disponible
+    (\texttt{disponibilite = false}) : une \texttt{BadRequestException}
+    est levée.
+  \item Aucun membre d'équipe n'est fourni : une
+    \texttt{BadRequestException} est levée.
+  \item La date de fin est antérieure à la date de début : une
+    \texttt{BadRequestException} est levée.
+  \item Un membre est proposé pour un projet : la proposition est créée
+    avec le statut \texttt{EN\_ATTENTE}.
+  \item Un projet avec des tickets actifs est soumis à l'archivage :
+    le système retourne la liste des tickets bloquants.
+\end{itemize}
+
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth,keepaspectratio]
+  {Images/test-unitaire-contrats-sprint2.png}
+\caption{Résultats des tests unitaires — Contrats et Projets}
+\label{fig:test_unitaires_sprint2}
+\end{figure}
+
+%─────────────────────────────────────────────────────────────────────────────
+%─────────────────────────────────────────────────────────────────────────────
+\subsubsection{Tests d'intégration}
+\label{sec:tests_integration_sprint2}
+
+Les tests d'intégration valident les endpoints REST des contrats via
+\textbf{Swagger UI} contre le backend en cours d'exécution.
+
+\vspace{4pt}
+\noindent\textbf{Bilan : 6 tests exécutés — 6 réussis — 0 échec.}
+\vspace{6pt}
+
+\begin{itemize}[leftmargin=0pt]
+
+\item[$\square$] \textbf{Gestion des contrats}
+\hfill\textit{Endpoints : \texttt{POST /api/contrats} ·
+\texttt{PATCH /api/contrats/:id/archive} ·
+\texttt{PATCH /api/contrats/:id/resilier}}
+
+\noindent Cette suite valide le comportement complet des endpoints de
+gestion des contrats. Les cas suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item Un administrateur authentifié crée un contrat avec des données
+    valides : l'endpoint retourne le code \textbf{201 Created} avec la
+    référence générée, le montant TTC calculé et le statut
+    \texttt{ACTIF}.
+  \item Un utilisateur sans la permission \texttt{contracts.create}
+    tente de créer un contrat : l'endpoint retourne le code
+    \textbf{403 Forbidden}.
+  \item Un contrat actif est soumis à l'archivage sans motif suffisant
+    (moins de 10 caractères) : l'endpoint retourne le code
+    \textbf{400 Bad Request}.
+  \item Un contrat expiré est archivé avec un motif valide :
+    l'endpoint retourne le code \textbf{200 OK} et le contrat est
+    marqué \texttt{estArchive = true}.
+  \item Un contrat actif est résilié par l'administrateur avec un motif
+    valide : l'endpoint retourne le code \textbf{200 OK} et le statut
+    du contrat est mis à jour.
+  \item Un client tente d'accéder à la liste complète des contrats
+    (endpoint \texttt{GET /api/contrats} avec permission
+    \texttt{contracts.read.all}) : l'endpoint retourne le code
+    \textbf{403 Forbidden}, seuls ses propres contrats lui sont
+    accessibles via \texttt{contracts.read.own}.
+\end{itemize}
+
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth,keepaspectratio]
+  {Images/test-integration-contrats-sprint2.png}
+\caption{Tests d'intégration — Gestion des contrats via Swagger}
+\label{fig:test_integration_sprint2}
+\end{figure}
+
+%─────────────────────────────────────────────────────────────────────────────
+%─────────────────────────────────────────────────────────────────────────────
+\subsubsection{Tests End-to-End}
+\label{sec:tests_e2e_sprint2}
+
+Les tests End-to-End simulent les parcours utilisateurs complets dans un
+navigateur réel piloté par \textbf{Playwright}, en interaction avec le
+frontend Next.js, le backend NestJS et la base de données PostgreSQL.
+
+\vspace{4pt}
+\noindent\textbf{Bilan : 4 tests exécutés — 4 réussis — 0 échec.}
+\vspace{6pt}
+
+\begin{itemize}[leftmargin=0pt]
+
+\item[$\square$] \textbf{Création et suivi de contrat}
+\hfill\textit{2 scénarios : création manuelle, suivi client}
+
+\noindent Cette suite valide les flux complets de création d'un contrat
+et de consultation par le client. Les cas suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item L'administrateur crée un contrat via le formulaire multi-étapes
+    en mode saisie manuelle : le système calcule automatiquement le
+    montant TTC, génère la référence et affiche le contrat dans la
+    liste avec le statut \texttt{ACTIF}.
+  \item Le client se connecte et consulte ses contrats : le système
+    filtre automatiquement les contrats liés à son profil, affiche les
+    alertes d'expiration et permet le téléchargement du fichier PDF.
+\end{itemize}
+
+\item[$\square$] \textbf{Journal d'activités}
+\hfill\textit{2 scénarios : consultation, filtrage}
+
+\noindent Cette suite valide le flux complet de consultation du journal
+d'activités par l'administrateur. Les cas suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item L'administrateur accède au journal d'activités : le système
+    affiche la liste paginée des logs avec les informations complètes
+    (utilisateur, action, statut, date) et les statistiques globales
+    du jour.
+  \item L'administrateur applique des filtres combinés (statut
+    \texttt{FAILED} et plage de dates) : le système filtre la liste
+    et affiche uniquement les entrées correspondantes, permettant
+    l'identification rapide des anomalies.
+\end{itemize}
+
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.70\textwidth,keepaspectratio]
+  {Images/test-e2e-contrats-sprint2.png}
+\caption{Tests End-to-End — Contrats et Journal d'activités via Playwright}
+\label{fig:test_e2e_sprint2}
+\end{figure}
+
+%─────────────────────────────────────────────────────────────────────────────
+\section*{Conclusion}
+%─────────────────────────────────────────────────────────────────────────────
+
+Ce chapitre a présenté le développement du deuxième sprint de la plateforme
+\textbf{SolidMaint}. Nous avons mis en place la gestion complète des
+contrats de maintenance avec leurs configurations SLA, l'intégration Slack
+par contrat, la gestion des projets et de leurs équipes, ainsi que le
+journal d'activités assurant la traçabilité de toutes les opérations.
+L'ensemble de ces fonctionnalités a été validé par 28 tests répartis sur
+trois niveaux.
+\newline
+Le chapitre suivant détaillera l'implémentation du troisième sprint,
+consacré au cœur opérationnel de la plateforme : la gestion des demandes
+et des tickets avec le suivi SLA en temps réel.

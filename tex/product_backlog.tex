@@ -38,8 +38,10 @@
 & Après 3 tentatives échouées, le compte est temporairement verrouillé et l'utilisateur reçoit une notification par email. & +++ \\
 \hline
 
+\multirow{2}{*}{\centering 1} & \multirow{5}{2.5cm}{\centering Gestion des utilisateurs } 
+
 % Epic 2: Gestion des utilisateurs et profils
-2 & Gestion des utilisateurs et profils 
+
 & US06 & En tant qu'\textbf{utilisateur}, je souhaite gérer mon profil afin que mes informations soient toujours à jour. 
 & L'utilisateur peut modifier et sauvegarder ses informations personnelles qui sont validées avant enregistrement. & ++ \\
 \cline{3-6}
@@ -81,7 +83,7 @@
 \hline
 
 % Epic 5: Gestion des clients
-\multirow{7}{*}{\centering 5} & \multirow{7}{2.5cm}{\centering Gestion des clients} 
+\multirow{7}{*}{\centering 5} & \multirow{7}{2.5cm}{\centering Gestion des Clients} 
 & US17 & En tant qu'\textbf{administrateur}, je souhaite créer un profil client afin de centraliser ses informations. 
 & Le profil client est créé avec toutes les informations nécessaires et un identifiant unique est généré. & +++ \\
 \cline{3-6}
@@ -102,11 +104,9 @@
 \cline{3-6}
 & & US23 & En tant qu'\textbf{administrateur}, je souhaite imprimer l'annuaire d'un client afin de disposer d'une version papier. 
 & Un document PDF professionnel contenant toutes les informations du client est généré. & + \\
-\hline
 
-% Epic 6: Gestion des projets et équipes
-\multirow{4}{*}{\centering 6} & \multirow{4}{2.5cm}{\centering Gestion des projets et équipes} 
-& US24 & En tant qu'\textbf{administrateur}, je souhaite créer un projet rattaché à un client afin d'organiser les interventions. 
+\cline{3-6}
+& &US24 & En tant qu'\textbf{administrateur}, je souhaite créer un projet rattaché à un client afin d'organiser les interventions. 
 & Le projet est créé et rattaché au client avec un chef de projet assigné. & +++ \\
 \cline{3-6}
 & & US25 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des projets afin de piloter l'activité. 
@@ -118,8 +118,9 @@
 & & US27 & En tant que \textbf{membre d'équipe}, je souhaite consulter les informations du projet afin de comprendre le contexte. 
 & Toutes les informations du projet sont accessibles incluant client, objectifs, équipe et contrat. & ++ \\
 \hline
+\multirow{7}{*}{\centering 5} & \multirow{7}{2.5cm}{\centering Gestion des Contrats} 
 
-7 & Gestion des contrats de maintenance & US28 & En tant qu'\textbf{administrateur}, je souhaite créer un contrat de maintenance afin de formaliser les engagements de service avec le client. 
+ & US28 & En tant qu'\textbf{administrateur}, je souhaite créer un contrat de maintenance afin de formaliser les engagements de service avec le client. 
 & Le contrat est créé avec client, dates, type SLA, cycle facturation et configuration des alertes d'expiration. & +++ \\
 \cline{3-6}
 & & US29 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des contrats afin de suivre les engagements contractuels.
@@ -137,21 +138,20 @@
 & & US33 & En tant qu'\textbf{administrateur}, je souhaite résilier un contrat afin de l'interrompre avant terme. 
 & Le contrat est résilié avec date et motif, les tickets ouverts sont clôturés et le client est notifié. & +++ \\
 \cline{3-6}
-& & US34 & En tant qu'\textbf{administrateur}, je souhaite renouveler un contrat afin de prolonger la relation. 
-& Un nouveau contrat est créé à partir de l'existant avec lien entre les deux et notification au client. & +++ \\
-\cline{3-6}
 & & US35 & En tant que \textbf{chef de projet}, je souhaite consulter les contrats dans un calendrier afin de visualiser les dates d'expiration.
 & Le calendrier affiche les contrats avec leur date d'expiration. Les contrats proches de l'expiration sont mis en évidence. L'administrateur peut exporter le calendrier. & ++ \\
 \cline{3-6}
-& & US36 & En tant qu'\textbf{administrateur}, je souhaite centraliser les documents d'un contrat afin de les retrouver facilement.
-& L'administrateur peut téléverser des documents liés au contrat. Le système conserve l'historique des versions. Les documents sont accessibles depuis la fiche contrat. & + \\
+& & US36 & En tant que \textbf{client}, je souhaite soumettre un retour d'expérience à l'expiration de mon contrat afin d'exprimer ma satisfaction.
+& Le retour d’expérience est accessible pour les contrats expirés ou proches de l’expiration. Un seul retour d’expérience par contrat est accepté. & ++\\
 \cline{3-6}
-& & US37 & En tant qu'\textbf{administrateur}, je souhaite configurer les règles SLA globales afin de définir les standards. 
-& L'administrateur définit des délais de réponse selon l'urgence. L'administrateur définit des délais de résolution selon l'urgence. Les délais configurés s'appliquent automatiquement aux nouveaux tickets. & +++ \\
+& &US37 & En tant qu'\textbf{administrateur}, je souhaite générer un PDF formaté du contrat afin de le partager avec le client.
+& Le PDF généré contient les informations necessaires; les dates d'intervention& +\\
 \hline
 
+\multirow{8}{*}{\centering 5} & \multirow{7}{2.5cm}{\centering Gestion des demandes clients} 
+
 % Epic 8: Gestion des demandes clients
-8 & Gestion des demandes clients 
+
 & US38 & En tant que \textbf{client}, je souhaite soumettre une demande de maintenance afin de signaler un besoin. 
 & Le client peut joindre des fichiers à sa demande. Le système génère un numéro unique de suivi. Le client reçoit une confirmation de réception. & +++ \\
 \cline{3-6}
@@ -176,9 +176,10 @@
 & & US45 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique d'une demande afin de suivre son évolution. 
 & L'utilisateur visualise tous les événements liés à la demande. L'historique affiche la date et l'auteur de chaque action. L'utilisateur peut filtrer l'historique par type d'événement. & ++ \\
 \hline
+\multirow{9}{*}{\centering 5} & \multirow{7}{2.5cm}{\centering Gestion des tickets} 
 
 % Epic 9: Gestion des tickets
-9 & Gestion des tickets 
+ 
 & US46 & En tant que \textbf{développeur}, je souhaite visualiser mes tickets dans un tableau Kanban afin de gérer mes tâches. 
 & Le développeur visualise ses tickets organisés par état d'avancement. Le développeur peut déplacer un ticket d'un état à un autre. Le développeur voit si un ticket risque de dépasser son délai. & +++ \\
 \cline{3-6}
@@ -255,7 +256,9 @@
 
 \hline
 % Epic 10: Messagerie et collaboration
-10 & Messagerie et collaboration 
+\multirow{10}{*}{\centering 5} & \multirow{7}{2.5cm}{\centering Messagerie et collaboration} 
+
+ 
 & US66 & En tant qu'\textbf{utilisateur}, je souhaite accéder à une messagerie intégrée afin de communiquer avec mon équipe. 
 & L'utilisateur visualise les canaux de discussion disponibles. L'utilisateur voit le nombre de messages non lus. L'utilisateur identifie les membres présents. & ++ \\
 \cline{3-6}
@@ -284,8 +287,10 @@
 & L'utilisateur voit le statut de disponibilité des autres membres. L'utilisateur peut modifier son propre statut. Le statut est visible par tous les membres. & ++ \\
 \hline
 
+\multirow{11}{*}{\centering 5} & \multirow{7}{2.5cm}{\centering Gestion des documents} 
+
 % Epic 11: Gestion des documents
-11 & Gestion des documents 
+  
 & US75 & En tant qu'\textbf{utilisateur}, je souhaite uploader des documents afin de centraliser les fichiers. 
 & L'utilisateur peut téléverser des documents. L'utilisateur peut associer un document à un contrat, projet ou ticket. L'utilisateur peut ajouter un titre, une description et des tags. & ++ \\
 \cline{3-6}
@@ -329,8 +334,10 @@
 & L'utilisateur visualise toutes ses notifications passées. L'utilisateur peut filtrer par type ou période. L'utilisateur peut rechercher dans l'historique. & ++ \\
 \hline
 
+\multirow{13}{*}{\centering 5} & \multirow{7}{2.5cm}{\centering Dashboards et rapports } 
+
 % Epic 13: Dashboards et rapports
-13 & Dashboards et rapports 
+
 & US88 & En tant qu'\textbf{administrateur}, je souhaite consulter un dashboard global afin de piloter le système. 
 & L'administrateur visualise les indicateurs clés du système. L'administrateur peut filtrer les données par période. L'administrateur identifie les alertes nécessitant une action. & +++ \\
 \cline{3-6}

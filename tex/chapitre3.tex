@@ -1,17 +1,19 @@
 ﻿
 \section*{Introduction}
-Dans le chapitre précédent, nous avons défini les besoins liés à notre solution. Ensuite, nous avons réparti les différentes tâches du projet afin que les phases de travail soient correctement planifiées.
-\newline Au cours de ce chapitre, nous présenterons les fonctionnalités liées à la gestion des utilisateurs, retenues dans le cadre du premier sprint de notre projet.
+Dans le chapitre précédent, nous avons défini les besoins liés à notre solution et réparti les différentes tâches du projet afin que les phases de travail soient correctement planifiées.
+\newline Au cours de ce chapitre, nous présenterons les fonctionnalités liées  à la gestion des utilisateurs, à l'authentification et au contrôle d'accès basé sur les rôles (RBAC), retenues dans le cadre du premier sprint de notre projet.
 
-% Dans ce chapitre, nous abordons le premier sprint du projet \textbf{SolidMaint}, couvrant la période du 17 février au 11 mars 2026, soit trois semaines de travail consacrées à la mise en place des fondations de l'application. Nous commencerons par la présentation du backlog du sprint regroupant dix-sept user stories réparties en quatre epics, suivie de la phase d'analyse et de conception portant sur le système d'authentification et la gestion des utilisateurs par rôles (RBAC), puis de la phase de réalisation des interfaces et des choix d'implémentation, et enfin des tests conduits pour valider les fonctionnalités livrées.
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 1 : BACKLOG DU SPRINT 1
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Sprint Planning Meeting }
-La planification du sprint est essentielle à la réussite de notre solution, au bout de laquelle on clarifie les différentes fonctionnalités à implémenter lors du sprint à venir. Cette partie est efficace afin de préparer des objectifs clairs ; Dans ce contexte, nous présentons l’objectif du sprint dans la section suivante.
-\newline
-\subsection{Objectif du Sprint}
-L’objectif de ce sprint est de placer les tâches fonctionnelles et sécuritaires de la solution, en implémentant les mécanismes d’authentification et de sécurisation des accès ainsi que les fonctionnalités de gestion des utilisateurs et de leurs profils, et afin d’assurer un contrôle efficace des accès et des permissions en introduisant l’administration du système à travers la gestion des comptes utilisateurs et des rôles.
+La planification du sprint est essentielle à la réussite de notre solution, au bout de laquelle on clarifie les différentes fonctionnalités à implémenter lors du sprint à venir. Cette partie est efficace afin de préparer des objectifs clairs.
+L'objectif de ce sprint est de mettre en place les fondations fonctionnelles et
+sécuritaires de la solution, en implémentant les mécanismes d'authentification et
+de sécurisation des accès ainsi que les fonctionnalités de gestion des utilisateurs
+et de leurs profils. Il s'agit également d'assurer un contrôle efficace des accès
+et des permissions en introduisant l'administration du système à travers la gestion
+des comptes utilisateurs, des rôles et des permissions (RBAC).
 \subsubsection{Backlog du premier sprint}
 \label{sec:backlog_sprint1}
 
@@ -36,7 +38,7 @@ C’est pour cela que nous allons présenter les diagrammes ainsi que les tablea
 La figure ci-dessous présente le diagramme de cas d’utilisation du premier sprint : 
 \begin{figure}[H]
         \centering
-        \includegraphics[width=1.0\textwidth,height=0.95\textheight,keepaspectratio]{Images/Diagramme_cas_utilisation_sprint1.png}
+        \includegraphics[width=0.75\textwidth,height=0.65\textheight,keepaspectratio]{Images/Diagramme_cas_utilisation_sprint1.png}
         \caption{Diagramme des cas d'utilisation du premier sprint}
         \label{fig:use_case_sprint1}
 \end{figure}
@@ -90,13 +92,14 @@ La figure ci-dessous présente la description textuelle des cas d'utilisation li
 \item L'utilisateur saisit un mot de passe incorrect.
 \item Le compte de l'utilisateur est désactivé.
 \item Le formulaire contient des champs obligatoires vides ou invalides.
+\item Le compte est temporairement verrouillé après \textbf{3 tentatives échouées} consécutives (durée : 1 minute).
 \end{itemize} \\
 \hline
 \end{tabular}
 \caption{Description textuelle du cas d'utilisation « S'authentifier »}
 \end{table}
 
-\vspace{-0.8cm}
+\vspace{-0.3cm}
 
 % \centering
 % \footnotesize
@@ -191,7 +194,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \caption{Description textuelle de cas d'utilisation « Changer mot de passe »}
 
 \end{table}
-\vspace{-0.8cm}
+\vspace{-0.3cm}
 
 \subsection{Analyse de la fonctionnalité « Demander accès via OAuth »}
 Dans cette partie, nous allons présenter les cas d'utilisation raffinés relatifs à la demande d'accès via OAuth afin de comprendre les différentes étapes du processus d'inscription et d'authentification.
@@ -201,7 +204,7 @@ Au cours de cette partie, nous allons analyser les sous-cas d'utilisation pour l
 
 \begin{figure}[H]
         \centering
-        \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/demande insc.png}
+        \includegraphics[width=0.75\textwidth,height=0.65\textheight,keepaspectratio]{Images/demande insc.png}
         \caption{Raffinement de cas d'utilisation « Demander accès via OAuth »}
         \label{fig:oauth_refinement}
 \end{figure}
@@ -230,9 +233,9 @@ Au cours de cette partie, nous allons analyser les sous-cas d'utilisation pour l
 \item Le fournisseur OAuth redirige le visiteur vers l'application avec un code d'autorisation.
 \item Le système récupère les informations du profil OAuth et vérifie s’il existe déjà un compte actif associé.
 \item Si aucun compte actif n’existe, le système crée une demande d'inscription avec le statut \textit{EN\_ATTENTE}.
-\item Le système envoie une notification aux administrateurs actifs.
-\item Le système envoie un e-mail de confirmation au visiteur indiquant que la demande a été reçue.
-\item Le système affiche un message d’attente ou de validation en cours.
+\item Le système envoie une \textbf{notification interne} et un \textbf{e-mail} à chaque administrateur actif pour l'informer de la nouvelle demande d'inscription.
+\item Le système envoie un \textbf{e-mail de confirmation au visiteur} indiquant que sa demande a bien été reçue et est en cours d'examen.
+\item Le système affiche un message d'attente à l'écran.
 \end{enumerate}
 \vspace{2pt}
 \end{minipage} \\
@@ -251,7 +254,7 @@ Au cours de cette partie, nous allons analyser les sous-cas d'utilisation pour l
 \end{itemize} \\\hline
 \end{tabular}
 \end{table}
-\vspace{-0.8cm}
+\vspace{-0.3cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Valider demande »}
 
@@ -296,7 +299,7 @@ Au cours de cette partie, nous allons analyser les sous-cas d'utilisation pour l
 \end{itemize} \\\hline
 \end{tabular}
 \end{table}
-\vspace{-0.8cm}
+\vspace{-0.3cm}
 
 \subsection{Analyse de la fonctionnalité « Gérer utilisateurs »}
 Dans cette partie, nous allons présenter les cas d’utilisation relatifs à la gestion des utilisateurs afin de comprendre les principales fonctionnalités du système, ce qui permet d’avoir une vue globale des interactions.
@@ -341,7 +344,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \end{tabular}
 \end{table}
-\vspace{-0.8cm}
+\vspace{-0.3cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Ajouter utilisateur »}
 
@@ -383,7 +386,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \end{tabular}
 \end{table}
-\vspace{-0.8cm}
+\vspace{-0.5cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Modifier utilisateur »}
 
@@ -419,7 +422,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \end{tabular}
 \end{table}
-\vspace{-0.8cm}
+\vspace{-0.3cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Désactiver un utilisateur »}
 
@@ -461,7 +464,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \end{tabular}
 \end{table}
-\vspace{-0.8cm}
+\vspace{-0.3cm}
 
 \subsection{Analyse de la fonctionnalité « Gérer profil »}
 Dans cette partie, nous allons présenter les cas d’utilisation relatifs à la gestion des profils afin
@@ -514,7 +517,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \end{tabular}
 \end{table}
-\vspace{-0.8cm}
+\vspace{-0.3cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Modifier Profil »}
 
@@ -564,7 +567,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \end{tabular}
 \end{table}
-\vspace{-0.8cm}
+\vspace{-0.3cm}
 
 \subsection{Analyse de la fonctionnalité « Gérer rôles »}
 Dans cette partie, nous allons présenter les cas d’utilisation relatifs à la gestion des rôles afin
@@ -580,118 +583,118 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \label{fig:gerer_roles}
 \end{figure}
 
-\subsubsection{Description textuelle de cas d'utilisation « Consulter liste rôles »}
+% \subsubsection{Description textuelle de cas d'utilisation « Consulter liste rôles »}
 
-\begin{table}[H]
-\centering
-\footnotesize
-\renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Consulter liste rôles »}
-\begin{tabular}{|p{4.5cm}|p{12cm}|}
-\hline
-\textbf{Nom du cas d'utilisation} & Consulter liste rôles \\
-\hline
-\textbf{Acteurs} & Administrateur \\
-\hline
-\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de consulter les rôles\\
-\hline
-\textbf{Postconditions} & Liste des rôles affichée\\
-\hline
-\textbf{Scénario principal} & \begin{minipage}[t]{\linewidth}
-\begin{enumerate}[label=\arabic*., leftmargin=*]
-\item L'administrateur accède à la section "Gestion Rôles".   
-\item Le système affiche la liste des rôles avec leurs descriptions et le nombre d'utilisateurs assignés.
-\item L'administrateur recherche un rôle en saisissant des informations clés dans la barre de recherche. 
-\item Le système filtre la liste.
-\item L'administrateur peut consulter les permissions associées à chaque rôle.
-\end{enumerate}
-\vspace{2pt}
-\end{minipage} \\
-\hline
-\textbf{Scénarios alternatifs} & L'administrateur clique sur un rôle pour voir les utilisateurs qui le possèdent. \\
-\hline
-\end{tabular}
-\end{table}
-\vspace{-0.8cm}
+% \begin{table}[H]
+% \centering
+% \footnotesize
+% \renewcommand{\arraystretch}{1}
+% \caption{Description textuelle « Consulter liste rôles »}
+% \begin{tabular}{|p{4.5cm}|p{12cm}|}
+% \hline
+% \textbf{Nom du cas d'utilisation} & Consulter liste rôles \\
+% \hline
+% \textbf{Acteurs} & Administrateur \\
+% \hline
+% \textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de consulter les rôles\\
+% \hline
+% \textbf{Postconditions} & Liste des rôles affichée\\
+% \hline
+% \textbf{Scénario principal} & \begin{minipage}[t]{\linewidth}
+% \begin{enumerate}[label=\arabic*., leftmargin=*]
+% \item L'administrateur accède à la section "Gestion Rôles".   
+% \item Le système affiche la liste des rôles avec leurs descriptions et le nombre d'utilisateurs assignés.
+% \item L'administrateur recherche un rôle en saisissant des informations clés dans la barre de recherche. 
+% \item Le système filtre la liste.
+% \item L'administrateur peut consulter les permissions associées à chaque rôle.
+% \end{enumerate}
+% \vspace{2pt}
+% \end{minipage} \\
+% \hline
+% \textbf{Scénarios alternatifs} & L'administrateur clique sur un rôle pour voir les utilisateurs qui le possèdent. \\
+% \hline
+% \end{tabular}
+% \end{table}
+% \vspace{-0.3cm}
 
-\subsubsection{Description textuelle de cas d'utilisation « Ajouter rôle »}
+% \subsubsection{Description textuelle de cas d'utilisation « Ajouter rôle »}
 
-\begin{table}[H]
-\centering
-\footnotesize
-\renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Ajouter rôle »}
-\begin{tabular}{|p{4.5cm}|p{12cm}|}
-\hline
-\textbf{Nom du cas d'utilisation} & Ajouter rôle \\
-\hline
-\textbf{Acteurs} & Administrateur \\
-\hline
-\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de créer des rôles\newline Liste des rôles affichée\\
-\hline
-\textbf{Postconditions} & Rôle est ajouté\\
-\hline
-\textbf{Scénario principal} & \begin{minipage}[t]{\linewidth}
-\begin{enumerate}[label=\arabic*., leftmargin=*]
-\item L'administrateur clique sur le bouton "Nouveau Rôle".      
-\item Le système affiche le formulaire d'ajout.
-\item L'administrateur saisit le nom du rôle et sa description. 
-\item L'administrateur sélectionne les permissions à associer au rôle. 
-\item L'administrateur valide le formulaire en cliquant sur (Créer le rôle). 
-\item Le système enregistre le nouveau rôle.
-\item Le système attribue automatiquement les permissions de base.
-\item Le système affiche le message de succès.
-\end{enumerate}
-\vspace{2pt}
-\end{minipage} \\
-\hline
-\textbf{Scénarios d'exception} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$] 
-\item L'administrateur a rempli un champ invalide, ou a laissé un champ obligatoire vide.
-\item L'administrateur saisit un nom de rôle déjà existant.
-\end{itemize} \\
-\hline
-\end{tabular}
-\end{table}
-\vspace{-0.8cm}
+% \begin{table}[H]
+% \centering
+% \footnotesize
+% \renewcommand{\arraystretch}{1}
+% \caption{Description textuelle « Ajouter rôle »}
+% \begin{tabular}{|p{4.5cm}|p{12cm}|}
+% \hline
+% \textbf{Nom du cas d'utilisation} & Ajouter rôle \\
+% \hline
+% \textbf{Acteurs} & Administrateur \\
+% \hline
+% \textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de créer des rôles\newline Liste des rôles affichée\\
+% \hline
+% \textbf{Postconditions} & Rôle est ajouté\\
+% \hline
+% \textbf{Scénario principal} & \begin{minipage}[t]{\linewidth}
+% \begin{enumerate}[label=\arabic*., leftmargin=*]
+% \item L'administrateur clique sur le bouton "Nouveau Rôle".      
+% \item Le système affiche le formulaire d'ajout.
+% \item L'administrateur saisit le nom du rôle et sa description. 
+% \item L'administrateur sélectionne les permissions à associer au rôle. 
+% \item L'administrateur valide le formulaire en cliquant sur (Créer le rôle). 
+% \item Le système enregistre le nouveau rôle.
+% \item Le système attribue automatiquement les permissions de base.
+% \item Le système affiche le message de succès.
+% \end{enumerate}
+% \vspace{2pt}
+% \end{minipage} \\
+% \hline
+% \textbf{Scénarios d'exception} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$] 
+% \item L'administrateur a rempli un champ invalide, ou a laissé un champ obligatoire vide.
+% \item L'administrateur saisit un nom de rôle déjà existant.
+% \end{itemize} \\
+% \hline
+% \end{tabular}
+% \end{table}
+% \vspace{-0.3cm}
 
-\subsubsection{Description textuelle de cas d'utilisation « Modifier rôle »}
+% \subsubsection{Description textuelle de cas d'utilisation « Modifier rôle »}
 
-\begin{table}[H]
-\centering
-\footnotesize
-\renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Modifier rôle »}
-\begin{tabular}{|p{4.5cm}|p{12cm}|}
-\hline
-\textbf{Nom du cas d'utilisation} & Modifier rôle \\
-\hline
-\textbf{Acteurs} & Administrateur \\
-\hline
-\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de modifier les rôles\newline Liste des rôles affichée\\
-\hline
-\textbf{Postconditions} & Le rôle est modifié\\
-\hline
-\textbf{Scénario principal} & \begin{minipage}[t]{\linewidth}
-\begin{enumerate}[label=\arabic*., leftmargin=*]
-\item L'administrateur sélectionne le rôle à modifier.                 
-\item L'administrateur clique sur le bouton (Modifier).                                                       
-\item Le système affiche le formulaire de modification avec les informations actuelles.  
-\item L'administrateur modifie le nom, la description ou les permissions associées. 
-\item L'administrateur clique sur le bouton (Enregistrer).
-\item Le système met à jour le rôle.
-\item Le système affiche le message de succès.
-\end{enumerate}
-\vspace{2pt}
-\end{minipage} \\
-\hline
-\textbf{Scénarios d'exception} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$] 
-\item L'administrateur tente de retirer toutes les permissions d'un rôle.
-\item L'administrateur modifie un rôle système protégé.
-\end{itemize} \\
-\hline
-\end{tabular}
-\end{table}
-\vspace{-0.8cm}
+% \begin{table}[H]
+% \centering
+% \footnotesize
+% \renewcommand{\arraystretch}{1}
+% \caption{Description textuelle « Modifier rôle »}
+% \begin{tabular}{|p{4.5cm}|p{12cm}|}
+% \hline
+% \textbf{Nom du cas d'utilisation} & Modifier rôle \\
+% \hline
+% \textbf{Acteurs} & Administrateur \\
+% \hline
+% \textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de modifier les rôles\newline Liste des rôles affichée\\
+% \hline
+% \textbf{Postconditions} & Le rôle est modifié\\
+% \hline
+% \textbf{Scénario principal} & \begin{minipage}[t]{\linewidth}
+% \begin{enumerate}[label=\arabic*., leftmargin=*]
+% \item L'administrateur sélectionne le rôle à modifier.                 
+% \item L'administrateur clique sur le bouton (Modifier).                                                       
+% \item Le système affiche le formulaire de modification avec les informations actuelles.  
+% \item L'administrateur modifie le nom, la description ou les permissions associées. 
+% \item L'administrateur clique sur le bouton (Enregistrer).
+% \item Le système met à jour le rôle.
+% \item Le système affiche le message de succès.
+% \end{enumerate}
+% \vspace{2pt}
+% \end{minipage} \\
+% \hline
+% \textbf{Scénarios d'exception} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$] 
+% \item L'administrateur tente de retirer toutes les permissions d'un rôle.
+% \item L'administrateur modifie un rôle système protégé.
+% \end{itemize} \\
+% \hline
+% \end{tabular}
+% \end{table}
+% \vspace{-0.3cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Archiver rôle »}
 
@@ -729,7 +732,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \end{tabular}
 \end{table}
-\vspace{-0.8cm}
+\vspace{-0.3cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Attribuer rôle à utilisateur »}
 
@@ -755,7 +758,15 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \item Le système affiche la liste des rôles disponibles.
 \item L'administrateur sélectionne un rôle.
 \item L'administrateur valide la sélection.
-\item Le système vérifie les règles d'exclusivité (CLIENT ne peut pas avoir CHEF\_PROJET/DEVELOPPEUR/ADMIN).
+\item Le système vérifie les règles d'exclusivité métier :
+  \begin{itemize}[nosep,label=$-$]
+    \item Un utilisateur ayant le rôle \texttt{CLIENT} ne peut pas
+      recevoir les rôles \texttt{CHEF\_PROJET} ou \texttt{DEVELOPPEUR}.
+    \item Un utilisateur ayant le rôle \texttt{CLIENT} ne peut pas
+      recevoir le rôle \texttt{ADMIN}.
+    \item La combinaison \texttt{ADMIN} + \texttt{CHEF\_PROJET} est
+      \textbf{autorisée}.
+  \end{itemize}
 \item Le système crée l'attribution.
 \item Le système affiche le message de succès.
 \end{enumerate}
@@ -771,7 +782,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \end{tabular}
 \end{table}
-\vspace{-0.8cm}
+\vspace{-0.3cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Retirer rôle d'un utilisateur »}
 
@@ -810,9 +821,9 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \end{tabular}
 \end{table}
-\vspace{-0.8cm}
+\vspace{-0.9cm}
 
-\subsection{Description des cas d'utilisation « Gérer permissions »}
+\subsection{Analyse de la fonctionnalité « Gérer permissions »}
 
 \subsubsection{Raffinement de cas d'utilisation « Gérer permissions »}
 Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de gestion des permissions :
@@ -859,7 +870,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \end{tabular}
 \end{table}
-\vspace{-0.8cm}
+\vspace{-0.3cm}
 
 \subsubsection{Description textuelle de cas d'utilisation « Attribuer permission à rôle »}
 
@@ -898,323 +909,46 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \end{tabular}
 \end{table}
-\vspace{-0.8cm}
+\vspace{-0.3cm}
 
-\subsubsection{Description textuelle de cas d'utilisation « Retirer permission d'un rôle »}
-
-\begin{table}[H]
-\centering
-\footnotesize
-\renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Retirer permission rôle »}
-\begin{tabular}{|p{4.5cm}|p{12cm}|}
-\hline
-\textbf{Nom du cas d'utilisation} & Retirer permission rôle \\
-\hline
-\textbf{Acteurs} & Administrateur \\
-\hline
-\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de retirer des permissions aux rôles\newline La permission est attribuée au rôle\\
-\hline
-\textbf{Postconditions} & La permission est retirée du rôle\\
-\hline
-\textbf{Scénario principal} & 
-\begin{minipage}[t]{\linewidth}
-\begin{enumerate}[label=\arabic*., leftmargin=*]
-\item L'administrateur consulte un rôle spécifique.
-\item L'administrateur clique sur l'onglet "Permissions".
-\item Le système affiche toutes les permissions organisées par catégorie avec des cases à cocher.
-\item L'administrateur décoche les permissions à retirer.
-\item L'administrateur clique sur "Enregistrer".
-\item Le système retire les permissions décochées.
-\item Le système affiche le message de succès.
-\end{enumerate}
-\vspace{2pt}
-\end{minipage} \\
-\hline
-\textbf{Scénarios alternatifs} & L'administrateur utilise la matrice des permissions pour décocher les cases correspondant aux permissions à retirer pour plusieurs rôles simultanément. \\
-\hline
-\textbf{Scénarios d'exception} & La permission n'est pas attribuée à ce rôle. \\
-\hline
-\end{tabular}
-\end{table}
-\vspace{-0.8cm}
-
-
-\subsection{Description des cas d'utilisation « Gérer clients »}
-
-\subsubsection{Raffinement de cas d'utilisation « Gérer clients »}
-Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de gestion des clients :
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.8\textwidth,keepaspectratio]{Images/gerer client.drawio.png}
-\caption{Raffinement de cas d'utilisation « Gérer clients »}
-\label{fig:gerer_clients}
-\end{figure}
-
-\subsubsection{Description textuelle de cas d'utilisation « Consulter liste clients »}
-
-\begin{table}[H]
-\centering
-\footnotesize
-\renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Consulter liste clients »}
-\begin{tabular}{|p{4.5cm}|p{12cm}|}
-\hline
-\textbf{Nom du cas d'utilisation} & Consulter liste clients \\
-\hline
-\textbf{Acteurs} & Administrateur, Chef de projet \\
-\hline
-\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de consulter les clients\\
-\hline
-\textbf{Postconditions} & Liste des clients affichée\\
-\hline
-\textbf{Scénario principal} & 
-\begin{minipage}[t]{\linewidth}
-\begin{enumerate}[label=\arabic*., leftmargin=*]
-\item L'utilisateur accède à la section "Clients".   
-\item Le système affiche les clients sous forme de grille (par défaut).
-\item L'utilisateur peut basculer entre trois modes d'affichage : grille, liste, ou vue par société.
-\item L'utilisateur recherche un client en saisissant des informations clés dans la barre de recherche ou par des boutons de filtre (par statut, par secteur d'activité). 
-\item Le système filtre les résultats.
-\end{enumerate}
-\vspace{2pt}
-\end{minipage} \\
-\hline
-\textbf{Scénarios alternatifs} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-\item L'utilisateur sélectionne la vue "Par société" pour regrouper les clients par société et visualiser les contacts associés à chaque société.
-\item L'utilisateur clique sur le bouton « Exporter » pour télécharger la liste des clients (CSV, Excel).
-\item L'utilisateur clique sur le bouton « Importer » pour ajouter plusieurs clients via un fichier (CSV, Excel).
-\end{itemize} \\
-\hline
-\end{tabular}
-\end{table}
-\vspace{-0.8cm}
-
-\subsubsection{Description textuelle de cas d'utilisation « Ajouter client »}
-
-\begin{table}[H]
-\centering
-\footnotesize
-\renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Ajouter client »}
-\begin{tabular}{|p{4.5cm}|p{12cm}|}
-\hline
-\textbf{Nom du cas d'utilisation} & Ajouter un client \\\hline
-\textbf{Acteurs} & Administrateur \\\hline
-\textbf{Préconditions} & 
-L'utilisateur est authentifié.\\
-L'utilisateur possède la permission de créer des clients.\\
-La liste des clients est accessible. \\\hline
-\textbf{Postconditions} & 
-Le client est créé et enregistré dans le système.\\
-Le profil client associé est initialisé.\\
-Un message de confirmation est affiché. \\\hline
-\textbf{Scénario principal} & 
-\begin{minipage}[t]{\linewidth}
-\begin{enumerate}[label=\arabic*., leftmargin=*]
-\item L'administrateur clique sur le bouton « Nouveau client ».
-\item Le système affiche le formulaire de création.
-\item L'administrateur saisit les informations du client : prénom, nom, e-mail et autres données requises.
-\item L'administrateur renseigne ou sélectionne la société associée au client.
-\item Si nécessaire, l'administrateur complète les informations de la société : nom, adresse, secteur d'activité et téléphone.
-\item Le système peut récupérer automatiquement le logo de la société à partir d'une source externe, ainsi que l'adresse via un service de géocodage, si ces fonctionnalités sont activées.
-\item L'administrateur valide le formulaire en cliquant sur « Créer le client ».
-\item Le système vérifie la validité des données et l'unicité de l'e-mail.
-\item Le système crée le client et associe son profil dans la base de données.
-\item Le système envoie un e-mail de confirmation ou de bienvenue si cette fonctionnalité est prévue.
-\item Le système affiche un message de succès et met à jour la liste des clients.
-\end{enumerate}
-\vspace{2pt}
-\end{minipage} \\\hline
-\textbf{Scénarios alternatifs} & 
-\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-\item L'administrateur ajoute manuellement le logo de la société au lieu d'utiliser la récupération automatique.
-\item L'administrateur associe le client à une société existante déjà enregistrée.
-\item L'administrateur saisit manuellement l'adresse de la société lorsque la suggestion automatique du géocodage ne correspond pas.
-\item L'administrateur complète plus tard certaines informations facultatives du client.
-\end{itemize} \\\hline
-\textbf{Scénarios d'exception} & 
-\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-\item Un champ obligatoire est vide ou contient une valeur invalide.
-\item L'adresse e-mail saisie est déjà utilisée par un autre utilisateur.
-\item Le système rencontre une erreur lors de l'enregistrement du client.
-\item L'administrateur tente de quitter le formulaire alors que des données ont déjà été saisies.
-\end{itemize} \\\hline
-\end{tabular}
-\end{table}
-\vspace{-0.8cm}
-
-% \subsubsection{Description textuelle de cas d'utilisation « Modifier client »}
+% \subsubsection{Description textuelle de cas d'utilisation « Retirer permission d'un rôle »}
 
 % \begin{table}[H]
 % \centering
 % \footnotesize
 % \renewcommand{\arraystretch}{1}
-% \caption{Description textuelle « Modifier client »}
+% \caption{Description textuelle « Retirer permission rôle »}
 % \begin{tabular}{|p{4.5cm}|p{12cm}|}
 % \hline
-% \textbf{Nom du cas d'utilisation} & Modifier client \\
+% \textbf{Nom du cas d'utilisation} & Retirer permission rôle \\
 % \hline
 % \textbf{Acteurs} & Administrateur \\
 % \hline
-% \textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de modifier les clients\newline Liste des clients affichée\\
+% \textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de retirer des permissions aux rôles\newline La permission est attribuée au rôle\\
 % \hline
-% \textbf{Postconditions} & Le client est modifié\\
+% \textbf{Postconditions} & La permission est retirée du rôle\\
 % \hline
-% \textbf{Scénario principal} & \begin{minipage}[t]{\linewidth}
+% \textbf{Scénario principal} & 
+% \begin{minipage}[t]{\linewidth}
 % \begin{enumerate}[label=\arabic*., leftmargin=*]
-% \item L'administrateur consulte la fiche du client choisi.                 
-% \item L'administrateur clique sur le bouton (Modifier).                                                       
-% \item Le système affiche le formulaire de modification.  
-% \item L'administrateur modifie les informations souhaitées. 
-% \item L'administrateur clique sur le bouton (Enregistrer).
-% \item Le système met à jour les informations du client.
+% \item L'administrateur consulte un rôle spécifique.
+% \item L'administrateur clique sur l'onglet "Permissions".
+% \item Le système affiche toutes les permissions organisées par catégorie avec des cases à cocher.
+% \item L'administrateur décoche les permissions à retirer.
+% \item L'administrateur clique sur "Enregistrer".
+% \item Le système retire les permissions décochées.
 % \item Le système affiche le message de succès.
 % \end{enumerate}
 % \vspace{2pt}
 % \end{minipage} \\
 % \hline
-% \textbf{Scénarios d'exception} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$] 
-% \item L'administrateur saisit un e-mail déjà utilisé par un autre utilisateur.
-% \item L'administrateur tente de modifier un client ayant des contrats actifs sans validation.
-% \end{itemize} \\
+% \textbf{Scénarios alternatifs} & L'administrateur utilise la matrice des permissions pour décocher les cases correspondant aux permissions à retirer pour plusieurs rôles simultanément. \\
+% \hline
+% \textbf{Scénarios d'exception} & La permission n'est pas attribuée à ce rôle. \\
 % \hline
 % \end{tabular}
 % \end{table}
-% \vspace{-0.8cm}
-
-\subsubsection{Description textuelle de cas d'utilisation « Consulter profil client »}
-
-\begin{table}[H]
-\centering
-\footnotesize
-\renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Consulter profil client »}
-\begin{tabular}{|p{4.5cm}|p{12cm}|}
-\hline
-\textbf{Nom du cas d'utilisation} & Consulter profil client \\
-\hline
-\textbf{Acteurs} & Administrateur, Chef de projet, Client (son propre profil) \\
-\hline
-\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de consulter les profils clients ou consulte son propre profil\newline Pour Chef de projet : le client doit être associé à au moins un de ses projets\\
-\hline
-\textbf{Postconditions} & Profil client consulté\\
-\hline
-\textbf{Scénario principal} & 
-\begin{minipage}[t]{\linewidth}
-\begin{enumerate}[label=\arabic*., leftmargin=*]
-\item L'utilisateur accède au profil du client.
-\item Le système affiche les informations personnelles et société.
-\item Le système affiche les statistiques et éléments accessibles selon le rôle de l'utilisateur.
-\item L'utilisateur peut naviguer vers les éléments disponibles (projets, demandes, tickets, documents).
-\end{enumerate}
-\vspace{2pt}
-\end{minipage} \\
-\hline
-\textbf{Restrictions d'accès} & 
-\begin{minipage}[t]{\linewidth}
-\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-\item Administrateur : accès complet (contrats, projets, demandes, tickets, notes privées, documents).
-\item Chef de projet : accès limité aux projets où il est assigné et aux demandes/tickets liés à ces projets uniquement.
-\item Client : accès à son propre profil, ses projets, demandes et tickets.
-\end{itemize}
-\vspace{2pt}
-\end{minipage} \\
-\hline
-\textbf{Scénarios alternatifs} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-\item L'utilisateur exporte les informations du profil en PDF.
-\item L'utilisateur clique sur "Contacter" pour envoyer un e-mail ou un message via la messagerie interne de l'application.
-\item L'utilisateur clique sur l'adresse de la société pour visualiser sa localisation sur une carte interactive.
-\item L'administrateur ajoute une note privée sur le client.
-\end{itemize} \\
-\hline
-\end{tabular}
-\end{table}
-\vspace{-0.8cm}
-
-\subsubsection{Description textuelle de cas d'utilisation « Désactiver client »}
-
-\begin{table}[H]
-\centering
-\footnotesize
-\renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Désactiver un client »}
-\begin{tabular}{|p{4.5cm}|p{12cm}|}
-\hline
-\textbf{Nom du cas d'utilisation} & Désactiver un client \\
-\hline
-\textbf{Acteurs} & Administrateur \\
-\hline
-\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de désactiver les clients\newline Liste des clients affichée\newline Le client à désactiver doit être actuellement Actif\\
-\hline
-\textbf{Postconditions} & Le compte client est désactivé\\
-\hline
-\textbf{Scénario principal} & \begin{minipage}[t]{\linewidth}
-\begin{enumerate}[label=\arabic*., leftmargin=*]
-\item L'administrateur choisit un client dans la liste.                 
-\item L'administrateur clique sur l'action (Désactiver).                                                     
-\item Le système vérifie si le client possède des contrats actifs, des demandes en cours ou des tickets actifs.  
-\item Le système affiche une boîte de dialogue de confirmation avec les détails des contrats, demandes et tickets actifs. 
-\item L'administrateur confirme l'action.
-\item Le système met à jour le statut du client.
-\item Le système révoque les sessions actives (suppression des refresh tokens).
-\item Le système envoie un e-mail automatique au contact principal du client pour l'informer de la désactivation.
-\item Le système affiche le message de succès.
-\end{enumerate}
-\vspace{2pt}
-\end{minipage} \\
-\hline
-\textbf{Scénarios d'exception} & \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$] 
-\item L'administrateur tente de désactiver un client qui possède des contrats actifs sans les clôturer.
-\item L'administrateur tente de désactiver un client ayant des demandes en attente de traitement.
-\item L'administrateur tente de désactiver un client ayant des tickets actifs non résolus.
-\end{itemize} \\
-\hline
-\textbf{Scénarios alternatifs} & L'administrateur clôture les contrats, traite les demandes et résout les tickets avant la désactivation. \\
-\hline
-\end{tabular}
-\end{table}
-\vspace{-0.8cm}
-
-\subsubsection{Description textuelle de cas d'utilisation « Réactiver client »}
-
-\begin{table}[H]
-\centering
-\footnotesize
-\renewcommand{\arraystretch}{1}
-\caption{Description textuelle « Réactiver un client »}
-\begin{tabular}{|p{4.5cm}|p{12cm}|}
-\hline
-\textbf{Nom du cas d'utilisation} & Réactiver un client \\
-\hline
-\textbf{Acteurs} & Administrateur \\
-\hline
-\textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de réactiver les clients\newline Le compte client doit être désactivé\\
-\hline
-\textbf{Postconditions} & Le compte client est réactivé\\
-\hline
-\textbf{Scénario principal} & \begin{minipage}[t]{\linewidth}
-\begin{enumerate}[label=\arabic*., leftmargin=*]
-\item L'administrateur consulte la liste des clients désactivés.
-\item L'administrateur sélectionne un client à réactiver.
-\item L'administrateur clique sur l'action (Réactiver le compte).
-\item Le système affiche une confirmation.
-\item L'administrateur confirme l'action.
-\item Le système réactive le compte.
-\item Le système envoie un e-mail au client.
-\item Le système affiche le message de succès.
-\end{enumerate}
-\vspace{2pt}
-\end{minipage} \\
-\hline
-\textbf{Scénarios d'exception} & Le client est déjà actif. \\
-\hline
-\end{tabular}
-\end{table}
-\vspace{-0.8cm}
-
-\newpage
+% \vspace{-0.3cm}
 
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 3 : CONCEPTION
@@ -1235,7 +969,7 @@ Un message de confirmation est affiché. \\\hline
 
 \begin{figure}[H]
         \centering
-        %\includegraphics[width=0.7\textwidth,keepaspectratio]{}
+        \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/diag_seq_auth.png}
         \caption{Diagramme de séquence du cas d'utilisation « S'authentifier »}
         \label{fig:auth_sequence}
 \end{figure}
@@ -1268,8 +1002,31 @@ Un message de confirmation est affiché. \\\hline
 \end{figure}
 
 \section{Schéma relationnel}
-\newpage
 
+\textbf{Utilisateur} (\underline{idUtilisateur}, nom, prenom, email,
+  motDePasse, estActif, doitChangerMotDePasse, tentativesConnexionEchouees,
+  compteVerrouilleJusquA, photoProfil, dateCreation)
+\newline
+\textbf{ProfilEmploye} (\underline{idProfilE}, \textbf{\#idUtilisateur},
+  matricule, poste, specialisation, disponibilite, dateEmbauche,
+  niveauSeniorite)
+\newline
+\textbf{ProfilClient} (\underline{idProfilC}, \textbf{\#idUtilisateur},
+  nomSociete, adresseSociete, secteurActivite, telSociete, logo)
+\newline
+\textbf{Role} (\underline{idRole}, nomRole, description, roleSysteme,
+  estArchive, dateCreation)
+\newline
+\textbf{Permission} (\underline{idPermission}, codePermission, description)
+\newline
+\textbf{UtilisateurRole} (\underline{idUtilisateurRole},
+  \textbf{\#idUtilisateur}, \textbf{\#idRole}, dateAttribution)
+\newline
+\textbf{RolePermission} (\underline{idRolePermission}, \textbf{\#idRole},
+  \textbf{\#idPermission})
+\newline
+\textbf{DemandeInscriptionOAuth} (\underline{idDemande}, email, prenom, nom,
+  fournisseur, photoProfil, role, statut, dateCreation, motifRefus)
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 4 : RÉALISATION
 % ─────────────────────────────────────────────────────────────────────────────
@@ -1282,8 +1039,62 @@ Après avoir analysé les besoins et conçu les solutions, nous passons maintena
 
 
 \subsection{Description des interfaces}
+Cette section présente les principales interfaces utilisateur développées lors du premier sprint.
 
-\newpage
+\subsubsection{Interface de connexion}
+\begin{figure}[H]
+\centering
+%\includegraphics[width=0.75\textwidth,keepaspectratio]{Images/interface_connexion.png}
+\caption{Interface de connexion — authentification classique et OAuth}
+\label{fig:interface_connexion}
+\end{figure}
+La page de connexion propose deux modes d'authentification : le formulaire
+classique (e-mail + mot de passe) et les boutons OAuth (Google, GitHub).
+En cas de compte inexistant, le visiteur est redirigé vers un flux de
+demande d'inscription.
+
+\subsubsection{Interface de réinitialisation du mot de passe}
+\begin{figure}[H]
+\centering
+%\includegraphics[width=0.75\textwidth,keepaspectratio]{Images/interface_reset_password.png}
+\caption{Interface de réinitialisation du mot de passe}
+\label{fig:interface_reset}
+\end{figure}
+Cette interface permet à l'utilisateur de saisir son adresse e-mail pour
+recevoir un lien de réinitialisation valable 1 heure.
+
+\subsubsection{Interface de gestion des utilisateurs}
+\begin{figure}[H]
+\centering
+%\includegraphics[width=0.85\textwidth,keepaspectratio]{Images/interface_users.png}
+\caption{Interface d'administration — liste des utilisateurs}
+\label{fig:interface_users}
+\end{figure}
+L'administrateur dispose d'une vue en grille ou en liste, avec filtres par
+statut et par rôle, barre de recherche et actions rapides (modifier,
+désactiver, voir le profil).
+
+\subsubsection{Interface de gestion des rôles et permissions}
+\begin{figure}[H]
+\centering
+%\includegraphics[width=0.85\textwidth,keepaspectratio]{Images/interface_roles_permissions.png}
+\caption{Interface d'administration — gestion des rôles et permissions}
+\label{fig:interface_roles}
+\end{figure}
+La matrice des permissions affiche les rôles en colonnes et les catégories
+de permissions en lignes, avec des cases à cocher pour une attribution
+visuelle et intuitive.
+
+\subsubsection{Interface de gestion des demandes d'inscription OAuth}
+\begin{figure}[H]
+\centering
+%\includegraphics[width=0.85\textwidth,keepaspectratio]{Images/interface_demandes_oauth.png}
+\caption{Interface d'administration — demandes d'inscription OAuth}
+\label{fig:interface_oauth}
+\end{figure}
+L'administrateur consulte les demandes en attente, visualise les
+informations récupérées via OAuth et peut approuver ou refuser chaque
+demande avec un motif de refus facultatif.
 
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 5 : TESTS
@@ -1292,205 +1103,361 @@ Après avoir analysé les besoins et conçu les solutions, nous passons maintena
 La phase de test est essentielle pour garantir la qualité et la fiabilité de la solution. Elle valide que chaque fonctionnalité répond aux exigences métier et identifie les anomalies avant la mise en production. Dans ce sprint, nous avons testé les mécanismes d'authentification, la gestion des utilisateurs et le contrôle d'accès (RBAC) pour assurer la robustesse de nos implémentations.
 
 \subsection{Stratégie de tests adoptée}
-Afin de garantir la qualité et la fiabilité de l'application, nous avons adopté une stratégie de tests structurée, reposant sur une répartition des vérifications à plusieurs niveaux. Cette approche permet de concilier la couverture fonctionnelle avec un temps d'exécution raisonnable, tout en facilitant l'identification rapide des anomalies.
+Afin de garantir la qualité et la fiabilité de l'application, nous avons adopté une stratégie de tests structurée, reposant sur une répartition des vérifications à plusieurs niveaux. Cette approche permet d'assurer une bonne couverture fonctionnelle avec un temps d'exécution raisonnable, tout en facilitant l'identification rapide des anomalies.
 
 Les tests ont été organisés par module fonctionnel afin d'assurer une meilleure traçabilité des vérifications effectuées. Ainsi, les tests unitaires couvrent les règles métier les plus fines, les tests d'intégration valident les échanges avec l'API, et les tests End-to-End reproduisent les scénarios complets d'utilisation de l'application.
 
 La pyramide de tests se compose donc de trois niveaux complémentaires :
 
+
 \subsubsection{Tests unitaires}
-Nous avons réalisé des tests unitaires via Vitest pour tester les règles métier et les validations de données. Ces tests s'exécutent rapidement, ce qui permet de détecter les erreurs dès le développement.
+\label{sec:tests_unitaires}
 
-\paragraph{Test unitaire - Authentification}
-Cette suite de tests vise à valider le bon fonctionnement de la méthode \textbf{login()}, qui gère l'authentification classique des utilisateurs avec validation des identifiants, génération des jetons et gestion des tentatives échouées.
+Les tests unitaires ont été réalisés à l'aide du framework \textbf{Vitest},
+en isolant chaque service du reste de l'application grâce à des mocks
+Prisma. Cette approche garantit l'indépendance des tests et permet une
+détection précoce des anomalies dès la phase de développement. Trois
+modules prioritaires ont été couverts : l'authentification, le contrôle
+d'accès basé sur les rôles (RBAC) et la gestion des clients.
 
-En utilisant Vitest, nous avons isolé ces tests du reste de l'application afin d'assurer leur indépendance. L'objectif est de s'assurer que le système valide correctement les identifiants, gère le statut du compte et applique les restrictions de sécurité en cas de tentatives répétées.
-\newline
-Nous avons couvert les cas de test suivants :
-\begin{itemize}
+\vspace{4pt}
+\noindent\textbf{Bilan : 45 tests exécutés — 45 réussis — 0 échec.}
+\vspace{6pt}
 
-\item[$\bullet$] Cas où un utilisateur actif se connecte avec des identifiants valides : les jetons d'accès et de rafraîchissement sont générés correctement.
-\item[$\bullet$] Cas où l'utilisateur saisit un identifiant qui n'existe pas dans la base de données : la connexion est rejetée.
-\item[$\bullet$] Cas où l'utilisateur saisit un mot de passe invalide : la connexion est rejetée.
-\item[$\bullet$] Cas où l'utilisateur échoue l'authentification 3 fois consécutives : le compte est verrouillé automatiquement.
-\item[$\bullet$] Cas où l'utilisateur tente de se connecter avec un compte déjà verrouillé : la connexion est rejetée.
-\item[$\bullet$] Cas où l'utilisateur tente de se connecter avec un compte désactivé : la connexion est rejetée.
+\begin{itemize}[leftmargin=0pt]
+
+% ── 1. Authentification ───────────────────────────────────────────────────────
+\item[$\square$] \textbf{Module Authentification}
+\hfill\textit{Méthodes : \texttt{login()} ·
+\texttt{demanderReinitialisationMotDePasse()} ·
+\texttt{reinitialiserMotDePasse()}}
+
+\noindent Cette suite valide le processus d'authentification classique,
+la génération des jetons JWT et le mécanisme de réinitialisation du mot
+de passe. Les cas suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item Un utilisateur actif fournit des identifiants valides : les jetons
+    \texttt{accessToken} et \texttt{refreshToken} sont générés
+    correctement.
+  \item L'adresse e-mail fournie n'existe pas en base de données : la
+    connexion est rejetée avec le code \texttt{401 Unauthorized}.
+  \item Le mot de passe fourni est incorrect : la connexion est rejetée
+    avec le code \texttt{401 Unauthorized}.
+  \item L'utilisateur échoue l'authentification \textbf{3 fois
+    consécutives} : le compte est verrouillé automatiquement pendant
+    \textbf{1 minute} (\texttt{maxLoginAttempts = 3}).
+  \item L'utilisateur tente de se connecter alors que son compte est
+    verrouillé : la connexion est rejetée avec un message explicite.
+  \item Le compte de l'utilisateur est désactivé : la connexion est
+    rejetée avec le code \texttt{401 Unauthorized}.
+  \item L'adresse e-mail fournie pour la réinitialisation est inexistante :
+    une \texttt{NotFoundException} est levée.
+  \item Le token de réinitialisation a été généré depuis plus d'une heure :
+    une \texttt{BadRequestException} est levée.
 \end{itemize}
-\begin{figure}[H]
-        \centering
-        \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/test-unitaire-auth.png}
-        \caption{Test unitaire d'authentification}
-    \end{figure}
 
-\paragraph{Test unitaire - Changer mot de passe}
-Cette suite de tests vise à valider le bon fonctionnement des méthodes \textbf{demanderReinitialisationMotDePasse()} et \textbf{reinitialiserMotDePasse()}, qui gèrent le processus de réinitialisation du mot de passe utilisateur.
+% ── 2. RBAC ───────────────────────────────────────────────────────────────────
+\item[$\square$] \textbf{Module Gestion des rôles et permissions (RBAC)}
+\hfill\textit{Méthodes : \texttt{creerPermission()} ·
+\texttt{attribuerRoleUtilisateur()} ·
+\texttt{obtenirRolesEtPermissions()}}
 
-En utilisant Vitest, nous avons isolé ces tests du reste de l'application afin d'assurer leur indépendance. L'objectif est de s'assurer que ces méthodes traitent correctement les cas d'erreur liés à la sécurité du processus de réinitialisation.
-\newline
-Nous avons couvert les deux cas de test suivants :
-\begin{itemize}
+\noindent Cette suite valide les règles d'exclusivité des rôles, l'unicité
+des permissions et l'intégrité des références. Les cas suivants ont été
+couverts :
 
-\item[$\bullet$] Cas où l'e-mail fourni n'existe pas dans la base de données.
-\item[$\bullet$] Cas où le token de réinitialisation est invalide car il a été généré depuis plus d'une heure.
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item Une permission est créée avec un code unique : elle est enregistrée
+    correctement en base de données.
+  \item Une permission est créée avec un code déjà existant : une
+    \texttt{BadRequestException} est levée.
+  \item Les rôles et permissions d'un utilisateur sont récupérés : la liste
+    est retournée sans doublons.
+  \item Un rôle est attribué à un utilisateur sans rôle existant :
+    l'attribution est réussie.
+  \item L'utilisateur cible est inexistant : une \texttt{NotFoundException}
+    est levée.
+  \item La règle d'exclusivité \texttt{CLIENT} et \texttt{CHEF\_PROJET}
+    est violée : une \texttt{BadRequestException} est levée.
+  \item La règle d'exclusivité \texttt{CLIENT} et \texttt{DEVELOPPEUR}
+    est violée : une \texttt{BadRequestException} est levée.
+  \item La règle d'exclusivité \texttt{CLIENT} et \texttt{ADMIN} est
+    violée : une \texttt{BadRequestException} est levée.
+  \item La combinaison \texttt{ADMIN} et \texttt{CHEF\_PROJET} est
+    soumise : l'attribution est \textbf{autorisée} et réussie.
+  \item Le rôle est déjà attribué à l'utilisateur : une
+    \texttt{BadRequestException} est levée (doublon détecté).
+  \item Le rôle à attribuer est inexistant : une \texttt{NotFoundException}
+    est levée.
 \end{itemize}
-\begin{figure}[H]
-        \centering
-        \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/Test_unitaire changer mot de passe.png}
-        \caption{Test unitaire de changer mot de passe}
-    \end{figure}
 
+% ── 3. Gestion des clients ────────────────────────────────────────────────────
+\item[$\square$] \textbf{Module Gestion des clients}
+\hfill\textit{Méthodes : \texttt{mettreAJourClient()} ·
+\texttt{desactiverClient()} · \texttt{reactiverClient()} ·
+\texttt{telechargerLogo()} · \texttt{supprimerLogo()}}
 
-\paragraph{Test unitaire - Demande d'accès OAuth}
-Cette suite de tests vise à valider le bon fonctionnement de la méthode \textbf{handleOAuthRegistrationRequest()}, qui gère la création et la mise à jour des demandes d'inscription via OAuth, ainsi que la détection des doublons et la gestion des erreurs.
+\noindent Cette suite valide les opérations de gestion des clients,
+la gestion des fichiers logo et le service de géocodage. Les cas suivants
+ont été couverts :
 
-En utilisant Vitest, nous avons isolé ces tests du reste de l'application afin d'assurer leur indépendance. L'objectif est de s'assurer que le système crée correctement les demandes, détecte les demandes existantes, valide la disponibilité de l'email et gère les cas d'erreur liés à l'intégration OAuth.
-\newline
-Nous avons couvert les cas de test suivants :
-\begin{itemize}
-
-\item[$\bullet$] Cas où une nouvelle demande d'inscription OAuth est créée avec succès et enregistrée en attente.
-\item[$\bullet$] Cas où une demande existante pour le même email et fournisseur OAuth est détectée : la demande est conservée sans doublon.
-\item[$\bullet$] Cas où la notification aux administrateurs échoue : la demande est rejetée et un message d'erreur est généré.
-\item[$\bullet$] Cas où le fournisseur OAuth ne fournit pas l'adresse e-mail : la demande est rejetée.
-\item[$\bullet$] Cas où la valeur de l'email est null : la demande est rejetée.
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item Les informations d'un client existant sont mises à jour : le
+    résultat validé est retourné correctement.
+  \item La mise à jour est effectuée sur un client inexistant : une
+    \texttt{NotFoundException} est levée.
+  \item Un client actif est désactivé : l'opération est réalisée avec
+    succès.
+  \item Un client désactivé est réactivé : l'opération est réalisée avec
+    succès.
+  \item La réactivation est effectuée sur un client inexistant : une
+    \texttt{NotFoundException} est levée.
+  \item Un logo est téléversé pour un client existant : le fichier est
+    traité et stocké correctement.
+  \item Le logo d'un client est supprimé : un message de succès est
+    retourné.
+  \item Le téléversement ou la suppression du logo est effectué sur un
+    client inexistant : une \texttt{NotFoundException} est levée.
+  \item Le service de géocodage est interrogé avec une adresse valide
+    présente en cache : l'adresse est retournée correctement.
+  \item Le service de géocodage est interrogé avec une requête trop courte :
+    un tableau vide est retourné.
+  \item Les résultats du service de géocodage sont mis en cache
+    correctement après la première requête.
+  \item Les résultats filtrés du géocodage éliminent les doublons de type
+    pays.
 \end{itemize}
-\begin{figure}[H]
-        \centering
-        \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/test-unitaire-demandeOauth.png}
-        \caption{Test unitaire de demande d'accès OAuth}
-    \end{figure}
 
-\paragraph{Test unitaire - Gestion client}
-Cette suite de tests vise à valider le bon fonctionnement des méthodes de gestion des clients, notamment \textbf{mettreAJourClient()}, \textbf{desactiverClient()}, \textbf{reactiverClient()}, \textbf{telechargerLogo()} et \textbf{supprimerLogo()}.
-
-En utilisant Vitest, nous avons isolé ces tests du reste de l'application afin d'assurer leur indépendance. L'objectif est de s'assurer que ces méthodes traitent correctement les validations, la gestion des fichiers, les changements de statut et les cas d'erreur liés à la gestion complète des clients. Un total de 15 tests unitaires a été exécuté avec succès.
-\newline
-Nous avons couvert les cas de test suivants :
-\begin{itemize}
-
-\item[$\bullet$] Cas où les informations d'un client sont mises à jour correctement et retournent le résultat validé.
-\item[$\bullet$] Cas où la mise à jour échoue si le client n'existe pas : une NotFoundException est levée.
-\item[$\bullet$] Cas où un client actif est désactivé avec succès.
-\item[$\bullet$] Cas où un client désactivé est réactivé correctement.
-\item[$\bullet$] Cas où la réactivation échoue si le client inexistant : une NotFoundException est levée.
-\item[$\bullet$] Cas où un logo est téléchargé et traité correctement avec succès.
-\item[$\bullet$] Cas où le logo d'un client est supprimé et retourne un message de succès.
-\item[$\bullet$] Cas où l'upload du logo échoue si le client n'existe pas : une NotFoundException est levée.
-\item[$\bullet$] Cas où la suppression du logo échoue si le client n'existe pas : une NotFoundException est levée.
-\item[$\bullet$] Cas où le service de géocodage retourne une adresse valide en cache avec succès.
-\item[$\bullet$] Cas où un tableau vide est retourné pour une requête très courte.
-\item[$\bullet$] Cas où les résultats de recherche sont correctement mis en cache via le service de géocodage.
-\item[$\bullet$] Cas où les résultats filtrés éliminent les doublons (pays seulement).
 \end{itemize}
+
 \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/test unit-ClientTestUnitaire.png}
-        \caption{Test unitaire de gestion client}
-    \end{figure}
+\centering
+\begin{minipage}{0.48\textwidth}
+  \centering
+  \includegraphics[width=\textwidth,keepaspectratio]
+    {Images/test-unitaire-auth.png}
+  \caption*{\small Auth}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+  \centering
+  \includegraphics[width=\textwidth,keepaspectratio]
+    {Images/test-sprint1-moduleRole+Permession.png}
+  \caption*{\small RBAC}
+\end{minipage}
+\caption{Résultats des tests unitaires — Auth et RBAC}
+\label{fig:test_unitaires}
+\end{figure}
 
-\paragraph{Test unitaire - Gestion des rôles et permissions}
-Cette suite de tests vise à valider le bon fonctionnement des méthodes \textbf{creerPermission()}, \textbf{attribuerRoleUtilisateur()} et \textbf{obtenirRolesEtPermissions()}, qui gèrent le système de contrôle d'accès basé sur les rôles (RBAC).
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.6\textwidth}
+  \centering
+  \includegraphics[width=\textwidth,keepaspectratio]
+    {Images/test unit-ClientTestUnitaire.png}
+  \caption*{\small Gestion des clients}
+\end{minipage}
+\caption{Résultats des tests unitaires — Gestion des clients}
+\end{figure}
 
-En utilisant Vitest, nous avons isolé ces tests du reste de l'application afin d'assurer leur indépendance. L'objectif est de s'assurer que ces méthodes respectent les règles d'exclusivité des rôles, valident l'unicité des permissions, gèrent l'intégrité des références utilisateur et traitent correctement les cas d'erreur. Un total de 24 tests unitaires a été exécuté avec succès (11 pour le module rôles-permissions + 13 pour l'attribution de rôles).
-\newline
-Nous avons couvert les cas de test suivants :
-\begin{itemize}
+% \subsubsection{Tests de sécurité}
+% \label{sec:tests_securite}
 
-\item[$\bullet$] Cas où une permission est créée avec un code de permission unique et enregistrée correctement.
-\item[$\bullet$] Cas où la création échoue si la permission avec le même code existe déjà : une BadRequestException est levée.
-\item[$\bullet$] Cas où la liste des rôles et permissions d'un utilisateur est retournée correctement sans doublons.
-\item[$\bullet$] Cas où un rôle est attribué à un utilisateur sans rôles existants : l'attribution est réussie.
-\item[$\bullet$] Cas où l'attribution échoue si l'utilisateur n'existe pas : une NotFoundException est levée.
-\item[$\bullet$] Cas où l'attribution échoue si la règle d'exclusivité CLIENT + CHEF\_PROJET est violée : une BadRequestException est levée.
-\item[$\bullet$] Cas où l'attribution échoue si la règle d'exclusivité CLIENT + DEVELOPPEUR est violée.
-\item[$\bullet$] Cas où l'attribution échoue si la règle d'exclusivité CHEF\_PROJET vers utilisateur avec ADMIN est violée.
-\item[$\bullet$] Cas où l'attribution réussit si les rôles ADMIN + CHEF\_PROJET sont compatibles.
-\item[$\bullet$] Cas où l'attribution d'un rôle déjà assigné à un utilisateur échoue : une BadRequestException (doublon) est levée.
-\item[$\bullet$] Cas où l'attribution échoue si le rôle n'existe pas : une NotFoundException est levée.
-\item[$\bullet$] Cas où un utilisateur avec zéro rôle est généré correctement sans erreur.
-\item[$\bullet$] Cas où les erreurs Prisma (ex. P2022) sont traitées et relancées correctement.
+% Ces tests valident que les mécanismes de protection résistent aux accès
+% non autorisés et aux tentatives d'attaque. Ils sont effectués via
+% \textbf{Swagger} en combinaison avec les tests unitaires existants.
+
+% \vspace{4pt}
+% \noindent\textbf{4 tests exécutés — 4 réussis — 0 échec.}
+% \vspace{6pt}
+
+% \begin{itemize}[leftmargin=0pt]
+
+% \item[$\square$] \textbf{Contrôle d'accès aux endpoints protégés}
+% \hfill\textit{Guard \texttt{JwtAuthGuard} · \texttt{PermissionsGuard}}
+
+% \begin{itemize}[label=$\bullet$, nosep, itemsep=1pt]
+%   \item \texttt{GET /api/auth/me} sans token Bearer →
+%     \textbf{401 Unauthorized}.
+%   \item \texttt{GET /api/admin/users} avec token CLIENT →
+%     \textbf{403 Forbidden}
+%     (permission \texttt{users.read.all} absente).
+%   \item \texttt{POST /api/admin/roles} avec token DEVELOPPEUR →
+%     \textbf{403 Forbidden}
+%     (permission \texttt{roles.create} absente).
+%   \item Token JWT expiré (après 15 min) →
+%     \textbf{401 Unauthorized}, rafraîchissement automatique déclenché
+%     côté frontend (intercepteur Axios).
+% \end{itemize}
+
+% \vspace{6pt}
+% \item[$\square$] \textbf{Protection contre le bruteforce}
+% \hfill\textit{\texttt{maxLoginAttempts = 3} ·
+% \texttt{lockDurationMs = 60\,000 ms}}
+
+% \begin{itemize}[label=$\bullet$, nosep, itemsep=1pt]
+%   \item \textbf{3 tentatives échouées} consécutives → champ
+%     \texttt{compteVerrouilleJusquA} mis à jour en base, connexion
+%     bloquée \textbf{1 minute}.
+%   \item Tentative sur compte verrouillé avant expiration → rejetée
+%     immédiatement, sans vérification du mot de passe.
+% \end{itemize}
+
+% \end{itemize}
+
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=0.72\textwidth,keepaspectratio]
+%   {Images/test-securite-acces.png}
+% \caption{Tests de sécurité — Contrôle d'accès et protection bruteforce
+%   via Swagger}
+% \label{fig:test_securite}
+% \end{figure}
+
+\subsubsection{Tests d'intégration}
+\label{sec:tests_integration}
+
+Les tests d'intégration ont pour objectif de valider les échanges entre
+les différentes couches de l'application (contrôleur, service et base de
+données) en testant les endpoints REST dans leur ensemble. Ces tests sont
+effectués via \textbf{Swagger UI} en soumettant des requêtes HTTP réelles
+contre le backend en cours d'exécution, ce qui permet de vérifier le
+comportement de l'API dans des conditions proches de la production.
+
+\vspace{4pt}
+\noindent\textbf{Bilan : 5 tests exécutés — 5 réussis — 0 échec.}
+\vspace{6pt}
+
+\begin{itemize}[leftmargin=0pt]
+
+\item[$\square$] \textbf{Authentification}
+\hfill\textit{Endpoint : \texttt{POST /api/auth/login}}
+
+\noindent Cette suite valide le comportement complet de l'endpoint de
+connexion, notamment le retour des jetons d'authentification, des rôles,
+des permissions associées et la gestion des codes d'erreur HTTP selon les
+différents cas d'entrée. Les cas suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item Un utilisateur actif de rôle \texttt{ADMIN} fournit des
+    identifiants valides : l'endpoint retourne le code \textbf{200 OK}
+    accompagné des champs \texttt{accessToken}, \texttt{refreshToken},
+    des données de l'utilisateur, de ses rôles et de la liste complète
+    de ses permissions.
+  \item L'adresse e-mail fournie n'existe pas en base de données :
+    l'endpoint retourne le code \textbf{401 Unauthorized}.
+  \item Le mot de passe fourni est incorrect : l'endpoint retourne le
+    code \textbf{401 Unauthorized}.
+  \item Les données soumises sont invalides (adresse e-mail mal formatée
+    ou champ obligatoire vide) : l'endpoint retourne le code
+    \textbf{400 Bad Request} accompagné d'un message de validation
+    généré par \texttt{class-validator}.
+  \item Le compte de l'utilisateur est désactivé
+    (\texttt{estActif = false}) : l'endpoint retourne le code
+    \textbf{401 Unauthorized} avec le message
+    « Ce compte est désactivé ».
 \end{itemize}
-\begin{figure}[H]
-        \centering
-        \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/test-sprint1-moduleRole+Permession.png}
-        \caption{Test unitaire de gestion des rôles et permissions}
-    \end{figure}
 
-\subsubsection{Tests d'intégration manuels de l'API}
-Cette phase d'intégration vise à valider le bon fonctionnement des endpoints d'authentification et de gestion du profil, en testant les échanges avec l'API à un niveau intermédiaire entre les tests unitaires et les tests End-to-End. Les tests sont effectués via Swagger pour simuler les requêtes réelles.
-
-\paragraph{Intégration - Authentification (endpoint POST /api/auth/login)}
-Cette suite de tests vise à valider le bon fonctionnement de l'endpoint \textbf{POST /api/auth/login}, qui traite l'authentification des utilisateurs et retourne les informations complètes incluant les jetons, rôles et permissions.
-
-L'objectif est de s'assurer que l'endpoint valide correctement les identifiants, retourne les données utilisateur avec les rôles et permissions associées, et gère correctement les erreurs d'authentification.
-\newline
-Nous avons couvert les cas de test suivants :
-\begin{itemize}
-
-\item[$\bullet$] Cas où un utilisateur actif se connecte avec un email et un mot de passe valides : l'endpoint retourne un code 200 avec succès, les données utilisateur, les rôles (ex. ADMIN) et l'ensemble des permissions.
-\item[$\bullet$] Cas où l'utilisateur saisit un email inexistant : l'endpoint retourne une erreur 401 (Unauthorized).
-\item[$\bullet$] Cas où l'utilisateur saisit un mot de passe invalide : l'endpoint retourne une erreur 401 (Unauthorized).
-\item[$\bullet$] Cas où l'utilisateur envoie des données invalides (email mal formaté, champ vide) : l'endpoint retourne une erreur 400 (Bad Request) avec un message d'erreur de validation.
-\item[$\bullet$] Cas où le compte utilisateur est désactivé : l'endpoint retourne une erreur appropriée empêchant la connexion.
 \end{itemize}
+
 \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.85\textwidth,keepaspectratio]{Images/test-interg-login.png}
-        \caption{Test d'intégration : endpoint POST /api/auth/login}
-    \end{figure}
+\centering
+\includegraphics[width=0.60\textwidth,keepaspectratio]
+  {Images/test-interg-login.png}
+\caption{Test d'intégration — endpoint \texttt{POST /api/auth/login}
+  via Swagger}
+\label{fig:test_integration}
+\end{figure}
 
-\paragraph{Intégration - Gestion du profil (endpoint PUT /api/profil)}
-Cette suite de tests vise à valider le bon fonctionnement de la méthode \textbf{modifierProfil()} exposée via l'endpoint \textbf{PUT /api/profil}, qui permet à un utilisateur de mettre à jour les informations de son profil.
-
-Nous avons couvert le cas de test suivant :
-\begin{itemize}
-\item[$\bullet$] Cas où l'e-mail fourni dans la requête ne respecte pas le format attendu.
-\end{itemize}
-\begin{figure}[H]
-        \centering
-        \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/gestion profil Swagger.png}
-        \caption{Test de mise à jour du profil}
-    \end{figure}
-
-
+%─────────────────────────────────────────────────────────────────────────────
+\newpage
+%─────────────────────────────────────────────────────────────────────────────
 \subsubsection{Tests End-to-End}
+\label{sec:tests_e2e}
 
-\paragraph{Test End-to-End - Authentification}
-Cette suite de tests vise à valider le bon fonctionnement du processus de connexion, ainsi que l'intégration des fournisseurs OAuth. En utilisant Playwright, nous avons testé les parcours complets de connexion en simulant les actions réelles des visiteurs. L'objectif est de s'assurer que le système valide les données d'authentification, gère les erreurs correctement et supporte l'authentification via Google et GitHub.
+Les tests End-to-End ont pour objectif de simuler les parcours utilisateurs
+complets dans un navigateur réel piloté par \textbf{Playwright}. Ces tests
+s'exécutent en interaction avec le frontend Next.js, le backend NestJS et
+la base de données PostgreSQL, reproduisant ainsi les conditions réelles
+d'utilisation de la plateforme.
 
-Nous avons couvert les cas de test suivants :
+\vspace{4pt}
+\noindent\textbf{Bilan : 11 tests exécutés — 11 réussis — 0 échec.}
+\vspace{6pt}
 
-\begin{itemize}[label=$\bullet$]
-    \item Cas où la page de connexion s'affiche correctement en chargeant le formulaire de connexion.
-    \item Cas où le bouton de soumission reste désactivé lorsque les champs du formulaire sont vides ou partiellement remplis.
-    \item Cas où l'utilisateur se connecte avec un e-mail et un mot de passe valides : le flux complet aboutit à la redirection vers la page d'accueil.
-    \item Cas où l'utilisateur saisit un identifiant ou un mot de passe invalide : le système affiche un message d'erreur approprié.
-    \item Cas où l'utilisateur échoue l'authentification 5 fois consécutives : le système verrouille le compte temporairement.
-    \item Cas où l'utilisateur se déconnecte : le système supprime les jetons d'accès et redirige vers la page de connexion.
-    \item Cas où l'utilisateur se connecte avec succès via Google : le système récupère les données du profil et crée une session valide.
-    \item Cas où la connexion Google échoue : le système affiche un message d'erreur technique.
-    \item Cas où l'utilisateur se connecte avec succès via GitHub : le système récupère les données du profil et crée une session valide.
-    \item Cas où la connexion GitHub échoue : le système affiche un message d'erreur technique.
+\begin{itemize}[leftmargin=0pt]
+
+% ── 1. Authentification ───────────────────────────────────────────────────────
+\item[$\square$] \textbf{Authentification}
+\hfill\textit{10 scénarios : connexion classique, OAuth, déconnexion}
+
+\noindent Cette suite valide le flux complet d'authentification en
+simulant les actions réelles d'un utilisateur sur l'interface. Les cas
+suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item La page de connexion est chargée : le formulaire et les boutons
+    d'authentification OAuth sont affichés correctement.
+  \item Les champs du formulaire sont vides ou partiellement remplis :
+    le bouton de soumission reste désactivé.
+  \item L'utilisateur soumet des identifiants valides : le flux aboutit
+    à une redirection vers la page d'accueil et une session est créée.
+  \item L'utilisateur saisit un identifiant ou un mot de passe invalide :
+    un message d'erreur approprié est affiché sans redirection.
+  \item L'utilisateur échoue l'authentification \textbf{3 fois
+    consécutives} : le compte est verrouillé pendant \textbf{1 minute}
+    et un message d'information est affiché.
+  \item L'utilisateur se déconnecte : les jetons sont supprimés du
+    \texttt{localStorage} et l'utilisateur est redirigé vers la page
+    \texttt{/connexion}.
+  \item L'utilisateur s'authentifie via \textbf{Google} avec succès :
+    les données du profil sont récupérées et une session valide est
+    créée.
+  \item L'authentification via \textbf{Google} échoue : un message
+    d'erreur technique est affiché.
+  \item L'utilisateur s'authentifie via \textbf{GitHub} avec succès :
+    les données du profil sont récupérées et une session valide est
+    créée.
+  \item L'authentification via \textbf{GitHub} échoue : un message
+    d'erreur technique est affiché.
 \end{itemize}
 
 \begin{figure}[H]
-        \centering
-\includegraphics[width=0.7\textwidth,keepaspectratio]{Images/ExecDeTestCasesReussi-auth.png}
-        \caption{Test End-to-End de l'authentification via Playwright}
-    \end{figure}
-    
-\paragraph{Test End-to-End - Gestion des utilisateurs}
-Cette suite de tests vise à valider le bon fonctionnement du processus de désactivation et réactivation d'utilisateurs. En utilisant Playwright, nous avons testé les parcours complets de gestion du statut utilisateur en simulant les actions réelles d'un administrateur. L'objectif est de s'assurer que le système gère correctement les changements de statut et applique les restrictions d'accès appropriées.
+\centering
+\includegraphics[width=0.68\textwidth,keepaspectratio]
+  {Images/ExecDeTestCasesReussi-auth.png}
+\caption{Tests End-to-End — Authentification via Playwright}
+\label{fig:test_e2e_auth}
+\end{figure}
 
-Nous avons couvert le cas de test suivant :
+% ── 2. Désactivation utilisateur ─────────────────────────────────────────────
+\item[$\square$] \textbf{Gestion des utilisateurs}
+\hfill\textit{1 scénario : désactivation avec réassignation des tickets}
 
-\begin{itemize}[label=$\bullet$] 
-    \item Cas où l'administrateur tente de désactiver un utilisateur actif disposant de tickets/demandes en cours : le système détecte les 9 tickets actifs, affiche le modal de réassignation, procède à l'assignation de chaque ticket au premier développeur/chef de projet disponible, puis finalise la désactivation du compte après confirmation via le bouton « Réassigner et Désactiver ».
+\noindent Cette suite valide le flux complet de désactivation d'un
+utilisateur disposant de tickets actifs, en simulant les actions réelles
+d'un administrateur. Le cas suivant a été couvert :
 
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item L'administrateur tente de désactiver un utilisateur actif
+    disposant de \textbf{9 tickets actifs} (statuts \texttt{OUVERT},
+    \texttt{EN\_COURS} ou \texttt{EN\_REVUE}) : le système affiche le
+    modal de réassignation présentant la liste des développeurs
+    disponibles \textbf{triés par charge de travail croissante}.
+    L'administrateur procède à la réassignation de chaque ticket, puis
+    confirme l'opération via le bouton « Réassigner et Désactiver ».
+    Le système effectue les réassignations dans une transaction atomique,
+    désactive le compte et envoie un e-mail de notification à
+    l'utilisateur concerné.
 \end{itemize}
 
 \begin{figure}[H]
-        \centering
-\includegraphics[width=0.7\textwidth,keepaspectratio]{Images/Test e2e desactiver utilisateu.png}
-        \caption{Test End-to-End de la gestion des utilisateurs via Playwright}
-    \end{figure}
+\centering
+\includegraphics[width=0.68\textwidth,keepaspectratio]
+  {Images/Test e2e desactiver utilisateu.png}
+\caption{Tests End-to-End — Désactivation utilisateur via Playwright}
+\label{fig:test_e2e_desactiver}
+\end{figure}
+
+\end{itemize}

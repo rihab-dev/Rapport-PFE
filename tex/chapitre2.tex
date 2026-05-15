@@ -1,375 +1,442 @@
-﻿
-\section*{Introduction}
-
-Ce chapitre présente l'analyse et la spécification des besoins de notre plateforme \textbf{SolidMaint}. Nous identifierons les acteurs du système et leurs besoins fonctionnels et non fonctionnels, puis procéderons à la modélisation UML. Nous détaillerons ensuite l'approche de pilotage Scrum avec la planification des sprints, et présenterons l'environnement de développement ainsi que l'architecture technique de l'application.
+﻿\section*{Introduction}
+Ce chapitre présente l'analyse et la spécification des besoins de notre plateforme
+\textbf{SolidMaint}. Nous identifierons les acteurs du système et leurs besoins
+fonctionnels et non fonctionnels, puis procéderons à la modélisation UML. Nous
+détaillerons ensuite l'approche de pilotage Scrum avec la planification des sprints,
+et présenterons l'environnement de développement ainsi que l'architecture technique
+de l'application.
 
 \section{Spécification des besoins}
 \label{sec:specification_besoins}
-L'étape de spécification des besoins est importante pour prouver qu'un besoin réel existe, elle permet de définir explicitement les objectifs à atteindre. 
-\newline Pour cela nous allons identifier les acteurs, leurs besoins fonctionnels et les besoins non fonctionnels.
+L'étape de spécification des besoins est importante pour prouver qu'un besoin réel
+existe, elle permet de définir explicitement les objectifs à atteindre.
+\newline
+Pour cela nous allons identifier les acteurs, leurs besoins fonctionnels et les
+besoins non fonctionnels.
 
 \subsection{Identification des acteurs}
-Un acteur représente une personne, une organisation ou un autre système qui interagit avec le système. Notre projet identifie six acteurs principaux :
+Un acteur représente une personne, une organisation ou un autre système qui interagit
+avec le système. Notre projet identifie six acteurs principaux :
 
 \begin{table}[h!]
-    \centering
-    \renewcommand{\arraystretch}{1.4}
-    \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.28\textwidth}|>{\raggedright\arraybackslash}X|}
-        \hline
-        \rowcolor{blue!20}
-        \textbf{Acteur} & \textbf{Rôle} \\
-        \hline
-        Visiteur & Soumet une demande de création de compte et attend la validation. \\
-        \hline
-        Utilisateur & Accède aux fonctionnalités communes : authentification, gestion du profil, notifications et historique d’activités. \\
-        \hline
-        Client & Soumet des demandes de maintenance, consulte l'état d'avancement et communique avec l'équipe projet. \\
-        \hline
-        Développeur & Traite les tickets assignés, signale les blocages, met à jour les statuts et consulte la documentation technique. \\
-        \hline
-        Chef de projet & Traite les demandes clients, assigne les tickets aux développeurs et assure le respect des SLA. \\
-        \hline
-        Administrateur & Gère les utilisateurs, rôles, permissions, clients, projets et contrats. Configure et supervise le système. \\
-        \hline
-    \end{tabularx}
-    \caption{Acteurs du système SolidMaint et leurs rôles}
-    \label{tab:acteurs}
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.28\textwidth}
+                              |>{\raggedright\arraybackslash}X|}
+\hline
+\rowcolor{blue!20}\textbf{Acteur} & \textbf{Rôle} \\
+\hline
+Visiteur      & Soumet une demande de création de compte via OAuth (Google, GitHub)
+                et attend la validation par un administrateur. \\
+\hline
+Utilisateur   & Accède aux fonctionnalités communes : authentification, gestion du
+                profil, notifications multicanaux et historique d'activités. \\
+\hline
+Client        & Soumet des demandes de maintenance, consulte l'état d'avancement
+                de ses tickets, accède à ses contrats et communique avec l'équipe
+                projet via la messagerie intégrée. \\
+\hline
+Développeur   & Traite les tickets assignés, gère le chronomètre de travail, signale
+                les blocages, propose des solutions et consulte la base de
+                connaissances. \\
+\hline
+Chef de projet & Valide les demandes clients, assigne les tickets aux développeurs,
+                 supervise le respect des SLA, gère les équipes et génère les
+                 procès-verbaux. \\
+\hline
+Administrateur & Gère les utilisateurs, rôles, permissions, clients, projets et
+                 contrats. Configure les SLA, supervise les tableaux de bord et
+                 administre l'ensemble du système. \\
+\hline
+\end{tabularx}
+\caption{Acteurs du système SolidMaint et leurs rôles}
+\label{tab:acteurs}
 \end{table}
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\textwidth,keepaspectratio]{Images/acteurs.png}
-    \caption{Illustration des acteurs du système SolidMaint}
-    \label{fig:acteurs}
+\centering
+\includegraphics[width=0.9\textwidth,keepaspectratio]{Images/acteurs.png}
+\caption{Illustration des acteurs du système SolidMaint}
+\label{fig:acteurs}
 \end{figure}
 
 \subsection{Identification des besoins fonctionnels}
-
-L'identification des besoins fonctionnels constitue une étape fondamentale dans la conception de \textbf{SolidMaint}. Ces spécifications définissent précisément les opérations que la plateforme doit être capable d'exécuter pour répondre aux exigences métier de SolidWall Consulting.
+L'identification des besoins fonctionnels constitue une étape fondamentale dans la
+conception de \textbf{SolidMaint}. Ces spécifications définissent précisément les
+opérations que la plateforme doit être capable d'exécuter pour répondre aux exigences
+métier de SolidWall Consulting.
 
 \input{tex/etude_fonctionnalite}
 
 \subsection{Identification des besoins non fonctionnels}
-Durant la réalisation de ce projet, nous prenons en considération les besoins non fonctionnels qui désignent les attributs de qualité d'un système.
+Durant la réalisation de ce projet, nous prenons en considération les besoins non
+fonctionnels qui désignent les attributs de qualité d'un système.
 \newline
-Les critères que notre plateforme doit satisfaire sont : 
-\begin{itemize}[label=$\blacktriangleright$]
-\item \textbf{Ergonomie :}
+Les critères que notre plateforme doit satisfaire sont :
 
-L'interface intégrera \textbf{shadcn/ui} et \textbf{Tailwind CSS} pour assurer une cohérence visuelle et une utilisabilité optimale. Un système de thématisation dynamique (mode clair/sombre) et une architecture responsive garantiront une adaptation automatique aux différentes résolutions d'écran. Les composants React permettront des mises à jour en temps réel sans rechargement, avec des transitions subtiles et un système de retour d'information clair pour guider l'utilisateur.
+\begin{itemize}[label=$\blacktriangleright$]
+
+\item \textbf{Ergonomie :}
+L'interface intégrera \textbf{shadcn/ui} et \textbf{Tailwind CSS} pour assurer une
+cohérence visuelle et une utilisabilité optimale. Un système de thématisation
+dynamique (mode clair/sombre) et une architecture responsive garantiront une
+adaptation automatique aux différentes résolutions d'écran. Les composants React
+permettront des mises à jour en temps réel sans rechargement, avec des transitions
+animées via \textbf{Framer Motion} et un système de retour d'information clair pour
+guider l'utilisateur.
 
 \item \textbf{Sécurité :}
-
-La sécurité intégrera des mesures robustes : hachage des mots de passe avec \textbf{bcrypt} (facteur 10), authentification JWT et OAuth 2.0 (Google, GitHub). Les protections incluront la validation contre les injections XSS, les requêtes paramétrées via \textbf{Prisma ORM} contre les injections SQL, et la vérification SHA-256 des fichiers téléversés. La journalisation complète des actions et la génération de mots de passe temporaires sécurisés renforceront la traçabilité et l'intégrité du système.
+La sécurité intégrera des mesures robustes : hachage des mots de passe avec
+\textbf{bcrypt} (facteur 10), authentification \textbf{JWT} avec rotation des tokens
+(access token 15 minutes, refresh token 7 jours) et \textbf{OAuth 2.0} (Google,
+GitHub). Un mécanisme de verrouillage de compte est activé après trois tentatives
+d'authentification échouées. Les protections incluront la validation des entrées via
+\textbf{class-validator}, les requêtes paramétrées via \textbf{Prisma ORM} contre les
+injections SQL, et la vérification du type MIME des fichiers téléversés. La
+journalisation complète des actions via le module \textbf{ActivityLog} et le contrôle
+d'accès basé sur les rôles (\textbf{RBAC}) granulaire renforcent la traçabilité et
+l'intégrité du système.
 
 \item \textbf{Performance :}
+L'architecture modulaire permettra une évolution horizontale avec scalabilité selon
+la croissance des utilisateurs et du volume de données. Un cache en mémoire
+(\textbf{Redis}) avec une durée de vie de 60 secondes est utilisé pour les
+permissions et les données fréquemment consultées. L'optimisation de la base de
+données s'appuiera sur une stratégie d'indexation appropriée (identifiants, dates,
+statuts, combinaisons fréquentes) et l'utilisation de \textbf{Prisma ORM} pour
+générer des requêtes SQL optimisées. La compression \textbf{gzip} (niveau 6) est
+appliquée sur toutes les réponses HTTP supérieures à 1 Ko, réduisant la taille des
+payloads de 60 à 80\%. Le chargement sélectif des relations via les mécanismes
+\texttt{select} et \texttt{include} évite les problèmes de requêtes N+1, garantissant
+des temps de réponse rapides.
 
-L'architecture modulaire permettra une évolution horizontale avec scalabilité selon la croissance des utilisateurs et du volume de données. L'optimisation de la base de données s'appuiera sur une stratégie d'indexation appropriée (identifiants, dates, statuts) et l'utilisation de \textbf{Prisma ORM} pour générer des requêtes SQL optimisées. Le chargement sélectif des relations via les mécanismes \textbf{select} et \textbf{include} évitera les problèmes de requêtes N+1, garantissant des temps de réponse rapides.
-
-% \item \textbf{Disponibilité :}
-% 
-% La disponibilité sera une exigence critique pour notre plateforme de gestion de maintenance. Nous garantirons une disponibilité de \textbf{99.5\%} (temps de fonctionnement), correspondant à un temps d'arrêt maximal de 3.65 heures par mois, ainsi qu'une surveillance continue des délais de réponse et de résolution des tickets conformément aux engagements contractuels SLA.
-% \newline
-% Nous implémenterons la communication en temps réel via le protocole \textbf{WebSocket}, permettant des échanges bidirectionnels instantanés entre le serveur et les clients. Cette technologie supportera la messagerie instantanée entre l'équipe et les clients, ainsi que la diffusion des notifications en temps réel. En cas d'indisponibilité WebSocket (pare-feu restrictif), un mécanisme de repli via interrogation HTTP (\textit{polling}) sera automatiquement activé pour maintenir la communication.
-% \newline
-% Afin de garantir qu'aucune information ne soit perdue, nous mettrons en place un mécanisme de persistance robuste. Les notifications seront enregistrées en base de données avec un système de synchronisation automatique. En cas de déconnexion temporaire, les messages en attente seront automatiquement livrés lors de la reconnexion de l'utilisateur.
-% \newline
-% Par ailleurs, des sauvegardes automatiques de la base de données seront effectuées quotidiennement avec une rétention de 30 jours. Un plan de reprise d'activité (PRA) permettra une restauration en moins de 4 heures (RTO - \textit{Recovery Time Objective}) avec une perte de données maximale de 1 heure (RPO - \textit{Recovery Point Objective}).
-% \newline
-% Un système de surveillance (\textit{monitoring}) en temps réel détectera automatiquement les anomalies de performance et de disponibilité, déclenchant des alertes vers l'équipe technique. Les métriques surveillées incluront l'utilisation CPU, mémoire, espace disque, temps de réponse des requêtes et taux d'erreurs.
-% \newline
-% Un système d'alertes proactives sera mis en place pour prévenir l'expiration des contrats. Les notifications seront déclenchées à trois intervalles critiques : 30 jours, 15 jours et 7 jours avant l'échéance. Ces alertes seront envoyées par courriel et affichées dans l'interface, garantissant que les responsables disposent d'un délai suffisant pour renouveler les contrats.
-% \newline
-% Enfin, le système de surveillance des SLA calculera automatiquement les temps de réponse et de résolution, déclenchant des alertes en cas de risque de dépassement. Les tableaux de bord afficheront en temps réel les indicateurs de performance, permettant une intervention proactive avant la violation des engagements contractuels.
+\item \textbf{Temps réel :}
+La communication en temps réel est assurée via le protocole \textbf{WebSocket}
+(Socket.IO 4), permettant des échanges bidirectionnels instantanés entre le serveur
+et les clients. Cette technologie supporte la messagerie instantanée entre l'équipe
+et les clients, la mise à jour en direct du tableau Kanban, ainsi que la diffusion
+des notifications. Des alertes proactives sont déclenchées automatiquement à 30, 15
+et 7 jours avant l'expiration des contrats, via des tâches planifiées (\textbf{Cron
+jobs}).
 
 \item \textbf{Maintenabilité :}
+L'architecture modulaire et l'adoption des principes SOLID avec les conventions
+\textbf{Next.js} et \textbf{NestJS} garantiront la lisibilité et la facilité de
+modification du code. La documentation technique est générée automatiquement via
+\textbf{Swagger/OpenAPI} et maintenue à jour lors de chaque modification. Les tests
+sont assurés par \textbf{Jest} pour le backend (tests unitaires et d'intégration),
+\textbf{Vitest} pour le frontend (tests unitaires des composants et hooks), et
+\textbf{Playwright} pour les tests end-to-end, exécutés automatiquement avant chaque
+déploiement.
 
-L'architecture modulaire et l'adoption des principes SOLID avec les conventions \textbf{Next.js} et \textbf{NestJS} garantiront la lisibilité et la facilité de modification du code. La documentation technique sera générée automatiquement via \textbf{Swagger/OpenAPI} et maintenue à jour lors de chaque modification. Une couverture de tests minimale de 80\% sera assurée : tests unitaires avec \textbf{Jest}, tests d'intégration pour les API, et tests end-to-end avec \textbf{Playwright}, exécutés automatiquement avant chaque déploiement.
 \end{itemize}
 
-
-
-% ─────────────────────────────────────────────────────────────────────────────
+%─────────────────────────────────────────────────────────────────────────────
 % SECTION II : MODÉLISATION DES BESOINS
-% ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+%─────────────────────────────────────────────────────────────────────────────
 
-\section{Modélisation des besoins }
+\section{Modélisation des besoins}
 \label{sec:modelisation_besoins}
+L'analyse des besoins fonctionnels se poursuit par une modélisation dynamique à
+l'aide du diagramme de cas d'utilisation UML. Ce diagramme offre une vision
+synthétique des fonctionnalités offertes par le système du point de vue de chaque
+acteur, sans se préoccuper de leur ordre d'exécution ou des détails techniques.
 
-L'analyse des besoins fonctionnels se poursuit par une modélisation dynamique à l'aide du diagramme de cas d'utilisation UML. Ce diagramme offre une vision synthétique des fonctionnalités offertes par le système du point de vue de chaque acteur, sans se préoccuper de leur ordre d'exécution ou des détails techniques.
-
-La figure \ref{fig:use_case} présente le diagramme de cas d'utilisation global de notre plateforme de service desk. Ce diagramme structure les interactions entre les cinq acteurs identifiés et le système. Chaque acteur possède un périmètre d'actions bien défini.
+La figure \ref{fig:use_case} présente le diagramme de cas d'utilisation global de
+notre plateforme de service desk. Ce diagramme structure les interactions entre les
+six acteurs identifiés et le système. Chaque acteur possède un périmètre d'actions
+bien défini.
 
 \begin{figure}[H]
-        \centering
-        \includegraphics[width=1.0\textwidth,height=0.85\textheight,keepaspectratio]{Images/diagramme_cas_utilisation.png}
-        \caption{Diagramme de cas d'utilisation global du système}
-        \label{fig:use_case}
+\centering
+\includegraphics[width=1.0\textwidth,height=0.85\textheight,keepaspectratio]
+  {Images/diagramme_cas_utilisation.png}
+\caption{Diagramme de cas d'utilisation global du système}
+\label{fig:use_case}
 \end{figure}
 
-% ─────────────────────────────────────────────────────────────────────────────
+%─────────────────────────────────────────────────────────────────────────────
 % SECTION III : PILOTAGE AVEC SCRUM
-% ─────────────────────────────────────────────────────────────────────────────
-\newpage
+%─────────────────────────────────────────────────────────────────────────────
+
 \section{Pilotage du projet avec Scrum}
 \label{sec:pilotage_scrum}
 
 \subsection{Rôles de SCRUM}
+Dans notre projet, Monsieur Mejdi Dhokar sera le Product Owner, Madame Maissa Ben
+Fredj sera le Scrum Master, et nous, Rihab Chourou et Eya Gharbi, formons l'équipe
+de développement.
 
-Dans notre projet, Monsieur Mejdi Dhokar sera le Product Owner, Madame Maissa Ben Fredj sera le Scrum Master, et nous, Rihab Chourou et Eya Gharbi, formons l’équipe de développement.
-        \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.9\textwidth,keepaspectratio]{Images/Equipe_Scrum.png}
-        \caption{Équipe scrum et rôles}
-    \end{figure}
-    
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth,keepaspectratio]{Images/Equipe_Scrum.png}
+\caption{Équipe Scrum et rôles}
+\end{figure}
 
-% === DÉPLACEMENT DE LA PARTIE BACKLOG DE PRODUIT ICI ===
 \subsubsection{Backlog de produit}
+Comme évoqué dans le premier chapitre, le Product Backlog constitue l'un des
+artefacts fondamentaux de la méthodologie Scrum. Il permet de formaliser les
+exigences fonctionnelles ainsi que les fonctionnalités attendues du système. Le
+tableau ci-dessous présente le Product Backlog de notre solution \textbf{SolidMaint},
+structuré selon les éléments suivants :
 
-Comme évoqué dans le premier chapitre, le Product Backlog constitue l'un des artefacts fondamentaux de la méthodologie Scrum. Il permet de formaliser les exigences fonctionnelles ainsi que les fonctionnalités attendues du système. Le tableau ci-dessous présente le Product Backlog de notre solution \textbf{SolidMaint}, structuré selon les éléments suivants :
-
-\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-    \item \textbf{Id EPIC} : Identifiant unique attribué à chaque EPIC afin de faciliter son identification et sa gestion dans le système de projet.
-    \item \textbf{EPIC} : Ensemble de tâches interconnectées visant à atteindre un objectif majeur dans la gestion agile de projet ou le développement logiciel.
-    \item \textbf{Id User Story} : Valeur unique et incrémentale associée à chaque user story pour assurer sa traçabilité.
-    \item \textbf{User Story} : Description de la fonctionnalité du point de vue de l'utilisateur final, suivant le format "En tant que [rôle], je souhaite [action] afin de [bénéfice]".
-    \item \textbf{Critères d'acceptation} : Conditions spécifiques et mesurables qui doivent être remplies pour que la user story soit considérée comme terminée et acceptée par le Product Owner.
-    \item \textbf{Priorité} : Niveau d'importance défini par le Product Owner pour chaque tâche, permettant de prioriser les développements.
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+  \item \textbf{Id EPIC} : Identifiant unique attribué à chaque EPIC afin de
+    faciliter son identification et sa gestion dans le système de projet.
+  \item \textbf{EPIC} : Ensemble de tâches interconnectées visant à atteindre un
+    objectif majeur dans la gestion agile de projet ou le développement logiciel.
+  \item \textbf{Id User Story} : Valeur unique et incrémentale associée à chaque
+    user story pour assurer sa traçabilité.
+  \item \textbf{User Story} : Description de la fonctionnalité du point de vue de
+    l'utilisateur final, suivant le format ``En tant que [rôle], je souhaite [action]
+    afin de [bénéfice]''.
+  \item \textbf{Critères d'acceptation} : Conditions spécifiques et mesurables qui
+    doivent être remplies pour que la user story soit considérée comme terminée et
+    acceptée par le Product Owner.
+  \item \textbf{Priorité} : Niveau d'importance défini par le Product Owner pour
+    chaque tâche, permettant de prioriser les développements.
 \end{itemize}
 
-\newpage
-\noindent\textbf{Légende des priorités :} + : Faible, ++ : Moyenne, +++ : Élevée.
+\noindent\textbf{Légende des priorités :} + : Faible \quad ++ : Moyenne \quad
++++ : Élevée.
+
 \input{tex/product_backlog}
 
-  
 \subsection{Planification des sprints}
+Un sprint représente une période de développement durant laquelle l'équipe s'engage
+à livrer un ensemble cohérent de fonctionnalités opérationnelles. Cette approche
+itérative permet d'obtenir des retours réguliers et d'ajuster les priorités au fil
+de l'avancement.
 
-Un sprint représente une période de développement durant laquelle l'équipe s'engage à livrer un ensemble cohérent de fonctionnalités opérationnelles. Cette approche itérative permet d'obtenir des retours réguliers et d'ajuster les priorités au fil de l'avancement.
-
-\noindent Notre projet est organisé en \textbf{4 sprints} de \textbf{3 à 4 semaines} chacun, couvrant une période totale de développement d'\textbf{environ 3 mois et demi}. La stratégie de répartition suit une logique architecturale : fondations sécuritaires (Sprint 1), gestion contractuelle (Sprint 2), cœur métier opérationnel (Sprint 3), et fonctionnalités avancées (Sprint 4). Chaque sprint commence par une réunion de planification (Sprint Planning) où l'équipe sélectionne les user stories du Product Backlog à réaliser, et se termine par une revue de sprint (Sprint Review) et une rétrospective (Sprint Retrospective).
+\noindent Notre projet est organisé en \textbf{4 sprints} de \textbf{3 à 4 semaines}
+chacun, couvrant une période totale de développement d'\textbf{environ 3 mois et
+demi}. La stratégie de répartition suit une logique architecturale : fondations
+sécuritaires (Sprint 1), gestion contractuelle (Sprint 2), cœur métier opérationnel
+(Sprint 3), et fonctionnalités avancées (Sprint 4). Chaque sprint commence par une
+réunion de planification (Sprint Planning) où l'équipe sélectionne les user stories
+du Product Backlog à réaliser, et se termine par une revue de sprint (Sprint Review)
+et une rétrospective (Sprint Retrospective).
 
 La figure suivante présente le déroulement chronologique de nos sprints.
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/Scrum planning.jpg}
-    \caption{Planification chronologique des sprints}
-    \label{fig:planification_sprints}
+\centering
+\includegraphics[width=0.8\textwidth,keepaspectratio]{Images/Scrum planning.jpg}
+\caption{Planification chronologique des sprints}
+\label{fig:planification_sprints}
 \end{figure}
 
-\subsubsection{Sprint 1 - Gestion des Utilisateurs, Clients et Authentification}
+\subsubsection{Sprint 1 -- Gestion des Utilisateurs, Clients et Authentification}
 \textbf{Période :} du 17 février au 11 mars (\textbf{3 semaines})
 \newline
-\textbf{Objectif du sprint :} Mettre en place le système d'authentification sécurisé, la gestion complète des utilisateurs et des clients avec contrôle d'accès basé sur les rôles (RBAC).
+\textbf{Objectif du sprint :} Mettre en place le système d'authentification sécurisé,
+la gestion complète des utilisateurs et des clients avec contrôle d'accès basé sur
+les rôles (RBAC).
 
-\noindent
-\textbf{User Stories sélectionnées :}
-\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-    \item \textbf{Epic 1 - Authentification et Sécurité} : US01 à US05 (5 user stories)
-    \item \textbf{Epic 2 - Gestion des utilisateurs} : US06 à US11 (6 user stories)
-    \item \textbf{Epic 3 - Gestion des rôles et permissions} : US12 à US14 (3 user stories)
-    \item \textbf{Epic 4 - Demandes d'inscription OAuth} : US15 à US16 (2 user stories)
-    \item \textbf{Epic 5 - Gestion des clients} : US17 à US23 (7 user stories)
+\noindent\textbf{User Stories sélectionnées :}
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+  \item \textbf{Epic 1 -- Authentification et Sécurité} : US01 à US05 (5 user stories)
+  \item \textbf{Epic 2 -- Gestion des utilisateurs} : US06 à US11 (6 user stories)
+  \item \textbf{Epic 3 -- Gestion des rôles et permissions} : US12 à US14 (3 user stories)
+  \item \textbf{Epic 4 -- Demandes d'inscription OAuth} : US15 à US16 (2 user stories)
+  \item \textbf{Epic 5 -- Gestion des clients} : US17 à US23 (7 user stories)
 \end{itemize}
 
-\noindent
-\textbf{Livrables attendus :}
-\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-    \item Système d'authentification fonctionnel avec support OAuth
-    \item Module de gestion des utilisateurs opérationnel
-    \item Système RBAC complet avec gestion des rôles et permissions
-    \item Module de gestion des clients avec profils société
+\noindent\textbf{Livrables attendus :}
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+  \item Système d'authentification fonctionnel (JWT + OAuth Google/GitHub)
+  \item Module de gestion des utilisateurs avec verrouillage de compte
+  \item Système RBAC complet avec gestion des rôles et permissions granulaires
+  \item Module de gestion des clients avec profils société
 \end{itemize}
 
-\subsubsection{Sprint 2 - Gestion des Projets et Contrats}
+\subsubsection{Sprint 2 -- Gestion des Projets et Contrats}
 \textbf{Période :} du 12 mars au 2 avril (\textbf{3 semaines})
 \newline
-\textbf{Objectif du sprint :} Développer la gestion complète des projets et contrats de maintenance avec système d'alertes.
+\textbf{Objectif du sprint :} Développer la gestion complète des projets et contrats
+de maintenance avec système d'alertes d'expiration et configuration SLA.
 
 \noindent
-\newpage
 \textbf{User Stories sélectionnées :}
-\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-    \item \textbf{Epic 6 - Gestion des projets} : US24 à US27 (4 user stories)
-    \item \textbf{Epic 7 - Gestion des contrats} : US28 à US37 (10 user stories)
-    \item \textbf{Epic 14 - Historique et traçabilité} : US95 à US96 (2 user stories)
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+  \item \textbf{Epic 6 -- Gestion des projets} : US24 à US27 (4 user stories)
+  \item \textbf{Epic 7 -- Gestion des contrats} : US28 à US37 (10 user stories)
+  \item \textbf{Epic 14 -- Historique et traçabilité} : US95 à US96 (2 user stories)
 \end{itemize}
 
-\noindent
-\textbf{Livrables attendus :}
-\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-    \item Module de gestion des projets
-    \item Système de gestion des contrats avec SLA et alertes
-    \item Système d'audit et traçabilité complet
+\noindent\textbf{Livrables attendus :}
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+  \item Module de gestion des projets avec équipes et membres
+  \item Système de gestion des contrats avec SLA, alertes à J-30/J-15/J-7 et
+    workflow d'approbation
+  \item Système d'audit et traçabilité complet (ActivityLog)
 \end{itemize}
 
-\subsubsection{Sprint 3 - Gestion des Demandes et Tickets}
+\subsubsection{Sprint 3 -- Gestion des Demandes et Tickets}
 \textbf{Période :} du 3 avril au 1 mai (\textbf{4 semaines})
 \newline
-\textbf{Objectif du sprint :} Implémenter le cœur métier avec la gestion des demandes et tickets incluant suivi du temps et SLA.
+\textbf{Objectif du sprint :} Implémenter le cœur métier avec la gestion des
+demandes et tickets incluant suivi du temps, SLA et tableau Kanban.
 
-\noindent
-\textbf{User Stories sélectionnées :}
-\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-    \item \textbf{Epic 8 - Gestion des demandes} : US38 à US45 (8 user stories)
-    \item \textbf{Epic 9 - Gestion des tickets} : US46 à US65 (20 user stories)
-    \item \textbf{Epic 13 - Dashboards} : US88 à US91 (4 user stories)
+\noindent\textbf{User Stories sélectionnées :}
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+  \item \textbf{Epic 8 -- Gestion des demandes} : US38 à US45 (8 user stories)
+  \item \textbf{Epic 9 -- Gestion des tickets} : US46 à US65 (20 user stories)
+  \item \textbf{Epic 13 -- Dashboards} : US88 à US91 (4 user stories)
 \end{itemize}
 
-\noindent
-\textbf{Livrables attendus :}
-\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-    \item Module de gestion des demandes de maintenance
-    \item Système complet de gestion des tickets avec Kanban
-    \item Suivi du temps et respect des SLA
-    \item Dashboards pour pilotage
+\noindent\textbf{Livrables attendus :}
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+  \item Module de gestion des demandes de maintenance avec classification
+  \item Système complet de gestion des tickets avec vue Kanban (drag \& drop)
+  \item Chronomètre de travail par session et respect des SLA en minutes ouvrées
+  \item Tableaux de bord pour pilotage (Admin, Chef de projet, Client)
 \end{itemize}
 
-\subsubsection{Sprint 4 - Collaboration, Documents et IA}
+\subsubsection{Sprint 4 -- Collaboration, Documents et IA}
 \textbf{Période :} du 2 mai au 31 mai (\textbf{4 semaines})
 \newline
-\textbf{Objectif du sprint :} Finaliser avec les fonctionnalités avancées de collaboration, gestion documentaire et IA.
+\textbf{Objectif du sprint :} Finaliser avec les fonctionnalités avancées de
+collaboration, gestion documentaire, notifications multicanaux et intelligence
+artificielle.
 
-\noindent
-\textbf{User Stories sélectionnées :}
-\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-    \item \textbf{Epic 10 - Messagerie} : US66 à US74 (9 user stories)
-    \item \textbf{Epic 11 - Gestion des documents} : US75 à US82 (8 user stories)
-    \item \textbf{Epic 12 - Notifications} : US83 à US87 (5 user stories)
-    \item \textbf{Epic 13 - Rapports} : US92 à US94 (3 user stories)
-    \item \textbf{Epic 15 - Versioning avancé} : US97 à US99 (3 user stories)
-    \item \textbf{Epic 16 - Intelligence Artificielle} : US100 à US105 (6 user stories)
+\noindent\textbf{User Stories sélectionnées :}
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+  \item \textbf{Epic 10 -- Messagerie} : US66 à US74 (9 user stories)
+  \item \textbf{Epic 11 -- Gestion des documents} : US75 à US82 (8 user stories)
+  \item \textbf{Epic 12 -- Notifications} : US83 à US87 (5 user stories)
+  \item \textbf{Epic 13 -- Rapports} : US92 à US94 (3 user stories)
+  \item \textbf{Epic 15 -- Versioning avancé} : US97 à US99 (3 user stories)
+  \item \textbf{Epic 16 -- Intelligence Artificielle} : US100 à US105 (6 user stories)
 \end{itemize}
 
 \noindent
-\newpage
 \textbf{Livrables attendus :}
-\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-    \item Système de messagerie et collaboration temps réel
-    \item Module de gestion documentaire avec versioning
-    \item Système de notifications multicanaux
-    \item Module de génération de rapports
-    \item Moteur d'IA pour assistance intelligente
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+  \item Système de messagerie et collaboration temps réel (WebSocket)
+  \item Module de gestion documentaire avec versioning
+  \item Système de notifications multicanaux (in-app, email, Web Push)
+  \item Module de génération de rapports et procès-verbaux PDF
+  \item Moteur d'IA pour classification automatique des demandes et assistance
+    intelligente (Groq / LLaMA 3.3 70B)
 \end{itemize}
 
-\noindent
-\textbf{Synthèse de la planification :} Cette répartition assure une progression logique où chaque sprint s'appuie sur les livrables précédents. Les dépendances techniques sont respectées (authentification avant tickets, contrats avant demandes), et la valeur métier croît progressivement jusqu'aux fonctionnalités différenciantes du sprint final.
+\noindent\textbf{Synthèse de la planification :} Cette répartition assure une
+progression logique où chaque sprint s'appuie sur les livrables précédents. Les
+dépendances techniques sont respectées (authentification avant tickets, contrats
+avant demandes), et la valeur métier croît progressivement jusqu'aux fonctionnalités
+différenciantes du sprint final.
+
 \subsection{Planning prévisionnel (Diagramme de Gantt)}
 \label{sec:planning}
-« Un diagramme de Gantt est un outil d'organisation et de gestion de projets. Il s'agit d'un diagramme à barres horizontales qui présente toutes les tâches d'un projet en fonction d'un calendrier. Il aide les chefs de projet à visualiser les tâches requises et à suivre l'avancement de leur projet. » [5]
-\newline Dans le cadre du développement de notre projet \textbf{SolidMaint}, le planning prévisionnel a été réalisé pour organiser les différentes phases de développement. La figure ci-dessous illustre cette planification :  
-\begin{figure}[H]
-        \centering
-        \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/Diagramme_Gantt.png}
-        \caption{Diagramme de Gantt}
-    \end{figure}
-  
+« Un diagramme de Gantt est un outil d'organisation et de gestion de projets. Il
+s'agit d'un diagramme à barres horizontales qui présente toutes les tâches d'un
+projet en fonction d'un calendrier. Il aide les chefs de projet à visualiser les
+tâches requises et à suivre l'avancement de leur projet. » [5]
+\newline
+Dans le cadre du développement de notre projet \textbf{SolidMaint}, le planning
+prévisionnel a été réalisé pour organiser les différentes phases de développement.
+La figure ci-dessous illustre cette planification :
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth,keepaspectratio]{Images/Diagramme_Gantt.png}
+\caption{Diagramme de Gantt}
+\end{figure}
+
+%─────────────────────────────────────────────────────────────────────────────
 % SECTION IV : ENVIRONNEMENT DE DÉVELOPPEMENT
-% ─────────────────────────────────────────────────────────────────────────────
-\newpage
+%─────────────────────────────────────────────────────────────────────────────
+
 \section{Environnement de Développement}
 \label{sec:environnement}
-On va commencer par la présentation de l’environnement matériel et logiciel que nous utilisons.
+On va commencer par la présentation de l'environnement matériel et logiciel que nous
+utilisons.
 
 \subsection{Environnement matériel}
 \begin{table}[H]
-    \centering
-    \renewcommand{\arraystretch}{1.6} % Espace vertical pour aérer les cellules
-    
-    % Couleur des bordures et alternance des couleurs de lignes
-    \arrayrulecolor{gray!70}      
-    \rowcolors{2}{gray!5}{white} 
-    
-    \begin{tabularx}{\textwidth}{
-        | >{\centering\arraybackslash}X 
-        | >{\centering\arraybackslash}X 
-        | >{\centering\arraybackslash}X 
-        | }
-    \rowcolor{blue!20}    
-    \hline
-    \textbf{Ordinateur} & \textbf{1} & \textbf{2} \\
-    \hline
-    propriétés & Rihab Chourou & Eya Gharbi \\
-    \hline
-    Processeur & Core i3 & Core i3\\
-    \hline
-    Ram & 20 Go & 16 Go\\
-    \hline
-    Disque Dure & 1 To & 256 Go\\
-    \hline
-     Système d’exploitation & Windows 10 Professionnel N 64-bit & Windows 10 Professionnel 64-bit\\
-          \hline
-    \end{tabularx}
-    \caption{Environnement de développement}
-    \label{tab:environnement_de_developpement}
+\centering
+\renewcommand{\arraystretch}{1.6}
+\arrayrulecolor{gray!70}
+\rowcolors{2}{gray!5}{white}
+\begin{tabularx}{\textwidth}{| >{\centering\arraybackslash}X
+                              | >{\centering\arraybackslash}X
+                              | >{\centering\arraybackslash}X |}
+\rowcolor{blue!20} \hline
+\textbf{Ordinateur}        & \textbf{1}                          & \textbf{2}          \\
+\hline
+Propriétaire               & Rihab Chourou                       & Eya Gharbi          \\
+\hline
+Processeur                 & Core i3                             & Core i3             \\
+\hline
+RAM                        & 20 Go                               & 16 Go               \\
+\hline
+Disque dur                 & 1 To                                & 256 Go              \\
+\hline
+Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 Professionnel 64-bit \\
+\hline
+\end{tabularx}
+\caption{Environnement matériel de développement}
+\label{tab:environnement_de_developpement}
 \end{table}
 
 \subsection{Environnement logiciel}
-\subsubsection{Langage de programmation et framework}
+
+\subsubsection{Langages de programmation et frameworks}
 \vspace{12pt}
-% Définition de la commande pour le cadre avec image à gauche
+
 \newcommand{\cadretech}[2]{%
-    \noindent
-    \begin{minipage}{1.8cm}
-        \centering
-        \includegraphics[width=1.5cm, keepaspectratio]{#1}
-    \end{minipage}
-    \hspace{0.5cm}
-    \begin{minipage}{\dimexpr\textwidth-1.8cm-0.5cm-2\fboxsep-2\fboxrule\relax}
-        \fbox{%
-            \parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
-                #2%
-            }%
-        }%
-    \end{minipage}
-    \par
-    \vspace{10pt}
-}
+\noindent\begin{minipage}{1.8cm}\centering
+  \includegraphics[width=1.5cm,keepaspectratio]{#1}
+\end{minipage}\hspace{0.5cm}%
+\begin{minipage}{\dimexpr\textwidth-1.8cm-0.5cm-2\fboxsep-2\fboxrule\relax}
+  \fbox{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{#2}}
+\end{minipage}\par\vspace{10pt}}
 
-% Next.js
-\cadretech{Images/nestjs.png}{\textbf{NestJs V11.0.16 :} « Cest un framework permettant de créer des applications serveur Node.js performantes et évolutives. Il utilise JavaScript progressif, est conçu avec TypeScript et le prend entièrement en charge (tout en permettant aux développeurs de coder en JavaScript pur).  » |6|}
+\cadretech{Images/nestjs.png}{%
+  \textbf{NestJS v11 :} « C'est un framework permettant de créer des applications
+  serveur Node.js performantes et évolutives. Il utilise JavaScript progressif, est
+  conçu avec TypeScript et le prend entièrement en charge (tout en permettant aux
+  développeurs de coder en JavaScript pur). » [6]}
 
+\cadretech{Images/nextjs.png}{%
+  \textbf{Next.js v16 :} « C'est un framework React permettant de créer des
+  applications web complètes. Il configure également automatiquement les outils de
+  bas niveau tels que les modules de regroupement et les compilateurs. » [7]}
 
-\cadretech{Images/nextjs.png}{\textbf{Next V16.2.2 :}  « C’est un framework React permettant de créer des applications web complètes. Il configure également automatiquement les outils de bas niveau tels que les modules de regroupement et les compilateurs. » |7| }
+\cadretech{Images/React-icon.png}{%
+  \textbf{React 18.3 :} « React est une bibliothèque JavaScript pour la construction
+  d'interfaces utilisateur. Elle permet de créer des composants réutilisables qui
+  gèrent leur propre état et se composent pour former des interfaces complexes. » [8]}
 
+\cadretech{Images/Tailwind.png}{%
+  \textbf{Tailwind CSS v4.2 :} « Un framework CSS utilitaire, doté de classes telles
+  que \texttt{flex}, \texttt{pt-4}, \texttt{text-center} et \texttt{rotate-90}, qui
+  peuvent être combinées pour créer n'importe quel design, directement dans votre
+  balisage. » [9]}
 
-
-\cadretech{Images/React-icon.png}{\textbf{React 18.3.1 :} « React est bien plus qu’une bibliothèque, une architecture ou même un écosystème. React est une communauté. C’est un lieu où vous pouvez demander de l’aide, trouver des opportunités et rencontrer de nouvelles personnes..  » |8|}
-
-\cadretech{Images/Tailwind.png}{\textbf{Tailwind CSS V4.2.1 :}  « Un framework CSS utilitaire, doté de classes telles que flex , pt-4 , text-center et rotate-90, qui peuvent être combinées pour créer n'importe quel design, directement dans votre balisage. » |9| }
-
-
-\cadretech{Images/chadcn.png}{\textbf{shadcn/ui V3.8.5 :}  « est un ensemble de composants élégants et accessibles, ainsi qu'une plateforme de distribution de code. Compatible avec vos frameworks et modèles d'IA préférés. Logiciel libre. » |10| }
-
-
-
-
+\cadretech{Images/chadcn.png}{%
+  \textbf{shadcn/ui v3.8 :} « est un ensemble de composants élégants et accessibles,
+  ainsi qu'une plateforme de distribution de code. Compatible avec vos frameworks et
+  modèles d'IA préférés. Logiciel libre. » [10]}
 
 \subsubsection{Outils de développement et modélisation}
-
 \vspace{12pt}
-% Définition de la commande pour le cadre avec image à gauche
 
 \newcommand{\cadretechVscode}[2]{%
-    \noindent
-    \begin{minipage}{2.2cm}
-        \centering
-        \includegraphics[width=2cm, height=1.5cm, keepaspectratio]{#1}
-    \end{minipage}
-    \hspace{0.5cm}
-    \begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
-        \fbox{%
-            \parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
-                #2%
-            }%
-        }%
-    \end{minipage}
-    \par
-    \vspace{10pt}
-}
-\cadretechVscode{Images/Visual_Studio_Code.png}{ \textbf{Visual Studio Code : } « est un environnement de développement intégré (IDE) puissant pour Windows qui vous permet de développer, compiler, déboguer, tester et déployer vos applications, le tout au même endroit.» |11|}
+\noindent\begin{minipage}{2.2cm}\centering
+  \includegraphics[width=2cm,height=1.5cm,keepaspectratio]{#1}
+\end{minipage}\hspace{0.5cm}%
+\begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
+  \fbox{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{#2}}
+\end{minipage}\par\vspace{10pt}}
+
+\cadretechVscode{Images/Visual_Studio_Code.png}{%
+  \textbf{Visual Studio Code :} « est un éditeur de code source léger mais puissant,
+  disponible sur Windows, macOS et Linux. Il intègre la coloration syntaxique, la
+  complétion intelligente du code (IntelliSense), le débogage, le contrôle de version
+  Git et une riche bibliothèque d'extensions. » [11]}
+
 \newcommand{\cadretechGitlab}[2]{%
     \noindent
     \begin{minipage}{2.2cm}
@@ -387,248 +454,297 @@ On va commencer par la présentation de l’environnement matériel et logiciel 
     \par
     \vspace{10pt}
 }
-\cadretechGitlab{Images/gitlab.png}{ \textbf{GitLab : } « offre un espace de stockage de code en ligne ainsi que des fonctionnalités de suivi des problèmes et d'intégration continue/déploiement continu (CI/CD). Le dépôt permet d'héberger différentes chaînes de développement et versions, » |12|}
+\cadretechGitlab{Images/gitlab.png}{ \textbf{GitLab : } « offre un espace de stockage de code en ligne ainsi que des fonctionnalités de suivi des problèmes et d'intégration continue/déploiement continu ( CI/CD). Le dépôt permet d'héberger différentes branches de développement et
+  versions. » [12]}
+
 \newcommand{\cadretechUml}[2]{%
-    \noindent
-    \begin{minipage}{2.2cm}
-        \centering
-        \includegraphics[width=2cm, height=1.5cm, keepaspectratio]{#1}
-    \end{minipage}
-    \hspace{0.5cm}
-    \begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
-        \fbox{%
-            \parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
-                #2%
-            }%
-        }%
-    \end{minipage}
-    \par
-    \vspace{10pt}
-}
-\cadretechUml{Images/uml.png}{ \textbf{UML : }  « est un langage permettant de spécifier, visualiser, construire et documenter les artefacts des systèmes logiciels, ainsi que de modéliser des systèmes métier et d'autres systèmes non logiciels. L'UML représente un ensemble de bonnes pratiques d'ingénierie qui ont fait leurs preuves dans la modélisation de systèmes vastes et complexes. » |13|}
+\noindent\begin{minipage}{2.2cm}\centering
+  \includegraphics[width=2cm,height=1.5cm,keepaspectratio]{#1}
+\end{minipage}\hspace{0.5cm}%
+\begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
+  \fbox{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{#2}}
+\end{minipage}\par\vspace{10pt}}
+
+\cadretechUml{Images/uml.png}{%
+  \textbf{UML :} « est un langage permettant de spécifier, visualiser, construire et
+  documenter les artefacts des systèmes logiciels, ainsi que de modéliser des systèmes
+  métier et d'autres systèmes non logiciels. L'UML représente un ensemble de bonnes
+  pratiques d'ingénierie qui ont fait leurs preuves dans la modélisation de systèmes
+  vastes et complexes. » [13]}
+
 \newcommand{\cadretechDrowio}[2]{%
-    \noindent
-    \begin{minipage}{2.2cm}
-        \centering
-        \includegraphics[width=2cm, height=1.5cm, keepaspectratio]{#1}
-    \end{minipage}
-    \hspace{0.5cm}
-    \begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
-        \fbox{%
-            \parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
-                #2%
-            }%
-        }%
-    \end{minipage}
-    \par
-    \vspace{10pt}
-}
+\noindent\begin{minipage}{2.2cm}\centering
+  \includegraphics[width=2cm,height=1.5cm,keepaspectratio]{#1}
+\end{minipage}\hspace{0.5cm}%
+\begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
+  \fbox{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{#2}}
+\end{minipage}\par\vspace{10pt}}
 
-\cadretechDrowio{Images/lucidchart.png}{ \textbf{lucidchart : } « est un environnement de travail visuel qui associe création de diagrammes, visualisation de données et fonctionnalités de collaboration afin de faciliter la communication et stimuler l'innovation. » |14|}
+\cadretechDrowio{Images/lucidchart.png}{%
+  \textbf{Lucidchart :} « est un environnement de travail visuel qui associe création
+  de diagrammes, visualisation de données et fonctionnalités de collaboration afin de
+  faciliter la communication et stimuler l'innovation. » [14]}
+
 \newcommand{\cadretechSwagger}[2]{%
-    \noindent
-    \begin{minipage}{2.2cm}
-        \centering
-        \includegraphics[width=2cm, height=1.5cm, keepaspectratio]{#1}
-    \end{minipage}
-    \hspace{0.5cm}
-    \begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
-        \fbox{%
-            \parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
-                #2%
-            }%
-        }%
-    \end{minipage}
-    \par
-    \vspace{10pt}
-}
-\cadretechSwagger{Images/swagger.png}{ \textbf{Swagger : } « Swagger permet la conception, la gouvernance et les tests tout au long du cycle de vie complet des API basées sur l'IA, garantissant ainsi la qualité à chaque étape. Concevoir des API adaptées aux humains, aux LLM, aux agents et à l'innovation continue. » |15|}
+\noindent\begin{minipage}{2.2cm}\centering
+  \includegraphics[width=2cm,height=1.5cm,keepaspectratio]{#1}
+\end{minipage}\hspace{0.5cm}%
+\begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
+  \fbox{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{#2}}
+\end{minipage}\par\vspace{10pt}}
 
-\subsubsection{Systèmes de Gestion de Bases de données}
+\cadretechSwagger{Images/swagger.png}{%
+  \textbf{Swagger / OpenAPI :} « Swagger permet la conception, la gouvernance et les
+  tests tout au long du cycle de vie complet des API, garantissant ainsi la qualité à
+  chaque étape. Il génère automatiquement une documentation interactive de l'API à
+  partir des annotations du code source. » [15]}
+
+\subsubsection{Systèmes de gestion de bases de données}
+\vspace{12pt}
+
 \newcommand{\cadretechPrisma}[2]{%
-    \noindent
-    \begin{minipage}{2.2cm}
-        \centering
-        \includegraphics[width=2cm, height=1.5cm, keepaspectratio]{#1}
-    \end{minipage}
-    \hspace{0.5cm}
-    \begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
-        \fbox{%
-            \parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
-                #2%
-            }%
-        }%
-    \end{minipage}
-    \par
-    \vspace{10pt}
-}
-\cadretechPrisma{Images/prisma.png}{ \textbf{Prisma ORM V7.4.2 : } « est un ORM open source qui offre un accès rapide et sécurisé aux bases de données Postgres, MySQL et autres, et fonctionne parfaitement sur Node.js. » |16|}
+\noindent\begin{minipage}{2.2cm}\centering
+  \includegraphics[width=2cm,height=1.5cm,keepaspectratio]{#1}
+\end{minipage}\hspace{0.5cm}%
+\begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
+  \fbox{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{#2}}
+\end{minipage}\par\vspace{10pt}}
+
+\cadretechPrisma{Images/prisma.png}{%
+  \textbf{Prisma ORM v7 :} « est un ORM open source de nouvelle génération qui offre
+  un accès rapide et sécurisé aux bases de données PostgreSQL, MySQL et autres. Il
+  fournit un client typé généré automatiquement à partir du schéma de données,
+  garantissant la sécurité des types à la compilation et des requêtes SQL optimisées
+  à l'exécution. » [16]}
 
 \newcommand{\cadretechPostgres}[2]{%
-    \noindent
-    \begin{minipage}{2.2cm}
-        \centering
-        \includegraphics[width=2cm, height=1.5cm, keepaspectratio]{#1}
-    \end{minipage}
-    \hspace{0.5cm}
-    \begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
-        \fbox{%
-            \parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
-                #2%
-            }%
-        }%
-    \end{minipage}
-    \par
-    \vspace{10pt}
-}
-\cadretechPostgres{Images/postgres.png}{\textbf{PostgreSQL : } « est un système de gestion de bases de données objet-relationnelles (SGBD-OR). Il a été pionnier dans de nombreux concepts qui ne sont devenus disponibles que bien plus tard dans certains systèmes de bases de données commerciaux. » |17| }
-\newpage
+\noindent\begin{minipage}{2.2cm}\centering
+  \includegraphics[width=2cm,height=1.5cm,keepaspectratio]{#1}
+\end{minipage}\hspace{0.5cm}%
+\begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
+  \fbox{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{#2}}
+\end{minipage}\par\vspace{10pt}}
+
+\cadretechPostgres{Images/postgres.png}{%
+  \textbf{PostgreSQL 16 :} « est un système de gestion de bases de données
+  objet-relationnelles (SGBD-OR) open source. Il a été pionnier dans de nombreux
+  concepts qui ne sont devenus disponibles que bien plus tard dans certains systèmes
+  de bases de données commerciaux. Il est reconnu pour sa robustesse, sa conformité
+  aux standards SQL et ses performances sur de grands volumes de données. » [17]}
+
+\newcommand{\cadretechRedis}[2]{%
+\noindent\begin{minipage}{2.2cm}\centering
+  \includegraphics[width=2cm,height=1.5cm,keepaspectratio]{#1}
+\end{minipage}\hspace{0.5cm}%
+\begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
+  \fbox{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{#2}}
+\end{minipage}\par\vspace{10pt}}
+
+\cadretechRedis{Images/redis.jpg}{%
+  \textbf{Redis 7 :} « est un système de stockage de données en mémoire open source,
+  utilisé comme base de données, cache et courtier de messages. Sa structure de
+  données en mémoire vive lui confère des performances de lecture/écriture
+  exceptionnellement rapides. Dans notre projet, Redis est utilisé comme couche de
+  cache pour les permissions utilisateurs et les données fréquemment consultées,
+  avec une durée de vie (TTL) de 60 secondes. » [18]}
+
 \newcommand{\cadretechNeon}[2]{%
-    \noindent
-    \begin{minipage}{2.2cm}
-        \centering
-        \includegraphics[width=2cm, height=1.5cm, keepaspectratio]{#1}
-    \end{minipage}
-    \hspace{0.5cm}
-    \begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
-        \fbox{%
-            \parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
-                #2%
-            }%
-        }%
-    \end{minipage}
-    \par
-    \vspace{10pt}
-}
-\cadretechNeon{Images/Neon.png}{\textbf{Neon : } « est un service de base de données PostgreSQL cloud natif, sans serveur et entièrement managé, conjointement développé et géré par Microsoft et Neon » |18|}
+\noindent\begin{minipage}{2.2cm}\centering
+  \includegraphics[width=2cm,height=1.5cm,keepaspectratio]{#1}
+\end{minipage}\hspace{0.5cm}%
+\begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
+  \fbox{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{#2}}
+\end{minipage}\par\vspace{10pt}}
 
+\cadretechNeon{Images/Neon.png}{%
+  \textbf{Neon :} « est un service de base de données PostgreSQL cloud natif, sans
+  serveur et entièrement managé. Il offre une mise à l'échelle automatique, une
+  séparation calcul/stockage et une compatibilité totale avec PostgreSQL, permettant
+  de démarrer sans infrastructure à gérer. » [19]}
 
-\subsubsection{Outil de Gestion de Projet Scrum}
+\subsubsection{Conteneurisation et déploiement}
+\vspace{12pt}
+
+\newcommand{\cadretechDocker}[2]{%
+\noindent\begin{minipage}{2.2cm}\centering
+  \includegraphics[width=2cm,height=1.5cm,keepaspectratio]{#1}
+\end{minipage}\hspace{0.5cm}%
+\begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
+  \fbox{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{#2}}
+\end{minipage}\par\vspace{10pt}}
+
+\cadretechDocker{Images/docker.png}{%
+  \textbf{Docker \& Docker Compose :} « Docker est une plateforme open source qui
+  permet d'automatiser le déploiement d'applications dans des conteneurs logiciels
+  légers et portables. Docker Compose permet de définir et d'exécuter des
+  applications multi-conteneurs à l'aide d'un fichier de configuration YAML. Dans
+  notre projet, Docker Compose orchestre quatre services : PostgreSQL, Redis, le
+  backend NestJS et le frontend Next.js. » [20]}
+
+\subsubsection{Outil de gestion de projet Scrum}
+\vspace{12pt}
 
 \newcommand{\cadretechNotion}[2]{%
-    \noindent
-    \begin{minipage}{2.2cm}
-        \centering
-        \includegraphics[width=2cm, height=1.5cm, keepaspectratio]{#1}
-    \end{minipage}
-    \hspace{0.5cm}
-    \begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
-        \fbox{%
-            \parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
-                #2%
-            }%
-        }%
-    \end{minipage}
-    \par
-    \vspace{10pt}
-}
-\cadretechNotion{Images/Notion.png}{\textbf{Notion : } « est un puissant outil no-code de productivité. Il aide à gérer une base de connaissances, pour rendre plus facile et convivial le travail au sein des collaborateurs. Cette application se révèle indispensable autant pour les travailleurs autonomes que pour les professionnels en entreprise. C’est un également un outil parfait pour gérer son side project. » |18|}
+\noindent\begin{minipage}{2.2cm}\centering
+  \includegraphics[width=2cm,height=1.5cm,keepaspectratio]{#1}
+\end{minipage}\hspace{0.5cm}%
+\begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
+  \fbox{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{#2}}
+\end{minipage}\par\vspace{10pt}}
+
+\cadretechNotion{Images/Notion.png}{%
+  \textbf{Notion :} « est un puissant outil no-code de productivité. Il aide à gérer
+  une base de connaissances, pour rendre plus facile et convivial le travail au sein
+  des collaborateurs. Cette application se révèle indispensable autant pour les
+  travailleurs autonomes que pour les professionnels en entreprise. C'est également
+  un outil parfait pour gérer son projet agile (Product Backlog, suivi des sprints,
+  rétrospectives). » [21]}
 
 \subsubsection{Environnement de composition de documents}
+\vspace{12pt}
 
 \newcommand{\cadretechLatex}[2]{%
-    \noindent
-    \begin{minipage}{2.2cm}
-        \centering
-        \includegraphics[width=2cm, height=1.5cm, keepaspectratio]{#1}
-    \end{minipage}
-    \hspace{0.5cm}
-    \begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
-        \fbox{%
-            \parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
-                #2%
-            }%
-        }%
-    \end{minipage}
-    \par
-    \vspace{10pt}
-}
-\cadretechLatex{Images/latex.png}{\textbf{LaTeX  : } « est un système de composition de haute qualité ; il comprend des fonctionnalités conçues pour la production de documents techniques et scientifiques. LaTeX est la norme de facto pour la communication et la publication de documents scientifiques. » |19|}
-\subsubsection{Outil de design graphique}
-\newcommand{\cadretechCanva}[2]{%
-    \noindent
-    \begin{minipage}{2.2cm}
-        \centering
-        \includegraphics[width=2cm, height=1.5cm, keepaspectratio]{#1}
-    \end{minipage}
-    \hspace{0.5cm}
-    \begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
-        \fbox{%
-            \parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
-                #2%
-            }%
-        }%
-    \end{minipage}
-    \par
-    \vspace{10pt}
-}
+\noindent\begin{minipage}{2.2cm}\centering
+  \includegraphics[width=2cm,height=1.5cm,keepaspectratio]{#1}
+\end{minipage}\hspace{0.5cm}%
+\begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
+  \fbox{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{#2}}
+\end{minipage}\par\vspace{10pt}}
 
-\cadretechCanva{Images/canva.png}{\textbf{Canva : } « est une plateforme 
-de conception et de communication visuelle en ligne dont la mission est 
-de permettre à chacun dans le monde de concevoir n'importe quoi et de 
-publier n'importe où. » |20|}
+\cadretechLatex{Images/latex.png}{%
+  \textbf{\LaTeX :} « est un système de composition de haute qualité ; il comprend
+  des fonctionnalités conçues pour la production de documents techniques et
+  scientifiques. \LaTeX{} est la norme de facto pour la communication et la
+  publication de documents scientifiques. » [22]}
+
+\subsubsection{Outil de design graphique}
+\vspace{12pt}
+
+\newcommand{\cadretechCanva}[2]{%
+\noindent\begin{minipage}{2.2cm}\centering
+  \includegraphics[width=2cm,height=1.5cm,keepaspectratio]{#1}
+\end{minipage}\hspace{0.5cm}%
+\begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
+  \fbox{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{#2}}
+\end{minipage}\par\vspace{10pt}}
+
+\cadretechCanva{Images/canva.png}{%
+  \textbf{Canva :} « est une plateforme de conception et de communication visuelle
+  en ligne dont la mission est de permettre à chacun dans le monde de concevoir
+  n'importe quoi et de publier n'importe où. » [23]}
 
 \vspace{0.4cm}
-Le logo de \textbf{SolidMaint} a été conçu via \textbf{Canva} 
-en cohérence avec la charte visuelle de \textbf{SolidWall 
-Consulting}. Il associe le \textbf{noir} et le \textbf{jaune 
-doré} à des symboles évocateurs de maintenance, de sécurité 
-et de traçabilité.
+Le logo de \textbf{SolidMaint} a été conçu via \textbf{Canva} en cohérence avec la
+charte visuelle de \textbf{SolidWall Consulting}. Il associe le \textbf{noir} et le
+\textbf{jaune doré} à des symboles évocateurs de maintenance, de sécurité et de
+traçabilité.
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.10\textwidth]{Images/solidmaint.png}
-    \caption{Logo de SolidMaint}
-    \label{fig:logo_solidmaint}
+\centering
+\includegraphics[width=0.10\textwidth]{Images/solidmaint.png}
+\caption{Logo de SolidMaint}
+\label{fig:logo_solidmaint}
 \end{figure}
 
-\section{Architecture de l’application}
+%─────────────────────────────────────────────────────────────────────────────
+% SECTION V : ARCHITECTURE DE L'APPLICATION
+%─────────────────────────────────────────────────────────────────────────────
+
+\section{Architecture de l'application}
+
 \subsection{Architecture physique}
-L’architecture système est un ensemble de décisions de conception qui définit l’interaction des composants entre eux. Le choix de l’architecture est très sensible car elle permet d’optimiser les performances du système et facilite l’évolution du système en fonction des volumes de données. La figure ci-dessous montre l’architecture de notre application : 
+L'architecture système est un ensemble de décisions de conception qui définit
+l'interaction des composants entre eux. Le choix de l'architecture est très sensible
+car elle permet d'optimiser les performances du système et facilite son évolution en
+fonction des volumes de données.
+La figure ci-dessous montre l'architecture physique de notre application :
 
 \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/architecture.png}
-        \caption{architecture physique}
-        \label{fig:architecture physique}
-    \end{figure}
+\centering
+\includegraphics[width=0.7\textwidth,keepaspectratio]{Images/architecture.png}
+\caption{Architecture physique de SolidMaint}
+\label{fig:architecture_physique}
+\end{figure}
+
 \subsection{Architecture logique}
-Nous avons choisi comme architecture logicielle l’architecture du \textbf{monolithe modulaire}. Ce choix est basé sur la combinaison entre la simplicité et la robustesse des applications monolithiques traditionnelles.
+Nous avons choisi comme architecture logicielle l'\textbf{architecture monolithique
+modulaire}. Ce choix est basé sur la combinaison entre la simplicité et la robustesse
+des applications monolithiques traditionnelles, tout en bénéficiant de la clarté
+structurelle des architectures orientées modules.
 
-L’architecture du \textbf{monolithe modulaire} nous permet de travailler dans une base de code unifiée, avec des frontières clairement définies et des modules indépendants. Elle consiste à diviser un système en plusieurs modules.
+L'architecture du \textbf{monolithe modulaire} nous permet de travailler dans une
+base de code unifiée, avec des frontières clairement définies et des modules
+indépendants. Elle consiste à diviser le système en plusieurs modules fonctionnels
+cohésifs, chacun encapsulant sa propre logique métier, ses contrôleurs, ses services
+et ses DTOs.
 
-Nous avons choisi cette architecture afin de maintenir l’indépendance des modules et d’obtenir une grande cohésion, une encapsulation des données, ainsi qu’une focalisation sur les fonctionnalités métiers.
- \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/Modular Monoith.png}
-        \caption{Architecture monolithique modulairee}
-        \label{fig:Architecture monolithique modulaire}
-    \end{figure}
+Nous avons choisi cette architecture afin de maintenir l'indépendance des modules et
+d'obtenir une grande cohésion, une encapsulation des données, ainsi qu'une
+focalisation sur les fonctionnalités métiers, tout en conservant la simplicité de
+déploiement d'un monolithe.
 
-    \section{Conclusion}
-    Ce chapitre a établi les fondements techniques et méthodologiques de notre projet \textbf{SolidMaint}. L'identification des acteurs et la spécification des besoins fonctionnels et non fonctionnels ont permis de définir précisément les exigences de la plateforme. La modélisation UML et l'approche de pilotage Scrum avec la planification en quatre sprints structurent la démarche de développement.
-    L'environnement de développement choisi et l'architecture modulaire garantissent une solution robuste et évolutive. Ces éléments constituent la base solide pour aborder la phase de réalisation.
-    \newline Le chapitre suivant détaillera l'implémentation du premier sprint consacré à la gestion des utilisateurs et authentification.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth,keepaspectratio]{Images/Modular Monoith.png}
+\caption{Architecture monolithique modulaire}
+\label{fig:architecture_modulaire}
+\end{figure}
+
+%─────────────────────────────────────────────────────────────────────────────
+% CONCLUSION
+%─────────────────────────────────────────────────────────────────────────────
+
+\section{Conclusion}
+Ce chapitre a établi les fondements techniques et méthodologiques de notre projet
+\textbf{SolidMaint}. L'identification des six acteurs et la spécification des besoins
+fonctionnels et non fonctionnels ont permis de définir précisément les exigences de
+la plateforme. La modélisation UML et l'approche de pilotage Scrum avec la
+planification en quatre sprints structurent la démarche de développement.
+
+L'environnement de développement choisi et l'architecture modulaire garantissent une solution robuste et évolutive. Ces éléments constituent la base solide pour aborder la phase de réalisation.
+\newline Le chapitre suivant détaillera l'implémentation du premier sprint consacré à la gestion des utilisateurs et authentification.
 
 \newpage
 \section*{Références}
-
 \begin{itemize}
- \item \textbf{NestJS}, Documentation officielle - \url{https://docs.nestjs.com} % |6|
- \item \textbf{Next.js}, Documentation officielle - \url{https://nextjs.org/docs} % |7|
- \item \textbf{React}, Guide officiel - \url{https://react.dev} % |8|
- \item \textbf{Tailwind CSS}, Documentation - \url{https://tailwindcss.com} % |9|
- \item \textbf{shadcn/ui}, Guide des composants - \url{https://ui.shadcn.com/docs} % |10|
- \item \textbf{Visual Studio Code}, Manuel d'utilisation - \url{https://learn.microsoft.com/en-us/visualstudio/get-started/visual-studio-ide?view=visualstudio} % |11|
- \item \textbf{GitLab}, Guide utilisateur - \url{https://www.techtarget.com/whatis/definition/GitLab} % |12|
- \item \textbf{UML}, Spécifications officielles - \url{https://www.omg.org/uml/why-uml-is-important.htm} % |13|
- \item \textbf{draw.io}, Outil de modélisation - \url{https://www.lucidchart.com/pages/fr/exemple/logiciel-gestion-de-projet} % |14|
- \item \textbf{Swagger}, Documentation des APIs - \url{https://swagger.io/} % |15|
- \item \textbf{Prisma ORM}, Documentation - \url{https://www.prisma.io/docs} % |16|
- \item \textbf{PostgreSQL}, Site officiel - \url{https://www.postgresql.org} % |17|
- \item \textbf{Neon}, Cloud Postgres - \url{https://learn.microsoft.com/fr-fr/azure/partner-solutions/neon/overview} % |18|
- \item \textbf{Notion}, Espace de travail - \url{https://www.dixmilleheures.fr/avis/notion} % |19|
- \item \textbf{LaTeX}, Système de composition - \url{https://www.latex-project.org} % |20|
- \item \textbf{Canva}, Design graphique - \url{https://1password.com/fr/customers/canva} % |21|
-\item \textbf{Playwright}, Framework de test - \url{https://playwright.dev/docs/intro} % |21|
+  \item \textbf{NestJS}, Documentation officielle ---
+    \url{https://docs.nestjs.com} \hfill [6]
+  \item \textbf{Next.js}, Documentation officielle ---
+    \url{https://nextjs.org/docs} \hfill [7]
+  \item \textbf{React}, Guide officiel ---
+    \url{https://react.dev} \hfill [8]
+  \item \textbf{Tailwind CSS}, Documentation ---
+    \url{https://tailwindcss.com} \hfill [9]
+  \item \textbf{shadcn/ui}, Guide des composants ---
+    \url{https://ui.shadcn.com/docs} \hfill [10]
+  \item \textbf{Visual Studio Code}, Documentation officielle ---
+    \url{https://code.visualstudio.com/docs} \hfill [11]
+  \item \textbf{GitLab}, Guide utilisateur ---
+    \url{https://about.gitlab.com} \hfill [12]
+  \item \textbf{UML}, Spécifications officielles ---
+    \url{https://www.omg.org/uml} \hfill [13]
+  \item \textbf{Lucidchart}, Outil de modélisation ---
+    \url{https://www.lucidchart.com} \hfill [14]
+  \item \textbf{Swagger}, Documentation des APIs ---
+    \url{https://swagger.io} \hfill [15]
+  \item \textbf{Prisma ORM}, Documentation ---
+    \url{https://www.prisma.io/docs} \hfill [16]
+  \item \textbf{PostgreSQL}, Site officiel ---
+    \url{https://www.postgresql.org} \hfill [17]
+  \item \textbf{Redis}, Documentation officielle ---
+    \url{https://redis.io/docs} \hfill [18]
+  \item \textbf{Neon}, Cloud Postgres ---
+    \url{https://neon.tech/docs} \hfill [19]
+  \item \textbf{Docker}, Documentation officielle ---
+    \url{https://docs.docker.com} \hfill [20]
+  \item \textbf{Notion}, Espace de travail ---
+    \url{https://www.notion.so} \hfill [21]
+  \item \textbf{\LaTeX}, Système de composition ---
+    \url{https://www.latex-project.org} \hfill [22]
+  \item \textbf{Canva}, Design graphique ---
+    \url{https://www.canva.com} \hfill [23]
+  \item \textbf{Playwright}, Framework de test E2E ---
+    \url{https://playwright.dev/docs/intro} \hfill [24]
+  \item \textbf{Vitest}, Framework de test unitaire ---
+    \url{https://vitest.dev} \hfill [25]
 \end{itemize}
