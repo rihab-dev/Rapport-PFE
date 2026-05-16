@@ -12,28 +12,12 @@
 \usepackage{colortbl}
 \usepackage{ragged2e}
 \usepackage{float}
-\usepackage{array}
+
 \usepackage{multirow}
 \usepackage{amssymb}
 \usepackage{times}
 \usepackage{setspace}
 \usepackage{fancyhdr}
-\usepackage{titlesec}
-\usepackage{caption}
-\usepackage{chngpage}
-\usepackage{hyperref}
-\usepackage{xurl}
-\usepackage{microtype}
-\usepackage{amssymb}
-\usepackage{tabularx}
-\usepackage{longtable}
-\usepackage{tikz}
-\usetikzlibrary{calc}
-\usepackage{pifont}
-\usepackage{capt-of}
-\usepackage{float}
-\usepackage{etoolbox}
-\usepackage{subcaption}
 % ============================================================
 %  MINITOC — sommaire par chapitre
 % ============================================================
@@ -44,6 +28,27 @@
 \mtcsetfont{minitoc}{section}{\large\bfseries\rmfamily\color{primary}}
 \mtcsetfont{minitoc}{subsection}{\footnotesize\rmfamily\color{secondary}}
 \renewcommand{\mtctitle}{}
+\usepackage{titlesec}
+\usepackage{caption}
+\usepackage{chngpage}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{placeins}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{pifont}
+\usepackage{capt-of}
+\usepackage{float}
+\usepackage{etoolbox}
+\usepackage{subcaption}
+\usepackage{needspace}
+\usepackage{ragged2e}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\RaggedRight\arraybackslash}p{#1}}
 
 % ============================================================
 %  COULEURS
@@ -174,6 +179,7 @@
 
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 \newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
 
 % Configuration hyperref
 \hypersetup{

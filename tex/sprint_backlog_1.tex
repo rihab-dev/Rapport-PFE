@@ -1,11 +1,10 @@
-
 \rowcolors{0}{}{}
 \arrayrulecolor{black}
 \renewcommand{\arraystretch}{1.3}
 \setlength{\extrarowheight}{3pt}
 \small
-\begin{longtable}{|C{1cm}|p{6.5cm}|p{7cm}|C{1cm}|}
-
+\sloppy
+\begin{longtable}{|C{1cm}|L{6.5cm}|L{7cm}|C{1cm}|}
 \hline
 \textbf{ID US} & \textbf{User Story} & \textbf{Description technique} & \textbf{Effort} \\
 \hline
@@ -27,7 +26,7 @@
 
 US01 & En tant qu'\textbf{utilisateur}, je souhaite m'authentifier avec email et mot de passe afin d'accéder à mes informations de manière sécurisée. & 
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint "POST /api/auth/login"
+\item Développer l'endpoint \footnotesize{"POST /api/auth/login"}\small
 \item Mettre en place la gestion de session via \textbf{JWT} (access token 15 min, refresh token 7 jours stocké en base)
 \item Réaliser l'interface connexion login
 \item Consommer l'API d'authentification
@@ -38,7 +37,7 @@ US01 & En tant qu'\textbf{utilisateur}, je souhaite m'authentifier avec email et
 US02 & En tant qu'\textbf{utilisateur}, je souhaite réinitialiser mon mot de passe afin de retrouver l'accès à mon compte. & 
 
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer les endpoints "POST /api/auth/mot-de-passe-oublie et "POST /api/auth/reinitialiser-mot-de-passe"
+\item Développer les endpoints \footnotesize{"POST /api/auth/mot-de-passe-oublie"}\small{} et \footnotesize{"POST /api/auth/reinitialiser-mot-de-passe"}\small
   \item Générer un token sécurisé (bcrypt) avec expiration de \textbf{1 heure}
   \item Invalider les anciens tokens non utilisés à chaque nouvelle demande
   \item Configurer l'envoi d'un e-mail de réinitialisation et d'un e-mail de confirmation via \textbf{Nodemailer}
@@ -50,8 +49,8 @@ US02 & En tant qu'\textbf{utilisateur}, je souhaite réinitialiser mon mot de pa
 US03 & En tant qu'\textbf{utilisateur}, je souhaite m'authentifier via Google ou GitHub afin de me connecter rapidement sans créer de compte. & 
 
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Intégrer les stratégies OAuth2 via "passport-google-oauth20" et "passport-github2" dans NestJS (\textbf{@nestjs/passport})
-\item Implémenter les routes "GET /api/auth/google", "GET /api/auth/github" et leurs callbacks
+\item Intégrer les stratégies OAuth2 via \footnotesize{"passport-google-oauth20"}\small{} et \footnotesize{"passport-github2"}\small{} dans NestJS (\textbf{@nestjs/passport})
+\item Implémenter les routes \footnotesize{"GET /api/auth/google"}\small{}, \footnotesize{"GET /api/auth/github"}\small{} et leurs callbacks
   \item Si l'utilisateur existe en base et est actif : générer les tokens JWT et rediriger vers le frontend avec \textbf{?oauth=success}
 \item Vérifier l'existence de l'utilisateur en base de données et une demande d'inscription OAuth est envoyée à l'admin
 \item Implémenter les boutons OAuth sur la page de login
@@ -61,7 +60,7 @@ US03 & En tant qu'\textbf{utilisateur}, je souhaite m'authentifier via Google ou
 US04 & En tant qu'\textbf{utilisateur}, je souhaite me déconnecter de la plateforme afin de sécuriser ma session. & 
 
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint "POST /auth/logout" avec révocation du refresh token en base
+\item Développer l'endpoint \footnotesize{"POST /auth/logout"}\small{} avec révocation du refresh token en base
 \item Supprimer \textbf{accessToken}, \textbf{refreshToken} et \textbf{user} du \textbf{localStorage}
 \item Vider le cache React Query (\textbf{queryClient.clear()})
 \item Réaliser le bouton de déconnexion 
@@ -85,11 +84,11 @@ US05 & En tant qu'\textbf{utilisateur}, je souhaite que mon compte soit protég�
 US06 & En tant qu'\textbf{utilisateur}, je souhaite gérer mon profil afin que mes informations soient toujours à jour. & 
 
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer les endpoints "GET /api/profil" et "PUT /api/profil" pour consulter et modifier les informations
-\item Implémenter l'upload de la photo de profil "POST /api/profil/upload-photo"
-\item Développer le changement de mot de passe via "POST /api/profil/change-password" avec vérification de l'ancien mot de passe (bcrypt)
-\item Gérer les e-mails secondaires : "GET/POST/DELETE /api/profil/emails" et "PATCH /api/profil/emails/principal"
-\item Réaliser l'interface profil côté Next.js  avec formulaire prérempli
+\item Développer les endpoints \footnotesize{"GET /api/profil"}\small{} et \footnotesize{"PUT /api/profil"}\small{} pour consulter et modifier les informations
+\item Implémenter l'upload de la photo de profil \footnotesize{"POST /api/profil/upload-photo"}\small
+\item Développer le changement de mot de passe via \footnotesize{"POST /api/profil/change-password"}\small{} avec vérification de l'ancien mot de passe (bcrypt)
+\item Gérer les e-mails secondaires : \footnotesize{"GET/POST/DELETE /api/profil/emails"}\small{} et \footnotesize{"PATCH /api/profil/emails/principal"}\small
+\item Réaliser l'interface profil côté Next.js avec formulaire prérempli
 \end{itemize} & 2 \\
 \hline
 
@@ -97,26 +96,26 @@ US07 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique de me
 
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
   \item Développer l'endpoint
-    "GET /api/activity-logs/me"
+    \footnotesize{"GET /api/activity-logs/me"}\small
     retournant les activités de l'utilisateur connecté
     (limité aux \textbf{30 derniers jours} par défaut)
-  \item Développer "GET /api/activity-logs/me/stats"
+  \item Développer \footnotesize{"GET /api/activity-logs/me/stats"}\small
     pour les statistiques personnelles (taux de succès,
     actions fréquentes, activité par jour)
-  \item Développer "GET /api/activity-logs/me/export"
+  \item Développer \footnotesize{"GET /api/activity-logs/me/export"}\small
     pour l'export CSV ou JSON
   \item Implémenter le filtrage par \textbf{entityType},
     \textbf{action}, \textbf{status}, plage de dates
     et recherche textuelle (\textbf{contains})
-  
   \item Réaliser l'interface timeline avec filtres
     côté Next.js
 \end{itemize} & 2 \\
 \hline
+
 US08 & En tant qu'\textbf{administrateur}, je souhaite créer des utilisateurs afin de gérer les accès au système. & 
 
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint "POST /api/users"
+\item Développer l'endpoint \footnotesize{"POST /api/users"}\small
 \item Générer automatiquement un mot de passe temporaire haché via \textbf{bcrypt}
 \item Générer un token de réinitialisation (1 heure) et construire le lien de réinitialisation
 \item Créer automatiquement le "ProfilEmploye" avec matricule "EMP-\{id\}" 
@@ -129,7 +128,7 @@ US08 & En tant qu'\textbf{administrateur}, je souhaite créer des utilisateurs a
 US09 & En tant qu'\textbf{administrateur}, je souhaite modifier les informations d'un utilisateur afin de maintenir des données à jour. & 
 
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint "PUT /api/users/:id"
+\item Développer l'endpoint \footnotesize{"PUT /api/users/:id"}\small
 \item Valider les données via \textbf{class-validator}
 \item Réaliser le formulaire de modification côté Next.js
 \end{itemize} & 2 \\
@@ -138,7 +137,7 @@ US09 & En tant qu'\textbf{administrateur}, je souhaite modifier les informations
 US10 & En tant qu'\textbf{administrateur}, je souhaite activer et désactiver un compte utilisateur afin de contrôler l'accès au système. & 
 
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer les endpoints "PATCH /api/users/:id/desactiver" et "PATCH /api/users/:id/reactiver"
+\item Développer les endpoints \footnotesize{"PATCH /api/users/:id/desactiver"}\small{} et \footnotesize{"PATCH /api/users/:id/reactiver"}\small
 \item Implémenter les vérifications de réassignation des tickets et des demandes en cas de désactivation
 \item Envoyer des notifications pour informer l'utilisateur de l'activation ou désactivation de son compte
 \item Réaliser les boutons d'action avec appels des API
@@ -148,20 +147,17 @@ US10 & En tant qu'\textbf{administrateur}, je souhaite activer et désactiver un
 US11 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des utilisateurs afin de visualiser et gérer efficacement les comptes. & 
 
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-  \item Développer l'endpoint "GET /api/users"
-     retournant les
-    utilisateurs hors rôles CLIENT et ADMIN, hors
+  \item Développer l'endpoint \footnotesize{"GET /api/users"}\small
+    retournant les utilisateurs hors rôles CLIENT et ADMIN, hors
     utilisateur connecté
   \item Développer l'endpoint de recherche
-    "GET /api/users/search?q=\&limit="
+    \footnotesize{"GET /api/users/search?q=\&limit="}\small
     avec filtre insensible à la casse
   \item Réaliser l'interface d'administration avec vue grille
     et vue liste, filtres par statut et par rôle,
     barre de recherche dynamique
 \end{itemize} & 1 \\
 \hline
-
-
 
 % Epic 3: Gestion des rôles et permissions
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 3 - Gestion des rôles et permissions}} \\
@@ -171,12 +167,12 @@ US12 & En tant qu'\textbf{administrateur}, je souhaite gérer des rôles afin de
 
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
   \item Développer les endpoints CRUD sous
-    "/api/admin/roles-permissions/roles" :
+    \footnotesize{"/api/admin/roles-permissions/roles"}\small{} :
     \textbf{POST}, \textbf{GET}, \textbf{PATCH /:id},
     \textbf{DELETE /:id}
-  \item Implémenter l'archivage "PATCH /:id/archive"
-    et la restauration "PATCH /:id/restore"
-  \item Attribuer automatiquement \textbf{ permissions de base}
+  \item Implémenter l'archivage \footnotesize{"PATCH /:id/archive"}\small
+    et la restauration \footnotesize{"PATCH /:id/restore"}\small
+  \item Attribuer automatiquement \textbf{permissions de base}
     à chaque nouveau rôle 
   \item Protéger les rôles système (\textbf{roleSysteme = true})
     contre la suppression et le renommage
@@ -191,27 +187,26 @@ US13 & En tant qu'\textbf{administrateur}, je souhaite attribuer des permissions
 
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
   \item Développer les endpoints d'attribution et de retrait :
-    "POST /api/admin/roles-permissions/roles/:roleId/permissions"
+    \footnotesize{"POST /api/admin/roles-permissions/roles/:roleId/permissions"}\small
     et
-    "DELETE /api/admin/roles-permissions/roles/:roleId/permissions/:permissionId"
+    \footnotesize{"DELETE /api/admin/roles-permissions/roles/:roleId/permissions/:permissionId"}\small
   \item Développer l'endpoint d'attribution directe :
-    "POST /api/admin/roles-permissions/assign-permission"
+    \footnotesize{"POST /api/admin/roles-permissions/assign-permission"}\small
   \item Implémenter la détection des doublons
-    
   \item Développer l'interface interactive de type
     « Matrice de contrôle d'accès » avec cases à cocher
     organisées par catégorie
 \end{itemize} & 2 \\
 \hline
+
 US14 & En tant qu'\textbf{administrateur}, je souhaite consulter la matrice rôles-permissions afin de visualiser rapidement les droits de chaque rôle. & 
 
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
   \item Développer l'endpoint
-    "GET /api/admin/roles-permissions/roles"
+    \footnotesize{"GET /api/admin/roles-permissions/roles"}\small
     retournant les rôles avec leurs permissions imbriquées
-    
   \item Développer l'endpoint
-    "GET /api/admin/roles-permissions/permissions"
+    \footnotesize{"GET /api/admin/roles-permissions/permissions"}\small
     retournant toutes les permissions triées par
     \textbf{codePermission}
   \item Structurer les données côté frontend en matrice
@@ -231,43 +226,35 @@ US15 & En tant qu'\textbf{utilisateur externe}, je souhaite demander l'accès vi
   \item La demande est créée automatiquement dans la stratégie
     Passport (\textbf{GoogleStrategy} /
     \textbf{GithubStrategy}) lors du callback OAuth
-  \item Enregistrer la demande en base
-     avec statut
+  \item Enregistrer la demande en base avec statut
     \textbf{EN\_ATTENTE} et le rôle souhaité
-    
   \item Détecter les doublons (même email + fournisseur)
     via \textbf{upsert} pour éviter les entrées multiples
   \item Notifier tous les administrateurs actifs par e-mail
   \item Envoyer un e-mail de confirmation au visiteur
   \item Afficher un message d'attente côté frontend
-    
 \end{itemize} & 3 \\
 \hline
-
 
 US16 & En tant qu'\textbf{administrateur}, je souhaite valider ou rejeter les demandes d'inscription OAuth afin de contrôler les accès. &
 
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
   \item Développer l'endpoint de liste :
-    "GET /api/admin/demandes-inscription"
+    \footnotesize{"GET /api/admin/demandes-inscription"}\small
     avec filtre par statut 
-    
   \item Développer l'endpoint d'approbation :
-    "PATCH /api/admin/demandes-inscription/:id/approuver"
+    \footnotesize{"PATCH /api/admin/demandes-inscription/:id/approuver"}\small
     — crée le compte utilisateur, attribue le rôle,
     marque la demande \textbf{APPROUVEE}
-    
   \item Développer l'endpoint de refus :
-    "PATCH /api/admin/demandes-inscription/:id/refuser"
+    \footnotesize{"PATCH /api/admin/demandes-inscription/:id/refuser"}\small
     avec motif optionnel, marque la demande
     \textbf{REFUSEE}
-    
   \item Configurer l'envoi d'e-mails de confirmation
     ou de refus via \textbf{Nodemailer}
   \item Réaliser l'interface de gestion des demandes
     avec actions d'approbation/refus côté Next.js
 \end{itemize} & 3 \\
 \hline
-
 
 \end{longtable}
