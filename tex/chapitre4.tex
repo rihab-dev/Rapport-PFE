@@ -72,7 +72,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \footnotesize
 \renewcommand{\arraystretch}{1}
 \begin{longtable}{|P{4cm}|P{11.5cm}|}
-\caption{Description textuelle « Ajouter client »} \\
+
 \hline
 \endfirsthead
 \hline
@@ -130,6 +130,7 @@ Un message de confirmation est affiché. \\
 \end{itemize} \\
 \hline
 \end{longtable}
+\captionof{table}{Description textuelle « Ajouter client »} 
 \normalsize
 \vspace{-0.3cm}
 
@@ -139,7 +140,6 @@ Un message de confirmation est affiché. \\
 \footnotesize
 \renewcommand{\arraystretch}{1}
 \begin{longtable}{|P{4cm}|P{11.5cm}|}
-\caption{Description textuelle « Consulter profil client »} \\
 \hline
 \endfirsthead
 \hline
@@ -187,6 +187,8 @@ Pour Chef de projet : le client doit être associé à au moins un de ses projet
 \end{itemize} \\
 \hline
 \end{longtable}
+\captionof{table}{Description textuelle « Consulter profil client »} 
+
 \normalsize
 \vspace{-0.3cm}
 
@@ -195,7 +197,6 @@ Pour Chef de projet : le client doit être associé à au moins un de ses projet
 \footnotesize
 \renewcommand{\arraystretch}{1}
 \begin{longtable}{|P{4cm}|P{11.5cm}|}
-\caption{Description textuelle « Désactiver un client »} \\
 \hline
 \endfirsthead
 \hline
@@ -240,7 +241,10 @@ Le client à désactiver doit être actuellement Actif. \\
 \hline
 \textbf{Scénarios alternatifs} & L'administrateur clôture les contrats, traite les demandes et résout les tickets avant la désactivation. \\
 \hline
+
+
 \end{longtable}
+\captionof{table}{Description textuelle « Désactiver un client »} 
 \normalsize
 \vspace{-0.3cm}
 
@@ -263,9 +267,9 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
-{\sloppy
+
 \begin{longtable}{|P{4cm}|P{11.5cm}|}
-\caption{Description textuelle « Créer contrat »} \\
+
 \hline
 \endfirsthead
 \hline
@@ -319,7 +323,7 @@ Le contrat est visible dans la liste des contrats et lié au client sélectionn�
 \end{itemize} \\
 \hline
 \end{longtable}
-}
+\captionof{table}{Description textuelle « Créer contrat »}
 \normalsize
 \vspace{-0.3cm}
 
@@ -329,7 +333,6 @@ Le contrat est visible dans la liste des contrats et lié au client sélectionn�
 \footnotesize
 \renewcommand{\arraystretch}{1}
 \begin{longtable}{|P{4cm}|P{11.5cm}|}
-\caption{Description textuelle « Archiver contrat »} \\
 \hline
 \endfirsthead
 \hline
@@ -374,7 +377,9 @@ Le motif d'archivage est enregistré et associé au contrat. \\
 \item Le système détecte que le motif saisi contient moins de 10 caractères et désactive le bouton de confirmation.
 \end{itemize} \\
 \hline
+
 \end{longtable}
+\captionof{table}{Description textuelle « Archiver contrat »}
 \normalsize
 \vspace{-0.3cm}
 
@@ -383,7 +388,6 @@ Le motif d'archivage est enregistré et associé au contrat. \\
 \footnotesize
 \renewcommand{\arraystretch}{1}
 \begin{longtable}{|P{4cm}|P{11.5cm}|}
-\caption{Description textuelle « Configurer intégration Slack »} \\
 \hline
 \endfirsthead
 \hline
@@ -430,7 +434,10 @@ Les notifications sont actives selon les préférences choisies. \\
 \item Le système détecte que le webhook URL est invalide lors du test et affiche un message d'erreur.
 \end{itemize} \\
 \hline
+
 \end{longtable}
+\captionof{table}{Description textuelle « Configurer intégration Slack »} 
+
 \normalsize
 \vspace{-0.3cm}
 
@@ -455,7 +462,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \footnotesize
 \renewcommand{\arraystretch}{1}
 \begin{longtable}{|P{4cm}|P{11.5cm}|}
-\caption{Description textuelle « Consulter liste contrats »} \\
 \hline
 \endfirsthead
 \hline
@@ -492,7 +498,11 @@ L'utilisateur possède la permission de consulter ses contrats. \\
 \item Le client consulte le statut d'expiration de ses contrats et reçoit des alertes à J-30, J-15 et J-7 avant l'échéance.
 \end{itemize} \\
 \hline
+
+
 \end{longtable}
+
+\captionof{table}{Description textuelle « Consulter liste contrats »} 
 \normalsize
 \vspace{-0.3cm}
 
@@ -501,7 +511,6 @@ L'utilisateur possède la permission de consulter ses contrats. \\
 \footnotesize
 \renewcommand{\arraystretch}{1}
 \begin{longtable}{|P{4cm}|P{11.5cm}|}
-\caption{Description textuelle « Demander résiliation »} \\
 \hline
 \endfirsthead
 \hline
@@ -541,7 +550,10 @@ L'administrateur est notifié par e-mail et notification interne. \\
 \item Le contrat n'est pas actif : l'action est indisponible.
 \end{itemize} \\
 \hline
+
+
 \end{longtable}
+\captionof{table}{Description textuelle « Demander résiliation »} 
 \normalsize
 \vspace{-0.3cm}
 
@@ -551,7 +563,6 @@ L'administrateur est notifié par e-mail et notification interne. \\
 \footnotesize
 \renewcommand{\arraystretch}{1}
 \begin{longtable}{|P{4cm}|P{11.5cm}|}
-\caption{Description textuelle « Consulter journal d'activités »} \\
 \hline
 \endfirsthead
 \hline
@@ -595,7 +606,10 @@ Le journal d'activités est affiché avec les filtres appliqués. \\
 \item Aucun log ne correspond aux filtres appliqués : le système affiche un message « Aucun résultat trouvé ».
 \end{itemize} \\
 \hline
+
 \end{longtable}
+\captionof{table}{Description textuelle « Consulter journal d'activités »} 
+
 \normalsize
 \vspace{-0.3cm}
 
