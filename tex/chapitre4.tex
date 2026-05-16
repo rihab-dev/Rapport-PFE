@@ -829,42 +829,12 @@ doublons. Les cas suivants ont été couverts :
   \item La référence générée respecte le format \texttt{CTR-}.
 \end{itemize}
 
-\item[$\square$] \textbf{Module Projets}
-\hfill\textit{Méthodes : \texttt{create()} · \texttt{assignerMembre()} ·
-\texttt{verifierArchivage()}}
-
-\noindent Cette suite valide les règles métier de création de projet,
-d'affectation des membres et de vérification des conditions d'archivage.
-Les cas suivants ont été couverts :
-
-\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item Un projet est créé avec des données valides : le chef de projet
-    et les membres sont notifiés par e-mail et notification interne.
-  \item Le client fourni est inexistant : une \texttt{NotFoundException}
-    est levée.
-  \item Le nom du projet est déjà utilisé : une
-    \texttt{ConflictException} est levée.
-  \item Le chef de projet n'est pas disponible
-    (\texttt{disponibilite = false}) : une \texttt{BadRequestException}
-    est levée.
-  \item Aucun membre d'équipe n'est fourni : une
-    \texttt{BadRequestException} est levée.
-  \item La date de fin est antérieure à la date de début : une
-    \texttt{BadRequestException} est levée.
-  \item Un membre est proposé pour un projet : la proposition est créée
-    avec le statut \texttt{EN\_ATTENTE}.
-  \item Un projet avec des tickets actifs est soumis à l'archivage :
-    le système retourne la liste des tickets bloquants.
-\end{itemize}
-
-\end{itemize}
-
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.72\textwidth,keepaspectratio]
+\includegraphics[width=0.65\textwidth,keepaspectratio]
   {Images/test-unitaire-contrats-sprint2.png}
-\caption{Résultats des tests unitaires — Contrats et Projets}
-\label{fig:test_unitaires_sprint2}
+\caption{Tests unitaires — Gestion des contrats via Vitest}
+\label{fig:test_unitaire_sprint2}
 \end{figure}
 
 %─────────────────────────────────────────────────────────────────────────────
@@ -925,60 +895,55 @@ gestion des contrats. Les cas suivants ont été couverts :
 
 %─────────────────────────────────────────────────────────────────────────────
 %─────────────────────────────────────────────────────────────────────────────
-\subsubsection{Tests End-to-End}
+\subsubsection{Tests End-to-End (E2E)}
 \label{sec:tests_e2e_sprint2}
 
-Les tests End-to-End simulent les parcours utilisateurs complets dans un
-navigateur réel piloté par \textbf{Playwright}, en interaction avec le
-frontend Next.js, le backend NestJS et la base de données PostgreSQL.
+Les tests End-to-End simulent les parcours utilisateurs complets dans un navigateur réel piloté par \textbf{Playwright}. Ils garantissent que le frontend Next.js communique correctement avec le backend NestJS et que les données sont persistées avec intégrité dans PostgreSQL.
 
 \vspace{4pt}
-\noindent\textbf{Bilan : 4 tests exécutés — 4 réussis — 0 échec.}
+\noindent\textbf{Bilan : 6 tests automatisés — 6 réussis — 0 échec.}
 \vspace{6pt}
 
 \begin{itemize}[leftmargin=0pt]
 
-\item[$\square$] \textbf{Création et suivi de contrat}
-\hfill\textit{2 scénarios : création manuelle, suivi client}
+\item[$\square$] \textbf{Cycle de vie et Intégrité des Contrats}
+\hfill\textit{4 scénarios clés validés}
 
-\noindent Cette suite valide les flux complets de création d'un contrat
-et de consultation par le client. Les cas suivants ont été couverts :
-
-\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item L'administrateur crée un contrat via le formulaire multi-étapes
-    en mode saisie manuelle : le système calcule automatiquement le
-    montant TTC, génère la référence et affiche le contrat dans la
-    liste avec le statut \texttt{ACTIF}.
-  \item Le client se connecte et consulte ses contrats : le système
-    filtre automatiquement les contrats liés à son profil, affiche les
-    alertes d'expiration et permet le téléchargement du fichier PDF.
-\end{itemize}
-
-\item[$\square$] \textbf{Journal d'activités}
-\hfill\textit{2 scénarios : consultation, filtrage}
-
-\noindent Cette suite valide le flux complet de consultation du journal
-d'activités par l'administrateur. Les cas suivants ont été couverts :
+\noindent Cette suite Playwright valide la robustesse du module de gestion des contrats :
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item L'administrateur accède au journal d'activités : le système
-    affiche la liste paginée des logs avec les informations complètes
-    (utilisateur, action, statut, date) et les statistiques globales
-    du jour.
-  \item L'administrateur applique des filtres combinés (statut
-    \texttt{FAILED} et plage de dates) : le système filtre la liste
-    et affiche uniquement les entrées correspondantes, permettant
-    l'identification rapide des anomalies.
-\end{itemize}
-
+  \item \textbf{Création et Suivi (Admin/Client)} : L'administrateur crée un contrat via un formulaire multi-étapes. Le système calcule automatiquement le montant TTC, génère la référence unique et met à jour le statut à \texttt{ACTIF}. Le client peut ensuite consulter son contrat et vérifier les alertes d'expiration.
+  \item \textbf{Sécurité et Anti-Doublon} : Validation de la logique de détection des doublons par hashage de fichier. Le système bloque l'upload d'un document PDF déjà associé à un autre projet actif.
+  \item \textbf{Automatisation de Résiliation} : Simulation d'une résiliation par l'administrateur. Le test vérifie la mise à jour du statut et la \textbf{fermeture en cascade} automatique de tous les tickets de maintenance ouverts sur ce contrat.
+  \item \textbf{Workflow de Demande Client} : Le client soumet une demande de résiliation depuis son espace. Le test valide la transition vers l'état \texttt{RESILIATION\_EN\_ATTENTE} et la notification de l'administrateur.
 \end{itemize}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.70\textwidth,keepaspectratio]
-  {Images/test-e2e-contrats-sprint2.png}
-\caption{Tests End-to-End — Contrats et Journal d'activités via Playwright}
-\label{fig:test_e2e_sprint2}
+\includegraphics[width=0.85\textwidth,keepaspectratio]
+  {Images/playwright-results-contrats.png}
+\caption{Rapport d'exécution Playwright — Validation du module Contrats}
+\label{fig:playwright_e2e_sprint2}
+\end{figure}
+
+\end{itemize}
+
+\item[$\square$] \textbf{Gestion des Clients et Projets Livrés}
+\hfill\textit{scénarios clés validés}
+
+\noindent Cette suite de tests valide le processus d'onboarding complet des clients, incluant l'importation de leurs projets déjà livrés et la configuration des équipes :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item \textbf{Onboarding avec Projets Livrés} : Validation de la création simultanée d'un compte client et de ses projets déjà finalisés. Le test confirme l'affectation automatique de l'équipe (Chef de projet et membres) et la mise à jour de leurs statistiques de performance (incrémentation des projets terminés).
+  \item \textbf{Intégrité et Cascade RH} : Vérification des règles métier interdisant la saisie de projets livrés avec des dates futures, et validation du statut automatique des membres (\texttt{TERMINE}) pour ces projets.
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth,keepaspectratio]
+  {Images/test-e2e-clients-onboarding.png}
+\caption{Validation E2E — Création client avec cascade de statistiques employés}
+\label{fig:playwright_e2e_clients}
 \end{figure}
 
 %─────────────────────────────────────────────────────────────────────────────
