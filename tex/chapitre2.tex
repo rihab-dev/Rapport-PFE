@@ -211,7 +211,7 @@ de l'avancement.
 \noindent Notre projet est organisé en \textbf{4 sprints} de \textbf{3 à 4 semaines}
 chacun, couvrant une période totale de développement d'\textbf{environ 3 mois et
 demi}. La stratégie de répartition suit une logique architecturale : fondations
-sécuritaires (Sprint 1), gestion contractuelle (Sprint 2), cœur métier opérationnel
+sécuritaires (Sprint 1), gestion des clients et contractuelle (Sprint 2), cœur métier opérationnel
 (Sprint 3), et fonctionnalités avancées (Sprint 4). Chaque sprint commence par une
 réunion de planification (Sprint Planning) où l'équipe sélectionne les user stories
 du Product Backlog à réaliser, et se termine par une revue de sprint (Sprint Review)
@@ -226,11 +226,11 @@ La figure suivante présente le déroulement chronologique de nos sprints.
 \label{fig:planification_sprints}
 \end{figure}
 
-\subsubsection{Sprint 1 -- Gestion des Utilisateurs, Clients et Authentification}
+\subsubsection{Sprint 1 -- Authentification, Sécurité et Gestion des Utilisateurs}
 \textbf{Période :} du 17 février au 11 mars (\textbf{3 semaines})
 \newline
-\textbf{Objectif du sprint :} Mettre en place le système d'authentification sécurisé,
-la gestion complète des utilisateurs et des clients avec contrôle d'accès basé sur
+\textbf{Objectif du sprint :} Mettre en place le système d'authentification sécurisé
+et la gestion complète des utilisateurs avec contrôle d'accès basé sur
 les rôles (RBAC).
 
 \noindent\textbf{User Stories sélectionnées :}
@@ -239,7 +239,6 @@ les rôles (RBAC).
   \item \textbf{Epic 2 -- Gestion des utilisateurs} : US06 à US11 (6 user stories)
   \item \textbf{Epic 3 -- Gestion des rôles et permissions} : US12 à US14 (3 user stories)
   \item \textbf{Epic 4 -- Demandes d'inscription OAuth} : US15 à US16 (2 user stories)
-  \item \textbf{Epic 5 -- Gestion des clients} : US17 à US23 (7 user stories)
 \end{itemize}
 
 \noindent\textbf{Livrables attendus :}
@@ -247,25 +246,25 @@ les rôles (RBAC).
   \item Système d'authentification fonctionnel (JWT + OAuth Google/GitHub)
   \item Module de gestion des utilisateurs avec verrouillage de compte
   \item Système RBAC complet avec gestion des rôles et permissions granulaires
-  \item Module de gestion des clients avec profils société
 \end{itemize}
 
-\subsubsection{Sprint 2 -- Gestion des Projets et Contrats}
+\subsubsection{Sprint 2 -- Gestion des Clients, Projets et Contrats}
 \textbf{Période :} du 12 mars au 2 avril (\textbf{3 semaines})
 \newline
-\textbf{Objectif du sprint :} Développer la gestion complète des projets et contrats
+\textbf{Objectif du sprint :} Développer la gestion complète des clients, des projets et contrats
 de maintenance avec système d'alertes d'expiration et configuration SLA.
 
 \noindent
 \textbf{User Stories sélectionnées :}
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
-  \item \textbf{Epic 6 -- Gestion des projets} : US24 à US27 (4 user stories)
-  \item \textbf{Epic 7 -- Gestion des contrats} : US28 à US37 (10 user stories)
-  \item \textbf{Epic 14 -- Historique et traçabilité} : US95 à US96 (2 user stories)
+  \item \textbf{Epic 5 -- Gestion des clients et projets} : US17 à US26 (10 user stories)
+  \item \textbf{Epic 5 -- Gestion des contrats} : US27 à US37 (10 user stories)
+  \item \textbf{Epic 14 -- Historique et traçabilité} : US103 à US104 (2 user stories)
 \end{itemize}
 
 \noindent\textbf{Livrables attendus :}
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+  \item Module de gestion des clients avec profils société
   \item Module de gestion des projets avec équipes et membres
   \item Système de gestion des contrats avec SLA, alertes à J-30/J-15/J-7 et
     workflow d'approbation
@@ -273,7 +272,7 @@ de maintenance avec système d'alertes d'expiration et configuration SLA.
 \end{itemize}
 
 \subsubsection{Sprint 3 -- Gestion des Demandes et Tickets}
-\textbf{Période :} du 3 avril au 1 mai (\textbf{4 semaines})
+\textbf{Période :} du 3 avril au 24 avril (\textbf{3 semaines})
 \newline
 \textbf{Objectif du sprint :} Implémenter le cœur métier avec la gestion des
 demandes et tickets incluant suivi du temps, SLA et tableau Kanban.
@@ -282,7 +281,7 @@ demandes et tickets incluant suivi du temps, SLA et tableau Kanban.
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
   \item \textbf{Epic 8 -- Gestion des demandes} : US38 à US45 (8 user stories)
   \item \textbf{Epic 9 -- Gestion des tickets} : US46 à US65 (20 user stories)
-  \item \textbf{Epic 13 -- Dashboards} : US88 à US91 (4 user stories)
+  \item \textbf{Epic 16 -- Intelligence Artificielle} : US105 à US111 (7 user stories)
 \end{itemize}
 
 \noindent\textbf{Livrables attendus :}
@@ -290,24 +289,22 @@ demandes et tickets incluant suivi du temps, SLA et tableau Kanban.
   \item Module de gestion des demandes de maintenance avec classification
   \item Système complet de gestion des tickets avec vue Kanban (drag \& drop)
   \item Chronomètre de travail par session et respect des SLA en minutes ouvrées
-  \item Tableaux de bord pour pilotage (Admin, Chef de projet, Client)
+  \item Moteur d'IA pour classification automatique des demandes et assistance intelligente
 \end{itemize}
 
-\subsubsection{Sprint 4 -- Collaboration, Documents et IA}
-\textbf{Période :} du 2 mai au 31 mai (\textbf{4 semaines})
+\subsubsection{Sprint 4 -- Collaboration, Documents et Planification}
+\textbf{Période :} du 25 avril au 22 mai (\textbf{4 semaines})
 \newline
 \textbf{Objectif du sprint :} Finaliser avec les fonctionnalités avancées de
-collaboration, gestion documentaire, notifications multicanaux et intelligence
-artificielle.
+collaboration, gestion documentaire, notifications multicanaux et planification.
 
 \noindent\textbf{User Stories sélectionnées :}
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
-  \item \textbf{Epic 10 -- Messagerie} : US66 à US74 (9 user stories)
-  \item \textbf{Epic 11 -- Gestion des documents} : US75 à US82 (8 user stories)
-  \item \textbf{Epic 12 -- Notifications} : US83 à US87 (5 user stories)
-  \item \textbf{Epic 13 -- Rapports} : US92 à US94 (3 user stories)
-  \item \textbf{Epic 15 -- Versioning avancé} : US97 à US99 (3 user stories)
-  \item \textbf{Epic 16 -- Intelligence Artificielle} : US100 à US105 (6 user stories)
+  \item \textbf{Epic 10 -- Messagerie} : US70 à US78 (9 user stories)
+  \item \textbf{Epic 11 -- Gestion des documents} : US79 à US90 (12 user stories)      
+  \item \textbf{Epic 12 -- Notifications} : US91 à US95 (5 user stories)               
+  \item \textbf{Epic 13 -- Calendrier et planification} : US66 à US69 (4 user stories)
+  \item \textbf{Epic 13 -- Dashboards et rapports} : US96 à US102 (7 user stories)      
 \end{itemize}
 
 \noindent
@@ -317,8 +314,7 @@ artificielle.
   \item Module de gestion documentaire avec versioning
   \item Système de notifications multicanaux (in-app, email, Web Push)
   \item Module de génération de rapports et procès-verbaux PDF
-  \item Moteur d'IA pour classification automatique des demandes et assistance
-    intelligente (Groq / LLaMA 3.3 70B)
+  \item Tableaux de bord pour pilotage et calendrier de planification
 \end{itemize}
 
 \noindent\textbf{Synthèse de la planification :} Cette répartition assure une

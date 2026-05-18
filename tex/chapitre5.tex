@@ -1,582 +1,832 @@
-﻿
-\section*{Introduction}
-\section*{Introduction}
-Dans le chapitre précédent, nous avons mis en place la gestion des projets et des contrats, définissant ainsi le cadre contractuel et organisationnel de notre collaboration avec les clients. 
-\newline Au cours de ce chapitre, nous présenterons les fonctionnalités constituant le cœur opérationnel de \textbf{SolidMaint} : la gestion des demandes clients et le cycle de vie des tickets de maintenance. Ce troisième sprint se concentre sur l'efficacité du traitement technique, le suivi précis du temps via le chronométrage et le respect rigoureux des engagements de service (SLA).
+﻿\section*{Introduction}
+Dans le chapitre précédent, nous avons mis en place la gestion des projets et des contrats, définissant ainsi le cadre contractuel et organisationnel de notre collaboration avec les clients.
+\newline Au cours de ce chapitre, nous présentons les fonctionnalités du troisième sprint, consacré au cœur métier de la plateforme, à savoir la gestion des demandes, la gestion des tickets, le suivi du temps, le respect des SLA, le tableau Kanban et l’intégration de l’intelligence artificielle. Ce sprint constitue une étape majeure dans la transformation de la solution en un véritable système de pilotage du support et du traitement des incidents.
 
 % ─────────────────────────────────────────────────────────────────────────────
-% SECTION 1 : BACKLOG DU SPRINT 1
+% SECTION 1 : BACKLOG DU SPRINT 3
 % ─────────────────────────────────────────────────────────────────────────────
-\section{Sprint Planning Meeting }
-La planification de ce troisième sprint est cruciale car elle porte sur les fonctionnalités les plus utilisées au quotidien par les clients et les développeurs. L'enjeu est de garantir une transition fluide entre le signalement d'un besoin et sa résolution technique.
-L'objectif de ce sprint est de livrer le moteur de production de la plateforme. Cela inclut le module de soumission des demandes pour les clients, l'interface de qualification pour les chefs de projet, et l'environnement de travail des développeurs articulé autour d'un tableau Kanban et d'un système de chronométrage interactif.
-\subsubsection{Backlog du premier sprint}
-\label{sec:backlog_sprint1}
+\section{Sprint Planning Meeting}
+La planification du sprint est une étape essentielle du processus de développement, car elle permet de clarifier les fonctionnalités à implémenter, de prioriser les besoins métier et d’organiser la réalisation dans une logique incrémentale.
+\newline L’objectif principal de ce sprint était d’implémenter le cœur opérationnel de la plateforme de gestion des tickets, en assurant la prise en charge complète du cycle de vie d’une demande jusqu’à sa conversion en ticket, puis son traitement collaboratif par les équipes techniques. Ce sprint visait également à intégrer des mécanismes avancés de suivi du temps, de gestion des SLA, de pilotage via Kanban et d’assistance intelligente à la décision.
 
-Voici l’ensemble des fonctionnalités issues du Product Backlog, qui seront réalisées dans le cadre de ce sprint opérationnel.
+\subsection{Backlog du troisième sprint}
+\label{sec:backlog_sprint3}
+
+Voici l’ensemble des user stories retenues pour ce sprint, correspondant aux épics liés à la gestion des demandes, à la gestion des tickets et à l’intelligence artificielle.
 \newline
 \textbf{1 : Effort faible, 2 : Effort moyen, 3 : Effort élevé}
-\input{tex/sprint_backlog_1}
-
-
+\input{tex/sprint_backlog_3}
 
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 2 : ANALYSE
 % ─────────────────────────────────────────────────────────────────────────────
-
 \section{Analyse}
-Dans cette phase, nous traduisons les besoins opérationnels en spécifications techniques, en mettant l'accent sur les transitions de statuts et les règles de gestion du temps de travail.
+Dans le cadre de ce sprint, l’analyse fonctionnelle a consisté à formaliser les interactions entre les différents acteurs et les modules métiers de la solution. Cette étape a permis de traduire les besoins exprimés dans le backlog en cas d’utilisation concrets, en tenant compte des contraintes de sécurité, de validation, de priorisation et de traçabilité.
+
+\label{sec:analyse_sprint3}
+
 \subsection{Diagramme des cas d'utilisation du troisième sprint}
-La figure ci-dessous présente le diagramme de cas d’utilisation du troisième sprint, centré sur le flux de traitement des incidents :
+La figure ci-dessous présente le diagramme de cas d’utilisation du troisième sprint.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_cas_utilisation_sprint3.png}
+    \caption{Diagramme des cas d'utilisation du troisième sprint}
+    \label{fig:use_case_sprint3}
+\end{figure}
+
+Nous allons accompagner les cas d'utilisation d'un texte descriptif pour expliquer le scénario de chaque cas ainsi que ses exceptions.
+\subsection{Analyse de la fonctionnalité « Suivre demandes »}
+Dans cette partie, nous allons présenter les cas d'utilisation relatifs au suivi des demandes afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
+\subsubsection{Raffinement de cas d'utilisation « Suivre demandes »}
+Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas du suivi des demandes :
 \begin{figure}[H]
         \centering
-        \includegraphics[width=0.85\textwidth,height=0.60\textheight,keepaspectratio]{Images/Diagramme_cas_utilisation_sprint3.png}
-        \caption{Diagramme des cas d'utilisation du troisième sprint}
-        \label{fig:use_case_sprint3}
+        \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/suivre_demandes.png}
+        \caption{Diagramme des cas d'utilisation « Suivre demandes »}
+        \label{fig:suivre_demandes}
 \end{figure}
-\subsection{Description textuelle du cas d'utilisation « Convertir demande en ticket »}
-Ce cas d'utilisation est le point de pivot entre le client et l'équipe technique.
-\begin{table}[H]
-\centering
+
+\subsection{Description textuelle de cas d'utilisation « Soumettre une demande »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Soumettre une demande ».
+
 \footnotesize
-\renewcommand{\arraystretch}{1}
-\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
 \hline
-\textbf{Nom du cas d'utilisation} & Convertir une demande en ticket \\
+\endfirsthead
 \hline
-\textbf{Acteurs} & Chef de projet \\
+\endhead
 \hline
-\textbf{Préconditions} & Une demande client est au statut \textit{EN\_ATTENTE} \\
+\endfoot
 \hline
-\textbf{Postconditions} & Un ticket est créé, lié à la demande initiale, et les SLA sont initialisés \\
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Soumettre une demande \\
+\hline
+\textbf{Acteurs} & Client \\
+\hline
+\textbf{Préconditions} & Le client est authentifié et possède au moins un projet couvert par un contrat actif. \\
+\hline
+\textbf{Postconditions} & La demande est créée avec le statut \textbf{EN\_ATTENTE}, les pièces jointes éventuelles sont enregistrées et les acteurs concernés sont notifiés. \\
 \hline
 \textbf{Scénario principal} &
-\begin{minipage}[t]{\linewidth}
-\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt]
-\item Le Chef de projet accède à la liste des demandes en attente.
-\item Il sélectionne une demande pour examiner son contenu et les pièces jointes.
-\item Il valide la demande en définissant la priorité (Mineur, Majeur, Critique) et le type de maintenance.
-\item Le système crée automatiquement le ticket avec un numéro de suivi unique.
-\item Le système calcule les dates d'échéance selon la configuration SLA du contrat associé.
-\item Le système notifie le client du passage en traitement technique.
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item Le client accède au formulaire de création d’une demande.
+\item Il saisit un titre, une description, un type de demande et une priorité.
+\item Il sélectionne le projet concerné.
+\item Il joint éventuellement des fichiers justificatifs.
+\item Il valide l’envoi.
+\item Le système vérifie l’existence d’un contrat actif pour le projet sélectionné.
+\item Le système contrôle les règles métier anti-abus.
+\item Le système calcule l’échéance SLA initiale.
+\item Le système enregistre la demande.
+\item Le système notifie le chef de projet, les administrateurs et le client.
+\item Le système déclenche la classification IA de la demande.
 \end{enumerate}
-\vspace{2pt}
 \end{minipage} \\
 \hline
-\textbf{Scénarios d'exception} &
-\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-\item La demande est incomplète : le CP demande des informations complémentaires (statut \textit{INFOS\_REQUISES}).
-\item La demande est hors périmètre : le CP rejette la demande avec un motif obligatoire.
+\textbf{Scénarios alternatifs} &
+\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\item Si le client ne dispose d’aucun projet couvert par un contrat actif, la soumission est refusée.
+\item Si le client a déjà soumis une demande du même type sur le même projet dans les 24 heures, la création est bloquée.
+\item Si des pièces jointes sont présentes, elles sont associées à la demande et contrôlées par le système.
 \end{itemize} \\
 \hline
-\end{tabular}
-\caption{Description textuelle du cas « Convertir demande en ticket »}
-\end{table}
-\subsection{Description textuelle du cas d'utilisation « Gérer le chronomètre »}
-Ce cas d'utilisation permet un suivi granulaire de l'effort fourni sur chaque ticket.
-\begin{table}[H]
-\centering
-\footnotesize
-\renewcommand{\arraystretch}{1}
-\begin{tabular}{|p{4.5cm}|p{12cm}|}
+\textbf{Scénarios d'exception} &
+\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\item Une demande est refusée si le nombre maximal de demandes en attente est atteint.
+\item Une demande est refusée si le projet est clôturé ou archivé.
+\item Une pièce jointe non autorisée ou trop volumineuse est rejetée.
+\end{itemize} \\
 \hline
-\textbf{Nom du cas d'utilisation} & Gérer le chronomètre de travail \\
+\end{longtable}
+\captionof{table}{Description textuelle du cas d'utilisation « Soumettre une demande »}
+\normalsize
+\vspace{-0.3cm}
+
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+{\sloppy
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Compléter demande existante \
+\hline
+\textbf{Acteurs} & Client (propriétaire de la demande) \
+\hline
+\textbf{Préconditions} &
+\begin{minipage}[t]{\linewidth}\raggedright
+L'utilisateur est authentifié et dispose d'un compte client. La demande concernée existe et a été précédemment marquée comme nécessitant des informations complémentaires.
+\end{minipage} \
+\hline
+\textbf{Postconditions} &
+\begin{minipage}[t]{\linewidth}\raggedright
+Les informations du client sont enregistrées, la demande repasse en attente, l'action est historisée et les responsables sont notifiés.
+\end{minipage} \
+\hline
+\textbf{Scénario principal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item Le client consulte le détail de sa demande.
+\item Le client choisit l'option pour fournir des informations complémentaires.
+\item Le système présente un formulaire permettant d'ajouter une description complémentaire et, le cas échéant, des pièces justificatives.
+\item Le client saisit les informations demandées et ajoute les pièces jointes nécessaires.
+\item Le client confirme l'envoi des informations complémentaires.
+\item Le système enregistre les données transmises, atteste leur association à la demande et crée une entrée d'historique signalant la fourniture d'informations.
+\item Le statut de la demande est modifié afin de signaler qu'elle est de nouveau disponible pour traitement.
+\item Les acteurs impliqués (demandeur initial, responsable ayant émis la demande d'information, chef de projet et administrateurs pertinents) reçoivent une notification les informant du complément fourni.
+\item L'utilisateur reçoit une confirmation de la prise en compte de son envoi.
+\end{enumerate}
+\end{minipage}
+\hline
+\textbf{Scénarios alternatifs} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=\textbullet]
+\item Le client n'ajoute que des pièces justificatives sans texte complémentaire : le système associe uniquement les fichiers transmis à la demande et crée l'historique correspondant.
+\item Le client réalise une modification progressive (plusieurs envois successifs) : chaque envoi est historié et notifié aux acteurs concernés.
+\end{itemize}
+\end{minipage}
+\hline
+\textbf{Scénarios d'exception} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=\textbullet]
+\item Tentative de compléter une demande qui n'est pas en attente d'informations : l'opération est refusée et l'utilisateur est informé que l'action n'est pas applicable dans l'état actuel de la demande.
+\item L'utilisateur n'est pas le propriétaire de la demande : l'accès à l'opération est interdit et un message d'information est affiché.
+\item Fichiers fournis non conformes (format ou taille) : les fichiers non conformes sont rejetés et l'utilisateur reçoit les indications pour corriger l'envoi.
+\item Erreur lors de la persistance des données : l'utilisateur est informé d'un problème technique et l'opération peut être réessayée ultérieurement ; l'incident est journalisé pour investigation.
+\end{itemize}
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d'utilisation « Compléter demande existante »}
+}
+\normalsize
+\vspace{-0.3cm}
+
+\subsection{Analyse de la fonctionnalité « Gérer demandes »}
+Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des demandes afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
+\subsubsection{Raffinement de cas d'utilisation « Suivre demandes »}
+Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas du gestion des demandes :
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/gerer_demandes.png}
+        \caption{Diagramme des cas d'utilisation « gérer demandes »}
+        \label{fig:gerer_demandes}
+\end{figure}
+
+\subsection{Description textuelle de cas d'utilisation « Valider demande »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Valider udemande ».
+
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Valider demande \\
+\hline
+\textbf{Acteurs} & Chef de projet, Administrateur \\
+\hline
+\textbf{Préconditions} & La demande est au statut \textbf{EN\_ATTENTE} ou \textbf{INFOS\_REQUISES}. L’acteur dispose de la permission de validation. \\
+\hline
+\textbf{Postconditions} & La demande passe au statut \textbf{CONVERTIE}, un ticket est créé automatiquement et l’assignation du ticket sera effectuée ensuite de manière manuelle par le chef de projet ou l’administrateur autorisé. \\
+\hline
+\textbf{Scénario principal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item Le chef de projet consulte la liste des demandes en attente.
+\item Il ouvre le détail d’une demande.
+\item Il peut conserver les informations initiales ou requalifier le type et la priorité.
+\item Il valide la demande.
+\item Le système vérifie les permissions et les contrats actifs.
+\item Le système met à jour la demande au statut \textbf{CONVERTIE}.
+\item Le système crée automatiquement un ticket lié à la demande.
+\item Le système transfère les pièces jointes vers les documents du ticket.
+\item Le système notifie le client et les utilisateurs concernés.
+\item L’assignation du ticket est réalisée dans un second temps via le module de gestion des tickets.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} &
+\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\item Le validateur peut modifier le type de demande et/ou la priorité avant validation.
+\item Si la priorité est critique, un commentaire de justification devient obligatoire.
+\end{itemize} \\
+\hline
+\textbf{Scénarios d'exception} &
+\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\item Une demande déjà convertie ou rejetée ne peut plus être modifiée.
+\item Une validation est refusée en l’absence de contrat actif couvrant le projet.
+\item Une validation est refusée si le commentaire de requalification est insuffisant.
+\end{itemize} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d'utilisation « Valider demande »}
+\normalsize
+\vspace{-0.3cm}
+
+\subsection{Description textuelle de cas d'utilisation « Rejeter demande »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Rejeter demande ».
+
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Rejeter demande \\
+\hline
+\textbf{Acteurs} & Chef de projet, Administrateur \\
+\hline
+\textbf{Préconditions} & La demande est encore traitable, c’est-à-dire non convertie et non rejetée. \\
+\hline
+\textbf{Postconditions} & La demande passe au statut \textbf{REJETEE} et le client est notifié. \\
+\hline
+\textbf{Scénario principal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item Le chef de projet sélectionne une demande.
+\item Il saisit un motif de rejet.
+\item Il confirme le rejet.
+\item Le système vérifie que la demande est éligible au traitement.
+\item Le système met la demande au statut \textbf{REJETEE}.
+\item Le système journalise l’opération.
+\item Le système envoie une notification et un e-mail au client.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} &
+\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\item Le rejet peut s’appliquer à une demande en attente ou en attente d’informations.
+\item Le client peut ensuite déposer une nouvelle demande si nécessaire.
+\end{itemize} \\
+\hline
+\textbf{Scénarios d'exception} &
+\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\item Une demande convertie en ticket ne peut plus être rejetée.
+\item Une demande déjà rejetée ne peut plus être traitée.
+\end{itemize} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d'utilisation « Rejeter demande »}
+\normalsize
+\vspace{-0.3cm}
+
+\subsubsection{Description textuelle de cas d'utilisation « Demander des informations complémentaires »}
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Demander des informations complémentaires \\
+\hline
+\textbf{Acteurs} & Chef de projet, Administrateur \\
+\hline
+\textbf{Préconditions} & L'acteur est authentifié et dispose des droits pour solliciter des compléments ; la demande est accessible. \\
+\hline
+\textbf{Postconditions} & Un message de demande d'information est enregistré dans l'historique ; le statut de la demande passe en attente d'informations ; le propriétaire de la demande est notifié. \\
+\hline
+\textbf{Scénario principal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item L'acteur identifie un besoin d'informations supplémentaires pour analyser la demande.
+\item L'acteur saisit le motif et les éléments attendus puis envoie la demande d'informations.
+\item Le système enregistre la requête dans l'historique et modifie le statut de la demande pour indiquer qu'elle attend des informations.
+\item Le système notifie le propriétaire de la demande et les parties prenantes.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} & Demande groupée d'informations pour plusieurs demandes similaires ; ajout d'une échéance pour le retour d'information. \\
+\hline
+\textbf{Scénarios d'exception} & Tentative par un acteur non autorisé : refus ; erreur de persistance : message d'échec et journalisation. \\
+\hline
+\end{longtable}
+\normalsize
+\vspace{-0.3cm}
+
+\subsubsection{Description textuelle de cas d'utilisation « Gérer qualification »}
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\textbf{Nom du cas d'utilisation} & Gérer la qualification (acceptation d'une suggestion automatique ou requalification manuelle) \\
+\hline
+\textbf{Acteurs} & Chef de projet, Administrateur \\
+\hline
+\textbf{Préconditions} & La demande est persistée dans la base de données et son statut autorise la modification ; l'acteur est authentifié et dispose des droits requis. \\
+\hline
+\textbf{Postconditions} & La qualification de la demande a été mise à jour ; la modification est historisée et les parties prenantes sont informées. \\
+\hline
+\textbf{Scénario principal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item L'acteur habilité consulte la demande et, le cas échéant, la suggestion de qualification fournie par le système.
+\item L'acteur choisit d'accepter la suggestion ou de spécifier manuellement un nouveau \texttt{typeDemande} et/ou une nouvelle \texttt{prioriteDemande}.
+\item L'acteur fournit une justification textuelle (minimum 5 caractères) motivant la modification.
+\item L'acteur soumet la requalification.
+\item Le système effectue les opérations suivantes :
+        \begin{enumerate}[label=\alph*),nosep,leftmargin=1cm]
+        \item vérification des préconditions (état de la demande, autorisation de l'acteur) ;
+        \item mise à jour atomique des champs de qualification ; si nécessaire, conservation des valeurs antérieures dans les champs dédiés ;
+        \item création automatique d'une entrée d'activité (commentaire) récapitulant les changements et la justification ;
+        \item émission d'une notification électronique au propriétaire de la demande contenant le détail des modifications ;
+        \item diffusion d'un événement temps réel pour permettre la mise à jour des vues des clients connectés.
+        \end{enumerate}
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} & La qualification peut être modifiée au moment de la validation formelle d'une demande (conversion en ticket) ; dans ce cas, la requalification est enregistrée simultanément à la création du ticket et la justification est conservée. \\
+\hline
+\textbf{Scénarios d'exception} & Tentative de requalification par un acteur non autorisé : opération rejetée ; demande dans un état final (\texttt{CONVERTIE} ou \texttt{REJETEE}) : opération interdite ; absence de modification effective : retour d'erreur précisant qu'aucun changement n'a été détecté. \\
+\hline
+\end{longtable}
+\normalsize
+\vspace{-0.3cm}
+
+\subsection{Analyse de la fonctionnalité « Traiter tickets assignés »}
+Dans cette partie, nous allons présenter les cas d'utilisation relatifs au traitement des tickets assignés afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
+
+\subsubsection{Raffinement de cas d'utilisation « Traiter tickets assignés »}
+Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas du traitement des tickets assignés :
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/traiter_tickets_assignes.png}
+        \caption{Diagramme des cas d'utilisation « Traiter tickets assignés »}
+        \label{fig:traiter_tickets_assignes}
+\end{figure}
+
+\subsection{Description textuelle de cas d'utilisation « Traiter tickets assignés »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Traiter tickets assignés ».
+
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Traiter tickets assignés \\
 \hline
 \textbf{Acteurs} & Développeur \\
 \hline
-\textbf{Préconditions} & Le développeur est assigné au ticket et celui-ci est au statut \textit{OUVERT} ou \textit{EN\_COURS} \\
+\textbf{Préconditions} & Le développeur est authentifié et dispose d’au moins un ticket assigné. \\
 \hline
-\textbf{Postconditions} & Une session de travail est enregistrée et le temps passé sur le ticket est cumulé \\
+\textbf{Postconditions} & Le ticket est traité, mis à jour et documenté selon l’avancement réel. \\
 \hline
 \textbf{Scénario principal} &
-\begin{minipage}[t]{\linewidth}
-\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt]
-\item Le développeur ouvre la vue détail du ticket assigné.
-\item Il clique sur le bouton « Démarrer » pour lancer le suivi.
-\item Le système enregistre l'heure précise de début et change le statut du ticket à \textit{EN\_COURS}.
-\item Le développeur effectue ses tâches techniques.
-\item Il clique sur « Arrêter » une fois l'intervention terminée ou pour faire une pause.
-\item Le système calcule la durée de la session, l'ajoute au total du ticket et clôture la session de travail.
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item Le développeur consulte son tableau de tickets.
+\item Il ouvre un ticket qui lui est assigné.
+\item Le système démarre automatiquement le chronomètre lors de l’ouverture du ticket.
+\item Le développeur travaille sur la demande.
+\item Il peut mettre en pause, reprendre ou arrêter le chronomètre.
+\item Il renseigne l’avancement et peut ajouter des commentaires.
+\item Lorsque le travail est terminé, il soumet le ticket en revue ou le documente comme résolu selon le workflow autorisé.
 \end{enumerate}
-\vspace{2pt}
 \end{minipage} \\
 \hline
-\textbf{Scénarios d'exception} &
-\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-\item Le développeur oublie de couper le chrono : il peut modifier manuellement la durée avec une justification (traçabilité).
+\textbf{Scénarios alternatifs} &
+\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\item Si le développeur rencontre un blocage, il signale un incident de blocage avec description et priorité.
+\item Si une solution est proposée par un autre membre de l’équipe, il peut la valider ou la rejeter.
 \end{itemize} \\
 \hline
-\end{tabular}
-\caption{Description textuelle du cas « Gérer le chronomètre »}
-\end{table}
+\textbf{Scénarios d'exception} &
+\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\item Le développeur ne peut agir que sur les tickets qui lui sont assignés.
+\item Une transition de statut non autorisée est rejetée par le système.
+\item La résolution d’un ticket sans solution documentée est refusée.
+\end{itemize} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d'utilisation « Traiter tickets assignés »}
+\normalsize
+\vspace{-0.3cm}
+
+\subsection{Description textuelle de cas d'utilisation « Suivre les SLA et le temps »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Suivre les SLA et le temps ».
+
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Suivre les SLA et le temps \\
+\hline
+\textbf{Acteurs} & Développeur, Chef de projet, Administrateur \\
+\hline
+\textbf{Préconditions} & Le ticket est en cours de traitement ou en revue. \\
+\hline
+\textbf{Postconditions} & Le temps de travail, les pauses et les échéances SLA sont enregistrés et affichés. \\
+\hline
+\textbf{Scénario principal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item Le système calcule l’échéance SLA du ticket en fonction du contrat et de la priorité.
+\item Le développeur démarre le chronomètre.
+\item Le système enregistre les sessions de travail.
+\item Le développeur peut mettre en pause ou reprendre la session.
+\item Le système cumule le temps effectif de travail.
+\item Le système affiche les indicateurs SLA dans la vue ticket et le tableau Kanban.
+\item En cas de dépassement, le système met en évidence l’urgence.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} &
+\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\item Le SLA peut être calculé selon les plages ouvrées ou en 24/7 selon la configuration contractuelle.
+\item Si une demande est résolue tardivement, les notifications et la priorisation mettent l’accent sur l’urgence.
+\end{itemize} \\
+\hline
+\textbf{Scénarios d'exception} &
+\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\item Le chrono ne peut pas être démarré par un utilisateur non assigné.
+\item Une transition vers EN\_REVUE ou RESOLU sans solution documentée est bloquée.
+\end{itemize} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d'utilisation « Suivre les SLA et le temps »}
+\normalsize
+\vspace{-0.3cm}
+
+\subsection{Analyse de la fonctionnalité « Gérer clôture tickets »}
+
+Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la clôture des tickets afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
+
+\subsubsection{Raffinement de cas d'utilisation « Gérer clôture tickets »}
+Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de la gestion de la clôture des tickets :
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/cloturer_ticket.png}
+        \caption{Diagramme des cas d'utilisation « Clôturer un ticket »}
+        \label{fig:cloturer_ticket}
+\end{figure}
+
+\subsection{Description textuelle de cas d'utilisation « Gérer clôture tickets »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Gérer clôture tickets ».
+
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Gérer clôture tickets \\
+\hline
+\textbf{Acteurs} & Client \\
+\hline
+\textbf{Préconditions} & Le ticket a été traité et présenté au client pour validation finale. \\
+\hline
+\textbf{Postconditions} & Le ticket est soit confirmé et clôturé définitivement, soit signalé comme non résolu, soit prolongé selon la demande du client. \\
+\hline
+\textbf{Scénario principal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item Le client ouvre le ticket résolu.
+\item Il consulte la solution proposée et l’historique du traitement.
+\item Il confirme que le problème est résolu ou signale qu’il persiste encore.
+\item Le système enregistre la décision du client.
+\item Si la résolution est confirmée, le ticket passe au statut \textbf{FERME}.
+\item Si le problème n’est pas résolu, le ticket est réouvert ou signalé comme non résolu.
+\item Si nécessaire, le client peut demander une extension de délai.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} &
+\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\item Le client valide directement la résolution sans ajouter de commentaire.
+\item Le client ajoute un commentaire pour préciser le problème restant.
+\end{itemize} \\
+\hline
+\textbf{Scénarios d'exception} &
+\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\item Le client ne peut pas clôturer un ticket qui n’a pas encore été traité.
+\item Une demande de prolongation peut être refusée si les règles métier ne le permettent pas.
+\end{itemize} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d'utilisation « Gérer clôture tickets »}
+\normalsize
+\vspace{-0.3cm}
+
+\subsection{Analyse de la fonctionnalité « Assigner tickets »}
+
+Dans cette partie, nous allons présenter les cas d'utilisation relatifs à l’assignation des tickets afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
+
+\subsubsection{Raffinement de cas d'utilisation « Assigner tickets »}
+Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de la gestion de l'assignation des tickets :
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/assigner_ticket.png}
+        \caption{Diagramme des cas d'utilisation « Assigner des tickets »}
+        \label{fig:assigner_ticket}
+\end{figure}
+
+\subsection{Description textuelle de cas d'utilisation « Assigner tickets »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Assigner tickets ».
+
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Assigner des tickets \\
+\hline
+\textbf{Acteurs} & Chef de projet, Administrateur \\
+\hline
+\textbf{Préconditions} & Le ticket existe, le développeur cible est actif et l’acteur dispose de la permission d’assignation ou est chef du projet lié au ticket. \\
+\hline
+\textbf{Postconditions} & Le ticket est assigné à un développeur et le suivi temporel devient possible. \\
+\hline
+\textbf{Scénario principal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item Le chef de projet ouvre le ticket concerné après sa création.
+\item Il consulte la liste des développeurs disponibles et leur charge de travail.
+\item Le système présente les développeurs éligibles avec leurs contraintes de capacité.
+\item Le chef de projet sélectionne un développeur.
+\item Le système vérifie les permissions, l’existence du ticket, l’existence du développeur et les contraintes de charge.
+\item Le système vérifie qu’aucune assignation identique n’existe déjà.
+\item Le système crée l’affectation et journalise l’opération.
+\item Le système notifie les parties prenantes et met à jour les canaux de suivi.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} &
+\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\item Si le ticket est en retard SLA, certaines restrictions de charge peuvent être assouplies afin d’accélérer la prise en charge.
+\item Le chef de projet peut s’auto-assigner dans un contexte d’urgence, sous conditions métier renforcées.
+\end{itemize} \\
+\hline
+\textbf{Scénarios d'exception} &
+\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\item Un développeur déjà assigné au même ticket ne peut pas être ajouté deux fois.
+\item Un acteur non autorisé ne peut pas assigner de ticket.
+\end{itemize} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d'utilisation « Assigner des tickets »}
+\normalsize
+\vspace{-0.3cm}
+
+
+
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 3 : CONCEPTION
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Conception}
-La conception du Sprint 3 s'appuie sur une modélisation rigoureuse des transitions de statuts et de la logique temporelle.
+Après l’analyse des besoins et la définition des cas d’utilisation, nous avons procédé à la conception de la solution en identifiant les composants logiciels, les flux métier, les entités principales et les interactions entre les modules.
+
 \subsection{Diagramme de classes du troisième sprint}
-Le diagramme suivant détaille la structure des entités \texttt{Ticket}, \texttt{Demande}, et \texttt{SessionTravail}, ainsi que leurs relations avec les contrats (SLA).
-\begin{figure}[H]
-        \centering
-        \includegraphics[width=1\textwidth,keepaspectratio]{Images/diag_classe_sprint3.png}
-        \caption{Diagramme de classes du Sprint 3 - Cœur opérationnel}
-        \label{fig:diag_classe_sprint3}
+La figure suivante présente le diagramme de classes du troisième sprint.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.98\textwidth,height=0.85\textheight,keepaspectratio]{Images/diag_classe_sprint3.png}
+    \caption{Diagramme de classes du troisième sprint}
+    \label{fig:diag_classe_sprint3}
 \end{figure}
-\section{Diagramme de séquence}
-\subsection{Diagramme de séquences du cas d'utilisation « Conversion Demande en Ticket »}
-Ce diagramme illustre le processus de validation métier et la création automatisée des entités techniques.
-\begin{figure}[H]
-        \centering
-        \includegraphics[width=0.75\textwidth,keepaspectratio]{Images/diag_seq_conversion.png}
-        \caption{Diagramme de séquence du cas « Conversion Demande en Ticket »}
-        \label{fig:seq_conversion}
+
+Le diagramme de classes met en évidence les entités métiers centrales du sprint, notamment \textit{DemandeClient}, \textit{Ticket}, \textit{AssignmentTicket}, \textit{SessionTravail}, \textit{TicketSolution}, \textit{ConfigurationSLA} et les entités liées à l’intelligence artificielle et à la base de connaissances. Il illustre également les relations de dépendance entre les contrats, les projets, les tickets, les utilisateurs et les notifications.
+
+\subsection{Diagramme de séquence du cas d'utilisation « Soumettre une demande »}
+La figure suivante présente le diagramme de séquence du cas d’utilisation « Soumettre une demande ».
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_seq_soumettre_demande.png}
+    \caption{Diagramme de séquence du cas d'utilisation « Soumettre une demande »}
+    \label{fig:seq_soumettre_demande}
 \end{figure}
-\subsection{Diagramme de séquences du cas d'utilisation « Signalement de blocage »}
-Ce diagramme détaille comment un signalement de blocage par un développeur suspend automatiquement le décompte du délai SLA.
-\begin{figure}[H]
-        \centering
-        \includegraphics[width=0.75\textwidth,keepaspectratio]{Images/diag_seq_blocage.png}
-        \caption{Diagramme de séquence du cas « Signalement de blocage »}
-        \label{fig:seq_blocage}
+
+\subsection{Diagramme de séquence du cas d'utilisation « Valider une demande »}
+La figure suivante présente le diagramme de séquence du cas d’utilisation « Valider une demande ».
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_seq_valider_demande.png}
+    \caption{Diagramme de séquence du cas d'utilisation « Valider une demande »}
+    \label{fig:seq_valider_demande}
 \end{figure}
-\section{Schéma relationnel}
-\textbf{Ticket} (\underline{idTicket}, \textbf{\#idDemande}, titre, description, statut, priorite, type, \textbf{\#idProjet}, dateEcheanceSLA, tempsEstime)
+
+\subsection{Diagramme de séquence du cas d'utilisation « Assigner un ticket »}
+La figure suivante présente le diagramme de séquence du cas d’utilisation « Assigner un ticket ».
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_seq_assigner_ticket.png}
+    \caption{Diagramme de séquence du cas d'utilisation « Assigner un ticket »}
+    \label{fig:seq_assigner_ticket}
+\end{figure}
+
+\subsection{Diagramme d'activité du workflow ticket}
+La figure suivante présente le diagramme d’activité du workflow de gestion des tickets.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_activite_ticket_sprint3.png}
+    \caption{Diagramme d'activité du workflow de gestion des tickets}
+    \label{fig:activite_ticket}
+\end{figure}
+
+\subsection{Schéma relationnel}
+Le schéma relationnel du sprint 3 s’appuie sur les entités suivantes :
+\textbf{DemandeClient} (\underline{id}, titreDemande, descriptionDemande, typeDemande, prioriteDemande, statutDemande, dateSoumissionDemande, dateCreationDemande, dateMiseAJourDemande, dateValidation, motifRejet, motifRequalification, natureAutre, typeDemandeOriginal, prioriteOriginale, echeanceInitiale, \#clientId, \#projetId, \#validePar)
+
 \newline
-\textbf{SessionTravail} (\underline{idSession}, \textbf{\#idTicket}, \textbf{\#idUtilisateur}, dateDebut, dateFin, dureeSecondes, descriptionTravail)
+\textbf{Ticket} (\underline{id}, titreTicket, descriptionTicket, categorieTicket, prioriteTicket, statutTicket, dateCreationTicket, dateMiseAJourTicket, dateResolutionTicket, versionOptimiste, delaiReponse, delaiResolution, dateEcheanceResponse, dateEcheanceResolution, slaReponseExpire, slaResolutionExpire, ticketParentId, extensionDemandee, extensionMotif, extensionDemandeeAt, extensionAccordee, alerteSLAEnvoyee, scoreUrgenceIA, prioriteIA, nombreTicketsBloquesParCelui, nombreUtilisateursAffectes, \#demandeId, \#contratId)
+
 \newline
-\textbf{DemandeClient} (\underline{idDemande}, \textbf{\#idProfilC}, titre, description, statut, dateCreation, \textbf{\#idContrat})
+\textbf{AssignmentTicket} (\underline{id}, \#ticketId, \#developpeurId, dateDebutReelle, dateFinReelle, commentaireAssignment, progression, estBloque, raisonBlocage, feedbackDeveloppeur, technologiesUtilisees, enTravail, dureeTotaleSecondes, dateCreation, dateMiseAJour, solutionProposee, solutionProposeeAt, \#solutionProposeeParId)
+
 \newline
-\textbf{TicketBlocage} (\underline{idBlocage}, \textbf{\#idTicket}, raison, statutBlocage, dateSignalement, dateResolution)
+\textbf{SessionTravail} (\underline{id}, \#assignmentId, debut, fin, dureeSecondes, note, isPaused, pausedAt, totalPausedMs, isManual, isBillable)
+
+\newline
+\textbf{TicketSolution} (\underline{id}, \#ticketId, \#articleId, solutionSuggeree, scoreConfiance, estAcceptee, feedbackUtilisateur, tempsResolution, dateCreation)
+
+\newline
+\textbf{ConfigurationSLAContrat} (\underline{id}, \#contratId, typeSLA, priorite, delaiReponseMinutes, delaiResolutionMinutes, horairesOuvrables, joursOuvrables, estActif)
+
+\newline
+\textbf{DemandeClassificationIA} (\underline{id}, \#demandeId, categorieAuto, typeAuto, prioriteAuto, scoreConfiance, entitesExtraites, sentimentScore, urgenceDetectee, estUtiliseeValidation, estCorrigeeParAgent, feedbackAgent, dateClassification, dateUtilisation, modeleUtilise, tempsTraitement, estFallback, versionModele, versionRegles)
+
+\newline
+\textbf{TicketClassification} (\underline{id}, \#ticketId, categorieAuto, prioriteAuto, typeAuto, scoreConfiance, entitesExtraites, sentimentScore, urgenceDetectee, estValidee, dateClassification)
+
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 4 : RÉALISATION
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Réalisation}
-Après avoir analysé les besoins et conçu les solutions, nous passons maintenant à la réalisation. Dans cette phase, nous avons développé toutes les user stories planifiées dans le sprint backlog. Cette section présente le diagramme de composants qui montre l'architecture de notre application, ainsi que les interfaces utilisateur que nous avons créées pour répondre aux besoins des utilisateurs.
-\label{sec:realisation_sprint1}
+Après l’analyse et la conception, nous avons procédé à l’implémentation des fonctionnalités planifiées dans ce sprint. La réalisation s’est articulée autour du backend NestJS, du frontend Next.js, du moteur de calcul SLA, de l’orchestration temps réel, et des mécanismes d’intelligence artificielle.
 
-\subsection{Diagramme de composants}
+\label{sec:realisation_sprint3}
 
+\subsection{Architecture logicielle}
+L’architecture de cette version repose sur une séparation claire des responsabilités :
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+\item le module \textbf{Demandes} gère la création, la validation, le rejet, la requalification et le suivi des demandes ;
+\item le module \textbf{Tickets} prend en charge le traitement, l’assignation, les transitions d’état, le Kanban, les commentaires et les blocages ;
+\item le module \textbf{SLA} calcule les échéances et la conformité des délais contractuels ;
+\item le module \textbf{IA} fournit la classification automatique, les suggestions de validation, l’analyse des blocages et l’assistance à la rédaction ;
+\item le frontend \textbf{Next.js} expose des interfaces métier adaptées à chaque rôle ;
+\item les modules de \textbf{notifications}, \textbf{e-mail}, \textbf{Slack} et \textbf{WebSocket} assurent la réactivité du système.
+\end{itemize}
 
-\subsection{Description des interfaces}
-Cette section présente les principales interfaces utilisateur développées lors du premier sprint.
+\subsection{Interface de gestion des demandes}
+L’interface de gestion des demandes a été enrichie afin de permettre au client de consulter ses demandes, de suivre leur statut et de visualiser les indicateurs d’intelligence artificielle associés à chaque demande.
+\newline Le tableau Kanban des demandes permet une lecture rapide de l’avancement : \textit{EN\_ATTENTE}, \textit{INFOS\_REQUISES}, \textit{VALIDEE}, \textit{REJETEE} et \textit{CONVERTIE}. Cette représentation facilite la supervision du cycle de vie des demandes.
 
-\subsubsection{Interface de connexion}
-\begin{figure}[H]
-\centering
-%\includegraphics[width=0.75\textwidth,keepaspectratio]{Images/interface_connexion.png}
-\caption{Interface de connexion — authentification classique et OAuth}
-\label{fig:interface_connexion}
-\end{figure}
-La page de connexion propose deux modes d'authentification : le formulaire
-classique (e-mail + mot de passe) et les boutons OAuth (Google, GitHub).
-En cas de compte inexistant, le visiteur est redirigé vers un flux de
-demande d'inscription.
+\subsection{Interface de gestion des tickets}
+L’interface des tickets constitue le centre opérationnel du sprint. Elle permet :
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+\item de visualiser les tickets sous forme de tableau Kanban ;
+\item de filtrer et de consulter les tickets selon le rôle utilisateur ;
+\item d’assigner un ticket à un développeur ;
+\item de démarrer et suivre un chronomètre ;
+\item de consulter l’historique, les commentaires, la solution et les pièces jointes ;
+\item de gérer les transitions de statut selon des règles métier strictes.
+\end{itemize}
 
-\subsubsection{Interface de réinitialisation du mot de passe}
-\begin{figure}[H]
-\centering
-%\includegraphics[width=0.75\textwidth,keepaspectratio]{Images/interface_reset_password.png}
-\caption{Interface de réinitialisation du mot de passe}
-\label{fig:interface_reset}
-\end{figure}
-Cette interface permet à l'utilisateur de saisir son adresse e-mail pour
-recevoir un lien de réinitialisation valable 1 heure.
+\subsection{Fonctionnement du tableau Kanban}
+Le tableau Kanban a été conçu comme un outil de pilotage visuel du flux de traitement des tickets.
+\newline Les tickets sont répartis dans cinq colonnes correspondant aux statuts \textbf{OUVERT}, \textbf{EN\_COURS}, \textbf{EN\_REVUE}, \textbf{RESOLU} et \textbf{FERME}. Les cartes sont triées en priorité décroissante, puis selon leur ancienneté.
+\newline Le déplacement d’un ticket entre deux colonnes n’est possible que si la transition est autorisée par le workflow métier. Par exemple, un ticket ne peut pas passer de \textbf{OUVERT} à \textbf{EN\_COURS} sans démarrage effectif du chronomètre, et un passage en \textbf{RESOLU} exige une solution documentée.
+\newline Cette approche garantit la cohérence des données et évite les modifications arbitraires de statut.
 
-\subsubsection{Interface de gestion des utilisateurs}
-\begin{figure}[H]
-\centering
-%\includegraphics[width=0.85\textwidth,keepaspectratio]{Images/interface_users.png}
-\caption{Interface d'administration — liste des utilisateurs}
-\label{fig:interface_users}
-\end{figure}
-L'administrateur dispose d'une vue en grille ou en liste, avec filtres par
-statut et par rôle, barre de recherche et actions rapides (modifier,
-désactiver, voir le profil).
+\subsection{Gestion du suivi du temps}
+Le suivi du temps repose sur la notion de session de travail associée à une assignation.
+\newline Lorsqu’un développeur ouvre son ticket, le système peut démarrer automatiquement le chronomètre et faire évoluer le statut du ticket vers \textbf{EN\_COURS}. Le temps est ensuite cumulé au fil des sessions, en prenant en compte les pauses et les reprises.
+\newline Cette fonctionnalité permet de mesurer le temps effectif passé sur un ticket et de comparer ce temps avec les échéances SLA définies dans le contrat.
 
-\subsubsection{Interface de gestion des rôles et permissions}
-\begin{figure}[H]
-\centering
-%\includegraphics[width=0.85\textwidth,keepaspectratio]{Images/interface_roles_permissions.png}
-\caption{Interface d'administration — gestion des rôles et permissions}
-\label{fig:interface_roles}
-\end{figure}
-La matrice des permissions affiche les rôles en colonnes et les catégories
-de permissions en lignes, avec des cases à cocher pour une attribution
-visuelle et intuitive.
+\subsection{Gestion des SLA}
+Le calcul des SLA constitue un mécanisme central du sprint.
+\newline Le système récupère les paramètres contractuels du client, détermine les délais autorisés selon la priorité du ticket et calcule les échéances de réponse et de résolution. La logique prend en compte les plages horaires ouvrées ainsi que les jours fériés lorsqu’une configuration SLA personnalisée est disponible.
+\newline Les dépassements SLA sont remontés visuellement dans le Kanban, dans la page détail du ticket et dans les tableaux de bord de suivi. Cela permet au chef de projet de prioriser les tickets critiques et de gérer plus efficacement les urgences.
 
-\subsubsection{Interface de gestion des demandes d'inscription OAuth}
-\begin{figure}[H]
-\centering
-%\includegraphics[width=0.85\textwidth,keepaspectratio]{Images/interface_demandes_oauth.png}
-\caption{Interface d'administration — demandes d'inscription OAuth}
-\label{fig:interface_oauth}
-\end{figure}
-L'administrateur consulte les demandes en attente, visualise les
-informations récupérées via OAuth et peut approuver ou refuser chaque
-demande avec un motif de refus facultatif.
+\subsection{Fonctionnalités d’intelligence artificielle}
+L’intégration de l’intelligence artificielle représente un apport majeur de ce sprint. Le système exploite un modèle de langage externe pour :
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+\item classer automatiquement les demandes ;
+\item proposer des suggestions de validation ;
+\item permettre à l’utilisateur de fournir un feedback sur les prédictions ;
+\item reclasser une demande si nécessaire ;
+\item analyser les blocages signalés par les développeurs ;
+\item générer un brouillon d’article de base de connaissances ;
+\item recommander des solutions contextualisées à partir de l’historique du ticket.
+\end{itemize}
+
+Cette assistance intelligente améliore la qualité de décision et réduit le temps de traitement des demandes, tout en conservant un mode dégradé fondé sur les règles métier lorsque le service IA est indisponible.
+
+\subsection{Rôles utilisateurs impliqués}
+Les rôles jouent un rôle central dans la restriction des actions :
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+\item le \textbf{Client} soumet ses demandes, suit l’état de ses tickets et valide éventuellement la résolution ;
+\item le \textbf{Développeur} traite les tickets assignés, saisit son temps de travail et signale les blocages ;
+\item le \textbf{Chef de projet} valide les demandes, assigne les tickets, supervise la charge et pilote les urgences SLA ;
+\item l’\textbf{Administrateur} bénéficie d’une visibilité globale et d’actions transverses sur le système.
+\end{itemize}
 
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 5 : TESTS
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Tests et Validation}
-La phase de test est essentielle pour garantir la qualité et la fiabilité de la solution. Elle valide que chaque fonctionnalité répond aux exigences métier et identifie les anomalies avant la mise en production. Dans ce sprint, nous avons testé les mécanismes d'authentification, la gestion des utilisateurs et le contrôle d'accès (RBAC) pour assurer la robustesse de nos implémentations.
+La phase de test a permis de vérifier la conformité du sprint 3 aux exigences métier, fonctionnelles et techniques. Elle a également permis de valider les mécanismes de validation, les transitions d’état, le calcul SLA, les comportements Kanban et l’intégration IA.
 
 \subsection{Stratégie de tests adoptée}
-Afin de garantir la qualité et la fiabilité de l'application, nous avons adopté une stratégie de tests structurée, reposant sur une répartition des vérifications à plusieurs niveaux. Cette approche permet d'assurer une bonne couverture fonctionnelle avec un temps d'exécution raisonnable, tout en facilitant l'identification rapide des anomalies.
-
-Les tests ont été organisés par module fonctionnel afin d'assurer une meilleure traçabilité des vérifications effectuées. Ainsi, les tests unitaires couvrent les règles métier les plus fines, les tests d'intégration valident les échanges avec l'API, et les tests End-to-End reproduisent les scénarios complets d'utilisation de l'application.
-
-La pyramide de tests se compose donc de trois niveaux complémentaires :
-
-
-\subsubsection{Tests unitaires}
-\label{sec:tests_unitaires}
-
-Les tests unitaires ont été réalisés à l'aide du framework \textbf{Vitest},
-en isolant chaque service du reste de l'application grâce à des mocks
-Prisma. Cette approche garantit l'indépendance des tests et permet une
-détection précoce des anomalies dès la phase de développement. Trois
-modules prioritaires ont été couverts : l'authentification, le contrôle
-d'accès basé sur les rôles (RBAC) et la gestion des clients.
-
-\vspace{4pt}
-\noindent\textbf{Bilan : 45 tests exécutés — 45 réussis — 0 échec.}
-\vspace{6pt}
-
-\begin{itemize}[leftmargin=0pt]
-
-% ── 1. Authentification ───────────────────────────────────────────────────────
-\item[$\square$] \textbf{Module Authentification}
-\hfill\textit{Méthodes : \texttt{login()} ·
-\texttt{demanderReinitialisationMotDePasse()} ·
-\texttt{reinitialiserMotDePasse()}}
-
-\noindent Cette suite valide le processus d'authentification classique,
-la génération des jetons JWT et le mécanisme de réinitialisation du mot
-de passe. Les cas suivants ont été couverts :
-
-\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item Un utilisateur actif fournit des identifiants valides : les jetons
-    \texttt{accessToken} et \texttt{refreshToken} sont générés
-    correctement.
-  \item L'adresse e-mail fournie n'existe pas en base de données : la
-    connexion est rejetée avec le code \texttt{401 Unauthorized}.
-  \item Le mot de passe fourni est incorrect : la connexion est rejetée
-    avec le code \texttt{401 Unauthorized}.
-  \item L'utilisateur échoue l'authentification \textbf{3 fois
-    consécutives} : le compte est verrouillé automatiquement pendant
-    \textbf{1 minute} (\texttt{maxLoginAttempts = 3}).
-  \item L'utilisateur tente de se connecter alors que son compte est
-    verrouillé : la connexion est rejetée avec un message explicite.
-  \item Le compte de l'utilisateur est désactivé : la connexion est
-    rejetée avec le code \texttt{401 Unauthorized}.
-  \item L'adresse e-mail fournie pour la réinitialisation est inexistante :
-    une \texttt{NotFoundException} est levée.
-  \item Le token de réinitialisation a été généré depuis plus d'une heure :
-    une \texttt{BadRequestException} est levée.
+Afin de garantir la qualité de l’implémentation, une stratégie de tests à plusieurs niveaux a été adoptée :
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+\item \textbf{Tests unitaires} pour valider les règles métier fines et les comportements isolés ;
+\item \textbf{Tests d’intégration} pour vérifier les endpoints et les échanges entre les couches ;
+\item \textbf{Tests End-to-End} pour simuler les scénarios utilisateur complets dans un navigateur réel.
 \end{itemize}
 
-% ── 2. RBAC ───────────────────────────────────────────────────────────────────
-\item[$\square$] \textbf{Module Gestion des rôles et permissions (RBAC)}
-\hfill\textit{Méthodes : \texttt{creerPermission()} ·
-\texttt{attribuerRoleUtilisateur()} ·
-\texttt{obtenirRolesEtPermissions()}}
-
-\noindent Cette suite valide les règles d'exclusivité des rôles, l'unicité
-des permissions et l'intégrité des références. Les cas suivants ont été
-couverts :
-
-\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item Une permission est créée avec un code unique : elle est enregistrée
-    correctement en base de données.
-  \item Une permission est créée avec un code déjà existant : une
-    \texttt{BadRequestException} est levée.
-  \item Les rôles et permissions d'un utilisateur sont récupérés : la liste
-    est retournée sans doublons.
-  \item Un rôle est attribué à un utilisateur sans rôle existant :
-    l'attribution est réussie.
-  \item L'utilisateur cible est inexistant : une \texttt{NotFoundException}
-    est levée.
-  \item La règle d'exclusivité \texttt{CLIENT} et \texttt{CHEF\_PROJET}
-    est violée : une \texttt{BadRequestException} est levée.
-  \item La règle d'exclusivité \texttt{CLIENT} et \texttt{DEVELOPPEUR}
-    est violée : une \texttt{BadRequestException} est levée.
-  \item La règle d'exclusivité \texttt{CLIENT} et \texttt{ADMIN} est
-    violée : une \texttt{BadRequestException} est levée.
-  \item La combinaison \texttt{ADMIN} et \texttt{CHEF\_PROJET} est
-    soumise : l'attribution est \textbf{autorisée} et réussie.
-  \item Le rôle est déjà attribué à l'utilisateur : une
-    \texttt{BadRequestException} est levée (doublon détecté).
-  \item Le rôle à attribuer est inexistant : une \texttt{NotFoundException}
-    est levée.
+\subsection{Tests unitaires}
+Les tests unitaires ont notamment couvert :
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+\item la classification IA des demandes ;
+\item la gestion du cache et des retries pour l’IA ;
+\item la création de ticket, l’assignation et le changement de statut ;
+\item le calcul de l’échéance SLA ;
+\item la vérification des transitions autorisées.
 \end{itemize}
 
-% ── 3. Gestion des clients ────────────────────────────────────────────────────
-\item[$\square$] \textbf{Module Gestion des clients}
-\hfill\textit{Méthodes : \texttt{mettreAJourClient()} ·
-\texttt{desactiverClient()} · \texttt{reactiverClient()} ·
-\texttt{telechargerLogo()} · \texttt{supprimerLogo()}}
+\noindent\textbf{Bilan : couverture des comportements critiques validée dans les tests visibles du projet.}
 
-\noindent Cette suite valide les opérations de gestion des clients,
-la gestion des fichiers logo et le service de géocodage. Les cas suivants
-ont été couverts :
-
-\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item Les informations d'un client existant sont mises à jour : le
-    résultat validé est retourné correctement.
-  \item La mise à jour est effectuée sur un client inexistant : une
-    \texttt{NotFoundException} est levée.
-  \item Un client actif est désactivé : l'opération est réalisée avec
-    succès.
-  \item Un client désactivé est réactivé : l'opération est réalisée avec
-    succès.
-  \item La réactivation est effectuée sur un client inexistant : une
-    \texttt{NotFoundException} est levée.
-  \item Un logo est téléversé pour un client existant : le fichier est
-    traité et stocké correctement.
-  \item Le logo d'un client est supprimé : un message de succès est
-    retourné.
-  \item Le téléversement ou la suppression du logo est effectué sur un
-    client inexistant : une \texttt{NotFoundException} est levée.
-  \item Le service de géocodage est interrogé avec une adresse valide
-    présente en cache : l'adresse est retournée correctement.
-  \item Le service de géocodage est interrogé avec une requête trop courte :
-    un tableau vide est retourné.
-  \item Les résultats du service de géocodage sont mis en cache
-    correctement après la première requête.
-  \item Les résultats filtrés du géocodage éliminent les doublons de type
-    pays.
+\subsection{Tests d’intégration}
+Les tests d’intégration ont été réalisés sur les endpoints principaux du sprint :
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+\item création et consultation des demandes ;
+\item validation et rejet des demandes ;
+\item assignation et suivi des tickets ;
+\item chronomètre, historique et gestion des blocages ;
+\item classification IA, feedback et reclassification ;
+\item calcul des SLA et génération des suggestions KB.
 \end{itemize}
 
+\subsection{Tests End-to-End}
+Les tests End-to-End ont permis de valider des parcours réalistes tels que :
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+\item la création d’une demande client ;
+\item sa validation par un chef de projet ;
+\item la création automatique du ticket ;
+\item l’assignation à un développeur ;
+\item l’exécution du chronomètre ;
+\item la résolution du ticket et la consultation du rapport technique ;
+\item l’exploitation des fonctionnalités IA et du Kanban.
 \end{itemize}
 
-\begin{figure}[H]
-\centering
-\begin{minipage}{0.48\textwidth}
-  \centering
-  \includegraphics[width=\textwidth,keepaspectratio]
-    {Images/test-unitaire-auth.png}
-  \caption*{\small Auth}
-\end{minipage}
-\hfill
-\begin{minipage}{0.48\textwidth}
-  \centering
-  \includegraphics[width=\textwidth,keepaspectratio]
-    {Images/test-sprint1-moduleRole+Permession.png}
-  \caption*{\small RBAC}
-\end{minipage}
-\caption{Résultats des tests unitaires — Auth et RBAC}
-\label{fig:test_unitaires}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\begin{minipage}{0.6\textwidth}
-  \centering
-  \includegraphics[width=\textwidth,keepaspectratio]
-    {Images/test unit-ClientTestUnitaire.png}
-  \caption*{\small Gestion des clients}
-\end{minipage}
-\caption{Résultats des tests unitaires — Gestion des clients}
-\end{figure}
-
-% \subsubsection{Tests de sécurité}
-% \label{sec:tests_securite}
-
-% Ces tests valident que les mécanismes de protection résistent aux accès
-% non autorisés et aux tentatives d'attaque. Ils sont effectués via
-% \textbf{Swagger} en combinaison avec les tests unitaires existants.
-
-% \vspace{4pt}
-% \noindent\textbf{4 tests exécutés — 4 réussis — 0 échec.}
-% \vspace{6pt}
-
-% \begin{itemize}[leftmargin=0pt]
-
-% \item[$\square$] \textbf{Contrôle d'accès aux endpoints protégés}
-% \hfill\textit{Guard \texttt{JwtAuthGuard} · \texttt{PermissionsGuard}}
-
-% \begin{itemize}[label=$\bullet$, nosep, itemsep=1pt]
-%   \item \texttt{GET /api/auth/me} sans token Bearer →
-%     \textbf{401 Unauthorized}.
-%   \item \texttt{GET /api/admin/users} avec token CLIENT →
-%     \textbf{403 Forbidden}
-%     (permission \texttt{users.read.all} absente).
-%   \item \texttt{POST /api/admin/roles} avec token DEVELOPPEUR →
-%     \textbf{403 Forbidden}
-%     (permission \texttt{roles.create} absente).
-%   \item Token JWT expiré (après 15 min) →
-%     \textbf{401 Unauthorized}, rafraîchissement automatique déclenché
-%     côté frontend (intercepteur Axios).
-% \end{itemize}
-
-% \vspace{6pt}
-% \item[$\square$] \textbf{Protection contre le bruteforce}
-% \hfill\textit{\texttt{maxLoginAttempts = 3} ·
-% \texttt{lockDurationMs = 60\,000 ms}}
-
-% \begin{itemize}[label=$\bullet$, nosep, itemsep=1pt]
-%   \item \textbf{3 tentatives échouées} consécutives → champ
-%     \texttt{compteVerrouilleJusquA} mis à jour en base, connexion
-%     bloquée \textbf{1 minute}.
-%   \item Tentative sur compte verrouillé avant expiration → rejetée
-%     immédiatement, sans vérification du mot de passe.
-% \end{itemize}
-
-% \end{itemize}
-
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.72\textwidth,keepaspectratio]
-%   {Images/test-securite-acces.png}
-% \caption{Tests de sécurité — Contrôle d'accès et protection bruteforce
-%   via Swagger}
-% \label{fig:test_securite}
-% \end{figure}
-
-\subsubsection{Tests d'intégration}
-\label{sec:tests_integration}
-
-Les tests d'intégration ont pour objectif de valider les échanges entre
-les différentes couches de l'application (contrôleur, service et base de
-données) en testant les endpoints REST dans leur ensemble. Ces tests sont
-effectués via \textbf{Swagger UI} en soumettant des requêtes HTTP réelles
-contre le backend en cours d'exécution, ce qui permet de vérifier le
-comportement de l'API dans des conditions proches de la production.
-
-\vspace{4pt}
-\noindent\textbf{Bilan : 5 tests exécutés — 5 réussis — 0 échec.}
-\vspace{6pt}
-
-\begin{itemize}[leftmargin=0pt]
-
-\item[$\square$] \textbf{Authentification}
-\hfill\textit{Endpoint : \texttt{POST /api/auth/login}}
-
-\noindent Cette suite valide le comportement complet de l'endpoint de
-connexion, notamment le retour des jetons d'authentification, des rôles,
-des permissions associées et la gestion des codes d'erreur HTTP selon les
-différents cas d'entrée. Les cas suivants ont été couverts :
-
-\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item Un utilisateur actif de rôle \texttt{ADMIN} fournit des
-    identifiants valides : l'endpoint retourne le code \textbf{200 OK}
-    accompagné des champs \texttt{accessToken}, \texttt{refreshToken},
-    des données de l'utilisateur, de ses rôles et de la liste complète
-    de ses permissions.
-  \item L'adresse e-mail fournie n'existe pas en base de données :
-    l'endpoint retourne le code \textbf{401 Unauthorized}.
-  \item Le mot de passe fourni est incorrect : l'endpoint retourne le
-    code \textbf{401 Unauthorized}.
-  \item Les données soumises sont invalides (adresse e-mail mal formatée
-    ou champ obligatoire vide) : l'endpoint retourne le code
-    \textbf{400 Bad Request} accompagné d'un message de validation
-    généré par \texttt{class-validator}.
-  \item Le compte de l'utilisateur est désactivé
-    (\texttt{estActif = false}) : l'endpoint retourne le code
-    \textbf{401 Unauthorized} avec le message
-    « Ce compte est désactivé ».
+\subsection{Résultats obtenus}
+À l’issue de ce sprint, la plateforme est capable de :
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+\item traiter une demande de bout en bout ;
+\item convertir automatiquement la demande validée en ticket ;
+\item piloter les tickets par Kanban ;
+\item suivre le temps de travail réel ;
+\item calculer et afficher les SLA ;
+\item assister les utilisateurs par intelligence artificielle ;
+\item maintenir un haut niveau de traçabilité et de notification.
 \end{itemize}
 
-\end{itemize}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.60\textwidth,keepaspectratio]
-  {Images/test-interg-login.png}
-\caption{Test d'intégration — endpoint \texttt{POST /api/auth/login}
-  via Swagger}
-\label{fig:test_integration}
-\end{figure}
-
-%─────────────────────────────────────────────────────────────────────────────
-\newpage
-%─────────────────────────────────────────────────────────────────────────────
-\subsubsection{Tests End-to-End}
-\label{sec:tests_e2e}
-
-Les tests End-to-End ont pour objectif de simuler les parcours utilisateurs
-complets dans un navigateur réel piloté par \textbf{Playwright}. Ces tests
-s'exécutent en interaction avec le frontend Next.js, le backend NestJS et
-la base de données PostgreSQL, reproduisant ainsi les conditions réelles
-d'utilisation de la plateforme.
-
-\vspace{4pt}
-\noindent\textbf{Bilan : 11 tests exécutés — 11 réussis — 0 échec.}
-\vspace{6pt}
-
-\begin{itemize}[leftmargin=0pt]
-
-% ── 1. Authentification ───────────────────────────────────────────────────────
-\item[$\square$] \textbf{Authentification}
-\hfill\textit{10 scénarios : connexion classique, OAuth, déconnexion}
-
-\noindent Cette suite valide le flux complet d'authentification en
-simulant les actions réelles d'un utilisateur sur l'interface. Les cas
-suivants ont été couverts :
-
-\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item La page de connexion est chargée : le formulaire et les boutons
-    d'authentification OAuth sont affichés correctement.
-  \item Les champs du formulaire sont vides ou partiellement remplis :
-    le bouton de soumission reste désactivé.
-  \item L'utilisateur soumet des identifiants valides : le flux aboutit
-    à une redirection vers la page d'accueil et une session est créée.
-  \item L'utilisateur saisit un identifiant ou un mot de passe invalide :
-    un message d'erreur approprié est affiché sans redirection.
-  \item L'utilisateur échoue l'authentification \textbf{3 fois
-    consécutives} : le compte est verrouillé pendant \textbf{1 minute}
-    et un message d'information est affiché.
-  \item L'utilisateur se déconnecte : les jetons sont supprimés du
-    \texttt{localStorage} et l'utilisateur est redirigé vers la page
-    \texttt{/connexion}.
-  \item L'utilisateur s'authentifie via \textbf{Google} avec succès :
-    les données du profil sont récupérées et une session valide est
-    créée.
-  \item L'authentification via \textbf{Google} échoue : un message
-    d'erreur technique est affiché.
-  \item L'utilisateur s'authentifie via \textbf{GitHub} avec succès :
-    les données du profil sont récupérées et une session valide est
-    créée.
-  \item L'authentification via \textbf{GitHub} échoue : un message
-    d'erreur technique est affiché.
-\end{itemize}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.68\textwidth,keepaspectratio]
-  {Images/ExecDeTestCasesReussi-auth.png}
-\caption{Tests End-to-End — Authentification via Playwright}
-\label{fig:test_e2e_auth}
-\end{figure}
-
-% ── 2. Désactivation utilisateur ─────────────────────────────────────────────
-\item[$\square$] \textbf{Gestion des utilisateurs}
-\hfill\textit{1 scénario : désactivation avec réassignation des tickets}
-
-\noindent Cette suite valide le flux complet de désactivation d'un
-utilisateur disposant de tickets actifs, en simulant les actions réelles
-d'un administrateur. Le cas suivant a été couvert :
-
-\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item L'administrateur tente de désactiver un utilisateur actif
-    disposant de \textbf{9 tickets actifs} (statuts \texttt{OUVERT},
-    \texttt{EN\_COURS} ou \texttt{EN\_REVUE}) : le système affiche le
-    modal de réassignation présentant la liste des développeurs
-    disponibles \textbf{triés par charge de travail croissante}.
-    L'administrateur procède à la réassignation de chaque ticket, puis
-    confirme l'opération via le bouton « Réassigner et Désactiver ».
-    Le système effectue les réassignations dans une transaction atomique,
-    désactive le compte et envoie un e-mail de notification à
-    l'utilisateur concerné.
-\end{itemize}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.68\textwidth,keepaspectratio]
-  {Images/Test e2e desactiver utilisateu.png}
-\caption{Tests End-to-End — Désactivation utilisateur via Playwright}
-\label{fig:test_e2e_desactiver}
-\end{figure}
-
-\end{itemize}
+\section{Conclusion}
+Ce troisième sprint a permis d’implémenter le noyau fonctionnel de la solution. En combinant workflow métier, suivi temporel, gestion des SLA, visualisation Kanban et assistance intelligente, la plateforme franchit une étape décisive vers un système complet de support et de pilotage des demandes.
+\newline Ce sprint met en évidence la dimension opérationnelle du projet, tout en renforçant sa robustesse technique, sa traçabilité et sa valeur métier.

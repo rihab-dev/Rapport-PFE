@@ -1,16 +1,17 @@
 \rowcolors{0}{}{}
 \arrayrulecolor{black}
 \renewcommand{\arraystretch}{1.3}
+\setlength{\extrarowheight}{3pt}
 \small
-
-\begin{longtable}{|C{1cm}|m{6.5cm}|m{5cm}|C{1.5cm}|}
+\sloppy
+\begin{longtable}{|C{1cm}|L{6.5cm}|L{7cm}|C{1cm}|}
 \hline
-\textbf{ID US} & \textbf{User Story} & \textbf{Description technique} & \textbf{Effort (j)} \\
+\textbf{ID US} & \textbf{User Story} & \textbf{Description technique} & \textbf{Effort} \\
 \hline
 \endfirsthead
 
 \hline
-\textbf{ID US} & \textbf{User Story} & \textbf{Description technique} & \textbf{Effort (j)} \\
+\textbf{ID US} & \textbf{User Story} & \textbf{Description technique} & \textbf{Effort} \\
 \hline
 \endhead
 
@@ -20,115 +21,360 @@
 \hline
 \endlastfoot
 
-% Epic 8: Gestion des demandes
-\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 8 - Gestion des demandes}} \\
+% Epic 8: Gestion des demandes clients
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 8 - Gestion des demandes clients}} \\
 \hline
 
-US39 & En tant que \textbf{client}, je souhaite soumettre une demande de maintenance afin de signaler un besoin. & Formulaire de soumission, upload de pièces jointes (max 5), génération numéro unique, confirmation email & 2 \\
+US38 & En tant que \textbf{client}, je souhaite soumettre une demande de maintenance afin de signaler un besoin. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint \texttt{POST /api/demandes}
+\item Vérifier l'existence d'un contrat actif et les règles métier de soumission
+\item Gérer l'upload de fichiers via Multer
+\item Calculer l'échéance SLA initiale
+\item Envoyer une confirmation par email au client
+\item Créer l'interface de soumission côté Next.js
+\end{itemize} & 3 \\
 \hline
 
-US40 & En tant que \textbf{chef de projet}, je souhaite consulter les demandes en attente afin de les traiter. & Liste filtrée par statut EN\_ATTENTE, tri par date, indicateurs de priorité & 1 \\
+US39 & En tant que \textbf{chef de projet}, je souhaite consulter les demandes en attente afin de les traiter. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer la récupération des demandes visibles par le chef de projet
+\item Filtrer les demandes selon le statut et le périmètre du projet
+\item Implémenter le tri par date de création et priorité
+\item Ajouter un indicateur visuel pour les demandes urgentes
+\item Créer la vue liste ou Kanban côté Next.js
+\end{itemize} & 2 \\
 \hline
 
-US41 & En tant que \textbf{chef de projet}, je souhaite valider une demande afin de la convertir en ticket. & Interface de validation, définition catégorie/priorité, création automatique de ticket lié & 2 \\
+US40 & En tant que \textbf{chef de projet}, je souhaite valider une demande afin de la convertir en ticket. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint \texttt{PATCH /api/demandes/:id/valider}
+\item Contrôler les permissions du validateur
+\item Vérifier l'existence d'un contrat actif pour le projet
+\item Créer automatiquement un ticket lié à la demande
+\item Transférer les pièces jointes vers le ticket
+\item Notifier le client de la validation
+\item L'assignation du ticket est effectuée ensuite dans le module tickets
+\end{itemize} & 2 \\
 \hline
 
-US42 & En tant que \textbf{chef de projet}, je souhaite demander des informations complémentaires afin de clarifier une demande. & Formulaire de questions, changement statut INFOS\_REQUISES, relance automatique après 48h & 2 \\
+US41 & En tant que \textbf{chef de projet}, je souhaite demander des informations complémentaires afin de clarifier une demande. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint \texttt{PATCH /api/demandes/:id/demander-infos}
+\item Notifier le client par email et notification interne
+\item Mettre la demande en attente de réponse
+\item Tracer l'opération dans l'historique
+\end{itemize} & 2 \\
 \hline
 
-US43 & En tant que \textbf{client}, je souhaite compléter ma demande afin de fournir les informations manquantes. & Formulaire de réponse, retour automatique au statut EN\_ATTENTE & 1 \\
+US42 & En tant que \textbf{client}, je souhaite compléter ma demande afin de fournir les informations manquantes. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint \texttt{PATCH /api/demandes/:id/fournir-infos}
+\item Permettre au client de compléter sa demande
+\item Enregistrer les réponses et compléments fournis
+\item Notifier le chef de projet
+\item Mettre à jour la timeline de la demande
+\end{itemize} & 2 \\
 \hline
 
-US44 & En tant que \textbf{chef de projet}, je souhaite requalifier une demande afin de corriger sa catégorie ou sa priorité. & Modification type/priorité avec justification obligatoire, traçabilité & 1 \\
+US43 & En tant que \textbf{chef de projet}, je souhaite requalifier une demande afin de corriger sa catégorie ou sa priorité. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint \texttt{PATCH /api/demandes/:id/requalifier}
+\item Exiger une justification pour toute modification
+\item Tracer toutes les modifications dans l'historique
+\item Conserver la cohérence avec la validation ultérieure
+\end{itemize} & 1 \\
 \hline
 
-US45 & En tant qu'\textbf{utilisateur}, je souhaite commenter une demande afin de communiquer sur le contexte. & Éditeur riche, mentions @utilisateur, pièces jointes possibles & 2 \\
+US44 & En tant qu'\textbf{utilisateur}, je souhaite commenter une demande afin de communiquer sur le contexte. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint \texttt{POST /api/demandes/:id/commentaires}
+\item Permettre l'échange autour d'une demande
+\item Enregistrer les commentaires et leur auteur
+\item Notifier les acteurs concernés
+\item Conserver la traçabilité des échanges dans l'historique
+\end{itemize} & 2 \\
 \hline
 
-US46 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique d'une demande afin de suivre son évolution. & Timeline chronologique avec tous les événements, filtres par type, export PDF & 1 \\
+US45 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique d'une demande afin de suivre son évolution. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'affichage du détail d'une demande dans Next.js
+\item S'appuyer sur l'endpoint \texttt{GET /api/demandes/:id}
+\item Présenter la timeline des événements
+\item Permettre la consultation de l'évolution de la demande
+\end{itemize} & 1 \\
 \hline
 
 % Epic 9: Gestion des tickets
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 9 - Gestion des tickets}} \\
 \hline
 
-US47 & En tant que \textbf{développeur}, je souhaite visualiser mes tickets dans un tableau Kanban afin de gérer mes tâches. & Tableau Kanban avec colonnes (OUVERT, EN\_COURS, EN\_REVUE, RESOLU, FERME), drag \& drop, indicateurs SLA & 3 \\
+US46 & En tant que \textbf{développeur}, je souhaite visualiser mes tickets dans un tableau Kanban afin de gérer mes tâches. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint \texttt{GET /api/tickets/kanban}
+\item Restituer les tickets groupés par statut
+\item Intégrer le drag \& drop pour les changements autorisés
+\item Afficher les indicateurs SLA
+\item Créer la vue Kanban côté Next.js avec \texttt{@hello-pangea/dnd}
+\end{itemize} & 3 \\
 \hline
 
-US48 & En tant que \textbf{chef de projet}, je souhaite assigner un ticket à un développeur afin de répartir la charge. & Sélection développeur, vérification disponibilité/compétences, alerte surcharge & 2 \\
+US47 & En tant que \textbf{chef de projet}, je souhaite assigner un ticket à un développeur afin de répartir la charge. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint \texttt{POST /api/tickets/:id/assign}
+\item Développer l'endpoint \texttt{GET /api/tickets/:id/available-developers}
+\item Vérifier la permission d'assignation
+\item Contrôler la charge de travail du développeur cible
+\item Empêcher les doublons d'assignation
+\item Notifier le développeur assigné
+\item L'assignation est effectuée après validation de la demande
+\end{itemize} & 2 \\
 \hline
 
-US49 & En tant que \textbf{chef de projet}, je souhaite assigner un ticket à plusieurs développeurs afin de collaborer sur des tâches complexes. & Multi-sélection, définition rôles (principal/support), répartition temps estimé & 2 \\
+US48 & En tant que \textbf{chef de projet}, je souhaite assigner un ticket à plusieurs développeurs afin de collaborer sur des tâches complexes. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Cette user story n'est pas retenue dans l'implémentation actuelle
+\item L'assignation multiple n'apparaît pas dans le flux réel du projet
+\item À conserver uniquement comme évolution future
+\end{itemize} & 2 \\
 \hline
 
-US50 & En tant que \textbf{développeur}, je souhaite me désassigner d'un ticket afin de libérer ma charge. & Désassignation avec motif obligatoire, retour statut OUVERT, notification chef projet & 1 \\
+US49 & En tant que \textbf{développeur}, je souhaite me désassigner d'un ticket afin de libérer ma charge. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint \texttt{POST /api/tickets/:id/unassign}
+\item Exiger un motif de désassignation
+\item Notifier le chef de projet
+\item Mettre à jour l'historique et l'état de suivi
+\end{itemize} & 1 \\
 \hline
 
-US51 & En tant que \textbf{développeur}, je souhaite démarrer un chronomètre sur un ticket afin de tracker mon temps. & Bouton Démarrer, création session de travail, indicateur visuel chrono actif & 2 \\
+US50 & En tant que \textbf{développeur}, je souhaite démarrer un chronomètre sur un ticket afin de tracker mon temps. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint \texttt{POST /api/tickets/chrono/lancer/:assignmentId}
+\item Créer une session de travail
+\item Démarrer le suivi du temps
+\item Afficher le chronomètre dans l'interface
+\item Empêcher le démarrage si une session est déjà active
+\end{itemize} & 2 \\
 \hline
 
-US52 & En tant que \textbf{développeur}, je souhaite mettre en pause mon chronomètre afin de gérer les interruptions. & Bouton Pause, enregistrement temps écoulé, possibilité de reprise & 1 \\
+US51 & En tant que \textbf{développeur}, je souhaite mettre en pause mon chronomètre afin de gérer les interruptions. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint \texttt{POST /api/tickets/chrono/pause/:assignmentId}
+\item Suspendre la session en cours
+\item Conserver le temps déjà consommé
+\item Permettre la reprise ultérieure
+\item Mettre à jour le suivi de session
+\end{itemize} & 1 \\
 \hline
 
-US53 & En tant que \textbf{développeur}, je souhaite arrêter le chronomètre afin de finaliser ma session. & Arrêt avec commentaire optionnel, ajout session à l'historique, notification si dépassement & 2 \\
+US52 & En tant que \textbf{développeur}, je souhaite arrêter le chronomètre afin de finaliser ma session. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint \texttt{POST /api/tickets/chrono/arreter/:assignmentId}
+\item Terminer la session de travail
+\item Enregistrer la durée totale
+\item Mémoriser l'activité dans l'historique
+\item Vérifier la cohérence avec l'assignation active
+\end{itemize} & 1 \\
 \hline
 
-US54 & En tant que \textbf{développeur}, je souhaite ajouter manuellement une session de travail afin de corriger des oublis. & Formulaire (date, heures, durée, commentaire), validation sans chevauchement & 1 \\
+US53 & En tant que \textbf{développeur}, je souhaite ajouter manuellement une session de travail afin de corriger des oublis. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Cette user story ne correspond pas au flux visible dans le code actuel
+\item L'ajout manuel de session n'est pas exposé comme fonctionnalité métier standard
+\item À considérer comme amélioration future si nécessaire
+\end{itemize} & 2 \\
 \hline
 
-US55 & En tant que \textbf{développeur}, je souhaite changer le statut d'un ticket afin de refléter l'avancement. & Workflow avec transitions validées, notification parties prenantes & 2 \\
+US54 & En tant que \textbf{développeur}, je souhaite changer le statut d'un ticket afin de refléter l'avancement. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint \texttt{PATCH /api/tickets/:id/statut}
+\item Implémenter les transitions de statut autorisées
+\item Vérifier la cohérence du workflow métier
+\item Tracer tous les changements d'état
+\item Notifier les parties prenantes du changement
+\end{itemize} & 2 \\
 \hline
 
-US56 & En tant que \textbf{client}, je souhaite valider la résolution d'un ticket afin de confirmer que le problème est résolu. & Interface de validation avec commentaire, fermeture ticket, notification développeur & 1 \\
+US55 & En tant que \textbf{client}, je souhaite valider la résolution d'un ticket afin de confirmer que le problème est résolu. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint \texttt{POST /api/tickets/:id/validate-resolution}
+\item Permettre au client de confirmer la résolution
+\item Ajouter un commentaire éventuel de validation
+\item Clôturer le ticket après confirmation
+\item Notifier le développeur
+\end{itemize} & 1 \\
 \hline
 
-US57 & En tant que \textbf{chef de projet}, je souhaite rouvrir un ticket fermé afin de traiter un problème récurrent. & Réouverture avec motif, réinitialisation SLA, notification assignés & 1 \\
+US56 & En tant que \textbf{chef de projet}, je souhaite rouvrir un ticket fermé afin de traiter un problème récurrent. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint \texttt{POST /api/tickets/:id/signaler-probleme-non-resolu}
+\item Permettre au client d'indiquer que le problème persiste
+\item Réouvrir ou réorienter le ticket selon le workflow métier
+\item Informer le chef de projet et les parties concernées
+\item Conserver la trace dans l'historique
+\end{itemize} & 1 \\
 \hline
 
-US58 & En tant que \textbf{chef de projet}, je souhaite consulter le temps passé par ticket afin d'analyser la productivité. & Affichage temps total et détaillé par développeur, graphiques & 2 \\
+US57 & En tant que \textbf{chef de projet}, je souhaite consulter le temps passé par ticket afin d'analyser la productivité. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Exploiter les sessions de travail pour calculer le temps passé
+\item Afficher le temps total et le détail par session
+\item Comparer le temps réel au temps estimé
+\item Présenter les indicateurs dans la fiche ticket
+\end{itemize} & 2 \\
 \hline
 
-US59 & En tant que \textbf{développeur}, je souhaite signaler un blocage afin d'alerter sur un obstacle. & Formulaire (type, description, impact), notification urgence chef projet, pause SLA & 2 \\
+US58 & En tant que \textbf{développeur}, je souhaite signaler un blocage afin d'alerter sur un obstacle. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer le flux de signalement de blocage sur une affectation
+\item Permettre au développeur de décrire la cause du blocage
+\item Déclencher la notification du chef de projet
+\item Conserver l'information dans le suivi du ticket
+\item S'appuyer sur les mécanismes métier de blocage et d'assistance
+\end{itemize} & 2 \\
 \hline
 
-US60 & En tant que \textbf{membre d'équipe}, je souhaite résoudre un blocage afin de permettre au développeur de reprendre son travail. & Résolution avec commentaire obligatoire, reprise chrono SLA, traçabilité & 1 \\
+US59 & En tant que \textbf{membre d'équipe}, je souhaite résoudre un blocage afin de permettre au développeur de reprendre son travail. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer le flux de résolution d'un blocage
+\item Permettre la proposition, la validation ou le rejet d'une solution
+\item Réactiver le suivi normal après traitement
+\item Historiser l'action
+\item Maintenir la cohérence avec la progression du ticket
+\end{itemize} & 1 \\
 \hline
 
-US61 & En tant que \textbf{développeur}, je souhaite demander une extension de délai SLA afin de disposer de plus de temps. & Formulaire de demande (durée, justification), soumission pour validation & 1 \\
+US60 & En tant que \textbf{développeur}, je souhaite demander une extension de délai SLA afin de disposer de plus de temps. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint \texttt{POST /api/tickets/:id/request-extension}
+\item Permettre au développeur de demander une extension SLA
+\item Exiger une justification métier
+\item Notifier le chef de projet
+\item Tracer la demande dans l'historique
+\end{itemize} & 1 \\
 \hline
 
-US62 & En tant que \textbf{chef de projet}, je souhaite approuver ou rejeter les demandes d'extension SLA. & Liste demandes en attente, approbation/rejet avec commentaire, mise à jour auto SLA & 1 \\
+US61 & En tant que \textbf{chef de projet}, je souhaite approuver ou rejeter les demandes d'extension SLA. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Vérifier que la fonctionnalité est bien exposée par le code avant de la figer
+\item Si elle n'est pas implémentée, la retirer du périmètre du sprint
+\item Sinon, prévoir un traitement métier d'approbation ou de rejet
+\end{itemize} & 1 \\
 \hline
 
-US63 & En tant qu'\textbf{utilisateur}, je souhaite commenter un ticket avec mentions afin de communiquer efficacement. & Éditeur riche, autocomplétion @utilisateur, distinction internes/externes & 2 \\
+US62 & En tant qu'\textbf{utilisateur}, je souhaite commenter un ticket avec mentions afin de communiquer efficacement. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint \texttt{POST /api/tickets/:id/commentaires}
+\item Permettre l'ajout de commentaires avec mentions
+\item Notifier les utilisateurs mentionnés
+\item Distinguer commentaires internes et externes
+\item Conserver l'historique des échanges
+\end{itemize} & 2 \\
 \hline
 
-US64 & En tant qu'\textbf{utilisateur}, je souhaite ajouter des pièces jointes aux tickets afin de fournir du contexte. & Upload par drag \& drop (images/PDF/logs, max 10MB), prévisualisation & 1 \\
+US63 & En tant qu'\textbf{utilisateur}, je souhaite ajouter des pièces jointes aux tickets afin de fournir du contexte. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint \texttt{POST /api/tickets/:id/commentaires/with-attachments}
+\item Autoriser l'ajout de pièces jointes aux commentaires
+\item Vérifier la taille et les formats autorisés
+\item Prévoir la prévisualisation des fichiers
+\item Lier les documents au commentaire et au ticket
+\end{itemize} & 2 \\
 \hline
 
-US65 & En tant que \textbf{développeur}, je souhaite être informé lorsqu'un autre utilisateur modifie le même ticket. & WebSocket temps réel, toast notification, indicateur "X est en train d'éditer" & 2 \\
+US64 & En tant que \textbf{développeur}, je souhaite être informé lorsqu'un autre utilisateur modifie le même ticket. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Mettre en place les WebSockets pour le suivi en temps réel
+\item Informer les utilisateurs des modifications concurrentes
+\item Afficher des indicateurs de présence ou d'édition
+\item Réduire les conflits de saisie
+\item Synchroniser les mises à jour de l'interface
+\end{itemize} & 3 \\
 \hline
 
-US66 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique complet d'un ticket afin de comprendre son évolution. & Timeline chronologique inversée, filtres par type, export PDF & 1 \\
+US65 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique complet d'un ticket afin de comprendre son évolution. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint \texttt{GET /api/tickets/:id/history}
+\item Afficher la timeline complète du ticket
+\item Intégrer les événements de statut, d'assignation et de commentaire
+\item Permettre une lecture chronologique claire
+\item Prévoir la consultation détaillée si nécessaire
+\end{itemize} & 2 \\
 \hline
 
-% Epic 13: Dashboards
-\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 13 - Dashboards}} \\
+% Epic 16: Assistance intelligente
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 16 - Assistance intelligente (IA)}} \\
 \hline
 
-US89 & En tant qu'\textbf{administrateur}, je souhaite consulter un dashboard global afin de piloter le système. & KPIs (utilisateurs actifs, tickets ouverts, taux SLA, CA), graphiques, alertes, filtres période & 3 \\
+US105 & En tant que \textbf{chef de projet}, je souhaite que l'IA analyse automatiquement les blocages afin d'identifier rapidement les problèmes critiques. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Intégrer l'API Groq (LLaMA 3.3-70B)
+\item Développer \textbf{BlocageAnalysisService.analyzeBlocage()}
+\item Analyser le contexte du blocage, la priorité et le ticket associé
+\item Retourner un résumé clair et une cause probable
+\item Afficher l'analyse dans l'interface du chef de projet
+\end{itemize} & 3 \\
 \hline
 
-US90 & En tant que \textbf{chef de projet}, je souhaite consulter un dashboard d'équipe afin de piloter l'activité. & Vue équipe (charge travail par dev, performance SLA, temps passé vs estimé) & 3 \\
+US106 & En tant que \textbf{chef de projet}, je souhaite que l'IA propose des actions correctives afin de débloquer rapidement un développeur. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer \textbf{BlocageAnalysisService.suggestSolutions()}
+\item Proposer plusieurs solutions classées par pertinence
+\item Chaque solution peut contenir une description et un niveau de priorité
+\item Permettre au chef de projet de valider une action
+\item Conserver la trace des suggestions et des décisions
+\end{itemize} & 3 \\
 \hline
 
-US91 & En tant que \textbf{développeur}, je souhaite consulter mon dashboard personnel afin d'organiser ma journée. & Tickets assignés avec priorités, chronomètre actif, temps passé, échéances SLA & 2 \\
+US107 & En tant que \textbf{développeur}, je souhaite qu'un brouillon de solution soit généré à la fermeture d'un ticket afin de faciliter la documentation. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer \textbf{AIResolutionService.generateSolutionDraft()}
+\item Analyser l'historique des commentaires du ticket
+\item Générer un résumé structuré du problème et de la solution
+\item Proposer le brouillon avant publication
+\item Permettre la modification manuelle du brouillon
+\end{itemize} & 3 \\
 \hline
 
-US92 & En tant que \textbf{client}, je souhaite consulter mon dashboard afin de suivre mes projets. & Contrats actifs, demandes/tickets en cours, statistiques, documents récents, contacts équipe & 2 \\
+US108 & En tant que \textbf{chef de projet}, je souhaite que l'IA propose une classification des demandes clients afin d'accélérer leur traitement. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer \textbf{DemandeClassifierService.classifyDemande()}
+\item Proposer un type et une priorité
+\item Afficher un score de confiance
+\item Permettre au chef de projet d'accepter ou corriger la proposition
+\item Sauvegarder l'audit des décisions
+\end{itemize} & 3 \\
 \hline
 
-\multicolumn{3}{|r|}{\textbf{Total Sprint 3 :}} & \textbf{54 j} \\
+US109 & En tant que \textbf{développeur}, je souhaite que l'IA me recommande des articles de la base de connaissances afin de résoudre plus vite. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer \textbf{KbRecommenderService.getSuggestionsForTicket()}
+\item Analyser le titre, la description et la catégorie du ticket
+\item Rechercher les articles KB pertinents
+\item Afficher les résultats dans l'interface
+\item Rendre l'article accessible en un clic
+\end{itemize} & 2 \\
+\hline
+
+US110 & En tant que \textbf{chef de projet}, je souhaite que l'IA structure automatiquement les solutions saisies en articles KB afin d'améliorer la documentation. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer \textbf{KbRefinerService.refineSolution()}
+\item Transformer la solution brute en article structuré
+\item Générer un titre professionnel et des tags
+\item Proposer une structure claire et réutilisable
+\item Permettre la modification avant publication
+\end{itemize} & 2 \\
+\hline
+
+US111 & En tant que \textbf{chef de projet}, je souhaite que l'IA fusionne le brouillon d'un blocage avec la solution humaine afin de produire un article KB définitif. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer \textbf{KbMergerService.mergeAnalysisWithSolution()}
+\item Fusionner le brouillon IA avec la solution humaine
+\item Produire un article final structuré
+\item Permettre la validation du contenu avant publication
+\item Marquer le brouillon comme fusionné pour éviter les doublons
+\end{itemize} & 2 \\
 \hline
 
 \end{longtable}
