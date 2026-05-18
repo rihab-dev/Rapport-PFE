@@ -30,7 +30,7 @@ La figure ci-dessous présente le diagramme de cas d’utilisation du troisième
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_cas_utilisation_sprint3.png}
+    \includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/diagramme cas utilisation sprint3.png}
     \caption{Diagramme des cas d'utilisation du troisième sprint}
     \label{fig:use_case_sprint3}
 \end{figure}
@@ -117,19 +117,19 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Compléter demande existante \
+\textbf{Nom du cas d'utilisation} & Compléter demande existante \\
 \hline
-\textbf{Acteurs} & Client (propriétaire de la demande) \
+\textbf{Acteurs} & Client (propriétaire de la demande) \\
 \hline
 \textbf{Préconditions} &
 \begin{minipage}[t]{\linewidth}\raggedright
-L'utilisateur est authentifié et dispose d'un compte client. La demande concernée existe et a été précédemment marquée comme nécessitant des informations complémentaires.
-\end{minipage} \
+L'utilisateur est authentifié et dispose d'un compte client. La demande concernée existe et a été précédemment marquée comme nécessitant des informations complémentaires.\\
+\end{minipage} \\
 \hline
 \textbf{Postconditions} &
 \begin{minipage}[t]{\linewidth}\raggedright
-Les informations du client sont enregistrées, la demande repasse en attente, l'action est historisée et les responsables sont notifiés.
-\end{minipage} \
+Les informations du client sont enregistrées, la demande repasse en attente, l'action est historisée et les responsables sont notifiés. \\
+\end{minipage} \\
 \hline
 \textbf{Scénario principal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -144,7 +144,7 @@ Les informations du client sont enregistrées, la demande repasse en attente, l'
 \item Les acteurs impliqués (demandeur initial, responsable ayant émis la demande d'information, chef de projet et administrateurs pertinents) reçoivent une notification les informant du complément fourni.
 \item L'utilisateur reçoit une confirmation de la prise en compte de son envoi.
 \end{enumerate}
-\end{minipage}
+\end{minipage} \\
 \hline
 \textbf{Scénarios alternatifs} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -152,7 +152,7 @@ Les informations du client sont enregistrées, la demande repasse en attente, l'
 \item Le client n'ajoute que des pièces justificatives sans texte complémentaire : le système associe uniquement les fichiers transmis à la demande et crée l'historique correspondant.
 \item Le client réalise une modification progressive (plusieurs envois successifs) : chaque envoi est historié et notifié aux acteurs concernés.
 \end{itemize}
-\end{minipage}
+\end{minipage} \\
 \hline
 \textbf{Scénarios d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -162,6 +162,7 @@ Les informations du client sont enregistrées, la demande repasse en attente, l'
 \item Fichiers fournis non conformes (format ou taille) : les fichiers non conformes sont rejetés et l'utilisateur reçoit les indications pour corriger l'envoi.
 \item Erreur lors de la persistance des données : l'utilisateur est informé d'un problème technique et l'opération peut être réessayée ultérieurement ; l'incident est journalisé pour investigation.
 \end{itemize}
+\end{minipage}\\
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle du cas d'utilisation « Compléter demande existante »}
@@ -293,6 +294,13 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
 \hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
 \textbf{Nom du cas d'utilisation} & Demander des informations complémentaires \\
 \hline
 \textbf{Acteurs} & Chef de projet, Administrateur \\
@@ -311,11 +319,20 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} & Demande groupée d'informations pour plusieurs demandes similaires ; ajout d'une échéance pour le retour d'information. \\
+\textbf{Scénarios alternatifs} &
+\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\item Demande groupée d'informations pour plusieurs demandes similaires.
+\item Ajout d'une échéance pour le retour d'information.
+\end{itemize} \\
 \hline
-\textbf{Scénarios d'exception} & Tentative par un acteur non autorisé : refus ; erreur de persistance : message d'échec et journalisation. \\
+\textbf{Scénarios d'exception} &
+\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\item Tentative par un acteur non autorisé : refus.
+\item Erreur de persistance : message d'échec et journalisation.
+\end{itemize} \\
 \hline
 \end{longtable}
+\captionof{table}{Description textuelle du cas d'utilisation « Demander des informations complémentaires »}
 \normalsize
 \vspace{-0.3cm}
 
@@ -324,6 +341,13 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
 \hline
+\endfirsthead   
+\hline
+\endhead        
+\hline
+\endfoot         
+\hline
+\endlastfoot  
 \textbf{Nom du cas d'utilisation} & Gérer la qualification (acceptation d'une suggestion automatique ou requalification manuelle) \\
 \hline
 \textbf{Acteurs} & Chef de projet, Administrateur \\
@@ -350,11 +374,21 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} & La qualification peut être modifiée au moment de la validation formelle d'une demande (conversion en ticket) ; dans ce cas, la requalification est enregistrée simultanément à la création du ticket et la justification est conservée. \\
+\textbf{Scénarios alternatifs} &
+\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\item La qualification peut être modifiée au moment de la validation formelle d'une demande (conversion en ticket).
+\item Dans ce cas, la requalification est enregistrée simultanément à la création du ticket et la justification est conservée.
+\end{itemize} \\
 \hline
-\textbf{Scénarios d'exception} & Tentative de requalification par un acteur non autorisé : opération rejetée ; demande dans un état final (\texttt{CONVERTIE} ou \texttt{REJETEE}) : opération interdite ; absence de modification effective : retour d'erreur précisant qu'aucun changement n'a été détecté. \\
+\textbf{Scénarios d'exception} &
+\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\item Tentative de requalification par un acteur non autorisé : opération rejetée.
+\item Demande dans un état final (\texttt{CONVERTIE} ou \texttt{REJETEE}) : opération interdite.
+\item Absence de modification effective : retour d'erreur précisant qu'aucun changement n'a été détecté.
+\end{itemize} \\
 \hline
 \end{longtable}
+\captionof{table}{Description textuelle du cas d'utilisation « Gérer qualification »}
 \normalsize
 \vspace{-0.3cm}
 
@@ -621,7 +655,7 @@ La figure suivante présente le diagramme de classes du troisième sprint.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.98\textwidth,height=0.85\textheight,keepaspectratio]{Images/diag_classe_sprint3.png}
+   % \includegraphics[width=0.98\textwidth,height=0.85\textheight,keepaspectratio]{Images/diag_classe_sprint3.png}
     \caption{Diagramme de classes du troisième sprint}
     \label{fig:diag_classe_sprint3}
 \end{figure}
@@ -633,7 +667,7 @@ La figure suivante présente le diagramme de séquence du cas d’utilisation «
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_seq_soumettre_demande.png}
+    %\includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_seq_soumettre_demande.png}
     \caption{Diagramme de séquence du cas d'utilisation « Soumettre une demande »}
     \label{fig:seq_soumettre_demande}
 \end{figure}
@@ -643,7 +677,7 @@ La figure suivante présente le diagramme de séquence du cas d’utilisation «
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_seq_valider_demande.png}
+    %\includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_seq_valider_demande.png}
     \caption{Diagramme de séquence du cas d'utilisation « Valider une demande »}
     \label{fig:seq_valider_demande}
 \end{figure}
@@ -653,7 +687,7 @@ La figure suivante présente le diagramme de séquence du cas d’utilisation «
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_seq_assigner_ticket.png}
+    %\includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_seq_assigner_ticket.png}
     \caption{Diagramme de séquence du cas d'utilisation « Assigner un ticket »}
     \label{fig:seq_assigner_ticket}
 \end{figure}
@@ -663,7 +697,7 @@ La figure suivante présente le diagramme d’activité du workflow de gestion d
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_activite_ticket_sprint3.png}
+    %\includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_activite_ticket_sprint3.png}
     \caption{Diagramme d'activité du workflow de gestion des tickets}
     \label{fig:activite_ticket}
 \end{figure}
@@ -671,25 +705,18 @@ La figure suivante présente le diagramme d’activité du workflow de gestion d
 \subsection{Schéma relationnel}
 Le schéma relationnel du sprint 3 s’appuie sur les entités suivantes :
 \textbf{DemandeClient} (\underline{id}, titreDemande, descriptionDemande, typeDemande, prioriteDemande, statutDemande, dateSoumissionDemande, dateCreationDemande, dateMiseAJourDemande, dateValidation, motifRejet, motifRequalification, natureAutre, typeDemandeOriginal, prioriteOriginale, echeanceInitiale, \#clientId, \#projetId, \#validePar)
-
 \newline
 \textbf{Ticket} (\underline{id}, titreTicket, descriptionTicket, categorieTicket, prioriteTicket, statutTicket, dateCreationTicket, dateMiseAJourTicket, dateResolutionTicket, versionOptimiste, delaiReponse, delaiResolution, dateEcheanceResponse, dateEcheanceResolution, slaReponseExpire, slaResolutionExpire, ticketParentId, extensionDemandee, extensionMotif, extensionDemandeeAt, extensionAccordee, alerteSLAEnvoyee, scoreUrgenceIA, prioriteIA, nombreTicketsBloquesParCelui, nombreUtilisateursAffectes, \#demandeId, \#contratId)
-
 \newline
 \textbf{AssignmentTicket} (\underline{id}, \#ticketId, \#developpeurId, dateDebutReelle, dateFinReelle, commentaireAssignment, progression, estBloque, raisonBlocage, feedbackDeveloppeur, technologiesUtilisees, enTravail, dureeTotaleSecondes, dateCreation, dateMiseAJour, solutionProposee, solutionProposeeAt, \#solutionProposeeParId)
-
 \newline
 \textbf{SessionTravail} (\underline{id}, \#assignmentId, debut, fin, dureeSecondes, note, isPaused, pausedAt, totalPausedMs, isManual, isBillable)
-
 \newline
 \textbf{TicketSolution} (\underline{id}, \#ticketId, \#articleId, solutionSuggeree, scoreConfiance, estAcceptee, feedbackUtilisateur, tempsResolution, dateCreation)
-
 \newline
 \textbf{ConfigurationSLAContrat} (\underline{id}, \#contratId, typeSLA, priorite, delaiReponseMinutes, delaiResolutionMinutes, horairesOuvrables, joursOuvrables, estActif)
-
 \newline
 \textbf{DemandeClassificationIA} (\underline{id}, \#demandeId, categorieAuto, typeAuto, prioriteAuto, scoreConfiance, entitesExtraites, sentimentScore, urgenceDetectee, estUtiliseeValidation, estCorrigeeParAgent, feedbackAgent, dateClassification, dateUtilisation, modeleUtilise, tempsTraitement, estFallback, versionModele, versionRegles)
-
 \newline
 \textbf{TicketClassification} (\underline{id}, \#ticketId, categorieAuto, prioriteAuto, typeAuto, scoreConfiance, entitesExtraites, sentimentScore, urgenceDetectee, estValidee, dateClassification)
 
@@ -714,7 +741,7 @@ L’architecture de cette version repose sur une séparation claire des responsa
 
 \subsection{Interface de gestion des demandes}
 L’interface de gestion des demandes a été enrichie afin de permettre au client de consulter ses demandes, de suivre leur statut et de visualiser les indicateurs d’intelligence artificielle associés à chaque demande.
-\newline Le tableau Kanban des demandes permet une lecture rapide de l’avancement : \textit{EN\_ATTENTE}, \textit{INFOS\_REQUISES}, \textit{VALIDEE}, \textit{REJETEE} et \textit{CONVERTIE}. Cette représentation facilite la supervision du cycle de vie des demandes.
+\par Le tableau Kanban des demandes permet une lecture rapide de l’avancement : \textit{EN\_ATTENTE}, \textit{INFOS\_REQUISES}, \textit{VALIDEE}, \textit{REJETEE} et \textit{CONVERTIE}. Cette représentation facilite la supervision du cycle de vie des demandes.
 
 \subsection{Interface de gestion des tickets}
 L’interface des tickets constitue le centre opérationnel du sprint. Elle permet :
@@ -729,19 +756,19 @@ L’interface des tickets constitue le centre opérationnel du sprint. Elle perm
 
 \subsection{Fonctionnement du tableau Kanban}
 Le tableau Kanban a été conçu comme un outil de pilotage visuel du flux de traitement des tickets.
-\newline Les tickets sont répartis dans cinq colonnes correspondant aux statuts \textbf{OUVERT}, \textbf{EN\_COURS}, \textbf{EN\_REVUE}, \textbf{RESOLU} et \textbf{FERME}. Les cartes sont triées en priorité décroissante, puis selon leur ancienneté.
-\newline Le déplacement d’un ticket entre deux colonnes n’est possible que si la transition est autorisée par le workflow métier. Par exemple, un ticket ne peut pas passer de \textbf{OUVERT} à \textbf{EN\_COURS} sans démarrage effectif du chronomètre, et un passage en \textbf{RESOLU} exige une solution documentée.
-\newline Cette approche garantit la cohérence des données et évite les modifications arbitraires de statut.
+\par Les tickets sont répartis dans cinq colonnes correspondant aux statuts \textbf{OUVERT}, \textbf{EN\_COURS}, \textbf{EN\_REVUE}, \textbf{RESOLU} et \textbf{FERME}. Les cartes sont triées en priorité décroissante, puis selon leur ancienneté.
+\par Le déplacement d’un ticket entre deux colonnes n’est possible que si la transition est autorisée par le workflow métier. Par exemple, un ticket ne peut pas passer de \textbf{OUVERT} à \textbf{EN\_COURS} sans démarrage effectif du chronomètre, et un passage en \textbf{RESOLU} exige une solution documentée.
+\par Cette approche garantit la cohérence des données et évite les modifications arbitraires de statut.
 
 \subsection{Gestion du suivi du temps}
 Le suivi du temps repose sur la notion de session de travail associée à une assignation.
-\newline Lorsqu’un développeur ouvre son ticket, le système peut démarrer automatiquement le chronomètre et faire évoluer le statut du ticket vers \textbf{EN\_COURS}. Le temps est ensuite cumulé au fil des sessions, en prenant en compte les pauses et les reprises.
-\newline Cette fonctionnalité permet de mesurer le temps effectif passé sur un ticket et de comparer ce temps avec les échéances SLA définies dans le contrat.
+\par Lorsqu’un développeur ouvre son ticket, le système peut démarrer automatiquement le chronomètre et faire évoluer le statut du ticket vers \textbf{EN\_COURS}. Le temps est ensuite cumulé au fil des sessions, en prenant en compte les pauses et les reprises.
+\par Cette fonctionnalité permet de mesurer le temps effectif passé sur un ticket et de comparer ce temps avec les échéances SLA définies dans le contrat.
 
 \subsection{Gestion des SLA}
 Le calcul des SLA constitue un mécanisme central du sprint.
-\newline Le système récupère les paramètres contractuels du client, détermine les délais autorisés selon la priorité du ticket et calcule les échéances de réponse et de résolution. La logique prend en compte les plages horaires ouvrées ainsi que les jours fériés lorsqu’une configuration SLA personnalisée est disponible.
-\newline Les dépassements SLA sont remontés visuellement dans le Kanban, dans la page détail du ticket et dans les tableaux de bord de suivi. Cela permet au chef de projet de prioriser les tickets critiques et de gérer plus efficacement les urgences.
+\par Le système récupère les paramètres contractuels du client, détermine les délais autorisés selon la priorité du ticket et calcule les échéances de réponse et de résolution. La logique prend en compte les plages horaires ouvrées ainsi que les jours fériés lorsqu’une configuration SLA personnalisée est disponible.
+\par Les dépassements SLA sont remontés visuellement dans le Kanban, dans la page détail du ticket et dans les tableaux de bord de suivi. Cela permet au chef de projet de prioriser les tickets critiques et de gérer plus efficacement les urgences.
 
 \subsection{Fonctionnalités d’intelligence artificielle}
 L’intégration de l’intelligence artificielle représente un apport majeur de ce sprint. Le système exploite un modèle de langage externe pour :
@@ -754,9 +781,7 @@ L’intégration de l’intelligence artificielle représente un apport majeur d
 \item générer un brouillon d’article de base de connaissances ;
 \item recommander des solutions contextualisées à partir de l’historique du ticket.
 \end{itemize}
-
 Cette assistance intelligente améliore la qualité de décision et réduit le temps de traitement des demandes, tout en conservant un mode dégradé fondé sur les règles métier lorsque le service IA est indisponible.
-
 \subsection{Rôles utilisateurs impliqués}
 Les rôles jouent un rôle central dans la restriction des actions :
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
@@ -829,4 +854,4 @@ Les tests End-to-End ont permis de valider des parcours réalistes tels que :
 
 \section{Conclusion}
 Ce troisième sprint a permis d’implémenter le noyau fonctionnel de la solution. En combinant workflow métier, suivi temporel, gestion des SLA, visualisation Kanban et assistance intelligente, la plateforme franchit une étape décisive vers un système complet de support et de pilotage des demandes.
-\newline Ce sprint met en évidence la dimension opérationnelle du projet, tout en renforçant sa robustesse technique, sa traçabilité et sa valeur métier.
+\par Ce sprint met en évidence la dimension opérationnelle du projet, tout en renforçant sa robustesse technique, sa traçabilité et sa valeur métier.
