@@ -67,7 +67,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \hline
 \textbf{Préconditions} & Le client est authentifié et possède au moins un projet couvert par un contrat actif. \\
 \hline
-\textbf{Postconditions} & La demande est créée avec le statut \textbf{EN\_ATTENTE}, les pièces jointes éventuelles sont enregistrées et les acteurs concernés sont notifiés. \\
+\textbf{Postconditions} & La demande est créée avec le statut « En attente », les pièces jointes éventuelles sont enregistrées et les acteurs concernés sont notifiés. \\
 \hline
 \textbf{Scénario principal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -87,18 +87,22 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \end{minipage} \\
 \hline
 \textbf{Scénarios alternatifs} &
+\begin{minipage}[t]{\linewidth}\raggedright
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
 \item Si le client ne dispose d’aucun projet couvert par un contrat actif, la soumission est refusée.
 \item Si le client a déjà soumis une demande du même type sur le même projet dans les 24 heures, la création est bloquée.
 \item Si des pièces jointes sont présentes, elles sont associées à la demande et contrôlées par le système.
-\end{itemize} \\
+\end{itemize}
+\end{minipage} \\
 \hline
 \textbf{Scénarios d'exception} &
+\begin{minipage}[t]{\linewidth}\raggedright
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
 \item Une demande est refusée si le nombre maximal de demandes en attente est atteint.
 \item Une demande est refusée si le projet est clôturé ou archivé.
 \item Une pièce jointe non autorisée ou trop volumineuse est rejetée.
-\end{itemize} \\
+\end{itemize}
+\end{minipage} \\
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle du cas d'utilisation « Soumettre une demande »}
@@ -119,50 +123,45 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \endlastfoot
 \textbf{Nom du cas d'utilisation} & Compléter demande existante \\
 \hline
-\textbf{Acteurs} & Client (propriétaire de la demande) \\
+\textbf{Acteurs} & Client \\
 \hline
-\textbf{Préconditions} &
-\begin{minipage}[t]{\linewidth}\raggedright
-L'utilisateur est authentifié et dispose d'un compte client. La demande concernée existe et a été précédemment marquée comme nécessitant des informations complémentaires.\\
-\end{minipage} \\
+\textbf{Préconditions} & Le client est authentifié, propriétaire de la demande, et la demande est au statut « Infos requises ». \\
 \hline
-\textbf{Postconditions} &
-\begin{minipage}[t]{\linewidth}\raggedright
-Les informations du client sont enregistrées, la demande repasse en attente, l'action est historisée et les responsables sont notifiés. \\
-\end{minipage} \\
+\textbf{Postconditions} & Les informations complémentaires sont enregistrées, la demande repasse au statut « En attente », l’action est historisée et les responsables sont notifiés. \\
 \hline
 \textbf{Scénario principal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le client consulte le détail de sa demande.
-\item Le client choisit l'option pour fournir des informations complémentaires.
-\item Le système présente un formulaire permettant d'ajouter une description complémentaire et, le cas échéant, des pièces justificatives.
+\item Le client localise sa demande dans la liste ou consulte son détail, puis clique sur le bouton approprié.
+\item Il choisit l’option pour fournir des informations complémentaires.
+\item Le système présente un formulaire permettant d’ajouter une description complémentaire et, le cas échéant, des pièces justificatives.
 \item Le client saisit les informations demandées et ajoute les pièces jointes nécessaires.
-\item Le client confirme l'envoi des informations complémentaires.
-\item Le système enregistre les données transmises, atteste leur association à la demande et crée une entrée d'historique signalant la fourniture d'informations.
-\item Le statut de la demande est modifié afin de signaler qu'elle est de nouveau disponible pour traitement.
-\item Les acteurs impliqués (demandeur initial, responsable ayant émis la demande d'information, chef de projet et administrateurs pertinents) reçoivent une notification les informant du complément fourni.
-\item L'utilisateur reçoit une confirmation de la prise en compte de son envoi.
+\item Le client confirme l’envoi des informations complémentaires.
+\item Le système enregistre les données transmises et les associe à la demande.
+\item Le système crée une entrée d’historique signalant la fourniture d’informations.
+\item Le statut de la demande repasse à « En attente ».
+\item Les acteurs impliqués reçoivent une notification les informant du complément fourni.
+\item Le client reçoit une confirmation de la prise en compte de son envoi.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénarios alternatifs} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=\textbullet]
-\item Le client n'ajoute que des pièces justificatives sans texte complémentaire : le système associe uniquement les fichiers transmis à la demande et crée l'historique correspondant.
-\item Le client réalise une modification progressive (plusieurs envois successifs) : chaque envoi est historié et notifié aux acteurs concernés.
+\item Le client n’ajoute que des pièces justificatives sans texte complémentaire : le système associe uniquement les fichiers transmis à la demande.
+\item Le client réalise plusieurs envois successifs : chaque envoi est historisé et notifié aux acteurs concernés.
 \end{itemize}
 \end{minipage} \\
 \hline
 \textbf{Scénarios d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=\textbullet]
-\item Tentative de compléter une demande qui n'est pas en attente d'informations : l'opération est refusée et l'utilisateur est informé que l'action n'est pas applicable dans l'état actuel de la demande.
-\item L'utilisateur n'est pas le propriétaire de la demande : l'accès à l'opération est interdit et un message d'information est affiché.
-\item Fichiers fournis non conformes (format ou taille) : les fichiers non conformes sont rejetés et l'utilisateur reçoit les indications pour corriger l'envoi.
-\item Erreur lors de la persistance des données : l'utilisateur est informé d'un problème technique et l'opération peut être réessayée ultérieurement ; l'incident est journalisé pour investigation.
+\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\item Tentative de compléter une demande qui n’est pas en attente d’informations : l’opération est refusée.
+\item L’utilisateur n’est pas le propriétaire de la demande : l’accès à l’opération est interdit.
+\item Fichiers fournis non conformes : les fichiers non conformes sont rejetés.
+\item Erreur lors de la persistance des données : l’utilisateur est informé d’un problème technique.
 \end{itemize}
-\end{minipage}\\
+\end{minipage} \\
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle du cas d'utilisation « Compléter demande existante »}
@@ -199,20 +198,19 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \hline
 \textbf{Acteurs} & Chef de projet, Administrateur \\
 \hline
-\textbf{Préconditions} & La demande est au statut \textbf{EN\_ATTENTE} ou \textbf{INFOS\_REQUISES}. L’acteur dispose de la permission de validation. \\
+\textbf{Préconditions} & La demande est au statut « En attente » ou « En attente d'informations ». L’acteur dispose de la permission de validation. \\
 \hline
-\textbf{Postconditions} & La demande passe au statut \textbf{CONVERTIE}, un ticket est créé automatiquement et l’assignation du ticket sera effectuée ensuite de manière manuelle par le chef de projet ou l’administrateur autorisé. \\
+\textbf{Postconditions} & La demande passe au statut « Convertie », un ticket est créé automatiquement. L’assignation du ticket sera effectuée ultérieurement de manière manuelle. \\
 \hline
 \textbf{Scénario principal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le chef de projet consulte la liste des demandes en attente.
-\item Il ouvre le détail d’une demande.
+\item Le chef de projet sélectionne une demande en attente, depuis la liste ou depuis son détail, puis valide la demande.
 \item Il peut conserver les informations initiales ou requalifier le type et la priorité.
 \item Il valide la demande.
-\item Le système vérifie les permissions et les contrats actifs.
-\item Le système met à jour la demande au statut \textbf{CONVERTIE}.
-\item Le système crée automatiquement un ticket lié à la demande.
+\item Le système vérifie les permissions et l’existence d’un contrat actif couvrant le projet.
+\item Le système met à jour la demande au statut « Convertie ».
+\item Le système crée automatiquement un ticket lié à la demande avec le statut « Ouvert ».
 \item Le système transfère les pièces jointes vers les documents du ticket.
 \item Le système notifie le client et les utilisateurs concernés.
 \item L’assignation du ticket est réalisée dans un second temps via le module de gestion des tickets.
@@ -234,58 +232,6 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle du cas d'utilisation « Valider demande »}
-\normalsize
-\vspace{-0.3cm}
-
-\subsection{Description textuelle de cas d'utilisation « Rejeter demande »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Rejeter demande ».
-
-\footnotesize
-\renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-\textbf{Nom du cas d'utilisation} & Rejeter demande \\
-\hline
-\textbf{Acteurs} & Chef de projet, Administrateur \\
-\hline
-\textbf{Préconditions} & La demande est encore traitable, c’est-à-dire non convertie et non rejetée. \\
-\hline
-\textbf{Postconditions} & La demande passe au statut \textbf{REJETEE} et le client est notifié. \\
-\hline
-\textbf{Scénario principal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le chef de projet sélectionne une demande.
-\item Il saisit un motif de rejet.
-\item Il confirme le rejet.
-\item Le système vérifie que la demande est éligible au traitement.
-\item Le système met la demande au statut \textbf{REJETEE}.
-\item Le système journalise l’opération.
-\item Le système envoie une notification et un e-mail au client.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item Le rejet peut s’appliquer à une demande en attente ou en attente d’informations.
-\item Le client peut ensuite déposer une nouvelle demande si nécessaire.
-\end{itemize} \\
-\hline
-\textbf{Scénarios d'exception} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item Une demande convertie en ticket ne peut plus être rejetée.
-\item Une demande déjà rejetée ne peut plus être traitée.
-\end{itemize} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « Rejeter demande »}
 \normalsize
 \vspace{-0.3cm}
 
@@ -348,7 +294,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \endfoot         
 \hline
 \endlastfoot  
-\textbf{Nom du cas d'utilisation} & Gérer la qualification (acceptation d'une suggestion automatique ou requalification manuelle) \\
+\textbf{Nom du cas d'utilisation} & Gérer la qualification \\
 \hline
 \textbf{Acteurs} & Chef de projet, Administrateur \\
 \hline
@@ -360,35 +306,34 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item L'acteur habilité consulte la demande et, le cas échéant, la suggestion de qualification fournie par le système.
-\item L'acteur choisit d'accepter la suggestion ou de spécifier manuellement un nouveau \texttt{typeDemande} et/ou une nouvelle \texttt{prioriteDemande}.
-\item L'acteur fournit une justification textuelle (minimum 5 caractères) motivant la modification.
+\item L'acteur choisit d'accepter la suggestion ou de spécifier manuellement un nouveau type et/ou une nouvelle priorité.
+\item L'acteur fournit une justification textuelle motivant la modification.
 \item L'acteur soumet la requalification.
 \item Le système effectue les opérations suivantes :
-        \begin{enumerate}[label=\alph*),nosep,leftmargin=1cm]
-        \item vérification des préconditions (état de la demande, autorisation de l'acteur) ;
-        \item mise à jour atomique des champs de qualification ; si nécessaire, conservation des valeurs antérieures dans les champs dédiés ;
-        \item création automatique d'une entrée d'activité (commentaire) récapitulant les changements et la justification ;
-        \item émission d'une notification électronique au propriétaire de la demande contenant le détail des modifications ;
-        \item diffusion d'un événement temps réel pour permettre la mise à jour des vues des clients connectés.
+        \begin{enumerate}[label=\alph*), nosep, leftmargin=1cm]
+        \item vérification des conditions préalables ;
+        \item mise à jour des champs de qualification ;
+        \item création automatique d'une trace dans l'historique ;
+        \item notification au propriétaire de la demande.
         \end{enumerate}
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt, label={$\bullet$}]
 \item La qualification peut être modifiée au moment de la validation formelle d'une demande (conversion en ticket).
-\item Dans ce cas, la requalification est enregistrée simultanément à la création du ticket et la justification est conservée.
+\item Dans ce cas, la requalification est enregistrée simultanément à la création du ticket.
 \end{itemize} \\
 \hline
 \textbf{Scénarios d'exception} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt, label={$\bullet$}]
 \item Tentative de requalification par un acteur non autorisé : opération rejetée.
-\item Demande dans un état final (\texttt{CONVERTIE} ou \texttt{REJETEE}) : opération interdite.
-\item Absence de modification effective : retour d'erreur précisant qu'aucun changement n'a été détecté.
+\item Demande dans un état final (« Convertie » ou « Rejetée ») : opération interdite.
+\item Absence de modification effective : retour d'erreur.
 \end{itemize} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « Gérer qualification »}
+\captionof{table}{Description textuelle du cas d'utilisation « Gérer la qualification »}
 \normalsize
 \vspace{-0.3cm}
 
@@ -399,14 +344,12 @@ Dans cette partie, nous allons présenter les cas d'utilisation relatifs au trai
 Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas du traitement des tickets assignés :
 \begin{figure}[H]
         \centering
-        \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/traiter_tickets_assignes.png}
+        \includegraphics[width=1\textwidth,height=0.75\textheight,keepaspectratio]{Images/traiter_tickets_assignes.png}
         \caption{Diagramme des cas d'utilisation « Traiter tickets assignés »}
         \label{fig:traiter_tickets_assignes}
 \end{figure}
 
-\subsection{Description textuelle de cas d'utilisation « Traiter tickets assignés »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Traiter tickets assignés ».
-
+\subsection{Description textuelle de cas d'utilisation « Gérer chronomètre »}
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
@@ -418,47 +361,285 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Traiter tickets assignés \\
+\textbf{Nom du cas d'utilisation} & Gérer le chronomètre \\
 \hline
 \textbf{Acteurs} & Développeur \\
 \hline
-\textbf{Préconditions} & Le développeur est authentifié et dispose d’au moins un ticket assigné. \\
+\textbf{Préconditions} & Le développeur est authentifié et dûment assigné au ticket. Le ticket est dans l’état « En cours ». \\
 \hline
-\textbf{Postconditions} & Le ticket est traité, mis à jour et documenté selon l’avancement réel. \\
+\textbf{Postconditions} & Le temps de travail effectif est enregistré dans le système. Le ticket peut être soumis en revue ou marqué comme résolu. \\
 \hline
 \textbf{Scénario principal} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le développeur consulte son tableau de tickets.
-\item Il ouvre un ticket qui lui est assigné.
-\item Le système démarre automatiquement le chronomètre lors de l’ouverture du ticket.
-\item Le développeur travaille sur la demande.
-\item Il peut mettre en pause, reprendre ou arrêter le chronomètre.
-\item Il renseigne l’avancement et peut ajouter des commentaires.
-\item Lorsque le travail est terminé, il soumet le ticket en revue ou le documente comme résolu selon le workflow autorisé.
+\begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
+\item Le développeur accède à la page de détail du ticket assigné.
+\item Le système détecte l’absence de session de travail active.
+\item Le système déclenche automatiquement le chronomètre après un délai de trois secondes.
+\item Une session de travail est enregistrée avec l’horodatage de début.
+\item L’état du ticket bascule automatiquement de « Ouvert » à « En cours ».
+\item Le développeur peut, à tout moment, interrompre temporairement le chronomètre en fournissant un motif et une note explicative.
+\item Le système calcule et cumule le temps de travail effectif, hors périodes de pause.
+\item À l’issue du travail, le développeur arrête définitivement le chronomètre.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item Si le développeur rencontre un blocage, il signale un incident de blocage avec description et priorité.
-\item Si une solution est proposée par un autre membre de l’équipe, il peut la valider ou la rejeter.
+\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt, label={$\bullet$}]
+\item Si le chronomètre est déjà actif, l’action déclenche une reprise après une pause.
+\item En cas d’oubli d’arrêt, une tâche planifiée alerte le développeur après douze heures d’inactivité.
 \end{itemize} \\
 \hline
 \textbf{Scénarios d'exception} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item Le développeur ne peut agir que sur les tickets qui lui sont assignés.
-\item Une transition de statut non autorisée est rejetée par le système.
-\item La résolution d’un ticket sans solution documentée est refusée.
+\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt, label={$\bullet$}]
+\item Le ticket n’est pas dans l’état « En cours » : toute tentative de gestion du chronomètre est rejetée.
+\item Le développeur n’est plus assigné au ticket : l’accès est refusé.
+\item Une tentative de pause sans motif valide est rejetée par le système.
 \end{itemize} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « Traiter tickets assignés »}
+\captionof{table}{Description textuelle du cas d’utilisation « Gérer le chronomètre »}
 \normalsize
 \vspace{-0.3cm}
 
-\subsection{Description textuelle de cas d'utilisation « Suivre les SLA et le temps »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Suivre les SLA et le temps ».
+\subsection{Description textuelle de cas d'utilisation « Soumettre ticket en revue »}
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Soumettre ticket en revue \\
+\hline
+\textbf{Acteurs} & Développeur \\
+\hline
+\textbf{Préconditions} & Le ticket est dans l’état « En cours ». Le développeur a documenté une solution technique. \\
+\hline
+\textbf{Postconditions} & Le ticket passe dans l’état « En revue ». Tout chronomètre actif est automatiquement arrêté. Une notification est adressée au chef de projet et au client. \\
+\hline
+\textbf{Scénario principal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
+\item Le développeur renseigne la solution technique (champ obligatoire, minimum cinq caractères).
+\item Il actionne le bouton « Soumettre en revue ».
+\item Le système vérifie qu’au moins une session de travail a été enregistrée.
+\item Le système vérifie qu’au moins un développeur est assigné au ticket.
+\item Tous les chronomètres actifs sont interrompus.
+\item L’état du ticket est mis à jour en « En revue ».
+\item Une notification (interne et par courriel) est adressée au chef de projet et au client.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénarios d'exception} &
+\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt, label={$\bullet$}]
+\item La solution est absente ou trop courte : la soumission est refusée.
+\item Aucune session de travail n’a été enregistrée : la soumission est refusée.
+\item Aucun développeur n’est assigné au ticket : la soumission est refusée.
+\end{itemize} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d’utilisation « Soumettre ticket en revue »}
+\normalsize
+\vspace{-0.3cm}
+
+\subsection{Description textuelle de cas d'utilisation « Signaler blocage »}
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Signaler un blocage \\
+\hline
+\textbf{Acteurs} & Développeur \\
+\hline
+\textbf{Préconditions} & Le ticket est dans l’état « En cours ». Une session de travail a été préalablement démarrée. \\
+\hline
+\textbf{Postconditions} & Un blocage est enregistré sur l’assignation. Une analyse automatique par IA est déclenchée. Un brouillon d’article pour la base de connaissances est créé. \\
+\hline
+\textbf{Scénario principal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
+\item Le développeur actionne la fonction « Signaler un blocage ».
+\item Il sélectionne le type de blocage parmi les options prédéfinies.
+\item Il rédige une description détaillée de la raison du blocage et en définit la priorité.
+\item Il peut, le cas échéant, joindre des fichiers.
+\item Le système vérifie le respect des conditions minimales :
+\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt, label={$-$}]
+\item Durée de travail minimale (sauf exceptions pour certains types).
+\item Progression minimale (sauf exceptions).
+\end{itemize}
+\item Le système enregistre le blocage.
+\item Un service d’intelligence artificielle analyse le blocage en arrière-plan.
+\item Un brouillon d’article de base de connaissances est créé.
+\item Le chef de projet ainsi que les autres membres de l’équipe sont notifiés.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} & Pour certains types de blocage, aucune durée minimale de travail n’est exigée. \\
+\hline
+\textbf{Scénarios d'exception} &
+\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt, label={$\bullet$}]
+\item Durée de travail ou progression insuffisantes : le signalement est rejeté.
+\item Un blocage est déjà actif : tout nouveau signalement est refusé.
+\end{itemize} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d’utilisation « Signaler un blocage »}
+\normalsize
+\vspace{-0.3cm}
+
+\subsection{Description textuelle de cas d'utilisation «  Proposer solution à blocage »}
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Proposer une solution à un blocage \\
+\hline
+\textbf{Acteurs} & Autre développeur, Chef de projet, Administrateur \\
+\hline
+\textbf{Préconditions} & Un blocage est actif sur l’assignation. L’utilisateur dispose des droits nécessaires pour proposer une solution. \\
+\hline
+\textbf{Postconditions} & Une solution est enregistrée et mise à disposition du développeur bloqué, en attente de validation. \\
+\hline
+\textbf{Scénario principal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
+\item Un membre de l’équipe consulte le ticket marqué comme bloqué.
+\item Il actionne la fonction « Proposer une solution ».
+\item Il rédige la solution dans un champ de texte libre.
+\item Le système enregistre la solution proposée, l’identifiant de l’auteur ainsi que la date et l’heure de la proposition.
+\item Le développeur initialement bloqué est notifié par les canaux appropriés (notification interne et courriel).
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénarios d'exception} & Le développeur ayant signalé le blocage ne peut pas proposer de solution pour son propre blocage. Toute tentative est rejetée. \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d’utilisation « Proposer une solution à un blocage »}
+\normalsize
+\vspace{-0.3cm}
+
+\subsection{Description textuelle de cas d'utilisation «  Résoudre blocage »}
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Résoudre blocage \\
+\hline
+\textbf{Acteurs} & Développeur bloqué \\
+\hline
+\textbf{Préconditions} & Une solution a été proposée. Le développeur bloqué est authentifié. \\
+\hline
+\textbf{Postconditions} & Le blocage est levé. L’article de base de connaissances est enrichi par fusion de l’analyse IA et de la solution humaine validée. \\
+\hline
+\textbf{Scénario principal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
+\item Le développeur bloqué consulte la solution qui lui a été proposée.
+\item Il actionne la fonction « Valider et résoudre ».
+\item Le système désactive l'indicateur de blocage.
+\item Le système combine l'analyse automatique avec la solution humaine validée.
+\item L’article de base de connaissances est mis à jour.
+\item L’auteur de la solution proposée est notifié de la validation.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} & Le développeur peut rejeter la solution proposée ; dans ce cas, le blocage reste actif et aucune fusion n’est effectuée. \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d’utilisation « Résoudre blocage »}
+\normalsize
+\vspace{-0.3cm}
+
+\subsection{Description textuelle de cas d'utilisation «  Ajouter solution technique »}
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Intitulé du cas d'utilisation} & Ajouter solution technique \\
+\hline
+\textbf{Acteurs concernés} & Développeur \\
+\hline
+\textbf{Conditions préalables} & Le développeur est authentifié et assigné au ticket. Le ticket est dans l’état « En cours ». \\
+\hline
+\textbf{Conditions postérieures} & La solution technique est enregistrée. Le ticket bascule vers l’état « En revue ». Le temps de travail est arrêté. \\
+\hline
+\textbf{Déroulement normal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
+\item Le développeur accède à la page de détail du ticket en cours de traitement.
+\item Il clique sur le bouton « en revue ».
+\item Le système affiche une fenêtre lui demandant de renseigner la solution technique.
+\item Le développeur saisit la solution dans un champ de texte (format libre).
+\item Le système vérifie que la solution contient au moins cinq caractères significatifs.
+\item Le développeur confirme la soumission.
+\item Le système enregistre la solution.
+\item Le système arrête automatiquement tout enregistrement du temps de travail actif.
+\item Le statut du ticket passe de « En cours » à « En revue ».
+\item Le chef de projet et le client sont notifiés de la mise en revue.
+\item Une trace est conservée dans l’historique des actions.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Variantes} &
+\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt, label={$\bullet$}]
+\item \textbf{Génération assistée :} Le système peut proposer un brouillon de solution généré automatiquement à partir du contexte du ticket (commentaires, historique, description). Le développeur peut l’accepter, le modifier ou le rédiger manuellement.
+\item \textbf{Pièces jointes :} Le développeur peut joindre des fichiers (captures d’écran, journaux, extraits de code) à la solution avant validation.
+\end{itemize} \\
+\hline
+\textbf{Cas d'exception} &
+\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt, label={$\bullet$}]
+\item \textbf{Solution vide ou trop courte :} Si la solution contient moins de cinq caractères, le système refuse la soumission et affiche un message d’erreur. Le ticket reste « En cours ».
+\item \textbf{Aucune session de travail enregistrée :} Le système vérifie qu’au moins une session de travail a été démarrée. À défaut, la soumission est refusée.
+\item \textbf{Aucun développeur assigné :} La soumission en revue est impossible si aucun développeur n’est assigné au ticket.
+\item \textbf{Conflit de version :} Si le ticket a été modifié entre-temps, le système détecte le conflit et invite l’utilisateur à recharger la page.
+\end{itemize} \\
+\hline
+\textbf{Règles métier} &
+\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt, label={$\bullet$}]
+\item La solution technique est obligatoire pour toute transition du ticket vers les états  ou « Résolu ».
+\item La solution ne peut être modifiée une fois le ticket passé en « En revue » que par un chef de projet ou un administrateur.
+\item Lorsque le ticket est ultérieurement marqué comme « Résolu », la solution est automatiquement proposée pour intégration dans la base de connaissances.
+\end{itemize} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d’utilisation « Ajouter solution technique »}
+\normalsize
+\vspace{-0.3cm}
+
+\subsection{Description textuelle de cas d'utilisation « Suivre SLA et temps »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Suivre SLA et temps ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -471,7 +652,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Suivre les SLA et le temps \\
+\textbf{Nom du cas d'utilisation} & Suivre SLA et temps \\
 \hline
 \textbf{Acteurs} & Développeur, Chef de projet, Administrateur \\
 \hline
@@ -482,13 +663,13 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \textbf{Scénario principal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le système calcule l’échéance SLA du ticket en fonction du contrat et de la priorité.
-\item Le développeur démarre le chronomètre.
-\item Le système enregistre les sessions de travail.
-\item Le développeur peut mettre en pause ou reprendre la session.
-\item Le système cumule le temps effectif de travail.
-\item Le système affiche les indicateurs SLA dans la vue ticket et le tableau Kanban.
-\item En cas de dépassement, le système met en évidence l’urgence.
+\item Le système calcule l’échéance SLA du ticket en fonction du contrat associé et de la priorité attribuée.
+\item Le développeur démarre le chronomètre (automatiquement ou manuellement).
+\item Chaque session de travail est enregistrée.
+\item Le développeur peut interrompre puis reprendre le chronomètre.
+\item Le système cumule le temps de travail effectif.
+\item Les indicateurs SLA (temps écoulé, temps restant, pourcentage de dépassement éventuel) sont affichés dans la vue détaillée du ticket ainsi que dans le tableau Kanban.
+\item En cas de dépassement d’un seuil critique, le système génère des alertes visuelles et des notifications.
 \end{enumerate}
 \end{minipage} \\
 \hline
@@ -501,11 +682,11 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \textbf{Scénarios d'exception} &
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
 \item Le chrono ne peut pas être démarré par un utilisateur non assigné.
-\item Une transition vers EN\_REVUE ou RESOLU sans solution documentée est bloquée.
+\item Toute transition vers « en revue » ou « RÉSOLU » sans solution documentée est bloquée par le système.
 \end{itemize} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « Suivre les SLA et le temps »}
+\captionof{table}{Description textuelle du cas d'utilisation « Suivre SLA et temps »}
 \normalsize
 \vspace{-0.3cm}
 
@@ -523,9 +704,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
         \label{fig:cloturer_ticket}
 \end{figure}
 
-\subsection{Description textuelle de cas d'utilisation « Gérer clôture tickets »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Gérer clôture tickets ».
-
+\subsection{Description textuelle de cas d'utilisation « Signaler problème non résolu »}
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
@@ -537,41 +716,100 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Gérer clôture tickets \\
+\textbf{Nom du cas d'utilisation} & Signaler un problème non résolu \\
 \hline
 \textbf{Acteurs} & Client \\
 \hline
-\textbf{Préconditions} & Le ticket a été traité et présenté au client pour validation finale. \\
+\textbf{Préconditions} & Le ticket est dans l’état « Résolu ». Le client est authentifié et propriétaire du ticket. \\
 \hline
-\textbf{Postconditions} & Le ticket est soit confirmé et clôturé définitivement, soit signalé comme non résolu, soit prolongé selon la demande du client. \\
+\textbf{Postconditions} & Le ticket reste en statut « Résolu ». Un signalement est enregistré. Le chef de projet et les développeurs sont notifiés. La date de résolution est réinitialisée. \\
 \hline
 \textbf{Scénario principal} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le client ouvre le ticket résolu.
-\item Il consulte la solution proposée et l’historique du traitement.
-\item Il confirme que le problème est résolu ou signale qu’il persiste encore.
-\item Le système enregistre la décision du client.
-\item Si la résolution est confirmée, le ticket passe au statut \textbf{FERME}.
-\item Si le problème n’est pas résolu, le ticket est réouvert ou signalé comme non résolu.
-\item Si nécessaire, le client peut demander une extension de délai.
+\begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
+\item Le client accède à la page de détail du ticket résolu.
+\item Il constate que le problème persiste malgré la résolution annoncée.
+\item Il clique sur le bouton « Signaler un problème non résolu ».
+\item Le système affiche un formulaire lui demandant de décrire le problème persistant.
+\item Le client saisit une description détaillée (champ obligatoire).
+\item Le client valide son signalement.
+\item Le système enregistre l’action dans l’historique.
+\item Le système ajoute un commentaire automatique indiquant le signalement.
+\item La date de résolution est réinitialisée.
+\item Le système notifie tous les développeurs assignés ainsi que le chef de projet.
+\item Une alerte est envoyée au chef de projet avec la description du problème persistant.
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item Le client valide directement la résolution sans ajouter de commentaire.
-\item Le client ajoute un commentaire pour préciser le problème restant.
+\textbf{Scénarios d'exception} &
+\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt, label={$\bullet$}]
+\item \textbf{Description vide :} Si le client ne fournit aucune description, le système refuse le signalement et affiche un message d’erreur.
+\item \textbf{Ticket non résolu :} Le signalement n’est possible que pour les tickets en statut « Résolu ».
 \end{itemize} \\
 \hline
-\textbf{Scénarios d'exception} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item Le client ne peut pas clôturer un ticket qui n’a pas encore été traité.
-\item Une demande de prolongation peut être refusée si les règles métier ne le permettent pas.
+\textbf{Règles de gestion associées} &
+\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt, label={$\bullet$}]
+\item Après un signalement, la fermeture automatique du ticket est suspendue.
+\item Seul le chef de projet peut réouvrir le ticket (retour à « En cours ») après analyse du signalement.
+\item Le signalement n’entraîne pas de changement de statut automatique du ticket.
 \end{itemize} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « Gérer clôture tickets »}
+\captionof{table}{Description textuelle du cas d’utilisation « Signaler un problème non résolu »}
+\normalsize
+\vspace{-0.3cm}
+
+\subsection{Description textuelle de cas d'utilisation « Demander une extension »}
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Demander une extension \\
+\hline
+\textbf{Acteurs} & Client \\
+\hline
+\textbf{Préconditions} & Le ticket est dans l’état « Résolu ». Le client est authentifié et propriétaire du ticket. Aucune extension n’a déjà été demandée. \\
+\hline
+\textbf{Postconditions} & L’extension est automatiquement accordée pour une durée de 7 jours supplémentaires. Le ticket reste en « Résolu ». \\
+\hline
+\textbf{Scénario principal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
+\item Le client accède à la page de détail du ticket résolu.
+\item Il clique sur le bouton « Demander une extension ».
+\item Le système affiche un formulaire lui demandant de motiver sa demande.
+\item Le client saisit le motif de l’extension.
+\item Le client valide sa demande.
+\item Le système enregistre la demande d’extension avec le motif fourni.
+\item Le système ajoute un commentaire automatique mentionnant la demande d’extension.
+\item Une trace est créée dans l’historique.
+\item Le système notifie les développeurs assignés de l’extension accordée.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénarios d'exception} &
+\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt, label={$\bullet$}]
+\item \textbf{Extension déjà demandée :} Si une extension a déjà été sollicitée pour ce ticket, toute nouvelle demande est rejetée.
+\item \textbf{Motif absent :} Le système exige un motif non vide pour accepter la demande.
+\item \textbf{Ticket non résolu :} La demande d’extension n’est possible que pour les tickets en statut « Résolu ».
+\end{itemize} \\
+\hline
+\textbf{Règles de gestion associées} &
+\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt, label={$\bullet$}]
+\item L’extension est automatiquement accordée (sans validation humaine) pour une durée de 7 jours.
+\item Après extension, le délai avant fermeture automatique est prolongé.
+\item Une seule extension par ticket est autorisée.
+\end{itemize} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d’utilisation « Demander une extension »}
 \normalsize
 \vspace{-0.3cm}
 
@@ -589,9 +827,8 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
         \label{fig:assigner_ticket}
 \end{figure}
 
-\subsection{Description textuelle de cas d'utilisation « Assigner tickets »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Assigner tickets ».
 
+\subsection{Description textuelle de cas d'utilisation « Assigner ticket à développeur »}
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
@@ -603,46 +840,95 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Assigner des tickets \\
+\textbf{Nom du cas d'utilisation} & Assigner un ticket à un développeur \\
 \hline
 \textbf{Acteurs} & Chef de projet, Administrateur \\
 \hline
-\textbf{Préconditions} & Le ticket existe, le développeur cible est actif et l’acteur dispose de la permission d’assignation ou est chef du projet lié au ticket. \\
+\textbf{Préconditions} & L’utilisateur est authentifié et dispose des droits nécessaires. Le ticket est dans un état ouvrant droit à assignation (non fermé, non résolu). \\
 \hline
-\textbf{Postconditions} & Le ticket est assigné à un développeur et le suivi temporel devient possible. \\
+\textbf{Postconditions} & Une assignation est créée. Le développeur est notifié. Le ticket peut ultérieurement basculer en « En cours ». \\
 \hline
 \textbf{Scénario principal} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le chef de projet ouvre le ticket concerné après sa création.
-\item Il consulte la liste des développeurs disponibles et leur charge de travail.
-\item Le système présente les développeurs éligibles avec leurs contraintes de capacité.
-\item Le chef de projet sélectionne un développeur.
-\item Le système vérifie les permissions, l’existence du ticket, l’existence du développeur et les contraintes de charge.
-\item Le système vérifie qu’aucune assignation identique n’existe déjà.
-\item Le système crée l’affectation et journalise l’opération.
-\item Le système notifie les parties prenantes et met à jour les canaux de suivi.
+\begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
+\item L’utilisateur sélectionne un ticket non assigné, ou bien après la validation d’une demande.
+\item Le système affiche la liste des développeurs actifs, classés en deux sections : les membres du projet (prioritaires), puis les autres développeurs. Chaque section est triée par charge de travail croissante.
+\item Pour chaque développeur, le système présente le nombre de tickets actifs, la charge de travail et l’appartenance au projet.
+\item L’utilisateur sélectionne un développeur et valide l’assignation.
+\item Le système vérifie que le développeur n’est pas déjà assigné, que la limite de développeurs par ticket n’est pas atteinte et que sa capacité est suffisante.
+\item Le système crée l’assignation, enregistre l’action dans l’historique et notifie le développateur.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item Si le ticket est en retard SLA, certaines restrictions de charge peuvent être assouplies afin d’accélérer la prise en charge.
-\item Le chef de projet peut s’auto-assigner dans un contexte d’urgence, sous conditions métier renforcées.
+\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt, label={$\bullet$}]
+\item \textbf{Auto-assignation du chef de projet :} Un chef peut s’auto-assigner si la priorité du ticket est élevée, si le ticket a une certaine ancienneté et si aucun autre développeur n’est disponible. En cas de dépassement des délais, ces règles sont assouplies.
+\item \textbf{Assignation en urgence :} Si le ticket a dépassé son délai, la capacité maximale du développeur est augmentée.
 \end{itemize} \\
 \hline
 \textbf{Scénarios d'exception} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item Un développeur déjà assigné au même ticket ne peut pas être ajouté deux fois.
-\item Un acteur non autorisé ne peut pas assigner de ticket.
+\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt, label={$\bullet$}]
+\item Capacité du développeur dépassée.
+\item Développeur déjà assigné au ticket.
+\item Nombre maximal de développeurs par ticket atteint.
+\item Droits insuffisants ou ticket fermé.
 \end{itemize} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « Assigner des tickets »}
+\captionof{table}{Description textuelle du cas d’utilisation « Assigner un ticket à un développeur »}
 \normalsize
 \vspace{-0.3cm}
 
-
+\subsection{Description textuelle de cas d'utilisation « Évaluer capacité développeur »}
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Évaluer capacité développeur \\
+\hline
+\textbf{Acteurs} & Chef de projet, Administrateur \\
+\hline
+\textbf{Préconditions} & L’utilisateur est authentifié et dispose des permissions nécessaires. \\
+\hline
+\textbf{Postconditions} & Le système présente une évaluation détaillée de la charge de travail de chaque développeur disponible. \\
+\hline
+\textbf{Scénario principal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
+\item L’utilisateur sélectionne un ticket non assigné, ou bien après la validation d’une demande.
+\item Il clique sur le bouton « Assigner ».
+\item Le système récupère la liste de tous les développeurs actifs.
+\item Pour chaque développeur, le système évalue sa charge de travail actuelle, son nombre de tickets en cours et en revue, ainsi que son appartenance au projet concerné.
+\item Le système identifie les développeurs déjà assignés au ticket courant.
+\item La liste est présentée en deux sections distinctes : les membres du projet, affichés en priorité, et les autres développeurs.
+\end{itemize}
+\item Chaque section est triée par charge de travail croissante.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} &
+\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt, label={$\bullet$}]
+\item L’utilisateur peut consulter le planning prévisionnel d’un développeur sur les jours à venir.
+\item L’utilisateur peut visualiser le profil détaillé d’un développeur (compétences, expérience, disponibilité).
+\end{itemize} \\
+\hline
+\textbf{Scénarios d'exception} &
+\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt, label={$\bullet$}]
+\item Aucun développeur n’est disponible : le système affiche un message d’erreur.
+\item Le ticket a déjà atteint le nombre maximal d’assignations : l’assignation est bloquée.
+\end{itemize} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d’utilisation « Évaluer capacité développeur »}
+\normalsize
+\vspace{-0.3cm}
 
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 3 : CONCEPTION
@@ -682,22 +968,22 @@ La figure suivante présente le diagramme de séquence du cas d’utilisation «
     \label{fig:seq_valider_demande}
 \end{figure}
 
-\subsection{Diagramme de séquence du cas d'utilisation « Assigner un ticket »}
-La figure suivante présente le diagramme de séquence du cas d’utilisation « Assigner un ticket ».
+\subsection{Diagramme de séquence du cas d'utilisation « Signaler un blocage »}
+La figure suivante présente le diagramme de séquence du cas d’utilisation « Signaler un blocage ».
 
 \begin{figure}[htbp]
     \centering
-    %\includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_seq_assigner_ticket.png}
-    \caption{Diagramme de séquence du cas d'utilisation « Assigner un ticket »}
-    \label{fig:seq_assigner_ticket}
+    %\includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_seq_signaler_bloquer.png}
+    \caption{Diagramme de séquence du cas d'utilisation « Signaler un blocage »}
+    \label{fig:seq_signaler_bloquer}
 \end{figure}
 
 \subsection{Diagramme d'activité du workflow ticket}
-La figure suivante présente le diagramme d’activité du workflow de gestion des tickets.
+La figure suivante présente le diagramme d’activité du workflow de gestion des tickets, en mettant l’accent sur la fonctionnalité « Gérer le chronomètre ».
 
 \begin{figure}[htbp]
     \centering
-    %\includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_activite_ticket_sprint3.png}
+    \includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_activite_ticket_sprint3.png}
     \caption{Diagramme d'activité du workflow de gestion des tickets}
     \label{fig:activite_ticket}
 \end{figure}
