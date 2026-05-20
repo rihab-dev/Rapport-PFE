@@ -44,8 +44,8 @@ La figure ci-dessous présente le diagramme de cas d'utilisation du premier spri
 
 Nous allons accompagner les cas d'utilisation d'un texte descriptif pour expliquer le scénario de chaque cas ainsi que ses exceptions.
 
-\subsection{Description textuelle de cas d'utilisation «S'authentifier»}
-La figure ci-dessous présente la description textuelle de cas d'utilisation «S'authentifier» :
+\subsection{Description textuelle du cas d'utilisation « S'authentifier »}
+La figure ci-dessous présente la description textuelle du cas d'utilisation « S'authentifier » :
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -58,25 +58,27 @@ La figure ci-dessous présente la description textuelle de cas d'utilisation «S
 \endfoot
 \hline
 \endlastfoot
+
 \textbf{Nom du cas d'utilisation} & S'authentifier \\
 \hline
-\textbf{Acteurs} & Utilisateur \\
+\textbf{Acteurs} & Utilisateur non authentifié \\
 \hline
-\textbf{Préconditions} & L'utilisateur dispose déjà d'un compte actif. \\
+\textbf{Préconditions} & L'utilisateur accède à la page de connexion. Si la connexion est effectuée via le formulaire classique, il doit disposer d'un compte existant et actif. \\
 \hline
-\textbf{Postconditions} & L'utilisateur est authentifié. Un jeton d'accès est généré et un jeton de rafraîchissement est créé et persisté en base de données. \\
+\textbf{Postconditions} & L'utilisateur est authentifié. Un jeton d'accès est généré et un jeton de rafraîchissement est créé et persisté en base de données. L'utilisateur est redirigé vers l'interface correspondant à son rôle. \\
 \hline
 \textbf{Scénario principal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le système affiche le formulaire de connexion.
+\item Le système affiche le formulaire de connexion avec les onglets \textit{Connexion} et \textit{Inscription OAuth}.
+\item L'utilisateur choisit l'onglet \textit{Connexion}.
 \item L'utilisateur saisit son adresse e-mail et son mot de passe.
 \item L'utilisateur valide la connexion.
 \item Le système vérifie si le compte est temporairement verrouillé.
 \item Le système vérifie l'existence du compte via l'e-mail.
 \item Le système vérifie la validité du mot de passe.
 \item Le système vérifie que le compte est actif.
-\item Le système récupère le type de profil (Client ou Employé) ainsi que les rôles et permissions associés.
+\item Le système récupère le profil de l'utilisateur ainsi que ses rôles et permissions.
 \item Le système met à jour la date de dernière connexion et réinitialise le compteur de tentatives infructueuses.
 \item Le système génère un jeton d'accès et un jeton de rafraîchissement.
 \item Le système renvoie les informations de l'utilisateur.
@@ -86,14 +88,16 @@ La figure ci-dessous présente la description textuelle de cas d'utilisation «S
 \hline
 \textbf{Scénarios alternatifs} &
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item \textbf{OAuth Google/GitHub :} L'utilisateur s'authentifie via un fournisseur tiers. Si le compte existe, il est connecté ; sinon, il est redirigé vers une finalisation d'inscription.
-\item \textbf{Changement de mot de passe obligatoire :} Dans le cas où un renouvellement du mot de passe est exigé, l'utilisateur est automatiquement redirigé vers une interface sécurisée pour mettre à jour ses accès.
+\item \textbf{Connexion OAuth Google/GitHub :} L'utilisateur choisit l'onglet \textit{Inscription OAuth}, sélectionne son rôle souhaité, puis lance l'authentification via Google ou GitHub. Si le compte OAuth existe déjà dans le système, l'utilisateur est authentifié et redirigé vers son tableau de bord.
+\item \textbf{Compte OAuth introuvable :} Si aucun compte n'est trouvé lors d'une tentative de connexion OAuth, le système redirige l'utilisateur vers l'onglet \textit{Inscription OAuth} et affiche un message indiquant qu'aucun compte n'a été trouvé et qu'il peut faire une demande d'inscription.
+\item \textbf{Compte en attente de validation :} Si une demande d'inscription OAuth est déjà en attente, le système affiche un message d'attente et informe l'utilisateur que son compte sera accessible après validation administrative.
+\item \textbf{Changement de mot de passe obligatoire :} Si le compte exige une mise à jour du mot de passe, l'utilisateur est automatiquement redirigé vers une interface sécurisée pour modifier ses accès.
 \end{itemize} \\
 \hline
 \textbf{Scénarios d'exception} &
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
 \item \textbf{Identifiants incorrects :} Le système affiche un message d'erreur générique et incrémente le compteur de tentatives échouées.
-\item \textbf{Compte désactivé :} Le système informe l'utilisateur que son accès est suspendu.
+\item \textbf{Compte désactivé :} Le système informe l'utilisateur que son compte est désactivé et refuse l'accès.
 \item \textbf{Verrouillage automatique :} Après \textbf{3 tentatives échouées}, le compte est bloqué pendant \textbf{1 minute}.
 \item \textbf{Session expirée :} Si le jeton de rafraîchissement est invalide ou révoqué, l'utilisateur est redirigé vers la page de connexion.
 \end{itemize} \\

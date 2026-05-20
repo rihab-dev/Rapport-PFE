@@ -52,7 +52,8 @@ US03 & En tant qu'\textbf{utilisateur}, je souhaite m'authentifier via Google ou
 \item Intégrer les stratégies OAuth2 via \footnotesize{"passport-google-oauth20"}\small{} et \footnotesize{"passport-github2"}\small{} dans NestJS (\textbf{@nestjs/passport})
 \item Implémenter les routes \footnotesize{"GET /api/auth/google"}\small{}, \footnotesize{"GET /api/auth/github"}\small{} et leurs callbacks
   \item Si l'utilisateur existe en base et est actif : générer les tokens JWT et rediriger vers le frontend avec \textbf{?oauth=success}
-\item Vérifier l'existence de l'utilisateur en base de données et une demande d'inscription OAuth est envoyée à l'admin
+\item Vérifier existence (email+provider). Si demande \textbf{EN\_ATTENTE} : renvoyer \{oauth: "pending"\}.
+\item Sinon : créer demande \textbf{EN\_ATTENTE} et rediriger vers formulaire OAuth.
 \item Implémenter les boutons OAuth sur la page de login
 \end{itemize} & 3 \\
 \hline

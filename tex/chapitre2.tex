@@ -69,65 +69,24 @@ métier de SolidWall Consulting.
 \input{tex/etude_fonctionnalite}
 
 \subsection{Identification des besoins non fonctionnels}
-Durant la réalisation de ce projet, nous prenons en considération les besoins non
-fonctionnels qui désignent les attributs de qualité d'un système.
-\newline
-Les critères que notre plateforme doit satisfaire sont :
+Afin de garantir la qualité logicielle, la robustesse et la pérennité de la plateforme, plusieurs exigences non fonctionnelles ont été définies et prises en compte lors de la conception et du développement :
 
 \begin{itemize}[label=$\blacktriangleright$]
 
-\item \textbf{Ergonomie :}
-L'interface intégrera \textbf{shadcn/ui} et \textbf{Tailwind CSS} pour assurer une
-cohérence visuelle et une utilisabilité optimale. Un système de thématisation
-dynamique (mode clair/sombre) et une architecture responsive garantiront une
-adaptation automatique aux différentes résolutions d'écran. Les composants React
-permettront des mises à jour en temps réel sans rechargement, avec des transitions
-animées via \textbf{Framer Motion} et un système de retour d'information clair pour
-guider l'utilisateur.
+\item \textbf{Ergonomie et Accessibilité :} 
+L'interface utilisateur doit offrir une utilisabilité optimale, caractérisée par une navigation fluide, une cohérence visuelle et une architecture adaptative (\textit{responsive design}). La plateforme doit intégrer des mécanismes de confort visuel, notamment à travers un système de thématisation dynamique (modes clair et sombre), et supporter nativement l'internationalisation pour garantir une accessibilité multilingue.
 
-\item \textbf{Sécurité :}
-La sécurité intégrera des mesures robustes : hachage des mots de passe avec
-\textbf{bcrypt} (facteur 10), authentification \textbf{JWT} avec rotation des tokens
-(access token 15 minutes, refresh token 7 jours) et \textbf{OAuth 2.0} (Google,
-GitHub). Un mécanisme de verrouillage de compte est activé après trois tentatives
-d'authentification échouées. Les protections incluront la validation des entrées via
-\textbf{class-validator}, les requêtes paramétrées via \textbf{Prisma ORM} contre les
-injections SQL, et la vérification du type MIME des fichiers téléversés. La
-journalisation complète des actions via le module \textbf{ActivityLog} et le contrôle
-d'accès basé sur les rôles (\textbf{RBAC}) granulaire renforcent la traçabilité et
-l'intégrité du système.
+\item \textbf{Sécurité :} 
+Le système doit assurer une protection rigoureuse de l'application et des données à travers des mécanismes d'authentification forte, une gestion stricte des autorisations basée sur les rôles (RBAC), et le chiffrement des informations sensibles. La traçabilité des actions critiques doit être garantie par un système de journalisation (\textit{logging}) permanent afin de permettre l'audit des événements et de détecter toute anomalie ou tentative d'accès non autorisé.
 
-\item \textbf{Performance :}
-L'architecture modulaire permettra une évolution horizontale avec scalabilité selon
-la croissance des utilisateurs et du volume de données. Un cache en mémoire
-(\textbf{Redis}) avec une durée de vie de 60 secondes est utilisé pour les
-permissions et les données fréquemment consultées. L'optimisation de la base de
-données s'appuiera sur une stratégie d'indexation appropriée (identifiants, dates,
-statuts, combinaisons fréquentes) et l'utilisation de \textbf{Prisma ORM} pour
-générer des requêtes SQL optimisées. La compression \textbf{gzip} (niveau 6) est
-appliquée sur toutes les réponses HTTP supérieures à 1 Ko, réduisant la taille des
-payloads de 60 à 80\%. Le chargement sélectif des relations via les mécanismes
-\texttt{select} et \texttt{include} évite les problèmes de requêtes N+1, garantissant
-des temps de réponse rapides.
+\item \textbf{Performance et Évolutivité :} 
+La plateforme doit maintenir des temps de réponse minimaux, même en situation de pics de charge. Cela impose une optimisation de l'accès aux données (mécanismes de mise en cache, requêtage efficient) et une architecture technique capable de supporter une montée en charge progressive (\textit{scalabilité}).
 
-\item \textbf{Temps réel :}
-La communication en temps réel est assurée via le protocole \textbf{WebSocket}
-(Socket.IO 4), permettant des échanges bidirectionnels instantanés entre le serveur
-et les clients. Cette technologie supporte la messagerie instantanée entre l'équipe
-et les clients, la mise à jour en direct du tableau Kanban, ainsi que la diffusion
-des notifications. Des alertes proactives sont déclenchées automatiquement à 30, 15
-et 7 jours avant l'expiration des contrats, via des tâches planifiées (\textbf{Cron
-jobs}).
+\item \textbf{Réactivité et Temps Réel :} 
+Pour les modules nécessitant une synchronisation instantanée (tels que les notifications ou les alertes de gestion), le système doit garantir une communication bidirectionnelle à faible latence entre le serveur et les clients afin d'assurer la transmission immédiate des flux d'informations.
 
-\item \textbf{Maintenabilité :}
-L'architecture modulaire et l'adoption des principes SOLID avec les conventions
-\textbf{Next.js} et \textbf{NestJS} garantiront la lisibilité et la facilité de
-modification du code. La documentation technique est générée automatiquement via
-\textbf{Swagger/OpenAPI} et maintenue à jour lors de chaque modification. Les tests
-sont assurés par \textbf{Jest} pour le backend (tests unitaires et d'intégration),
-\textbf{Vitest} pour le frontend (tests unitaires des composants et hooks), et
-\textbf{Playwright} pour les tests end-to-end, exécutés automatiquement avant chaque
-déploiement.
+\item \textbf{Maintenabilité et Extensibilité :} 
+Le code source doit être structuré de manière modulaire en respectant les standards de conception logicielle (notamment les principes SOLID). Cela assure une maintenance facilitée, une documentation claire des interfaces (API) et une couverture de tests automatisés pour prévenir les régressions lors des évolutions futures.
 
 \end{itemize}
 
@@ -203,19 +162,9 @@ structuré selon les éléments suivants :
 \input{tex/product_backlog}
 
 \subsection{Planification des sprints}
-Un sprint représente une période de développement durant laquelle l'équipe s'engage
-à livrer un ensemble cohérent de fonctionnalités opérationnelles. Cette approche
-itérative permet d'obtenir des retours réguliers et d'ajuster les priorités au fil
-de l'avancement.
+Le projet a été mené selon la méthodologie Scrum, structuré en quatre sprints successifs s'étalant sur une période globale d'environ quatres mois. Cette approche itérative suit une logique architecturale rigoureuse : la mise en place des fondations sécuritaires, le développement de la gestion contractuelle, l'implémentation du cœur métier, et enfin l'intégration des modules collaboratifs et analytiques.
 
-\noindent Notre projet est organisé en \textbf{4 sprints} de \textbf{3 à 4 semaines}
-chacun, couvrant une période totale de développement d'\textbf{environ 3 mois et
-demi}. La stratégie de répartition suit une logique architecturale : fondations
-sécuritaires (Sprint 1), gestion des clients et contractuelle (Sprint 2), cœur métier opérationnel
-(Sprint 3), et fonctionnalités avancées (Sprint 4). Chaque sprint commence par une
-réunion de planification (Sprint Planning) où l'équipe sélectionne les user stories
-du Product Backlog à réaliser, et se termine par une revue de sprint (Sprint Review)
-et une rétrospective (Sprint Retrospective).
+Chaque itération respecte le cycle Scrum, initié par une phase de planification (\textit{Sprint Planning}) et clôturé par les phases de revue (\textit{Sprint Review}) et de rétrospective (\textit{Sprint Retrospective}).
 
 La figure suivante présente le déroulement chronologique de nos sprints.
 
