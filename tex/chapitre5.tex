@@ -1021,12 +1021,15 @@ Dans le cadre du présent sprint, l'intégration de l'intelligence artificielle 
 Le modèle retenu pour l'expérimentation est LLaMA~3.3 (70B), exploité via l'API Groq Cloud. Ce choix se justifie par la qualité des réponses en langue française technique, la possibilité d'obtenir des sorties structurées (format JSON) pour une intégration automatisée, des temps de latence compatibles avec l'usage interactif et une tarification permettant une phase d'évaluation sans investissement initial significatif.
 
 \subsubsection{Fonctionnalités attendues}
-Les fonctions couvertes par le composant IA sont notamment :
+Les fonctions couvertes par le composant d'intelligence artificielle sont les suivantes :
+
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
-\item classification automatique des demandes (type et priorité) ;
-\item extraction d'entités et détection d'indices d'urgence ou de complexité ;
-\item analyse des blocages avec proposition de pistes de résolution et génération d'un brouillon d'article pour la base de connaissances ;
-\item recommandation d'articles ou de solutions pertinentes à partir du contexte du ticket.
+\item L'analyse automatique des blocages rencontrés par les développeurs, permettant d'identifier rapidement les problèmes critiques et d'en faciliter la résolution ;
+\item La proposition d'actions correctives adaptées à chaque situation de blocage, afin d'accélérer le déblocage des développeurs et de réduire les temps d'immobilisation ;
+\item La génération automatique d'un brouillon de solution pour assister les développeurs dans la documentation de leurs résolutions et faciliter la capitalisation des connaissances ;
+\item La classification intelligente des demandes clients, incluant le type, la priorité et la catégorie, soumise à validation du chef de projet avant transmission au client ;
+\item La structuration automatique des solutions brutes en articles de base de connaissances, favorisant la standardisation et la réutilisabilité de l'information ;
+\item La fusion automatique de l'analyse IA et de la solution humaine pour chaque blocage résolu, produisant ainsi des articles de connaissance consolidés et directement exploitables.
 \end{itemize}
 
 \subsubsection{Robustesse opérationnelle et gouvernance}
