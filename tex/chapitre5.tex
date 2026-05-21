@@ -1129,16 +1129,46 @@ Afin de garantir la qualité de l’implémentation, une stratégie de tests à 
 \end{itemize}
 
 \subsection{Tests unitaires}
-Les tests unitaires ont notamment couvert :
-\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
-\item la classification IA des demandes ;
-\item la gestion du cache et des retries pour l’IA ;
-\item la création de ticket, l’assignation et le changement de statut ;
-\item le calcul de l’échéance SLA ;
-\item la vérification des transitions autorisées.
-\end{itemize}
+Les tests unitaires du troisième sprint ont été organisés par composant fonctionnel pour assurer une meilleure traçabilité. Exécutés en environnement isolé avec des mocks pour les dépendances externes, ils valident la logique métier critique du sprint : classification IA, cache MD5, mécanismes de reprise, fallback, gestion des tickets, limitation de débit, calcul des SLA et contrôle des transitions autorisées.
 
-\noindent\textbf{Bilan : couverture des comportements critiques validée dans les tests visibles du projet.}
+\noindent\textbf{Synthèse (tableau)}: le tableau ci‑dessous récapitule, par composant, les objectifs testés, le statut général et les observations clés. Les captures d'écran d'exécution sont présentées après chaque composant pour attester des runs locaux.
+
+\begin{longtable}{|p{3.4cm}|p{6.0cm}|p{3.0cm}|p{3.8cm}|}
+\hline
+\textbf{Composant} & \textbf{Objectifs testés} & \textbf{Statut} & \textbf{Observations clés} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Composant} & \textbf{Objectifs testés} & \textbf{Statut} & \textbf{Observations clés} \\
+\hline
+\endhead
+LLM (Classification IA) \& Retry/Backoff & Chaîne complète LLM : prétraitement, appel externe, post-traitement, fallback sur faible confiance ; Politique de retry exponentiel face aux erreurs transitoires de l'API LLM & Couvert & Tests couvrant succès, échecs réseau et faible confiance ; réessais validés avec attente simulée \\
+\hline
+\multicolumn{4}{|c|}{\includegraphics[width=0.8\linewidth]{Images/llm_retry_backoff.png}} \\
+\hline
+Cache MD5 & Hashing texte, mise en cache, TTL/expiration & Couvert & Cache hit évite appel externe ; expiration testée via mock temps \\
+\hline
+\multicolumn{4}{|c|}{\includegraphics[width=0.9\linewidth]{Images/cache_md5.png}} \\
+\hline
+Fallback mots‑clés & Repli déterministe si score IA insuffisant & Couvert & Marquage « fallback » et cohérence métier vérifiés \\
+%\hline
+%\multicolumn{4}{|c|}{\includegraphics[width=0.9\linewidth]{Images/fallback_keywords.png}} \\
+\hline
+Création / Assignation / Statuts & Flux métier complet et effets secondaires & Couvert & Validations métier et contraintes de transition testées \\
+\hline
+\multicolumn{4}{|c|}{\includegraphics[width=0.7\linewidth]{Images/ticket_workflow.png}} \\
+\hline
+Rate limiting & Quotas par utilisateur et global, remise à zéro planifiée & Couvert & Comptage et refus au seuil vérifiés ; timer reset adapté aux tests \\
+\hline
+\multicolumn{4}{|c|}{\includegraphics[width=0.9\linewidth]{Images/rate_limiting.png}} \\
+\hline
+Calcul SLA & Minutes ouvrées, ajout de minutes ouvrées, jours fériés & Couvert & Scénarios 24/7 vs ouvrés et traversée jours fériés testés \\
+\hline
+\multicolumn{4}{|c|}{\includegraphics[width=0.7\linewidth]{Images/sla_deadline.png}} \\
+\hline
+\caption{Récapitulatif des tests unitaires — Sprint 3}
+\end{longtable}
+
 
 \subsection{Tests d’intégration}
 Les tests d’intégration ont été réalisés sur les endpoints principaux du sprint :
@@ -1158,8 +1188,8 @@ Les tests End-to-End ont permis de valider des parcours réalistes tels que :
 \item sa validation par un chef de projet ;
 \item la création automatique du ticket ;
 \item l’assignation à un développeur ;
-\item l’exécution du chronomètre ;
-\item la résolution du ticket et la consultation du rapport technique ;
+\item l’exécution du chronomètre automiquement lors de l’ouverture du ticket ;
+\item La génération ia de solution et la consultation du rapport technique ;
 \item l’exploitation des fonctionnalités IA et du Kanban.
 \end{itemize}
 
