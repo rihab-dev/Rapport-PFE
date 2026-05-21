@@ -823,12 +823,12 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \begin{figure}[H]
         \centering
         \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/assigner_ticket.png}
-        \caption{Diagramme des cas d'utilisation « Assigner des tickets »}
+        \caption{Diagramme des cas d'utilisation « Assigner tickets »}
         \label{fig:assigner_ticket}
 \end{figure}
 
 
-\subsection{Description textuelle de cas d'utilisation « Assigner ticket à développeur »}
+\subsection{Description textuelle du cas d'utilisation « Assigner ticket à développeur »}
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
@@ -840,42 +840,49 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Assigner un ticket à un développeur \\
+\textbf{Nom du cas d'utilisation} & Assigner ticket à développeur \\
 \hline
 \textbf{Acteurs} & Chef de projet, Administrateur \\
 \hline
-\textbf{Préconditions} & L’utilisateur est authentifié et dispose des droits nécessaires. Le ticket est dans un état ouvrant droit à assignation (non fermé, non résolu). \\
+\textbf{Préconditions} & L’utilisateur est authentifié et dispose des habilitations requises. Le ticket concerné est dans un état permettant son assignation, c’est-à-dire qu’il n’est ni fermé ni résolu. Le développeur ciblé est actif dans le système. Lorsqu’il appartient déjà au projet, son statut opérationnel est ajusté en fonction de l’assignation. \\
 \hline
-\textbf{Postconditions} & Une assignation est créée. Le développeur est notifié. Le ticket peut ultérieurement basculer en « En cours ». \\
+\textbf{Postconditions} & Une assignation est créée avec succès. Le développeur est notifié. Si le développeur est déjà membre du projet et qu’il reçoit une assignation sur un ticket de ce même projet, son statut devient « Actif ». Lorsque toutes ses assignations actives sur le projet sont terminées, son statut revient à « Terminé ». S’il est retiré du projet ou si son compte est désactivé, son statut est basculé à « Inactif ». \\
 \hline
 \textbf{Scénario principal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
-\item L’utilisateur sélectionne un ticket non assigné, ou bien après la validation d’une demande.
-\item Le système affiche la liste des développeurs actifs, classés en deux sections : les membres du projet (prioritaires), puis les autres développeurs. Chaque section est triée par charge de travail croissante.
-\item Pour chaque développeur, le système présente le nombre de tickets actifs, la charge de travail et l’appartenance au projet.
-\item L’utilisateur sélectionne un développeur et valide l’assignation.
-\item Le système vérifie que le développeur n’est pas déjà assigné, que la limite de développeurs par ticket n’est pas atteinte et que sa capacité est suffisante.
-\item Le système crée l’assignation, enregistre l’action dans l’historique et notifie le développateur.
+\item L’utilisateur sélectionne un ticket disponible à l’assignation.
+\item Le système affiche la liste des développeurs actifs, organisée en deux catégories : les membres du projet, présentés en priorité, puis les autres développeurs disponibles. Chaque catégorie est triée selon la charge de travail croissante.
+\item Pour chaque développeur, le système présente le nombre de tickets actifs, le niveau de charge de travail et l’indication d’appartenance au projet.
+\item L’utilisateur sélectionne un développeur puis confirme l’assignation.
+\item Le système vérifie que le développeur n’est pas déjà assigné au ticket, que les contraintes de capacité sont respectées et que le nombre maximal d’assignations par ticket n’est pas dépassé.
+\item Si le développeur est membre du projet concerné, le système met son statut à « Actif » à la création de l’assignation.
+\item Le système enregistre l’assignation, consigne l’opération dans l’historique et notifie le développeur concerné.
+\item Lorsque le ticket est clôturé ou désassigné et qu’il ne subsiste plus d’assignation active pour ce développeur sur le projet, le statut du membre repasse automatiquement à « Terminé ».
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénarios alternatifs} &
 \begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt, label={$\bullet$}]
-\item \textbf{Auto-assignation du chef de projet :} Un chef peut s’auto-assigner si la priorité du ticket est élevée, si le ticket a une certaine ancienneté et si aucun autre développeur n’est disponible. En cas de dépassement des délais, ces règles sont assouplies.
-\item \textbf{Assignation en urgence :} Si le ticket a dépassé son délai, la capacité maximale du développeur est augmentée.
+\item \textbf{Auto-assignation par le chef de projet :} le chef de projet peut s’auto-assigner un ticket sous certaines conditions, notamment lorsque la priorité du ticket est élevée, que son ancienneté dépasse un seuil minimal et qu’aucun autre développeur n’est disponible. En cas d’urgence liée au dépassement des délais, ces conditions sont assouplies.
+\item \textbf{Assignation en contexte d’urgence :} lorsque le ticket a dépassé ses délais de traitement, la limite maximale d’assignations autorisées pour le développeur est relevée.
+\item \textbf{Développeur déjà membre du projet :} l’assignation du ticket déclenche automatiquement la mise à jour de son statut à « Actif ».
+\item \textbf{Fin de toutes les affectations du projet :} lorsque la dernière assignation active liée au projet prend fin, le statut du membre revient à « Terminé ».
+\item \textbf{Retrait ou désactivation :} si le membre est retiré du projet ou si son compte utilisateur est désactivé, son statut est positionné à « Inactif ».
 \end{itemize} \\
 \hline
 \textbf{Scénarios d'exception} &
 \begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt, label={$\bullet$}]
-\item Capacité du développeur dépassée.
-\item Développeur déjà assigné au ticket.
-\item Nombre maximal de développeurs par ticket atteint.
-\item Droits insuffisants ou ticket fermé.
+\item La capacité maximale du développeur est atteinte.
+\item Le développeur est déjà assigné au ticket.
+\item Le nombre maximal de développeurs par ticket est atteint.
+\item L’utilisateur ne dispose pas des droits nécessaires ou le ticket n’est pas éligible à l’assignation.
+\item Le développeur est inactif ou a été retiré du projet.
+\item Le ticket ne concerne pas le projet du développeur ciblé.
 \end{itemize} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Assigner un ticket à un développeur »}
+\captionof{table}{Description textuelle du cas d’utilisation « Assigner ticket à développeur »}
 \normalsize
 \vspace{-0.3cm}
 
@@ -959,23 +966,23 @@ La figure suivante présente le diagramme de séquence du cas d’utilisation «
     \label{fig:seq_soumettre_demande}
 \end{figure}
 
-\subsection{Diagramme de séquence du cas d'utilisation « Valider une demande »}
+\subsection{Diagramme de séquence du cas d'utilisation « Valider demande »}
 La figure suivante présente le diagramme de séquence du cas d’utilisation « Valider une demande ».
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme sequence valider Demande.vpd.png}
-    \caption{Diagramme de séquence du cas d'utilisation « Valider une demande »}
+    \caption{Diagramme de séquence du cas d'utilisation « Valider demande »}
     \label{fig:seq_valider_demande}
 \end{figure}
 
-\subsection{Diagramme de séquence du cas d'utilisation « Signaler un blocage »}
+\subsection{Diagramme de séquence du cas d'utilisation « Signaler blocage »}
 La figure suivante présente le diagramme de séquence du cas d’utilisation « Signaler un blocage ».
 
 \begin{figure}[htbp]
     \centering
     %\includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_seq_signaler_bloquer.png}
-    \caption{Diagramme de séquence du cas d'utilisation « Signaler un blocage »}
+    \caption{Diagramme de séquence du cas d'utilisation « Signaler blocage »}
     \label{fig:seq_signaler_bloquer}
 \end{figure}
 
@@ -1006,6 +1013,33 @@ Le schéma relationnel du sprint 3 s’appuie sur les entités suivantes :
 \textbf{DemandeClassificationIA} (\underline{id}, \#demandeId, categorieAuto, typeAuto, prioriteAuto, scoreConfiance, entitesExtraites, sentimentScore, urgenceDetectee, estUtiliseeValidation, estCorrigeeParAgent, feedbackAgent, dateClassification, dateUtilisation, modeleUtilise, tempsTraitement, estFallback, versionModele, versionRegles)
 \newline
 \textbf{TicketClassification} (\underline{id}, \#ticketId, categorieAuto, prioriteAuto, typeAuto, scoreConfiance, entitesExtraites, sentimentScore, urgenceDetectee, estValidee, dateClassification)
+
+\subsection{Intégration de l'intelligence artificielle}
+Dans le cadre du présent sprint, l'intégration de l'intelligence artificielle a été traitée comme une décision de conception. L'objectif principal est d'automatiser et d'assister plusieurs étapes du cycle de traitement des demandes : qualification initiale, priorisation, analyse des blocages et capitalisation des connaissances.
+
+\subsubsection{Choix du modèle}
+Le modèle retenu pour l'expérimentation est LLaMA~3.3 (70B), exploité via l'API Groq Cloud. Ce choix se justifie par la qualité des réponses en langue française technique, la possibilité d'obtenir des sorties structurées (format JSON) pour une intégration automatisée, des temps de latence compatibles avec l'usage interactif et une tarification permettant une phase d'évaluation sans investissement initial significatif.
+
+\subsubsection{Fonctionnalités attendues}
+Les fonctions couvertes par le composant IA sont notamment :
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+\item classification automatique des demandes (type et priorité) ;
+\item extraction d'entités et détection d'indices d'urgence ou de complexité ;
+\item analyse des blocages avec proposition de pistes de résolution et génération d'un brouillon d'article pour la base de connaissances ;
+\item recommandation d'articles ou de solutions pertinentes à partir du contexte du ticket.
+\end{itemize}
+
+\subsubsection{Robustesse opérationnelle et gouvernance}
+Afin d'assurer la fiabilité et la conformité du service, l'intégration s'appuie sur plusieurs garde‑fous :
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+\item mise en place d'un cache pour diminuer le nombre d'appels externes et réduire la latence ;
+\item mécanismes de repli : basculement vers une classification manuelle ou fondée sur des règles lorsque le score de confiance est insuffisant ou en cas d'indisponibilité du service externe ;
+\item limitation des appels et quota par utilisateur pour respecter les plafonds et prévenir les usages abusifs ;
+\item traçabilité complète des suggestions IA (métadonnées, modèle, version, score de confiance) afin de permettre des audits et d'alimenter le processus de feedback et d'amélioration continue.
+\end{itemize}
+
+\subsubsection{Apport métier}
+L'évaluation conduite pendant le sprint montre que l'usage de l'IA apporte des bénéfices mesurables : réduction du temps de qualification, homogénéisation des priorisations, diminution des échanges nécessaires entre clients et équipes techniques et enrichissement automatique de la base de connaissances. Ces apports sont considérés comme complémentaires au travail humain : l'IA fournit des suggestions et des brouillons destinés à soutenir la décision, sans s'y substituer.
 
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 4 : RÉALISATION
@@ -1069,6 +1103,8 @@ L’intégration de l’intelligence artificielle représente un apport majeur d
 \item recommander des solutions contextualisées à partir de l’historique du ticket.
 \end{itemize}
 Cette assistance intelligente améliore la qualité de décision et réduit le temps de traitement des demandes, tout en conservant un mode dégradé fondé sur les règles métier lorsque le service IA est indisponible.
+% Intégration IA déplacée vers la section Conception
+
 \subsection{Rôles utilisateurs impliqués}
 Les rôles jouent un rôle central dans la restriction des actions :
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
