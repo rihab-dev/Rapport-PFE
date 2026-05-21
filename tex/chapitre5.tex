@@ -14,7 +14,7 @@ La planification du sprint est une étape essentielle du processus de développe
 
 Voici l’ensemble des user stories retenues pour ce sprint, correspondant aux épics liés à la gestion des demandes, à la gestion des tickets et à l’intelligence artificielle.
 \newline
-\textbf{1 : Effort faible, 2 : Effort moyen, 3 : Effort élevé}
+	extbf{1 : Effort faible, 2 : Effort moyen, 3 : Effort élevé}
 \input{tex/sprint_backlog_3}
 
 % ─────────────────────────────────────────────────────────────────────────────
@@ -41,10 +41,10 @@ Dans cette partie, nous allons présenter les cas d'utilisation relatifs au suiv
 \subsubsection{Raffinement de cas d'utilisation « Suivre demandes »}
 Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas du suivi des demandes :
 \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/suivre_demandes.png}
-        \caption{Diagramme des cas d'utilisation « Suivre demandes »}
-        \label{fig:suivre_demandes}
+  \centering
+  \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/suivre_demandes.png}
+  \caption{Diagramme des cas d'utilisation « Suivre demandes »}
+  \label{fig:suivre_demandes}
 \end{figure}
 
 \subsection{Description textuelle de cas d'utilisation « Soumettre une demande »}
@@ -61,15 +61,15 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Soumettre une demande \\
+	extbf{Nom du cas d'utilisation} & Soumettre une demande \\
 \hline
-\textbf{Acteurs} & Client \\
+	extbf{Acteurs} & Client \\
 \hline
-\textbf{Préconditions} & Le client est authentifié et possède au moins un projet couvert par un contrat actif. \\
+	extbf{Préconditions} & Le client est authentifié et possède au moins un projet couvert par un contrat actif. \\
 \hline
-\textbf{Postconditions} & La demande est créée avec le statut « En attente », les pièces jointes éventuelles sont enregistrées et les acteurs concernés sont notifiés. \\
+	extbf{Postconditions} & La demande est créée avec le statut « En attente », les pièces jointes éventuelles sont enregistrées et les acteurs concernés sont notifiés. \\
 \hline
-\textbf{Scénario principal} &
+	extbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le client accède au formulaire de création d’une demande.
@@ -86,7 +86,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
+	extbf{Scénarios alternatifs} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
 \item Si le client ne dispose d’aucun projet couvert par un contrat actif, la soumission est refusée.
@@ -95,7 +95,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \end{itemize}
 \end{minipage} \\
 \hline
-\textbf{Scénarios d'exception} &
+	extbf{Scénarios d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
 \item Une demande est refusée si le nombre maximal de demandes en attente est atteint.
@@ -121,15 +121,15 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Compléter demande existante \\
+	extbf{Nom du cas d'utilisation} & Compléter demande existante \\
 \hline
-\textbf{Acteurs} & Client \\
+	extbf{Acteurs} & Client \\
 \hline
-\textbf{Préconditions} & Le client est authentifié, propriétaire de la demande, et la demande est au statut « Infos requises ». \\
+	extbf{Préconditions} & Le client est authentifié, propriétaire de la demande, et la demande est au statut « Infos requises ». \\
 \hline
-\textbf{Postconditions} & Les informations complémentaires sont enregistrées, la demande repasse au statut « En attente », l’action est historisée et les responsables sont notifiés. \\
+	extbf{Postconditions} & Les informations complémentaires sont enregistrées, la demande repasse au statut « En attente », l’action est historisée et les responsables sont notifiés. \\
 \hline
-\textbf{Scénario principal} &
+	extbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le client localise sa demande dans la liste ou consulte son détail, puis clique sur le bouton approprié.
@@ -145,7 +145,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
+	extbf{Scénarios alternatifs} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=\textbullet]
 \item Le client n’ajoute que des pièces justificatives sans texte complémentaire : le système associe uniquement les fichiers transmis à la demande.
@@ -153,7 +153,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \end{itemize}
 \end{minipage} \\
 \hline
-\textbf{Scénarios d'exception} &
+	extbf{Scénarios d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
 \item Tentative de compléter une demande qui n’est pas en attente d’informations : l’opération est refusée.
@@ -174,16 +174,68 @@ Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la g
 \subsubsection{Raffinement de cas d'utilisation « Suivre demandes »}
 Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas du gestion des demandes :
 \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/gerer_demandes.png}
-        \caption{Diagramme des cas d'utilisation « gérer demandes »}
-        \label{fig:gerer_demandes}
+  \centering
+  \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/gerer_demandes.png}
+  \caption{Diagramme des cas d'utilisation « gérer demandes »}
+  \label{fig:gerer_demandes}
 \end{figure}
 
 \subsection{Description textuelle de cas d'utilisation « Valider demande »}
 La figure ci-dessous présente la description textuelle du cas d’utilisation « Valider udemande ».
 
 \footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+	extbf{Nom du cas d'utilisation} & Valider demande \\
+\hline
+	extbf{Acteurs} & Chef de projet, Administrateur \\
+\hline
+	extbf{Préconditions} & La demande est au statut « En attente » ou « En attente d'informations ». L’acteur dispose de la permission de validation. \\
+\hline
+	extbf{Postconditions} & La demande passe au statut « Convertie », un ticket est créé automatiquement. L’assignation du ticket sera effectuée ultérieurement de manière manuelle. \\
+\hline
+	extbf{Scénario nominal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item Le chef de projet sélectionne une demande en attente, depuis la liste ou depuis son détail, puis valide la demande.
+\item Il peut conserver les informations initiales ou requalifier le type et la priorité.
+\item Il valide la demande.
+\item Le système vérifie les permissions et l’existence d’un contrat actif couvrant le projet.
+\item Le système met à jour la demande au statut « Convertie ».
+\item Le système crée automatiquement un ticket lié à la demande avec le statut « Ouvert ».
+\item Le système transfère les pièces jointes vers les documents du ticket.
+\item Le système notifie le client et les utilisateurs concernés.
+\item L’assignation du ticket est réalisée dans un second temps via le module de gestion des tickets.
+\end{enumerate}
+\end{minipage} \\
+\hline
+	extbf{Scénarios alternatifs} &
+\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\item Le validateur peut modifier le type de demande et/ou la priorité avant validation.
+\item Si la priorité est critique, un commentaire de justification devient obligatoire.
+\end{itemize} \\
+\hline
+	extbf{Scénarios d'exception} &
+\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\item Une demande déjà convertie ou rejetée ne peut plus être modifiée.
+\item Une validation est refusée en l’absence de contrat actif couvrant le projet.
+\item Une validation est refusée si le commentaire de requalification est insuffisant.
+\end{itemize} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d'utilisation « Valider demande »}
+\normalsize
+\vspace{-0.3cm}
+
+... (remaining content unchanged)
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
 \hline
@@ -202,7 +254,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \hline
 \textbf{Postconditions} & La demande passe au statut « Convertie », un ticket est créé automatiquement. L’assignation du ticket sera effectuée ultérieurement de manière manuelle. \\
 \hline
-\textbf{Scénario principal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le chef de projet sélectionne une demande en attente, depuis la liste ou depuis son détail, puis valide la demande.
@@ -255,7 +307,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \hline
 \textbf{Postconditions} & Un message de demande d'information est enregistré dans l'historique ; le statut de la demande passe en attente d'informations ; le propriétaire de la demande est notifié. \\
 \hline
-\textbf{Scénario principal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item L'acteur identifie un besoin d'informations supplémentaires pour analyser la demande.
@@ -302,7 +354,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \hline
 \textbf{Postconditions} & La qualification de la demande a été mise à jour ; la modification est historisée et les parties prenantes sont informées. \\
 \hline
-\textbf{Scénario principal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item L'acteur habilité consulte la demande et, le cas échéant, la suggestion de qualification fournie par le système.
@@ -369,7 +421,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Postconditions} & Le temps de travail effectif est enregistré dans le système. Le ticket peut être soumis en revue ou marqué comme résolu. \\
 \hline
-\textbf{Scénario principal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
 \item Le développeur accède à la page de détail du ticket assigné.
@@ -421,7 +473,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Postconditions} & Le ticket passe dans l’état « En revue ». Tout chronomètre actif est automatiquement arrêté. Une notification est adressée au chef de projet et au client. \\
 \hline
-\textbf{Scénario principal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
 \item Le développeur renseigne la solution technique (champ obligatoire, minimum cinq caractères).
@@ -466,7 +518,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Postconditions} & Un blocage est enregistré sur l’assignation. Une analyse automatique par IA est déclenchée. Un brouillon d’article pour la base de connaissances est créé. \\
 \hline
-\textbf{Scénario principal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
 \item Le développeur actionne la fonction « Signaler un blocage ».
@@ -518,7 +570,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Postconditions} & Une solution est enregistrée et mise à disposition du développeur bloqué, en attente de validation. \\
 \hline
-\textbf{Scénario principal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
 \item Un membre de l’équipe consulte le ticket marqué comme bloqué.
@@ -556,7 +608,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Postconditions} & Le blocage est levé. L’article de base de connaissances est enrichi par fusion de l’analyse IA et de la solution humaine validée. \\
 \hline
-\textbf{Scénario principal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
 \item Le développeur bloqué consulte la solution qui lui a été proposée.
@@ -660,7 +712,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \hline
 \textbf{Postconditions} & Le temps de travail, les pauses et les échéances SLA sont enregistrés et affichés. \\
 \hline
-\textbf{Scénario principal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le système calcule l’échéance SLA du ticket en fonction du contrat associé et de la priorité attribuée.
@@ -724,7 +776,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Postconditions} & Le ticket reste en statut « Résolu ». Un signalement est enregistré. Le chef de projet et les développeurs sont notifiés. La date de résolution est réinitialisée. \\
 \hline
-\textbf{Scénario principal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
 \item Le client accède à la page de détail du ticket résolu.
@@ -779,7 +831,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Postconditions} & L’extension est automatiquement accordée pour une durée de 7 jours supplémentaires. Le ticket reste en « Résolu ». \\
 \hline
-\textbf{Scénario principal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
 \item Le client accède à la page de détail du ticket résolu.
@@ -848,7 +900,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Postconditions} & Une assignation est créée avec succès. Le développeur est notifié. Si le développeur est déjà membre du projet et qu’il reçoit une assignation sur un ticket de ce même projet, son statut devient « Actif ». Lorsque toutes ses assignations actives sur le projet sont terminées, son statut revient à « Terminé ». S’il est retiré du projet ou si son compte est désactivé, son statut est basculé à « Inactif ». \\
 \hline
-\textbf{Scénario principal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
 \item L’utilisateur sélectionne un ticket disponible à l’assignation.
@@ -906,7 +958,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Postconditions} & Le système présente une évaluation détaillée de la charge de travail de chaque développeur disponible. \\
 \hline
-\textbf{Scénario principal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
 \item L’utilisateur sélectionne un ticket non assigné, ou bien après la validation d’une demande.
