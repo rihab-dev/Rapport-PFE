@@ -67,7 +67,7 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \hline
 \textbf{Postconditions} & L'utilisateur est authentifié. Un jeton d'accès est généré et un jeton de rafraîchissement est créé et persisté en base de données. L'utilisateur est redirigé vers l'interface correspondant à son rôle. \\
 \hline
-\textbf{Scénario principal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le système affiche le formulaire de connexion avec les onglets \textit{Connexion} et \textit{Inscription OAuth}.
@@ -86,13 +86,13 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item \textbf{Connexion OAuth Google/GitHub :} L'utilisateur choisit l'onglet \textit{Inscription OAuth}, sélectionne son rôle souhaité, puis lance l'authentification via Google ou GitHub. Si le compte OAuth existe déjà dans le système, l'utilisateur est authentifié et redirigé vers son tableau de bord.
-\item \textbf{Compte OAuth introuvable :} Si aucun compte n'est trouvé lors d'une tentative de connexion OAuth, le système redirige l'utilisateur vers l'onglet \textit{Inscription OAuth} et affiche un message indiquant qu'aucun compte n'a été trouvé et qu'il peut faire une demande d'inscription.
-\item \textbf{Compte en attente de validation :} Si une demande d'inscription OAuth est déjà en attente, le système affiche un message d'attente et informe l'utilisateur que son compte sera accessible après validation administrative.
-\item \textbf{Changement de mot de passe obligatoire :} Si le compte exige une mise à jour du mot de passe, l'utilisateur est automatiquement redirigé vers une interface sécurisée pour modifier ses accès.
-\end{itemize} \\
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item \textbf{Connexion OAuth Google/GitHub} : L'utilisateur choisit l'onglet \textit{Inscription OAuth}, sélectionne son rôle souhaité, puis lance l'authentification via Google ou GitHub. Si le compte OAuth existe déjà dans le système, l'utilisateur est authentifié et redirigé vers son tableau de bord.
+\item \textbf{Compte OAuth introuvable} : Si aucun compte n'est trouvé lors d'une tentative de connexion OAuth, le système redirige l'utilisateur vers l'onglet \textit{Inscription OAuth} et affiche un message indiquant qu'aucun compte n'a été trouvé et qu'il peut faire une demande d'inscription.
+\item \textbf{Compte en attente de validation} : Si une demande d'inscription OAuth est déjà en attente, le système affiche un message d'attente et informe l'utilisateur que son compte sera accessible après validation administrative.
+\item \textbf{Changement de mot de passe obligatoire} : Si le compte exige une mise à jour du mot de passe, l'utilisateur est automatiquement redirigé vers une interface sécurisée pour modifier ses accès.
+\end{enumerate} \\
 \hline
 \textbf{Scénarios d'exception} &
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
@@ -132,7 +132,7 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \hline
 \textbf{Postconditions} & Le mot de passe est réinitialisé \\
 \hline
-\textbf{Scénario principal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le système affiche un formulaire de changement de mot de passe.
@@ -162,16 +162,16 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \normalsize
 \vspace{-0.3cm}
 
-\subsection{Analyse de la fonctionnalité « Demander accès via fournisseur externe »}
+\subsection{Analyse de la fonctionnalité « S'inscrire »}
 Dans cette partie, nous allons présenter les cas d'utilisation raffinés relatifs à la demande d'accès via fournisseur externe afin de comprendre les différentes étapes du processus d'inscription et d'authentification.
 
-\subsubsection{Raffinement de cas d'utilisation « Demander accés via fournisseur externe »}
+\subsubsection{Raffinement de cas d'utilisation « S'inscrire »}
 Au cours de cette partie, nous allons analyser les sous-cas d'utilisation pour le processus d'authentification OAuth :
 
 \begin{figure}[htbp]
         \centering
         \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/demande insc.png}
-        \caption{Raffinement de cas d'utilisation « Demander accés via fournisseur externe »}
+        \caption{Raffinement de cas d'utilisation « S'inscrire »}
         \label{fig:oauth_refinement}
 \end{figure}
 
@@ -189,7 +189,7 @@ Au cours de cette partie, nous allons analyser les sous-cas d'utilisation pour l
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Soumettre demande d'inscription \\
+\textbf{Nom du cas d'utilisation} & Demander inscription \\
 \hline
 \textbf{Acteurs} & Visiteur \\
 \hline
@@ -199,7 +199,7 @@ Au cours de cette partie, nous allons analyser les sous-cas d'utilisation pour l
 \begin{minipage}[t]{\linewidth}\raggedright\hyphenpenalty=1000
 La demande d'inscription est créée, enregistrée avec le statut \textbf{EN\_ATTENTE}, et les administrateurs sont notifiés
 \end{minipage} \\\hline
-\textbf{Scénario principal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
 \item Le visiteur accède à la page de connexion / inscription.
@@ -216,12 +216,12 @@ La demande d'inscription est créée, enregistrée avec le statut \textbf{EN\_AT
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Compte actif déjà existant : le système connecte directement l'utilisateur sans créer de nouvelle demande.
 \item Demande déjà soumise pour le même e-mail et le même fournisseur : le système conserve la demande existante et affiche un message d'information, sans créer de doublon.
 \item Annulation de l'autorisation OAuth : le visiteur est redirigé vers la page d'authentification sans création de demande.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
 \textbf{Scénarios d'exception} &
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
@@ -231,7 +231,7 @@ La demande d'inscription est créée, enregistrée avec le statut \textbf{EN\_AT
 \end{itemize} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle « Soumettre demande d'inscription »} 
+\captionof{table}{Description textuelle « Demander inscription »} 
 
 }
 \normalsize
@@ -258,7 +258,7 @@ La demande d'inscription est créée, enregistrée avec le statut \textbf{EN\_AT
 \hline
 \textbf{Postconditions} & Le compte utilisateur est créé et activé, la demande est marquée \textit{APPROUVEE}, et l'utilisateur est notifié \\
 \hline
-\textbf{Scénario principal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
 \item L'administrateur accède au module de gestion des demandes d'inscription.
@@ -274,12 +274,12 @@ La demande d'inscription est créée, enregistrée avec le statut \textbf{EN\_AT
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item L'administrateur clique sur « Refuser » : le système ouvre une boîte de dialogue pour saisir un motif de refus puis traite la demande comme rejetée.
 \item Un compte avec le même e-mail existe déjà : le système signale le conflit et empêche la création d'un doublon.
 \item La demande a déjà été traitée : le système affiche un message d'information et empêche une nouvelle validation.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
 \textbf{Scénarios d'exception} &
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
@@ -328,7 +328,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 % \hline
 % \textbf{Postconditions} & Liste des utilisateurs affichée \\
 % \hline
-% \textbf{Scénario principal} &
+% \textbf{Scénario nominal} &
 % \begin{minipage}[t]{\linewidth}
 % \begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
 %     \item L'administrateur accède à la section "Utilisateurs".
@@ -338,7 +338,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 % \end{enumerate}
 % % \end{minipage} \\
 % \hline
-% \textbf{Scénarios alternatifs} & L'administrateur clique sur le bouton « Exporter ». \\
+% \textbf{Scénario alternatif} & L'administrateur clique sur le bouton « Exporter ». \\
 % \hline
 % \end{longtable}
 % \normalsize
@@ -365,7 +365,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Postconditions} & Utilisateur est ajouté \\
 \hline
-\textbf{Scénario principal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
     \item L'administrateur clique sur le bouton "Nouvel Utilisateur".
@@ -383,7 +383,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \item L'administrateur tente de fermer la fenêtre alors qu'il a commencé à saisir des données.
 \end{itemize} \\
 \hline
-\textbf{Scénarios alternatifs} & Le système génère un mot de passe temporaire. \\
+\textbf{Scénario alternatif} & Le système génère un mot de passe temporaire. \\
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle « Ajouter utilisateur »} 
@@ -413,7 +413,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Postconditions} & Le compte est désactivé \\
 \hline
-\textbf{Scénario principal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
     \item L'administrateur choisit un compte dans la liste.
@@ -426,7 +426,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} & L'administrateur réassigne les tickets ou les demandes. \\
+\textbf{Scénario alternatif} & L'administrateur réassigne les tickets ou les demandes. \\
 \hline
 \textbf{Scénarios d'exception} &
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
@@ -460,7 +460,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Postconditions} & Le Profil est modifié \\
 \hline
-\textbf{Scénario principal pour Modifier le profil d'un utilisateur} &
+\textbf{Scénario nominal pour Modifier le profil d'un utilisateur} &
 \begin{minipage}[t]{\linewidth}
 \begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
     \item L'administrateur accède au profil de l'utilisateur.
@@ -470,7 +470,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénario principal pour Modifier son propre profil} &
+\textbf{Scénario nominal pour Modifier son propre profil} &
 \begin{minipage}[t]{\linewidth}
 \begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
     \item L'utilisateur accède à sa page "Mon profil".
@@ -527,7 +527,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Postconditions} & Le rôle est archivé \\
 \hline
-\textbf{Scénario principal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
 \item L'administrateur sélectionne un rôle dans la liste.
@@ -542,7 +542,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Scénarios d'exception} & Le rôle est encore assigné à des utilisateurs. \\
 \hline
-\textbf{Scénarios alternatifs} & L'administrateur restaure un rôle archivé. \\
+\textbf{Scénario alternatif} & L'administrateur restaure un rôle archivé. \\
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle « Archiver rôle »} 
@@ -573,7 +573,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Postconditions} & Le rôle est attribué à l'utilisateur \\
 \hline
-\textbf{Scénario principal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
 \item L'administrateur consulte le profil d'un utilisateur.
@@ -592,7 +592,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} & L'administrateur peut aussi attribuer le rôle depuis les détails du rôle en sélectionnant un ou plusieurs utilisateurs à qui l'attribuer. \\
+\textbf{Scénario alternatif} & L'administrateur peut aussi attribuer le rôle depuis les détails du rôle en sélectionnant un ou plusieurs utilisateurs à qui l'attribuer. \\
 \hline
 \textbf{Scénarios d'exception} &
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
@@ -627,7 +627,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Postconditions} & Le rôle est retiré de l'utilisateur \\
 \hline
-\textbf{Scénario principal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
 \item L'administrateur consulte le profil d'un utilisateur.
@@ -687,7 +687,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Postconditions} & Liste des permissions affichée \\
 \hline
-\textbf{Scénario principal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
 \item L'administrateur accède à la section "Permissions".
@@ -697,11 +697,11 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item L'administrateur sélectionne la vue "Par rôle" pour afficher une liste des rôles avec leurs permissions respectives organisées par catégorie.
 \item L'administrateur clique sur le bouton « Exporter » pour télécharger la matrice des permissions.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle « Consulter liste permissions »} 
@@ -733,7 +733,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Postconditions} & La permission est ajoutée au rôle \\
 \hline
-\textbf{Scénario principal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
 \item L'administrateur consulte un rôle spécifique.
@@ -746,7 +746,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} & L'administrateur utilise la matrice des permissions pour cocher les cases correspondant aux permissions à attribuer pour plusieurs rôles simultanément. \\
+\textbf{Scénario alternatif} & L'administrateur utilise la matrice des permissions pour cocher les cases correspondant aux permissions à attribuer pour plusieurs rôles simultanément. \\
 \hline
 \textbf{Scénarios d'exception} & La permission est déjà attribuée au rôle. \\
 \hline
