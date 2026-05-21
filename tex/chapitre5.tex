@@ -961,7 +961,7 @@ La figure suivante présente le diagramme de séquence du cas d’utilisation «
 
 \begin{figure}[htbp]
     \centering
-    %\includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_seq_soumettre_demande.png}
+    \includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/Soumission demande.vpd.png}
     \caption{Diagramme de séquence du cas d'utilisation « Soumettre une demande »}
     \label{fig:seq_soumettre_demande}
 \end{figure}
@@ -1018,24 +1018,30 @@ Le schéma relationnel du sprint 3 s’appuie sur les entités suivantes :
 Dans le cadre du présent sprint, l'intégration de l'intelligence artificielle a été traitée comme une décision de conception. L'objectif principal est d'automatiser et d'assister plusieurs étapes du cycle de traitement des demandes : qualification initiale, priorisation, analyse des blocages et capitalisation des connaissances.
 
 \subsubsection{Choix du modèle}
+Le choix des LLM repose sur leur capacité à saisir l'intention réelle d'une demande sans nécessiter de phase d'apprentissage sur des données massives. Cette technologie offre une précision proche de l'humain et une flexibilité immédiate, constituant une solution opérationnelle qui simplifie l'évolution et la maintenance du système.
+\newline
 Le modèle retenu pour l'expérimentation est LLaMA~3.3 (70B), exploité via l'API Groq Cloud. Ce choix se justifie par la qualité des réponses en langue française technique, la possibilité d'obtenir des sorties structurées (format JSON) pour une intégration automatisée, des temps de latence compatibles avec l'usage interactif et une tarification permettant une phase d'évaluation sans investissement initial significatif.
 
 \subsubsection{Fonctionnalités attendues}
-Les fonctions couvertes par le composant IA sont notamment :
+Les fonctions couvertes par le composant d'intelligence artificielle sont les suivantes :
+
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
-\item classification automatique des demandes (type et priorité) ;
-\item extraction d'entités et détection d'indices d'urgence ou de complexité ;
-\item analyse des blocages avec proposition de pistes de résolution et génération d'un brouillon d'article pour la base de connaissances ;
-\item recommandation d'articles ou de solutions pertinentes à partir du contexte du ticket.
+\item L'analyse automatique des blocages rencontrés par les développeurs, permettant d'identifier rapidement les problèmes critiques et d'en faciliter la résolution ;
+\item La proposition d'actions correctives adaptées à chaque situation de blocage, afin d'accélérer le déblocage des développeurs et de réduire les temps d'immobilisation ;
+\item La génération automatique d'un brouillon de solution pour assister les développeurs dans la documentation de leurs résolutions et faciliter la capitalisation des connaissances ;
+\item La classification intelligente des demandes clients, incluant le type, la priorité et la catégorie, soumise à validation du chef de projet avant transmission au client ;
+\item La structuration automatique des solutions brutes en articles de base de connaissances, favorisant la standardisation et la réutilisabilité de l'information ;
+\item La fusion automatique de l'analyse IA et de la solution humaine pour chaque blocage résolu, produisant ainsi des articles de connaissance consolidés et directement exploitables.
 \end{itemize}
 
 \subsubsection{Robustesse opérationnelle et gouvernance}
 Afin d'assurer la fiabilité et la conformité du service, l'intégration s'appuie sur plusieurs garde‑fous :
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
-\item mise en place d'un cache pour diminuer le nombre d'appels externes et réduire la latence ;
-\item mécanismes de repli : basculement vers une classification manuelle ou fondée sur des règles lorsque le score de confiance est insuffisant ou en cas d'indisponibilité du service externe ;
-\item limitation des appels et quota par utilisateur pour respecter les plafonds et prévenir les usages abusifs ;
-\item traçabilité complète des suggestions IA (métadonnées, modèle, version, score de confiance) afin de permettre des audits et d'alimenter le processus de feedback et d'amélioration continue.
+\item anonymisation et protection de la confidentialité : détection et masquage automatique des données sensibles (PII) avant transmission aux APIs externes, garantissant la sécurité des données clients ;
+\item mise en place d'un cache système : réduction du nombre d'appels externes et de la latence par la mémorisation des classifications récurrentes ;
+\item intégration de mécanismes de repli : basculement automatique vers des règles métiers ou une révision humaine en cas d'indisponibilité ou d'incertitude de l'IA ;
+\item limitation des flux et des quotas : régulation des appels par utilisateur pour prévenir les usages abusifs et respecter les limites de l'API ;
+\item maintien d'une traçabilité complète : archivage systématique des métadonnées décisionnelles (modèle, score, raisonnement) pour l'audit et l'amélioration continue .
 \end{itemize}
 
 \subsubsection{Apport métier}
