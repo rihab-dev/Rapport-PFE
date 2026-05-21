@@ -38,27 +38,23 @@ US39 & En tant que \textbf{chef de projet}, je souhaite consulter les demandes e
 \item Développer la récupération des demandes visibles par le chef de projet
 \item Filtrer les demandes selon le statut et le périmètre du projet
 \item Implémenter le tri par date de création et priorité
-\item Ajouter un indicateur visuel pour les demandes urgentes
-\item Créer la vue liste ou Kanban côté Next.js
+\item Créer la vue liste,vue calendrier ou Kanban côté Next.js
 \end{itemize} & 2 \\
 \hline
 
 US40 & En tant que \textbf{chef de projet}, je souhaite valider une demande afin de la convertir en ticket. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint \textbf{PATCH /api/demandes/:id/valider}
-\item Contrôler les permissions du validateur
-\item Vérifier l'existence d'un contrat actif pour le projet
+\item L'assignation du ticket est effectuée.
 \item Créer automatiquement un ticket lié à la demande
-\item Transférer les pièces jointes vers le ticket
 \item Notifier le client de la validation
-\item L'assignation du ticket est effectuée ensuite dans le module tickets
 \end{itemize} & 2 \\
 \hline
 
 US41 & En tant que \textbf{chef de projet}, je souhaite demander des informations complémentaires afin de clarifier une demande. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint \textbf{PATCH /api/demandes/:id/demander-infos}
-\item Notifier le client par email et notification interne
+\item Notifier le client.
 \item Mettre la demande en attente de réponse
 \item Tracer l'opération dans l'historique
 \end{itemize} & 2 \\
@@ -93,20 +89,13 @@ US44 & En tant qu'\textbf{utilisateur}, je souhaite commenter une demande afin d
 \end{itemize} & 2 \\
 \hline
 
-US45 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique d'une demande afin de suivre son évolution. &
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'affichage du détail d'une demande dans Next.js
-\item S'appuyer sur l'endpoint \textbf{GET /api/demandes/:id}
-\item Présenter la timeline des événements
-\item Permettre la consultation de l'évolution de la demande
-\end{itemize} & 1 \\
-\hline
+
 
 % Epic 9: Gestion des tickets
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 9 - Gestion des tickets}} \\
 \hline
 
-US46 & En tant que \textbf{développeur}, je souhaite visualiser mes tickets dans un tableau Kanban afin de gérer mes tâches. &
+US46 & En tant que \textbf{Chef de Projet ou Administrateur}, je souhaite visualiser et gérer l'ensemble des tickets dans un tableau Kanban afin de modifier leurs statuts et d'organiser efficacement le flux de travail. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint \textbf{GET /api/tickets/kanban}
 \item Restituer les tickets groupés par statut
@@ -120,8 +109,6 @@ US47 & En tant que \textbf{chef de projet}, je souhaite assigner un ticket à un
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint \textbf{POST /api/tickets/:id/assign}
 \item Développer l'endpoint \textbf{GET /api/tickets/:id/available-developers}
-\item Vérifier la permission d'assignation
-\item Contrôler la charge de travail du développeur cible
 \item Empêcher les doublons d'assignation
 \item Notifier le développeur assigné
 \item L'assignation est effectuée après validation de la demande
@@ -160,6 +147,7 @@ US50 & En tant que \textbf{développeur}, je souhaite démarrer un chronomètre 
 US51 & En tant que \textbf{développeur}, je souhaite mettre en pause mon chronomètre afin de gérer les interruptions. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint \textbf{POST /api/tickets/chrono/pause/:assignmentId}
+\item Obliger la sélection d'un motif de pause 
 \item Suspendre la session en cours
 \item Conserver le temps déjà consommé
 \item Permettre la reprise ultérieure
@@ -306,7 +294,7 @@ US65 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique compl
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 16 - Assistance intelligente (IA)}} \\
 \hline
 
-US105 & En tant que \textbf{chef de projet}, je souhaite que l'IA analyse automatiquement les blocages afin d'identifier rapidement les problèmes critiques. &
+US103 & En tant que \textbf{chef de projet}, je souhaite que l'IA analyse automatiquement les blocages afin d'identifier rapidement les problèmes critiques. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Intégrer l'API Groq (LLaMA 3.3-70B)
 \item Développer \textbf{BlocageAnalysisService.analyzeBlocage()}
@@ -316,7 +304,7 @@ US105 & En tant que \textbf{chef de projet}, je souhaite que l'IA analyse automa
 \end{itemize} & 3 \\
 \hline
 
-US106 & En tant que \textbf{chef de projet}, je souhaite que l'IA propose des actions correctives afin de débloquer rapidement un développeur. &
+US104 & En tant que \textbf{chef de projet}, je souhaite que l'IA propose des actions correctives afin de débloquer rapidement un développeur. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer \textbf{BlocageAnalysisService.suggestSolutions()}
 \item Proposer plusieurs solutions classées par pertinence
@@ -326,7 +314,7 @@ US106 & En tant que \textbf{chef de projet}, je souhaite que l'IA propose des ac
 \end{itemize} & 3 \\
 \hline
 
-US107 & En tant que \textbf{développeur}, je souhaite qu'un brouillon de solution soit généré à la fermeture d'un ticket afin de faciliter la documentation. &
+US105 & En tant que \textbf{développeur}, je souhaite qu'un brouillon de solution soit généré à la fermeture d'un ticket afin de faciliter la documentation. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer \textbf{AIResolutionService.generateSolutionDraft()}
 \item Analyser l'historique des commentaires du ticket
@@ -336,7 +324,7 @@ US107 & En tant que \textbf{développeur}, je souhaite qu'un brouillon de soluti
 \end{itemize} & 3 \\
 \hline
 
-US108 & En tant que \textbf{chef de projet}, je souhaite que l'IA propose une classification des demandes clients afin d'accélérer leur traitement. &
+US106 & En tant que \textbf{chef de projet}, je souhaite que l'IA propose une classification des demandes clients afin d'accélérer leur traitement. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer \textbf{DemandeClassifierService.classifyDemande()}
 \item Proposer un type et une priorité
@@ -346,7 +334,7 @@ US108 & En tant que \textbf{chef de projet}, je souhaite que l'IA propose une cl
 \end{itemize} & 3 \\
 \hline
 
-US109 & En tant que \textbf{développeur}, je souhaite que l'IA me recommande des articles de la base de connaissances afin de résoudre plus vite. &
+US107 & En tant que \textbf{développeur}, je souhaite que l'IA me recommande des articles de la base de connaissances afin de résoudre plus vite. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer \textbf{KbRecommenderService.getSuggestionsForTicket()}
 \item Analyser le titre, la description et la catégorie du ticket
@@ -356,7 +344,7 @@ US109 & En tant que \textbf{développeur}, je souhaite que l'IA me recommande de
 \end{itemize} & 2 \\
 \hline
 
-US110 & En tant que \textbf{chef de projet}, je souhaite que l'IA structure automatiquement les solutions saisies en articles KB afin d'améliorer la documentation. &
+US108 & En tant que \textbf{chef de projet}, je souhaite que l'IA structure automatiquement les solutions saisies en articles KB afin d'améliorer la documentation. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer \textbf{KbRefinerService.refineSolution()}
 \item Transformer la solution brute en article structuré
@@ -366,7 +354,7 @@ US110 & En tant que \textbf{chef de projet}, je souhaite que l'IA structure auto
 \end{itemize} & 2 \\
 \hline
 
-US111 & En tant que \textbf{chef de projet}, je souhaite que l'IA fusionne le brouillon d'un blocage avec la solution humaine afin de produire un article KB définitif. &
+US109 & En tant que \textbf{chef de projet}, je souhaite que l'IA fusionne le brouillon d'un blocage avec la solution humaine afin de produire un article KB définitif. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer \textbf{KbMergerService.mergeAnalysisWithSolution()}
 \item Fusionner le brouillon IA avec la solution humaine
