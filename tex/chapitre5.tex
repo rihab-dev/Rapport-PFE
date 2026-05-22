@@ -1186,114 +1186,52 @@ Afin de garantir la qualité de l’implémentation, une stratégie de tests à 
 \subsection{Tests unitaires}
 Les tests unitaires du troisième sprint ont été organisés par composant fonctionnel pour assurer une meilleure traçabilité. Exécutés en environnement isolé avec des mocks pour les dépendances externes, ils valident la logique métier critique du sprint : classification IA, cache MD5, mécanismes de reprise, fallback, gestion des tickets, limitation de débit, calcul des SLA et contrôle des transitions autorisées.
 
-\noindent\textbf{Synthèse (tableau)}: le tableau ci‑dessous récapitule, par composant, les objectifs testés, le statut général et les observations clés. Les captures d'écran d'exécution sont présentées après chaque composant pour attester des runs locaux.
+\noindent\textbf{Synthèse :} La synthèse suivante présente, par composant, les objectifs testés, le statut général et les observations clés (extraits des runs locaux).
 
-\begin{longtable}{|p{3.2cm}|p{6.0cm}|p{2.5cm}|p{3.8cm}|}
-\caption{Récapitulatif des tests unitaires -- Sprint 3}\\
-\hline
-\textbf{Composant} & \textbf{Objectifs testés} & \textbf{Statut} & \textbf{Observations clés} \\
-\hline
-\endfirsthead
-\hline
-\textbf{Composant} & \textbf{Objectifs testés} & \textbf{Statut} & \textbf{Observations clés} \\
-\hline
-\endhead
-\hline
-\multicolumn{4}{|r|}{\textit{Suite à la page suivante}} \\
-\hline
-\endfoot
-\hline
-\endlastfoot
+\subsubsection*{LLM (Classification IA) — Retry / Backoff}
+\textbf{Objectifs testés :} Chaîne complète LLM — prétraitement, appel externe, post-traitement, fallback sur faible confiance ; politique de retry exponentiel face aux erreurs transitoires de l'API LLM.
+\newline\textbf{Statut :} Couvert.
+\newline\textbf{Observations clés :} Tests couvrant succès, échecs réseau et faible confiance ; réessais validés avec attente simulée.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{Images/llm_retry_backoff.png}
+\end{figure}
 
-% Ligne 1 : LLM
-LLM (Classification IA) \& Retry/Backoff 
-& Chaîne complète LLM : prétraitement, appel externe, post-traitement, fallback sur faible confiance ; Politique de retry exponentiel face aux erreurs transitoires de l'API LLM 
-& Couvert 
-& Tests couvrant succès, échecs réseau et faible confiance ; réessais validés avec attente simulée \\
-\hline
-\multicolumn{4}{|c|}{%
-  \begin{minipage}{0.9\linewidth}
-    \centering
-    \includegraphics[width=0.7\linewidth]{example-image} % Remplacer par Images/llm_retry_backoff.png
-  \end{minipage}%
-} \\
-\hline
+\subsubsection*{Cache MD5}
+\textbf{Objectifs testés :} Hashing de texte, mise en cache, TTL/expiration.
+\newline\textbf{Statut :} Couvert.
+\newline\textbf{Observations clés :} Cache hit évite appel externe ; expiration testée via mock temps.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{Images/cache_md5.png}
+\end{figure}
 
-% Ligne 2 : Cache MD5
-Cache MD5 
-& Hashing texte, mise en cache, TTL/expiration 
-& Couvert 
-& Cache hit évite appel externe ; expiration testée via mock temps \\
-\hline
-\multicolumn{4}{|c|}{%
-  \begin{minipage}{0.9\linewidth}
-    \centering
-    \includegraphics[width=0.8\linewidth]{example-image} % Remplacer par Images/cache_md5.png
-  \end{minipage}%
-} \\
-\hline
+\subsubsection*{Création / Assignation / Statuts (Workflow tickets)}
+\textbf{Objectifs testés :} Flux métier complet et effets secondaires (création, assignation, transitions d'état).
+\newline\textbf{Statut :} Couvert.
+\newline\textbf{Observations clés :} Validations métier et contraintes de transition testées.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{Images/ticket_workflow.png}
+\end{figure}
 
-% Ligne 3 : Fallback mots-clés
-Fallback mots‑clés 
-& Repli déterministe si score IA insuffisant 
-& Couvert 
-& Marquage « fallback » et cohérence métier vérifiés \\
-\hline
-% (Image commentée dans votre code d'origine, je laisse vide)
-% Si vous souhaitez une image, décommentez le bloc suivant :
-% \multicolumn{4}{|c|}{%
-%   \begin{minipage}{0.9\linewidth}
-%     \centering
-%     \includegraphics[width=0.8\linewidth]{Images/fallback_keywords.png}
-%     \captionof{figure}{Test du fallback par mots-clés}
-%     \label{fig:fallback}
-%   \end{minipage}%
-% } \\
-% \hline
+\subsubsection*{Rate limiting}
+\textbf{Objectifs testés :} Quotas par utilisateur et global, remise à zéro planifiée.
+\newline\textbf{Statut :} Couvert.
+\newline\textbf{Observations clés :} Comptage et refus au seuil vérifiés ; timer reset adapté aux tests.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{Images/rate_limiting.png}
+\end{figure}
 
-% Ligne 4 : Workflow tickets
-Création / Assignation / Statuts 
-& Flux métier complet et effets secondaires 
-& Couvert 
-& Validations métier et contraintes de transition testées \\
-\hline
-\multicolumn{4}{|c|}{%
-  \begin{minipage}{0.9\linewidth}
-    \centering
-    \includegraphics[width=0.7\linewidth]{example-image} % Remplacer par Images/ticket_workflow.png
-  \end{minipage}%
-} \\
-\hline
-
-% Ligne 5 : Rate limiting
-Rate limiting 
-& Quotas par utilisateur et global, remise à zéro planifiée 
-& Couvert 
-& Comptage et refus au seuil vérifiés ; timer reset adapté aux tests \\
-\hline
-\multicolumn{4}{|c|}{%
-  \begin{minipage}{0.9\linewidth}
-    \centering
-    \includegraphics[width=0.8\linewidth]{example-image} % Remplacer par Images/rate_limiting.png
-  \end{minipage}%
-} \\
-\hline
-
-% Ligne 6 : Calcul SLA
-Calcul SLA 
-& Minutes ouvrées, ajout de minutes ouvrées, jours fériés 
-& Couvert 
-& Scénarios 24/7 vs ouvrés et traversée jours fériés testés \\
-\hline
-\multicolumn{4}{|c|}{%
-  \begin{minipage}{0.9\linewidth}
-    \centering
-    \includegraphics[width=0.7\linewidth]{example-image} % Remplacer par Images/sla_deadline.png
-  \end{minipage}%
-} \\
-\hline
-
-\end{longtable}
+\subsubsection*{Calcul SLA}
+\textbf{Objectifs testés :} Minutes ouvrées, ajout de minutes ouvrées, jours fériés et traversée de plages non ouvrées.
+\newline\textbf{Statut :} Couvert.
+\newline\textbf{Observations clés :} Scénarios 24/7 vs ouvrés et traversée jours fériés testés.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{Images/sla_deadline.png}
+\end{figure}
 
 \subsection{Tests d’intégration}
 Les tests d’intégration ont été réalisés sur les endpoints principaux du sprint :
