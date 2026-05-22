@@ -80,15 +80,15 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \hline
 \textbf{Scénarios alternatifs} &
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item  L'utilisateur choisit l'onglet OAuth, lance l'authentification. Si le compte existe, il est authentifié sans mot de passe.
 \item  Si l'adresse e-mail ou le mot de passe est invalide, le système affiche une erreur. L'utilisateur corrige ses identifiants et retente la connexion.
+\item La période de verrouillage de 1 minute est écoulée. L'utilisateur retente la connexion. Le système constate que le déverrouillage est automatique, réactive le compte et autorise une nouvelle tentative.
 \end{itemize} \\
 \hline
 \textbf{Scénarios d'exception} &
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
 \item  Après 3 tentatives échouées, le système affiche \texttt{401 Unauthorized} et le compte est verrouillé strictement pendant 1 minute. Aucune action de l'utilisateur ne permet de forcer l'entrée.
 \item  Le compte a été révoqué. Le système bloque impérativement la connexion.
-\item  La demande d'inscription OAuth est en EN ATTENTE. L'accès est bloqué tant qu'un administrateur n'a pas validé.
+\item  La demande d'inscription OAuth est en « en attente ». L'accès est bloqué tant qu'un administrateur n'a pas validé.
 \end{itemize} \\
 \hline
 \end{longtable}
@@ -99,7 +99,7 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \vspace{-0.3cm}
 
 
-\subsection{Description textuelle de cas d'utilisation « Changer mot de passe »}
+\subsection{Description textuelle du cas d'utilisation « Changer mot de passe »}
 La figure ci-dessous présente la description textuelle du cas d'utilisation « Changer le mot de passe » :
 
 \footnotesize
@@ -155,7 +155,7 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 Dans cette partie, nous allons présenter les cas d'utilisation raffinés relatifs à la demande d'accès via fournisseur externe afin de comprendre les différentes étapes du processus d'inscription et d'authentification.
 
 \subsubsection{Raffinement de cas d'utilisation « S'inscrire »}
-Au cours de cette partie, nous allons analyser les sous-cas d'utilisation pour le processus d'authentification OAuth :
+Au cours de cette partie, nous allons analyser les sous-cas d'utilisation pour le processus l'inscription.
 
 \begin{figure}[htbp]
         \centering
@@ -164,7 +164,7 @@ Au cours de cette partie, nous allons analyser les sous-cas d'utilisation pour l
         \label{fig:oauth_refinement}
 \end{figure}
 
-\subsubsection{Description textuelle de cas d'utilisation « Soumettre demande d'inscription »}
+\subsubsection{Description textuelle du cas d'utilisation « Demander inscription »}
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -184,15 +184,18 @@ Au cours de cette partie, nous allons analyser les sous-cas d'utilisation pour l
 \hline
 \textbf{Préconditions} & Le visiteur n'a pas de compte existant dans le système et se trouve sur la page d'authentification. \\
 \hline
-\textbf{Postconditions} & La demande d'inscription est créée (\textbf{EN\_ATTENTE}), ou le visiteur est connecté s'il possède déjà un accès. \\
+\textbf{Postconditions} & La demande d'inscription est créée (« en attente »), ou le visiteur est connecté s'il possède déjà un accès. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
-\item Le visiteur choisit son rôle sur la page de connexion, puis sélectionne un fournisseur externe (Google/GitHub).
+\item Le système affiche le formulaire de connexion avec les onglets \textit{Connexion} et \textit{Inscription OAuth}.
+\item L'utilisateur choisit l'onglet \textit{Inscription OAuth}.
+\item Le visiteur choisit son rôle sur la page de connexion.
+\item Le visiteur sélectionne un fournisseur externe (Google/GitHub).
 \item Le visiteur est redirigé vers le fournisseur pour s'authentifier et autoriser l'accès à son profil.
 \item De retour sur l'application, le système réceptionne les données OAuth et vérifie l'inexistence d'un compte actif.
-\item Le système crée la demande d'inscription avec le statut \textit{EN ATTENTE}.
+\item Le système crée la demande d'inscription avec le statut \textit{en attente}.
 \item Le système notifie l'équipe d'administration (via e-mail et notification interne).
 \item Le système confirme au visiteur par e-mail que la demande est en cours d'examen et affiche l'interface d'attente.
 \end{enumerate}
@@ -216,61 +219,6 @@ Au cours de cette partie, nous allons analyser les sous-cas d'utilisation pour l
 }
 \normalsize
 \vspace{-0.3cm}
-
-
-\subsubsection{Description textuelle de cas d'utilisation « Valider demande »}
-
-\footnotesize
-\renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-\textbf{Nom du cas d'utilisation} & Valider demande \\
-\hline
-\textbf{Acteurs} & Administrateur \\
-\hline
-\textbf{Préconditions} & L'administrateur est authentifié et possède la permission de traiter les demandes d'inscription \\
-\hline
-\textbf{Postconditions} & Le compte utilisateur est créé et activé, la demande est marquée \textit{APPROUVEE}, et l'utilisateur est notifié \\
-\hline
-\textbf{Scénario principal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
-\item L'administrateur accède au module de gestion des demandes d'inscription.
-\item Le système affiche la liste des demandes en attente.
-\item L'administrateur sélectionne une demande à traiter.
-\item Le système affiche les informations du demandeur récupérées via OAuth.
-\item L'administrateur clique sur « Approuver ».
-\item Le système crée le compte utilisateur à partir des informations de la demande.
-\item Le système attribue le rôle correspondant à l'utilisateur.
-\item Le système marque la demande comme \textit{APPROUVEE}.
-\item Le système envoie un e-mail de confirmation à l'utilisateur.
-\item Le système affiche un message de succès à l'administrateur.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item  L'administrateur choisit de refuser l'accès. Il saisit un motif de refus qui remplace l'approbation, la demande est alors rejetée.
-\item  Le système détecte qu'il manque un champ essentiel. L'administrateur saisit l'information manquante et valide à nouveau la demande.
-\end{itemize} \\
-\hline
-\textbf{Scénarios d'exception} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item  L'e-mail de la demande est déjà attribué à un compte actif dans le système. L'application bloque automatiquement la conversion pour cause d'unicité.
-\item  Une autre session a déjà statué sur cette demande, le clic de validation échoue définitivement.
-\end{itemize} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle « Valider demande »} 
-\normalsize
-
 
 \subsection{Analyse de la fonctionnalité « Gérer utilisateurs »}
 Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des utilisateurs afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
@@ -388,14 +336,14 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} & Administrateur \\
 \hline
-\textbf{Préconditions} & L'administrateur est authentifié, possède la permission requise, et le compte visé est Actif. \\
+\textbf{Préconditions} & L'administrateur est authentifié, possède la permission requise, et le compte visé est actif. \\
 \hline
 \textbf{Postconditions} & Le compte devient inactif et l'utilisateur en est notifié par e-mail. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
-    \item L'administrateur sélectionne un compte Actif dans la liste.
+    \item L'administrateur sélectionne un compte actif dans la liste.
     \item Il clique sur l'action « Désactiver ».
     \item Le système vérifie si l'utilisateur possède des tickets actifs (aucun trouvé).
     \item Le système affiche une confirmation simple.
@@ -407,7 +355,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \textbf{Scénarios alternatifs} &
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
 \item  L'utilisateur ciblé possède des tickets actifs. Le système ouvre une modale de réassignation. L'administrateur répartit les tickets, puis valide, permettant à la désactivation d'aboutir.
-\item  L'administrateur décide finalement de fermer la fenêtre modale (Annuler). L'opération s'interrompt proprement, le compte reste Actif.
+\item  L'administrateur décide finalement de fermer la fenêtre modale (Annuler). L'opération s'interrompt proprement, le compte reste actif.
 \end{itemize} \\
 \hline
 
@@ -462,6 +410,59 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle « Modifier le Profil »} 
+\normalsize
+\vspace{-0.3cm}
+\subsubsection{Description textuelle de cas d'utilisation « Valider demande »}
+
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Valider demande \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Préconditions} & L'administrateur est authentifié et possède la permission de traiter les demandes d'inscription \\
+\hline
+\textbf{Postconditions} & Le compte utilisateur est créé et activé, la demande est marquée \textit{approuvée}, et l'utilisateur est notifié \\
+\hline
+\textbf{Scénario principal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
+\item L'administrateur accède au module de gestion des demandes d'inscription.
+\item Le système affiche la liste des demandes en attente.
+\item L'administrateur sélectionne une demande à traiter.
+\item Le système affiche les informations du demandeur récupérées via OAuth.
+\item L'administrateur clique sur « Approuver ».
+\item Le système crée le compte utilisateur à partir des informations de la demande.
+\item Le système attribue le rôle correspondant à l'utilisateur.
+\item Le système marque la demande comme « approuvée ».
+\item Le système envoie un e-mail de confirmation à l'utilisateur.
+\item Le système affiche un message de succès à l'administrateur.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} &
+\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\item  L'administrateur choisit de refuser l'accès. Il saisit un motif de refus qui remplace l'approbation, la demande est alors rejetée.
+\item  Le système détecte qu'il manque un champ essentiel. L'administrateur saisit l'information manquante et valide à nouveau la demande.
+\end{itemize} \\
+\hline
+\textbf{Scénarios d'exception} &
+\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\item  L'e-mail de la demande est déjà attribué à un compte actif dans le système. L'application bloque automatiquement la conversion pour cause d'unicité.
+\item  Une autre session a déjà statué sur cette demande, le clic de validation échoue définitivement.
+\end{itemize} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle « Valider demande »} 
 \normalsize
 \vspace{-0.3cm}
 
@@ -1187,8 +1188,8 @@ d'un administrateur. Le cas suivant a été couvert :
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
   \item L'administrateur tente de désactiver un utilisateur actif
-    disposant de \textbf{9 tickets actifs} (statuts \texttt{OUVERT},
-    \texttt{EN\_COURS} ou \texttt{EN\_REVUE}) : le système affiche le
+    disposant de \textbf{9 tickets actifs} (statuts « ouverts »,
+    « en cours » ou « en revue ») : le système affiche le
     modal de réassignation présentant la liste des développeurs
     disponibles \textbf{triés par charge de travail croissante}.
     L'administrateur procède à la réassignation de chaque ticket, puis

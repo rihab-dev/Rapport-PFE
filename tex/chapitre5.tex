@@ -373,7 +373,7 @@ les scenario d'exception et alternatif corresspond bien aux ce qui est ? \subsub
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=2pt,label={$\bullet$}]
     \item Le système détecte des droits insuffisants. L'opération est rejetée et le cas d'utilisation est interrompu.
-    \item Le système détecte que la demande est finalisée (\texttt{CONVERTIE} ou \texttt{REJETEE}). La modification est interdite, une erreur est retournée et le cas d'utilisation s'interrompt.
+    \item Le système détecte que la demande est finalisée (« convertie » ou « rejetée »). La modification est interdite, une erreur est retournée et le cas d'utilisation s'interrompt.
 \end{itemize}
 \end{minipage} \\
 \hline
@@ -440,7 +440,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \textbf{Scénarios d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=2pt, label={$\bullet$}]
-\item Le système détecte que le ticket est dans un état final (ex: \texttt{RESOLU} ou \texttt{FERME}). Le chronomètre refuse de se lancer, affiche un message d'interdiction au développeur et le processus est interrompu.
+\item Le système détecte que le ticket est dans un état final (ex: « résolu » ou « fermé »). Le chronomètre refuse de se lancer, affiche un message d'interdiction au développeur et le processus est interrompu.
 \item Le système détecte que le développeur n'est plus le responsable assigné (ex: réassignation forcée). L'accès est instantanément refusé et le processus s'interrompt avec erreur.
 \end{itemize}
 \end{minipage} \\
@@ -1113,7 +1113,7 @@ L’architecture de cette version repose sur une séparation claire des responsa
 
 \subsection{Interface de gestion des demandes}
 L’interface de gestion des demandes a été enrichie afin de permettre au client de consulter ses demandes, de suivre leur statut et de visualiser les indicateurs d’intelligence artificielle associés à chaque demande.
-\par Le tableau Kanban des demandes permet une lecture rapide de l’avancement : \textit{EN\_ATTENTE}, \textit{INFOS\_REQUISES}, \textit{VALIDEE}, \textit{REJETEE} et \textit{CONVERTIE}. Cette représentation facilite la supervision du cycle de vie des demandes.
+\par Le tableau Kanban des demandes permet une lecture rapide de l’avancement : \textit{en attente}, \textit{informations requises}, \textit{validée}, \textit{rejetée} et \textit{convertie}. Cette représentation facilite la supervision du cycle de vie des demandes.
 
 \subsection{Interface de gestion des tickets}
 L’interface des tickets constitue le centre opérationnel du sprint. Elle permet :
@@ -1128,13 +1128,13 @@ L’interface des tickets constitue le centre opérationnel du sprint. Elle perm
 
 \subsection{Fonctionnement du tableau Kanban}
 Le tableau Kanban a été conçu comme un outil de pilotage visuel du flux de traitement des tickets.
-\par Les tickets sont répartis dans cinq colonnes correspondant aux statuts \textbf{OUVERT}, \textbf{EN\_COURS}, \textbf{EN\_REVUE}, \textbf{RESOLU} et \textbf{FERME}. Les cartes sont triées en priorité décroissante, puis selon leur ancienneté.
-\par Le déplacement d’un ticket entre deux colonnes n’est possible que si la transition est autorisée par le workflow métier. Par exemple, un ticket ne peut pas passer de \textbf{OUVERT} à \textbf{EN\_COURS} sans démarrage effectif du chronomètre, et un passage en \textbf{RESOLU} exige une solution documentée.
+\par Les tickets sont répartis dans cinq colonnes correspondant aux statuts « ouvert », « en cours », « en revue », « résolu » et « fermé ». Les cartes sont triées en priorité décroissante, puis selon leur ancienneté.
+\par Le déplacement d’un ticket entre deux colonnes n’est possible que si la transition est autorisée par le workflow métier. Par exemple, un ticket ne peut pas passer de « ouvert » à « en cours » sans démarrage effectif du chronomètre, et un passage en « résolu » exige une solution documentée.
 \par Cette approche garantit la cohérence des données et évite les modifications arbitraires de statut.
 
 \subsection{Gestion du suivi du temps}
 Le suivi du temps repose sur la notion de session de travail associée à une assignation.
-\par Lorsqu’un développeur ouvre son ticket, le système peut démarrer automatiquement le chronomètre et faire évoluer le statut du ticket vers \textbf{EN\_COURS}. Le temps est ensuite cumulé au fil des sessions, en prenant en compte les pauses et les reprises.
+\par Lorsqu’un développeur ouvre son ticket, le système peut démarrer automatiquement le chronomètre et faire évoluer le statut du ticket vers « en cours ». Le temps est ensuite cumulé au fil des sessions, en prenant en compte les pauses et les reprises.
 \par Cette fonctionnalité permet de mesurer le temps effectif passé sur un ticket et de comparer ce temps avec les échéances SLA définies dans le contrat.
 
 \subsection{Gestion des SLA}

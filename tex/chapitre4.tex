@@ -197,7 +197,7 @@ Pour Chef de projet : le client doit être associé à au moins un de ses projet
 \textbf{Préconditions} & L'utilisateur est authentifié.\newline
 L'utilisateur possède la permission de désactiver les clients.\newline
 Liste des clients affichée.\newline
-Le client à désactiver doit être actuellement Actif. \\
+Le client à désactiver doit être actuellement actif. \\
 \hline
 \textbf{Postconditions} & Le compte client est désactivé. \\
 \hline
@@ -318,7 +318,7 @@ L'utilisateur possède la permission de créer des contrats.\newline
 La liste des contrats est accessible. \\
 \hline
 \textbf{Postconditions} &
-Le contrat est enregistré avec le statut ACTIF et une référence générée automatiquement.\newline
+Le contrat est enregistré avec le statut « actif » et une référence générée automatiquement.\newline
 Le contrat est visible dans la liste des contrats et lié au client sélectionné. \\
 \hline
 \textbf{Scénario nominal} &
@@ -393,8 +393,8 @@ Le motif d'archivage est enregistré et associé au contrat. \\
 \item L'administrateur sélectionne plusieurs contrats expirés et clique sur « Archiver la sélection » le système archive tous les contrats éligibles et affiche le nombre de contrats archivés avec succès.
 \item Le motif saisi contient moins de 10 caractères le bouton de confirmation reste désactivé, l'administrateur complète le motif et \textbf{reprend à l'étape 4}.
 \item Le système signale que le contrat est toujours actif l'administrateur revient à la liste et sélectionne un contrat expiré.
-\item Le système indique que le projet associé est en statut EN MAINTENANCE l'administrateur clôture d'abord le projet, puis \textbf{reprend à l'étape 1}.
-\item Le système détecte des tickets en statut OUVERT, EN COURS ou EN REVUE liés au contrat l'administrateur résout ces tickets, puis \textbf{reprend à l'étape 1}.
+\item Le système indique que le projet associé est en statut de maintenance l'administrateur clôture d'abord le projet, puis \textbf{reprend à l'étape 1}.
+\item Le système détecte des tickets en statut « ouvert », « en cours » ou « en revue » liés au contrat l'administrateur résout ces tickets, puis \textbf{reprend à l'étape 1}.
 \end{itemize} \\
 \hline
 \end{longtable}
@@ -544,7 +544,7 @@ L'utilisateur est authentifié.\newline
 Le contrat est actif et appartient au client. \\
 \hline
 \textbf{Postconditions} &
-La demande de résiliation est enregistrée et le contrat passe au statut \texttt{RESILIATION\_EN\_ATTENTE}.\newline
+La demande de résiliation est enregistrée et le contrat passe au statut « résiliation en attente ».\newline
 L'administrateur est notifié par e-mail et notification interne. \\
 \hline
 \textbf{Scénario nominal} &
@@ -563,7 +563,7 @@ L'administrateur est notifié par e-mail et notification interne. \\
 \textbf{Scénarios alternatifs} &
 \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
 \item Le motif saisi contient moins de 10 caractères le bouton de confirmation reste désactivé, le client complète le motif et \textbf{reprend à l'étape 4}.
-\item Le bouton « Demander la résiliation » est masqué pour les contrats non actifs le client revient à la liste et sélectionne un contrat actif.
+\item Le bouton « Demander la résiliation » est masqué pour les contrats non actifs ; le client revient à la liste et sélectionne un contrat actif.
 \end{itemize} \\
 \hline
 \end{longtable}
@@ -862,10 +862,10 @@ Les tests End-to-End simulent les parcours utilisateurs complets dans un navigat
 \noindent Cette suite Playwright valide la robustesse du module de gestion des contrats :
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item \textbf{Création et Suivi (Admin/Client)} : L'administrateur crée un contrat via un formulaire multi-étapes. Le système calcule automatiquement le montant TTC, génère la référence unique et met à jour le statut à \texttt{ACTIF}. Le client peut ensuite consulter son contrat et vérifier les alertes d'expiration.
+  \item \textbf{Création et Suivi (Admin/Client)} : L'administrateur crée un contrat via un formulaire multi-étapes. Le système calcule automatiquement le montant TTC, génère la référence unique et met à jour le statut à « actif ». Le client peut ensuite consulter son contrat et vérifier les alertes d'expiration.
   \item \textbf{Sécurité et Anti-Doublon} : Validation de la logique de détection des doublons par hashage de fichier. Le système bloque l'upload d'un document PDF déjà associé à un autre projet actif.
   \item \textbf{Automatisation de Résiliation} : Simulation d'une résiliation par l'administrateur. Le test vérifie la mise à jour du statut et la \textbf{fermeture en cascade} automatique de tous les tickets de maintenance ouverts sur ce contrat.
-  \item \textbf{Workflow de Demande Client} : Le client soumet une demande de résiliation depuis son espace. Le test valide la transition vers l'état \texttt{RESILIATION\_EN\_ATTENTE} et la notification de l'administrateur.
+  \item \textbf{Workflow de Demande Client} : Le client soumet une demande de résiliation depuis son espace. Le test valide la transition vers l'état « résiliation en attente » et la notification de l'administrateur.
 \end{itemize}
 
 \begin{figure}[H]
@@ -883,7 +883,7 @@ Les tests End-to-End simulent les parcours utilisateurs complets dans un navigat
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
   \item \textbf{Onboarding avec Projets Livrés} : Validation de la création simultanée d'un compte client et de ses projets déjà finalisés. Le test confirme l'affectation automatique de l'équipe (Chef de projet et membres) et la mise à jour de leurs statistiques de performance (incrémentation des projets terminés).
-  \item \textbf{Intégrité et Cascade RH} : Vérification des règles métier interdisant la saisie de projets livrés avec des dates futures, et validation du statut automatique des membres (\texttt{TERMINE}) pour ces projets.
+  \item \textbf{Intégrité et Cascade RH} : Vérification des règles métier interdisant la saisie de projets livrés avec des dates futures, et validation du statut automatique des membres (« terminés ») pour ces projets.
 \end{itemize}
 
 \begin{figure}[H]
