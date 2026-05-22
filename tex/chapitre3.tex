@@ -1,61 +1,5 @@
-﻿\section*{Introduction}
-Dans le chapitre précédent, nous avons défini les besoins liés à notre solution et réparti les différentes tâches du projet afin que les phases de travail soient correctement planifiées.
-\newline Au cours de ce chapitre, nous présenterons les fonctionnalités liées  à la gestion des utilisateurs, à l'authentification et au contrôle d'accès basé sur les rôles (RBAC), retenues dans le cadre du premier sprint de notre projet.
-
-% ─────────────────────────────────────────────────────────────────────────────
-% SECTION 1 : BACKLOG DU SPRINT 1
-% ─────────────────────────────────────────────────────────────────────────────
-\section{Sprint Planning Meeting }
-La planification du sprint est essentielle à la réussite de notre solution, au bout de laquelle on clarifie les différentes fonctionnalités à implémenter lors du sprint à venir. Cette partie est efficace afin de préparer des objectifs clairs.
-L'objectif de ce sprint est de mettre en place les fondations fonctionnelles et
-sécuritaires de la solution, en implémentant les mécanismes d'authentification et
-de sécurisation des accès ainsi que les fonctionnalités de gestion des utilisateurs
-et de leurs profils. Il s'agit également d'assurer un contrôle efficace des accès
-et des permissions en introduisant l'administration du système à travers la gestion
-des comptes utilisateurs, des rôles et des permissions (RBAC).
-\subsection{Backlog du premier sprint}
-\label{sec:backlog_sprint1}
-
-Voici l'ensemble des fonctionnalités issues du Product Backlog, qui seront réalisées dans le cadre de ce sprint.
-\newline
-\textbf{1 : Effort faible, 2 : Effort moyen, 3 : Effort élevé}
-\input{tex/sprint_backlog_1}
-
-
-
-% ─────────────────────────────────────────────────────────────────────────────
-% SECTION 2 : ANALYSE
-% ─────────────────────────────────────────────────────────────────────────────
-
-\section{Analyse}
-Dans le processus de développement, l'analyse joue un rôle important ; elle permet d'identifier les exigences du système et de traduire les besoins exprimés en spécifications claires et cohérentes.
-C'est pour cela que nous allons présenter les diagrammes ainsi que les tableaux descriptifs des cas d'utilisation
-\label{sec:analyse_sprint1}
-
-\subsection{Diagramme des cas d'utilisation du premier sprint}
-
-La figure ci-dessous présente le diagramme de cas d'utilisation du premier sprint : 
-\begin{figure}[htbp]
-        \centering
-        \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/diagramme cas utilisation sprint1.png}
-        \caption{Diagramme des cas d'utilisation du premier sprint}
-        \label{fig:use_case_sprint1}
-\end{figure}
-
-Nous allons accompagner les cas d'utilisation d'un texte descriptif pour expliquer le scénario de chaque cas ainsi que ses exceptions.
-
-\subsection{Description textuelle du cas d'utilisation « S'authentifier »}
-La figure ci-dessous présente la description textuelle du cas d'utilisation « S'authentifier » :
-
-\footnotesize
-\renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
-\hline
-\textbf{Nom du cas d'utilisation} & S'authentifier \\
-\hline
-\textbf{Acteurs} & Utilisateur non authentifié \\
-\hline
-\textbf{Préconditions} & L'utilisateur possède un compte valide dans le système. \\
+﻿\normalsize
+\vspace{-0.3cm}
 \hline
 \textbf{Postconditions} & L'utilisateur est authentifié et accède à l'interface appropriée selon son rôle. Un jeton d'accès est généré en base de données. \\
 \hline
@@ -791,7 +735,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 % SECTION 3 : CONCEPTION
 % ─────────────────────────────────────────────────────────────────────────────
 
-\section{Diagramme de classes de premiére sprint}
+\section{Diagramme de classes du premiér sprint}
 
 \begin{figure}[htbp]
         \centering
