@@ -47,7 +47,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
   \label{fig:suivre_demandes}
 \end{figure}
 
-\subsection{Description textuelle de cas d'utilisation « Soumettre une demande »}
+\subsection{Description textuelle de cas d’utilisation « Soumettre une demande »}
 La figure ci-dessous présente la description textuelle du cas d’utilisation « Soumettre une demande ».
 
 \footnotesize
@@ -65,9 +65,9 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \hline
 \textbf{Acteurs} & Client \\
 \hline
-\textbf{Préconditions} & Le client est authentifié et possède au moins un projet couvert par un contrat actif. \\
+\textbf{Précondition} & Le client est authentifié et possède au moins un projet couvert par un contrat actif. \\
 \hline
-\textbf{Postconditions} & La demande est créée avec le statut « En attente », les pièces jointes éventuelles sont enregistrées et les acteurs concernés sont notifiés. \\
+\textbf{Postcondition} & La demande est créée avec le statut « En attente », les pièces jointes éventuelles sont enregistrées et les acteurs concernés sont notifiés. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -86,25 +86,25 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
+\textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le système signale que le projet sélectionné n'est plus éligible  le client sélectionne un autre projet actif et \textbf{reprend à l'étape 3}.
 \item Le système rejette le fichier (format non autorisé ou taille dépassée)  le client supprime le fichier, joint un fichier conforme et \textbf{reprend à l'étape 5}.
 \item Les fichiers joints sont associés à la demande et contrôlés par le système.
-\end{itemize}
+\end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios d'exception} &
+\textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item  Le client a déjà soumis une demande du même type sur le même projet dans les 24 heures  le système bloque la création de manière irréversible jusqu'à l'expiration du délai.
 \item Le nombre maximal de demandes en attente est atteint  le système refuse la soumission tant que des demandes existantes ne sont pas traitées.
-\end{itemize}
+\end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « Soumettre une demande »}
+\captionof{table}{Description textuelle de cas d’utilisation « Soumettre une demande »}
 \normalsize
 \vspace{-0.3cm}
 
@@ -125,9 +125,9 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \hline
 \textbf{Acteurs} & Client \\
 \hline
-\textbf{Préconditions} & Le client est authentifié, propriétaire de la demande, et la demande est au statut « Infos requises ». \\
+\textbf{Précondition} & Le client est authentifié, propriétaire de la demande, et la demande est au statut « Infos requises ». \\
 \hline
-\textbf{Postconditions} & La description complémentaire est enregistrée, la demande repasse au statut « En attente », une entrée de commentaire est créée et le chef de projet ainsi que les administrateurs sont notifiés. \\
+\textbf{Postcondition} & La description complémentaire est enregistrée, la demande repasse au statut « En attente », une entrée de commentaire est créée et le chef de projet ainsi que les administrateurs sont notifiés. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -142,23 +142,23 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
+\textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item \textbf{Envois successifs :} si la demande repasse au statut « Infos requises » suite à une nouvelle demande du responsable, le client peut soumettre un nouveau complément  chaque envoi est historisé et notifie les acteurs concernés.
-\end{itemize}
+\end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios d'exception} &
+\textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le statut de la demande a changé depuis l'ouverture du formulaire et n'est plus « Infos requises »  le système lève une exception bloquante et refuse l'opération.
 \item Une erreur technique survient lors de la persistance des données  le système informe le client d'un problème technique et l'opération est interrompue.
-\end{itemize}
+\end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « Compléter demande existante »}
+\captionof{table}{Description textuelle de cas d’utilisation « Compléter demande existante »}
 }
 \normalsize
 \vspace{-0.3cm}
@@ -174,7 +174,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
   \label{fig:gerer_demandes}
 \end{figure}
 
-\subsection{Description textuelle de cas d'utilisation « Valider demande »}
+\subsection{Description textuelle de cas d’utilisation « Valider demande »}
 La figure ci-dessous présente la description textuelle du cas d’utilisation « Valider udemande ».
 
 \footnotesize
@@ -192,9 +192,9 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \hline
 \textbf{Acteurs} & Chef de projet, Administrateur \\
 \hline
-\textbf{Préconditions} & La demande est au statut « En attente » ou « Infos requises ». L'acteur dispose de la permission de validation. \\
+\textbf{Précondition} & La demande est au statut « En attente » ou « Infos requises ». L'acteur dispose de la permission de validation. \\
 \hline
-\textbf{Postconditions} & La demande passe au statut « Convertie », un ticket est créé automatiquement avec le statut « Ouvert ». L'assignation du ticket sera effectuée ultérieurement de manière manuelle. \\
+\textbf{Postcondition} & La demande passe au statut « Convertie », un ticket est créé automatiquement avec le statut « Ouvert ». L'assignation du ticket sera effectuée ultérieurement de manière manuelle. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -211,21 +211,21 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le validateur modifie le type de demande et/ou la priorité avant de valider  les modifications sont enregistrées et historisées avec la validation.
 \item Si la priorité est reclassée en critique, un commentaire de justification est requis  le validateur saisit le commentaire et \textbf{reprend à l'étape 3}.
 \item Le commentaire saisi est trop court ou vide  le système signale l'erreur, le validateur complète le commentaire et \textbf{reprend à l'étape 3}.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
-\textbf{Scénarios d'exception} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\textbf{Scénario d'exception} &
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item La demande est déjà au statut « Convertie » ou « Rejetée »  le système lève une exception bloquante, aucune modification n'est possible.
 \item Aucun contrat actif ne couvre le projet de la demande  le système refuse la validation, le validateur ne peut pas créer un contrat sur place.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « Valider demande »}
+\captionof{table}{Description textuelle de cas d’utilisation « Valider demande »}
 \normalsize
 \vspace{-0.3cm}
 
@@ -243,9 +243,9 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \hline
 \textbf{Acteurs} & Chef de projet, Administrateur \\
 \hline
-\textbf{Préconditions} & La demande est au statut « En attente » ou « En attente d'informations ». L’acteur dispose de la permission de validation. \\
+\textbf{Précondition} & La demande est au statut « En attente » ou « En attente d'informations ». L’acteur dispose de la permission de validation. \\
 \hline
-\textbf{Postconditions} & La demande passe au statut « Convertie », un ticket est créé automatiquement. L’assignation du ticket sera effectuée ultérieurement de manière manuelle. \\
+\textbf{Postcondition} & La demande passe au statut « Convertie », un ticket est créé automatiquement. L’assignation du ticket sera effectuée ultérieurement de manière manuelle. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -262,25 +262,25 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le validateur peut modifier le type de demande et/ou la priorité avant validation.
 \item Si la priorité est critique, un commentaire de justification devient obligatoire.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
-\textbf{Scénarios d'exception} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\textbf{Scénario d'exception} &
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Une demande déjà convertie ou rejetée ne peut plus être modifiée.
 \item Une validation est refusée en l’absence de contrat actif couvrant le projet.
 \item Une validation est refusée si le commentaire de requalification est insuffisant.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « Valider demande »}
+\captionof{table}{Description textuelle de cas d’utilisation « Valider demande »}
 \normalsize
 \vspace{-0.3cm}
 
-les scenario d'exception et alternatif corresspond bien aux ce qui est ? \subsubsection{Description textuelle de cas d'utilisation « Demander des informations complémentaires »}
+les scenario d'exception et alternatif corresspond bien aux ce qui est ? \subsubsection{Description textuelle de cas d’utilisation « Demander des informations complémentaires »}
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
@@ -296,9 +296,9 @@ les scenario d'exception et alternatif corresspond bien aux ce qui est ? \subsub
 \hline
 \textbf{Acteurs} & Chef de projet, Administrateur \\
 \hline
-\textbf{Préconditions} & L'acteur est authentifié et dispose des droits pour solliciter des compléments ; la demande est accessible. \\
+\textbf{Précondition} & L'acteur est authentifié et dispose des droits pour solliciter des compléments ; la demande est accessible. \\
 \hline
-\textbf{Postconditions} & Un message de demande d'information est enregistré dans l'historique ; le statut de la demande passe en attente d'informations ; le propriétaire de la demande est notifié. \\
+\textbf{Postcondition} & Un message de demande d'information est enregistré dans l'historique ; le statut de la demande passe en attente d'informations ; le propriétaire de la demande est notifié. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -310,28 +310,28 @@ les scenario d'exception et alternatif corresspond bien aux ce qui est ? \subsub
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
+\textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item L'acteur enrichit le motif avec des exemples ou des documents attendus. Le système intègre l'ensemble du motif dans le commentaire créé dans l'historique de la demande. Le scénario reprend à l'étape 3.
 \item La demande est déjà dans l'état INFOS REQUISES. Le système autorise néanmoins la soumission et crée un nouveau commentaire dans l'historique. Le scénario reprend à l'étape 3.
-\end{itemize}
+\end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios d'exception} &
+\textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le système détecte que les droits de l'acteur ont été révoqués depuis sa connexion. La soumission est rejetée avec un message d'erreur d'autorisation ; l'acteur ne peut pas poursuivre sans reconnexion.
 \item Une défaillance technique empêche l'enregistrement de la requête. Le système affiche un message d'échec, journalise l'incident et interrompt le cas d'utilisation sans modifier le statut de la demande.
-\end{itemize}
+\end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « Demander des informations complémentaires »}
+\captionof{table}{Description textuelle de cas d’utilisation « Demander des informations complémentaires »}
 \normalsize
 \vspace{-0.3cm}
 
-\subsubsection{Description textuelle de cas d'utilisation « Gérer qualification »}
+\subsubsection{Description textuelle de cas d’utilisation « Gérer qualification »}
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
@@ -347,9 +347,9 @@ les scenario d'exception et alternatif corresspond bien aux ce qui est ? \subsub
 \hline
 \textbf{Acteurs} & Chef de projet, Administrateur \\
 \hline
-\textbf{Préconditions} & La demande est persistée dans la base de données et son statut autorise la modification ; l'acteur est authentifié et dispose des droits requis. \\
+\textbf{Précondition} & La demande est persistée dans la base de données et son statut autorise la modification ; l'acteur est authentifié et dispose des droits requis. \\
 \hline
-\textbf{Postconditions} & La qualification de la demande a été mise à jour ; la modification est historisée et les parties prenantes sont informées. \\
+\textbf{Postcondition} & La qualification de la demande a été mise à jour ; la modification est historisée et les parties prenantes sont informées. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -361,24 +361,24 @@ les scenario d'exception et alternatif corresspond bien aux ce qui est ? \subsub
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
+\textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=2pt,label={$\bullet$}]
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
     \item La soumission intervient dans le cadre de la validation formelle de la demande. Le système enregistre la requalification simultanément à la création du ticket. Le scénario reprend à l'étape 4.
     \item Le système détecte qu'aucune valeur n'a été modifiée. Un avertissement bloque la soumission et invite l'acteur à faire un vrai changement. Le scénario reprend à l'étape 1.
-\end{itemize}
+\end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios d'exception} &
+\textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=2pt,label={$\bullet$}]
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
     \item Le système détecte des droits insuffisants. L'opération est rejetée et le cas d'utilisation est interrompu.
     \item Le système détecte que la demande est finalisée (« convertie » ou « rejetée »). La modification est interdite, une erreur est retournée et le cas d'utilisation s'interrompt.
-\end{itemize}
+\end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « Gérer la qualification »}
+\captionof{table}{Description textuelle de cas d’utilisation « Gérer la qualification »}
 \normalsize
 \vspace{-0.3cm}
 
@@ -394,7 +394,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
         \label{fig:traiter_tickets_assignes}
 \end{figure}
 
-\subsection{Description textuelle de cas d'utilisation « Gérer chronomètre »}
+\subsection{Description textuelle de cas d’utilisation « Gérer chronomètre »}
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
@@ -410,9 +410,9 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} & Développeur \\
 \hline
-\textbf{Préconditions} & Le développeur est authentifié et dûment assigné au ticket. Le ticket est dans l’état « Ouvert » ou « En cours ». \\
+\textbf{Précondition} & Le développeur est authentifié et dûment assigné au ticket. Le ticket est dans l’état « Ouvert » ou « En cours ». \\
 \hline
-\textbf{Postconditions} & Le temps de travail effectif est enregistré dans le système. Le ticket peut être soumis en revue ou marqué comme résolu. \\
+\textbf{Postcondition} & Le temps de travail effectif est enregistré dans le système. Le ticket peut être soumis en revue ou marqué comme résolu. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -428,30 +428,30 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
+\textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=2pt, label={$\bullet$}]
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le système détecte que le chronomètre est déjà actif mais en pause. Le système déclenche la reprise du temps plutôt que la création d'une nouvelle session. Le scénario saute à l'étape 7.
 \item Le développeur tente de faire une pause sans sélectionner de motif valide. Le système bloque l'action et affiche un message requérant la saisie. Le développeur corrige, puis le scénario reprend à l'étape 6.
 \item Si le développeur ne stoppe pas le chronomètre, une tâche système planifiée clôture automatiquement la session après douze heures d'inactivité et envoie une alerte. Le cas se termine.
-\end{itemize}
+\end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios d'exception} &
+\textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=2pt, label={$\bullet$}]
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le système détecte que le ticket est dans un état final (ex: « résolu » ou « fermé »). Le chronomètre refuse de se lancer, affiche un message d'interdiction au développeur et le processus est interrompu.
 \item Le système détecte que le développeur n'est plus le responsable assigné (ex: réassignation forcée). L'accès est instantanément refusé et le processus s'interrompt avec erreur.
-\end{itemize}
+\end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Gérer le chronomètre »}
+\captionof{table}{Description textuelle de cas d’utilisation « Gérer le chronomètre »}
 \normalsize
 \vspace{-0.3cm}
 
 
-\subsection{Description textuelle de cas d'utilisation « Soumettre ticket en revue »}
+\subsection{Description textuelle de cas d’utilisation « Soumettre ticket en revue »}
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
@@ -467,9 +467,9 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} & Développeur \\
 \hline
-\textbf{Préconditions} & Le ticket est dans l’état « En cours ». Le développeur a documenté une solution technique. \\
+\textbf{Précondition} & Le ticket est dans l’état « En cours ». Le développeur a documenté une solution technique. \\
 \hline
-\textbf{Postconditions} & Le ticket passe dans l’état « En revue ». Tout chronomètre actif est automatiquement arrêté. Une notification est adressée au chef de projet et au client. \\
+\textbf{Postcondition} & Le ticket passe dans l’état « En revue ». Tout chronomètre actif est automatiquement arrêté. Une notification est adressée au chef de projet et au client. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -481,28 +481,28 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
+\textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=2pt, label={$\bullet$}]
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le système détecte que la solution obligatoire est invalide (ex: $<$ 5 caractères). Un avertissement bloque la soumission. Le développeur corrige sa saisie et le scénario reprend à l'étape 1.
-\end{itemize}
+\end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios d'exception} &
+\textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=2pt, label={$\bullet$}]
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le système détecte qu'aucune session (chronomètre) n'a été enregistrée pour ce ticket. Le passage en revue est refusé et le processus s'interrompt avec erreur.
 \item Le système constate que le développeur ne fait scrupuleusement plus partie des personnes assignées (ex: désassignation forcée). L'opération est rejetée pour raison de sécurité et le processus s'interrompt.
-\end{itemize}
+\end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Soumettre ticket en revue »}
+\captionof{table}{Description textuelle de cas d’utilisation « Soumettre ticket en revue »}
 \normalsize
 \vspace{-0.3cm}
 
 
-\subsection{Description textuelle de cas d'utilisation « Signaler blocage »}
+\subsection{Description textuelle de cas d’utilisation « Signaler blocage »}
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
@@ -518,9 +518,9 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} & Développeur \\
 \hline
-\textbf{Préconditions} & Le ticket est dans l’état « En cours ». Une session de travail a été préalablement démarrée. \\
+\textbf{Précondition} & Le ticket est dans l’état « En cours ». Une session de travail a été préalablement démarrée. \\
 \hline
-\textbf{Postconditions} & Un blocage est enregistré sur l’assignation. Une analyse automatique par IA est déclenchée. Un brouillon d’article pour la base de connaissances est créé. \\
+\textbf{Postcondition} & Un blocage est enregistré sur l’assignation. Une analyse automatique par IA est déclenchée. Un brouillon d’article pour la base de connaissances est créé. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -532,28 +532,28 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
+\textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=2pt, label={$\bullet$}]
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Si le type de blocage sélectionné est de nature administrative ou externe (ex: attente de droits d'accès), le système ignore exceptionnellement l'exigence de temps de travail minimal. L'opération est validée et le scénario reprend à l'étape 3.
-\end{itemize}
+\end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios d'exception} &
+\textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=2pt, label={$\bullet$}]
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le système vérifie le jeton d'authentification et constate que l'acteur n'est pas le développeur officiellement assigné à la session. Une exception "Forbidden" est levée et le signalement est rejeté.
 \item Sans exemption active, le système constate que le temps de travail effectif ou la progression du développeur sont trop faibles (ex: $<$ 30 min). La demande est rejetée et l'opération de signalement s'interrompt.
 \item Le système détecte qu'un problème de blocage est déjà explicitement déclaré et non résolu sur cette assignation. Le nouveau signalement est formellement interdit et le processus s'interrompt.
-\end{itemize}
+\end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Signaler un blocage »}
+\captionof{table}{Description textuelle de cas d’utilisation « Signaler un blocage »}
 \normalsize
 \vspace{-0.3cm}
 
-\subsection{Description textuelle de cas d'utilisation «  Proposer solution à blocage »}
+\subsection{Description textuelle de cas d’utilisation « Proposer solution à blocage »}
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
@@ -569,9 +569,9 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} & Autre développeur de l'équipe, Chef de projet, Administrateur \\
 \hline
-\textbf{Préconditions} & Un signalement de blocage est actif sur l’assignation. L’acteur dispose des permissions appropriées. \\
+\textbf{Précondition} & Un signalement de blocage est actif sur l’assignation. L’acteur dispose des permissions appropriées. \\
 \hline
-\textbf{Postconditions} & Une solution technique est enregistrée et placée en attente de test. Le développeur bloqué reçoit une notification. \\
+\textbf{Postcondition} & Une solution technique est enregistrée et placée en attente de test. Le développeur bloqué reçoit une notification. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -583,27 +583,27 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
+\textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=2pt, label={$\bullet$}]
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Lors de la soumission, le système détecte que le contenu de la solution est vide ou trop court (ex: $< 10$ caractères). L'envoi est bloqué, l'acteur complète sa rédaction et le scénario reprend à l'étape 3.
 \item L'acteur peut solliciter le module IA du système. L'IA génère une proposition de résolution basée sur la base de connaissances. L'acteur ajuste cette suggestion automatiquement importée dans le champ et reprend son parcours nominal.
-\end{itemize}
+\end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios d'exception} &
+\textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=2pt, label={$\bullet$}]
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le système détecte formellement que l'acteur essayant de "proposer" une solution est en réalité le développeur qui a lui-même signalé le blocage. Cette action est rejetée par sécurité (ce flux étant réservé à l'aide inter-membre) et le processus d'affichage du formulaire s'interrompt.
-\end{itemize}
+\end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Proposer une solution à un blocage »}
+\captionof{table}{Description textuelle de cas d’utilisation « Proposer une solution à un blocage »}
 \normalsize
 \vspace{-0.3cm}
 
-\subsection{Description textuelle de cas d'utilisation «  Résoudre blocage »}
+\subsection{Description textuelle de cas d’utilisation « Résoudre blocage »}
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
@@ -619,9 +619,9 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} & Développeur bloqué \\
 \hline
-\textbf{Préconditions} & Une solution a été proposée. Le développeur bloqué est authentifié. \\
+\textbf{Précondition} & Une solution a été proposée. Le développeur bloqué est authentifié. \\
 \hline
-\textbf{Postconditions} & Le blocage est levé. L’article de base de connaissances est enrichi par fusion de l’analyse IA et de la solution humaine validée. \\
+\textbf{Postcondition} & Le blocage est levé. L’article de base de connaissances est enrichi par fusion de l’analyse IA et de la solution humaine validée. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -635,14 +635,14 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} & le développeur rejette la solution proposée le blocage reste actif, aucune fusion n'est effectuée et et le cas d'utilisation se termine sans résolution. \\
+\textbf{Scénario alternatif} & le développeur rejette la solution proposée le blocage reste actif, aucune fusion n'est effectuée et et le cas d'utilisation se termine sans résolution. \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Résoudre blocage »}
+\captionof{table}{Description textuelle de cas d’utilisation « Résoudre blocage »}
 \normalsize
 \vspace{-0.3cm}
 
-\subsection{Description textuelle de cas d'utilisation «  Ajouter solution technique »}
+\subsection{Description textuelle de cas d’utilisation « Ajouter solution technique »}
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
@@ -658,9 +658,9 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} & Développeur \\
 \hline
-\textbf{Préconditions} & Le ticket est dans l’état « En cours ». Le développeur est authentifié, dispose des droits requis et est assigné à la tâche. \\
+\textbf{Précondition} & Le ticket est dans l’état « En cours ». Le développeur est authentifié, dispose des droits requis et est assigné à la tâche. \\
 \hline
-\textbf{Postconditions} & La solution technique est enregistrée (désormais protégée en modification stricte pour le développeur) et pré-qualifiée pour la base de connaissances. L'état devient « En revue ». Les chronomètres sont arrêtés. \\
+\textbf{Postcondition} & La solution technique est enregistrée (désormais protégée en modification stricte pour le développeur) et pré-qualifiée pour la base de connaissances. L'état devient « En revue ». Les chronomètres sont arrêtés. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -673,30 +673,30 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
+\textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=2pt, label={$\bullet$}]
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le développeur peut solliciter un brouillon généré par IA ou joindre des fichiers justificatifs avant de valider. Le scénario se poursuit sans interruption.
 \item Le système détecte une solution invalide (ex: $<$ 5 caractères). Un avertissement bloque la soumission. Le développeur corrige sa saisie sur place et le scénario reprend à l'étape 2.
 \item Le système détecte que le ticket a été modifié en parallèle. Le système bloque l'enregistrement, l'acteur actualise ses données sans perdre son contexte, puis le scénario reprend à l'étape 2.
-\end{itemize}
+\end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios d'exception} &
+\textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=2pt, label={$\bullet$}]
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le système détecte qu'aucune session d'effort n'a jamais été enregistrée pour ce ticket. Le passage en revue est formellement refusé et le processus s'interrompt avec erreur.
 \item Le système constate que le développeur a été explicitement désassigné. L'autorisation d'agir est révoquée immédiatement et le processus s'interrompt.
-\end{itemize}
+\end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Ajouter solution technique »}
+\captionof{table}{Description textuelle de cas d’utilisation « Ajouter solution technique »}
 \normalsize
 \vspace{-0.3cm}
 
 
-\subsection{Description textuelle de cas d'utilisation « Suivre SLA et temps »}
+\subsection{Description textuelle de cas d’utilisation « Suivre SLA et temps »}
 La figure ci-dessous présente la description textuelle du cas d’utilisation « Suivre SLA et temps ».
 
 \renewcommand{\arraystretch}{0.95}
@@ -713,9 +713,9 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \hline
 \textbf{Acteurs} & Développeur, Chef de projet, Administrateur \\
 \hline
-\textbf{Préconditions} & Le ticket est actif. Le contrat lié possède une configuration de Service Level Agreement. \\
+\textbf{Précondition} & Le ticket est actif. Le contrat lié possède une configuration de Service Level Agreement. \\
 \hline
-\textbf{Postconditions} & Le temps d'effort, les pauses et les indicateurs SLA sont enregistrés, historisés et affichés en temps réel. \\
+\textbf{Postcondition} & Le temps d'effort, les pauses et les indicateurs SLA sont enregistrés, historisés et affichés en temps réel. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -728,23 +728,23 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
+\textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item L'acteur met en pause son chronomètre de travail. Le système conserve le calcul global mais fige l'accumulation du temps effectif. L'acteur relance le chronomètre et le scénario reprend à l'étape 2.
 \item Le système détecte l'omission de la solution technique formelle. L'application bloque la transition, l'acteur rédige sa solution sur place et le scénario reprend à l'étape 5.
-\end{itemize}
+\end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios d'exception} &
+\textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le système détecte formellement que l'acteur essayant de démarrer (ou reprendre) le chronomètre n'est pas ou plus assigné au ticket (ex: révocation récente). L'accès est catégoriquement refusé en base de données et le processus s'interrompt avec erreur.
-\end{itemize}
+\end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « Suivre SLA et temps »}
+\captionof{table}{Description textuelle de cas d’utilisation « Suivre SLA et temps »}
 \normalsize
 \vspace{-0.3cm}
 
@@ -762,7 +762,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
         \label{fig:cloturer_ticket}
 \end{figure}
 
-\subsection{Description textuelle de cas d'utilisation « Signaler problème non résolu »}
+\subsection{Description textuelle de cas d’utilisation « Signaler problème non résolu »}
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
@@ -778,9 +778,9 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} & Client \\
 \hline
-\textbf{Préconditions} & Le ticket est dans l'état « Résolu ». Le client est authentifié et est le propriétaire du ticket. \\
+\textbf{Précondition} & Le ticket est dans l'état « Résolu ». Le client est authentifié et est le propriétaire du ticket. \\
 \hline
-\textbf{Postconditions} & Le ticket reste au statut « Résolu ». Sa date de résolution est réinitialisée, suspendant la clôture automatique. Un commentaire d'alerte et une entrée \texttt{RESOLUTION\_REJECTED} sont inscrits dans l'historique du ticket. \\
+\textbf{Postcondition} & Le ticket reste au statut « Résolu ». Sa date de résolution est réinitialisée, suspendant la clôture automatique. Un commentaire d'alerte et une entrée \texttt{RESOLUTION\_REJECTED} sont inscrits dans l'historique du ticket. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -793,26 +793,26 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
+\textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=2pt, label={$\bullet$}]
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item \textbf{A1 — Description manquante ou insuffisante :} À l'étape 2, le système détecte que la description est vide ou inférieure à 10 caractères. La soumission est bloquée côté interface, un message d'erreur s'affiche sur le formulaire, et le client corrige sa saisie. Le scénario reprend à l'étape 2.
-\end{itemize}
+\end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios d'exception} &
+\textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=2pt, label={$\bullet$}]
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item \textbf{E1 — Changement de statut concurrent :} À l'étape 3, le système constate que le ticket n'est plus au statut « Résolu » (ex : il a été fermé définitivement en parallèle). Le signalement est rejeté par le serveur avant toute écriture et le processus s'interrompt avec une erreur retournée au client.
-\end{itemize}
+\end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « Signaler un problème non résolu »}
+\captionof{table}{Description textuelle de cas d’utilisation « Signaler un problème non résolu »}
 \normalsize
 \vspace{-0.3cm}
 
-\subsection{Description textuelle de cas d'utilisation « Demander une extension »}
+\subsection{Description textuelle de cas d’utilisation « Demander une extension »}
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
@@ -828,9 +828,9 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} & Client \\
 \hline
-\textbf{Préconditions} & Le ticket est dans l'état « Résolu ». Le client est authentifié et propriétaire du ticket. Aucune extension n'a déjà été demandée pour ce ticket. \\
+\textbf{Précondition} & Le ticket est dans l'état « Résolu ». Le client est authentifié et propriétaire du ticket. Aucune extension n'a déjà été demandée pour ce ticket. \\
 \hline
-\textbf{Postconditions} & L'extension est automatiquement accordée. Un commentaire est inséré dans le fil de discussion. \\
+\textbf{Postcondition} & L'extension est automatiquement accordée. Un commentaire est inséré dans le fil de discussion. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -844,22 +844,22 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
+\textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=2pt, label={$\bullet$}]
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le système détecte que le motif saisi est vide ou inférieur au minimum requis (10 caractères). La soumission est bloquée, un message d'erreur s'affiche, et le client corrige sa saisie. Le scénario reprend à l'étape 3.
-\end{itemize}
+\end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios d'exception} &
+\textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=2pt, label={$\bullet$}]
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le système constate que le ticket n'est plus au statut « Résolu ». La demande est rejetée par le serveur avant toute écriture et le processus s'interrompt avec une erreur retournée au client.
-\end{itemize}
+\end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « Demander une extension »}
+\captionof{table}{Description textuelle de cas d’utilisation « Demander une extension »}
 \normalsize
 \vspace{-0.3cm}
 \subsection{Analyse de la fonctionnalité « Assigner tickets »}
@@ -877,7 +877,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{figure}
 
 
-\subsection{Description textuelle du cas d'utilisation « Assigner ticket à développeur »}
+\subsection{Description textuelle de cas d’utilisation « Assigner ticket à développeur »}
 \footnotesize
 % ---- Version corrigée ----
 \renewcommand{\arraystretch}{0.95}
@@ -895,11 +895,11 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} & Chef de projet, Administrateur \\
 \hline
-\textbf{Préconditions} & 
+\textbf{Précondition} & 
 L'utilisateur est authentifié et autorisé. 
 Le ticket est ouvert ou en cours. \\
 \hline
-\textbf{Postconditions} & 
+\textbf{Postcondition} & 
 L'assignation est enregistrée avec succès et le développeur est notifié (in-app, email, slack). \\
 \hline
 \textbf{Scénario nominal} & 
@@ -913,25 +913,29 @@ L'assignation est enregistrée avec succès et le développeur est notifié (in-
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} & 
-\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt, label={$\bullet$}]
+\textbf{Scénario alternatif} & 
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
   \item Si le ticket est en retard SLA, la capacité limite du développeur est relevée à 7 tickets (le système poursuit à l'étape 5).
   \item Validée si le SLA est dépassé, ou en cas d'urgence (attente > 2h, priorité majeure/critique) sans développeur disponible (le système poursuit à l'étape 5).
   \item Le développeur a trop de tickets actifs (e.g. limite normale dépassée) ; le système bloque l'ajout et l'utilisateur en choisit un autre (retour à l'étape 3).
   \item En cas d'assignation concurrente de même profil, le système détecte le doublon ; l'utilisateur choisit un autre développeur (retour à l'étape 3).
-\end{itemize} \\
+\end{enumerate}
+\end{minipage} \\
 \hline
-\textbf{Scénarios d'exception} & 
-\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt, label={$\bullet$}]
+\textbf{Scénario d'exception} & 
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
   \item Le système bloque l'opération et affiche une erreur ; le flux d'assignation est abandonné.
-\end{itemize} \\
+\end{enumerate}
+\end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « Assigner ticket à développeur »}
+\captionof{table}{Description textuelle de cas d’utilisation « Assigner ticket à développeur »}
 \normalsize
 
 
-\subsection{Description textuelle de cas d'utilisation « Évaluer capacité développeur »}
+\subsection{Description textuelle de cas d’utilisation « Évaluer capacité développeur »}
 \footnotesize
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -949,9 +953,9 @@ L'assignation est enregistrée avec succès et le développeur est notifié (in-
 \hline
 \textbf{Acteurs} & Chef de projet, Administrateur \\
 \hline
-\textbf{Préconditions} & L’utilisateur est authentifié et dispose des permissions nécessaires. \\
+\textbf{Précondition} & L’utilisateur est authentifié et dispose des permissions nécessaires. \\
 \hline
-\textbf{Postconditions} & En cas de succès, la liste des développeurs disponibles est affichée de manière structurée et triée par charge croissante. En cas d'échec, le système notifie l'absence de ressources disponibles. \\
+\textbf{Postcondition} & En cas de succès, la liste des développeurs disponibles est affichée de manière structurée et triée par charge croissante. En cas d'échec, le système notifie l'absence de ressources disponibles. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -965,19 +969,23 @@ L'assignation est enregistrée avec succès et le développeur est notifié (in-
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt, label={$\bullet$}]
+\textbf{Scénario alternatif} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Si l’utilisateur demande la vue planning d'un développeur, alors le système affiche la répartition de ses échéances ; l'utilisateur ferme ensuite la vue (retour à l'étape 6).
 \item Si l’utilisateur consulte les informations d'un développeur , alors le système présente les détails de ce profil ; l'utilisateur ferme ensuite les détails (retour à l'étape 6).
-\end{itemize} \\
+\end{enumerate}
+\end{minipage} \\
 \hline
-\textbf{Scénarios d'exception} &
-\begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt, label={$\bullet$}]
+\textbf{Scénario d'exception} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item  Si le système ne trouve aucun développeur activé ni disponible dans la base, alors il affiche une notification informant de l'absence de ressources.
-\end{itemize} \\
+\end{enumerate}
+\end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Évaluer capacité développeur »}
+\captionof{table}{Description textuelle de cas d’utilisation « Évaluer capacité développeur »}
 \normalsize
 \vspace{-0.3cm}
 
@@ -1000,33 +1008,33 @@ La figure suivante présente le diagramme de classes du troisième sprint.
 
 Le diagramme de classes met en évidence les entités métiers centrales du sprint, notamment \textit{DemandeClient}, \textit{Ticket}, \textit{AssignmentTicket}, \textit{SessionTravail}, \textit{TicketSolution}, \textit{ConfigurationSLA} et les entités liées à l’intelligence artificielle et à la base de connaissances. Il illustre également les relations de dépendance entre les contrats, les projets, les tickets, les utilisateurs et les notifications.
 
-\subsection{Diagramme de séquence du cas d'utilisation « Soumettre une demande »}
-La figure suivante présente le diagramme de séquence du cas d’utilisation « Soumettre une demande ».
+\subsection{Diagramme de séquences du cas d'utilisation « Soumettre une demande »}
+La figure suivante présente le diagramme de séquences du cas d’utilisation « Soumettre une demande ».
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/Soumission demande.vpd.png}
-    \caption{Diagramme de séquence du cas d'utilisation « Soumettre une demande »}
+    \caption{Diagramme de séquences du cas d'utilisation « Soumettre une demande »}
     \label{fig:seq_soumettre_demande}
 \end{figure}
 
-\subsection{Diagramme de séquence du cas d'utilisation « Valider demande »}
-La figure suivante présente le diagramme de séquence du cas d’utilisation « Valider une demande ».
+\subsection{Diagramme de séquences du cas d'utilisation « Valider demande »}
+La figure suivante présente le diagramme de séquences du cas d’utilisation « Valider une demande ».
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme sequence valider Demande.vpd.png}
-    \caption{Diagramme de séquence du cas d'utilisation « Valider demande »}
+    \caption{Diagramme de séquences du cas d'utilisation « Valider demande »}
     \label{fig:seq_valider_demande}
 \end{figure}
 
-\subsection{Diagramme de séquence du cas d'utilisation « Signaler blocage »}
-La figure suivante présente le diagramme de séquence du cas d’utilisation « Signaler un blocage ».
+\subsection{Diagramme de séquences du cas d'utilisation « Signaler blocage »}
+La figure suivante présente le diagramme de séquences du cas d’utilisation « Signaler un blocage ».
 
 \begin{figure}[htbp]
     \centering
     %\includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_seq_signaler_bloquer.png}
-    \caption{Diagramme de séquence du cas d'utilisation « Signaler blocage »}
+    \caption{Diagramme de séquences du cas d'utilisation « Signaler blocage »}
     \label{fig:seq_signaler_bloquer}
 \end{figure}
 

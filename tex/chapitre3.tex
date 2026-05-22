@@ -1,7 +1,24 @@
-﻿\normalsize
-\vspace{-0.3cm}
+﻿\subsection{Description textuelle du cas d'utilisation « S'authentifier »}
+La figure ci-dessous présente la description textuelle du cas d'utilisation « S'authentifier » :
+
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
 \hline
-\textbf{Postconditions} & L'utilisateur est authentifié et accède à l'interface appropriée selon son rôle. Un jeton d'accès est généré en base de données. \\
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & S'authentifier \\
+\hline
+\textbf{Acteurs} & Utilisateur non authentifié \\
+\hline
+\textbf{Précondition} & L'utilisateur possède un compte valide dans le système. \\
+\hline
+\textbf{Postcondition} & L'utilisateur est authentifié et accède à l'interface appropriée selon son rôle. Un jeton d'accès est généré en base de données. \\
 \hline
 \textbf{Scénario principal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -22,28 +39,28 @@
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item  Si l'adresse e-mail ou le mot de passe est invalide, le système affiche une erreur. L'utilisateur corrige ses identifiants et retente la connexion.
 \item La période de verrouillage de 1 minute est écoulée. L'utilisateur retente la connexion. Le système constate que le déverrouillage est automatique, réactive le compte et autorise une nouvelle tentative.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
-\textbf{Scénarios d'exception} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\textbf{Scénario d'exception} &
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item  Après 3 tentatives échouées, le système affiche \texttt{401 Unauthorized} et le compte est verrouillé strictement pendant 1 minute. Aucune action de l'utilisateur ne permet de forcer l'entrée.
 \item  Le compte a été révoqué. Le système bloque impérativement la connexion.
 \item  La demande d'inscription OAuth est en « en attente ». L'accès est bloqué tant qu'un administrateur n'a pas validé.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « S'authentifier »}
+\captionof{table}{Description textuelle du cas d’utilisation « S'authentifier »}
 
 
 \normalsize
 \vspace{-0.3cm}
 
 
-\subsection{Description textuelle du cas d'utilisation « Changer mot de passe »}
+\subsection{Description textuelle du cas d’utilisation « Changer mot de passe »}
 La figure ci-dessous présente la description textuelle du cas d'utilisation « Changer le mot de passe » :
 
 \footnotesize
@@ -61,9 +78,9 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \hline
 \textbf{Acteurs} & Utilisateurs \\
 \hline
-\textbf{Préconditions} & L'utilisateur possède déjà un compte \\
+\textbf{Précondition} & L'utilisateur possède déjà un compte \\
 \hline
-\textbf{Postconditions} & Le mot de passe est réinitialisé \\
+\textbf{Postcondition} & Le mot de passe est réinitialisé \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -81,16 +98,16 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios d'exception} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\textbf{Scénario d'exception} &
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item L'utilisateur saisit un e-mail qui ne correspond à aucun compte existant.
 \item L'utilisateur a rempli un champ invalide, ou a laissé un champ vide.
 \item Le lien de réinitialisation est expiré.
 \item L'utilisateur ne confirme pas correctement le mot de passe.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle de cas d'utilisation « Changer mot de passe »} 
+\captionof{table}{Description textuelle du cas d’utilisation « Changer mot de passe »} 
 
 \normalsize
 \vspace{-0.3cm}
@@ -98,17 +115,17 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \subsection{Analyse de la fonctionnalité « S'inscrire »}
 Dans cette partie, nous allons présenter les cas d'utilisation raffinés relatifs à la demande d'accès via fournisseur externe afin de comprendre les différentes étapes du processus d'inscription et d'authentification.
 
-\subsubsection{Raffinement de cas d'utilisation « S'inscrire »}
+\subsubsection{Raffinement du cas d’utilisation « S'inscrire »}
 Au cours de cette partie, nous allons analyser les sous-cas d'utilisation pour le processus l'inscription.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
         \centering
         \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/demande insc.png}
-        \caption{Raffinement de cas d'utilisation « S'inscrire »}
+        \caption{Raffinement du cas d’utilisation « S'inscrire »}
         \label{fig:oauth_refinement}
 \end{figure}
 
-\subsubsection{Description textuelle du cas d'utilisation « Demander inscription »}
+\subsubsection{Description textuelle du cas d’utilisation « Demander inscription »}
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -126,9 +143,9 @@ Au cours de cette partie, nous allons analyser les sous-cas d'utilisation pour l
 \hline
 \textbf{Acteurs} & Visiteur \\
 \hline
-\textbf{Préconditions} & Le visiteur n'a pas de compte existant dans le système et se trouve sur la page d'authentification. \\
+\textbf{Précondition} & Le visiteur n'a pas de compte existant dans le système et se trouve sur la page d'authentification. \\
 \hline
-\textbf{Postconditions} & La demande d'inscription est créée (« en attente »), ou le visiteur est connecté s'il possède déjà un accès. \\
+\textbf{Postcondition} & La demande d'inscription est créée (« en attente »), ou le visiteur est connecté s'il possède déjà un accès. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -145,38 +162,38 @@ Au cours de cette partie, nous allons analyser les sous-cas d'utilisation pour l
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item  Le système détecte que l'e-mail OAuth est déjà rattaché à un compte actif. Au lieu de créer la demande, le système connecte directement l'utilisateur. \textit{Succès alternatif.}
 \item  Le système détecte le doublon, bloque la création pour éviter les spams, mais rassure l'utilisateur en affichant l'interface d'attente. \textit{Résolution gracieuse.}
-\end{itemize} \\
+\end{enumerate} \\
 \hline
-\textbf{Scénarios d'exception} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\textbf{Scénario d'exception} &
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le visiteur annule le processus externe. Le système avorte l'opération et le ramène à la connexion. \textit{Échec de l'action.}
 \item  Le service externe masque l'e-mail de l'utilisateur. Le système bloque l'inscription et affiche une erreur. \textit{Arrêt du processus.}
 \item  Le service externe est indisponible. Le système affiche une erreur réseau. \textit{Arrêt du processus.}
-\end{itemize} \\
+\end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle « Demander inscription »} 
+\captionof{table}{Description textuelle du cas d’utilisation « Demander inscription »} 
 }
 \normalsize
 \vspace{-0.3cm}
 
 \subsection{Analyse de la fonctionnalité « Gérer utilisateurs »}
 Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des utilisateurs afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
-\subsubsection{Raffinement de cas d'utilisation « Gérer utilisateurs »}
+\subsubsection{Raffinement du cas d’utilisation « Gérer utilisateurs »}
 Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de gestion des utilisateurs :    
 
 \begin{figure}[H]
         \centering
         \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/Gérer utilisateur.drawio.png}
-        \caption{Diagramme des cas d'utilisation « Gérer utilisateurs »}
+        \caption{Diagramme de cas d'utilisation « Gérer utilisateurs »}
         \label{fig:gerer_utilisateurs}
 \end{figure}
 
-% \subsubsection{Description textuelle de cas d'utilisation « Consulter liste utilisateurs »}
+% \subsubsection{Description textuelle du cas d’utilisation « Consulter liste utilisateurs »}
 % 
 % \footnotesize
 % \renewcommand{\arraystretch}{0.95}
@@ -194,9 +211,9 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 % \hline
 % \textbf{Acteurs} & Administrateur \\
 % \hline
-% \textbf{Préconditions} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de consulter les utilisateurs \\
+% \textbf{Précondition} & L'utilisateur est authentifié\newline L'utilisateur possède la permission de consulter les utilisateurs \\
 % \hline
-% \textbf{Postconditions} & Liste des utilisateurs affichée \\
+% \textbf{Postcondition} & Liste des utilisateurs affichée \\
 % \hline
 % \textbf{Scénario nominal} &
 % \begin{minipage}[t]{\linewidth}
@@ -214,7 +231,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 % \normalsize
 % \vspace{-0.3cm}
 
-\subsubsection{Description textuelle de cas d'utilisation « Ajouter utilisateur »}
+\subsubsection{Description textuelle du cas d’utilisation « Ajouter utilisateur »}
 
 
 \footnotesize
@@ -233,9 +250,9 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} & Administrateur \\
 \hline
-\textbf{Préconditions} & L'administrateur est connecté et dispose des droits de création de compte. \\
+\textbf{Précondition} & L'administrateur est connecté et dispose des droits de création de compte. \\
 \hline
-\textbf{Postconditions} & Le compte est opérationnel en base de données et l'utilisateur reçoit ses accès par courriel. \\
+\textbf{Postcondition} & Le compte est opérationnel en base de données et l'utilisateur reçoit ses accès par courriel. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -248,21 +265,21 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item  L'administrateur oublie un champ ou se trompe de format. Le système signale le champ fautif. L'administrateur le corrige et valide à nouveau.
 \item  L'adresse e-mail est déjà attribuée à un autre compte. Le système affiche une alerte. L'administrateur change l'adresse e-mail pour continuer.
 \item  L'administrateur ferme la fenêtre de création avant la fin. L'opération est simplement annulée.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle « Ajouter un utilisateur »} 
+\captionof{table}{Description textuelle du cas d’utilisation « Ajouter un utilisateur »} 
 
 \normalsize
 \vspace{-0.3cm}
 
 
-\subsubsection{Description textuelle de cas d'utilisation « Désactiver un utilisateur »}
+\subsubsection{Description textuelle du cas d’utilisation « Désactiver un utilisateur »}
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -280,9 +297,9 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} & Administrateur \\
 \hline
-\textbf{Préconditions} & L'administrateur est authentifié, possède la permission requise, et le compte visé est actif. \\
+\textbf{Précondition} & L'administrateur est authentifié, possède la permission requise, et le compte visé est actif. \\
 \hline
-\textbf{Postconditions} & Le compte devient inactif et l'utilisateur en est notifié par e-mail. \\
+\textbf{Postcondition} & Le compte devient inactif et l'utilisateur en est notifié par e-mail. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -296,19 +313,19 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item  L'utilisateur ciblé possède des tickets actifs. Le système ouvre une modale de réassignation. L'administrateur répartit les tickets, puis valide, permettant à la désactivation d'aboutir.
 \item  L'administrateur décide finalement de fermer la fenêtre modale (Annuler). L'opération s'interrompt proprement, le compte reste actif.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
 
 \end{longtable}
-\captionof{table}{Description textuelle « Désactiver un utilisateur »} 
+\captionof{table}{Description textuelle du cas d’utilisation « Désactiver un utilisateur »} 
 \normalsize
 \vspace{-0.3cm}
 
-\subsubsection{Description textuelle de cas d'utilisation « Modifier Profil »}
+\subsubsection{Description textuelle du cas d’utilisation « Modifier Profil »}
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -326,9 +343,9 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} &Utilisateur \\
 \hline
-\textbf{Préconditions} & L'utilisateur est connecté et consulte sa propre page profil. \\
+\textbf{Précondition} & L'utilisateur est connecté et consulte sa propre page profil. \\
 \hline
-\textbf{Postconditions} & Les informations sont mises à jour en base de données et, en cas de mot de passe changé, un e-mail de notification est envoyé. \\
+\textbf{Postcondition} & Les informations sont mises à jour en base de données et, en cas de mot de passe changé, un e-mail de notification est envoyé. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}
@@ -342,21 +359,21 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item  Si le nouvel e-mail fourni est déjà pris par un autre compte, le système rejette la saisie. L'utilisateur saisit une adresse différente et revalide.
-\item  Lors du changement de mot de passe, le mot de passe actuel fourni est faux. L'utilisateur rectifie le mot de passe pour réussir.\end{itemize} \\
+\item  Lors du changement de mot de passe, le mot de passe actuel fourni est faux. L'utilisateur rectifie le mot de passe pour réussir.\end{enumerate} \\
 \hline
-\textbf{Scénarios d'exception} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\textbf{Scénario d'exception} &
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item  Bien que l'utilisateur soit connecté, son profil a été supprimé ou désactivé par un administrateur à la seconde précédente . L'enregistrement est impossible et la session est stoppée.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle « Modifier le Profil »} 
+\captionof{table}{Description textuelle du cas d’utilisation « Modifier le Profil »} 
 \normalsize
 \vspace{-0.3cm}
-\subsubsection{Description textuelle de cas d'utilisation « Valider demande »}
+\subsubsection{Description textuelle du cas d’utilisation « Valider demande »}
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -373,9 +390,9 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} & Administrateur \\
 \hline
-\textbf{Préconditions} & L'administrateur est authentifié et possède la permission de traiter les demandes d'inscription \\
+\textbf{Précondition} & L'administrateur est authentifié et possède la permission de traiter les demandes d'inscription \\
 \hline
-\textbf{Postconditions} & Le compte utilisateur est créé et activé, la demande est marquée \textit{approuvée}, et l'utilisateur est notifié \\
+\textbf{Postcondition} & Le compte utilisateur est créé et activé, la demande est marquée \textit{approuvée}, et l'utilisateur est notifié \\
 \hline
 \textbf{Scénario principal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -393,20 +410,20 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item  L'administrateur choisit de refuser l'accès. Il saisit un motif de refus qui remplace l'approbation, la demande est alors rejetée.
 \item  Le système détecte qu'il manque un champ essentiel. L'administrateur saisit l'information manquante et valide à nouveau la demande.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
-\textbf{Scénarios d'exception} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\textbf{Scénario d'exception} &
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item  L'e-mail de la demande est déjà attribué à un compte actif dans le système. L'application bloque automatiquement la conversion pour cause d'unicité.
 \item  Une autre session a déjà statué sur cette demande, le clic de validation échoue définitivement.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle « Valider demande »} 
+\captionof{table}{Description textuelle du cas d’utilisation « Valider demande »} 
 \normalsize
 \vspace{-0.3cm}
 
@@ -414,17 +431,17 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des rôles afin
 de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des
 interactions.
-\subsubsection{Raffinement de cas d'utilisation « Gérer rôles »}
+\subsubsection{Raffinement du cas d’utilisation « Gérer rôles »}
 Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de gestion des rôles :
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag cas d'utilisation role.drawio.png}
-\caption{Raffinement de cas d'utilisation « Gérer rôles »}
+\caption{Raffinement du cas d’utilisation « Gérer rôles »}
 \label{fig:gerer_roles}
 \end{figure}
 
-\subsubsection{Description textuelle de cas d'utilisation « Archiver rôle »}
+\subsubsection{Description textuelle du cas d’utilisation « Archiver rôle »}
 
 \footnotesize
 
@@ -456,11 +473,11 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 
 \hline
 
-\textbf{Préconditions} & L'administrateur est authentifié et possède la permission de gestion des rôles. \\
+\textbf{Précondition} & L'administrateur est authentifié et possède la permission de gestion des rôles. \\
 
 \hline
 
-\textbf{Postconditions} & Le rôle est désactivé et n'est plus attribuable. \\
+\textbf{Postcondition} & Le rôle est désactivé et n'est plus attribuable. \\
 
 \hline
 
@@ -490,38 +507,38 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 
 \hline
 
-\textbf{Scénarios alternatifs} &
+\textbf{Scénario alternatif} &
 
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 
 \item  le système détecte que le rôle est encore utilisé et bloque l'archivage. L'administrateur retire ce rôle aux utilisateurs liés, puis relance avec succès l'archivage.
 
 \item  l'administrateur ferme la boîte de confirmation. L'opération est annulée proprement.
 
-\end{itemize} \\
+\end{enumerate} \\
 
 \hline
 
-\textbf{Scénarios d'exception} &
+\textbf{Scénario d'exception} &
 
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 
 \item  Le rôle ciblé n'existe plus dans le système au moment de la validation. Le système affiche une erreur et bloque l'opération.
 
-\end{itemize} \\
+\end{enumerate} \\
 
 \hline
 
 \end{longtable}
 
-\captionof{table}{Description textuelle « Archiver rôle »} 
+\captionof{table}{Description textuelle du cas d’utilisation « Archiver rôle »} 
 
 \normalsize
 
 \vspace{-0.3cm}
 
 
-\subsubsection{Description textuelle de cas d'utilisation « Attribuer rôle à utilisateur »}
+\subsubsection{Description textuelle du cas d’utilisation « Attribuer rôle à utilisateur »}
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -539,9 +556,9 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} & Administrateur \\
 \hline
-\textbf{Préconditions} & L'administrateur est authentifié avec la permission d'attribuer des rôles. L'utilisateur et le rôle cibles existent. \\
+\textbf{Précondition} & L'administrateur est authentifié avec la permission d'attribuer des rôles. L'utilisateur et le rôle cibles existent. \\
 \hline
-\textbf{Postconditions} & Le rôle est attribué à l'utilisateur ciblé. \\
+\textbf{Postcondition} & Le rôle est attribué à l'utilisateur ciblé. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -555,24 +572,24 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item  L'administrateur ferme la fenêtre sans valider. Aucune attribution n'est effectuée.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
-\textbf{Scénarios d'exception} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\textbf{Scénario d'exception} &
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item  Le système détecte une combinaison interdite (\texttt{CLIENT} avec \texttt{CHEF\_PROJET}, \texttt{DEVELOPPEUR} ou \texttt{ADMIN}). L'attribution est définitivement rejetée.
 \item  Le rôle est déjà lié à cet utilisateur. Le système bloque la duplication.
 \item  L'utilisateur ou le rôle ciblé n'existe plus en base de données. L'opération est stoppée.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle « Attribuer rôle à utilisateur »}
+\captionof{table}{Description textuelle du cas d'utilisation « Attribuer rôle à utilisateur »}
 \normalsize
 \vspace{-0.3cm}
 
-\subsubsection{Description textuelle de cas d'utilisation « Retirer rôle utilisateur »}
+\subsubsection{Description textuelle du cas d’utilisation « Retirer rôle utilisateur »}
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -590,9 +607,9 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} & Administrateur \\
 \hline
-\textbf{Préconditions} & L'administrateur est authentifié et dispose de la permission de gestion des rôles. \\
+\textbf{Précondition} & L'administrateur est authentifié et dispose de la permission de gestion des rôles. \\
 \hline
-\textbf{Postconditions} & Le rôle est retiré de l'utilisateur. \\
+\textbf{Postcondition} & Le rôle est retiré de l'utilisateur. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -605,18 +622,18 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item L'administrateur ferme la confirmation. L'opération est annulée proprement.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
-\textbf{Scénarios d'exception} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\textbf{Scénario d'exception} &
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item  Le lien ciblé n'existe pas en base de données (ex: supprimé par une action concurrente). Le système bloque définitivement l'opération.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle « Retirer rôle utilisateur »} 
+\captionof{table}{Description textuelle du cas d’utilisation « Retirer rôle utilisateur »} 
 \normalsize
 \vspace{-0.3cm}
 \normalsize
@@ -626,60 +643,59 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des permissions afin
 de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des
 interactions.
-\subsubsection{Raffinement de cas d'utilisation « Gérer permissions »}
+\subsubsection{Raffinement du cas d’utilisation « Gérer permissions »}
 Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de gestion des permissions :
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/gerer permession.drawio.png}
-\caption{Raffinement de cas d'utilisation « Gérer permissions »}
+\caption{Raffinement du cas d’utilisation « Gérer permissions »}
 \label{fig:gerer_permissions}
 \end{figure}
 
-\subsubsection{Description textuelle de cas d'utilisation « Consulter liste permissions »}
-
-\footnotesize
-\renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-
-\textbf{Nom du cas d'utilisation} & Consulter liste des permissions \\
-\hline
-\textbf{Acteurs} & Administrateur \\
-\hline
-\textbf{Préconditions} & L'administrateur est authentifié et dispose de la permission d'accès au module des rôles. \\
-\hline
-\textbf{Postconditions} & L'interface affiche la liste complète des permissions et leurs assignements. \\
-\hline
-\textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
-\item L'administrateur clique sur l'onglet « Permissions ».
-\item Le système interroge la base de données pour récupérer la liste des rôles et permissions.
-\item Le système affiche une vue matricielle.
-\item L'administrateur consulte quelles permissions sont actives par rôle.
-\item L'administrateur utilise les filtres natifs pour n'afficher qu'une partie de la matrice.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item  L'administrateur choisit de basculer la présentation. Le système réorganise instantanément les données pour afficher une liste empilée des rôles contenant chacun leurs listes de permissions respectives. Le but initial (consulter) est atteint avec succès sous une autre forme.
-\end{itemize} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle « Consulter liste permissions »} 
-\normalsize
-\vspace{-0.3cm}
-
-\subsubsection{Description textuelle de cas d'utilisation « Attribuer permission à rôle »}
+% \subsubsection{Description textuelle du cas d'utilisation « Consulter liste permissions »}
+% 
+% \footnotesize
+% \renewcommand{\arraystretch}{0.95}
+% \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+% \hline
+% \endfirsthead
+% \hline
+% \endhead
+% \hline
+% \endfoot
+% \hline
+% \endlastfoot
+% 
+% \textbf{Nom du cas d'utilisation} & Consulter liste des permissions \\
+% \hline
+% \textbf{Acteurs} & Administrateur \\
+% \hline
+% \textbf{Précondition} & L'administrateur est authentifié et dispose de la permission d'accès au module des rôles. \\
+% \hline
+% \textbf{Postcondition} & L'interface affiche la liste complète des permissions et leurs assignements. \\
+% \hline
+% \textbf{Scénario nominal} &
+% \begin{minipage}[t]{\linewidth}\raggedright
+% \begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
+% \item L'administrateur clique sur l'onglet « Permissions ».
+% \item Le système interroge la base de données pour récupérer la liste des rôles et permissions.
+% \item Le système affiche une vue matricielle.
+% \item L'administrateur consulte quelles permissions sont actives par rôle.
+% \item L'administrateur utilise les filtres natifs pour n'afficher qu'une partie de la matrice.
+% \end{enumerate}
+% \end{minipage} \\
+% \hline
+% \textbf{Scénario alternatif} &
+% \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+% \item  L'administrateur choisit de basculer la présentation. Le système réorganise instantanément les données pour afficher une liste empilée des rôles contenant chacun leurs listes de permissions respectives. Le but initial (consulter) est atteint avec succès sous une autre forme.
+% \end{enumerate} \\
+% \hline
+% \end{longtable}
+% \captionof{table}{Description textuelle « Consulter liste permissions »} 
+% \normalsize
+% \vspace{-0.3cm}
+\subsubsection{Description textuelle du cas d’utilisation « Attribuer permission à rôle »}
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -697,9 +713,9 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} & Administrateur \\
 \hline
-\textbf{Préconditions} & L'administrateur est authentifié et autorisé à gérer les permissions. \\
+\textbf{Précondition} & L'administrateur est authentifié et autorisé à gérer les permissions. \\
 \hline
-\textbf{Postconditions} & La nouvelle permission est techniquement rattachée au rôle ciblé. \\
+\textbf{Postcondition} & La nouvelle permission est techniquement rattachée au rôle ciblé. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -712,19 +728,19 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item L'administrateur se trompe et coche une permission que le rôle possède déjà. À la soumission, le système refuse avec une erreur de validation. L'administrateur décoche la permission fautive et relance la sauvegarde avec succès.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
-\textbf{Scénarios d'exception} &
-\begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
+\textbf{Scénario d'exception} &
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item L'identifiant du rôle ciblé n'existe pas ou plus dans la base de données au moment de validater. L'opération est définitivement bloquée en erreur.
 \item  Une permission sélectionnée par l'administrateur s'avère introuvable côté serveur lors de l'enregistrement. Le système rejette l'attribution globale.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle « Attribuer permission à rôle »} 
+\captionof{table}{Description textuelle du cas d’utilisation « Attribuer permission à rôle »} 
 }
 \normalsize
 \vspace{-0.3cm}
@@ -734,52 +750,53 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 3 : CONCEPTION
 % ─────────────────────────────────────────────────────────────────────────────
+\section{Conception}
+\subsection{Diagramme d'activité « Authentification et Demander accés via fournisseur externe »}
 
-\section{Diagramme de classes du premiér sprint}
-
-\begin{figure}[htbp]
+\begin{figure}[H]
         \centering
-        \includegraphics[width=1\textwidth,height=0.9\textheight,keepaspectratio]{Images/diag classe sprint 1.png}
-        \caption{Diagramme de classes du Sprint 1}
-        \label{fig:diag_classe_sprint1}
+        \includegraphics[width=0.9\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_activites_demande_insc.png}
+        \caption{Diagramme d’activité d’authentification et d’inscription}
+        \label{fig:oauth_activity_diagram}
 \end{figure}
 
-\section{Diagramme de séquence}
 
-\subsection{Diagramme de séquences du cas d'utilisation « S'authentifier »}
+\subsection{Diagramme de séquences}
+
+\subsubsection{Diagramme de séquencess du cas d'utilisation « S'authentifier »}
 
 \begin{figure}[H]
         \centering
         \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_seq_auth.png}
-        \caption{Diagramme de séquence du cas d'utilisation « S'authentifier »}
+        \caption{Diagramme de séquences du cas d'utilisation « S'authentifier »}
         \label{fig:auth_sequence}
 \end{figure}
 
-\subsection{Diagramme de séquences du cas d'utilisation « Mot de passe oublié »}
+\subsubsection{Diagramme de séquencess du cas d'utilisation « Mot de passe oublié »}
 
 \begin{figure}[H]
         \centering
         \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme changer Mot de passe.png}
-        \caption{Diagramme de séquence du cas d'utilisation « Mot de passe oublié »}
+        \caption{Diagramme de séquences du cas d'utilisation « Mot de passe oublié »}
         \label{fig:password_reset_sequence}
 \end{figure}
 
-\subsection{Diagramme de séquences du cas d'utilisation « Désactiver utilisateur »}
+\subsubsection{Diagramme de séquencess du cas d'utilisation « Désactiver utilisateur »}
 
 \begin{figure}[H]
         \centering
         \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diaggramme de séquence de Désactiver utilisateur.png}
-        \caption{Diagramme de séquence du cas d'utilisation « Désactiver utilisateur »}
+        \caption{Diagramme de séquences du cas d'utilisation « Désactiver utilisateur »}
         \label{fig:deactivate_user_sequence}
 \end{figure}
 
-\subsection{Diagramme d'activité « Authentification et Demander accés via fournisseur externe »}
+\subsection{Diagramme de classes du premiér sprint}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
         \centering
-        \includegraphics[width=0.9\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_activites_demande_insc.png}
-        \caption{Diagramme d'activité d'authentification et Demande accés via fournisseur externe}
-        \label{fig:oauth_activity_diagram}
+        \includegraphics[width=1\textwidth,height=0.9\textheight,keepaspectratio]{Images/diag classe sprint 1.png}
+        \caption{Diagramme de classes du premiér sprint}
+        \label{fig:diag_classe_sprint1}
 \end{figure}
 
 \section{Schéma relationnel}
@@ -908,8 +925,7 @@ d'accès basé sur les rôles (RBAC) et la gestion des clients.
 \begin{itemize}[leftmargin=0pt]
 
 % ── 1. Authentification ───────────────────────────────────────────────────────
-\item[$\square$] \textbf{Module Authentification}
-\newline
+\item[$\square$] \textbf{Test Module Authentification}
 \newline
 \textbf{Méthodes : \textbf{login()}} 
 \textbf{demanderReinitialisationMotDePasse()} 
@@ -949,7 +965,7 @@ de passe. Les cas suivants ont été couverts :
 \end{minipage}
 \end{figure}
 % ── 2. RBAC ───────────────────────────────────────────────────────────────────
-\item[$\square$] \textbf{Module Gestion des rôles et permissions (RBAC)}
+\item[$\square$] \textbf{Test Module Gestion des rôles et permissions (RBAC)}
 \newline
 \textbf{Méthodes :} \textbf{creerPermission()},
 \textbf{attribuerRoleUtilisateur()},
@@ -1010,10 +1026,8 @@ comportement de l'API dans des conditions proches de la production.
 
 \begin{itemize}[leftmargin=0pt]
 
-\item[$\square$] \textbf{Authentification}
- \newline
-\newline\textit{Endpoint : \textbf{POST /api/auth/login}}
-
+\item[$\square$] \textbf{ Test Authentification}
+\newline \begin{center} \textit{Endpoint : \textbf{POST /api/auth/login}} \end{center}
 \noindent Cette suite valide le comportement complet de l'endpoint de
 connexion, notamment le retour des jetons d'authentification, des rôles,
 des permissions associées et la gestion des codes d'erreur HTTP selon les
@@ -1048,9 +1062,8 @@ différents cas d'entrée.
 \label{fig:test_integration}
 \end{figure}
 
-\item[$\square$]  \textbf {Gestion du profil}
-\newline
-\newline\textit{Endpoint : \textbf{PUT /api/profil}}
+\item[$\square$]  \textbf { Test Gestion du profil}
+\newline \begin{center} \textit{Endpoint : \textbf{PUT /api/profil}} \end{center}
  
 \noindent Cette suite de tests vise à valider le bon fonctionnement de la méthode \textbf{modifierProfil()} exposée via l'endpoint \textbf{PUT /api/profil}, qui permet à un utilisateur de mettre à jour les informations de son profil.
 \newline
@@ -1058,7 +1071,7 @@ Lee cas suivant ont été couvert :
 \begin{itemize}
 \item[$\bullet$] Cas où l'e-mail fourni dans la requête ne respecte pas le format attendu.
 \end{itemize}
-\begin{figure}[htbp]
+\begin{figure}[H]
         \centering
         \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/gestion profil Swagger.png}
         \caption{Test de mise à jour du profil}
@@ -1080,9 +1093,8 @@ d'utilisation de la plateforme.
 
 \begin{itemize}[leftmargin=0pt]
 
-\item[$\square$] \textbf{Authentification}
-\newline
-\newline\textit{10 scénarios : connexion classique, OAuth, déconnexion}
+\item[$\square$] \textbf{ Test Authentification}
+\newline \begin{center} \textit{10 scénarios : connexion classique, OAuth, déconnexion} \end{center}
 
 \noindent Cette suite valide le flux complet d'authentification en
 simulant les actions réelles d'un utilisateur sur l'interface. Les cas
@@ -1123,8 +1135,8 @@ suivants ont été couverts :
 \label{fig:test_e2e_auth}
 \end{figure}
 
-\item[$\square$] \textbf{Gestion des utilisateurs} ---
-\textit{1 scénario : désactivation avec réassignation des tickets}
+\item[$\square$] \textbf{Test Gestion des utilisateurs} ---
+\newline \begin{center} \textit{1 scénario : désactivation avec réassignation des tickets} \end{center}
 
 \noindent Cette suite valide le flux complet de désactivation d'un
 utilisateur disposant de tickets actifs, en simulant les actions réelles

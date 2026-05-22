@@ -25,11 +25,12 @@
 \mtcsetdepth{minitoc}{1}
 \mtcsetrules{minitoc}{off}
 \mtcsetfont{minitoc}{*}{\small\rmfamily\color{primary}}
-\mtcsetfont{minitoc}{section}{\large\bfseries\rmfamily\color{primary}}
-\mtcsetfont{minitoc}{subsection}{\footnotesize\rmfamily\color{secondary}}
+\mtcsetfont{minitoc}{section}{\normalsize\bfseries\rmfamily\color{primary}}
+\mtcsetfont{minitoc}{subsection}{\small\rmfamily\color{secondary}}
 \renewcommand{\mtctitle}{}
 \usepackage{titlesec}
 \usepackage{caption}
+\captionsetup{font={small,it}, labelfont=bf, skip=6pt}
 \usepackage{chngpage}
 \usepackage{hyperref}
 \usepackage{xurl}
@@ -202,7 +203,10 @@
     headheight=25pt
 }
 \setstretch{1.5}
-
+% Espacement flottants (figures et tableaux)
+\setlength{\intextsep}{12pt}     % espace au-dessus et en-dessous des flottants
+\setlength{\textfloatsep}{14pt}  % espace entre flottant et texte
+\setlength{\floatsep}{10pt}      %
 % Numérotation personnalisée
 \renewcommand{\thechapter}{\Roman{chapter}}
 \renewcommand{\thesection}{\Roman{section}}
@@ -223,22 +227,26 @@
 
 % Style des chapitres
 \titleformat{\chapter}[hang]
-  {\normalfont\Large\bfseries\color{primary}}
+  {\normalfont\fontsize{14}{16}\selectfont\bfseries\color{primary}}
   {\chaptertitlename\ \thechapter.}{1em}{}
   [\vspace{2pt}\titlerule]
 \titlespacing*{\chapter}{0pt}{0pt}{20pt}
 
 % Style des sections
+% Style des sections
 \titleformat{\section}
-  {\Large\bfseries\color{primary}}{\thesection}{1em}{}
+  {\fontsize{13}{15}\selectfont\bfseries\color{primary}}{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{18pt}{8pt}     % ← AJOUTER
 
 % Style des subsections
 \titleformat{\subsection}
-  {\large\bfseries\color{secondary}}{\thesubsection}{1em}{}
+  {\fontsize{12}{14}\selectfont\bfseries\color{secondary}}{\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{14pt}{6pt}  % ← AJOUTER
 
 % Style des subsubsections
 \titleformat{\subsubsection}
   {\normalsize\bfseries\color{secondary}}{\thesubsubsection}{1em}{}
+\titlespacing*{\subsubsection}{0pt}{12pt}{4pt}
 
 % ============================================================
 \begin{document}

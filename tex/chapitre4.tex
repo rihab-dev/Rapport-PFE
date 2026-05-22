@@ -67,7 +67,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \label{fig:gerer_clients}
 \end{figure}
 
-\subsubsection{Description textuelle de cas d'utilisation « Ajouter client »}
+\subsubsection{Description textuelle du cas d’utilisation « Ajouter client »}
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -84,11 +84,11 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} & Administrateur \\
 \hline
-\textbf{Préconditions} &
+\textbf{Précondition} &
 L'utilisateur est authentifié.\newline
 La liste des clients est accessible. \\
 \hline
-\textbf{Postconditions} &
+\textbf{Postcondition} &
 Le client est créé et enregistré dans le système.\newline
 Le profil client associé est initialisé.\newline
 Un message de confirmation est affiché. \\
@@ -106,24 +106,24 @@ Un message de confirmation est affiché. \\
 \vspace{2pt}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item À l'étape 2, l'administrateur ajoute ou corrige manuellement le logo de la société et l'adresse le flux continue normalement.
 \item À l'étape 4, si un champ obligatoire est vide ou invalide : le système affiche une erreur, l'administrateur corrige la saisie et \textbf{retourne à l'étape 3}.
 \item À l'étape 4, si l'e-mail est déjà utilisé : le système signale le doublon, l'administrateur saisit un autre e-mail et \textbf{retourne à l'étape 3}.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
-\textbf{Scénarios d'exception} &
-\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\textbf{Scénario d'exception} &
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item À l'étape 5, si le rôle système "CLIENT" est introuvable en base de données l'opération échoue et le cas s'arrête
-\end{itemize} \\
+\end{enumerate} \\
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle « Ajouter client »} 
 \normalsize
 \vspace{-0.3cm} 
 
-\subsubsection{Description textuelle de cas d'utilisation « Consulter profil client »}
+\subsubsection{Description textuelle du cas d’utilisation « Consulter profil client »}
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -140,11 +140,11 @@ Un message de confirmation est affiché. \\
 \hline
 \textbf{Acteurs} & Administrateur, Chef de projet, Client (son propre profil) \\
 \hline
-\textbf{Préconditions} & L'utilisateur est authentifié.\newline
+\textbf{Précondition} & L'utilisateur est authentifié.\newline
 L'utilisateur possède la permission de consulter les profils clients ou consulte son propre profil.\newline
 Pour Chef de projet : le client doit être associé à au moins un de ses projets. \\
 \hline
-\textbf{Postconditions} & Profil client consulté. \\
+\textbf{Postcondition} & Profil client consulté. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -158,17 +158,17 @@ Pour Chef de projet : le client doit être associé à au moins un de ses projet
 \vspace{2pt}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item \textbf{À l'étape 1, erreur de saisie :} l'utilisateur se trompe d'orthographe lors de sa recherche le système affiche « Aucun résultat », l'utilisateur efface, corrige son texte et \textbf{reprend à l'étape 2} avec succès.
 \item \textbf{À l'étape 5}, au lieu de simplement lire, l'utilisateur clique sur « Exporter en PDF » le système génère le fichier (il choisit un chemin différent, et cela aboutit).
-\end{itemize} \\
+\end{enumerate} \\
 \hline
-\textbf{Scénarios d'exception} &
-\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\textbf{Scénario d'exception} &
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item \textbf{À l'étape 3}, un Chef de projet tente de forcer l'URL d'un client avec qui il n'a aucun projet le système détecte la faille via le \textit{Guard}, affiche "Accès refusé" (Erreur 403) et bloque la consultation.
 \item \textbf{À l'étape 4}, le compte du client a été supprimé ou l'ID fourni n'appartient pas à un client le système lève l'exception "Utilisateur introuvable" (Erreur 404), bloque l'action et affiche un écran d'erreur spécifique.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle « Consulter profil client »} 
@@ -177,7 +177,7 @@ Pour Chef de projet : le client doit être associé à au moins un de ses projet
 \vspace{-0.3cm}
 
 
-\subsubsection{Description textuelle de cas d'utilisation « Désactiver client »}
+\subsubsection{Description textuelle du cas d’utilisation « Désactiver client »}
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -194,12 +194,12 @@ Pour Chef de projet : le client doit être associé à au moins un de ses projet
 \hline
 \textbf{Acteurs} & Administrateur \\
 \hline
-\textbf{Préconditions} & L'utilisateur est authentifié.\newline
+\textbf{Précondition} & L'utilisateur est authentifié.\newline
 L'utilisateur possède la permission de désactiver les clients.\newline
 Liste des clients affichée.\newline
 Le client à désactiver doit être actuellement actif. \\
 \hline
-\textbf{Postconditions} & Le compte client est désactivé. \\
+\textbf{Postcondition} & Le compte client est désactivé. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -207,7 +207,7 @@ Le client à désactiver doit être actuellement actif. \\
 \item L'administrateur choisit le client ciblé dans la liste.
 \item L'administrateur clique sur l'action (Désactiver).
 \item Le système vérifie si le client possède des contrats actifs, des demandes en cours ou des tickets actifs.
-\item Le système affiche une boîte de dialogue de confirmation avec une alerte sur les conséquences.
+\item Le système affiche une boîte de dialogue de confirmation avec une alerte sur les conséquencess.
 \item L'administrateur valide la désactivation.
 \item Le système passe le statut du client à inactif en base de données.
 \item Le système révoque toutes les sessions actives de ce client.
@@ -217,11 +217,11 @@ Le client à désactiver doit être actuellement actif. \\
 \vspace{2pt}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item  Le système détecte des contrats actifs ou des tickets non résolus et bloque l'action l'administrateur clôture les contrats et résout les tickets nécessaires, puis \textbf{reprend à l'étape 2} avec succès.
 \item L'administrateur réalise qu'il a cliqué sur le mauvais client il choisit "Annuler", ferme la boîte et \textbf{reprend à l'étape 1} avec le bon client.
-\end{itemize} \\
+\end{enumerate} \\
 
 \hline
 \end{longtable}
@@ -231,7 +231,7 @@ Le client à désactiver doit être actuellement actif. \\
 \vspace{-0.3cm}
 
 
-\subsubsection{Description textuelle de cas d'utilisation « Ajouter projet livré »}
+\subsubsection{Description textuelle du cas d’utilisation « Ajouter projet livré »}
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -248,9 +248,9 @@ Le client à désactiver doit être actuellement actif. \\
 \hline
 \textbf{Acteurs} & Administrateur \\
 \hline
-\textbf{Préconditions} & L'administrateur est sur la page de création ou de détail d'un client. \\
+\textbf{Précondition} & L'administrateur est sur la page de création ou de détail d'un client. \\
 \hline
-\textbf{Postconditions} & Le projet est enregistré dans le système en tant que projet en maintenance. \\
+\textbf{Postcondition} & Le projet est enregistré dans le système en tant que projet en maintenance. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -264,17 +264,17 @@ Le client à désactiver doit être actuellement actif. \\
 \vspace{2pt}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item  L'administrateur saisit une date dans le futur ou incohérente  le système affiche une erreur, l'administrateur corrige et \textbf{reprend à l'étape 3}.
 \item  L'administrateur valide sans chef de projet ou sans équipe  le système bloque l'envoi, l'administrateur complète sa saisie et \textbf{reprend à l'étape 3}.
 \item Le nom du projet existe déjà  le système signale le conflit, l'administrateur modifie le nom et \textbf{reprend à l'étape 3}.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
-\textbf{Scénarios d'exception} &
-\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\textbf{Scénario d'exception} &
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item  Le profil du client a été supprimé en arrière-plan  le système lève l'exception « Client introuvable » et l'opération s'arrête définitivement.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle « Ajouter projet livré »} 
@@ -295,7 +295,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
         \label{fig:gerer_contrats}
 \end{figure}
 
-\subsubsection{Description textuelle de cas d'utilisation « Créer contrat »}
+\subsubsection{Description textuelle du cas d’utilisation « Créer contrat »}
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -312,12 +312,12 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} & Administrateur \\
 \hline
-\textbf{Préconditions} &
+\textbf{Précondition} &
 L'utilisateur est authentifié.\newline
 L'utilisateur possède la permission de créer des contrats.\newline
 La liste des contrats est accessible. \\
 \hline
-\textbf{Postconditions} &
+\textbf{Postcondition} &
 Le contrat est enregistré avec le statut « actif » et une référence générée automatiquement.\newline
 Le contrat est visible dans la liste des contrats et lié au client sélectionné. \\
 \hline
@@ -333,8 +333,8 @@ Le contrat est visible dans la liste des contrats et lié au client sélectionn�
 \vspace{2pt}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item  l'administrateur dépose un fichier PDF le système pré-remplit le formulaire automatiquement, l'administrateur vérifie et valide.
 \item  le système signale qu'un contrat actif existe déjà pour ce client/projet l'administrateur choisit un autre projet ou attend l'expiration du contrat existant.
 \item  champ obligatoire vide, dates incohérentes ou montant invalide le système affiche l'erreur, l'administrateur corrige et \textbf{reprend à l'étape 3}.
@@ -342,7 +342,7 @@ Le contrat est visible dans la liste des contrats et lié au client sélectionn�
 d'un contrat existant (détection par hash)  le système 
 signale le conflit, l'administrateur soumet un fichier différent et 
 \textbf{reprend à l'étape 3}.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
 
 \end{longtable}
@@ -350,7 +350,7 @@ signale le conflit, l'administrateur soumet un fichier différent et
 \normalsize
 \vspace{-0.3cm}
 
-\subsubsection{Description textuelle de cas d'utilisation « Archiver contrat »}
+\subsubsection{Description textuelle du cas d’utilisation « Archiver contrat »}
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -367,12 +367,12 @@ signale le conflit, l'administrateur soumet un fichier différent et
 \hline
 \textbf{Acteurs} & Administrateur \\
 \hline
-\textbf{Préconditions} &
+\textbf{Précondition} &
 L'utilisateur est authentifié.\newline
 L'utilisateur possède la permission d'archiver des contrats.\newline
 Le contrat est expiré et non encore archivé. \\
 \hline
-\textbf{Postconditions} &
+\textbf{Postcondition} &
 Le contrat est marqué comme archivé et n'apparaît plus dans la liste principale.\newline
 Le motif d'archivage est enregistré et associé au contrat. \\
 \hline
@@ -388,14 +388,14 @@ Le motif d'archivage est enregistré et associé au contrat. \\
 \vspace{2pt}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item L'administrateur sélectionne plusieurs contrats expirés et clique sur « Archiver la sélection » le système archive tous les contrats éligibles et affiche le nombre de contrats archivés avec succès.
 \item Le motif saisi contient moins de 10 caractères le bouton de confirmation reste désactivé, l'administrateur complète le motif et \textbf{reprend à l'étape 4}.
 \item Le système signale que le contrat est toujours actif l'administrateur revient à la liste et sélectionne un contrat expiré.
 \item Le système indique que le projet associé est en statut de maintenance l'administrateur clôture d'abord le projet, puis \textbf{reprend à l'étape 1}.
 \item Le système détecte des tickets en statut « ouvert », « en cours » ou « en revue » liés au contrat l'administrateur résout ces tickets, puis \textbf{reprend à l'étape 1}.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle « Archiver contrat »}
@@ -404,7 +404,7 @@ Le motif d'archivage est enregistré et associé au contrat. \\
 
 
 
-\subsubsection{Description textuelle de cas d'utilisation « Configurer intégration Slack »}
+\subsubsection{Description textuelle du cas d’utilisation « Configurer intégration Slack »}
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -421,11 +421,11 @@ Le motif d'archivage est enregistré et associé au contrat. \\
 \hline
 \textbf{Acteurs} & Administrateur \\
 \hline
-\textbf{Préconditions} &
+\textbf{Précondition} &
 L'administrateur est authentifié.\newline
 Un contrat est sélectionné. \\
 \hline
-\textbf{Postconditions} &
+\textbf{Postcondition} &
 La configuration Slack est enregistrée et liée au contrat.\newline
 Les notifications sont actives selon les préférences choisies. \\
 \hline
@@ -442,13 +442,13 @@ Les notifications sont actives selon les préférences choisies. \\
 \vspace{2pt}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item  le système détecte qu'une configuration Slack existe déjà pour ce contrat et pré-remplit le formulaire l'administrateur modifie les champs souhaités et clique sur « Mettre à jour ».
 \item  après sauvegarde, l'administrateur clique sur « Tester » le système envoie un message de test sur le canal Slack configuré.
 \item  l'URL du webhook est incorrecte ou inaccessible le système affiche un message d'échec, l'administrateur corrige l'URL et \textbf{reprend à l'étape 3}.
 
-\end{itemize} \\
+\end{enumerate} \\
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle « Configurer intégration Slack »}
@@ -473,7 +473,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
         \label{fig:suivre_contrats}
 \end{figure}
 
-\subsubsection{Description textuelle du cas d'utilisation « Consulter liste contrats »}
+\subsubsection{Description textuelle du cas d’utilisation « Consulter liste contrats »}
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -490,11 +490,11 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} & Client \\
 \hline
-\textbf{Préconditions} &
+\textbf{Précondition} &
 L'utilisateur est authentifié.\newline
 L'utilisateur possède la permission de consulter ses contrats. \\
 \hline
-\textbf{Postconditions} & La liste des contrats du client est affichée. \\
+\textbf{Postcondition} & La liste des contrats du client est affichée. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -508,11 +508,11 @@ L'utilisateur possède la permission de consulter ses contrats. \\
 \vspace{2pt}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item \textbf{À l'étape 3}, Le client télécharge le fichier PDF du contrat via le bouton « Télécharger ».
 \item  \textbf{À l'étape 3}, Le client consulte le statut d'expiration de ses contrats et reçoit des alertes à J-30, J-15 et J-7 avant l'échéance.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
 
 
@@ -522,7 +522,7 @@ L'utilisateur possède la permission de consulter ses contrats. \\
 \normalsize
 \vspace{-0.3cm}
 
-\subsubsection{Description textuelle du cas d'utilisation « Demander résiliation »}
+\subsubsection{Description textuelle du cas d’utilisation « Demander résiliation »}
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -539,11 +539,11 @@ L'utilisateur possède la permission de consulter ses contrats. \\
 \hline
 \textbf{Acteurs} & Client \\
 \hline
-\textbf{Préconditions} &
+\textbf{Précondition} &
 L'utilisateur est authentifié.\newline
 Le contrat est actif et appartient au client. \\
 \hline
-\textbf{Postconditions} &
+\textbf{Postcondition} &
 La demande de résiliation est enregistrée et le contrat passe au statut « résiliation en attente ».\newline
 L'administrateur est notifié par e-mail et notification interne. \\
 \hline
@@ -560,11 +560,11 @@ L'administrateur est notifié par e-mail et notification interne. \\
 \vspace{2pt}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le motif saisi contient moins de 10 caractères le bouton de confirmation reste désactivé, le client complète le motif et \textbf{reprend à l'étape 4}.
 \item Le bouton « Demander la résiliation » est masqué pour les contrats non actifs ; le client revient à la liste et sélectionne un contrat actif.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle « Demander résiliation »}
@@ -574,7 +574,7 @@ L'administrateur est notifié par e-mail et notification interne. \\
 
 
 
-\subsection{Description textuelle du cas d'utilisation « Consulter journal d'activités »}
+\subsection{Description textuelle du cas d’utilisation « Consulter journal d'activités »}
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -591,11 +591,11 @@ L'administrateur est notifié par e-mail et notification interne. \\
 \hline
 \textbf{Acteurs} & Administrateur \\
 \hline
-\textbf{Préconditions} &
+\textbf{Précondition} &
 L'utilisateur est authentifié.\newline
 L'utilisateur possède la permission de consulter le journal d'activités. \\
 \hline
-\textbf{Postconditions} &
+\textbf{Postcondition} &
 Le journal d'activités est affiché avec les filtres appliqués. \\
 \hline
 \textbf{Scénario nominal} &
@@ -610,13 +610,13 @@ Le journal d'activités est affiché avec les filtres appliqués. \\
 \vspace{2pt}
 \end{minipage} \\
 \hline
-\textbf{Scénarios alternatifs} &
-\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Aucun log ne correspond aux filtres appliqués le système affiche un message « Aucun résultat trouvé », l'administrateur modifie ou réinitialise les filtres et \textbf{reprend à l'étape 3}.
 \item L'administrateur clique sur « Exporter » le système télécharge les logs filtrés au format CSV (jusqu'à 10 000 entrées).
 \item L'administrateur consulte les statistiques globales : total du jour, taux de succès, utilisateurs uniques, actions les plus fréquentes et activité par heure.
 \item L'administrateur sélectionne un utilisateur spécifique le système affiche son activité des 30 derniers jours, son taux de succès et les entités les plus actives.
-\end{itemize} \\
+\end{enumerate} \\
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle « Consulter journal d'activités »}
@@ -632,22 +632,22 @@ Le journal d'activités est affiché avec les filtres appliqués. \\
 \label{fig:diag_classe_sprint2}
 \end{figure}
 
-\section{Diagramme de séquence}
-\subsection{Diagramme de séquences du cas d'utilisation « Demande Résiliation »}
+\section{Diagramme de séquences}
+\subsection{Diagramme de séquencess du cas d'utilisation « Demande Résiliation »}
 
 \begin{figure}[H]
         \centering
         \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme de sequence Demande Resiliation.png}
-        \caption{Diagramme de séquence du cas d'utilisation « Demande Résiliation »}
+        \caption{Diagramme de séquences du cas d'utilisation « Demande Résiliation »}
         \label{fig:Diagramme de sequence Demande Resiliation}
 \end{figure}
 
-\subsection{Diagramme de séquences du cas d'utilisation « Résilier contrat »}
+\subsection{Diagramme de séquencess du cas d'utilisation « Résilier contrat »}
 
 \begin{figure}[H]
         \centering
         \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme de sequence de resilier contrat.png}
-        \caption{Diagramme de séquence du cas d'utilisation « Résilier contrat »}
+        \caption{Diagramme de séquences du cas d'utilisation « Résilier contrat »}
         \label{fig:Diagramme de sequence de resilier contrat}
 \end{figure}
 
