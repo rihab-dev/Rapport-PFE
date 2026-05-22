@@ -80,18 +80,15 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \hline
 \textbf{Scénarios alternatifs} &
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item \textbf{Connexion OAuth Google/GitHub :} L'utilisateur choisit l'onglet OAuth, lance l'authentification. Si le compte existe, il est authentifié sans mot de passe.
-\item \textbf{Identifiants incorrects :} Si l'adresse e-mail ou le mot de passe est invalide, le système affiche une erreur. \textbf{L'utilisateur corrige ses identifiants} et retente la connexion.
-\item \textbf{Session expirée :} Si le jeton est obsolète, le système redirige l'utilisateur vers la page de connexion, lui permettant de \textbf{se reconnecter immédiatement}.
-\item \textbf{Compte OAuth introuvable :} Lors d'une tentative OAuth, le système ne trouve pas de compte et bascule l'utilisateur sur le processus d'inscription OAuth pour pallier au manque.
-\item \textbf{Changement de mot de passe obligatoire :} Obligation de mise à jour détectée : l'utilisateur passe par l'interface sécurisée, \textbf{corrige son mot de passe}, puis parvient à se connecter.
+\item  L'utilisateur choisit l'onglet OAuth, lance l'authentification. Si le compte existe, il est authentifié sans mot de passe.
+\item  Si l'adresse e-mail ou le mot de passe est invalide, le système affiche une erreur. L'utilisateur corrige ses identifiants et retente la connexion.
 \end{itemize} \\
 \hline
 \textbf{Scénarios d'exception} &
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item \textbf{Verrouillage automatique :} Après \textbf{3 tentatives échouées}, le système affiche \texttt{401 Unauthorized} et le compte est verrouillé \textbf{strictement pendant 1 minute}. Aucune action de l'utilisateur ne permet de forcer l'entrée.
-\item \textbf{Compte désactivé :} Le compte a été révoqué. Le système bloque impérativement la connexion.
-\item \textbf{Compte en attente de validation :} La demande d'inscription OAuth est en \texttt{EN\_ATTENTE}. L'accès est bloqué tant qu'un administrateur n'a pas validé.
+\item  Après 3 tentatives échouées, le système affiche \texttt{401 Unauthorized} et le compte est verrouillé strictement pendant 1 minute. Aucune action de l'utilisateur ne permet de forcer l'entrée.
+\item  Le compte a été révoqué. Le système bloque impérativement la connexion.
+\item  La demande d'inscription OAuth est en EN ATTENTE. L'accès est bloqué tant qu'un administrateur n'a pas validé.
 \end{itemize} \\
 \hline
 \end{longtable}
@@ -203,15 +200,15 @@ Au cours de cette partie, nous allons analyser les sous-cas d'utilisation pour l
 \hline
 \textbf{Scénarios alternatifs} &
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item \textbf{ Compte actif déjà existant :} (À l'étape 3). Le système détecte que l'e-mail OAuth est déjà rattaché à un compte actif. Au lieu de créer la demande, le système connecte directement l'utilisateur. \textit{Succès alternatif.}
-\item \textbf{ Demande déjà soumise précédemment :} (À l'étape 3). Le système détecte le doublon, bloque la création pour éviter les spams, mais rassure l'utilisateur en affichant l'interface d'attente. \textit{Résolution gracieuse.}
+\item  Le système détecte que l'e-mail OAuth est déjà rattaché à un compte actif. Au lieu de créer la demande, le système connecte directement l'utilisateur. \textit{Succès alternatif.}
+\item  Le système détecte le doublon, bloque la création pour éviter les spams, mais rassure l'utilisateur en affichant l'interface d'attente. \textit{Résolution gracieuse.}
 \end{itemize} \\
 \hline
 \textbf{Scénarios d'exception} &
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item \textbf{ Refus d'autorisation OAuth :} (À l'étape 2). Le visiteur annule le processus chez le fournisseur. Le système avorte l'opération et le ramène à la connexion. \textit{Échec de l'action.}
-\item \textbf{ E-mail OAuth non communiqué :} (À l'étape 3). Le fournisseur externe masque l'e-mail de l'utilisateur. Le système bloque l'inscription et affiche une erreur. \textit{Arrêt du processus.}
-\item \textbf{ Panne du fournisseur OAuth :} (À l'étape 2). Le service externe est indisponible. Le système affiche une erreur réseau. \textit{Arrêt du processus.}
+\item Le visiteur annule le processus externe. Le système avorte l'opération et le ramène à la connexion. \textit{Échec de l'action.}
+\item  Le service externe masque l'e-mail de l'utilisateur. Le système bloque l'inscription et affiche une erreur. \textit{Arrêt du processus.}
+\item  Le service externe est indisponible. Le système affiche une erreur réseau. \textit{Arrêt du processus.}
 \end{itemize} \\
 \hline
 \end{longtable}
@@ -260,14 +257,14 @@ Au cours de cette partie, nous allons analyser les sous-cas d'utilisation pour l
 \hline
 \textbf{Scénarios alternatifs} &
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item \textbf{Refus de la demande :} L'administrateur choisit de refuser l'accès. Il saisit un motif de refus qui remplace l'approbation, la demande est alors rejetée (Scénario de succès logique).
-\item \textbf{Données incomplètes :} Le système détecte qu'il manque un champ essentiel. L'administrateur \textbf{saisit l'information manquante} et valide à nouveau la demande.
+\item  L'administrateur choisit de refuser l'accès. Il saisit un motif de refus qui remplace l'approbation, la demande est alors rejetée.
+\item  Le système détecte qu'il manque un champ essentiel. L'administrateur saisit l'information manquante et valide à nouveau la demande.
 \end{itemize} \\
 \hline
 \textbf{Scénarios d'exception} &
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item \textbf{Conflit de compte (Doublon) :} L'e-mail de la demande est déjà attribué à un compte actif dans le système. L'application bloque automatiquement la conversion pour cause d'unicité.
-\item \textbf{Statut déjà traité :} Une autre session a déjà statué sur cette demande, le clic de validation échoue définitivement (\textit{Action impossible}).
+\item  L'e-mail de la demande est déjà attribué à un compte actif dans le système. L'application bloque automatiquement la conversion pour cause d'unicité.
+\item  Une autre session a déjà statué sur cette demande, le clic de validation échoue définitivement.
 \end{itemize} \\
 \hline
 \end{longtable}
@@ -361,9 +358,9 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Scénarios alternatifs} &
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item \textbf{ Erreur de saisie :} L'administrateur oublie un champ ou se trompe de format. Le système signale le champ fautif. \textit{L'administrateur le corrige} et valide à nouveau.
-\item \textbf{E-mail indisponible :} L'adresse e-mail est déjà attribuée à un autre compte. Le système affiche une alerte. \textit{L'administrateur change l'adresse e-mail} pour continuer.
-\item \textbf{Abandon volontaire :} L'administrateur ferme la fenêtre de création avant la fin. L'opération est simplement annulée.
+\item  L'administrateur oublie un champ ou se trompe de format. Le système signale le champ fautif. L'administrateur le corrige et valide à nouveau.
+\item  L'adresse e-mail est déjà attribuée à un autre compte. Le système affiche une alerte. L'administrateur change l'adresse e-mail pour continuer.
+\item  L'administrateur ferme la fenêtre de création avant la fin. L'opération est simplement annulée.
 \end{itemize} \\
 \hline
 \end{longtable}
@@ -409,8 +406,8 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Scénarios alternatifs} &
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item \textbf{A1 - Délégation obligatoire :} (À l'étape 3). L'utilisateur ciblé possède des tickets actifs. Le système ouvre une modale de réassignation. L'administrateur répartit les tickets, puis valide, permettant à la désactivation d'aboutir.
-\item \textbf{A2 - Abandon volontaire :} L'administrateur décide finalement de fermer la fenêtre modale (Annuler). L'opération s'interrompt proprement, le compte reste Actif.
+\item  L'utilisateur ciblé possède des tickets actifs. Le système ouvre une modale de réassignation. L'administrateur répartit les tickets, puis valide, permettant à la désactivation d'aboutir.
+\item  L'administrateur décide finalement de fermer la fenêtre modale (Annuler). L'opération s'interrompt proprement, le compte reste Actif.
 \end{itemize} \\
 \hline
 
@@ -455,12 +452,12 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Scénarios alternatifs} &
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item \textbf{Email déjà utilisé :} Si le nouvel e-mail fourni est déjà pris par un autre compte, le système rejette la saisie. \textit{L'utilisateur saisit une adresse différente} et revalide.
-\item \textbf{Ancien mot de passe incorrect :} Lors du changement de mot de passe, le mot de passe actuel fourni est faux. \textit{L'utilisateur rectifie le mot de passe} pour réussir.\end{itemize} \\
+\item  Si le nouvel e-mail fourni est déjà pris par un autre compte, le système rejette la saisie. L'utilisateur saisit une adresse différente et revalide.
+\item  Lors du changement de mot de passe, le mot de passe actuel fourni est faux. L'utilisateur rectifie le mot de passe pour réussir.\end{itemize} \\
 \hline
 \textbf{Scénarios d'exception} &
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item \textbf{Utilisateur introuvable :} Bien que l'utilisateur soit connecté, son profil a été supprimé ou désactivé par un administrateur à la seconde précédente . L'enregistrement est impossible et la session est stoppée.
+\item  Bien que l'utilisateur soit connecté, son profil a été supprimé ou désactivé par un administrateur à la seconde précédente . L'enregistrement est impossible et la session est stoppée.
 \end{itemize} \\
 \hline
 \end{longtable}
@@ -552,9 +549,9 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
 
-\item \textbf{Désassignation requise :} À l'étape 3, le système détecte que le rôle est encore utilisé et bloque l'archivage. L'administrateur retire ce rôle aux utilisateurs liés, puis relance avec succès l'archivage.
+\item  le système détecte que le rôle est encore utilisé et bloque l'archivage. L'administrateur retire ce rôle aux utilisateurs liés, puis relance avec succès l'archivage.
 
-\item \textbf{Annulation volontaire :} À l'étape 4, l'administrateur ferme la boîte de confirmation. L'opération est annulée proprement.
+\item  l'administrateur ferme la boîte de confirmation. L'opération est annulée proprement.
 
 \end{itemize} \\
 
@@ -564,7 +561,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
 
-\item \textbf{Rôle introuvable :} Le rôle ciblé n'existe plus dans le système au moment de la validation. Le système affiche une erreur et bloque l'opération.
+\item  Le rôle ciblé n'existe plus dans le système au moment de la validation. Le système affiche une erreur et bloque l'opération.
 
 \end{itemize} \\
 
@@ -615,14 +612,14 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Scénarios alternatifs} &
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item \textbf{Annulation volontaire :} À l'étape 4, l'administrateur ferme la fenêtre sans valider. Aucune attribution n'est effectuée.
+\item  L'administrateur ferme la fenêtre sans valider. Aucune attribution n'est effectuée.
 \end{itemize} \\
 \hline
 \textbf{Scénarios d'exception} &
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item \textbf{Violation des règles d'exclusivité :} Le système détecte une combinaison interdite (\texttt{CLIENT} avec \texttt{CHEF\_PROJET}, \texttt{DEVELOPPEUR} ou \texttt{ADMIN}). L'attribution est définitivement rejetée.
-\item \textbf{Rôle déjà attribué :} Le rôle est déjà lié à cet utilisateur. Le système bloque la duplication.
-\item \textbf{Ressource introuvable :} L'utilisateur ou le rôle ciblé n'existe plus en base de données. L'opération est stoppée.
+\item  Le système détecte une combinaison interdite (\texttt{CLIENT} avec \texttt{CHEF\_PROJET}, \texttt{DEVELOPPEUR} ou \texttt{ADMIN}). L'attribution est définitivement rejetée.
+\item  Le rôle est déjà lié à cet utilisateur. Le système bloque la duplication.
+\item  L'utilisateur ou le rôle ciblé n'existe plus en base de données. L'opération est stoppée.
 \end{itemize} \\
 \hline
 \end{longtable}
@@ -665,12 +662,12 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Scénarios alternatifs} &
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item \textbf{Annulation volontaire :} À l'étape 3, l'administrateur ferme la confirmation. L'opération est annulée proprement.
+\item L'administrateur ferme la confirmation. L'opération est annulée proprement.
 \end{itemize} \\
 \hline
 \textbf{Scénarios d'exception} &
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item \textbf{Rôle non attribué :} Le lien ciblé n'existe pas en base de données (ex: supprimé par une action concurrente). Le système bloque définitivement l'opération.
+\item  Le lien ciblé n'existe pas en base de données (ex: supprimé par une action concurrente). Le système bloque définitivement l'opération.
 \end{itemize} \\
 \hline
 \end{longtable}
@@ -729,7 +726,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Scénarios alternatifs} &
 \begin{itemize}[nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt, label=$\bullet$]
-\item \textbf{Changement d'affichage :} À l'étape 3, l'administrateur choisit de basculer la présentation. Le système réorganise instantanément les données pour afficher une liste empilée des rôles contenant chacun leurs listes de permissions respectives. Le but initial (consulter) est atteint avec succès sous une autre forme.
+\item  L'administrateur choisit de basculer la présentation. Le système réorganise instantanément les données pour afficher une liste empilée des rôles contenant chacun leurs listes de permissions respectives. Le but initial (consulter) est atteint avec succès sous une autre forme.
 \end{itemize} \\
 \hline
 \end{longtable}
