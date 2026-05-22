@@ -72,7 +72,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \footnotesize
 \renewcommand{\arraystretch}{1}
 \begin{longtable}{|P{4cm}|P{11.5cm}|}
-
 \hline
 \endfirsthead
 \hline
@@ -87,7 +86,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Préconditions} &
 L'utilisateur est authentifié.\newline
-L'utilisateur possède la permission de créer des clients.\newline
 La liste des clients est accessible. \\
 \hline
 \textbf{Postconditions} &
@@ -98,42 +96,32 @@ Un message de confirmation est affiché. \\
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., leftmargin=*]
-\item L'administrateur clique sur le bouton « Nouveau client ».
-\item Le système affiche le formulaire de création.
-\item L'administrateur saisit les informations du client : prénom, nom, e-mail et autres données requises.
-\item L'administrateur renseigne ou sélectionne la société associée au client.
-\item Si nécessaire, l'administrateur complète les informations de la société : nom, adresse, secteur d'activité et téléphone.
-\item Le système peut récupérer automatiquement le logo de la société à partir d'une source externe, ainsi que l'adresse via un service de géocodage, si ces fonctionnalités sont activées.
-\item L'administrateur valide le formulaire en cliquant sur « Créer le client ».
+\item L'administrateur clique sur « Nouveau client » pour ouvrir le formulaire.
+\item L'administrateur renseigne les données du client (prénom, nom, e-mail) et celles de sa société (nom, adresse).
+\item L'administrateur valide le formulaire.
 \item Le système vérifie la validité des données et l'unicité de l'e-mail.
-\item Le système crée le client et associe son profil dans la base de données.
-\item Le système envoie un e-mail de confirmation ou de bienvenue si cette fonctionnalité est prévue.
-\item Le système affiche un message de succès et met à jour la liste des clients.
+\item Le système enregistre le client et son profil en base de données.
+\item Le système envoie un e-mail de bienvenue, affiche un message de succès et met à jour la liste.
 \end{enumerate}
 \vspace{2pt}
 \end{minipage} \\
 \hline
 \textbf{Scénarios alternatifs} &
 \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-\item L'administrateur ajoute manuellement le logo de la société au lieu d'utiliser la récupération automatique.
-\item L'administrateur associe le client à une société existante déjà enregistrée.
-\item L'administrateur saisit manuellement l'adresse de la société lorsque la suggestion automatique du géocodage ne correspond pas.
-\item L'administrateur complète plus tard certaines informations facultatives du client.
+\item À l'étape 2, l'administrateur ajoute ou corrige manuellement le logo de la société et l'adresse le flux continue normalement.
+\item À l'étape 4, si un champ obligatoire est vide ou invalide : le système affiche une erreur, l'administrateur corrige la saisie et \textbf{retourne à l'étape 3}.
+\item À l'étape 4, si l'e-mail est déjà utilisé : le système signale le doublon, l'administrateur saisit un autre e-mail et \textbf{retourne à l'étape 3}.
 \end{itemize} \\
 \hline
 \textbf{Scénarios d'exception} &
 \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-\item Un champ obligatoire est vide ou contient une valeur invalide.
-\item L'adresse e-mail saisie est déjà utilisée par un autre utilisateur.
-\item Le système rencontre une erreur lors de l'enregistrement du client.
-\item L'administrateur tente de quitter le formulaire alors que des données ont déjà été saisies.
+\item À l'étape 5, si le rôle système "CLIENT" est introuvable en base de données l'opération échoue et le cas s'arrête
 \end{itemize} \\
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle « Ajouter client »} 
 \normalsize
-\vspace{-0.3cm}
-
+\vspace{-0.3cm} 
 
 \subsubsection{Description textuelle de cas d'utilisation « Consulter profil client »}
 
@@ -161,29 +149,25 @@ Pour Chef de projet : le client doit être associé à au moins un de ses projet
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., leftmargin=*]
-\item L'utilisateur accède au profil du client.
-\item Le système affiche les informations personnelles et société.
-\item Le système affiche les statistiques et éléments accessibles selon le rôle de l'utilisateur.
-\item L'utilisateur peut naviguer vers les éléments disponibles (projets, demandes, tickets, documents).
+\item L'utilisateur recherche le client dans la barre de recherche ou filtre la liste.
+\item L'utilisateur clique sur le profil du client ciblé.
+\item Le système vérifie les droits d'accès de l'utilisateur à ce profil.
+\item Le système récupère et affiche les informations personnelles et les modules accessibles.
+\item L'utilisateur lit les informations et navigue sur le profil.
 \end{enumerate}
-\vspace{2pt}
-\end{minipage} \\
-\hline
-\textbf{Restrictions d'accès} &
-\begin{minipage}[t]{\linewidth}
-\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-\item Administrateur : accès complet (contrats, projets, demandes, tickets, notes privées, documents).
-\item Chef de projet : accès limité aux projets où il est assigné et aux demandes/tickets liés à ces projets uniquement.
-\item Client : accès à son propre profil, ses projets, demandes et tickets.
-\end{itemize}
 \vspace{2pt}
 \end{minipage} \\
 \hline
 \textbf{Scénarios alternatifs} &
 \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-\item L'utilisateur exporte les informations du profil en PDF.
-\item L'utilisateur clique sur "Contacter" pour envoyer un e-mail ou un message via la messagerie interne de l'application.
-\item L'utilisateur clique sur l'adresse de la société pour visualiser sa localisation sur une carte interactive.
+\item \textbf{À l'étape 1, erreur de saisie :} l'utilisateur se trompe d'orthographe lors de sa recherche le système affiche « Aucun résultat », l'utilisateur efface, corrige son texte et \textbf{reprend à l'étape 2} avec succès.
+\item \textbf{À l'étape 5}, au lieu de simplement lire, l'utilisateur clique sur « Exporter en PDF » le système génère le fichier (il choisit un chemin différent, et cela aboutit).
+\end{itemize} \\
+\hline
+\textbf{Scénarios d'exception} &
+\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\item \textbf{À l'étape 3}, un Chef de projet tente de forcer l'URL d'un client avec qui il n'a aucun projet le système détecte la faille via le \textit{Guard}, affiche "Accès refusé" (Erreur 403) et bloque la consultation.
+\item \textbf{À l'étape 4}, le compte du client a été supprimé ou l'ID fourni n'appartient pas à un client le système lève l'exception "Utilisateur introuvable" (Erreur 404), bloque l'action et affiche un écran d'erreur spécifique.
 \end{itemize} \\
 \hline
 \end{longtable}
@@ -191,6 +175,7 @@ Pour Chef de projet : le client doit être associé à au moins un de ses projet
 
 \normalsize
 \vspace{-0.3cm}
+
 
 \subsubsection{Description textuelle de cas d'utilisation « Désactiver client »}
 
@@ -219,34 +204,32 @@ Le client à désactiver doit être actuellement Actif. \\
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., leftmargin=*]
-\item L'administrateur choisit un client dans la liste.
+\item L'administrateur choisit le client ciblé dans la liste.
 \item L'administrateur clique sur l'action (Désactiver).
 \item Le système vérifie si le client possède des contrats actifs, des demandes en cours ou des tickets actifs.
-\item Le système affiche une boîte de dialogue de confirmation avec les détails des contrats, demandes et tickets actifs.
-\item L'administrateur confirme l'action.
-\item Le système met à jour le statut du client.
-\item Le système révoque les sessions actives (suppression des refresh tokens).
-\item Le système envoie un e-mail automatique au contact principal du client pour l'informer de la désactivation.
-\item Le système affiche le message de succès.
+\item Le système affiche une boîte de dialogue de confirmation avec une alerte sur les conséquences.
+\item L'administrateur valide la désactivation.
+\item Le système passe le statut du client à inactif en base de données.
+\item Le système révoque toutes les sessions actives de ce client.
+\item Le système envoie un e-mail automatique au contact.
+\item Le système affiche un message de succès et rafraîchit la liste.
 \end{enumerate}
 \vspace{2pt}
 \end{minipage} \\
 \hline
-\textbf{Scénarios d'exception} &
+\textbf{Scénarios alternatifs} &
 \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-\item L'administrateur tente de désactiver un client qui possède des contrats actifs sans les clôturer.
-\item L'administrateur tente de désactiver un client ayant des demandes en attente de traitement.
-\item L'administrateur tente de désactiver un client ayant des tickets actifs non résolus.
+\item  Le système détecte des contrats actifs ou des tickets non résolus et bloque l'action l'administrateur clôture les contrats et résout les tickets nécessaires, puis \textbf{reprend à l'étape 2} avec succès.
+\item L'administrateur réalise qu'il a cliqué sur le mauvais client il choisit "Annuler", ferme la boîte et \textbf{reprend à l'étape 1} avec le bon client.
 \end{itemize} \\
-\hline
-\textbf{Scénarios alternatifs} & L'administrateur clôture les contrats, traite les demandes et résout les tickets avant la désactivation. \\
-\hline
 
-
+\hline
 \end{longtable}
-\captionof{table}{Description textuelle « Désactiver un client »} 
+\captionof{table}{Description textuelle « Désactiver client »} 
+
 \normalsize
 \vspace{-0.3cm}
+
 
 \subsubsection{Description textuelle de cas d'utilisation « Ajouter projet livré »}
 
@@ -272,27 +255,25 @@ Le client à désactiver doit être actuellement Actif. \\
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., leftmargin=*]
-\item L'administrateur clique sur l'action d'ajout d'un projet déjà livré.
-\item Le système affiche le formulaire de saisie du contexte projet.
-\item L'administrateur renseigne les informations générales : nom et description du projet.
-\item L'administrateur peut définir des étiquettes (tags) de catégorisation ainsi qu'une liste des accès techniques ou ressources documentaires liés au projet.
-\item L'administrateur renseigne les jalons temporels historiques (date de début, date de fin, et date de livraison effective).
-\item Le système exige la sélection d'un chef de projet responsable parmi les collaborateurs de l'entreprise.
-\item Le système exige la sélection d'au moins un intervenant supplémentaire pour constituer l'équipe ayant réalisé le projet.
-\item L'administrateur valide l'enregistrement du projet.
-\item Le système contrôle strictement que les dates fournies sont cohérentes et appartiennent au passé.
-\item Le système enregistre le projet avec ses tags et ses accès, puis l'associe officiellement au dossier du client.
-\item Le système consigne les affectations des membres de l'équipe.
-\item Un message de succès confirme l'ajout à l'écran.
+\item L'administrateur clique sur « Ajouter un projet livré » et renseigne (le nom, la description..).
+\item L'administrateur sélectionne le chef de projet et au moins un membre de l'équipe ayant réalisé le projet.
+\item L'administrateur valide le formulaire.
+\item Le système contrôle la cohérence des dates et l'existence des intervenants.
+\item Le système enregistre le projet, associe l'équipe et confirme l'ajout par un message de succès.
 \end{enumerate}
 \vspace{2pt}
 \end{minipage} \\
 \hline
+\textbf{Scénarios alternatifs} &
+\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\item  L'administrateur saisit une date dans le futur ou incohérente  le système affiche une erreur, l'administrateur corrige et \textbf{reprend à l'étape 3}.
+\item  L'administrateur valide sans chef de projet ou sans équipe  le système bloque l'envoi, l'administrateur complète sa saisie et \textbf{reprend à l'étape 3}.
+\item Le nom du projet existe déjà  le système signale le conflit, l'administrateur modifie le nom et \textbf{reprend à l'étape 3}.
+\end{itemize} \\
+\hline
 \textbf{Scénarios d'exception} &
 \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-\item Une des dates saisies est dans le futur : Le système rejette la saisie en indiquant qu'un projet livré doit s'être déroulé dans le passé.
-\item La date de livraison est antérieure à la date de début : Le système bloque la création pour incohérence chronologique.
-\item Aucun chef de projet ou aucune équipe n'est sélectionné : Le système empêche la validation du formulaire et demande de compléter l'équipe.
+\item  Le profil du client a été supprimé en arrière-plan  le système lève l'exception « Client introuvable » et l'opération s'arrête définitivement.
 \end{itemize} \\
 \hline
 \end{longtable}
@@ -318,9 +299,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
-
 \begin{longtable}{|P{4cm}|P{11.5cm}|}
-
 \hline
 \endfirsthead
 \hline
@@ -339,45 +318,37 @@ L'utilisateur possède la permission de créer des contrats.\newline
 La liste des contrats est accessible. \\
 \hline
 \textbf{Postconditions} &
-\begin{minipage}[t]{\linewidth}\raggedright\hyphenpenalty=1000
-
 Le contrat est enregistré avec le statut ACTIF et une référence générée automatiquement.\newline
 Le contrat est visible dans la liste des contrats et lié au client sélectionné. \\
-\end{minipage} \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., leftmargin=*]
-\item L'administrateur clique sur « Nouveau » depuis la liste des contrats.
-\item Le système propose deux modes : \textit{Saisie manuelle} ou \textit{Import PDF}.
-\item L'administrateur sélectionne \textit{Saisie manuelle} et confirme.
-\item L'administrateur renseigne les informations du contrat : client, projet, dates, montant, cycle de facturation (mensuel ou semestriel) et taux de TVA.
+\item L'administrateur clique sur « Nouveau », sélectionne le mode \textit{Saisie manuelle} et renseigne les informations du contrat (client, projet, dates, montant, cycle de facturation).
 \item L'administrateur configure le niveau de service (SLA) avec les délais de réponse et de résolution par priorité.
-\item Le système calcule automatiquement le montant TVA et le montant TTC.
 \item L'administrateur valide le formulaire.
-\item Le système enregistre le contrat, émet un événement afin de créer le canal de communication associé, puis redirige l'utilisateur vers la liste des contrats.
+\item Le système contrôle la cohérence des données, calcule automatiquement la TVA et le montant TTC.
+\item Le système enregistre le contrat, crée le canal de communication associé et confirme par un message de succès.
 \end{enumerate}
 \vspace{2pt}
 \end{minipage} \\
 \hline
 \textbf{Scénarios alternatifs} &
 \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-\item L'administrateur choisit le mode \textit{Import de document} et dépose un fichier PDF. Le système extrait automatiquement les données et pré-remplit le formulaire. L'administrateur vérifie les données, sélectionne le client et le projet, puis valide.
+\item  l'administrateur dépose un fichier PDF le système pré-remplit le formulaire automatiquement, l'administrateur vérifie et valide.
+\item  le système signale qu'un contrat actif existe déjà pour ce client/projet l'administrateur choisit un autre projet ou attend l'expiration du contrat existant.
+\item  champ obligatoire vide, dates incohérentes ou montant invalide le système affiche l'erreur, l'administrateur corrige et \textbf{reprend à l'étape 3}.
+\item le système détecte que le fichier PDF importé est un doublon 
+d'un contrat existant (détection par hash)  le système 
+signale le conflit, l'administrateur soumet un fichier différent et 
+\textbf{reprend à l'étape 3}.
 \end{itemize} \\
 \hline
-\textbf{Scénarios d'exception} &
-\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-\item Le système détecte qu'un contrat actif existe déjà pour ce client/projet et affiche un message de blocage.
-\item Le système détecte que le client, les dates ou le montant ne sont pas renseignés et affiche un message d'erreur.
-\item Le système détecte que la date de début est antérieure à aujourd'hui ou que la date d'expiration est antérieure ou égale à la date de début et affiche un message d'erreur.
-\item Le système détecte que le montant saisi est nul ou non numérique et affiche un message d'erreur.
-\end{itemize} \\
-\hline
+
 \end{longtable}
 \captionof{table}{Description textuelle « Créer contrat »}
 \normalsize
 \vspace{-0.3cm}
-
 
 \subsubsection{Description textuelle de cas d'utilisation « Archiver contrat »}
 
@@ -419,20 +390,19 @@ Le motif d'archivage est enregistré et associé au contrat. \\
 \hline
 \textbf{Scénarios alternatifs} &
 \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-\item L'administrateur sélectionne plusieurs contrats expirés et clique sur « Archiver la sélection ». Le système archive tous les contrats éligibles et affiche le nombre de contrats archivés avec succès.
+\item L'administrateur sélectionne plusieurs contrats expirés et clique sur « Archiver la sélection » le système archive tous les contrats éligibles et affiche le nombre de contrats archivés avec succès.
+\item Le motif saisi contient moins de 10 caractères le bouton de confirmation reste désactivé, l'administrateur complète le motif et \textbf{reprend à l'étape 4}.
+\item Le système signale que le contrat est toujours actif l'administrateur revient à la liste et sélectionne un contrat expiré.
+\item Le système indique que le projet associé est en statut EN MAINTENANCE l'administrateur clôture d'abord le projet, puis \textbf{reprend à l'étape 1}.
+\item Le système détecte des tickets en statut OUVERT, EN COURS ou EN REVUE liés au contrat l'administrateur résout ces tickets, puis \textbf{reprend à l'étape 1}.
 \end{itemize} \\
 \hline
-\textbf{Scénarios d'exception} &
-\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-\item Le système détecte que le contrat n'est pas encore expiré et bloque l'action d'archivage.
-\item Le système détecte que le motif saisi contient moins de 10 caractères et désactive le bouton de confirmation.
-\end{itemize} \\
-\hline
-
 \end{longtable}
 \captionof{table}{Description textuelle « Archiver contrat »}
 \normalsize
 \vspace{-0.3cm}
+
+
 
 \subsubsection{Description textuelle de cas d'utilisation « Configurer intégration Slack »}
 
@@ -474,21 +444,16 @@ Les notifications sont actives selon les préférences choisies. \\
 \hline
 \textbf{Scénarios alternatifs} &
 \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-\item Le système détecte qu'une configuration Slack existe déjà pour ce contrat et pré-remplit le formulaire. L'administrateur modifie les champs souhaités et clique sur « Mettre à jour ».
-\item Après sauvegarde, l'administrateur clique sur « Tester ». Le système envoie un message de test sur le canal Slack configuré.
-\item L'administrateur clique sur le bouton de suppression. Le système supprime la configuration Slack du contrat.
-\end{itemize} \\
-\hline
-\textbf{Scénarios d'exception} &
-\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
-\item Le système détecte que le webhook URL ou le canal ne sont pas renseignés et affiche un message d'erreur.
-\item Le système détecte que le webhook URL est invalide lors du test et affiche un message d'erreur.
-\end{itemize} \\
-\hline
+\item  le système détecte qu'une configuration Slack existe déjà pour ce contrat et pré-remplit le formulaire l'administrateur modifie les champs souhaités et clique sur « Mettre à jour ».
+\item  après sauvegarde, l'administrateur clique sur « Tester » le système envoie un message de test sur le canal Slack configuré.
+\item  l'URL du webhook est incorrecte ou inaccessible le système affiche un message d'échec, l'administrateur corrige l'URL et \textbf{reprend à l'étape 3}.
 
+\end{itemize} \\
+\hline
 \end{longtable}
-\captionof{table}{Description textuelle « Configurer intégration Slack »} 
-
+\captionof{table}{Description textuelle « Configurer intégration Slack »}
+\normalsize
+\vspace{-0.3cm}
 \normalsize
 \vspace{-0.3cm}
 
@@ -545,8 +510,8 @@ L'utilisateur possède la permission de consulter ses contrats. \\
 \hline
 \textbf{Scénarios alternatifs} &
 \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
-\item Le client télécharge le fichier PDF du contrat via le bouton « Télécharger ».
-\item Le client consulte le statut d'expiration de ses contrats et reçoit des alertes à J-30, J-15 et J-7 avant l'échéance.
+\item \textbf{À l'étape 3}, Le client télécharge le fichier PDF du contrat via le bouton « Télécharger ».
+\item  \textbf{À l'étape 3}, Le client consulte le statut d'expiration de ses contrats et reçoit des alertes à J-30, J-15 et J-7 avant l'échéance.
 \end{itemize} \\
 \hline
 
@@ -579,7 +544,7 @@ L'utilisateur est authentifié.\newline
 Le contrat est actif et appartient au client. \\
 \hline
 \textbf{Postconditions} &
-La demande de résiliation est enregistrée.\newline
+La demande de résiliation est enregistrée et le contrat passe au statut \texttt{RESILIATION\_EN\_ATTENTE}.\newline
 L'administrateur est notifié par e-mail et notification interne. \\
 \hline
 \textbf{Scénario nominal} &
@@ -595,18 +560,18 @@ L'administrateur est notifié par e-mail et notification interne. \\
 \vspace{2pt}
 \end{minipage} \\
 \hline
-\textbf{Scénarios d'exception} &
-\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
-\item Le motif saisi contient moins de 10 caractères : le bouton de confirmation reste désactivé.
-\item Le contrat n'est pas actif : l'action est indisponible.
+\textbf{Scénarios alternatifs} &
+\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt, label=$\bullet$]
+\item Le motif saisi contient moins de 10 caractères le bouton de confirmation reste désactivé, le client complète le motif et \textbf{reprend à l'étape 4}.
+\item Le bouton « Demander la résiliation » est masqué pour les contrats non actifs le client revient à la liste et sélectionne un contrat actif.
 \end{itemize} \\
 \hline
-
-
 \end{longtable}
-\captionof{table}{Description textuelle « Demander résiliation »} 
+\captionof{table}{Description textuelle « Demander résiliation »}
 \normalsize
 \vspace{-0.3cm}
+
+
 
 
 \subsection{Description textuelle du cas d'utilisation « Consulter journal d'activités »}
@@ -647,20 +612,14 @@ Le journal d'activités est affiché avec les filtres appliqués. \\
 \hline
 \textbf{Scénarios alternatifs} &
 \begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
-\item L'administrateur clique sur « Exporter » pour télécharger les logs au format CSV (jusqu'à 10 000 entrées).
+\item Aucun log ne correspond aux filtres appliqués le système affiche un message « Aucun résultat trouvé », l'administrateur modifie ou réinitialise les filtres et \textbf{reprend à l'étape 3}.
+\item L'administrateur clique sur « Exporter » le système télécharge les logs filtrés au format CSV (jusqu'à 10 000 entrées).
 \item L'administrateur consulte les statistiques globales : total du jour, taux de succès, utilisateurs uniques, actions les plus fréquentes et activité par heure.
-\item L'administrateur consulte les statistiques d'un utilisateur spécifique : activité des 30 derniers jours, taux de succès et entités les plus actives.
+\item L'administrateur sélectionne un utilisateur spécifique le système affiche son activité des 30 derniers jours, son taux de succès et les entités les plus actives.
 \end{itemize} \\
 \hline
-\textbf{Scénarios d'exception} &
-\begin{itemize}[nosep,leftmargin=0.8cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
-\item Aucun log ne correspond aux filtres appliqués : le système affiche un message « Aucun résultat trouvé ».
-\end{itemize} \\
-\hline
-
 \end{longtable}
-\captionof{table}{Description textuelle « Consulter journal d'activités »} 
-
+\captionof{table}{Description textuelle « Consulter journal d'activités »}
 \normalsize
 \vspace{-0.3cm}
 
