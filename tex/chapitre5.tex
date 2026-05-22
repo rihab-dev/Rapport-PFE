@@ -933,6 +933,7 @@ L'assignation est enregistrée avec succès et le développeur est notifié (in-
 
 \subsection{Description textuelle de cas d'utilisation « Évaluer capacité développeur »}
 \footnotesize
+\footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
 \hline
@@ -943,45 +944,43 @@ L'assignation est enregistrée avec succès et le développeur est notifié (in-
 \endfoot
 \hline
 \endlastfoot
+
 \textbf{Nom du cas d'utilisation} & Évaluer capacité développeur \\
 \hline
 \textbf{Acteurs} & Chef de projet, Administrateur \\
 \hline
 \textbf{Préconditions} & L’utilisateur est authentifié et dispose des permissions nécessaires. \\
 \hline
-\textbf{Postconditions} & Le système présente une évaluation détaillée de la charge de travail de chaque développeur disponible. \\
+\textbf{Postconditions} & En cas de succès, la liste des développeurs disponibles est affichée de manière structurée et triée par charge croissante. En cas d'échec, le système notifie l'absence de ressources disponibles. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
-\item L’utilisateur sélectionne un ticket non assigné, ou bien après la validation d’une demande.
-\item Il clique sur le bouton « Assigner ».
-\item Le système récupère la liste de tous les développeurs actifs.
-\item Pour chaque développeur, le système évalue sa charge de travail actuelle, son nombre de tickets en cours et en revue, ainsi que son appartenance au projet concerné.
-\item Le système identifie les développeurs déjà assignés au ticket courant.
-\item La liste est présentée en deux sections distinctes : les membres du projet, affichés en priorité, et les autres développeurs.
-\item Chaque section est triée par charge de travail croissante.
-
-
+\item L’utilisateur sélectionne un ticket non assigné.
+\item Le système lance la requête d'évaluation capacitaire.
+\item Le système récupère la liste intégrale des développeurs actifs.
+\item Pour chaque profil, le système calcule sa charge totale (tickets en cours et en revue) et vérifie son appartenance au projet.
+\item Le système filtre les développeurs déjà assignés à ce ticket.
+\item Le système affiche le résultat, séparé en deux catégories (membres et autres développeurs), chacune triée par charge croissante. Les développeurs ayant atteint leur limite maximale de tickets sont signalés visuellement.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénarios alternatifs} &
 \begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt, label={$\bullet$}]
-\item L’utilisateur peut consulter le planning prévisionnel d’un développeur sur les jours à venir.
-\item L’utilisateur peut visualiser le profil détaillé d’un développeur (compétences, expérience, disponibilité).
+\item Si l’utilisateur demande la vue planning d'un développeur, alors le système affiche la répartition de ses échéances ; l'utilisateur ferme ensuite la vue (retour à l'étape 6).
+\item Si l’utilisateur consulte les informations d'un développeur , alors le système présente les détails de ce profil ; l'utilisateur ferme ensuite les détails (retour à l'étape 6).
 \end{itemize} \\
 \hline
 \textbf{Scénarios d'exception} &
 \begin{itemize}[nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt, label={$\bullet$}]
-\item Aucun développeur n’est disponible : le système affiche un message d’erreur.
-\item Le ticket a déjà atteint le nombre maximal d’assignations : l’assignation est bloquée.
+\item  Si le système ne trouve aucun développeur activé ni disponible dans la base, alors il affiche une notification informant de l'absence de ressources.
 \end{itemize} \\
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle du cas d’utilisation « Évaluer capacité développeur »}
 \normalsize
 \vspace{-0.3cm}
+
 
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 3 : CONCEPTION
