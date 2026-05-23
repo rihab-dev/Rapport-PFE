@@ -80,7 +80,7 @@ L'interface utilisateur doit offrir une utilisabilité optimale, caractérisée 
 Le système doit assurer une protection rigoureuse de l'application et des données à travers des mécanismes d'authentification forte, une gestion stricte des autorisations basée sur les rôles (RBAC), et le chiffrement des informations sensibles. La traçabilité des actions critiques doit être garantie par un système de journalisation (\textit{logging}) permanent afin de permettre l'audit des événements et de détecter toute anomalie ou tentative d'accès non autorisé.
 
 \item \textbf{Performance et Évolutivité :} 
-La plateforme doit maintenir des temps de réponse minimaux, même en situation de pics de charge. Cela impose une optimisation de l'accès aux données (mécanismes de mise en cache, requêtage efficient) et une architecture technique capable de supporter une montée en charge progressive (\textit{scalabilité}).
+Afin de garantir des latences minimales, même sous affluence critique, l'architecture doit intégrer des stratégies d'optimisation de l'accès aux données (mise en cache, requêtes optimisées) prenant en compte la sollicitation liée à l'opération d'indexation, tout en supportant une montée en charge progressive.
 
 \item \textbf{Réactivité et Temps Réel :} 
 Pour les modules nécessitant une synchronisation instantanée (tels que les notifications ou les alertes de gestion), le système doit garantir une communication bidirectionnelle à faible latence entre le serveur et les clients afin d'assurer la transmission immédiate des flux d'informations.
