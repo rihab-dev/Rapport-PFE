@@ -1,6 +1,6 @@
 ﻿\section*{Introduction}
 Dans le chapitre précédent, nous avons mis en place la gestion des projets et des contrats, définissant ainsi le cadre contractuel et organisationnel de notre collaboration avec les clients.
-\newline Au cours de ce chapitre, nous présentons les fonctionnalités du troisième sprint, consacré au cœur métier de la plateforme, à savoir la gestion des demandes, la gestion des tickets, le suivi du temps, le respect des SLA, le tableau Kanban et l’intégration de l’intelligence artificielle. Ce sprint constitue une étape majeure dans la transformation de la solution en un véritable système de pilotage du support et du traitement des incidents.
+\newline Au cours de ce chapitre, nous présentons les fonctionnalités du troisième sprint, consacré au cœur métier de la plateforme, à savoir la gestion des demandes, la gestion des tickets, le suivi du temps, le respect des SLA et l’intégration de l’intelligence artificielle. Ce sprint constitue une étape majeure dans la transformation de la solution en un véritable système de pilotage du support et du traitement des incidents.
 
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 1 : BACKLOG DU SPRINT 3
@@ -25,29 +25,29 @@ Dans le cadre de ce sprint, l’analyse fonctionnelle a consisté à formaliser 
 
 \label{sec:analyse_sprint3}
 
-\subsection{Diagramme des cas d'utilisation du troisième sprint}
+\subsection{Diagramme de cas d'utilisation du troisième sprint}
 La figure ci-dessous présente le diagramme de cas d’utilisation du troisième sprint.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/diagramme cas utilisation sprint3.png}
-    \caption{Diagramme des cas d'utilisation du troisième sprint}
+    \includegraphics[width=0.70\textwidth,height=0.65\textheight,keepaspectratio]{Images/diagramme cas utilisation sprint3.png}
+    \caption{Diagramme de cas d'utilisation du troisième sprint}
     \label{fig:use_case_sprint3}
 \end{figure}
 
 Nous allons accompagner les cas d'utilisation d'un texte descriptif pour expliquer le scénario de chaque cas ainsi que ses exceptions.
 \subsection{Analyse de la fonctionnalité « Suivre demandes »}
 Dans cette partie, nous allons présenter les cas d'utilisation relatifs au suivi des demandes afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
-\subsubsection{Raffinement de cas d'utilisation « Suivre demandes »}
+\subsubsection{Raffinement du cas d'utilisation « Suivre demandes »}
 Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas du suivi des demandes :
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/suivre_demandes.png}
-  \caption{Diagramme des cas d'utilisation « Suivre demandes »}
+  \caption{Raffinement du cas d'utilisation « Suivre demandes »}
   \label{fig:suivre_demandes}
 \end{figure}
 
-\subsubsection{Description textuelle du cas d’utilisation « Soumettre une demande »}
+\subsubsection{Description textuelle du cas d’utilisation « Soumettre demande »}
 La figure ci-dessous présente la description textuelle du cas d’utilisation « Soumettre une demande ».
 
 \footnotesize
@@ -61,7 +61,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Soumettre une demande \\
+\textbf{Nom du cas d'utilisation} & Soumettre demande \\
 \hline
 \textbf{Acteurs} & Client \\
 \hline
@@ -107,6 +107,8 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \captionof{table}{Description textuelle du cas d’utilisation « Soumettre une demande »}
 \normalsize
 
+\subsubsection{Description textuelle du cas d’utilisation « Compléter demande existante »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Compléter demande existante ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -163,12 +165,12 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 
 \subsection{Analyse de la fonctionnalité « Gérer demandes »}
 Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des demandes afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
-\subsubsection{Raffinement de cas d'utilisation « Suivre demandes »}
+\subsubsection{Raffinement du cas d'utilisation « Suivre demandes »}
 Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas du gestion des demandes :
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/gerer_demandes.png}
-  \caption{Diagramme des cas d'utilisation « gérer demandes »}
+  \caption{Raffinement du cas d'utilisation « gérer demandes »}
   \label{fig:gerer_demandes}
 \end{figure}
 
@@ -225,58 +227,9 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \end{longtable}
 \captionof{table}{Description textuelle du cas d’utilisation « Valider demande »}
 \normalsize
+\subsubsection{Description textuelle du cas d’utilisation « Demander informations complémentaires »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Demander informations complémentaires ».
 
-\renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-\textbf{Nom du cas d'utilisation} & Valider demande \\
-\hline
-\textbf{Acteurs} & Chef de projet, Administrateur \\
-\hline
-\textbf{Précondition} & La demande est au statut « En attente » ou « En attente d'informations ». L’acteur dispose de la permission de validation. \\
-\hline
-\textbf{Postcondition} & La demande passe au statut « Convertie », un ticket est créé automatiquement. L’assignation du ticket sera effectuée ultérieurement de manière manuelle. \\
-\hline
-\textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le chef de projet sélectionne une demande en attente, depuis la liste ou depuis son détail, puis valide la demande.
-\item Il peut conserver les informations initiales ou requalifier le type et la priorité.
-\item Il valide la demande.
-\item Le système vérifie les permissions et l’existence d’un contrat actif couvrant le projet.
-\item Le système met à jour la demande au statut « Convertie ».
-\item Le système crée automatiquement un ticket lié à la demande avec le statut « Ouvert ».
-\item Le système transfère les pièces jointes vers les documents du ticket.
-\item Le système notifie le client et les utilisateurs concernés.
-\item L’assignation du ticket est réalisée dans un second temps via le module de gestion des tickets.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario alternatif} &
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le validateur peut modifier le type de demande et/ou la priorité avant validation.
-\item Si la priorité est critique, un commentaire de justification devient obligatoire.
-\end{enumerate} \\
-\hline
-\textbf{Scénario d'exception} &
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Une demande déjà convertie ou rejetée ne peut plus être modifiée.
-\item Une validation est refusée en l’absence de contrat actif couvrant le projet.
-\item Une validation est refusée si le commentaire de requalification est insuffisant.
-\end{enumerate} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Valider demande »}
-\normalsize
-
-\subsubsection{Description textuelle du cas d’utilisation « Demander des informations complémentaires »}
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
@@ -288,7 +241,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Demander des informations complémentaires \\
+\textbf{Nom du cas d'utilisation} & Demander informations complémentaires \\
 \hline
 \textbf{Acteurs} & Chef de projet, Administrateur \\
 \hline
@@ -323,10 +276,12 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Demander des informations complémentaires »}
+\captionof{table}{Description textuelle du cas d’utilisation « Demander informations complémentaires »}
 \normalsize
 
 \subsubsection{Description textuelle du cas d’utilisation « Gérer qualification »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Gérer qualification ».
+
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
@@ -338,7 +293,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Gérer la qualification \\
+\textbf{Nom du cas d'utilisation} & Gérer qualification \\
 \hline
 \textbf{Acteurs} & Chef de projet, Administrateur \\
 \hline
@@ -373,22 +328,24 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Gérer la qualification »}
+\captionof{table}{Description textuelle du cas d’utilisation « Gérer qualification »}
 \normalsize
 
 \subsection{Analyse de la fonctionnalité « Traiter tickets assignés »}
 Dans cette partie, nous allons présenter les cas d'utilisation relatifs au traitement des tickets assignés afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
 
-\subsubsection{Raffinement de cas d'utilisation « Traiter tickets assignés »}
+\subsubsection{Raffinement du cas d'utilisation « Traiter tickets assignés »}
 Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas du traitement des tickets assignés :
 \begin{figure}[H]
         \centering
         \includegraphics[width=1\textwidth,height=0.75\textheight,keepaspectratio]{Images/traiter_tickets_assignes.png}
-        \caption{Diagramme des cas d'utilisation « Traiter tickets assignés »}
+        \caption{Raffinement du cas d'utilisation « Traiter tickets assignés »}
         \label{fig:traiter_tickets_assignes}
 \end{figure}
 
 \subsubsection{Description textuelle du cas d’utilisation « Gérer chronomètre »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Gérer qualification ».
+
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
@@ -400,7 +357,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Gérer le chronomètre \\
+\textbf{Nom du cas d'utilisation} & Gérer chronomètre \\
 \hline
 \textbf{Acteurs} & Développeur \\
 \hline
@@ -440,11 +397,13 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Gérer le chronomètre »}
+\captionof{table}{Description textuelle du cas d’utilisation « Gérer chronomètre »}
 \normalsize
 
 
 \subsubsection{Description textuelle du cas d’utilisation « Soumettre ticket en revue »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Soumettre ticket en revue ».
+
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
@@ -495,6 +454,8 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 
 
 \subsubsection{Description textuelle du cas d’utilisation « Signaler blocage »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Signaler blocage ».
+
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
@@ -506,7 +467,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Signaler un blocage \\
+\textbf{Nom du cas d'utilisation} & Signaler blocage \\
 \hline
 \textbf{Acteurs} & Développeur \\
 \hline
@@ -541,11 +502,13 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Signaler un blocage »}
+\captionof{table}{Description textuelle du cas d’utilisation « Signaler blocage »}
 \normalsize
 
 
-\subsubsection{Description textuelle du cas d’utilisation « Proposer solution à blocage »}
+\subsubsection{Description textuelle du cas d’utilisation « Proposer solution »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Proposer solution ».
+
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
@@ -557,7 +520,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Proposer une solution à un blocage \\
+\textbf{Nom du cas d'utilisation} & Proposer solution  \\
 \hline
 \textbf{Acteurs} & Autre développeur de l'équipe, Chef de projet, Administrateur \\
 \hline
@@ -591,11 +554,13 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Proposer une solution à un blocage »}
+\captionof{table}{Description textuelle du cas d’utilisation « Proposer solution »}
 \normalsize
 
 
 \subsubsection{Description textuelle du cas d’utilisation « Résoudre blocage »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Résoudre blocage ».
+
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
@@ -635,6 +600,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 
 
 \subsubsection{Description textuelle du cas d’utilisation « Ajouter solution technique »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Ajouter solution technique ».
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
@@ -690,7 +656,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 
 \subsubsection{Description textuelle du cas d’utilisation « Suivre SLA et temps »}
 La figure ci-dessous présente la description textuelle du cas d’utilisation « Suivre SLA et temps ».
-
+\footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
 \hline
@@ -744,17 +710,19 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 
 Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la clôture des tickets afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
 
-\subsubsection{Raffinement de cas d'utilisation « Gérer clôture tickets »}
+\subsubsection{Raffinement du cas d'utilisation « Gérer clôture tickets »}
 Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de la gestion de la clôture des tickets :
 
 \begin{figure}[H]
         \centering
         \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/cloturer_ticket.png}
-        \caption{Diagramme des cas d'utilisation « Clôturer un ticket »}
+        \caption{Raffinement du cas d'utilisation « Gérer clôture tickets »}
         \label{fig:cloturer_ticket}
 \end{figure}
 
-\subsubsection{Description textuelle du cas d’utilisation « Signaler problème non résolu »}
+\subsubsection{Description textuelle du cas d’utilisation « Signaler problème »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Signaler problème ».
+
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
@@ -766,7 +734,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Signaler un problème non résolu \\
+\textbf{Nom du cas d'utilisation} & Signaler problème\\
 \hline
 \textbf{Acteurs} & Client \\
 \hline
@@ -788,23 +756,25 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item \textbf{A1 — Description manquante ou insuffisante :} À l'étape 2, le système détecte que la description est vide ou inférieure à 10 caractères. La soumission est bloquée côté interface, un message d'erreur s'affiche sur le formulaire, et le client corrige sa saisie. Le scénario reprend à l'étape 2.
+\item Le système détecte que la description est vide ou inférieure à 10 caractères. La soumission est bloquée côté interface, un message d'erreur s'affiche sur le formulaire, et le client corrige sa saisie. Le scénario reprend à l'étape 2.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item \textbf{E1 — Changement de statut concurrent :} À l'étape 3, le système constate que le ticket n'est plus au statut « Résolu » (ex : il a été fermé définitivement en parallèle). Le signalement est rejeté par le serveur avant toute écriture et le processus s'interrompt avec une erreur retournée au client.
+\item Le système constate que le ticket n'est plus au statut « Résolu » (ex : il a été fermé définitivement en parallèle). Le signalement est rejeté par le serveur avant toute écriture et le processus s'interrompt avec une erreur retournée au client.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Signaler un problème non résolu »}
+\captionof{table}{Description textuelle du cas d’utilisation « Signaler problème »}
 \normalsize
 
 
-\subsubsection{Description textuelle du cas d’utilisation « Demander une extension »}
+\subsubsection{Description textuelle du cas d’utilisation « Demander extension délai »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Demander extension délai ».
+
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
@@ -816,7 +786,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Demander une extension \\
+\textbf{Nom du cas d'utilisation} & Demander extension délai \\
 \hline
 \textbf{Acteurs} & Client \\
 \hline
@@ -851,25 +821,27 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Demander une extension »}
+\captionof{table}{Description textuelle du cas d’utilisation « Demander extension délai »}
 \normalsize
 
 \subsection{Analyse de la fonctionnalité « Assigner tickets »}
 
 Dans cette partie, nous allons présenter les cas d'utilisation relatifs à l’assignation des tickets afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
 
-\subsubsection{Raffinement de cas d'utilisation « Assigner tickets »}
+\subsubsection{Raffinement du cas d'utilisation « Assigner tickets »}
 Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de la gestion de l'assignation des tickets :
 
 \begin{figure}[H]
         \centering
         \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/assigner_ticket.png}
-        \caption{Diagramme des cas d'utilisation « Assigner tickets »}
+        \caption{Raffinement du cas d'utilisation « Assigner tickets »}
         \label{fig:assigner_ticket}
 \end{figure}
 
 
-\subsubsection{Description textuelle du cas d’utilisation « Assigner ticket à développeur »}
+\subsubsection{Description textuelle du cas d’utilisation « Assigner tickets »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation «  Assigner tickets ».
+
 \footnotesize
 % ---- Version corrigée ----
 \renewcommand{\arraystretch}{0.95}
@@ -883,7 +855,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \endlastfoot
 
-\textbf{Nom du cas d'utilisation} & Assigner ticket à développeur \\
+\textbf{Nom du cas d'utilisation} & Assigner tickets \\
 \hline
 \textbf{Acteurs} & Chef de projet, Administrateur \\
 \hline
@@ -923,12 +895,13 @@ L'assignation est enregistrée avec succès et le développeur est notifié (in-
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Assigner ticket à développeur »}
+\captionof{table}{Description textuelle du cas d’utilisation « Assigner tickets »}
 \normalsize
 
 
 \subsubsection{Description textuelle du cas d’utilisation « Évaluer capacité développeur »}
-\footnotesize
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Évaluer capacité développeur ».
+
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
@@ -988,7 +961,52 @@ L'assignation est enregistrée avec succès et le développeur est notifié (in-
 \section{Conception}
 Après l’analyse des besoins et la définition des cas d’utilisation, nous avons procédé à la conception de la solution en identifiant les composants logiciels, les flux métier, les entités principales et les interactions entre les modules.
 
+\subsection{Diagramme d'activité du flux de travail d'un ticket}
+La figure suivante présente le diagramme d’activité du workflow de gestion des tickets, en mettant l’accent sur la fonctionnalité « Gérer chronomètre ».
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme_activite_gerer_cronometre.drawio.png}
+    \caption{Diagramme d'activité du flux de travail d'un ticket}
+    \label{fig:activite_ticket}
+\end{figure}
+
+\subsection{Diagramme de séquences}
+Dans cette section, nous allons modéliser les intéractions entre l'utilisateur et le système à l'aide de diagrammes de séquences pour mieux comprendre la logique de la solution.
+\subsubsection{Diagramme de séquences du cas d'utilisation « Soumettre demande »}
+La figure suivante présente le diagramme de séquences du cas d’utilisation « Soumettre demande ».
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/Soumission demande.vpd.png}
+    \caption{Diagramme de séquences du cas d'utilisation « Soumettre demande »}
+    \label{fig:seq_soumettre_demande}
+\end{figure}
+
+\subsubsection{Diagramme de séquences du cas d'utilisation « Valider demande »}
+La figure suivante présente le diagramme de séquences du cas d’utilisation « Valider demande ».
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme sequence valider Demande.vpd.png}
+    \caption{Diagramme de séquences du cas d'utilisation « Valider demande »}
+    \label{fig:seq_valider_demande}
+\end{figure}
+
+%\subsection{Diagramme de séquences du cas d'utilisation « Signaler blocage »}
+%a figure suivante présente le diagramme de séquences du cas d’utilisation « Signaler blocage ».
+
+%\begin{figure}[htbp]
+ %   \centering
+    %\includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_seq_signaler_bloquer.png}
+  %  \caption{Diagramme de séquences du cas d'utilisation « Signaler blocage »}
+   % \label{fig:seq_signaler_bloquer}
+%\end{figure}
+
+
 \subsection{Diagramme de classes du troisième sprint}
+Le diagramme de classes met en évidence les entités métiers centrales du sprint, notamment \textit{DemandeClient}, \textit{Ticket}, \textit{AssignmentTicket}, \textit{SessionTravail}, \textit{TicketSolution}, \textit{ConfigurationSLA} et les entités liées à l’intelligence artificielle et à la base de connaissances. Il illustre également les relations de dépendance entre les contrats, les projets, les tickets, les utilisateurs et les notifications.
+
 La figure suivante présente le diagramme de classes du troisième sprint.
 
 \begin{figure}[H]
@@ -998,49 +1016,7 @@ La figure suivante présente le diagramme de classes du troisième sprint.
     \label{fig:diag_classe_sprint3}
 \end{figure}
 
-Le diagramme de classes met en évidence les entités métiers centrales du sprint, notamment \textit{DemandeClient}, \textit{Ticket}, \textit{AssignmentTicket}, \textit{SessionTravail}, \textit{TicketSolution}, \textit{ConfigurationSLA} et les entités liées à l’intelligence artificielle et à la base de connaissances. Il illustre également les relations de dépendance entre les contrats, les projets, les tickets, les utilisateurs et les notifications.
-
-\subsection{Diagramme de séquences du cas d'utilisation « Soumettre une demande »}
-La figure suivante présente le diagramme de séquences du cas d’utilisation « Soumettre une demande ».
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/Soumission demande.vpd.png}
-    \caption{Diagramme de séquences du cas d'utilisation « Soumettre une demande »}
-    \label{fig:seq_soumettre_demande}
-\end{figure}
-
-\subsection{Diagramme de séquences du cas d'utilisation « Valider demande »}
-La figure suivante présente le diagramme de séquences du cas d’utilisation « Valider une demande ».
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme sequence valider Demande.vpd.png}
-    \caption{Diagramme de séquences du cas d'utilisation « Valider demande »}
-    \label{fig:seq_valider_demande}
-\end{figure}
-
-\subsection{Diagramme de séquences du cas d'utilisation « Signaler blocage »}
-La figure suivante présente le diagramme de séquences du cas d’utilisation « Signaler un blocage ».
-
-\begin{figure}[htbp]
-    \centering
-    %\includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_seq_signaler_bloquer.png}
-    \caption{Diagramme de séquences du cas d'utilisation « Signaler blocage »}
-    \label{fig:seq_signaler_bloquer}
-\end{figure}
-
-\subsection{Diagramme d'activité du workflow ticket}
-La figure suivante présente le diagramme d’activité du workflow de gestion des tickets, en mettant l’accent sur la fonctionnalité « Gérer le chronomètre ».
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme_activite_gerer_cronometre.drawio.png}
-    \caption{Diagramme d'activité du workflow de gestion des tickets}
-    \label{fig:activite_ticket}
-\end{figure}
-
-\subsection{Schéma relationnel}
+\section{Schéma relationnel}
 Le schéma relationnel du sprint 3 s’appuie sur les entités suivantes :
 \textbf{DemandeClient} (\underline{id}, titreDemande, descriptionDemande, typeDemande, prioriteDemande, statutDemande, dateSoumissionDemande, dateCreationDemande, dateMiseAJourDemande, dateValidation, motifRejet, motifRequalification, natureAutre, typeDemandeOriginal, prioriteOriginale, echeanceInitiale, \#clientId, \#projetId, \#validePar)
 \newline
@@ -1183,7 +1159,10 @@ Les tests unitaires du troisième sprint ont été organisés par composant fonc
 
 \noindent\textbf{Synthèse :} La synthèse suivante présente, par composant, les objectifs testés, le statut général et les observations clés (extraits des runs locaux).
 
-\subsubsection*{LLM (Classification IA) — Retry / Backoff}
+\begin{itemize}[leftmargin=0pt]
+
+% ── 1. Authentification ───────────────────────────────────────────────────────
+\item[$\square$] \textbf{LLM (Classification IA) — Retry / Backoff}
 \textbf{Objectifs testés :} Chaîne complète LLM — prétraitement, appel externe, post-traitement, fallback sur faible confiance ; politique de retry exponentiel face aux erreurs transitoires de l'API LLM.
 \newline\textbf{Statut :} Couvert.
 \newline\textbf{Observations clés :} Tests couvrant succès, échecs réseau et faible confiance ; réessais validés avec attente simulée.
@@ -1192,7 +1171,7 @@ Les tests unitaires du troisième sprint ont été organisés par composant fonc
   \includegraphics[width=0.7\linewidth]{Images/llm_retry_backoff.png}
 \end{figure}
 
-\subsubsection*{Cache MD5}
+\item[$\square$] \textbf{Cache MD5}
 \textbf{Objectifs testés :} Hashing de texte, mise en cache, TTL/expiration.
 \newline\textbf{Statut :} Couvert.
 \newline\textbf{Observations clés :} Cache hit évite appel externe ; expiration testée via mock temps.
@@ -1201,7 +1180,7 @@ Les tests unitaires du troisième sprint ont été organisés par composant fonc
   \includegraphics[width=0.8\linewidth]{Images/cache_md5.png}
 \end{figure}
 
-\subsubsection*{Création / Assignation / Statuts (Workflow tickets)}
+\item[$\square$] \textbf{Création / Assignation / Statuts (Workflow tickets)}
 \textbf{Objectifs testés :} Flux métier complet et effets secondaires (création, assignation, transitions d'état).
 \newline\textbf{Statut :} Couvert.
 \newline\textbf{Observations clés :} Validations métier et contraintes de transition testées.
@@ -1210,7 +1189,7 @@ Les tests unitaires du troisième sprint ont été organisés par composant fonc
   \includegraphics[width=0.7\linewidth]{Images/ticket_workflow.png}
 \end{figure}
 
-\subsubsection*{Rate limiting}
+\item[$\square$] \textbf{Rate limiting}
 \textbf{Objectifs testés :} Quotas par utilisateur et global, remise à zéro planifiée.
 \newline\textbf{Statut :} Couvert.
 \newline\textbf{Observations clés :} Comptage et refus au seuil vérifiés ; timer reset adapté aux tests.
@@ -1219,7 +1198,7 @@ Les tests unitaires du troisième sprint ont été organisés par composant fonc
   \includegraphics[width=0.8\linewidth]{Images/rate_limiting.png}
 \end{figure}
 
-\subsubsection*{Calcul SLA}
+\item[$\square$] \textbf{Calcul SLA}
 \textbf{Objectifs testés :} Minutes ouvrées, ajout de minutes ouvrées, jours fériés et traversée de plages non ouvrées.
 \newline\textbf{Statut :} Couvert.
 \newline\textbf{Observations clés :} Scénarios 24/7 vs ouvrés et traversée jours fériés testés.
@@ -1227,6 +1206,7 @@ Les tests unitaires du troisième sprint ont été organisés par composant fonc
   \centering
   \includegraphics[width=0.7\linewidth]{Images/sla_deadline.png}
 \end{figure}
+\end{itemize}
 
 \subsection{Tests d’intégration}
 Les tests d’intégration ont été réalisés sur les endpoints principaux du sprint :

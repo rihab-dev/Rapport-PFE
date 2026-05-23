@@ -57,7 +57,8 @@ Pour bien détailler ces interactions, nous allons accompagner chaque cas d'util
 \subsection{Descriptions textuelles des cas d'utilisation sans raffinement}
 Dans cette partie, nous présentons les cas d'utilisation qui ne nécessitent pas de raffinement de diagramme, leur comportement étant suffisamment direct pour être décrit uniquement par leur scénario textuel.
 
-\subsubsection{Description textuelle du cas d’utilisation «Consulter journal d'activités »}
+\subsubsection{Description textuelle du cas d’utilisation « Consulter journal d'activités »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Consulter journal d'activités ».
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -118,7 +119,8 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \label{fig:gerer_clients}
 \end{figure}
 
-\subsubsection{Description textuelle du cas d’utilisation «Ajouter client »}
+\subsubsection{Description textuelle du cas d’utilisation « Ajouter client »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Ajouter client ».
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -174,7 +176,8 @@ Un message de confirmation est affiché. \\
 \end{longtable}
 \captionof{table}{Description textuelle du cas d’utilisation «Ajouter client »} 
 \normalsize
-\subsubsection{Description textuelle du cas d’utilisation «Désactiver client »}
+\subsubsection{Description textuelle du cas d’utilisation « Désactiver client »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Désactiver client ».
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -226,7 +229,8 @@ Le client à désactiver doit être actuellement actif. \\
 \normalsize
 
 
-\subsubsection{Description textuelle du cas d’utilisation «Ajouter projet livré »}
+\subsubsection{Description textuelle du cas d’utilisation « Ajouter projet livré »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Ajouter projet livré ».
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -289,7 +293,8 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
         \label{fig:gerer_contrats}
 \end{figure}
 
-\subsubsection{Description textuelle du cas d’utilisation «Créer contrat »}
+\subsubsection{Description textuelle du cas d’utilisation « Créer contrat »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Créer contrat ».
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -343,7 +348,8 @@ signale le conflit, l'administrateur soumet un fichier différent et
 \captionof{table}{Description textuelle du cas d’utilisation «Créer contrat »}
 \normalsize
 
-\subsubsection{Description textuelle du cas d’utilisation «Archiver contrat »}
+\subsubsection{Description textuelle du cas d’utilisation « Archiver contrat »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Archiver contrat ».
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -396,7 +402,8 @@ Le motif d'archivage est enregistré et associé au contrat. \\
 
 
 
-\subsubsection{Description textuelle du cas d’utilisation «Configurer intégration Slack »}
+\subsubsection{Description textuelle du cas d’utilisation « Configurer intégration Slack »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Configurer intégration Slack ».
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -464,7 +471,8 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{figure}
 
 
-\subsubsection{Description textuelle du cas d’utilisation «Demander résiliation »}
+\subsubsection{Description textuelle du cas d’utilisation « Demander résiliation »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Demander résiliation ».
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -514,18 +522,11 @@ L'administrateur est notifié par e-mail et notification interne. \\
 
 
 
+\section{Conception}
 
-\section{Diagramme de classes du deuxième sprint}
-\begin{figure}[H]
-\centering
-\includegraphics[width=1\textwidth,keepaspectratio]{Images/diag classe sprint 2.png}
-
-\caption{Diagramme de classes du deuxième sprint}
-\label{fig:diag_classe_sprint2}
-\end{figure}
-
-\section{Diagramme de séquences}
-\subsection{Diagramme de séquences du cas d'utilisation « Demande Résiliation »}
+\subsection{Diagramme de séquences}
+Dans cette section, nous allons modéliser les intéractions entre l'utilisateur et le système à l'aide de diagrammes de séquences pour mieux comprendre la logique de la solution.
+\subsubsection{Diagramme de séquences du cas d'utilisation « Demande Résiliation »}
 
 \begin{figure}[H]
         \centering
@@ -534,13 +535,22 @@ L'administrateur est notifié par e-mail et notification interne. \\
         \label{fig:Diagramme de sequence Demande Resiliation}
 \end{figure}
 
-\subsection{Diagramme de séquences du cas d'utilisation « Résilier contrat »}
+\subsubsection{Diagramme de séquences du cas d'utilisation « Résilier contrat »}
 
 \begin{figure}[H]
         \centering
         \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme de sequence de resilier contrat.png}
         \caption{Diagramme de séquences du cas d'utilisation « Résilier contrat »}
         \label{fig:Diagramme de sequence de resilier contrat}
+\end{figure}
+
+\subsection{Diagramme de classes du deuxième sprint}
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth,keepaspectratio]{Images/diag classe sprint 2.png}
+
+\caption{Diagramme de classes du deuxième sprint}
+\label{fig:diag_classe_sprint2}
 \end{figure}
 
 \section{Schéma relationnel}
