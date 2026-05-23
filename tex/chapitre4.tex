@@ -566,9 +566,9 @@ L'administrateur est notifié par e-mail et notification interne. \\
 \section{Diagramme de classes du deuxième sprint}
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\textwidth,keepaspectratio]
- {Images/diag classe sprint 2.png}
-\caption{Diagramme de classes du Sprint 2}
+\includegraphics[width=1\textwidth,keepaspectratio]{Images/diag classe sprint 2.png}
+
+\caption{Diagramme de classes du deuxième sprint}
 \label{fig:diag_classe_sprint2}
 \end{figure}
 
@@ -593,8 +593,7 @@ L'administrateur est notifié par e-mail et notification interne. \\
 
 \section{Schéma relationnel}
 {\sloppy
-Les entités introduites dans ce sprint complètent le schéma relationnel
-établi lors du premier sprint. Les relations clés sont les suivantes :
+Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui détaille les différentes tables de la base de données ainsi que leurs relations :
 
 \noindent
 
@@ -616,7 +615,7 @@ Les entités introduites dans ce sprint complètent le schéma relationnel
 \newline
 \textbf{FeedbackExpirationContrat} (\underline{idFeedback}, \textbf{\#idContrat}, note, commentaire, souhaitRenouveler, raisonsNonRenouvellement, dateCreation)
 \newline 
-\textbf{Action}(\underline{idHistorique}, \textbf{\#idTicket}, \textbf{\#idUtilisateur}, entiteId, entiteType, typeAction, ancienneValeur, nouvelleValeur, description, metadonnees, dateAction)
+\textbf{JournalActivite} (\underline{id}, \textbf{\#idUtilisateur}, action, method, path, ipAddress, status, description, metadata, createdAt)
 
 }
 
