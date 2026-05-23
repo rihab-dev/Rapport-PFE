@@ -40,14 +40,16 @@ Le tableau ci-dessous présente le Sprint Backlog détaillé avec les descriptio
 
 \label{sec:analyse_sprint2}
 
-\subsection{Diagramme des cas d'utilisation du deuxième sprint}
+Dans cette section, nous analysons les fonctionnalités développées durant ce sprint en formalisant les interactions entre les acteurs et les différents modules du système à travers des cas d'utilisation détaillés, accompagnés de leurs tableaux de description textuelle.
+
+\subsection{Diagramme de cas d'utilisation du deuxième sprint}
 
 La figure ci-dessous présente le diagramme de cas d'utilisation du deuxième sprint :
 
 \begin{figure}[H]
         \centering
-        \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/diagramme cas utilisation sprint2.png}
-        \caption{Diagramme des cas d'utilisation du deuxième sprint}
+        \includegraphics[width=0.75\textwidth,height=0.65\textheight,keepaspectratio]{Images/diagramme cas utilisation sprint2.png}
+        \caption{Diagramme de cas d'utilisation du deuxième sprint}
         \label{fig:use_case_sprint2}
 \end{figure}
 Nous allons accompagner les cas d'utilisation d'un texte descriptif pour expliquer le scénario de chaque cas ainsi que ses exceptions.
@@ -57,13 +59,13 @@ Nous allons accompagner les cas d'utilisation d'un texte descriptif pour expliqu
 Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des clients afin
 de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des
 interactions.
-\subsubsection{Raffinement de cas d'utilisation « Gérer clients »}
+\subsubsection{Raffinement du cas d'utilisation « Gérer clients »}
 Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de gestion des clients :
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/gerer client.drawio.png}
-\caption{Raffinement de cas d'utilisation « Gérer clients »}
+\caption{Raffinement du cas d'utilisation « Gérer clients »}
 \label{fig:gerer_clients}
 \end{figure}
 
@@ -97,7 +99,8 @@ Un message de confirmation est affiché. \\
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., leftmargin=*]
 \item L'administrateur clique sur « Nouveau client » pour ouvrir le formulaire.
-\item L'administrateur renseigne les données du client (prénom, nom, e-mail) et celles de sa société (nom, adresse).
+\item L'administrateur renseigne les données du client et celles de sa société.
+\item L'administrateur associe un logo à la société : soit via la recherche automatique par nom (le système propose des suggestions issues de logo.dev), soit par import manuel d'un fichier image.
 \item L'administrateur valide le formulaire.
 \item Le système vérifie la validité des données et l'unicité de l'e-mail.
 \item Le système enregistre le client et son profil en base de données.
@@ -108,18 +111,18 @@ Un message de confirmation est affiché. \\
 \hline
 \textbf{Scénario alternatif} &
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item À l'étape 2, l'administrateur ajoute ou corrige manuellement le logo de la société et l'adresse le flux continue normalement.
-\item À l'étape 4, si un champ obligatoire est vide ou invalide : le système affiche une erreur, l'administrateur corrige la saisie et \textbf{retourne à l'étape 3}.
-\item À l'étape 4, si l'e-mail est déjà utilisé : le système signale le doublon, l'administrateur saisit un autre e-mail et \textbf{retourne à l'étape 3}.
+\item L'administrateur ajoute ou corrige manuellement le logo de la société et l'adresse le flux continue normalement.
+\item Si un champ obligatoire est vide ou invalide : le système affiche une erreur, l'administrateur corrige la saisie et \textbf{retourne à l'étape 3}.
+\item Si l'e-mail est déjà utilisé : le système signale le doublon, l'administrateur saisit un autre e-mail et \textbf{retourne à l'étape 3}.
 \end{enumerate} \\
 \hline
 \textbf{Scénario d'exception} &
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item À l'étape 5, si le rôle système "CLIENT" est introuvable en base de données l'opération échoue et le cas s'arrête
+\item Si le rôle système "CLIENT" est introuvable en base de données l'opération échoue et le cas s'arrête
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle « Ajouter client »} 
+\captionof{table}{Description textuelle du cas d’utilisation « Ajouter client »} 
 \normalsize
 \vspace{-0.3cm} 
 
@@ -160,18 +163,18 @@ Pour Chef de projet : le client doit être associé à au moins un de ses projet
 \hline
 \textbf{Scénario alternatif} &
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item \textbf{À l'étape 1, erreur de saisie :} l'utilisateur se trompe d'orthographe lors de sa recherche le système affiche « Aucun résultat », l'utilisateur efface, corrige son texte et \textbf{reprend à l'étape 2} avec succès.
-\item \textbf{À l'étape 5}, au lieu de simplement lire, l'utilisateur clique sur « Exporter en PDF » le système génère le fichier (il choisit un chemin différent, et cela aboutit).
+\item L'utilisateur se trompe d'orthographe lors de sa recherche le système affiche « Aucun résultat », l'utilisateur efface, corrige son texte et \textbf{reprend à l'étape 2} avec succès.
+\item Au lieu de simplement lire, l'utilisateur clique sur « Exporter en PDF » le système génère le fichier (il choisit un chemin différent, et cela aboutit).
 \end{enumerate} \\
 \hline
 \textbf{Scénario d'exception} &
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item \textbf{À l'étape 3}, un Chef de projet tente de forcer l'URL d'un client avec qui il n'a aucun projet le système détecte la faille via le \textit{Guard}, affiche "Accès refusé" (Erreur 403) et bloque la consultation.
-\item \textbf{À l'étape 4}, le compte du client a été supprimé ou l'ID fourni n'appartient pas à un client le système lève l'exception "Utilisateur introuvable" (Erreur 404), bloque l'action et affiche un écran d'erreur spécifique.
+\item Un Chef de projet tente de forcer l'URL d'un client avec qui il n'a aucun projet le système détecte la faille via le \textit{Guard}, affiche "Accès refusé" (Erreur 403) et bloque la consultation.
+\item Le compte du client a été supprimé ou l'ID fourni n'appartient pas à un client le système lève l'exception "Utilisateur introuvable" (Erreur 404), bloque l'action et affiche un écran d'erreur spécifique.
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle « Consulter profil client »} 
+\captionof{table}{Description textuelle du cas d’utilisation « Consulter profil client »} 
 
 \normalsize
 \vspace{-0.3cm}
@@ -225,7 +228,7 @@ Le client à désactiver doit être actuellement actif. \\
 
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle « Désactiver client »} 
+\captionof{table}{Description textuelle du cas d’utilisation « Désactiver client »} 
 
 \normalsize
 \vspace{-0.3cm}
@@ -277,7 +280,7 @@ Le client à désactiver doit être actuellement actif. \\
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle « Ajouter projet livré »} 
+\captionof{table}{Description textuelle du cas d’utilisation « Ajouter projet livré »} 
 \normalsize
 \vspace{-0.3cm}
 
@@ -285,12 +288,12 @@ Le client à désactiver doit être actuellement actif. \\
 
 Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des Contrats afin de comprendre
 les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
-\subsubsection{Raffinement de cas d'utilisation « Gérer Contrats »}
+\subsubsection{Raffinement du cas d'utilisation « Gérer Contrats »}
 Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de gestion des Contrats :
 
 \begin{figure}[H]
         \centering
-        \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/gerer-contrat-admin.png}
+        \includegraphics[width=0.75\textwidth,height=0.65\textheight,keepaspectratio]{Images/gerer-contrat-admin.png}
         \caption{Diagramme des cas d'utilisation « Gérer Contrats »}
         \label{fig:gerer_contrats}
 \end{figure}
@@ -346,7 +349,7 @@ signale le conflit, l'administrateur soumet un fichier différent et
 \hline
 
 \end{longtable}
-\captionof{table}{Description textuelle « Créer contrat »}
+\captionof{table}{Description textuelle du cas d’utilisation « Créer contrat »}
 \normalsize
 \vspace{-0.3cm}
 
@@ -398,7 +401,7 @@ Le motif d'archivage est enregistré et associé au contrat. \\
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle « Archiver contrat »}
+\captionof{table}{Description textuelle du cas d’utilisation « Archiver contrat »}
 \normalsize
 \vspace{-0.3cm}
 
@@ -451,7 +454,7 @@ Les notifications sont actives selon les préférences choisies. \\
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle « Configurer intégration Slack »}
+\captionof{table}{Description textuelle du cas d’utilisation « Configurer intégration Slack »}
 \normalsize
 \vspace{-0.3cm}
 \normalsize
@@ -463,7 +466,7 @@ Dans cette partie, nous allons présenter les cas d'utilisation relatifs au
 suivi des contrats par le client afin de comprendre les interactions
 disponibles depuis son espace personnel.
 
-\subsubsection{Raffinement de cas d'utilisation « Suivre Contrats »}
+\subsubsection{Raffinement du cas d'utilisation « Suivre Contrats »}
 Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de suivi des contrats :
 
 \begin{figure}[H]
@@ -518,7 +521,7 @@ L'utilisateur possède la permission de consulter ses contrats. \\
 
 \end{longtable}
 
-\captionof{table}{Description textuelle « Consulter liste contrats »} 
+\captionof{table}{Description textuelle du cas d’utilisation du cas d’utilisation « Consulter liste contrats »} 
 \normalsize
 \vspace{-0.3cm}
 
@@ -567,7 +570,7 @@ L'administrateur est notifié par e-mail et notification interne. \\
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle « Demander résiliation »}
+\captionof{table}{Description textuelle du cas d’utilisation du cas d’utilisation « Demander résiliation »}
 \normalsize
 \vspace{-0.3cm}
 
@@ -619,7 +622,7 @@ Le journal d'activités est affiché avec les filtres appliqués. \\
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle « Consulter journal d'activités »}
+\captionof{table}{Description textuelle du cas d’utilisation « Consulter journal d'activités »}
 \normalsize
 \vspace{-0.3cm}
 
