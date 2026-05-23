@@ -55,6 +55,57 @@ La figure ci-dessous présente le diagramme de cas d'utilisation du deuxième sp
 Nous allons accompagner les cas d'utilisation d'un texte descriptif pour expliquer le scénario de chaque cas ainsi que ses exceptions.
 
 
+\subsection{Descriptions textuelles des cas d'utilisation sans raffinement}
+Dans cette partie, nous présentons les cas d'utilisation qui ne nécessitent pas de raffinement de diagramme, leur comportement étant suffisamment direct pour être décrit uniquement par leur scénario textuel.
+
+\subsubsection{Description textuelle du cas d’utilisation «Consulter journal d'activités »}
+
+\footnotesize
+\renewcommand{\arraystretch}{1}
+\begin{longtable}{|P{4cm}|P{11.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Consulter journal d'activités \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Précondition} &
+L'utilisateur est authentifié.\newline
+L'utilisateur possède la permission de consulter le journal d'activités. \\
+\hline
+\textbf{Postcondition} &
+Le journal d'activités est affiché avec les filtres appliqués. \\
+\hline
+\textbf{Scénario nominal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'administrateur accède à la section « Journal d'activités ».
+\item Le système affiche la liste paginée des logs triés par date décroissante, avec pour chaque entrée : la date, l'utilisateur, l'action, le type d'entité, la méthode HTTP, le chemin et le statut.
+\item L'administrateur applique des filtres : par utilisateur, par type d'entité, par action, par statut, ou par plage de dates.
+\item Le système filtre et met à jour la liste en temps réel.
+\item L'administrateur clique sur une entrée pour consulter ses détails complets, incluant les métadonnées associées.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item Aucun log ne correspond aux filtres appliqués le système affiche un message « Aucun résultat trouvé », l'administrateur modifie ou réinitialise les filtres et \textbf{reprend à l'étape 3}.
+\item L'administrateur clique sur « Exporter » le système télécharge les logs filtrés au format CSV (jusqu'à 10 000 entrées).
+\item L'administrateur consulte les statistiques globales : total du jour, taux de succès, utilisateurs uniques, actions les plus fréquentes et activité par heure.
+\item L'administrateur sélectionne un utilisateur spécifique le système affiche son activité des 30 derniers jours, son taux de succès et les entités les plus actives.
+\end{enumerate} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d’utilisation «Consulter journal d'activités »}
+\normalsize
+
 \subsection{Analyse de la fonctionnalité « Gérer clients »}
 Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des clients afin
 de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des
@@ -69,7 +120,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \label{fig:gerer_clients}
 \end{figure}
 
-\subsubsection{Description textuelle du cas d’utilisation « Ajouter client »}
+\subsubsection{Description textuelle du cas d’utilisation «Ajouter client »}
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -122,65 +173,9 @@ Un message de confirmation est affiché. \\
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Ajouter client »} 
+\captionof{table}{Description textuelle du cas d’utilisation «Ajouter client »} 
 \normalsize
-\vspace{-0.3cm} 
-
-\subsubsection{Description textuelle du cas d’utilisation « Consulter profil client »}
-
-\footnotesize
-\renewcommand{\arraystretch}{1}
-\begin{longtable}{|P{4cm}|P{11.5cm}|}
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-\textbf{Nom du cas d'utilisation} & Consulter profil client \\
-\hline
-\textbf{Acteurs} & Administrateur, Chef de projet, Client (son propre profil) \\
-\hline
-\textbf{Précondition} & L'utilisateur est authentifié.\newline
-L'utilisateur possède la permission de consulter les profils clients ou consulte son propre profil.\newline
-Pour Chef de projet : le client doit être associé à au moins un de ses projets. \\
-\hline
-\textbf{Postcondition} & Profil client consulté. \\
-\hline
-\textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., leftmargin=*]
-\item L'utilisateur recherche le client dans la barre de recherche ou filtre la liste.
-\item L'utilisateur clique sur le profil du client ciblé.
-\item Le système vérifie les droits d'accès de l'utilisateur à ce profil.
-\item Le système récupère et affiche les informations personnelles et les modules accessibles.
-\item L'utilisateur lit les informations et navigue sur le profil.
-\end{enumerate}
-\vspace{2pt}
-\end{minipage} \\
-\hline
-\textbf{Scénario alternatif} &
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'utilisateur se trompe d'orthographe lors de sa recherche le système affiche « Aucun résultat », l'utilisateur efface, corrige son texte et \textbf{reprend à l'étape 2} avec succès.
-\item Au lieu de simplement lire, l'utilisateur clique sur « Exporter en PDF » le système génère le fichier (il choisit un chemin différent, et cela aboutit).
-\end{enumerate} \\
-\hline
-\textbf{Scénario d'exception} &
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Un Chef de projet tente de forcer l'URL d'un client avec qui il n'a aucun projet le système détecte la faille via le \textit{Guard}, affiche "Accès refusé" (Erreur 403) et bloque la consultation.
-\item Le compte du client a été supprimé ou l'ID fourni n'appartient pas à un client le système lève l'exception "Utilisateur introuvable" (Erreur 404), bloque l'action et affiche un écran d'erreur spécifique.
-\end{enumerate} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Consulter profil client »} 
-
-\normalsize
-\vspace{-0.3cm}
-
-
-\subsubsection{Description textuelle du cas d’utilisation « Désactiver client »}
+\subsubsection{Description textuelle du cas d’utilisation «Désactiver client »}
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -228,13 +223,11 @@ Le client à désactiver doit être actuellement actif. \\
 
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Désactiver client »} 
-
+\captionof{table}{Description textuelle du cas d’utilisation «Désactiver client »} 
 \normalsize
-\vspace{-0.3cm}
 
 
-\subsubsection{Description textuelle du cas d’utilisation « Ajouter projet livré »}
+\subsubsection{Description textuelle du cas d’utilisation «Ajouter projet livré »}
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -280,9 +273,8 @@ Le client à désactiver doit être actuellement actif. \\
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Ajouter projet livré »} 
+\captionof{table}{Description textuelle du cas d’utilisation «Ajouter projet livré »} 
 \normalsize
-\vspace{-0.3cm}
 
 \subsection{Analyse de la fonctionnalité « Gérer Contrats »}
 
@@ -293,12 +285,12 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 
 \begin{figure}[H]
         \centering
-        \includegraphics[width=0.75\textwidth,height=0.65\textheight,keepaspectratio]{Images/gerer-contrat-admin.png}
-        \caption{Diagramme des cas d'utilisation « Gérer Contrats »}
+        \includegraphics[width=0.75\textwidth,height=0.60\textheight,keepaspectratio]{Images/gerer-contrat-admin.png}
+        \caption{Raffinement du cas d’utilisation « Gérer Contrats »}
         \label{fig:gerer_contrats}
 \end{figure}
 
-\subsubsection{Description textuelle du cas d’utilisation « Créer contrat »}
+\subsubsection{Description textuelle du cas d’utilisation «Créer contrat »}
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -338,9 +330,9 @@ Le contrat est visible dans la liste des contrats et lié au client sélectionn�
 \hline
 \textbf{Scénario alternatif} &
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item  l'administrateur dépose un fichier PDF le système pré-remplit le formulaire automatiquement, l'administrateur vérifie et valide.
-\item  le système signale qu'un contrat actif existe déjà pour ce client/projet l'administrateur choisit un autre projet ou attend l'expiration du contrat existant.
-\item  champ obligatoire vide, dates incohérentes ou montant invalide le système affiche l'erreur, l'administrateur corrige et \textbf{reprend à l'étape 3}.
+\item  L'administrateur dépose un fichier PDF le système pré-remplit le formulaire automatiquement, l'administrateur vérifie et valide.
+\item  Le système signale qu'un contrat actif existe déjà pour ce client/projet l'administrateur choisit un autre projet ou attend l'expiration du contrat existant.
+\item  Un champ obligatoire vide, dates incohérentes ou montant invalide le système affiche l'erreur, l'administrateur corrige et \textbf{reprend à l'étape 3}.
 \item le système détecte que le fichier PDF importé est un doublon 
 d'un contrat existant (détection par hash)  le système 
 signale le conflit, l'administrateur soumet un fichier différent et 
@@ -349,11 +341,10 @@ signale le conflit, l'administrateur soumet un fichier différent et
 \hline
 
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Créer contrat »}
+\captionof{table}{Description textuelle du cas d’utilisation «Créer contrat »}
 \normalsize
-\vspace{-0.3cm}
 
-\subsubsection{Description textuelle du cas d’utilisation « Archiver contrat »}
+\subsubsection{Description textuelle du cas d’utilisation «Archiver contrat »}
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -401,13 +392,12 @@ Le motif d'archivage est enregistré et associé au contrat. \\
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Archiver contrat »}
+\captionof{table}{Description textuelle du cas d’utilisation «Archiver contrat »}
 \normalsize
-\vspace{-0.3cm}
 
 
 
-\subsubsection{Description textuelle du cas d’utilisation « Configurer intégration Slack »}
+\subsubsection{Description textuelle du cas d’utilisation «Configurer intégration Slack »}
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -454,11 +444,9 @@ Les notifications sont actives selon les préférences choisies. \\
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Configurer intégration Slack »}
+\captionof{table}{Description textuelle du cas d’utilisation «Configurer intégration Slack »}
 \normalsize
-\vspace{-0.3cm}
-\normalsize
-\vspace{-0.3cm}
+
 
 \subsection{Analyse de la fonctionnalité « Suivre contrats »}
 
@@ -471,12 +459,12 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 
 \begin{figure}[H]
         \centering
-        \includegraphics[width=0.7\textwidth,height=0.65\textheight,keepaspectratio]{Images/Diagramme gerer contrat Client.drawio.png}
-        \caption{Diagramme des cas d'utilisation « Suivre Contrats »}
+        \includegraphics[width=0.75\textwidth,height=0.70\textheight,keepaspectratio]{Images/Diagramme gerer contrat Client.drawio.png}
+        \caption{Raffinement du cas d'utilisation « Suivre Contrats »}
         \label{fig:suivre_contrats}
 \end{figure}
 
-\subsubsection{Description textuelle du cas d’utilisation « Consulter liste contrats »}
+\subsubsection{Description textuelle du cas d’utilisation «Consulter liste contrats »}
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -521,11 +509,10 @@ L'utilisateur possède la permission de consulter ses contrats. \\
 
 \end{longtable}
 
-\captionof{table}{Description textuelle du cas d’utilisation du cas d’utilisation « Consulter liste contrats »} 
+\captionof{table}{Description textuelle du cas d’utilisation «Consulter liste contrats »} 
 \normalsize
-\vspace{-0.3cm}
 
-\subsubsection{Description textuelle du cas d’utilisation « Demander résiliation »}
+\subsubsection{Description textuelle du cas d’utilisation «Demander résiliation »}
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -570,61 +557,11 @@ L'administrateur est notifié par e-mail et notification interne. \\
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation du cas d’utilisation « Demander résiliation »}
+\captionof{table}{Description textuelle du cas d’utilisation «Demander résiliation »}
 \normalsize
-\vspace{-0.3cm}
 
 
 
-
-\subsection{Description textuelle du cas d’utilisation « Consulter journal d'activités »}
-
-\footnotesize
-\renewcommand{\arraystretch}{1}
-\begin{longtable}{|P{4cm}|P{11.5cm}|}
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-\textbf{Nom du cas d'utilisation} & Consulter journal d'activités \\
-\hline
-\textbf{Acteurs} & Administrateur \\
-\hline
-\textbf{Précondition} &
-L'utilisateur est authentifié.\newline
-L'utilisateur possède la permission de consulter le journal d'activités. \\
-\hline
-\textbf{Postcondition} &
-Le journal d'activités est affiché avec les filtres appliqués. \\
-\hline
-\textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., leftmargin=*]
-\item L'administrateur accède à la section « Journal d'activités ».
-\item Le système affiche la liste paginée des logs triés par date décroissante, avec pour chaque entrée : la date, l'utilisateur, l'action, le type d'entité, la méthode HTTP, le chemin et le statut.
-\item L'administrateur applique des filtres : par utilisateur, par type d'entité, par action, par statut, ou par plage de dates.
-\item Le système filtre et met à jour la liste en temps réel.
-\item L'administrateur clique sur une entrée pour consulter ses détails complets, incluant les métadonnées associées.
-\end{enumerate}
-\vspace{2pt}
-\end{minipage} \\
-\hline
-\textbf{Scénario alternatif} &
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Aucun log ne correspond aux filtres appliqués le système affiche un message « Aucun résultat trouvé », l'administrateur modifie ou réinitialise les filtres et \textbf{reprend à l'étape 3}.
-\item L'administrateur clique sur « Exporter » le système télécharge les logs filtrés au format CSV (jusqu'à 10 000 entrées).
-\item L'administrateur consulte les statistiques globales : total du jour, taux de succès, utilisateurs uniques, actions les plus fréquentes et activité par heure.
-\item L'administrateur sélectionne un utilisateur spécifique le système affiche son activité des 30 derniers jours, son taux de succès et les entités les plus actives.
-\end{enumerate} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Consulter journal d'activités »}
-\normalsize
-\vspace{-0.3cm}
 
 \section{Diagramme de classes du deuxième sprint}
 \begin{figure}[H]
@@ -661,52 +598,26 @@ Les entités introduites dans ce sprint complètent le schéma relationnel
 
 \noindent
 
-\textbf{Utilisateur} (\underline{idUtilisateur}, nom, prenom, email,
-  motDePasse, estActif, doitChangerMotDePasse, tentativesConnexionEchouees,
-  compteVerrouilleJusquA, photoProfil, dateCreation)
+\textbf{Utilisateur} (\underline{idUtilisateur}, nom, prenom, email, motDePasse, estActif,emailsSecondaires, doitChangerMotDePasse, tentativesConnexionEchouees, compteVerrouilleJusquA,numTel, photoProfil, dateCreation,dateMiseAJour,derniereConnexion)
 \newline
-\textbf{ProfilEmploye} (\underline{idProfilE}, \textbf{\#idUtilisateur},
-  matricule, poste, specialisation, disponibilite, dateEmbauche,
-  niveauSeniorite)
+\textbf{ProfilEmploye} (\underline{idProfilE}, \textbf{\#idUtilisateur}, matricule, dateEmbauche, poste, specialisation, anneesExperience, disponibilite, competences, niveauSeniorite)
 \newline
-\textbf{ProfilClient} (\underline{idProfilC}, \textbf{\#idUtilisateur},
-  nomSociete, adresseSociete, secteurActivite, telSociete, logo)
+\textbf{ProfilClient} (\underline{idProfilC}, \textbf{\#idUtilisateur}, nomSociete, adresseSociete, secteurActivite, telSociete, logo)
 \newline
-\textbf{Contrat} (\underline{idContrat}, referenceContrat,
-  \textbf{\#idProfilClient}, \textbf{\#idProjet}, dateDebutContratM,
-  dateExpirationContratM, montantMensuel, montantSemestriel,
-  cycleFacturation, tauxTVA, montantTVA, montantTTC, typeSLA,
-  conditionsSLA, fichierContrat, fichierHash, statutContratM,
-  estArchive, dateArchivage, motifArchivage, dateDemandeResiliation,
-  motifResiliation, alerte30JoursEnvoyee, alerte15JoursEnvoyee,
-  alerte7JoursEnvoyee, dateCreation)
+\textbf{Contrat} (\underline{idContrat}, referenceContrat, \textbf{\#idProfilClient}, \textbf{\#idProjet}, dateDebutContratM, dateExpirationContratM, montantMensuel, montantSemestriel, tauxTVA, montantTVA, montantTTC, typeSLA, fichierContrat, statutContratM, estArchive, dateCreation, dateMiseAJour, dateArchivage)
 \newline
-\textbf{ConfigurationSLAContrat} (\underline{idConfig},
-  \textbf{\#idContrat}, creneauxHoraires, motifPersonnalisation,
-  dateCreation)
+\textbf{SLAContrat} (\underline{idSLAContrat},\textbf{\#idContrat}, motifPersonnalisation, dateCreation,dateMiseAJour)
 \newline
-\textbf{ReglesDelaiSLA} (\underline{idRegle}, \textbf{\#idConfigContrat},
-  \textbf{\#idConfigGlobale}, priorite, delaiReponseMn,
-  delaiResolutionMn)
+\textbf{DelaiSLA} (\underline{idRegle}, \textbf{\#idConfigContrat}, \textbf{\#idConfigGlobale}, priorite, delaiReponseMn, delaiResolutionMn)
 \newline
-\textbf{SlackConfig} (\underline{idSlack}, \textbf{\#idContrat},
-  webhookUrl, canal, notificationsActives, dateCreation)
+\textbf{Projet} (\underline{idProjet}, nomProjet, descriptionProjet,statutP, tags, dateDebutP, dateFinP, \textbf{\#idProfilClient},\textbf{\#idChefProjet}, dateCreationP, dateMiseAJourP)
 \newline
-\textbf{Projet} (\underline{idProjet}, nomProjet, descriptionProjet,
-  statutP, tags, dateDebutP, dateFinP, \textbf{\#idProfilClient},
-  \textbf{\#idChefProjet}, dateCreationP)
+\textbf{MembreProjet} (\underline{idMembre}, \textbf{\#idProjet},\textbf{\#idProfilEmploye}, rolesDansProjet, dateAffectation, dateAffectation, dateDebut, dateFin, statut, motifRefus)
 \newline
-\textbf{MembreProjet} (\underline{idMembre}, \textbf{\#idProjet},
-  \textbf{\#idProfilEmploye}, rolesDansProjet, statut, dateAffectation,
-  dateDebut, dateFin)
-\newline
-\textbf{ActivityLog} (\underline{idLog}, \textbf{\#idUtilisateur},
-  action, entityType, entityId, method, path, ipAddress, status,
-  description, metadata, createdAt)
-\newline
-\textbf{FeedbackExpirationContrat} (\underline{idFeedback},
-  \textbf{\#idContrat}, note, commentaire, souhaitRenouveler,
-  raisonsNonRenouvellement, dateCreation)
+\textbf{FeedbackExpirationContrat} (\underline{idFeedback}, \textbf{\#idContrat}, note, commentaire, souhaitRenouveler, raisonsNonRenouvellement, dateCreation)
+\newline 
+\textbf{Action}(\underline{idHistorique}, \textbf{\#idTicket}, \textbf{\#idUtilisateur}, entiteId, entiteType, typeAction, ancienneValeur, nouvelleValeur, description, metadonnees, dateAction)
+
 }
 
 \section{Réalisation}
