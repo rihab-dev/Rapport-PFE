@@ -816,17 +816,17 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 
 \textbf{Utilisateur} (\underline{idUtilisateur}, nom, prenom, email, emailsSecondaires, motDePasse, numTel, photoProfil, estActif, doitChangerMotDePasse, dateCreation, dateMiseAJour, derniereConnexion)
 \newline
-\textbf{ProfilEmploye} (\underline{\textbf{#idUtilisateur}}, matricule, dateEmbauche, poste, specialisation, anneesExperience, disponibilite, competences)
+\textbf{ProfilEmploye} (\underline{\textbf{\#idUtilisateur}}, matricule, dateEmbauche, poste, specialisation, anneesExperience, disponibilite, competences)
 \newline
-\textbf{ProfilClient} (\underline{\textbf{#idUtilisateur}}, nomSociete, telSociete, adresseSociete, secteurActivite, logo)
+\textbf{ProfilClient} (\underline{\textbf{\#idUtilisateur}}, nomSociete, telSociete, adresseSociete, secteurActivite, logo)
 \newline
 \textbf{Role} (\underline{idRole}, nomRole, description, roleSysteme, estArchive, dateCreation)
 \newline
 \textbf{Permission} (\underline{idPermission}, codePermission, description)
 \newline
-\textbf{UtilisateurRole} (\underline{idUtilisateurRole}, \textbf{#idUtilisateur}, \textbf{#idRole}, dateAttribution, description)
+\textbf{UtilisateurRole} (\underline{idUtilisateurRole}, \textbf{\#idUtilisateur}, \textbf{\#idRole}, dateAttribution, description)
 \newline
-\textbf{RolePermission} (\underline{idRolePermission}, \textbf{#idRole}, \textbf{#idPermission}, description)
+\textbf{RolePermission} (\underline{idRolePermission}, \textbf{\#idRole}, \textbf{\#idPermission}, description)
 \newline
 \textbf{DemandeInscription} (\underline{idDemande}, fournisseur, statusDemandeInsc, dateCreation, dateMiseAJour, motifRefus)
 % ─────────────────────────────────────────────────────────────────────────────
