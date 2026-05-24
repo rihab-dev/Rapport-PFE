@@ -57,7 +57,18 @@ Cette section présentera le modèle de données relatif à la messagerie, docum
 
 \textit{[À compléter avec le schéma de base de données]}
 
-\newpage
+\subsection{Diagramme de composants}
+
+La figure ci-dessous présente le diagramme de composants de l'application. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth,keepaspectratio]{Images/diag comp.png}
+\caption{Diagramme de composants de l'application}
+\label{fig:diagramme_composants_sprint4}
+\end{figure}
+
+Le diagramme de composants illustre l'architecture de la solution en trois couches. Le front-end (Next.js) regroupe l'interface utilisateur, les modules métiers et un client HTTP (Axios/Fetch). L'API Core (NestJS) structure ses contrôleurs, modules fonctionnels et services transverses (Prisma ORM, cache manager). En infrastructure, PostgreSQL assure la persistance des données et Redis gère les sessions et le cache, tous deux accessibles via TCP/IP. Cette organisation sépare clairement la présentation, la logique métier et les services d'infrastructure.
 
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 4 : RÉALISATION
