@@ -1018,21 +1018,23 @@ La figure suivante présente le diagramme de classes du troisième sprint.
 
 \section{Schéma relationnel}
 Le schéma relationnel du sprint 3 s’appuie sur les entités suivantes :
-\textbf{DemandeClient} (\underline{id}, titreDemande, descriptionDemande, typeDemande, prioriteDemande, statutDemande, dateSoumissionDemande, dateCreationDemande, dateMiseAJourDemande, dateValidation, motifRejet, motifRequalification, natureAutre, typeDemandeOriginal, prioriteOriginale, echeanceInitiale, \#clientId, \#projetId, \#validePar)
+\textbf{DemandeClient} (\underline{id}, titreDemande, typeDemande, statutDemande, typeSLA, descriptionDemande, dateSoumission, dateCreation, dateMiseAJour, dateValidation, motifRejet, motifRequalification, echeanceInitiale, \textbf{\#idProjet})
 \newline
-\textbf{Ticket} (\underline{id}, titreTicket, descriptionTicket, categorieTicket, prioriteTicket, statutTicket, dateCreationTicket, dateMiseAJourTicket, dateResolutionTicket, versionOptimiste, delaiReponse, delaiResolution, dateEcheanceResponse, dateEcheanceResolution, slaReponseExpire, slaResolutionExpire, ticketParentId, extensionDemandee, extensionMotif, extensionDemandeeAt, extensionAccordee, alerteSLAEnvoyee, scoreUrgenceIA, prioriteIA, nombreTicketsBloquesParCelui, nombreUtilisateursAffectes, \#demandeId, \#contratId)
+\textbf{DemandeClassificationIA} (\underline{id}, categorieAuto, typeAuto, prioriteAuto, scoreConfiance, entitesExtraites, urgenceDetectee, estUtiliseeValidation, estCorrigeeParAgent, feedbackAgent, dateClassification, modeleUtilise, \textbf{\#idDemande})
 \newline
-\textbf{AssignmentTicket} (\underline{id}, \#ticketId, \#developpeurId, dateDebutReelle, dateFinReelle, commentaireAssignment, progression, estBloque, raisonBlocage, feedbackDeveloppeur, technologiesUtilisees, enTravail, dureeTotaleSecondes, dateCreation, dateMiseAJour, solutionProposee, solutionProposeeAt, \#solutionProposeeParId)
+\textbf{Ticket} (\underline{id}, titreTicket, typeSLA, statutTicket, categorieTicket,  descriptionTicket, dateCreationTicket, dateMiseAJourTicket, dateResolutionTicket, delaiReponse, delaiResolution, dateEcheanceResponse, dateEcheanceResolution, slaReponseExpire, slaResolutionExpire, extensionDemandee, extensionMotif, extensionDemandeeAt, extensionAccordee, alerteSLAEnvoyee, scoreUrgenceIA, nombreTicketsBloquesParCelui, nombreUtilisateursAffectes,\textbf{\#idDemande}, \textbf{\#idContrat}) 
+\newline  
+\textbf{TicketSolution} (\underline{Id}, solutionSuggeree, scoreConfiance, estAcceptee, feedbackUtilisateur, tempsResolution, dateCreation, \textbf{\#idTicket}, \textbf{\#idArticle})
+\newline 
+\textbf{KnowledgeBaseArticle} (\underline{id}, titre,  contenu, categorie, statutKB,  tags,  statut,  nombreUtilisations,  tauxReussite)
 \newline
-\textbf{SessionTravail} (\underline{id}, \#assignmentId, debut, fin, dureeSecondes, note, isPaused, pausedAt, totalPausedMs, isManual, isBillable)
+\textbf{TicketClassification} (\underline{id}, categorieAuto, prioriteAuto, typeAuto, scoreConfiance, urgenceDetectee, entitesExtraites,  estValidee, dateClassification, \textbf{\#idTicket}) 
 \newline
-\textbf{TicketSolution} (\underline{id}, \#ticketId, \#articleId, solutionSuggeree, scoreConfiance, estAcceptee, feedbackUtilisateur, tempsResolution, dateCreation)
+\textbf{AssignmentTicket} (\underline{id}, dateDebutReelle, dateFinReelle, commentaireAssignment, progression, estBloque, raisonBlocage, feedbackDeveloppeur, technologiesUtilisees, enTravail, dureeTotaleSecondes, dateCreation, solutionProposee, solutionProposeeAt, \textbf{\#idTicket}, \textbf{\#idProfilEmploye}, \textbf{\#idSolutionProposeepar})
 \newline
-\textbf{ConfigurationSLAContrat} (\underline{id}, \#contratId, typeSLA, priorite, delaiReponseMinutes, delaiResolutionMinutes, horairesOuvrables, joursOuvrables, estActif)
-\newline
-\textbf{DemandeClassificationIA} (\underline{id}, \#demandeId, categorieAuto, typeAuto, prioriteAuto, scoreConfiance, entitesExtraites, sentimentScore, urgenceDetectee, estUtiliseeValidation, estCorrigeeParAgent, feedbackAgent, dateClassification, dateUtilisation, modeleUtilise, tempsTraitement, estFallback, versionModele, versionRegles)
-\newline
-\textbf{TicketClassification} (\underline{id}, \#ticketId, categorieAuto, prioriteAuto, typeAuto, scoreConfiance, entitesExtraites, sentimentScore, urgenceDetectee, estValidee, dateClassification)
+\textbf{SessionTravail} (\underline{id}, debut, fin, dureeSecondes, note isManual, \textbf{\#idAssignment}) 
+\newline 
+
 
 \subsection{Intégration de l'intelligence artificielle}
 Dans le cadre du présent sprint, l'intégration de l'intelligence artificielle a été traitée comme une décision de conception. L'objectif principal est d'automatiser et d'assister plusieurs étapes du cycle de traitement des demandes : qualification initiale, priorisation, analyse des blocages et capitalisation des connaissances.

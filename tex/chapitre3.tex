@@ -814,6 +814,8 @@ Dans cette section, nous allons modéliser les intéractions entre l'utilisateur
 
 \textbf{Utilisateur} (\underline{idUtilisateur}, nom, prenom, email, emailsSecondaires, motDePasse, numTel, photoProfil, estActif, doitChangerMotDePasse, dateCreation, dateMiseAJour, derniereConnexion)
 \newline
+\textbf{UtilisateurRole} (\underline{idUtilisateurRole}, dateAttribution, description, \textbf{\#idUtilisateur}, \textbf{\#idRole})
+\newline
 \textbf{ProfilEmploye} (\underline{\textbf{\#idUtilisateur}}, matricule, dateEmbauche, poste, specialisation, anneesExperience, disponibilite, competences)
 \newline
 \textbf{ProfilClient} (\underline{\textbf{\#idUtilisateur}}, nomSociete, telSociete, adresseSociete, secteurActivite, logo)
@@ -822,11 +824,10 @@ Dans cette section, nous allons modéliser les intéractions entre l'utilisateur
 \newline
 \textbf{Permission} (\underline{idPermission}, codePermission, description)
 \newline
-\textbf{UtilisateurRole} (\underline{idUtilisateurRole}, \textbf{\#idUtilisateur}, \textbf{\#idRole}, dateAttribution, description)
+
+\textbf{RolePermission} (\underline{idRolePermission}, description, \textbf{\#idRole}, \textbf{\#idPermission})
 \newline
-\textbf{RolePermission} (\underline{idRolePermission}, \textbf{\#idRole}, \textbf{\#idPermission}, description)
-\newline
-\textbf{DemandeInscription} (\underline{idDemande}, fournisseur, statusDemandeInsc, dateCreation, dateMiseAJour, motifRefus)
+\textbf{DemandeInscription} (\underline{idDemande}, fournisseur, statusDemandeInsc, dateCreation, dateMiseAJour, motifRefus, \textbf{\#idUtilisateur})
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 4 : RÉALISATION
 % ─────────────────────────────────────────────────────────────────────────────

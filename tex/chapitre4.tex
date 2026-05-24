@@ -559,25 +559,20 @@ Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui
 
 \noindent
 
-\textbf{Utilisateur} (\underline{idUtilisateur}, nom, prenom, email, motDePasse, estActif,emailsSecondaires, doitChangerMotDePasse, tentativesConnexionEchouees, compteVerrouilleJusquA,numTel, photoProfil, dateCreation,dateMiseAJour,derniereConnexion)
+
+\textbf{Contrat} (\underline{idContrat}, referenceContrat, dateDebutContratM, dateExpirationContratM, montantMensuel, montantSemestriel, tauxTVA, montantTVA, montantTTC, typeSLA, fichierContrat, statutContratM, estArchive, dateCreation, dateMiseAJour, dateArchivage, \textbf{\#idProfilClient}, \textbf{\#idProjet},\textbf{\#idSLAGlobal})
 \newline
-\textbf{ProfilEmploye} (\underline{idProfilE}, \textbf{\#idUtilisateur}, matricule, dateEmbauche, poste, specialisation, anneesExperience, disponibilite, competences, niveauSeniorite)
+\textbf{SLAContrat} (\underline{idSLAContrat}, motifPersonnalisation, dateCreation,dateMiseAJour,\textbf{\#idContrat})
 \newline
-\textbf{ProfilClient} (\underline{idProfilC}, \textbf{\#idUtilisateur}, nomSociete, adresseSociete, secteurActivite, telSociete, logo)
+\textbf{DelaiSLA} (\underline{idRegle}, \textbf{\#idSLAContrat}, priorite, delaiReponseMn, delaiResolutionMn, \textbf{\#idSLAGlobal},\textbf{\#idSLAContrat})
 \newline
-\textbf{Contrat} (\underline{idContrat}, referenceContrat, \textbf{\#idProfilClient}, \textbf{\#idProjet}, dateDebutContratM, dateExpirationContratM, montantMensuel, montantSemestriel, tauxTVA, montantTVA, montantTTC, typeSLA, fichierContrat, statutContratM, estArchive, dateCreation, dateMiseAJour, dateArchivage)
+\textbf{Projet} (\underline{idProjet}, nomProjet, descriptionProjet,statutP, tags, dateDebutP, dateFinP,dateCreationP, dateMiseAJourP \textbf{\#idProfilClient},\textbf{\#idChefProjet})
 \newline
-\textbf{SLAContrat} (\underline{idSLAContrat},\textbf{\#idContrat}, motifPersonnalisation, dateCreation,dateMiseAJour)
+\textbf{MembreProjet} (\underline{idMembre}, rolesDansProjet, dateAffectation, dateAffectation, dateDebut, dateFin, statut, motifRefus, \textbf{\#idProjet},\textbf{\#idProfilEmploye})
 \newline
-\textbf{DelaiSLA} (\underline{idRegle}, \textbf{\#idConfigContrat}, \textbf{\#idConfigGlobale}, priorite, delaiReponseMn, delaiResolutionMn)
-\newline
-\textbf{Projet} (\underline{idProjet}, nomProjet, descriptionProjet,statutP, tags, dateDebutP, dateFinP, \textbf{\#idProfilClient},\textbf{\#idChefProjet}, dateCreationP, dateMiseAJourP)
-\newline
-\textbf{MembreProjet} (\underline{idMembre}, \textbf{\#idProjet},\textbf{\#idProfilEmploye}, rolesDansProjet, dateAffectation, dateAffectation, dateDebut, dateFin, statut, motifRefus)
-\newline
-\textbf{FeedbackExpirationContrat} (\underline{idFeedback}, \textbf{\#idContrat}, note, commentaire, souhaitRenouveler, raisonsNonRenouvellement, dateCreation)
+\textbf{FeedbackExpirationContrat} (\underline{idFeedback},  note, commentaire, souhaitRenouveler, raisonsNonRenouvellement, dateCreation, \textbf{\#idContrat})
 \newline 
-\textbf{JournalActivite} (\underline{id}, \textbf{\#idUtilisateur}, action, method, path, ipAddress, status, description, metadata, createdAt)
+\textbf{JournalActivite} (\underline{id}, action, method, path, ipAddress, status, description, metadata, \textbf{\#idUtilisateur})
 
 }
 
