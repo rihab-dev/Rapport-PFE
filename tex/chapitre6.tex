@@ -57,13 +57,13 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 
 \begin{figure}[H]
   \centering
-  %\includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/suivre_activite.png}
+  \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme cas utilisationSuivre activité.drawio.png}
   \caption{Raffinement du cas d'utilisation « Suivre Activité »}
   \label{fig:suivre_activite}
 \end{figure}
 
-\subsubsection{Description textuelle du cas d'utilisation « Consulter calendrier »}
-La figure ci-dessous présente la description textuelle du cas d'utilisation « Consulter calendrier ».
+\subsubsection{Description textuelle du cas d'utilisation « Consulter rapport »}
+La figure ci-dessous présente la description textuelle du cas d'utilisation « Consulter rapport ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -76,166 +76,38 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Consulter calendrier \\
+\textbf{Nom du cas d'utilisation} & Consulter rapport  \\
 \hline
-\textbf{Acteurs} & Administrateur, Chef de projet, Développeur, Client \\
+\textbf{Acteurs} & Administrateur, Chef de Projet \\
 \hline
-\textbf{Précondition} & L'utilisateur est authentifié et dispose de la permission d'accès au module calendrier. \\
+\textbf{Précondition} & L'acteur est authentifié, possède la permission et se trouve sur son tableau de bord. \\
 \hline
-\textbf{Postcondition} & Les tickets et demandes de maintenance sont affichés sur le calendrier selon le filtre choisi. \\
-\hline
-\textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'utilisateur accède à la page « Calendrier » depuis le menu principal.
-\item Le système récupère la liste des tickets et des demandes associés à l'utilisateur via l'API.
-\item Le système affiche les éléments dans une vue mensuelle avec un code couleur par type d'élément.
-\item L'utilisateur sélectionne une vue (mensuelle ou agenda) selon ses besoins.
-\item L'utilisateur clique sur un élément pour accéder à sa fiche détaillée.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario alternatif} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le chef de projet bascule vers la vue Gantt pour analyser la charge par développeur et la progression des tickets par période.
-\item L'utilisateur applique un filtre temporel (jour, semaine, mois) pour affiner la période affichée.
-\item Le système détecte des tickets critiques ou des échéances SLA dépassées et les met en évidence visuellement avec une légende de priorité.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario d'exception} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Une erreur de communication avec l'API survient lors du chargement des données ; le système affiche un message d'erreur et propose de recharger la page.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « Consulter calendrier »}
-\normalsize
-
-\subsubsection{Description textuelle du cas d'utilisation « Consulter dashboard »}
-La figure ci-dessous présente la description textuelle du cas d'utilisation « Consulter dashboard ».
-
-\footnotesize
-\renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-\textbf{Nom du cas d'utilisation} & Consulter dashboard \\
-\hline
-\textbf{Acteurs} & Administrateur, Chef de projet, Client \\
-\hline
-\textbf{Précondition} & L'utilisateur est authentifié. Le système dispose de données d'activité enregistrées. \\
-\hline
-\textbf{Postcondition} & Les indicateurs clés sont affichés selon le rôle de l'utilisateur connecté. \\
+\textbf{Postcondition} & L'acteur a consulté les statistiques d'activité pour la période sélectionnée. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'utilisateur accède à la page « Dashboard » depuis le menu principal.
-\item Le système identifie le rôle de l'utilisateur et charge les indicateurs correspondants.
-\item L'administrateur visualise les statistiques globales, les tendances, les alertes et le classement des développeurs les plus actifs.
-\item Le chef de projet consulte les KPI de son équipe, les demandes en attente, les tickets SLA critiques et la charge de travail de ses développeurs.
-\item Le client accède à une vue synthétique de ses projets, contrats et tickets en cours.
+\item L'acteur clique sur le bouton flottant « Rapport » affiché en bas à droite du tableau de bord.
+\item Le système ouvre le panneau latéral et affiche les statistiques du mois courant
+\item L'acteur modifie les filtres ; le système recharge automatiquement les données.
+\item L'acteur clique sur le bouton « PDF » ; le système génère et télécharge le fichier de rapport.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
-\begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'administrateur sélectionne un mois et une année pour générer et afficher un rapport mensuel d'activité.
-\item Le chef de projet filtre les données par projet ou par période pour obtenir un rapport d'avancement ciblé.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario d'exception} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Aucune donnée d'activité n'est disponible pour la période sélectionnée ; le système affiche un message indiquant l'absence de données et invite l'utilisateur à élargir la période.
-\end{enumerate}
-\end{minipage} \\
+\item Aucune donnée n'est disponible pour la période sélectionnée. L'acteur modifie les filtres et le système recharge les données.
+\end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « Consulter dashboard »}
+\captionof{table}{Description textuelle du cas d'utilisation « Consulter rapport »}
 \normalsize
+
 
 % ──────────────────────────────────────────────────────
-\subsection{Analyse de la fonctionnalité « Gérer Messagerie »}
-Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion de la messagerie afin de comprendre les principales fonctionnalités du système de communication interne, ce qui permet d'avoir une vue globale des interactions en temps réel.
 
-\subsubsection{Raffinement du cas d'utilisation « Gérer Messagerie »}
-Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour la gestion de la messagerie :
 
-\begin{figure}[H]
-  \centering
-  %\includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/gerer_messagerie.png}
-  \caption{Raffinement du cas d'utilisation « Gérer Messagerie »}
-  \label{fig:gerer_messagerie}
-\end{figure}
-
-\subsubsection{Description textuelle du cas d'utilisation « Envoyer message »}
-La figure ci-dessous présente la description textuelle du cas d'utilisation « Envoyer message ».
-
-\footnotesize
-\renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-\textbf{Nom du cas d'utilisation} & Envoyer message \\
-\hline
-\textbf{Acteurs} & Administrateur, Chef de projet, Développeur, Client \\
-\hline
-\textbf{Précondition} & L'utilisateur est authentifié et a accès à au moins un canal de messagerie. \\
-\hline
-\textbf{Postcondition} & Le message est enregistré et diffusé en temps réel à tous les membres du canal concerné. \\
-\hline
-\textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'utilisateur accède au module de messagerie et sélectionne un canal dans la liste de ses canaux.
-\item Le système charge l'historique des messages du canal sélectionné.
-\item L'utilisateur saisit son message dans le champ de saisie et valide l'envoi.
-\item Le système enregistre le message et le diffuse instantanément à tous les membres du canal via la connexion WebSocket.
-\item Le message apparaît dans le fil de discussion en temps réel pour tous les participants connectés.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario alternatif} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'utilisateur joint un ou plusieurs fichiers à son message ; le système les envoie simultanément avec le contenu textuel.
-\item L'utilisateur mentionne un collègue dans son message en utilisant le symbole @ ; le système identifie la mention et notifie le membre concerné.
-\item L'utilisateur répond à un message existant ; le système crée une réponse liée au message parent et affiche le fil de discussion associé.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario d'exception} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item La connexion WebSocket est interrompue lors de l'envoi ; le système affiche une erreur de connexion et invite l'utilisateur à réessayer après rétablissement de la connexion.
-\item L'utilisateur n'est plus membre du canal au moment de l'envoi (suppression concurrente de ses droits) ; le serveur rejette le message et le système signale l'absence d'autorisation.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « Envoyer message »}
-\normalsize
-
-\subsubsection{Description textuelle du cas d'utilisation « Gérer message »}
+\subsubsection{Description textuelle du cas d'utilisation « Gérer messages »}
 La figure ci-dessous présente la description textuelle du cas d'utilisation « Gérer message ».
 
 \footnotesize
@@ -249,36 +121,39 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Gérer message \\
+\textbf{Nom du cas d'utilisation} & Gérer messages \\
 \hline
-\textbf{Acteurs} & Utilisateur (auteur du message) \\
+\textbf{Acteurs} & Utilisateur  \\
 \hline
-\textbf{Précondition} & L'utilisateur est authentifié et est l'auteur du message concerné. \\
+\textbf{Précondition} &  L'utilisateur doit être authentifié sur la plateforme.
+\newline L'utilisateur doit avoir accès au canal de discussion\\
 \hline
-\textbf{Postcondition} & Le message est modifié ou supprimé, et les membres du canal voient la mise à jour en temps réel. \\
+\textbf{Postcondition} & L'historique du canal de discussion est mis à jour en base de données. Les accusés de lecture sont générés pour les destinataires de la conversation. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'utilisateur localise son message dans le fil de discussion et actionne le menu d'options.
-\item Il choisit l'action « Modifier » et corrige le contenu dans le champ d'édition.
-\item Il valide la modification.
-\item Le système enregistre la nouvelle version du message et diffuse la mise à jour en temps réel à tous les membres du canal.
+\item L'utilisateur accède à l'interface de la messagerie intégrée au ticket.
+\item Le système affiche l'historique des messages du canal avec la pagination adéquate et l'état "vu".
+\item  L'utilisateur saisit un texte dans le champ de saisie et clique sur "Envoyer".
+\item  Le système enregistre le message et le diffuse en temps réel (via WebSocket) aux autres participants.
+\item  Le système met à jour l'affichage en ajoutant le nouveau message.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'utilisateur choisit de supprimer son message ; le système retire le contenu du fil tout en maintenant la cohérence des réponses liées et notifie les membres du canal en temps réel.
+\item l'utilisateur sélectionne un fichier (image, PDF, audio). Le système uploade le fichier, génère un aperçu, et l'associe au message.
 \item L'utilisateur épingle un message important dans le canal ; le message apparaît dans la section des messages épinglés, accessible à tous les membres.
+\item L'utilisateur clique sur "Modifier" sur son propre message, change le texte et valide. Le système met à jour le message et ajoute le badge "(modifié)".
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le message a été supprimé par un administrateur entre le moment où l'utilisateur a ouvert le menu et celui où il valide la modification ; le serveur lève une exception et informe l'utilisateur que l'opération est impossible.
+\item : Lors de l'alternative A1, si le fichier dépasse la limite autorisée, le système rejette l'envoi et affiche un message d'erreur.
 \end{enumerate}
 \end{minipage} \\
 \hline
