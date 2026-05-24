@@ -52,7 +52,8 @@ US69 & En tant qu'\textbf{utilisateur}, je souhaite accéder aux détails d'un t
 \item Permettre un accès rapide à la consultation et à la mise à jour depuis la vue calendrier.
 \end{itemize} & 2 \\
 \hline
-
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 10 - Messagerie et collaboration}} \\
+\hline
 US70 & En tant qu'\textbf{utilisateur}, je souhaite accéder à une messagerie intégrée afin de communiquer avec mon équipe. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item S'appuyer sur \textbf{GET /api/channels/my}, \textbf{GET /api/channels/ticket/:ticketId} et le namespace WebSocket \texttt{messages}.
@@ -124,7 +125,8 @@ US78 & En tant qu'\textbf{utilisateur}, je souhaite voir qui est en ligne afin d
 \item Afficher un état simple en ligne / hors ligne dans l'interface de messagerie.
 \end{itemize} & 2 \\
 \hline
-
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 11 - Gestion des documents}} \\
+\hline
 US79 & En tant qu'\textbf{utilisateur}, je souhaite uploader des documents afin de centraliser les fichiers. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Utiliser \textbf{POST /api/documents/upload} pour déposer un ou plusieurs fichiers.
@@ -175,9 +177,8 @@ US84 & En tant que \textbf{chef de projet}, je souhaite générer automatiquemen
 
 US85 & En tant que \textbf{client}, je souhaite télécharger les PV de mes tickets afin de conserver une trace des interventions. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Générer le PV depuis le ticket via \textbf{POST /api/pv/generate/:ticketId}.
-\item Exposer le document final dans l'interface client ou ticket après génération.
-\item Conserver la trace du PV dans le workflow du ticket.
+\item  Lister les documents via \textbf{GET /api/documents?ticketId\_\{id\}}.
+\item  Filtrer automatiquement les fichiers côté serveur pour exclure le type PROCES\_VERBAL.
 \end{itemize} & 1 \\
 \hline
 
@@ -212,7 +213,8 @@ US89 & En tant qu'\textbf{utilisateur}, je souhaite voir qui a consulté un docu
 \item Présenter les consults dans une timeline lisible.
 \end{itemize} & 2 \\
 \hline
-
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 12 - Notifications et alertes}} \\
+\hline
 US90 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications in-app afin d'être informé en temps réel. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Lister les notifications via \textbf{GET /api/notifications}.
@@ -252,7 +254,8 @@ US94 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique de me
 \item Présenter les notifications dans une vue chronologique simple.
 \end{itemize} & 1 \\
 \hline
-
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 13 - Dashboards et rapports}} \\
+\hline
 US95 & En tant qu'\textbf{administrateur}, je souhaite consulter un dashboard global afin de piloter le système. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Consulter les statistiques globales via \textbf{GET /api/dashboard/stats}.
