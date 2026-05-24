@@ -1,4 +1,5 @@
-﻿\section*{Introduction}
+﻿
+\section*{Introduction}
 Dans le chapitre précédent, nous avons défini les besoins liés à notre solution et réparti les différentes tâches du projet afin que les phases de travail soient correctement planifiées.
 \newline Au cours de ce chapitre, nous présenterons les fonctionnalités liées  à la gestion des utilisateurs, à l'authentification et au contrôle d'accès basé sur les rôles (RBAC), retenues dans le cadre du premier sprint de notre projet.
 
@@ -44,7 +45,10 @@ La figure ci-dessous présente le diagramme de cas d'utilisation du premier spri
 
 Nous allons accompagner les cas d'utilisation d'un texte descriptif pour expliquer le scénario de chaque cas ainsi que ses exceptions.
 
-\subsection{Description textuelle du cas d'utilisation « S'authentifier »}
+\subsection{Descriptions textuelles des cas d'utilisation sans raffinement}
+Dans cette partie, nous présentons les cas d'utilisation qui ne nécessitent pas de raffinement de diagramme, leur comportement étant suffisamment direct pour être décrit uniquement par leur scénario textuel.
+
+\subsubsection{Description textuelle du cas d’utilisation «S'authentifier »}
 La figure ci-dessous présente la description textuelle du cas d'utilisation « S'authentifier » :
 
 \footnotesize
@@ -99,14 +103,11 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « S'authentifier »}
-
-
+\captionof{table}{Description textuelle du cas d’utilisation «S'authentifier »}
 \normalsize
-\vspace{-0.3cm}
 
 
-\subsection{Description textuelle du cas d’utilisation « Changer mot de passe »}
+\subsubsection{Description textuelle du cas d’utilisation «Changer mot de passe »}
 La figure ci-dessous présente la description textuelle du cas d'utilisation « Changer le mot de passe » :
 
 \footnotesize
@@ -153,10 +154,9 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Changer mot de passe »} 
-
+\captionof{table}{Description textuelle du cas d’utilisation «Changer mot de passe »} 
 \normalsize
-\vspace{-0.3cm}
+
 
 \subsection{Analyse de la fonctionnalité « S'inscrire »}
 Dans cette partie, nous allons présenter les cas d'utilisation raffinés relatifs à la demande d'accès via fournisseur externe afin de comprendre les différentes étapes du processus d'inscription et d'authentification.
@@ -172,6 +172,7 @@ Au cours de cette partie, nous allons analyser les sous-cas d'utilisation pour l
 \end{figure}
 
 \subsubsection{Description textuelle du cas d’utilisation « Demander inscription »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Demander inscription ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -222,10 +223,9 @@ Au cours de cette partie, nous allons analyser les sous-cas d'utilisation pour l
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Demander inscription »} 
+\captionof{table}{Description textuelle du cas d’utilisation «Demander inscription »} 
 }
 \normalsize
-\vspace{-0.3cm}
 
 \subsection{Analyse de la fonctionnalité « Gérer utilisateurs »}
 Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des utilisateurs afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
@@ -241,6 +241,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 
 \subsubsection{Description textuelle du cas d’utilisation « Ajouter utilisateur »}
 
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Ajouter utilisateur ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -281,13 +282,12 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Ajouter un utilisateur »} 
-
+\captionof{table}{Description textuelle du cas d’utilisation «Ajouter un utilisateur »} 
 \normalsize
-\vspace{-0.3cm}
 
 
 \subsubsection{Description textuelle du cas d’utilisation « Désactiver un utilisateur »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Désactiver un utilisateur ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -329,11 +329,11 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Désactiver un utilisateur »} 
+\captionof{table}{Description textuelle du cas d’utilisation «Désactiver un utilisateur »} 
 \normalsize
-\vspace{-0.3cm}
 
 \subsubsection{Description textuelle du cas d’utilisation « Modifier Profil »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Modifier Profil ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -378,10 +378,10 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Modifier le Profil »} 
+\captionof{table}{Description textuelle du cas d’utilisation «Modifier le Profil »} 
 \normalsize
-\vspace{-0.3cm}
 \subsubsection{Description textuelle du cas d’utilisation « Valider demande »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Valider demande ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -431,13 +431,11 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Valider demande »} 
+\captionof{table}{Description textuelle du cas d’utilisation «Valider demande »} 
 \normalsize
-\vspace{-0.3cm}
 
 \subsection{Analyse de la fonctionnalité « Gérer rôles »}
-Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des rôles afin
-de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des
+Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des rôles afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des
 interactions.
 \subsubsection{Raffinement du cas d’utilisation « Gérer rôles »}
 Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de gestion des rôles :
@@ -450,6 +448,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{figure}
 
 \subsubsection{Description textuelle de cas d'utilisation « Ajouter rôle »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Ajouter rôle ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -466,8 +465,10 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \hline
 \textbf{Acteurs} & Administrateur \\
 \hline
-\textbf{Précondition} & L'utilisateur est authentifié.\newline
-L'utilisateur possède la permission de créer des rôles.\newline
+\textbf{Précondition} & L'utilisateur est authentifié.
+\newline
+L'utilisateur possède la permission de créer des rôles.
+\newline
 La liste des rôles est affichée. \\
 \hline
 \textbf{Postcondition} & Le rôle est ajouté. \\
@@ -497,6 +498,7 @@ La liste des rôles est affichée. \\
 \vspace{-0.3cm}
 
 \subsubsection{Description textuelle du cas d’utilisation « Archiver rôle »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Archiver rôle ».
 
 \footnotesize
 
@@ -586,14 +588,13 @@ La liste des rôles est affichée. \\
 
 \end{longtable}
 
-\captionof{table}{Description textuelle du cas d’utilisation « Archiver rôle »} 
-
+\captionof{table}{Description textuelle du cas d’utilisation «Archiver rôle »} 
 \normalsize
 
-\vspace{-0.3cm}
 
 
-\subsubsection{Description textuelle du cas d’utilisation « Attribuer rôle à utilisateur »}
+\subsubsection{Description textuelle du cas d’utilisation «Attribuer rôle à utilisateur »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Attribuer rôle à utilisateur ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -640,11 +641,11 @@ La liste des rôles est affichée. \\
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « Attribuer rôle à utilisateur »}
+\captionof{table}{Description textuelle du cas d’utilisation «Attribuer rôle à utilisateur »}
 \normalsize
-\vspace{-0.3cm}
 
 \subsubsection{Description textuelle du cas d’utilisation « Retirer rôle utilisateur »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Retirer rôle utilisateur ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -688,11 +689,8 @@ La liste des rôles est affichée. \\
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Retirer rôle utilisateur »} 
+\captionof{table}{Description textuelle du cas d’utilisation «Retirer rôle utilisateur »} 
 \normalsize
-\vspace{-0.3cm}
-\normalsize
-\vspace{-0.3cm}
 
 \subsection{Analyse de la fonctionnalité « Gérer permissions »}
 Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des permissions afin
@@ -709,6 +707,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{figure}
 
 \subsubsection{Description textuelle du cas d’utilisation « Attribuer permission à rôle »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Attribuer permission à rôle ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -753,10 +752,9 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Attribuer permission à rôle »} 
+\captionof{table}{Description textuelle du cas d’utilisation «Attribuer permission à rôle »} 
 }
 \normalsize
-\vspace{-0.3cm}
 
 
 
@@ -775,7 +773,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 
 
 \subsection{Diagramme de séquences}
-
+Dans cette section, nous allons modéliser les intéractions entre l'utilisateur et le système à l'aide de diagrammes de séquences pour mieux comprendre la logique de la solution.
 \subsubsection{Diagramme de séquencess du cas d'utilisation « S'authentifier »}
 
 \begin{figure}[H]
