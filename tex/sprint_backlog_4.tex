@@ -39,13 +39,9 @@ US88 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique des c
 \hline
 US103 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique complet d'un ticket afin de retracer son cycle de vie. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Récupérer la timeline complète d'un ticket avec \textbf{GET /api/tickets/:id/history}.
 \item Les événements retournés incluent : création, changements de statut, sessions de travail, assignations/désassignations, commentaires, pièces jointes, blocages/résolutions, extensions SLA.
-\item Chaque événement expose : type, date, heure, auteur (nom + rôle), ancienne et nouvelle valeur le cas échéant, métadonnées associées.
-\item Implémenter des filtres côté frontend par type d'événement (statut, session, commentaire, pièce jointe, assignation, blocage).
+\item Restituer tous les événements (statuts, sessions, assignations, commentaires, blocages, extensions SLA) avec auteur, date et valeurs avant/après.
 \item Permettre l'export de l'historique au format CSV ou PDF via \textbf{GET /api/tickets/:id/history/export?format=csv|pdf}.
-\item Afficher la timeline dans l'ordre chronologique inverse (du plus récent au plus ancien) sur la page de détail du ticket.
-\item Utiliser des icônes distinctes et un code couleur par type d'événement pour une meilleure lisibilité.
 \end{itemize} & 3 \\
 \hline
 
