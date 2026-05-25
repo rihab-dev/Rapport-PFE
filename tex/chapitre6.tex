@@ -41,7 +41,7 @@ La figure ci-dessous présente le diagramme de cas d'utilisation du quatrième s
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.70\textwidth,height=0.50\textheight,keepaspectratio]{Images/Diagramme cas utilisation sprint 4.png}
+    \includegraphics[width=0.70\textwidth,height=0.50\textheight,keepaspectratio]{Images/Diagramme cas d'utilisation Sprint 4.drawio.png}
     \caption{Diagramme de cas d'utilisation du quatrième sprint}
     \label{fig:use_case_sprint4}
 \end{figure}
@@ -107,8 +107,8 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 % ──────────────────────────────────────────────────────
 
 
-\subsubsection{Description textuelle du cas d'utilisation « Gérer messages »}
-La figure ci-dessous présente la description textuelle du cas d'utilisation « Gérer message ».
+\subsubsection{Description textuelle du cas d'utilisation « Gérer messagerie »}
+La figure ci-dessous présente la description textuelle du cas d'utilisation « Gérer messagerie ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -121,7 +121,7 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Gérer messages \\
+\textbf{Nom du cas d'utilisation} & Gérer messagerie \\
 \hline
 \textbf{Acteurs} & Utilisateur  \\
 \hline
@@ -158,25 +158,26 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « Gérer message »}
+\captionof{table}{Description textuelle du cas d'utilisation « Gérer messagerie »}
 \normalsize
 
 % ──────────────────────────────────────────────────────
-\subsection{Analyse de la fonctionnalité « Gérer Documents »}
+
+\subsection{Analyse de la fonctionnalité « Gérer documents »}
 Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des documents afin de comprendre les principales fonctionnalités du module documentaire, ce qui permet d'avoir une vue globale des interactions.
 
-\subsubsection{Raffinement du cas d'utilisation « Gérer Documents »}
+\subsubsection{Raffinement du cas d'utilisation « Gérer documents »}
 Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour la gestion des documents :
 
 \begin{figure}[H]
   \centering
-  %\includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/gerer_documents.png}
-  \caption{Raffinement du cas d'utilisation « Gérer Documents »}
+  \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme cas d'utilisationDocument.png}
+  \caption{Raffinement du cas d'utilisation « Gérer documents »}
   \label{fig:gerer_documents}
 \end{figure}
 
-\subsubsection{Description textuelle du cas d'utilisation « Déposer document »}
-La figure ci-dessous présente la description textuelle du cas d'utilisation « Déposer document ».
+\subsubsection{Description textuelle du cas d'utilisation « Ajouter document »}
+La figure ci-dessous présente la description textuelle du cas d'utilisation « Ajouter document ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -189,47 +190,42 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Déposer document \\
+\textbf{Nom du cas d'utilisation} & Ajouter document \\
 \hline
-\textbf{Acteurs} & Administrateur, Chef de projet, Développeur, Client \\
+\textbf{Acteurs} & Utilisateur \\
 \hline
-\textbf{Précondition} & L'utilisateur est authentifié et dispose des droits d'accès au ticket ou au contrat auquel le document doit être rattaché. \\
+\textbf{Précondition} & L'utilisateur est authentifié.
+\newline  Le ticket ou contrat concerné existe et n'est pas archivé. \\
 \hline
-\textbf{Postcondition} & Le document est enregistré dans le système et associé à l'entité concernée. Il est immédiatement accessible aux membres autorisés. \\
+\textbf{Postcondition} & Le fichier est stocké physiquement  \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'utilisateur accède à la section « Documents » d'un ticket ou d'un contrat.
-\item Il clique sur « Déposer un fichier » et sélectionne un ou plusieurs fichiers depuis son poste.
-\item Le système vérifie le type et la taille des fichiers selon les règles définies.
-\item Le système enregistre les fichiers et les associe à l'entité cible.
-\item Un message de confirmation est affiché et la liste des documents est mise à jour.
+\item L'utilisateur accède à la page de détail d'un ticket ou d'un contrat.
+\item Il navigue vers l'onglet ou la section "Documents / Fichiers partagés".
+\item Il clique sur le bouton "Ajouter un document".
+\item  Il sélectionne un ou plusieurs fichiers (max 5) via l'explorateur ou par glisser-déposer.
+\item La liste des documents s'actualise instantanément.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'utilisateur dépose une nouvelle version d'un document existant ; le système conserve l'ancienne version dans l'historique et enregistre la nouvelle version comme révision courante.
-\item Le chef de projet génère automatiquement un procès-verbal à partir d'un ticket résolu ; le système pré-remplit le document avec les données du ticket et le lie à celui-ci après génération.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario d'exception} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le fichier sélectionné dépasse la taille maximale autorisée ou son format n'est pas accepté par le système ; l'upload est rejeté et un message d'erreur indique les contraintes à respecter.
-\item L'entité cible (ticket ou contrat) n'est plus accessible au moment de la soumission (suppression concurrente) ; le serveur lève une exception et l'opération est annulée.
+\item Le Client joint des fichiers lors de la création d'une demande. Ils sont stockés initialement comme PieceJointe. Lors de la validation par l'Admin, ils sont automatiquement convertis en Document liés au ticket final.
+\item Si un fichier dépasse 10 Mo, le système bloque l'upload avant l'envoi et affiche une alerte visuelle à l'utilisateur.
+\item Sur un même ticket ou contrat, si un nouveau fichier porte le même nom qu'un document existant, le système crée une nouvelle version (V2, V3...) au lieu d'écraser l'existant, conservant ainsi l'historique complet.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « Déposer document »}
+\captionof{table}{Description textuelle du cas d'utilisation «  Ajouter document »}
 \normalsize
 
-\subsubsection{Description textuelle du cas d'utilisation « Consulter document »}
-La figure ci-dessous présente la description textuelle du cas d'utilisation « Consulter document ».
+
+\subsubsection{Description textuelle du cas d'utilisation « Générer document PV »}
+La figure ci-dessous présente la description textuelle du cas d'utilisation « Générer document PV ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -242,43 +238,93 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Consulter document \\
+\textbf{Nom du cas d'utilisation} & Générer document PV \\
 \hline
-\textbf{Acteurs} & Administrateur, Chef de projet, Développeur, Client \\
+\textbf{Acteurs} & Administrateur, Chef de projet, Développeur\\
 \hline
-\textbf{Précondition} & L'utilisateur est authentifié et dispose des droits d'accès à l'entité à laquelle le document est rattaché. \\
+\textbf{Précondition} & L'utilisateur est authentifié et possède les droits de résolution sur le ticket. \\
 \hline
-\textbf{Postcondition} & La consultation est enregistrée dans l'historique d'accès du document. \\
+\textbf{Postcondition} & Un document PDF est ajouté à l'historique documentaire du ticket. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'utilisateur accède à la liste des documents liés à un ticket ou à un contrat.
-\item Il sélectionne un document et clique pour l'ouvrir ou le télécharger.
-\item Le système enregistre la consultation avec l'identité de l'utilisateur et l'horodatage.
-\item Le système fournit l'accès au fichier via l'URL sécurisée associée au document.
-\item L'utilisateur peut consulter l'historique des versions antérieures du document.
+\item L'acteur ouvre un ticket et sélectionne l'action "Générer le PV"
+\item Le système interroge la base et charge instantanément le contexte du ticket
+\item Le système affiche la fenêtre modale du PV. Les champs client, temps passé, et la solution apportée sont affichés automatiquement sans saisie manuelle.
+\item L'acteur complète les champs libres : "Observations particulières" et "Matériel utilisé".
+\item Le système enregistre le PDF comme document définitif rattaché au ticket.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'administrateur ou le chef de projet consulte la liste des utilisateurs ayant accédé au document ainsi que les statistiques de consultation (nombre de vues uniques, dates d'accès).
-\item L'administrateur archive un document pour le retirer de la vue active sans le supprimer définitivement ; il peut le restaurer ultérieurement si nécessaire.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario d'exception} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le fichier physique est inaccessible sur le serveur de stockage ; le système informe l'utilisateur que le document est temporairement indisponible et journalise l'incident.
+\item l'acteur saisit ses observations dans le champ "Observations particulières" ou "Matériel utilisé" puis réalise qu'il a fait une faute de frappe ou oublié une information. Il modifie directement le texte dans la zone de saisie avant de cliquer sur le bouton. Le système accepte la nouvelle saisie et génère le PDF avec les données corrigées.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « Consulter document »}
+\captionof{table}{Description textuelle du cas d'utilisation « Générer document PV »}
 \normalsize
+
+\subsubsection{Raffinement du cas d'utilisation « Gérer base de connaissances »}
+Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour la gestion de base de connaissances :
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme Base de connaissance.drawio.png}
+  \caption{Raffinement du cas d'utilisation « Gérer base de connaissances »}
+  \label{fig:Gérer base de connaissances}
+\end{figure}
+
+\subsubsection{Description textuelle du cas d'utilisation « Ajouter article »}
+La figure ci-dessous présente la description textuelle du cas d'utilisation « Ajouter article ».
+
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Ajouter article \\
+\hline
+\textbf{Acteurs} & Administrateur, Chef de projet \\
+\hline
+\textbf{Précondition} & L'utilisateur doit être authentifié et posséder les rôles requis. \\
+\hline
+\textbf{Postcondition} & L'article est persisté en base de données.  \\
+\hline
+\textbf{Scénario nominal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item L'utilisateur clique sur le bouton "Nouvel Article" depuis la page de la base de connaissances.
+\item L'utilisateur renseigne les détails de l'article (catégorie, contenu, tags) et clique sur le bouton de publication.
+\item Le système valide la conformité des données et enregistre l'article
+\item Il sélectionne un ou plusieurs fichiers (max 5) via l'explorateur ou par glisser-déposer.
+\item Le système rafraîchit dynamiquement la liste des articles.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénario alternatif} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item  l'utilisateur clique sur "Utiliser le template". Le système génère automatiquement une structure pour aider à la rédaction.
+\item  l'utilisateur choisit "Autre". Le système affiche un champ de saisie libre pour définir une nouvelle catégorie.
+\item Sur un même ticket ou contrat, si un nouveau fichier porte le même nom qu'un document existant, le système crée une nouvelle version (V2, V3...) au lieu d'écraser l'existant, conservant ainsi l'historique complet.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d'utilisation «  Ajouter article »}
+\normalsize
+
+
 
 % ──────────────────────────────────────────────────────
 \subsection{Analyse de la fonctionnalité « Consulter Notifications »}
@@ -289,13 +335,13 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 
 \begin{figure}[H]
   \centering
-  %\includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/consulter_notifications.png}
+  \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme Consulter Notification.png}
   \caption{Raffinement du cas d'utilisation « Consulter Notifications »}
   \label{fig:consulter_notifications}
 \end{figure}
 
-\subsubsection{Description textuelle du cas d'utilisation « Consulter notifications »}
-La figure ci-dessous présente la description textuelle du cas d'utilisation « Consulter notifications ».
+\subsubsection{Description textuelle du cas d'utilisation « Configurer préférences notifications »}
+La figure ci-dessous présente la description textuelle du cas d'utilisation « Configurer préférences notifications ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -308,46 +354,31 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Consulter notifications \\
+\textbf{Nom du cas d'utilisation} & Configurer préférences  notifications \\
 \hline
-\textbf{Acteurs} & Administrateur, Chef de projet, Développeur, Client \\
+\textbf{Acteurs} & Utilisateur \\
 \hline
-\textbf{Précondition} & L'utilisateur est authentifié. Des événements métier ont généré des notifications pour son compte. \\
+\textbf{Précondition} & L'acteur est authentifié. \\
 \hline
-\textbf{Postcondition} & Les notifications sélectionnées sont marquées comme lues et le compteur de notifications non lues est mis à jour. \\
+\textbf{Postcondition} & L'acteur ne reçoit plus les alertes des types désactivés. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'utilisateur clique sur l'icône de notifications dans la barre de navigation.
-\item Le système affiche la liste paginée et chronologique des notifications, avec le nombre de notifications non lues visible sur le badge.
-\item L'utilisateur consulte une notification et le système la marque automatiquement comme lue.
-\item L'utilisateur peut marquer toutes les notifications comme lues en une seule action.
-\item L'utilisateur clique sur une notification pour être redirigé vers l'élément associé (ticket, demande, document, etc.).
+\item L'acteur accède à la page \textbf{Profil} et sélectionne l'onglet \textbf{Notifications}.
+\item Le système charge et affiche les préférences regroupées en 4 catégories repliées : \textit{Tickets, Demandes, Projets, Contrats}.
+\item L'acteur clique sur une catégorie pour la déplier et consulte les types d'événements associés, chacun accompagné de son interrupteur.
+\item L'acteur désactive un type d'événement en basculant son interrupteur à \textbf{INACTIF}.
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénario alternatif} &
-\begin{minipage}[t]{\linewidth}\raggedright
+\textbf{Scénarios alternatifs} &
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'utilisateur reçoit une notification push dans son navigateur ; il clique dessus pour être dirigé directement vers la page concernée de la plateforme.
-\item L'utilisateur reçoit une alerte par e-mail et gère ses préférences de notification pour activer ou désactiver certains types d'alertes par canal (email, push, in-app).
-\item Le développeur ou le chef de projet reçoit une notification sur Slack liée à un événement critique d'un contrat configuré.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario d'exception} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'abonnement aux notifications push navigateur est révoqué par l'utilisateur dans les paramètres du navigateur ; le système détecte l'échec de livraison et suspend automatiquement les envois push pour cet abonnement sans affecter les autres canaux.
-\item Une erreur technique empêche l'envoi de l'e-mail de notification ; le système journalise l'incident et conserve la notification dans le centre in-app pour garantir que l'information parvient à l'utilisateur.
-\end{enumerate}
-\end{minipage} \\
+\item L'acteur clique par erreur sur l'interrupteur global \textit{« Tout désactiver »} : toutes les catégories passent à \textbf{INACTIF}. Il re-clique pour tout réactiver ; le système rétablit toutes les préférences et affiche un toast de confirmation.
+\end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « Consulter notifications »}
-\normalsize
-
+\captionof{table}{Description textuelle du cas d'utilisation « Configurer préférences notifications »}
 \newpage
 
 % ─────────────────────────────────────────────────────────────────────────────

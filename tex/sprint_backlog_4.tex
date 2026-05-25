@@ -175,13 +175,13 @@ US84 & En tant que \textbf{chef de projet}, je souhaite générer automatiquemen
 \end{itemize} & 3 \\
 \hline
 
-US85 & En tant que \textbf{client}, je souhaite télécharger les PV de mes tickets afin de conserver une trace des interventions. &
+ US85 & En tant que \textbf{client}, je souhaite accéder aux documents de mes contrats et à mes justificatifs de tickets afin de centraliser nos échanges de fichiers. & 
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item  Lister les documents via \textbf{GET /api/documents?ticketId\_\{id\}}.
-\item  Filtrer automatiquement les fichiers côté serveur pour exclure le type PROCES\_VERBAL.
+\item Lister les documents via \textbf{GET /api/documents} (avec filtres \textbf{ticketId} ou \textbf{contratId}).
+\item Filtrage automatique côté serveur : sur un ticket, ne retourner que les documents dont l'utilisateur est l'auteur (\textbf{uploadeurId}).
+\item Exclusion totale des types \textbf{PROCES\_VERBAL} et des fichiers techniques déposés par les intervenants.
 \end{itemize} & 1 \\
 \hline
-
 US86 & En tant que \textbf{développeur ou chef de projet}, je souhaite consulter la base de connaissances afin de trouver des solutions existantes. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Consulter les articles via \textbf{GET /api/knowledge-base} et \textbf{GET /api/knowledge-base/:id}.
