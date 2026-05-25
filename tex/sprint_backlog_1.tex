@@ -82,16 +82,7 @@ US06 & En tant qu'\textbf{utilisateur}, je souhaite gérer mon profil afin que m
 \end{itemize} & 2 \\
 \hline
 
-US07 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique de mes activités afin de suivre mes actions dans le système. &
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"GET /api/activity-logs/me"}\small{} avec limitation par défaut aux 30 derniers jours.
-\item Développer les endpoints \footnotesize{"GET /api/activity-logs/me/stats"}\small{} et \footnotesize{"GET /api/activity-logs/me/export"}\small{} pour les statistiques et l'export.
-\item Mettre en place des filtres multicritères (types d'actions, entités, statuts, plages de dates).
-\item Créer une interface de timeline interactive et filtrable côté Next.js.
-\end{itemize} & 2 \\
-\hline
-
-US08 & En tant qu'\textbf{administrateur}, je souhaite créer des utilisateurs afin de gérer les accès au système. &
+US07 & En tant qu'\textbf{administrateur}, je souhaite créer des utilisateurs afin de gérer les accès au système. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint \footnotesize{"POST /api/users"}\small{} avec validation stricte des données d'entrée.
 \item Générer un mot de passe temporaire ainsi qu'un profil employé associé avec matricule unique automatisé.
@@ -100,14 +91,14 @@ US08 & En tant qu'\textbf{administrateur}, je souhaite créer des utilisateurs a
 \end{itemize} & 3 \\
 \hline
 
-US09 & En tant qu'\textbf{administrateur}, je souhaite modifier les informations d'un utilisateur afin de maintenir des données à jour. &
+US08 & En tant qu'\textbf{administrateur}, je souhaite modifier les informations d'un utilisateur afin de maintenir des données à jour. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint \footnotesize{"PUT /api/users/:id"}\small{} assurant la mise à jour des fiches d'information.
 \item Concevoir le formulaire de modification et de mise à jour côté Next.js.
 \end{itemize} & 2 \\
 \hline
 
-US10 & En tant qu'\textbf{administrateur}, je souhaite activer et désactiver un compte utilisateur afin de contrôler l'accès au système. &
+US09 & En tant qu'\textbf{administrateur}, je souhaite activer et désactiver un compte utilisateur afin de contrôler l'accès au système. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer les endpoints \footnotesize{"PATCH /api/users/:id/desactiver"}\small{} et \footnotesize{"PATCH /api/users/:id/reactiver"}\small.
 \item Prévoir les contrôles de réaffectation des tickets ou demandes en cours avant désactivation.
@@ -115,7 +106,7 @@ US10 & En tant qu'\textbf{administrateur}, je souhaite activer et désactiver un
 \end{itemize} & 3 \\
 \hline
 
-US11 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des utilisateurs afin de visualiser et gérer efficacement les comptes. &
+US10 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des utilisateurs afin de visualiser et gérer efficacement les comptes. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint \footnotesize{"GET /api/users"}\small{} pour l'affichage global des comptes.
 \item Ajouter une recherche dynamique via \footnotesize{"GET /api/users/search"}\small{} avec filtre textuel insensible à la casse.

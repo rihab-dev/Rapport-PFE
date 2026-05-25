@@ -106,7 +106,7 @@ US26 & En tant que \textbf{membre d'équipe}, je souhaite consulter les informat
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 6 - Gestion des Contrats}} \\
 \hline
 
-US28 & En tant qu'\textbf{administrateur}, je souhaite créer un contrat de maintenance afin de formaliser les engagements de service avec le client. &
+US27 & En tant qu'\textbf{administrateur}, je souhaite créer un contrat de maintenance afin de formaliser les engagements de service avec le client. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint \footnotesize{"POST /api/contrats"}\small{} prenant en charge le dépôt du document signé.
 \item Prévoir l'extraction automatique avec \footnotesize{"POST /api/contrats/extract-pdf"}\small{} et l'upload scanné via \footnotesize{"POST /api/contrats/upload-scanne"}\small.
@@ -114,7 +114,7 @@ US28 & En tant qu'\textbf{administrateur}, je souhaite créer un contrat de main
 \end{itemize} & 2 \\
 \hline
 
-US29 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des contrats afin de suivre les engagements contractuels. &
+US28 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des contrats afin de suivre les engagements contractuels. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint \footnotesize{"GET /api/contrats"}\small{} avec filtrage par client, projet et archivage.
 \item Compléter avec \footnotesize{"GET /api/contrats/client/:clientId"}\small, \footnotesize{"GET /api/contrats/archived"}\small{} et \footnotesize{"GET /api/contrats/:id/fichier"}\small.
@@ -122,7 +122,7 @@ US29 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des co
 \end{itemize} & 3 \\
 \hline
 
-US30 & En tant qu'\textbf{administrateur}, je souhaite recevoir des alertes avant l'expiration des contrats afin d'anticiper les renouvellements. &
+US29 & En tant qu'\textbf{administrateur}, je souhaite recevoir des alertes avant l'expiration des contrats afin d'anticiper les renouvellements. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer une tâche planifiée quotidienne via \footnotesize{Cron}\small{} pour vérifier les échéances à J-30, J-15 et J-7.
 \item Exposer \footnotesize{"GET /api/contrats/expiration/status"}\small{} pour afficher les alertes côté interface.
@@ -130,42 +130,42 @@ US30 & En tant qu'\textbf{administrateur}, je souhaite recevoir des alertes avan
 \end{itemize} & 2 \\
 \hline
 
-US31 & En tant qu'\textbf{administrateur}, je souhaite archiver un contrat afin de conserver l'historique. &
+US30 & En tant qu'\textbf{administrateur}, je souhaite archiver un contrat afin de conserver l'historique. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer les routes \footnotesize{"PATCH /api/contrats/:id/archive"}\small{} avec motif obligatoire d'au moins 10 caractères, \footnotesize{"PATCH /api/contrats/:id/restore"}\small{} et \footnotesize{"DELETE /api/contrats/:id"}\small.
 \item Conserver la traçabilité historique des motifs et des dates de modification.
 \end{itemize} & 3 \\
 \hline
 
-US32 & En tant que \textbf{client}, je souhaite demander la résiliation de mon contrat afin d'interrompre le service. &
+US31 & En tant que \textbf{client}, je souhaite demander la résiliation de mon contrat afin d'interrompre le service. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint \footnotesize{"POST /api/contrats/:id/demande-resiliation"}\small{} avec motif obligatoire.
 \item Alerter l'équipe d'administration et mettre à disposition un écran de suivi des demandes de résiliation en attente.
 \end{itemize} & 1 \\
 \hline
 
-US33 & En tant qu'\textbf{administrateur}, je souhaite résilier un contrat afin de l'interrompre avant terme. &
+US32 & En tant qu'\textbf{administrateur}, je souhaite résilier un contrat afin de l'interrompre avant terme. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint \footnotesize{"PATCH /api/contrats/:id/resilier"}\small{} exigeant une note explicative d'au moins 10 caractères.
 \item Mettre à jour le cycle de vie du contrat, consigner l'opération dans l'audit et informer automatiquement le client par e-mail.
 \end{itemize} & 2 \\
 \hline
 
-US34 & En tant que \textbf{chef de projet}, je souhaite consulter les contrats dans un calendrier afin de visualiser les dates d'expiration. &
+US33 & En tant que \textbf{chef de projet}, je souhaite consulter les contrats dans un calendrier afin de visualiser les dates d'expiration. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Exploiter les dates de validité renvoyées par \footnotesize{"GET /api/contrats"}\small{} et \footnotesize{"GET /api/contrats/expiration/status"}\small.
 \item Afficher une vue calendrier avec code couleur selon la proximité de l'échéance contractuelle.
 \end{itemize} & 1 \\
 \hline
 
-US35 & En tant que \textbf{client}, je souhaite soumettre un retour d'expérience à l'expiration de mon contrat afin d'exprimer ma satisfaction. &
+US34 & En tant que \textbf{client}, je souhaite soumettre un retour d'expérience à l'expiration de mon contrat afin d'exprimer ma satisfaction. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint \footnotesize{"POST /api/contrats/:id/feedback"}\small{} pour enregistrer la notation et les intentions de renouvellement.
 \item Prévoir aussi \footnotesize{"POST /api/contrats/:id/demande-renouvellement"}\small{} pour la demande directe côté client.
 \end{itemize} & 1 \\
 \hline
 
-US36 & En tant qu'\textbf{administrateur}, je souhaite générer un PDF formaté du contrat afin de le partager avec le client. &
+US35 & En tant qu'\textbf{administrateur}, je souhaite générer un PDF formaté du contrat afin de le partager avec le client. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint \footnotesize{"GET /api/contrats/:id/generate-pdf"}\small{} pour la génération du PDF.
 \item Intégrer la structure réglementaire et le bouton de téléchargement côté Next.js.
@@ -173,7 +173,7 @@ US36 & En tant qu'\textbf{administrateur}, je souhaite générer un PDF formaté
 \hline
 
 % Epic 14: Consulter journal d'activité
-\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 14 - Consulter journal d'activité}} \\
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 14 - Historique et traçabilité}} \\
 \hline
 
 US101 & En tant qu'\textbf{administrateur}, je souhaite consulter l'historique complet de toutes les actions afin d'assurer la traçabilité. &
