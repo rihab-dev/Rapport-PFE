@@ -613,9 +613,6 @@ Les tests unitaires ont été réalisés avec \textbf{Vitest} en isolant
 chaque service grâce à des mocks Prisma. Deux modules sont couverts :
 la création de contrats et la gestion des projets.
 
-\vspace{4pt}
-\noindent\textbf{Bilan : 18 tests exécutés - 18 réussis —  0 échec.}
-\vspace{6pt}
 
 \begin{itemize}[leftmargin=0pt]
 
@@ -669,64 +666,45 @@ doublons. Les cas suivants ont été couverts :
 \label{sec:tests_integration_sprint2}
 Les tests d’intégration valident les endpoints REST des contrats via \textbf{Swagger UI}, en interagissant directement avec le backend en cours d’exécution.
 
-\vspace{4pt}
-\noindent\textbf{Bilan : 6 tests exécutés - 6 réussis —  0 échec.}
-\vspace{6pt}
-
 \begin{itemize}[leftmargin=0pt]
 
 \item[$\square$] \textbf{Test du module Gestion des contrats}
-%\hfill\textit{Endpoints :   ·
-  ·
- %}
-
 \noindent Cette suite valide le comportement complet des endpoints de
 gestion des contrats. Les cas suivants ont été couverts :
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item Un administrateur authentifié crée un contrat avec des données
-    valides : l'endpoint retourne le code \textbf{201 Created} avec la
-    référence générée, le montant TTC calculé et le statut
-     .
-  \item Un utilisateur sans la permission  
-    tente de créer un contrat : l'endpoint retourne le code
-    \textbf{403 Forbidden}.
-  \item Un contrat actif est soumis à l'archivage sans motif suffisant
-    (moins de 10 caractères) : l'endpoint retourne le code
-    \textbf{400 Bad Request}.
-  \item Un contrat expiré est archivé avec un motif valide :
-    l'endpoint retourne le code \textbf{200 OK} et le contrat est
-    marqué  .
   \item Un contrat actif est résilié par l'administrateur avec un motif
     valide : l'endpoint retourne le code \textbf{200 OK} et le statut
     du contrat est mis à jour.
-  \item Un client tente d'accéder à la liste complète des contrats
-    (endpoint   avec permission
-     ) : l'endpoint retourne le code
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth,keepaspectratio]{Images/resilier.png}
+\caption{Test d'intégration - Résiliation d'un contrat}
+\label{fig:test_integration_resiliation_contrat}
+\end{figure}
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item Un client tente d'accéder à la liste complète des contrats : l'endpoint retourne le code
     \textbf{403 Forbidden}, seuls ses propres contrats lui sont
     accessibles via  .
 \end{itemize}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth,keepaspectratio]{Images/get client test interg sprint 2.png}
+\caption{Test d'intégration - Accès à la liste des contrats}
+\label{fig:test_integration_liste_contrats}
+\end{figure}
+
 \end{itemize}
-
-%\begin{figure}[H]
-%\centering
-%\includegraphics[width=0.65\textwidth,keepaspectratio]
- % {Images/test-integration-contrats-sprint2.png}
-%\caption{Tests d'intégration — Gestion des contrats via Swagger}
-%\label{fig:test_integration_sprint2}
-%\end{figure}
-
 %─────────────────────────────────────────────────────────────────────────────
 %─────────────────────────────────────────────────────────────────────────────
 \subsection{Tests End-to-End (E2E)}
 \label{sec:tests_e2e_sprint2}
 
 Les tests End-to-End simulent les parcours utilisateurs complets dans un navigateur réel piloté par \textbf{Playwright}. Ils garantissent que le frontend Next.js communique correctement avec le backend NestJS et que les données sont persistées avec intégrité dans PostgreSQL.
-
-\vspace{4pt}
-\noindent\textbf{Bilan : 4 tests exécutés - 4 réussis —  0 échec.}
-\vspace{6pt}
 
 \begin{itemize}[leftmargin=0pt]
 
