@@ -1,18 +1,28 @@
 \section*{Introduction}
 
-Dans ce chapitre, nous abordons le quatrième et dernier sprint du projet \textbf{SolidMaint}, couvrant la période du 2 mai au 31 mai 2026, soit quatre semaines de développement consacrées aux fonctionnalités avancées de collaboration, de gestion documentaire et d'intelligence artificielle. Nous commencerons par la présentation du backlog du sprint regroupant trente-quatre user stories réparties en six epics, suivie de la phase d'analyse et de conception, puis de la réalisation des interfaces intégrant un système de messagerie en temps réel, un module de gestion documentaire avec versioning, un système de notifications multicanaux et un moteur d'intelligence artificielle dédié à la catégorisation automatique des demandes et à la recommandation de solutions, et enfin des tests conduits pour valider les fonctionnalités livrées.
+Ce chapitre présente le quatrième et dernier sprint du projet \textbf{SolidMaint}. Les sprints précédents nous ont permis de mettre en place les principales fonctionnalités du système : la gestion des utilisateurs, des clients, des contrats, ainsi que le traitement des demandes et des tickets. Ce sprint vient compléter la plateforme avec des fonctionnalités de collaboration et de suivi qui étaient encore manquantes.
+\newline
+Dans ce chapitre, nous présentons donc les fonctionnalités développées durant ce dernier sprint, à savoir : un module de suivi de l'activité avec un calendrier et des tableaux de bord, un système de messagerie interne, un espace de gestion des documents, et un centre de notifications pour que chaque utilisateur soit alerté dès qu'un événement le concerne.
 
-\newpage
 
 % ─────────────────────────────────────────────────────────────────────────────
-% SECTION 1 : BACKLOG DU SPRINT 4
+% SECTION 1 : SPRINT PLANNING MEETING
 % ─────────────────────────────────────────────────────────────────────────────
 
-\section*{Sprint Backlog}
+\section{Sprint Planning Meeting}
+La réunion de planification du quatrième sprint nous a permis de définir les objectifs à atteindre durant les trois dernières semaines de développement. Nous avons sélectionné les user stories prioritaires correspondant aux fonctionnalités de collaboration, de suivi et de communication, et nous avons estimé l'effort nécessaire pour chacune d'elles. Cette étape est déterminante pour garantir que l'ensemble de l'équipe partage une vision commune du travail à accomplir et que les livrables finaux répondent aux exigences exprimées dans le product backlog.
+
+\subsection{Objectif du Sprint}
+
+L'objectif principal de ce sprint est de finaliser la plateforme en offrant aux utilisateurs des outils de suivi, de communication et de gestion documentaire efficaces. Il s'agit concrètement de mettre en place un calendrier interactif permettant de visualiser les tickets et les demandes d'intervention dans le temps, d'intégrer des tableaux de bord personnalisés par rôle pour piloter l'activité et générer des rapports périodiques, de déployer un module de messagerie interne en temps réel facilitant la collaboration entre les membres de l'équipe au sein de canaux dédiés, de proposer un espace documentaire centralisé avec gestion des versions et traçabilité des consultations, et enfin de mettre en place un système de notifications multicanaux in-app, email, push navigateur et Slack afin que chaque acteur reçoive les informations pertinentes au moment opportun.
+
+\subsubsection{Backlog du quatrième sprint}
 \label{sec:backlog_sprint4}
 
 Le tableau ci-dessous présente le Sprint Backlog détaillé avec les descriptions techniques et l'effort estimé pour chaque user story.
 
+\textbf{1 : Effort faible, 2 : Effort moyen, 3 : Effort élevé}
+\newpage
 \input{tex/sprint_backlog_4}
 
 \newpage
@@ -22,20 +32,353 @@ Le tableau ci-dessous présente le Sprint Backlog détaillé avec les descriptio
 % ─────────────────────────────────────────────────────────────────────────────
 
 \section{Analyse}
+Dans le cadre de ce sprint, l'analyse fonctionnelle a consisté à formaliser les interactions entre les différents acteurs et les modules métiers de la solution. Cette étape a permis de traduire les besoins exprimés dans le backlog en cas d'utilisation concrets, en tenant compte des contraintes de temps réel, de traçabilité, de sécurité et de personnalisation par rôle.
+
 \label{sec:analyse_sprint4}
 
-\subsection{Diagramme des cas d'utilisation du Sprint 4}
+\subsection{Diagramme de cas d'utilisation du quatrième sprint}
+La figure ci-dessous présente le diagramme de cas d'utilisation du quatrième sprint.
 
-Cette section présentera le diagramme de cas d'utilisation du quatrième sprint, couvrant la messagerie, gestion documentaire, notifications et IA.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.70\textwidth,height=0.50\textheight,keepaspectratio]{Images/Diagramme cas d'utilisation Sprint 4.drawio.png}
+    \caption{Diagramme de cas d'utilisation du quatrième sprint}
+    \label{fig:use_case_sprint4}
+\end{figure}
 
-\textit{[À compléter avec le diagramme de cas d'utilisation]}
+Nous allons accompagner les cas d'utilisation d'un texte descriptif pour expliquer le scénario de chaque cas ainsi que ses exceptions.
 
-\subsection{Description textuelle des cas d'utilisation}
+% ──────────────────────────────────────────────────────
+\subsection{Analyse de la fonctionnalité « Suivre Activité »}
+Dans cette partie, nous allons présenter les cas d'utilisation relatifs au suivi de l'activité afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
 
-Cette section détaillera les scénarios principaux et alternatifs pour les cas d'utilisation du Sprint 4.
+\subsubsection{Raffinement du cas d'utilisation « Suivre Activité »}
+Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le suivi de l'activité :
 
-\textit{[À compléter avec les descriptions textuelles]}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme cas utilisationSuivre activité.drawio.png}
+  \caption{Raffinement du cas d'utilisation « Suivre Activité »}
+  \label{fig:suivre_activite}
+\end{figure}
 
+\subsubsection{Description textuelle du cas d'utilisation « Consulter rapport »}
+La figure ci-dessous présente la description textuelle du cas d'utilisation « Consulter rapport ».
+
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Consulter rapport  \\
+\hline
+\textbf{Acteurs} & Administrateur, Chef de Projet \\
+\hline
+\textbf{Précondition} & L'acteur est authentifié, possède la permission et se trouve sur son tableau de bord. \\
+\hline
+\textbf{Postcondition} & L'acteur a consulté les statistiques d'activité pour la période sélectionnée. \\
+\hline
+\textbf{Scénario nominal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item L'acteur clique sur le bouton flottant « Rapport » affiché en bas à droite du tableau de bord.
+\item Le système ouvre le panneau latéral et affiche les statistiques du mois courant
+\item L'acteur modifie les filtres ; le système recharge automatiquement les données.
+\item L'acteur clique sur le bouton « PDF » ; le système génère et télécharge le fichier de rapport.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item Aucune donnée n'est disponible pour la période sélectionnée. L'acteur modifie les filtres et le système recharge les données.
+\end{enumerate} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d'utilisation « Consulter rapport »}
+\normalsize
+
+
+% ──────────────────────────────────────────────────────
+
+
+\subsubsection{Description textuelle du cas d'utilisation « Gérer messagerie »}
+La figure ci-dessous présente la description textuelle du cas d'utilisation « Gérer messagerie ».
+
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Gérer messagerie \\
+\hline
+\textbf{Acteurs} & Utilisateur  \\
+\hline
+\textbf{Précondition} &  L'utilisateur doit être authentifié sur la plateforme.
+\newline L'utilisateur doit avoir accès au canal de discussion\\
+\hline
+\textbf{Postcondition} & L'historique du canal de discussion est mis à jour en base de données. Les accusés de lecture sont générés pour les destinataires de la conversation. \\
+\hline
+\textbf{Scénario nominal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item L'utilisateur accède à l'interface de la messagerie intégrée au ticket.
+\item Le système affiche l'historique des messages du canal avec la pagination adéquate et l'état "vu".
+\item  L'utilisateur saisit un texte dans le champ de saisie et clique sur "Envoyer".
+\item  Le système enregistre le message et le diffuse en temps réel (via WebSocket) aux autres participants.
+\item  Le système met à jour l'affichage en ajoutant le nouveau message.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénario alternatif} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item l'utilisateur sélectionne un fichier (image, PDF, audio). Le système uploade le fichier, génère un aperçu, et l'associe au message.
+\item L'utilisateur épingle un message important dans le canal ; le message apparaît dans la section des messages épinglés, accessible à tous les membres.
+\item L'utilisateur clique sur "Modifier" sur son propre message, change le texte et valide. Le système met à jour le message et ajoute le badge "(modifié)".
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénario d'exception} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item : Lors de l'alternative A1, si le fichier dépasse la limite autorisée, le système rejette l'envoi et affiche un message d'erreur.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d'utilisation « Gérer messagerie »}
+\normalsize
+
+% ──────────────────────────────────────────────────────
+
+\subsection{Analyse de la fonctionnalité « Gérer documents »}
+Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des documents afin de comprendre les principales fonctionnalités du module documentaire, ce qui permet d'avoir une vue globale des interactions.
+
+\subsubsection{Raffinement du cas d'utilisation « Gérer documents »}
+Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour la gestion des documents :
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme cas d'utilisationDocument.png}
+  \caption{Raffinement du cas d'utilisation « Gérer documents »}
+  \label{fig:gerer_documents}
+\end{figure}
+
+\subsubsection{Description textuelle du cas d'utilisation « Ajouter document »}
+La figure ci-dessous présente la description textuelle du cas d'utilisation « Ajouter document ».
+
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Ajouter document \\
+\hline
+\textbf{Acteurs} & Utilisateur \\
+\hline
+\textbf{Précondition} & L'utilisateur est authentifié.
+\newline  Le ticket ou contrat concerné existe et n'est pas archivé. \\
+\hline
+\textbf{Postcondition} & Le fichier est stocké physiquement  \\
+\hline
+\textbf{Scénario nominal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item L'utilisateur accède à la page de détail d'un ticket ou d'un contrat.
+\item Il navigue vers l'onglet ou la section "Documents / Fichiers partagés".
+\item Il clique sur le bouton "Ajouter un document".
+\item  Il sélectionne un ou plusieurs fichiers (max 5) via l'explorateur ou par glisser-déposer.
+\item La liste des documents s'actualise instantanément.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénario alternatif} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item Le Client joint des fichiers lors de la création d'une demande. Ils sont stockés initialement comme PieceJointe. Lors de la validation par l'Admin, ils sont automatiquement convertis en Document liés au ticket final.
+\item Si un fichier dépasse 10 Mo, le système bloque l'upload avant l'envoi et affiche une alerte visuelle à l'utilisateur.
+\item Sur un même ticket ou contrat, si un nouveau fichier porte le même nom qu'un document existant, le système crée une nouvelle version (V2, V3...) au lieu d'écraser l'existant, conservant ainsi l'historique complet.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d'utilisation «  Ajouter document »}
+\normalsize
+
+
+\subsubsection{Description textuelle du cas d'utilisation « Générer document PV »}
+La figure ci-dessous présente la description textuelle du cas d'utilisation « Générer document PV ».
+
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Générer document PV \\
+\hline
+\textbf{Acteurs} & Administrateur, Chef de projet, Développeur\\
+\hline
+\textbf{Précondition} & L'utilisateur est authentifié et possède les droits de résolution sur le ticket. \\
+\hline
+\textbf{Postcondition} & Un document PDF est ajouté à l'historique documentaire du ticket. \\
+\hline
+\textbf{Scénario nominal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item L'acteur ouvre un ticket et sélectionne l'action "Générer le PV"
+\item Le système interroge la base et charge instantanément le contexte du ticket
+\item Le système affiche la fenêtre modale du PV. Les champs client, temps passé, et la solution apportée sont affichés automatiquement sans saisie manuelle.
+\item L'acteur complète les champs libres : "Observations particulières" et "Matériel utilisé".
+\item Le système enregistre le PDF comme document définitif rattaché au ticket.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénario alternatif} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item l'acteur saisit ses observations dans le champ "Observations particulières" ou "Matériel utilisé" puis réalise qu'il a fait une faute de frappe ou oublié une information. Il modifie directement le texte dans la zone de saisie avant de cliquer sur le bouton. Le système accepte la nouvelle saisie et génère le PDF avec les données corrigées.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d'utilisation « Générer document PV »}
+\normalsize
+
+\subsubsection{Raffinement du cas d'utilisation « Gérer base de connaissances »}
+Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour la gestion de base de connaissances :
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme Base de connaissance.drawio.png}
+  \caption{Raffinement du cas d'utilisation « Gérer base de connaissances »}
+  \label{fig:Gérer base de connaissances}
+\end{figure}
+
+\subsubsection{Description textuelle du cas d'utilisation « Ajouter article »}
+La figure ci-dessous présente la description textuelle du cas d'utilisation « Ajouter article ».
+
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Ajouter article \\
+\hline
+\textbf{Acteurs} & Administrateur, Chef de projet \\
+\hline
+\textbf{Précondition} & L'utilisateur doit être authentifié et posséder les rôles requis. \\
+\hline
+\textbf{Postcondition} & L'article est persisté en base de données.  \\
+\hline
+\textbf{Scénario nominal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item L'utilisateur clique sur le bouton "Nouvel Article" depuis la page de la base de connaissances.
+\item L'utilisateur renseigne les détails de l'article (catégorie, contenu, tags) et clique sur le bouton de publication.
+\item Le système valide la conformité des données et enregistre l'article
+\item Il sélectionne un ou plusieurs fichiers (max 5) via l'explorateur ou par glisser-déposer.
+\item Le système rafraîchit dynamiquement la liste des articles.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénario alternatif} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item  l'utilisateur clique sur "Utiliser le template". Le système génère automatiquement une structure pour aider à la rédaction.
+\item  l'utilisateur choisit "Autre". Le système affiche un champ de saisie libre pour définir une nouvelle catégorie.
+\item Sur un même ticket ou contrat, si un nouveau fichier porte le même nom qu'un document existant, le système crée une nouvelle version (V2, V3...) au lieu d'écraser l'existant, conservant ainsi l'historique complet.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d'utilisation «  Ajouter article »}
+\normalsize
+
+
+
+% ──────────────────────────────────────────────────────
+\subsection{Analyse de la fonctionnalité « Consulter Notifications »}
+Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la consultation des notifications afin de comprendre les mécanismes d'alerte multicanaux mis en place dans le système.
+
+\subsubsection{Raffinement du cas d'utilisation « Consulter Notifications »}
+Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour la consultation des notifications :
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme Consulter Notification.png}
+  \caption{Raffinement du cas d'utilisation « Consulter Notifications »}
+  \label{fig:consulter_notifications}
+\end{figure}
+
+\subsubsection{Description textuelle du cas d'utilisation « Configurer préférences notifications »}
+La figure ci-dessous présente la description textuelle du cas d'utilisation « Configurer préférences notifications ».
+
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Configurer préférences  notifications \\
+\hline
+\textbf{Acteurs} & Utilisateur \\
+\hline
+\textbf{Précondition} & L'acteur est authentifié. \\
+\hline
+\textbf{Postcondition} & L'acteur ne reçoit plus les alertes des types désactivés. \\
+\hline
+\textbf{Scénario nominal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item L'acteur accède à la page \textbf{Profil} et sélectionne l'onglet \textbf{Notifications}.
+\item Le système charge et affiche les préférences regroupées en 4 catégories repliées : \textit{Tickets, Demandes, Projets, Contrats}.
+\item L'acteur clique sur une catégorie pour la déplier et consulte les types d'événements associés, chacun accompagné de son interrupteur.
+\item L'acteur désactive un type d'événement en basculant son interrupteur à \textbf{INACTIF}.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénarios alternatifs} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item L'acteur clique par erreur sur l'interrupteur global \textit{« Tout désactiver »} : toutes les catégories passent à \textbf{INACTIF}. Il re-clique pour tout réactiver ; le système rétablit toutes les préférences et affiche un toast de confirmation.
+\end{enumerate} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d'utilisation « Configurer préférences notifications »}
 \newpage
 
 % ─────────────────────────────────────────────────────────────────────────────
@@ -45,21 +388,29 @@ Cette section détaillera les scénarios principaux et alternatifs pour les cas 
 \section{Conception}
 \label{sec:conception_sprint4}
 
+Dans cette section, nous présentons la conception des principales fonctionnalités développées durant le quatrième sprint. L'objectif est de mettre en évidence, d'une part, les échanges entre les acteurs et les composants du système au moyen de diagrammes de séquence, et d'autre part, le déroulement global des traitements à travers des diagrammes d'activité.
+
 \subsection{Diagrammes de séquence}
+Les diagrammes de séquence permettent d'illustrer le déroulement temporel des interactions entre l'utilisateur, l'interface, les services applicatifs et la base de données. Pour ce sprint, nous avons retenu les scénarios les plus représentatifs : la consultation du tableau de bord, l'envoi d'un message, le dépôt d'un document, la génération d'un procès-verbal et la configuration des notifications.
 
-Cette section présentera les diagrammes de séquence détaillant les interactions pour la messagerie, gestion documentaire et système d'IA.
+\subsubsection{Diagramme de séquences du cas d'utilisation « Envoyer message »}
 
-\textit{[À compléter avec les diagrammes de séquence]}
+\begin{figure}[H]
+        \centering
+  %\includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_seq_envoyer_message.png}
+        \caption{Diagramme de séquences du cas d'utilisation « Envoyer message »}
+        \label{fig:seq_envoyer_message}
+\end{figure}
 
-\subsection{Modèle de données}
 
-Cette section présentera le modèle de données relatif à la messagerie, documents, notifications et modèles d'IA.
+      \subsection{Diagrammes d'activité}
+      Les diagrammes d'activité complètent la vue séquentielle en décrivant la logique métier de façon plus globale. Ils sont particulièrement utiles pour les processus comportant plusieurs choix, validations ou retours en arrière, comme la messagerie, le dépôt documentaire, la configuration des notifications ou la consultation des rapports.
 
-\textit{[À compléter avec le schéma de base de données]}
-
+      \subsubsection{Diagramme d'activité du cas d'utilisation « Configurer préférences notifications »}
+        Ce diagramme montre l'accès au profil, le chargement des préférences, l'activation ou la désactivation d'un canal de notification, l'enregistrement des paramètres et l'affichage de la confirmation.
 \subsection{Diagramme de composants}
 
-La figure ci-dessous présente le diagramme de composants de l'application. 
+La figure ci-dessous présente le diagramme de composants de l'application.
 
 \begin{figure}[H]
 \centering
@@ -70,6 +421,43 @@ La figure ci-dessous présente le diagramme de composants de l'application.
 
 Le diagramme de composants illustre l'architecture de la solution en trois couches. Le front-end (Next.js) regroupe l'interface utilisateur, les modules métiers et un client HTTP (Axios/Fetch). L'API Core (NestJS) structure ses contrôleurs, modules fonctionnels et services transverses (Prisma ORM, cache manager). En infrastructure, PostgreSQL assure la persistance des données et Redis gère les sessions et le cache, tous deux accessibles via TCP/IP. Cette organisation sépare clairement la présentation, la logique métier et les services d'infrastructure.
 
+\subsection{Diagramme de classes du quatrième sprint}
+
+\begin{figure}[H]
+\centering
+%\includegraphics[width=1\textwidth,keepaspectratio]{Images/diag classe sprint 4.png}
+\caption{Diagramme de classes du quatrième sprint}
+\label{fig:diag_classe_sprint4}
+\end{figure}
+
+\section{Schéma relationnel}
+{\sloppy
+Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui détaille les différentes tables de la base de données ainsi que leurs relations :
+
+\noindent
+
+\textbf{Canal} (\underline{idCanal}, nomCanal, typeCanal, description, dateCreation, dateMiseAJour, \textbf{\#idContrat}, \textbf{\#idTicket})
+\newline
+\textbf{Message} (\underline{idMessage}, contenu, dateEnvoi, dateModification, estSupprime, \textbf{\#idCanal}, \textbf{\#idExpediteur}, \textbf{\#idMessageParent})
+\newline
+\textbf{PieceJointeMessage} (\underline{idPieceJointe}, nomFichier, urlFichier, typeFichier, tailleFichier, dateCreation, \textbf{\#idMessage})
+\newline
+\textbf{MentionMessage} (\underline{idMention}, estLue, dateCreation, \textbf{\#idMessage}, \textbf{\#idUtilisateurMentionne})
+\newline
+\textbf{Document} (\underline{idDocument}, nomDocument, urlFichier, typeDocument, tailleFichier, versionCourante, estArchive, dateDepot, dateMiseAJour, \textbf{\#idDeposeur}, \textbf{\#idTicket}, \textbf{\#idContrat})
+\newline
+\textbf{VersionDocument} (\underline{idVersion}, numeroVersion, urlFichier, tailleFichier, dateCreation, \textbf{\#idDocument}, \textbf{\#idAuteur})
+\newline
+\textbf{ConsultationDocument} (\underline{idConsultation}, dateConsultation, \textbf{\#idDocument}, \textbf{\#idUtilisateur})
+\newline
+\textbf{Notification} (\underline{idNotification}, titre, message, typeNotification, estLue, dateCreation, donneesContexte, \textbf{\#idUtilisateur})
+\newline
+\textbf{PreferenceNotification} (\underline{idPreference}, typeEvenement, canalEmail, canalPush, canalInApp, canalSlack, \textbf{\#idUtilisateur})
+\newline
+\textbf{AbonnementPush} (\underline{idAbonnement}, endpoint, cleP256dh, cleAuth, dateCreation, \textbf{\#idUtilisateur})
+
+}
+
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 4 : RÉALISATION
 % ─────────────────────────────────────────────────────────────────────────────
@@ -79,13 +467,13 @@ Le diagramme de composants illustre l'architecture de la solution en trois couch
 
 \subsection{Architecture technique}
 
-Cette section présentera l'architecture technique mise en place pour le Sprint 4, incluant les modules de messagerie temps réel, gestion documentaire et IA.
+Cette section présentera l'architecture technique mise en place pour le Sprint 4, incluant les modules de messagerie temps réel, gestion documentaire et tableaux de bord.
 
 \textit{[À compléter avec les détails d'implémentation]}
 
 \subsection{Interfaces utilisateur}
 
-Cette section présentera les principales interfaces développées durant le Sprint 4, notamment la messagerie et le système de notifications.
+Cette section présentera les principales interfaces développées durant le Sprint 4, notamment la messagerie, le calendrier, les tableaux de bord et le système de notifications.
 
 \textit{[À compléter avec les captures d'écran]}
 
@@ -100,12 +488,171 @@ Cette section présentera les principales interfaces développées durant le Spr
 
 \subsection{Tests unitaires}
 
-Cette section présentera les tests unitaires réalisés pour valider les fonctionnalités du Sprint 4.
+Les tests unitaires ont été réalisés avec \textbf{Vitest} en isolant les services métier à l'aide de mocks sur les dépendances externes. Cette approche a permis de valider rapidement les règles de gestion propres au dernier sprint, tout en limitant les effets de bord liés aux accès à la base de données, aux services temps réel et aux traitements de fichiers.
 
-\textit{[À compléter avec les résultats des tests]}
+Les modules testés en priorité couvrent le calendrier, la messagerie, la gestion documentaire, les notifications ainsi que les indicateurs des tableaux de bord et des rapports.
+
+\noindent\textbf{Bilan : ensemble des scénarios unitaires validés avec succès.}
+\vspace{6pt}
+
+\begin{itemize}[leftmargin=0pt]
+
+\item[$\square$] \textbf{Test du module Calendrier et suivi d'activité}
+
+\noindent Cette suite vérifie la construction des événements affichés dans le calendrier ainsi que la classification des éléments selon leur type et leur criticité. Les cas suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item Les tickets et demandes de maintenance sont convertis correctement en événements calendrier.
+  \item Les éléments critiques ou en retard sont identifiés avec le bon statut visuel.
+  \item Les filtres temporels permettent de recalculer la vue sans altérer les données sources.
+\end{itemize}
+
+\item[$\square$] \textbf{Test du module Messagerie}
+
+\noindent Cette suite valide l'envoi, la modification, la suppression et l'épinglage des messages, ainsi que la gestion des pièces jointes et des mentions. Les cas suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item Un message valide est enregistré et diffusé en temps réel aux participants du canal.
+  \item Une réponse avec message parent conserve le fil de discussion correctement.
+  \item Une pièce jointe dépassant la taille autorisée est rejetée avant stockage.
+  \item Un message déjà modifié conserve la trace de la mise à jour et le badge associé.
+  \item Une mention déclenche la création de la notification correspondante.
+\end{itemize}
+
+\item[$\square$] \textbf{Test du module Documents}
+
+\noindent Cette suite valide le dépôt, la version, l'archivage et la consultation des documents. Les cas suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item Un ou plusieurs fichiers valides sont acceptés et liés au ticket ou au contrat concerné.
+  \item Un fichier dont la taille dépasse la limite autorisée est refusé.
+  \item Un document portant le même nom qu'une version existante génère une nouvelle version sans écraser l'historique.
+  \item La génération du procès-verbal préremplit les données du ticket et produit un document final exploitable.
+\end{itemize}
+
+\item[$\square$] \textbf{Test du module Notifications et tableaux de bord}
+
+\noindent Cette suite vérifie le calcul des indicateurs, la remontée des alertes et la mise à jour des préférences de notification. Les cas suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item Les indicateurs globaux et d'équipe sont calculés à partir des données métier attendues.
+  \item Les rapports mensuels agrègent correctement les statistiques par période.
+  \item La désactivation d'un canal de notification est prise en compte immédiatement dans les préférences utilisateur.
+  \item Les abonnements push et les intégrations Slack sont validés par les règles métier de configuration.
+\end{itemize}
+
+\end{itemize}
 
 \subsection{Tests d'intégration}
 
-Cette section présentera les tests d'intégration effectués pour s'assurer du bon fonctionnement global du système.
+Les tests d'intégration ont été effectués via \textbf{Swagger UI} et les points d'entrée exposés par l'API afin de vérifier les échanges entre les contrôleurs, les services métiers et la base de données. Ils confirment que les fonctionnalités du sprint 4 fonctionnent correctement lorsqu'elles sont exécutées dans un environnement proche de l'utilisation réelle.
 
-\textit{[À compléter avec les résultats des tests]}
+\begin{itemize}[leftmargin=0pt]
+
+\item[$\square$] \textbf{Test du module Calendrier et suivi d'activité}
+
+\noindent Cette suite valide les endpoints qui alimentent le calendrier et les tableaux de bord. Les cas suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item Les endpoints de consultation des tickets et des demandes renvoient les données nécessaires à l'affichage calendrier.
+  \item Les endpoints de dashboard retournent les indicateurs globaux, les tendances et les statistiques mensuelles attendues.
+  \item Les filtres par période produisent des résultats cohérents avec les données présentes en base.
+\end{itemize}
+
+\item[$\square$] \textbf{Test du module Messagerie et collaboration}
+
+\noindent Cette suite valide les routes REST et les échanges temps réel liés à la messagerie. Les cas suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item La consultation des canaux de l'utilisateur retourne les bons fils de discussion.
+  \item L'envoi d'un message dans un canal crée l'entrée attendue et déclenche la diffusion WebSocket.
+  \item La modification et la suppression d'un message renvoient les statuts HTTP appropriés.
+  \item Les mentions et les accusés de lecture sont persistés et récupérables via les endpoints dédiés.
+\end{itemize}
+
+\item[$\square$] \textbf{Test du module Documents et base de connaissances}
+
+\noindent Cette suite valide les routes d'envoi, de remplacement et de consultation des documents, ainsi que les endpoints liés à la base de connaissances. Les cas suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item Un document envoyé via l'API est rattaché au ticket ou au contrat demandé.
+  \item La récupération de l'historique des versions retourne bien la suite chronologique attendue.
+  \item La consultation d'un document enregistre correctement l'événement d'accès.
+  \item Les articles de la base de connaissances sont listés et filtrés sans perte de cohérence.
+\end{itemize}
+
+\item[$\square$] \textbf{Test du module Notifications}
+
+\noindent Cette suite valide les endpoints de consultation et de mise à jour des préférences de notification. Les cas suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item Les notifications in-app sont listées avec leur statut de lecture.
+  \item Le marquage individuel et global comme lu met bien à jour les compteurs.
+  \item Les préférences par type d'événement sont récupérées et modifiées correctement.
+  \item Les configurations push et Slack répondent conformément aux règles métier de la plateforme.
+\end{itemize}
+
+\end{itemize}
+
+\subsection{Tests End-to-End (E2E)}
+
+Les tests End-to-End ont été exécutés avec \textbf{Playwright} afin de simuler des parcours utilisateur complets dans un navigateur réel. Ils permettent de vérifier l'enchaînement réel entre l'interface Next.js, l'API NestJS et la persistance en base de données, en particulier pour les fonctionnalités transversales du sprint 4.
+
+\noindent\textbf{Bilan : les scénarios critiques du sprint ont été exécutés avec succès.}
+\vspace{6pt}
+
+\begin{itemize}[leftmargin=0pt]
+
+\item[$\square$] \textbf{Test du parcours de suivi d'activité}
+
+\noindent Cette suite vérifie qu'un utilisateur autorisé peut consulter son tableau de bord, ouvrir le calendrier et générer un rapport d'activité. Les scénarios suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item L'administrateur accède au dashboard global et consulte les statistiques consolidées.
+  \item Le chef de projet visualise la charge de l'équipe et les tickets prioritaires.
+  \item L'utilisateur lance la génération d'un rapport mensuel à partir des filtres disponibles.
+\end{itemize}
+
+\item[$\square$] \textbf{Test du parcours de messagerie}
+
+\noindent Cette suite valide un échange complet au sein d'un canal de discussion. Les scénarios suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item L'utilisateur ouvre un canal lié à un ticket et retrouve l'historique des messages.
+  \item L'utilisateur envoie un message avec ou sans pièce jointe et observe sa diffusion instantanée.
+  \item Un autre participant répond, modifie ou épingle un message, et l'interface se met à jour correctement.
+\end{itemize}
+
+\item[$\square$] \textbf{Test du parcours documentaire}
+
+\noindent Cette suite vérifie le dépôt et la consultation d'un document depuis la fiche d'un ticket ou d'un contrat. Les scénarios suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item L'utilisateur ajoute un document depuis la zone dédiée et la liste se rafraîchit immédiatement.
+  \item Le système crée une nouvelle version lorsque le nom du fichier existe déjà.
+  \item Le chef de projet génère un procès-verbal à partir d'un ticket et le retrouve dans l'historique documentaire.
+\end{itemize}
+
+\item[$\square$] \textbf{Test du parcours de notifications}
+
+\noindent Cette suite valide la consultation et la configuration des notifications par l'utilisateur. Les scénarios suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item L'utilisateur consulte ses notifications in-app et marque certaines entrées comme lues.
+  \item L'utilisateur désactive puis réactive des types d'alertes depuis son profil.
+  \item Une action métier déclenche une notification qui apparaît correctement dans l'interface.
+\end{itemize}
+
+\end{itemize}
+
+\newpage
+
+% ─────────────────────────────────────────────────────────────────────────────
+% CONCLUSION DU CHAPITRE
+% ─────────────────────────────────────────────────────────────────────────────
+
+\section*{Conclusion}
+
+Ce chapitre a présenté le développement du quatrième et dernier sprint de la plateforme \textbf{SolidMaint}. Nous avons mis en place les fonctionnalités transversales qui complètent et enrichissent l'expérience utilisateur : un calendrier de planification offrant une vue synthétique des interventions dans le temps, des tableaux de bord personnalisés par rôle permettant de piloter l'activité et de générer des rapports d'analyse, un module de messagerie interne en temps réel facilitant la collaboration entre les membres de l'équipe, un espace documentaire centralisé garantissant la traçabilité et le versioning des fichiers, ainsi qu'un système de notifications multicanaux assurant que chaque acteur est informé au bon moment.
+\newline
+L'ensemble de ces fonctionnalités complète le cycle de vie de la gestion de la maintenance, depuis la soumission d'une demande client jusqu'à la clôture du ticket, en passant par toutes les étapes de collaboration, de coordination et de suivi. La plateforme \textbf{SolidMaint} constitue ainsi une solution de gestion de la maintenance applicative complète, intégrée et orientée vers l'efficacité opérationnelle des équipes techniques.

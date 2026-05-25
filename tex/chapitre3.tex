@@ -753,7 +753,6 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle du cas d’utilisation «Attribuer permission à rôle »} 
-}
 \normalsize
 
 
@@ -778,7 +777,7 @@ Dans cette section, nous allons modéliser les intéractions entre l'utilisateur
 
 \begin{figure}[H]
         \centering
-        \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_seq_auth.png}
+        \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag seq auth.png}
         \caption{Diagramme de séquences du cas d'utilisation « S'authentifier »}
         \label{fig:auth_sequence}
 \end{figure}
@@ -814,6 +813,8 @@ Dans cette section, nous allons modéliser les intéractions entre l'utilisateur
 
 \textbf{Utilisateur} (\underline{idUtilisateur}, nom, prenom, email, emailsSecondaires, motDePasse, numTel, photoProfil, estActif, doitChangerMotDePasse, dateCreation, dateMiseAJour, derniereConnexion)
 \newline
+\textbf{UtilisateurRole} (\underline{idUtilisateurRole}, dateAttribution, description, \textbf{\#idUtilisateur}, \textbf{\#idRole})
+\newline
 \textbf{ProfilEmploye} (\underline{\textbf{\#idUtilisateur}}, matricule, dateEmbauche, poste, specialisation, anneesExperience, disponibilite, competences)
 \newline
 \textbf{ProfilClient} (\underline{\textbf{\#idUtilisateur}}, nomSociete, telSociete, adresseSociete, secteurActivite, logo)
@@ -822,11 +823,10 @@ Dans cette section, nous allons modéliser les intéractions entre l'utilisateur
 \newline
 \textbf{Permission} (\underline{idPermission}, codePermission, description)
 \newline
-\textbf{UtilisateurRole} (\underline{idUtilisateurRole}, \textbf{\#idUtilisateur}, \textbf{\#idRole}, dateAttribution, description)
+
+\textbf{RolePermission} (\underline{idRolePermission}, description, \textbf{\#idRole}, \textbf{\#idPermission})
 \newline
-\textbf{RolePermission} (\underline{idRolePermission}, \textbf{\#idRole}, \textbf{\#idPermission}, description)
-\newline
-\textbf{DemandeInscription} (\underline{idDemande}, fournisseur, statusDemandeInsc, dateCreation, dateMiseAJour, motifRefus)
+\textbf{DemandeInscription} (\underline{idDemande}, fournisseur, statusDemandeInsc, dateCreation, dateMiseAJour, motifRefus, \textbf{\#idUtilisateur})
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 4 : RÉALISATION
 % ─────────────────────────────────────────────────────────────────────────────
