@@ -1004,7 +1004,7 @@ depuis l'authentification préalable jusqu'à la validation finale de la
 demande.
 \newline
 
-\noindent\textbf{Bilan : 3 scénarios exécutés — 3 réussis — 0 échec.}
+\noindent\textbf{Bilan : les scénarios critiques du sprint ont été exécutés avec succès.}
 \vspace{6pt}
 
 \begin{itemize}[leftmargin=0pt]
@@ -1065,6 +1065,45 @@ l'interface graphique. Les cas suivants ont été couverts :
   {Images/ExecDeTestCasesReussi-demandes.png}
 \caption{Résultats des tests End-to-End — Création de demande client}
 \label{fig:test_e2e_demandes}
+\end{figure}
+
+\item[$\square$] \textbf{Test du module ticket (Signalement de blocage)} ---
+\newline  \textit{1 scénario : filtrer, accéder au détail, et signaler un blocage avec analyse IA} 
+
+\noindent Cette suite valide le flux complet de déclaration d'un blocage 
+par un développeur assigné sur un ticket, en simulant ses actions réelles sur 
+l'interface graphique. Le cas suivant a été couvert :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  
+  \item Fermeture automatique du modal \og Contrat bientôt expiré \fg{} s'il s'affiche pour éviter toute interférence.
+  
+  \item Navigation vers la liste des tickets et application du filtre via l'URL pour n'afficher que les tickets en statut \og En cours \fg{}.
+  
+  \item Sélection et ouverture du premier ticket de la liste pour accéder à ses détails.
+  
+  \item Navigation vers l'onglet \og Équipe \fg{} du panneau latéral droit pour accéder aux actions de l'assignation.
+  
+  \item Déclenchement du processus via le bouton \og Bloqué \fg{}, qui nécessite que le développeur ait travaillé le temps minimum requis (ex: 30 minutes) et atteint la progression minimale requise (ex: 10\%).
+  
+  \item \textbf{Étape 1 du modal} : Sélection du type de blocage (ex: Technique) et de son niveau de priorité (ex: Haute) via les sélecteurs natifs à liste déroulante, ce qui active le bouton \og Suivant \fg{}.
+  
+  \item \textbf{Étape 2 du modal} : Renseignement d'une description basique du problème rencontré dans la zone de texte.
+  
+  \item \textbf{Analyse IA} : Clic sur le bouton \og Analyser avec l'IA \fg{}, attente de la génération de la suggestion technique détaillée, puis clic sur \og Appliquer \fg{} pour enrichir automatiquement la description.
+  
+  \item Upload conditionnel d'une pièce jointe (capture d'écran ou fichier de log) pour illustrer le blocage.
+  
+  \item Confirmation du signalement : vérification de l'apparition de la notification (toast) de succès \og Blocage signalé \fg{} confirmant l'enregistrement en base de données, l'alerte du chef de projet et la fermeture du modal.
+  
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.68\textwidth,keepaspectratio]
+  {Images/Test e2e blocage ticket.png}
+\caption{Tests End-to-End — Signalement de blocage sur un ticket via Playwright}
+\label{fig:test_e2e_blocage_ticket}
 \end{figure}
 
 \end{itemize}
