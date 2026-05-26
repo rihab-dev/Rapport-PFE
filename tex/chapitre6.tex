@@ -556,9 +556,7 @@ Dans cette configuration, les communications HTTP s'effectuent directement : le 
 Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui détaille les différentes tables de la base de données ainsi que leurs relations :
 
 \noindent
-\textbf{Utilisateur} (\underline{idUtilisateur}, nom, prenom, email, motDePasse, numTel, photoProfil, estActif, doitChangerMotDePasse, dateCreation, dateMiseAJour, derniereConnexion)
-\newline
-\textbf{UtilisateurEmailSecondaire} (\underline{\textit{\#utilisateurId}, email})
+\textbf{Utilisateur} (\underline{idUtilisateur}, nom, prenom, email, emailsSecondaires, motDePasse, numTel, photoProfil, estActif, doitChangerMotDePasse, dateCreation, dateMiseAJour, derniereConnexion)
 \newline
 \textbf{JournalActivite} (\underline{id}, action, method, path, ipAddress, status, description, metadata, createdAt, \textit{\#userId})
 \newline
@@ -578,9 +576,7 @@ Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui
  \newline
 \textbf{Notification} (\underline{id}, type, donnees, createdAt, \textit{\#destinataireId})
 \newline
-\textbf{KnowledgeBaseArticle} (\underline{id}, titre, contenu, categorie, statutKB, nombreUtilisations, tauxReussite, \textit{\#auteurId})
-\newline
-\textbf{ArticleTag} (\underline{\textit{\#articleId}, tag}) 
+\textbf{KnowledgeBaseArticle} (\underline{id}, titre, contenu, categorie, statutKB, tag, nombreUtilisations, tauxReussite, \textit{\#auteurId})
 \newline
 \textbf{Contrat} (\underline{idContrat}, referenceContrat, dateDebutContratM, dateExpirationContratM, montantMensuel, montantSemestriel, tauxTVA, montantTVA, montantTTC, typeSLA, fichierContrat, statutContratM, estArchive, dateCreation, dateMiseAJour, dateArchivage)
 \newline

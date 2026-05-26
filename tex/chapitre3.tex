@@ -811,14 +811,11 @@ Dans cette section, nous allons modéliser les intéractions entre l'utilisateur
 
 \section{Schéma relationnel}
 
-\textbf{Utilisateur} (\underline{idUtilisateur}, nom, prenom, email, motDePasse, numTel, photoProfil, estActif, doitChangerMotDePasse, dateCreation, dateMiseAJour, derniereConnexion)
+\textbf{Utilisateur} (\underline{idUtilisateur}, nom, prenom, email, emailsSecondaires, motDePasse, numTel, photoProfil, estActif, doitChangerMotDePasse, dateCreation, dateMiseAJour, derniereConnexion)
 \newline
-\textbf{UtilisateurEmailSecondaire} (\underline{\textit{\#utilisateurId}, email})
 \textbf{UtilisateurRole} (\underline{idUtilisateurRole}, dateAttribution, description, \textbf{\#idUtilisateur}, \textbf{\#idRole})
 \newline
-\textbf{ProfilEmploye} (\underline{\textbf{\#idUtilisateur}}, matricule, dateEmbauche, poste, specialisation, anneesExperience, disponibilite)
-\newline
-\textbf{ProfilEmployeCompetence} (\underline{\textit{\#idProfilEmploye}, competence})
+\textbf{ProfilEmploye} (\underline{\textbf{\#idUtilisateur}}, matricule, dateEmbauche, poste, specialisation, anneesExperience, disponibilite, competences)
 \newline
 \textbf{ProfilClient} (\underline{\textbf{\#idUtilisateur}}, nomSociete, telSociete, adresseSociete, secteurActivite, logo)
 \newline
@@ -826,7 +823,6 @@ Dans cette section, nous allons modéliser les intéractions entre l'utilisateur
 \newline
 \textbf{Permission} (\underline{idPermission}, codePermission, description)
 \newline
-
 \textbf{RolePermission} (\underline{idRolePermission}, description, \textbf{\#idRole}, \textbf{\#idPermission})
 \newline
 \textbf{DemandeInscription} (\underline{idDemande}, fournisseur, statusDemandeInsc, dateCreation, dateMiseAJour, motifRefus, \textbf{\#idUtilisateur})

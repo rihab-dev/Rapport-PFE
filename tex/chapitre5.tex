@@ -81,7 +81,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{figure}
 
 \subsubsection{Description textuelle du cas d’utilisation « Soumettre demande »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Soumettre une demande ».
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Soumettre demande ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -137,7 +137,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Soumettre une demande »}
+\captionof{table}{Description textuelle du cas d’utilisation « Soumettre demande »}
 \normalsize
 
 \subsubsection{Description textuelle du cas d’utilisation « Compléter demande existante »}
@@ -208,7 +208,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{figure}
 
 \subsubsection{Description textuelle du cas d’utilisation « Valider demande »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Valider udemande ».
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Valider demande ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -765,8 +765,8 @@ La figure suivante présente le diagramme d’activité du workflow de gestion d
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme_activite_gerer_cronometre.drawio.png}
-    \caption{Diagramme d'activité du flux de travail d'un ticket}
+    \includegraphics[width=0.90\textwidth,height=0.65\textheight,keepaspectratio]{Images/Diagramme_activite_gerer_cronometre.drawio.png}
+    \caption{Diagramme d'activités du flux de travail d'un ticket}
     \label{fig:activite_ticket}
 \end{figure}
 
@@ -823,20 +823,15 @@ Le schéma relationnel du sprint 3 s’appuie sur les entités suivantes :
 \newline
 \textbf{Ticket} (\underline{id}, titreTicket, typeSLA, statutTicket, categorieTicket,  descriptionTicket, dateCreationTicket, dateMiseAJourTicket, dateResolutionTicket, delaiReponse, delaiResolution, dateEcheanceResponse, dateEcheanceResolution, slaReponseExpire, slaResolutionExpire, extensionDemandee, extensionMotif, extensionDemandeeAt, extensionAccordee, alerteSLAEnvoyee, scoreUrgenceIA, nombreTicketsBloquesParCelui, nombreUtilisateursAffectes,\textbf{\#idDemande}, \textbf{\#idContrat}) 
 \newline  
-\textbf{TicketSolution} (\underline{Id}, solutionSuggeree, scoreConfiance, estAcceptee, feedbackUtilisateur, tempsResolution, dateCreation, \textbf{\#idTicket}, \textbf{\#idArticle})
+\textbf{SolutionTicket} (\underline{Id}, solutionSuggeree, scoreConfiance, estAcceptee, feedbackUtilisateur, tempsResolution, dateCreation, \textbf{\#idTicket}, \textbf{\#idArticle})
 \newline 
-\textbf{KnowledgeBaseArticle} (\underline{id}, titre,  contenu, categorie, statutKB,  nombreUtilisations,  tauxReussite)
-\newline
-\textbf{ArticleTag} (\underline{\textit{\#articleId}, tag}) 
+\textbf{KnowledgeBaseArticle} (\underline{id}, titre,  contenu, categorie, statutKB, tag, nombreUtilisations,  tauxReussite)
 \newline
 \textbf{TicketClassification} (\underline{id}, categorieAuto, prioriteAuto, typeAuto, scoreConfiance, urgenceDetectee, entitesExtraites,  estValidee, dateClassification, \textbf{\#idTicket}) 
 \newline
-\textbf{AssignmentTicket} (\underline{id}, dateDebutReelle, dateFinReelle, commentaireAssignment, progression, estBloque, raisonBlocage, feedbackDeveloppeur, enTravail, dureeTotaleSecondes, dateCreation, solutionProposee, solutionProposeeAt, \textbf{\#idTicket}, \textbf{\#idProfilEmploye}, \textbf{\#idSolutionProposeepar})
-\newline
-\textbf{AssignmentTechnologie} (\underline{\textit{\#idAssignment}, technologie})
+\textbf{AssignmentTicket} (\underline{id}, dateDebutReelle, dateFinReelle, commentaireAssignment, progression, estBloque, raisonBlocage, feedbackDeveloppeur, technologiesUtilisees, enTravail, dureeTotaleSecondes, dateCreation, solutionProposee, solutionProposeeAt, \textbf{\#idTicket}, \textbf{\#idProfilEmploye}, \textbf{\#idSolutionProposeepar})
 \newline
 \textbf{SessionTravail} (\underline{id}, debut, fin, dureeSecondes, note, isManual, \textbf{\#idAssignment}) 
-\newline 
 
 
 % ─────────────────────────────────────────────────────────────────────────────
@@ -1102,7 +1097,7 @@ l'interface graphique. Les cas suivants ont été couverts :
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\textwidth,keepaspectratio]
+\includegraphics[width=\textwidth,keepaspectratio]
   {Images/ExecDeTestCasesReussi-demandes.png}
 \caption{Résultats des tests End-to-End — Création de demande client}
 \label{fig:test_e2e_demandes}

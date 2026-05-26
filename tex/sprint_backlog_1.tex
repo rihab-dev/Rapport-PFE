@@ -37,7 +37,7 @@ US01 & En tant qu'\textbf{utilisateur}, je souhaite m'authentifier avec email et
 US02 & En tant qu'\textbf{utilisateur}, je souhaite réinitialiser mon mot de passe afin de retrouver l'accès à mon compte. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer les endpoints \footnotesize{"POST /api/auth/mot-de-passe-oublie"}\small{} et \footnotesize{"POST /api/auth/reinitialiser-mot-de-passe"}\small.
-\item Générer un jeton sécurisé à durée de validité limitée (1 heure) et invalider les anciens jetons non utilisés.
+\item Générer un jeton sécurisé à durée de validité limitée (1 heure), utilisable une seule fois, et invalider les anciens jetons non utilisés.
 \item Configurer l'envoi automatisé des e-mails de réinitialisation et de confirmation.
 \item Créer les formulaires de demande et de saisie du nouveau mot de passe sur Next.js.
 \end{itemize} & 2 \\
@@ -73,7 +73,7 @@ US05 & En tant qu'\textbf{utilisateur}, je souhaite que mon compte soit protég�
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 2 - Gestion des utilisateurs}} \\
 \hline
 
-US06 & En tant qu'\textbf{utilisateur}, je souhaite gérer mon profil afin que mes informations soient toujours à jour. &
+US06 & En tant qu'\textbf{utilisateur}, je souhaite gérer mon profil afin de modifier et mettre à jour mes informations. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer les endpoints \footnotesize{"GET /api/profil"}\small{} et \footnotesize{"PUT /api/profil"}\small{} pour la consultation et l'édition des données.
 \item Créer les routes \footnotesize{"POST /api/profil/change-password"}\small{} et \footnotesize{"POST /api/profil/upload-photo"}\small{} pour la sécurité et l'avatar.
