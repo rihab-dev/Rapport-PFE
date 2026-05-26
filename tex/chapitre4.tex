@@ -514,17 +514,12 @@ Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui
 \newline
 \textbf{ConfigurationSlack} (\underline{id}, webhookUrl, canal, notifierSurCreation, notifierSurResolution, estActif, \textit{\#contratId})
 \newline
-\textbf{Projet} (\underline{idProjet}, nomProjet, descriptionProjet,statutP, dateDebutP, dateFinP,dateCreationP, dateMiseAJourP, \textbf{\#idProfilClient},\textbf{\#idChefProjet})
+\textbf{Projet} (\underline{idProjet}, nomProjet, descriptionProjet ,ProjetTag, statutP, dateDebutP, dateFinP,dateCreationP, dateMiseAJourP, \textbf{\#idProfilClient},\textbf{\#idChefProjet})
 \newline
-\textbf{ProjetTag} (\underline{\textit{\#idProjet}, tag})
+\textbf{MembreProjet} (\underline{idMembre}, rolesDansProjet,dateAffectation, dateDebut, dateFin, statut, motifRefus, \textbf{\#idProjet},\textbf{\#idProfilEmploye})
 \newline
-\textbf{MembreProjet} (\underline{idMembre}, dateAffectation, dateDebut, dateFin, statut, motifRefus, \textbf{\#idProjet},\textbf{\#idProfilEmploye})
-\newline
-\textbf{MembreProjetRole} (\underline{\textit{\#idMembre}, role})
-\textbf{FeedbackExpirationContrat} (\underline{idFeedback},  note, commentaire, souhaitRenouveler, dateCreation, \textbf{\#idContrat})
+\textbf{FeedbackExpirationContrat} (\underline{idFeedback},  note, commentaire, RaisonNonRenouvellement,souhaitRenouveler, dateCreation, \textbf{\#idContrat})
 \newline 
-\textbf{RaisonNonRenouvellement} (\underline{\textit{\#idFeedback}, raison})
-\newline  
 \textbf{JournalActivite} (\underline{id}, action, method, path, ipAddress, status, description, metadata, \textbf{\#idUtilisateur})
 
 }
