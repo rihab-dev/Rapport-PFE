@@ -371,7 +371,7 @@ Dans cette partie, nous allons présenter les cas d'utilisation relatifs au trai
 Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas du traitement des tickets assignés :
 \begin{figure}[H]
         \centering
-        \includegraphics[width=1\textwidth,height=0.75\textheight,keepaspectratio]{Images/traiter_tickets_assignes.png}
+        \includegraphics[width=1\textwidth,height=1\textheight,keepaspectratio]{Images/traiter_tickets_assignes.png}
         \caption{Raffinement du cas d'utilisation « Traiter tickets assignés »}
         \label{fig:traiter_tickets_assignes}
 \end{figure}
@@ -447,33 +447,33 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \hline
 \textbf{Acteurs} & Développeur \\
 \hline
-\textbf{Précondition} & Le ticket est dans l’état « En cours ». Une session de travail a été préalablement démarrée. \\
+\textbf{Précondition} & Le ticket est dans l’état « En cours » ou « Ouvert ». Le développeur est authentifié et assigné. Une session de travail est active ou a été démarrée. Aucun autre blocage non résolu n’est en cours sur l’assignation.  \\
 \hline
-\textbf{Postcondition} & Un blocage est enregistré sur l’assignation. Une analyse automatique par IA est déclenchée. Un brouillon d’article pour la base de connaissances est créé. \\
+\textbf{Postcondition} & Un blocage est enregistré sur l’assignation. Une analyse automatique par IA est déclenchée. Un brouillon d’article pour la base de connaissances est créé. Le chef de projet, l’équipe et les administrateurs sont notifiés. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
-\item Le développeur remplit le formulaire de blocage (type prédéfini, priorité, description, pièces jointes) et soumet sa déclaration.
-\item Le système vérifie l'intégrité de la requête (autorisation d'accès, absence d'autres blocages en cours, validation des quotas de temps de travail et de progression).
-\item Le système enregistre techniquement le blocage et notifie immédiatement le chef de projet ainsi que le reste de l'équipe.
-\item En arrière-plan, une Intelligence Artificielle analyse l'incident pour générer et enregistrer un brouillon d'article de résolution.
+\item Le développeur remplit le formulaire de blocage (type, priorité, description, pièces jointes) et soumet sa déclaration.
+\item Le système vérifie l’authentification, l’autorisation, l’absence d’autre blocage actif, et la progression/temps de travail minimum requis (sauf cas d’exemption).
+\item Le système enregistre le blocage, historise l’événement et notifie le chef de projet, l’équipe et les administrateurs.
+\item En arrière-plan, une Intelligence Artificielle analyse l’incident et génère un brouillon d’article de résolution.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Si le type de blocage sélectionné est de nature administrative ou externe (ex: attente de droits d'accès), le système ignore exceptionnellement l'exigence de temps de travail minimal. L'opération est validée et le scénario reprend à l'étape 3.
+\item Si le type de blocage est administratif ou externe (ex : attente de droits d’accès), le système ignore l’exigence de temps de travail ou de progression minimale. L’opération est validée et le scénario reprend à l’étape 3.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le système vérifie le jeton d'authentification et constate que l'acteur n'est pas le développeur officiellement assigné à la session. Une exception "Forbidden" est levée et le signalement est rejeté.
-\item Sans exemption active, le système constate que le temps de travail effectif ou la progression du développeur sont trop faibles (ex: $<$ 30 min). La demande est rejetée et l'opération de signalement s'interrompt.
-\item Le système détecte qu'un problème de blocage est déjà explicitement déclaré et non résolu sur cette assignation. Le nouveau signalement est formellement interdit et le processus s'interrompt.
+\item L’acteur n’est pas le développeur assigné à l’assignation : le système lève une exception « Forbidden » et rejette le signalement.
+\item (Sans exemption) Le temps de travail effectif ou la progression sont insuffisants ($<$ 30 min): la demande est rejetée.
+\item Un blocage non résolu existe déjà sur cette assignation : le nouveau signalement est interdit et le processus s’interrompt.
 \end{enumerate}
 \end{minipage} \\
 \hline
@@ -498,34 +498,34 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \endlastfoot
 \textbf{Nom du cas d'utilisation} & Proposer solution  \\
 \hline
-\textbf{Acteurs} & Autre développeur de l'équipe, Chef de projet, Administrateur \\
+\textbf{Acteurs} & Autre développeur de l'équipe, Chef de projet \\
 \hline
-\textbf{Précondition} & Un signalement de blocage est actif sur l’assignation. L’acteur dispose des permissions appropriées. \\
+\textbf{Précondition} & Un blocage est signalé sur une assignation. L’acteur n’est pas le développeur bloqué et dispose des permissions nécessaires. \\
 \hline
-\textbf{Postcondition} & Une solution technique est enregistrée et placée en attente de test. Le développeur bloqué reçoit une notification. \\
+\textbf{Postcondition} & Une solution technique est enregistrée et placée en attente de validation par le développeur bloqué. Ce dernier reçoit une notification. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
-\item Un membre de l'équipe consulte l'assignation bloquée et actionne  « Proposer une solution ».
-\item Le système valide formellement l'habilitation de l'acteur à proposer cette solution.
-\item L'acteur rédige la solution détaillée dans l'éditeur et valide l'envoi.
-\item Le système enregistre la proposition, historise l'événement et notifie le développeur bloqué.
+\item Un membre autorisé consulte l’assignation bloquée et clique sur « Proposer une solution ».
+\item Le système vérifie que l’acteur n’est pas le développeur bloqué et qu’il a les droits nécessaires.
+\item L’acteur rédige la solution et valide l’envoi.
+\item Le système enregistre la proposition, historise l’événement et notifie le développeur bloqué.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Lors de la soumission, le système détecte que le contenu de la solution est vide ou trop court (ex: $< 10$ caractères). L'envoi est bloqué, l'acteur complète sa rédaction et le scénario reprend à l'étape 3.
-\item L'acteur peut solliciter le module IA du système. L'IA génère une proposition de résolution basée sur la base de connaissances. L'acteur ajuste cette suggestion automatiquement importée dans le champ et reprend son parcours nominal.
+\item Lors de la soumission, le système détecte que le contenu de la solution est vide ou trop court ($< 10$ caractères). L'envoi est bloqué, l'acteur complète sa rédaction et le scénario reprend à l'étape 3.
+\item L’acteur peut solliciter l’IA pour générer une suggestion, qu’il peut ensuite modifier avant validation.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le système détecte formellement que l'acteur essayant de "proposer" une solution est en réalité le développeur qui a lui-même signalé le blocage. Cette action est rejetée par sécurité (ce flux étant réservé à l'aide inter-membre) et le processus d'affichage du formulaire s'interrompt.
+\item Si l’acteur est le développeur bloqué, le système rejette l’action et n’affiche pas le formulaire.
 \end{enumerate}
 \end{minipage} \\
 \hline
@@ -552,24 +552,23 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \hline
 \textbf{Acteurs} & Développeur bloqué \\
 \hline
-\textbf{Précondition} & Une solution a été proposée. Le développeur bloqué est authentifié. \\
+\textbf{Précondition} & Une solution a été proposée et le développeur bloqué est authentifié.\\
 \hline
-\textbf{Postcondition} & Le blocage est levé. L’article de base de connaissances est enrichi par fusion de l’analyse IA et de la solution humaine validée. \\
+\textbf{Postcondition} &  Le blocage est levé. L’article de base de connaissances peut être enrichi par fusion de l’analyse IA et de la solution humaine validée. L’auteur de la solution est notifié. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
-\item Le développeur bloqué consulte la solution qui lui a été proposée.
-\item Il actionne la fonction « Valider et résoudre ».
-\item Le système désactive l'indicateur de blocage.
-\item Le système combine l'analyse automatique avec la solution humaine validée.
+\item Le développeur bloqué consulte la solution proposée.
+\item Il clique sur « Valider la solution ».
+\item Le système désactive l’indicateur de blocage.
+\item Le système fusionne l’analyse automatique et la solution humaine validée (si applicable).
 \item L’article de base de connaissances est mis à jour.
-\item L’auteur de la solution proposée est notifié de la validation.
+\item L’auteur de la solution est notifié de la validation.
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénario alternatif} & le développeur rejette la solution proposée le blocage reste actif, aucune fusion n'est effectuée et et le cas d'utilisation se termine sans résolution. \\
-\hline
+\textbf{Scénario alternatif} & Le développeur bloqué rejette la solution proposée : le blocage reste actif, aucune fusion n’est effectuée, le cas d’utilisation se termine sans résolution. \\
 \end{longtable}
 \captionof{table}{Description textuelle du cas d’utilisation « Résoudre blocage »}
 \normalsize
@@ -934,7 +933,6 @@ Les tests unitaires du troisième sprint ont été organisés par composant fonc
 
 \begin{itemize}[leftmargin=0pt]
 
-% ── 1. Authentification ───────────────────────────────────────────────────────
 \item[$\square$] \textbf{LLM (Classification IA) — Retry / Backoff}
 \textbf{Objectifs testés :} Chaîne complète LLM — prétraitement, appel externe, post-traitement, fallback sur faible confiance ; politique de retry exponentiel face aux erreurs transitoires de l'API LLM.
 \newline\textbf{Statut :} Couvert.
@@ -981,15 +979,78 @@ Les tests unitaires du troisième sprint ont été organisés par composant fonc
 \end{figure}
 \end{itemize}
 
-\subsection{Tests d’intégration}
-Les tests d’intégration ont été réalisés sur les endpoints principaux du sprint :
-\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
-\item création et consultation des demandes ;
-\item validation et rejet des demandes ;
-\item assignation et suivi des tickets ;
-\item chronomètre, historique et gestion des blocages ;
-\item classification IA, feedback et reclassification ;
-\item calcul des SLA et génération des suggestions KB.
+\subsection{Tests d'intégration}
+Les tests d'intégration ont été réalisés sur les endpoints principaux du sprint.
+
+\begin{itemize}[leftmargin=0pt]
+
+\item[$\square$] \textbf{Test du module demandes (Validation des demandes)}
+\newline \textit{Endpoints : \textbf{PATCH /api/demandes/:id/valider}, \textbf{PATCH /api/demandes/:id/rejeter}}
+\noindent Cette suite valide le comportement complet des endpoints de validation et de rejet des demandes par le chef de projet.
+\newline Les cas suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item Une demande valide est approuvée par le chef de projet : l'endpoint retourne le code \textbf{200 OK} et le statut de la demande passe à \texttt{CONVERTIE} avec création automatique d'un ticket.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/validerDemandeTest.png}
+  \caption{Test d'intégration - Validation d'une demande}
+  \end{figure}
+  
+  \item Une demande non conforme est rejetée avec un motif : l'endpoint retourne le code \textbf{200 OK} et la demande est marquée comme \texttt{REJETEE}.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/rejeterDemandeTest.png}
+  \caption{Test d'intégration - Rejet d'une demande}
+  \end{figure}
+  
+  \item Une demande de priorité CRITIQUE nécessite un commentaire de justification obligatoire : l'endpoint retourne le code \textbf{400 Bad Request} si le motif est absent ou trop court.
+\end{itemize}
+
+\item[$\square$] \textbf{Test du module IA (Classification IA)}
+\newline \textit{Endpoints : \textbf{GET /api/ai/demandes/:id/suggestions}, \textbf{POST /api/ai/demandes/:id/feedback}, \textbf{POST /api/ai/demandes/:id/reclassify}}
+\noindent Cette suite valide le comportement des endpoints de classification automatique via Groq Cloud, de réception des feedbacks utilisateur et de reclassification.
+\newline Les cas suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item Une demande est soumise à l'IA pour classification automatique : l'endpoint retourne la catégorie prédite (\texttt{typeDemande}) et la priorité avec un niveau de confiance.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/classificationIATest.png}
+  \caption{Test d'intégration - Classification IA}
+  \end{figure}
+  
+  \item Un utilisateur (chef de projet) soumet un feedback sur une classification : l'endpoint retourne le code \textbf{200 OK} et le feedback est enregistré dans l'audit trail.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/feedbackTest.png}
+  \caption{Test d'intégration - Envoi de feedback}
+  \end{figure}
+  
+  \item Une reclassification est déclenchée après feedback ou manuellement : l'endpoint supprime l'ancienne classification et en génère une nouvelle via l'IA.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/reclassificationTest.png}
+  \caption{Test d'intégration - Reclassification}
+  \end{figure}
+  
+  \item Le cache IA et le rate limiting fonctionnent correctement : les requêtes identiques sont servies depuis le cache et les quotas journaliers sont respectés.
+\end{itemize}
+
+\item[$\square$] \textbf{Test du module IA (Génération des suggestions KB)}
+\newline \textit{Endpoints : \textbf{GET /api/ai/tickets/:id/kb-suggestions}}
+\noindent Cette suite valide la génération automatique de suggestions issues de la base de connaissances à partir d'un ticket créé.
+\newline Les cas suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item Un ticket est analysé et des articles pertinents de la KB sont suggérés : l'endpoint retourne une liste d'articles avec leur score de pertinence et un extrait.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/suggestionsKBTest.png}
+  \caption{Test d'intégration - Suggestions KB}
+  \end{figure}
+  \end{itemize}
+
 \end{itemize}
 
 \subsubsection{Tests End-to-End}
@@ -1007,6 +1068,7 @@ demande.
 \noindent\textbf{Bilan : les scénarios critiques du sprint ont été exécutés avec succès.}
 \vspace{6pt}
 
+
 \begin{itemize}[leftmargin=0pt]
 
 \item[$\square$] \textbf{Test du module de création de demande client}
@@ -1017,51 +1079,30 @@ demande en simulant les actions réelles d'un utilisateur sur
 l'interface graphique. Les cas suivants ont été couverts :
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item L'utilisateur s'authentifie avec ses identifiants et accède à
-    la page \texttt{/demandes/nouvelle} : le formulaire de création
-    s'affiche intégralement avec l'ensemble des sections obligatoires,
-    à savoir le projet, le type de demande, la priorité, le titre et
-    la description.
+  \item L'utilisateur s'authentifie et accède au formulaire de création : toutes les sections obligatoires (projet, type, priorité, titre, description) sont affichées.
   
-  \item Une procédure automatique de fermeture du modal \og Contrat
-    bientôt expiré \fg{} est exécutée afin d'éviter toute interférence
-    avec le déroulement des tests.
+  \item Un modal d'alerte est automatiquement fermé pour ne pas perturber le test.
   
-  \item L'utilisateur sélectionne un projet via le sélecteur de type
-    \texttt{combobox} : la liste déroulante s'ouvre et la première
-    option est correctement enregistrée dans le formulaire.
+  \item L'utilisateur choisit un projet dans une liste déroulante : la sélection est prise en compte.
   
-  \item L'utilisateur sélectionne un type de demande parmi la grille
-    des catégories disponibles (Incident, Évolution, Question, etc.).
+  \item L'utilisateur sélectionne un type de demande parmi les catégories proposées.
   
-  \item L'utilisateur sélectionne un niveau de priorité (Basse, Normale,
-    Haute ou Critique) via la grille interactive à trois colonnes.
+  \item L'utilisateur attribue une priorité à la demande.
   
-  \item L'utilisateur renseigne un titre descriptif dans le champ
-    prévu à cet effet, dont le placeholder indique \og Ex: Bug sur le
-    module facturation \fg{}.
+  \item L'utilisateur saisit un titre dans le champ correspondant.
   
-  \item L'utilisateur saisit une description détaillée via l'éditeur
-    rich-text \texttt{ProseMirror} : le contenu saisi est correctement
-    persistant dans le modèle de données.
+  \item L'utilisateur rédige une description détaillée dans l'éditeur de texte enrichi.
   
-  \item L'utilisateur soumet le formulaire avec des données valides :
-    la demande est créée en base de données, l'utilisateur est redirigé
-    vers la page de liste \texttt{/demandes} et un message de confirmation
-    \og Demande créée avec succès \fg{} apparaît temporairement.
+  \item L'utilisateur soumet un formulaire valide : la demande est enregistrée, l'utilisateur est redirigé vers la liste des demandes et un message de confirmation apparaît.
   
-  \item L'utilisateur clique sur le bouton \textbf{Annuler} : la
-    création est abandonnée et l'utilisateur est redirigé vers la liste
-    des demandes sans aucune création effective.
+  \item L'utilisateur annule la création : aucune demande n'est enregistrée et l'utilisateur retourne à la liste.
   
-  \item Le bouton de soumission demeure désactivé tant que l'intégralité
-    des champs obligatoires n'est pas correctement renseignée, garantissant
-    ainsi l'intégrité des données soumises.
+  \item Le bouton de soumission reste inactif tant que tous les champs obligatoires ne sont pas correctement remplis.
 \end{itemize}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.68\textwidth,keepaspectratio]
+\includegraphics[width=1\textwidth,keepaspectratio]
   {Images/ExecDeTestCasesReussi-demandes.png}
 \caption{Résultats des tests End-to-End — Création de demande client}
 \label{fig:test_e2e_demandes}
@@ -1100,7 +1141,7 @@ l'interface graphique. Le cas suivant a été couvert :
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.68\textwidth,keepaspectratio]
+\includegraphics[width=1\textwidth,keepaspectratio]
   {Images/Test e2e blocage ticket.png}
 \caption{Tests End-to-End — Signalement de blocage sur un ticket via Playwright}
 \label{fig:test_e2e_blocage_ticket}

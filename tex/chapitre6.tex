@@ -620,7 +620,7 @@ Cette section présentera les principales interfaces développées durant le Spr
 
 Les tests unitaires ont été réalisés avec \textbf{Vitest} en isolant les services métier à l'aide de mocks sur les dépendances externes. Cette approche a permis de valider rapidement les règles de gestion propres au dernier sprint, tout en limitant les effets de bord liés aux accès à la base de données, aux services temps réel et aux traitements de fichiers.
 
-Les modules testés en priorité couvrent le calendrier, la messagerie, la gestion documentaire, les notifications ainsi que les indicateurs des tableaux de bord et des rapports.
+Les modules testés en priorité couvrent la messagerie et les notifications, qui sont au cœur des fonctionnalités développées. Les tests ont été conçus pour couvrir les scénarios critiques, les cas limites et les conditions d'erreur afin d'assurer une robustesse maximale.
 
 \begin{itemize}[leftmargin=0pt]
 
@@ -651,22 +651,41 @@ Les tests d'intégration ont été effectués via \textbf{Swagger UI} et les poi
 \begin{itemize}[leftmargin=0pt]
 
 \item[$\square$] \textbf{Test du module Notifications}
-
-\noindent Cette suite valide les endpoints de consultation et de mise à jour des préférences de notification. Les cas suivants ont été couverts :
+\newline \textit{Endpoints :}
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item \textbf{GET /api/notifications}
+  \item \textbf{PATCH /api/notifications/:id/read}
+  \item \textbf{PATCH /api/notifications/read-all}
+  \item \textbf{PATCH /api/notifications/preferences/:type}
+\end{itemize}
+\noindent Cette suite valide les endpoints de mise à jour des préférences de notification. Elle confirme le bon fonctionnement des opérations de lecture, de marquage et de modification des paramètres de notification.
+\newline Les cas suivants ont été couverts :
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
   \item Les notifications in-app sont listées avec leur statut de lecture.
-  \item Le marquage individuel et global comme lu met bien à jour les compteurs.
-  \item Les préférences par type d'événement sont récupérées et modifiées correctement.
-  \item Les configurations push et Slack répondent conformément aux règles métier de la plateforme.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/notificationsListeTestInteg.png}
+  \end{figure}
+  
+  \item Le marquage individuel comme lu met bien à jour les compteurs.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/notificationsMakeReadOneTestInteg.png}
+  \end{figure}
+  
+  \item Le marquage global comme lu met bien à jour les compteurs.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/notificationsMakeReadAllTestInteg.png}
+  \end{figure}
+  
+  \item Les préférences par type d'événement sont modifiées correctement.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/notificationsModifiePreference.png}
+  \end{figure}
 \end{itemize}
-
-\begin{figure}[H]
-\centering
-% \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/notifications.png}
-\caption{Test d'intégration - Notifications}
-\label{fig:test_integration_notifications_sprint4}
-\end{figure}
 
 \end{itemize}
 
@@ -690,7 +709,7 @@ Les tests End-to-End ont été exécutés avec \textbf{Playwright} afin de simul
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\textwidth,keepaspectratio]{Images/messgE2e.png}
+\includegraphics[width=1\textwidth,keepaspectratio]{Images/messgE2e.png}
 \caption{Test End-to-End du parcours de messagerie}
 \label{fig:e2e_messagerie_sprint4}
 \end{figure}
