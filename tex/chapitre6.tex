@@ -523,6 +523,31 @@ La figure ci-dessous présente le diagramme de composants de l'application.
 
 Le diagramme de composants illustre l'architecture de la solution en trois couches. Le front-end (Next.js) regroupe l'interface utilisateur, les modules métiers et un client HTTP (Axios/Fetch). L'API Core (NestJS) structure ses contrôleurs, modules fonctionnels et services transverses (Prisma ORM, cache manager). En infrastructure, PostgreSQL assure la persistance des données et Redis gère les sessions et le cache, tous deux accessibles via TCP/IP. Cette organisation sépare clairement la présentation, la logique métier et les services d'infrastructure.
 
+
+\subsection{Diagramme de déploiement}
+
+Le diagramme de déploiement permet de représenter l'architecture physique de la solution \textbf{SolidMaint}. Il décrit la disposition matérielle des nœuds d'exécution, la répartition des composants logiciels développés (Front-end et API) sur ces infrastructures, ainsi que les protocoles de communication sécurisés utilisés pour interconnecter ces différents environnements.
+
+\begin{figure}[H]
+    \centering
+    % \includegraphics[width=0.95\textwidth,keepaspectratio]{Images/diagramme_deploiement_sprint4.png}
+    \caption{Diagramme de déploiement de la plateforme SolidMaint}
+    \label{fig:diagramme_deploiement_sprint4}
+\end{figure}
+
+Le diagramme de déploiement illustre la distribution physique de la plateforme
+\textbf{SolidMaint} sur deux nœuds principaux. L'appareil utilisateur héberge le
+navigateur web qui charge le client Next.js. Le serveur de production repose sur
+un hôte Docker orchestrant quatre conteneurs isolés~: \texttt{solidcare\_frontend}
+(Node.js / SSR), \texttt{solidcare\_backend} (NestJS / API REST),
+\texttt{solidcare\_db} (PostgreSQL 16) et \texttt{solidcare\_redis} (Redis 7),
+chacun disposant d'un volume de persistance dédié. Un reverse proxy Nginx gère
+le point d'entrée unique (ports 80/443) et achemine les requêtes vers le
+front-end (port 3000) ou le back-end (port 3001), tandis que ce dernier
+communique avec les services de données en TCP/IP (ports 5432 et 6379).
+
+
+
 \subsection{Diagramme de classes du quatrième sprint}
 
 \begin{figure}[H]
@@ -634,7 +659,7 @@ Les tests d'intégration ont été effectués via \textbf{Swagger UI} et les poi
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\textwidth,keepaspectratio]{Images/dashboard.png}
+% \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/dashboard.png}
 \caption{Test d'intégration - Calendrier et suivi d'activité}
 \label{fig:test_integration_calendrier_sprint4}
 \end{figure}
@@ -716,7 +741,7 @@ Les tests End-to-End ont été exécutés avec \textbf{Playwright} afin de simul
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\textwidth,keepaspectratio]{Images/dashboard.png}
+% \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/dashboard.png}
 \caption{Test End-to-End du parcours de suivi d'activité}
 \label{fig:e2e_suivi_activite_sprint4}
 \end{figure}
@@ -733,7 +758,7 @@ Les tests End-to-End ont été exécutés avec \textbf{Playwright} afin de simul
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\textwidth,keepaspectratio]{Images/Playwright.png}
+% \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/Playwright.png}
 \caption{Test End-to-End du parcours de messagerie}
 \label{fig:e2e_messagerie_sprint4}
 \end{figure}
@@ -750,7 +775,7 @@ Les tests End-to-End ont été exécutés avec \textbf{Playwright} afin de simul
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\textwidth,keepaspectratio]{Images/doc.png}
+    % \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/doc.png}
 \caption{Test End-to-End du parcours documentaire}
 \label{fig:e2e_documentaire_sprint4}
 \end{figure}
@@ -767,7 +792,7 @@ Les tests End-to-End ont été exécutés avec \textbf{Playwright} afin de simul
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\textwidth,keepaspectratio]{Images/notifications.png}
+    % \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/notifications.png}
 \caption{Test End-to-End du parcours de notifications}
 \label{fig:e2e_notifications_sprint4}
 \end{figure}
