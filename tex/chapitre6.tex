@@ -92,7 +92,7 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \item L'acteur modifie les filtres ; le système recharge automatiquement les données.
 \item L'acteur clique sur le bouton « PDF » ; le système génère et télécharge le fichier de rapport.
 \end{enumerate}
-\end{minipage} \
+\end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
@@ -143,6 +143,7 @@ Dans cette partie, nous présentons le raffinement des scénarios liés à la me
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item L'expéditeur sélectionne le destinataire depuis l'interface de message direct.
+\end{enumerate}
 \begin{enumerate}[label=\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item L'expéditeur saisit le contenu puis clique sur « Envoyer ».
 \item Le système vérifie l'appartenance au canal et les permissions d'écriture.
@@ -530,7 +531,7 @@ Le diagramme de déploiement permet de représenter l'architecture physique de l
 
 \begin{figure}[H]
     \centering
-    % \includegraphics[width=0.95\textwidth,keepaspectratio]{Images/diagramme_deploiement_sprint4.png}
+    \includegraphics[width=1.1\textwidth,keepaspectratio]{Images/diagramme_deploiement_sprint4.png}
     \caption{Diagramme de déploiement de la plateforme SolidMaint}
     \label{fig:diagramme_deploiement_sprint4}
 \end{figure}
@@ -545,7 +546,7 @@ Dans cette configuration, les communications HTTP s'effectuent directement : le 
 
 \begin{figure}[H]
 \centering
-%\includegraphics[width=1\textwidth,keepaspectratio]{Images/diag classe sprint 4.png}
+\includegraphics[width=1\textwidth,keepaspectratio]{Images/Diagramme classe sprint 4.png}
 \caption{Diagramme de classes du quatrième sprint}
 \label{fig:diag_classe_sprint4}
 \end{figure}
@@ -555,26 +556,35 @@ Dans cette configuration, les communications HTTP s'effectuent directement : le 
 Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui détaille les différentes tables de la base de données ainsi que leurs relations :
 
 \noindent
-
-\textbf{Canal} (\underline{idCanal}, nomCanal, typeCanal, description, dateCreation, dateMiseAJour, \textbf{\#idContrat}, \textbf{\#idTicket})
+\textbf{Utilisateur} (\underline{idUtilisateur}, nom, prenom, email, motDePasse, numTel, photoProfil, estActif, doitChangerMotDePasse, dateCreation, dateMiseAJour, derniereConnexion)
 \newline
-\textbf{Message} (\underline{idMessage}, contenu, dateEnvoi, dateModification, estSupprime, \textbf{\#idCanal}, \textbf{\#idExpediteur}, \textbf{\#idMessageParent})
+\textbf{UtilisateurEmailSecondaire} (\underline{\textit{\#utilisateurId}, email})
 \newline
-\textbf{PieceJointeMessage} (\underline{idPieceJointe}, nomFichier, urlFichier, typeFichier, tailleFichier, dateCreation, \textbf{\#idMessage})
+\textbf{JournalActivite} (\underline{id}, action, method, path, ipAddress, status, description, metadata, createdAt, \textit{\#userId})
 \newline
-\textbf{MentionMessage} (\underline{idMention}, estLue, dateCreation, \textbf{\#idMessage}, \textbf{\#idUtilisateurMentionne})
+ \textbf{Message} (\underline{id}, contenu, estEdite,  dateCreation, \textbf{\textit{\#channelId}})
 \newline
-\textbf{Document} (\underline{idDocument}, nomDocument, urlFichier, typeDocument, tailleFichier, versionCourante, estArchive, dateDepot, dateMiseAJour, \textbf{\#idDeposeur}, \textbf{\#idTicket}, \textbf{\#idContrat})
+ \textbf{ChannelMembre} (\underline{id}, role, estMute, estEpingle, derniereLecture, \textit{\#channelId}, \textit{\#utilisateurId})
 \newline
-\textbf{VersionDocument} (\underline{idVersion}, numeroVersion, urlFichier, tailleFichier, dateCreation, \textbf{\#idDocument}, \textbf{\#idAuteur})
+ \textbf{MessageHistory} (\underline{id}, contenuPrecedent, contenuNouveau, dateModification, \textit{\#messageId})
 \newline
-\textbf{ConsultationDocument} (\underline{idConsultation}, dateConsultation, \textbf{\#idDocument}, \textbf{\#idUtilisateur})
+ \textbf{Document} (\underline{documentId}, nomDoc, typeDoc, cheminFichier, tailleDoc, versionDoc, dateUploadDoc, commentaire, estArchive, dateArchivage,  \textit{\#ticketId}, \textit{\#contratId}, \textit{\#uploadeurId}) 
+ \newline
+\textbf{DocumentConsultation} (\underline{id}, dateConsultation,\textit{\#documentId}, \textit{\#utilisateurId})
+ \newline
+ \textbf{Document\_PV} (\underline{\textit{\#documentId}}, dateIntervention, dateResolution, nomTechnicien, solutionApportee)
+ \newline
+ \textbf{DocumentVersion} (\underline{id}, nomDoc, cheminFichier, tailleDoc, numeroVersion, dateVersion, commentaire, \textit{\#documentId})
+ \newline
+\textbf{Notification} (\underline{id}, type, donnees, createdAt, \textit{\#destinataireId})
 \newline
-\textbf{Notification} (\underline{idNotification}, titre, message, typeNotification, estLue, dateCreation, donneesContexte, \textbf{\#idUtilisateur})
+\textbf{KnowledgeBaseArticle} (\underline{id}, titre, contenu, categorie, statutKB, nombreUtilisations, tauxReussite, \textit{\#auteurId})
 \newline
-\textbf{PreferenceNotification} (\underline{idPreference}, typeEvenement, canalEmail, canalPush, canalInApp, canalSlack, \textbf{\#idUtilisateur})
+\textbf{ArticleTag} (\underline{\textit{\#articleId}, tag}) 
 \newline
-\textbf{AbonnementPush} (\underline{idAbonnement}, endpoint, cleP256dh, cleAuth, dateCreation, \textbf{\#idUtilisateur})
+\textbf{Contrat} (\underline{idContrat}, referenceContrat, dateDebutContratM, dateExpirationContratM, montantMensuel, montantSemestriel, tauxTVA, montantTVA, montantTTC, typeSLA, fichierContrat, statutContratM, estArchive, dateCreation, dateMiseAJour, dateArchivage)
+\newline
+\textbf{ConfigurationSlack} (\underline{id}, webhookUrl, canal, notifierSurCreation, notifierSurResolution, estActif, \textit{\#contratId})
 
 }
 

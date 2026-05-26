@@ -2,6 +2,13 @@
 Dans le chapitre précédent, nous avons mis en place la gestion des projets et des contrats, définissant ainsi le cadre contractuel et organisationnel de notre collaboration avec les clients.
 \newline Au cours de ce chapitre, nous présentons les fonctionnalités du troisième sprint, consacré au cœur métier de la plateforme, à savoir la gestion des demandes, la gestion des tickets, le suivi du temps, le respect des SLA et l’intégration de l’intelligence artificielle. Ce sprint constitue une étape majeure dans la transformation de la solution en un véritable système de pilotage du support et du traitement des incidents.
 
+% ─────────────────────────────────────────────────────────────────────────────
+% SECTION 1 : BACKLOG DU SPRINT 3
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Sprint Planning Meeting}
+La planification du sprint est une étape essentielle du processus de développement, car elle permet de clarifier les fonctionnalités à implémenter, de prioriser les besoins métier et d’organiser la réalisation dans une logique incrémentale.
+\newline L’objectif principal de ce sprint était d’implémenter le cœur opérationnel de la plateforme de gestion des tickets, en assurant la prise en charge complète du cycle de vie d’une demande jusqu’à sa conversion en ticket, puis son traitement collaboratif par les équipes techniques. Ce sprint visait également à intégrer des mécanismes avancés de suivi du temps, de gestion des SLA, de pilotage via Kanban et d’assistance intelligente à la décision.
+
 \subsection{Intégration de l'intelligence artificielle}
 Dans le cadre du présent sprint, l'intégration de l'intelligence artificielle a été traitée comme une décision de conception. L'objectif principal est d'automatiser et d'assister plusieurs étapes du cycle de traitement des demandes : qualification initiale, priorisation, analyse des blocages et capitalisation des connaissances.
 
@@ -34,13 +41,6 @@ Afin d'assurer la fiabilité et la conformité du service, l'intégration s'appu
 
 \subsubsection{Apport métier}
 L'évaluation conduite pendant le sprint montre que l'usage de l'IA apporte des bénéfices mesurables : réduction du temps de qualification, homogénéisation des priorisations, diminution des échanges nécessaires entre clients et équipes techniques et enrichissement automatique de la base de connaissances. Ces apports sont considérés comme complémentaires au travail humain : l'IA fournit des suggestions et des brouillons destinés à soutenir la décision, sans s'y substituer.
-
-% ─────────────────────────────────────────────────────────────────────────────
-% SECTION 1 : BACKLOG DU SPRINT 3
-% ─────────────────────────────────────────────────────────────────────────────
-\section{Sprint Planning Meeting}
-La planification du sprint est une étape essentielle du processus de développement, car elle permet de clarifier les fonctionnalités à implémenter, de prioriser les besoins métier et d’organiser la réalisation dans une logique incrémentale.
-\newline L’objectif principal de ce sprint était d’implémenter le cœur opérationnel de la plateforme de gestion des tickets, en assurant la prise en charge complète du cycle de vie d’une demande jusqu’à sa conversion en ticket, puis son traitement collaboratif par les équipes techniques. Ce sprint visait également à intégrer des mécanismes avancés de suivi du temps, de gestion des SLA, de pilotage via Kanban et d’assistance intelligente à la décision.
 
 \subsection{Backlog du troisième sprint}
 \label{sec:backlog_sprint3}
@@ -198,7 +198,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 
 \subsection{Analyse de la fonctionnalité « Gérer demandes »}
 Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des demandes afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
-\subsubsection{Raffinement du cas d'utilisation « Suivre demandes »}
+\subsubsection{Raffinement du cas d'utilisation « Gérer demandes »}
 Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas du gestion des demandes :
 \begin{figure}[H]
   \centering
@@ -1059,13 +1059,17 @@ Le schéma relationnel du sprint 3 s’appuie sur les entités suivantes :
 \newline  
 \textbf{TicketSolution} (\underline{Id}, solutionSuggeree, scoreConfiance, estAcceptee, feedbackUtilisateur, tempsResolution, dateCreation, \textbf{\#idTicket}, \textbf{\#idArticle})
 \newline 
-\textbf{KnowledgeBaseArticle} (\underline{id}, titre,  contenu, categorie, statutKB,  tags,  statut,  nombreUtilisations,  tauxReussite)
+\textbf{KnowledgeBaseArticle} (\underline{id}, titre,  contenu, categorie, statutKB,  nombreUtilisations,  tauxReussite)
+\newline
+\textbf{ArticleTag} (\underline{\textit{\#articleId}, tag}) 
 \newline
 \textbf{TicketClassification} (\underline{id}, categorieAuto, prioriteAuto, typeAuto, scoreConfiance, urgenceDetectee, entitesExtraites,  estValidee, dateClassification, \textbf{\#idTicket}) 
 \newline
-\textbf{AssignmentTicket} (\underline{id}, dateDebutReelle, dateFinReelle, commentaireAssignment, progression, estBloque, raisonBlocage, feedbackDeveloppeur, technologiesUtilisees, enTravail, dureeTotaleSecondes, dateCreation, solutionProposee, solutionProposeeAt, \textbf{\#idTicket}, \textbf{\#idProfilEmploye}, \textbf{\#idSolutionProposeepar})
+\textbf{AssignmentTicket} (\underline{id}, dateDebutReelle, dateFinReelle, commentaireAssignment, progression, estBloque, raisonBlocage, feedbackDeveloppeur, enTravail, dureeTotaleSecondes, dateCreation, solutionProposee, solutionProposeeAt, \textbf{\#idTicket}, \textbf{\#idProfilEmploye}, \textbf{\#idSolutionProposeepar})
 \newline
-\textbf{SessionTravail} (\underline{id}, debut, fin, dureeSecondes, note isManual, \textbf{\#idAssignment}) 
+\textbf{AssignmentTechnologie} (\underline{\textit{\#idAssignment}, technologie})
+\newline
+\textbf{SessionTravail} (\underline{id}, debut, fin, dureeSecondes, note, isManual, \textbf{\#idAssignment}) 
 \newline 
 
 
