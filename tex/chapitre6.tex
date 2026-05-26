@@ -86,13 +86,13 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\begin{enumerate}[label=\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item L'acteur clique sur le bouton flottant « Rapport » affiché en bas à droite du tableau de bord.
 \item Le système ouvre le panneau latéral et affiche les statistiques du mois courant
 \item L'acteur modifie les filtres ; le système recharge automatiquement les données.
 \item L'acteur clique sur le bouton « PDF » ; le système génère et télécharge le fichier de rapport.
 \end{enumerate}
-\end{minipage} \\
+\end{minipage} \
 \hline
 \textbf{Scénario alternatif} &
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
@@ -103,13 +103,23 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \captionof{table}{Description textuelle du cas d'utilisation « Consulter rapport »}
 \normalsize
 
-
 % ──────────────────────────────────────────────────────
 
 
-\subsubsection{Description textuelle du cas d'utilisation « Gérer messagerie »}
-La figure ci-dessous présente la description textuelle du cas d'utilisation « Gérer messagerie ».
+\subsection{Analyse de la fonctionnalité « Gérer messagerie »}
+Dans cette partie, nous analysons les besoins et les interactions liées au module de messagerie interne. Nous détaillons les principaux acteurs, les flux de communication (canaux, messages, pièces jointes, mentions) ainsi que les contraintes de performance et de sécurité (temps réel, authentification, taille des pièces jointes, permissions). Cette analyse sert de base au raffinement des cas d'utilisation qui suit.
 
+\subsubsection{Raffinement du cas d'utilisation « Gérer messagerie »}
+Dans cette partie, nous présentons le raffinement des scénarios liés à la messagerie interne :
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme cas d'utilisationMessagerie.png}
+  \caption{Raffinement du cas d'utilisation « Gérer messagerie »}
+  \label{fig:gerer_messagerie}
+\end{figure}
+
+\subsubsection{Description textuelle du cas d'utilisation « Envoyer message privé »}
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
@@ -121,47 +131,85 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Gérer messagerie \\
+\textbf{Nom du cas d'utilisation} & Envoyer message privé \\
 \hline
-\textbf{Acteurs} & Utilisateur  \\
+\textbf{Acteurs} & Utilisateur (expéditeur), Utilisateur (destinataire) \\
 \hline
-\textbf{Précondition} &  L'utilisateur doit être authentifié sur la plateforme.
-\newline L'utilisateur doit avoir accès au canal de discussion\\
+\textbf{Précondition} & L'expéditeur est authentifié et le destinataire est actif; un canal privé existe déjà entre les deux utilisateurs ou peut être créé automatiquement. \\
 \hline
-\textbf{Postcondition} & L'historique du canal de discussion est mis à jour en base de données. Les accusés de lecture sont générés pour les destinataires de la conversation. \\
+\textbf{Postcondition} & La date de dernière activité du canal est mise à jour, le message est diffusé en temps réel et les notifications associées sont créées si le message contient des mentions. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'utilisateur accède à l'interface de la messagerie intégrée au ticket.
-\item Le système affiche l'historique des messages du canal avec la pagination adéquate et l'état "vu".
-\item  L'utilisateur saisit un texte dans le champ de saisie et clique sur "Envoyer".
-\item  Le système enregistre le message et le diffuse en temps réel (via WebSocket) aux autres participants.
-\item  Le système met à jour l'affichage en ajoutant le nouveau message.
+\item L'expéditeur sélectionne le destinataire depuis l'interface de message direct.
+\begin{enumerate}[label=\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item L'expéditeur saisit le contenu puis clique sur « Envoyer ».
+\item Le système vérifie l'appartenance au canal et les permissions d'écriture.
+\item Le système enregistre le message et diffuse l'événement temps réel.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item l'utilisateur sélectionne un fichier (image, PDF, audio). Le système uploade le fichier, génère un aperçu, et l'associe au message.
-\item L'utilisateur épingle un message important dans le canal ; le message apparaît dans la section des messages épinglés, accessible à tous les membres.
-\item L'utilisateur clique sur "Modifier" sur son propre message, change le texte et valide. Le système met à jour le message et ajoute le badge "(modifié)".
+\item Si le canal privé n'existe pas, le système le crée puis poursuit l'envoi du message.
+\item Si le message comporte une mention, le système crée la notification correspondante après l'enregistrement.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item : Lors de l'alternative A1, si le fichier dépasse la limite autorisée, le système rejette l'envoi et affiche un message d'erreur.
+\item Destinataire introuvable ou inactif : l'opération est refusée.
+\item Limite anti-abus atteinte (rate limit) : l'envoi est temporairement bloqué.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « Gérer messagerie »}
 \normalsize
 
-% ──────────────────────────────────────────────────────
+\subsubsection{Description textuelle du cas d'utilisation « Envoyer message audio »}
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Envoyer message audio \\
+\hline
+\textbf{Acteurs} & Utilisateur \\
+\hline
+\textbf{Précondition} & L'utilisateur est authentifié, membre du canal/conversation ciblé, autorise l'accès au microphone et respecte les limites de format, de taille et de durée. \\
+\hline
+\textbf{Postcondition} & Le message est créé avec la pièce jointe audio, le fichier est stocké, la durée est enregistrée et l'ensemble est diffusé en temps réel. \\
+\hline
+\textbf{Scénario nominal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item L'utilisateur démarre l'enregistrement vocal depuis l'interface.
+\item Il arrête l'enregistrement puis valide l'envoi.
+\item Le client convertit l'audio en fichier et prépare la requête d'envoi avec pièce jointe.
+\item Le système crée le message, stocke le fichier audio, puis associe la durée.
+\item Le système publie le nouveau message dans le canal/conversation.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénario d'exception} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item Microphone refusé ou inaccessible : l'enregistrement est annulé et une erreur est affichée.
+\item Fichier trop volumineux ou type MIME non autorisé : l'upload est rejeté.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\end{longtable}
+\normalsize
 
 \subsection{Analyse de la fonctionnalité « Gérer documents »}
 Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des documents afin de comprendre les principales fonctionnalités du module documentaire, ce qui permet d'avoir une vue globale des interactions.
@@ -296,34 +344,43 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \hline
 \textbf{Acteurs} & Administrateur, Chef de projet \\
 \hline
-\textbf{Précondition} & L'utilisateur doit être authentifié et posséder les rôles requis. \\
+\textbf{Précondition} & L'utilisateur est authentifié et possède les rôles requis. \\
 \hline
-\textbf{Postcondition} & L'article est persisté en base de données.  \\
+\textbf{Postcondition} & L'article est persisté en base de connaissances et les métadonnées associées sont mises à jour pour la recherche et les statistiques. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'utilisateur clique sur le bouton "Nouvel Article" depuis la page de la base de connaissances.
-\item L'utilisateur renseigne les détails de l'article (catégorie, contenu, tags) et clique sur le bouton de publication.
-\item Le système valide la conformité des données et enregistre l'article
-\item Il sélectionne un ou plusieurs fichiers (max 5) via l'explorateur ou par glisser-déposer.
-\item Le système rafraîchit dynamiquement la liste des articles.
+\item L'utilisateur ouvre la page de la base de connaissances.
+\item Il clique sur le bouton « Nouvel article ».
+\item Il saisit le titre de l'article, choisit une catégorie, ajoute éventuellement des tags, puis rédige le contenu.
+\item Il clique sur le bouton « Publier ».
+\item Le système vérifie les données et enregistre l'article.
+\item Le système affiche un message de succès.
+\item La liste des articles est rafraîchie automatiquement.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item  l'utilisateur clique sur "Utiliser le template". Le système génère automatiquement une structure pour aider à la rédaction.
-\item  l'utilisateur choisit "Autre". Le système affiche un champ de saisie libre pour définir une nouvelle catégorie.
-\item Sur un même ticket ou contrat, si un nouveau fichier porte le même nom qu'un document existant, le système crée une nouvelle version (V2, V3...) au lieu d'écraser l'existant, conservant ainsi l'historique complet.
+\item L'utilisateur clique sur « Utiliser le template » ; le système génère automatiquement un contenu de base pour faciliter la rédaction.
+\item L'utilisateur choisit « Autre » comme catégorie ; le système affiche un champ de saisie libre pour définir une catégorie personnalisée.
+\item L'utilisateur clique sur « Annuler » ou ferme la fenêtre ; le système abandonne la création sans enregistrer l'article.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénario d'exception} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item Les données sont invalides: le système refuse l'enregistrement et affiche un message d'erreur.
+\item L'utilisateur ne possède pas les droits requis: le système bloque la création.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle du cas d'utilisation «  Ajouter article »}
 \normalsize
-
 
 
 % ──────────────────────────────────────────────────────
@@ -381,6 +438,57 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \captionof{table}{Description textuelle du cas d'utilisation « Configurer préférences notifications »}
 \newpage
 
+\subsubsection{Description textuelle du cas d’utilisation « Configurer intégration Slack »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Configurer intégration Slack ».
+
+\footnotesize
+\renewcommand{\arraystretch}{1}
+\begin{longtable}{|P{4cm}|P{11.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Configurer intégration Slack \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Précondition} &
+L'administrateur est authentifié.\newline
+Un contrat est sélectionné. \\
+\hline
+\textbf{Postcondition} &
+La configuration Slack est enregistrée et liée au contrat.\newline
+Les notifications sont actives selon les préférences choisies. \\
+\hline
+\textbf{Scénario nominal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+\item L'administrateur clique sur « Intégration Slack » depuis le menu contextuel du contrat.
+\item Le système affiche le dialogue de configuration Slack.
+\item L'administrateur saisit l'URL du webhook et le canal Slack.
+\item L'administrateur configure les types de notifications souhaités : ticket créé, mise à jour, résolu, critique seulement.
+\item L'administrateur clique sur « Configurer ».
+\item Le système enregistre la configuration et l'associe au contrat.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+\hline
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item  le système détecte qu'une configuration Slack existe déjà pour ce contrat et pré-remplit le formulaire l'administrateur modifie les champs souhaités et clique sur « Mettre à jour ».
+\item  après sauvegarde, l'administrateur clique sur « Tester » le système envoie un message de test sur le canal Slack configuré.
+\item  l'URL du webhook est incorrecte ou inaccessible le système affiche un message d'échec, l'administrateur corrige l'URL et \textbf{reprend à l'étape 3}.
+
+\end{enumerate} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d’utilisation «Configurer intégration Slack »}
+\normalsize
+
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 3 : CONCEPTION
 % ─────────────────────────────────────────────────────────────────────────────
@@ -388,38 +496,57 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \section{Conception}
 \label{sec:conception_sprint4}
 
-Dans cette section, nous présentons la conception des principales fonctionnalités développées durant le quatrième sprint. L'objectif est de mettre en évidence, d'une part, les échanges entre les acteurs et les composants du système au moyen de diagrammes de séquence, et d'autre part, le déroulement global des traitements à travers des diagrammes d'activité.
+Dans cette section, nous présentons la conception des principales fonctionnalités développées durant le quatrième sprint. L'objectif est de mettre en évidence les échanges entre les acteurs et les composants du système au moyen de diagrammes de séquence.
 
 \subsection{Diagrammes de séquence}
-Les diagrammes de séquence permettent d'illustrer le déroulement temporel des interactions entre l'utilisateur, l'interface, les services applicatifs et la base de données. Pour ce sprint, nous avons retenu les scénarios les plus représentatifs : la consultation du tableau de bord, l'envoi d'un message, le dépôt d'un document, la génération d'un procès-verbal et la configuration des notifications.
+Les diagrammes de séquence permettent d'illustrer le déroulement temporel des interactions entre l'utilisateur, l'interface, les services applicatifs et la base de données. Ils mettent en évidence l'ordre des appels, les échanges de messages et la coordination entre les différents composants du système.
 
-\subsubsection{Diagramme de séquences du cas d'utilisation « Envoyer message »}
+\subsubsection{Diagramme de séquences du cas d'utilisation « Envoyer message multimédia »}
 
 \begin{figure}[H]
         \centering
-  %\includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_seq_envoyer_message.png}
-        \caption{Diagramme de séquences du cas d'utilisation « Envoyer message »}
+  \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_seq_envoyer_message.png}
+        \caption{Diagramme de séquences du cas d'utilisation « Envoyer message multimédia »}
         \label{fig:seq_envoyer_message}
 \end{figure}
 
-
-      \subsection{Diagrammes d'activité}
-      Les diagrammes d'activité complètent la vue séquentielle en décrivant la logique métier de façon plus globale. Ils sont particulièrement utiles pour les processus comportant plusieurs choix, validations ou retours en arrière, comme la messagerie, le dépôt documentaire, la configuration des notifications ou la consultation des rapports.
-
-      \subsubsection{Diagramme d'activité du cas d'utilisation « Configurer préférences notifications »}
-        Ce diagramme montre l'accès au profil, le chargement des préférences, l'activation ou la désactivation d'un canal de notification, l'enregistrement des paramètres et l'affichage de la confirmation.
 \subsection{Diagramme de composants}
 
 La figure ci-dessous présente le diagramme de composants de l'application.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\textwidth,keepaspectratio]{Images/diag comp.png}
+\includegraphics[width=1.1\textwidth,keepaspectratio]{Images/diag comp.png}
 \caption{Diagramme de composants de l'application}
 \label{fig:diagramme_composants_sprint4}
 \end{figure}
 
 Le diagramme de composants illustre l'architecture de la solution en trois couches. Le front-end (Next.js) regroupe l'interface utilisateur, les modules métiers et un client HTTP (Axios/Fetch). L'API Core (NestJS) structure ses contrôleurs, modules fonctionnels et services transverses (Prisma ORM, cache manager). En infrastructure, PostgreSQL assure la persistance des données et Redis gère les sessions et le cache, tous deux accessibles via TCP/IP. Cette organisation sépare clairement la présentation, la logique métier et les services d'infrastructure.
+
+
+\subsection{Diagramme de déploiement}
+
+Le diagramme de déploiement permet de représenter l'architecture physique de la solution \textbf{SolidMaint}. Il décrit la disposition matérielle des nœuds d'exécution, la répartition des composants logiciels développés (Front-end et API) sur ces infrastructures, ainsi que les protocoles de communication sécurisés utilisés pour interconnecter ces différents environnements.
+
+\begin{figure}[H]
+    \centering
+    % \includegraphics[width=0.95\textwidth,keepaspectratio]{Images/diagramme_deploiement_sprint4.png}
+    \caption{Diagramme de déploiement de la plateforme SolidMaint}
+    \label{fig:diagramme_deploiement_sprint4}
+\end{figure}
+
+Le diagramme de déploiement illustre la distribution physique de la plateforme
+\textbf{SolidMaint} sur deux nœuds principaux. L'appareil utilisateur héberge le
+navigateur web qui charge le client Next.js. Le serveur de production repose sur
+un hôte Docker orchestrant quatre conteneurs isolés~: \texttt{solidcare\_frontend}
+(Node.js / SSR), \texttt{solidcare\_backend} (NestJS / API REST),
+\texttt{solidcare\_db} (PostgreSQL 16) et \texttt{solidcare\_redis} (Redis 7),
+chacun disposant d'un volume de persistance dédié. Un reverse proxy Nginx gère
+le point d'entrée unique (ports 80/443) et achemine les requêtes vers le
+front-end (port 3000) ou le back-end (port 3001), tandis que ce dernier
+communique avec les services de données en TCP/IP (ports 5432 et 6379).
+
+
 
 \subsection{Diagramme de classes du quatrième sprint}
 
@@ -501,20 +628,7 @@ Les tests unitaires ont été réalisés avec \textbf{Vitest} en isolant les ser
 
 Les modules testés en priorité couvrent le calendrier, la messagerie, la gestion documentaire, les notifications ainsi que les indicateurs des tableaux de bord et des rapports.
 
-\noindent\textbf{Bilan : ensemble des scénarios unitaires validés avec succès.}
-\vspace{6pt}
-
 \begin{itemize}[leftmargin=0pt]
-
-\item[$\square$] \textbf{Test du module Calendrier et suivi d'activité}
-
-\noindent Cette suite vérifie la construction des événements affichés dans le calendrier ainsi que la classification des éléments selon leur type et leur criticité. Les cas suivants ont été couverts :
-
-\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item Les tickets et demandes de maintenance sont convertis correctement en événements calendrier.
-  \item Les éléments critiques ou en retard sont identifiés avec le bon statut visuel.
-  \item Les filtres temporels permettent de recalculer la vue sans altérer les données sources.
-\end{itemize}
 
 \item[$\square$] \textbf{Test du module Messagerie}
 
@@ -523,32 +637,16 @@ Les modules testés en priorité couvrent le calendrier, la messagerie, la gesti
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
   \item Un message valide est enregistré et diffusé en temps réel aux participants du canal.
   \item Une réponse avec message parent conserve le fil de discussion correctement.
-  \item Une pièce jointe dépassant la taille autorisée est rejetée avant stockage.
   \item Un message déjà modifié conserve la trace de la mise à jour et le badge associé.
   \item Une mention déclenche la création de la notification correspondante.
 \end{itemize}
 
-\item[$\square$] \textbf{Test du module Documents}
-
-\noindent Cette suite valide le dépôt, la version, l'archivage et la consultation des documents. Les cas suivants ont été couverts :
-
-\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item Un ou plusieurs fichiers valides sont acceptés et liés au ticket ou au contrat concerné.
-  \item Un fichier dont la taille dépasse la limite autorisée est refusé.
-  \item Un document portant le même nom qu'une version existante génère une nouvelle version sans écraser l'historique.
-  \item La génération du procès-verbal préremplit les données du ticket et produit un document final exploitable.
-\end{itemize}
-
-\item[$\square$] \textbf{Test du module Notifications et tableaux de bord}
-
-\noindent Cette suite vérifie le calcul des indicateurs, la remontée des alertes et la mise à jour des préférences de notification. Les cas suivants ont été couverts :
-
-\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item Les indicateurs globaux et d'équipe sont calculés à partir des données métier attendues.
-  \item Les rapports mensuels agrègent correctement les statistiques par période.
-  \item La désactivation d'un canal de notification est prise en compte immédiatement dans les préférences utilisateur.
-  \item Les abonnements push et les intégrations Slack sont validés par les règles métier de configuration.
-\end{itemize}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth,keepaspectratio]{Images/messgTestUnit.png}
+\caption{Test du module Messagerie}
+\label{fig:test_unitaire_messagerie_sprint4}
+\end{figure}
 
 \end{itemize}
 
@@ -568,6 +666,13 @@ Les tests d'intégration ont été effectués via \textbf{Swagger UI} et les poi
   \item Les filtres par période produisent des résultats cohérents avec les données présentes en base.
 \end{itemize}
 
+\begin{figure}[H]
+\centering
+% \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/dashboard.png}
+\caption{Test d'intégration - Calendrier et suivi d'activité}
+\label{fig:test_integration_calendrier_sprint4}
+\end{figure}
+
 \item[$\square$] \textbf{Test du module Messagerie et collaboration}
 
 \noindent Cette suite valide les routes REST et les échanges temps réel liés à la messagerie. Les cas suivants ont été couverts :
@@ -578,6 +683,13 @@ Les tests d'intégration ont été effectués via \textbf{Swagger UI} et les poi
   \item La modification et la suppression d'un message renvoient les statuts HTTP appropriés.
   \item Les mentions et les accusés de lecture sont persistés et récupérables via les endpoints dédiés.
 \end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth,keepaspectratio]{Images/Capture d'écran 2026-05-21 111918.png}
+\caption{Test d'intégration - Messagerie et collaboration}
+\label{fig:test_integration_messagerie_sprint4}
+\end{figure}
 
 \item[$\square$] \textbf{Test du module Documents et base de connaissances}
 
@@ -590,6 +702,13 @@ Les tests d'intégration ont été effectués via \textbf{Swagger UI} et les poi
   \item Les articles de la base de connaissances sont listés et filtrés sans perte de cohérence.
 \end{itemize}
 
+\begin{figure}[H]
+\centering
+% \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/doc.png}
+\caption{Test d'intégration - Documents et base de connaissances}
+\label{fig:test_integration_documents_sprint4}
+\end{figure}
+
 \item[$\square$] \textbf{Test du module Notifications}
 
 \noindent Cette suite valide les endpoints de consultation et de mise à jour des préférences de notification. Les cas suivants ont été couverts :
@@ -600,6 +719,13 @@ Les tests d'intégration ont été effectués via \textbf{Swagger UI} et les poi
   \item Les préférences par type d'événement sont récupérées et modifiées correctement.
   \item Les configurations push et Slack répondent conformément aux règles métier de la plateforme.
 \end{itemize}
+
+\begin{figure}[H]
+\centering
+% \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/notifications.png}
+\caption{Test d'intégration - Notifications}
+\label{fig:test_integration_notifications_sprint4}
+\end{figure}
 
 \end{itemize}
 
@@ -622,6 +748,13 @@ Les tests End-to-End ont été exécutés avec \textbf{Playwright} afin de simul
   \item L'utilisateur lance la génération d'un rapport mensuel à partir des filtres disponibles.
 \end{itemize}
 
+\begin{figure}[H]
+\centering
+% \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/dashboard.png}
+\caption{Test End-to-End du parcours de suivi d'activité}
+\label{fig:e2e_suivi_activite_sprint4}
+\end{figure}
+
 \item[$\square$] \textbf{Test du parcours de messagerie}
 
 \noindent Cette suite valide un échange complet au sein d'un canal de discussion. Les scénarios suivants ont été couverts :
@@ -631,6 +764,13 @@ Les tests End-to-End ont été exécutés avec \textbf{Playwright} afin de simul
   \item L'utilisateur envoie un message avec ou sans pièce jointe et observe sa diffusion instantanée.
   \item Un autre participant répond, modifie ou épingle un message, et l'interface se met à jour correctement.
 \end{itemize}
+
+\begin{figure}[H]
+\centering
+% \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/Playwright.png}
+\caption{Test End-to-End du parcours de messagerie}
+\label{fig:e2e_messagerie_sprint4}
+\end{figure}
 
 \item[$\square$] \textbf{Test du parcours documentaire}
 
@@ -642,6 +782,13 @@ Les tests End-to-End ont été exécutés avec \textbf{Playwright} afin de simul
   \item Le chef de projet génère un procès-verbal à partir d'un ticket et le retrouve dans l'historique documentaire.
 \end{itemize}
 
+\begin{figure}[H]
+\centering
+    % \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/doc.png}
+\caption{Test End-to-End du parcours documentaire}
+\label{fig:e2e_documentaire_sprint4}
+\end{figure}
+
 \item[$\square$] \textbf{Test du parcours de notifications}
 
 \noindent Cette suite valide la consultation et la configuration des notifications par l'utilisateur. Les scénarios suivants ont été couverts :
@@ -652,10 +799,40 @@ Les tests End-to-End ont été exécutés avec \textbf{Playwright} afin de simul
   \item Une action métier déclenche une notification qui apparaît correctement dans l'interface.
 \end{itemize}
 
+\begin{figure}[H]
+\centering
+    % \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/notifications.png}
+\caption{Test End-to-End du parcours de notifications}
+\label{fig:e2e_notifications_sprint4}
+\end{figure}
+
 \end{itemize}
 
-\newpage
+subsection{Tests de performance}
 
+Les tests de performance ont permis de mesurer la réactivité du sprint 4 sous charge, la tenue de la concurrence et la capacité du serveur à absorber des pics d'activité. Ils ont été exécutés avec \textbf{k6} et \textbf{Apache JMeter}.
+
+\noindent\textbf{Cas de charge principal :} 100 utilisateurs créent des tickets simultanément afin de vérifier la lenteur, la scalabilité et la charge serveur.
+
+\begin{itemize}[leftmargin=0pt]
+\item[$\bullet$] Le temps de réponse reste acceptable lors des pics de charge.
+\item[$\bullet$] Les traitements simultanés ne bloquent pas les modules de messagerie, de documents et de notifications.
+\item[$\bullet$] La montée en charge permet de valider le comportement global de l'application.
+\end{itemize}
+
+\subsection{Tests de sécurité}
+
+Les tests de sécurité ont vérifié les contrôles d'accès, la robustesse des jetons JWT et la résistance aux attaques applicatives courantes en s'appuyant sur \textbf{OWASP Top 10} et \textbf{OWASP ZAP}.
+
+\noindent\textbf{Scénario de référence :} un utilisateur normal tente d'accéder au dashboard administrateur afin de vérifier le refus d'accès.
+
+\begin{itemize}[leftmargin=0pt]
+\item[$\bullet$] Les tentatives d'injection SQL sont bloquées par les validations et les requêtes sécurisées.
+\item[$\bullet$] Les entrées XSS sont neutralisées avant affichage.
+\item[$\bullet$] Les permissions sont vérifiées avant l'accès aux ressources protégées.
+\item[$\bullet$] Les jetons JWT invalides, expirés ou falsifiés sont rejetés.
+\item[$\bullet$] Les accès interdits renvoient une réponse explicite sans exposer de données sensibles.
+\end{itemize}
 % ─────────────────────────────────────────────────────────────────────────────
 % CONCLUSION DU CHAPITRE
 % ─────────────────────────────────────────────────────────────────────────────

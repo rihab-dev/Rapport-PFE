@@ -1168,4 +1168,32 @@ d'un administrateur. Le cas suivant a été couvert :
 \label{fig:test_e2e_desactiver}
 \end{figure}
 
+\subsubsection{Tests de performance}
+\label{sec:tests_performance_ch3}
+
+Les tests de performance ont permis de mesurer la réactivité de l'application sous charge, la montée en concurrence et la tenue du serveur. Ils ont été réalisés avec \textbf{k6} et \textbf{Apache JMeter}.
+
+\noindent\textbf{Cas de charge principal :} 100 utilisateurs s'authentifient et consultent leurs espaces simultanément afin de vérifier la lenteur, la scalabilité et la charge serveur.
+
+\begin{itemize}[leftmargin=0pt]
+\item[$\bullet$] Le temps de réponse reste stable lors des pics d'authentification.
+\item[$\bullet$] Les requêtes simultanées sur les profils et les listes d'utilisateurs conservent un comportement cohérent.
+\item[$\bullet$] La montée en charge permet de valider les limites de scalabilité du backend.
+\end{itemize}
+
+\subsubsection{Tests de sécurité}
+\label{sec:tests_securite_ch3}
+
+Les tests de sécurité ont vérifié les contrôles d'accès, la robustesse des jetons JWT et la résistance aux attaques applicatives courantes selon \textbf{OWASP Top 10}. Ils ont été exécutés avec \textbf{OWASP ZAP}.
+
+\noindent\textbf{Scénario de référence :} un utilisateur normal tente d'accéder au dashboard administrateur afin de vérifier le refus d'accès.
+
+\begin{itemize}[leftmargin=0pt]
+\item[$\bullet$] Les tentatives d'injection SQL sont bloquées par les validations et les requêtes paramétrées.
+\item[$\bullet$] Les entrées XSS sont neutralisées avant affichage.
+\item[$\bullet$] Les permissions sont contrôlées avant tout accès aux ressources sensibles.
+\item[$\bullet$] Les jetons JWT invalides, expirés ou falsifiés sont rejetés.
+\item[$\bullet$] Les accès interdits renvoient un message explicite sans exposer de données sensibles.
+\end{itemize}
+
 \end{itemize}
