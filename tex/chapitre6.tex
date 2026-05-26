@@ -526,7 +526,7 @@ Le diagramme de composants illustre l'architecture de la solution en trois couch
 
 \subsection{Diagramme de déploiement}
 
-Le diagramme de déploiement permet de représenter l'architecture physique de la solution \textbf{SolidMaint}. Il décrit la disposition matérielle des nœuds d'exécution, la répartition des composants logiciels développés (Front-end et API) sur ces infrastructures, ainsi que les protocoles de communication sécurisés utilisés pour interconnecter ces différents environnements.
+Le diagramme de déploiement permet de représenter l'architecture physique de la solution \textbf{SolidMaint}. Il décrit la disposition matérielle des nœuds d'exécution, la répartition des composants logiciels développés (Front-end et API) sur ces infrastructures, ainsi que les protocoles de communication utilisés pour interconnecter ces différents environnements.
 
 \begin{figure}[H]
     \centering
@@ -535,16 +535,9 @@ Le diagramme de déploiement permet de représenter l'architecture physique de l
     \label{fig:diagramme_deploiement_sprint4}
 \end{figure}
 
-Le diagramme de déploiement illustre la distribution physique de la plateforme
-\textbf{SolidMaint} sur deux nœuds principaux. L'appareil utilisateur héberge le
-navigateur web qui charge le client Next.js. Le serveur de production repose sur
-un hôte Docker orchestrant quatre conteneurs isolés~: \texttt{solidcare\_frontend}
-(Node.js / SSR), \texttt{solidcare\_backend} (NestJS / API REST),
-\texttt{solidcare\_db} (PostgreSQL 16) et \texttt{solidcare\_redis} (Redis 7),
-chacun disposant d'un volume de persistance dédié. Un reverse proxy Nginx gère
-le point d'entrée unique (ports 80/443) et achemine les requêtes vers le
-front-end (port 3000) ou le back-end (port 3001), tandis que ce dernier
-communique avec les services de données en TCP/IP (ports 5432 et 6379).
+Le diagramme de déploiement illustre la distribution physique de la plateforme \textbf{SolidMaint}. Le poste client (Device) héberge le navigateur web qui charge l'interface utilisateur. Côté infrastructure, le serveur d'application principal repose sur un environnement d'exécution Docker (Docker Host) qui orchestre les différents conteneurs isolés construits à partir des images du projet~: \texttt{solidcare\_frontend} (Next.js / SSR) et \texttt{solidcare\_backend} (NestJS / API REST). 
+
+Dans cette configuration, les communications HTTP s'effectuent directement : le navigateur client accède au front-end sur le port 3000, et réalise ses appels API directement vers le back-end sur le port 3001. Enfin, le back-end communique de manière sécurisée en TCP/IP avec les serveurs de données dédiés : le serveur de base de données relationnelle PostgreSQL 16 (port 5432) et le serveur de cache en mémoire Redis 7 (port 6379), assurant ainsi des performances optimales via une gestion efficace du Rate-Limiting et de la persistance.
 
 
 
