@@ -400,60 +400,6 @@ Le motif d'archivage est enregistré et associé au contrat. \\
 \captionof{table}{Description textuelle du cas d’utilisation «Archiver contrat »}
 \normalsize
 
-
-
-\subsubsection{Description textuelle du cas d’utilisation « Configurer intégration Slack »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Configurer intégration Slack ».
-
-\footnotesize
-\renewcommand{\arraystretch}{1}
-\begin{longtable}{|P{4cm}|P{11.5cm}|}
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-\textbf{Nom du cas d'utilisation} & Configurer intégration Slack \\
-\hline
-\textbf{Acteurs} & Administrateur \\
-\hline
-\textbf{Précondition} &
-L'administrateur est authentifié.\newline
-Un contrat est sélectionné. \\
-\hline
-\textbf{Postcondition} &
-La configuration Slack est enregistrée et liée au contrat.\newline
-Les notifications sont actives selon les préférences choisies. \\
-\hline
-\textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., leftmargin=*]
-\item L'administrateur clique sur « Intégration Slack » depuis le menu contextuel du contrat.
-\item Le système affiche le dialogue de configuration Slack.
-\item L'administrateur saisit l'URL du webhook et le canal Slack.
-\item L'administrateur configure les types de notifications souhaités : ticket créé, mise à jour, résolu, critique seulement.
-\item L'administrateur clique sur « Configurer ».
-\item Le système enregistre la configuration et l'associe au contrat.
-\end{enumerate}
-\vspace{2pt}
-\end{minipage} \\
-\hline
-\textbf{Scénario alternatif} &
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item  le système détecte qu'une configuration Slack existe déjà pour ce contrat et pré-remplit le formulaire l'administrateur modifie les champs souhaités et clique sur « Mettre à jour ».
-\item  après sauvegarde, l'administrateur clique sur « Tester » le système envoie un message de test sur le canal Slack configuré.
-\item  l'URL du webhook est incorrecte ou inaccessible le système affiche un message d'échec, l'administrateur corrige l'URL et \textbf{reprend à l'étape 3}.
-
-\end{enumerate} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «Configurer intégration Slack »}
-\normalsize
-
-
 \subsection{Analyse de la fonctionnalité « Suivre contrats »}
 
 Dans cette partie, nous allons présenter les cas d'utilisation relatifs au
@@ -653,6 +599,34 @@ doublons. Les cas suivants ont été couverts :
 \label{fig:test_unitaire_sprint2}
 \end{figure}
 
+\end{itemize}
+
+\subsection{Tests de performance}
+\label{sec:tests_performance_sprint2}
+
+Les tests de performance ont permis de mesurer la réactivité des fonctionnalités du sprint sous charge, la tenue de la concurrence et la capacité de montée en charge des services. Ils ont été réalisés avec \textbf{k6} et \textbf{Apache JMeter}.
+
+\noindent\textbf{Cas de charge principal :} 100 utilisateurs consultent et créent des contrats simultanément afin de vérifier la lenteur, la scalabilité et la charge serveur.
+
+\begin{itemize}[leftmargin=0pt]
+\item[$\bullet$] Le temps de réponse reste cohérent lors des pics de consultation et de création.
+\item[$\bullet$] Les traitements simultanés ne bloquent pas la génération des contrats ni la consultation des listes.
+\item[$\bullet$] La montée en charge permet d'identifier les limites de scalabilité du service.
+\end{itemize}
+
+\subsection{Tests de sécurité}
+\label{sec:tests_securite_sprint2}
+
+Les tests de sécurité ont validé la protection des endpoints, les permissions d'accès et la résistance aux attaques applicatives courantes en s'appuyant sur \textbf{OWASP Top 10} et \textbf{OWASP ZAP}.
+
+\noindent\textbf{Scénario de référence :} un utilisateur normal tente d'accéder au dashboard administrateur afin de vérifier le refus d'accès.
+
+\begin{itemize}[leftmargin=0pt]
+\item[$\bullet$] Les tentatives d'injection SQL sont rejetées par les contrôles de validation et les requêtes sécurisées.
+\item[$\bullet$] Les contenus XSS sont filtrés avant affichage.
+\item[$\bullet$] Les permissions sont vérifiées avant tout accès aux ressources sensibles.
+\item[$\bullet$] Les jetons JWT invalides ou expirés sont refusés.
+\item[$\bullet$] Les accès interdits renvoient un code d'erreur sans exposer d'informations internes.
 \end{itemize}
 
 %─────────────────────────────────────────────────────────────────────────────

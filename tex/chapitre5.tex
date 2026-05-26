@@ -1244,6 +1244,34 @@ Les tests End-to-End ont permis de valider des parcours réalistes tels que :
 \item maintenir un haut niveau de traçabilité et de notification.
 \end{itemize}
 
+\subsection{Tests de performance}
+\label{sec:tests_performance_sprint3}
+
+Les tests de performance ont permis de mesurer la réactivité de la plateforme sous forte charge, la tenue de la concurrence et la capacité de montée en charge des services. Ils ont été exécutés avec \textbf{k6} et \textbf{Apache JMeter}.
+
+\noindent\textbf{Cas de charge principal :} 100 utilisateurs créent des tickets simultanément afin de vérifier la lenteur, la scalabilité et la charge serveur.
+
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+\item Les temps de réponse restent stables lors des pics de création et de mise à jour.
+\item Les opérations concurrentes sur les tickets conservent une exécution cohérente.
+\item La montée en charge permet de valider le comportement du backend avant saturation.
+\end{itemize}
+
+\subsection{Tests de sécurité}
+\label{sec:tests_securite_sprint3}
+
+Les tests de sécurité ont validé les contrôles d'accès, la robustesse des jetons JWT et la résistance aux attaques applicatives courantes en s'appuyant sur \textbf{OWASP Top 10} et \textbf{OWASP ZAP}.
+
+\noindent\textbf{Scénario de référence :} un utilisateur normal tente d'accéder au dashboard administrateur afin de vérifier le refus d'accès.
+
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+\item Les tentatives d'injection SQL sont bloquées par les validations et les requêtes paramétrées.
+\item Les entrées XSS sont neutralisées avant affichage.
+\item Les permissions sont contrôlées avant l'accès aux actions sensibles.
+\item Les jetons JWT invalides, expirés ou falsifiés sont rejetés.
+\item Les accès interdits renvoient un statut explicite sans exposer de données internes.
+\end{itemize}
+
 \section{Conclusion}
 Ce troisième sprint a permis d’implémenter le noyau fonctionnel de la solution. En combinant workflow métier, suivi temporel, gestion des SLA, visualisation Kanban et assistance intelligente, la plateforme franchit une étape décisive vers un système complet de support et de pilotage des demandes.
 \par Ce sprint met en évidence la dimension opérationnelle du projet, tout en renforçant sa robustesse technique, sa traçabilité et sa valeur métier.
