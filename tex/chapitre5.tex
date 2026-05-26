@@ -1059,13 +1059,17 @@ Le schéma relationnel du sprint 3 s’appuie sur les entités suivantes :
 \newline  
 \textbf{TicketSolution} (\underline{Id}, solutionSuggeree, scoreConfiance, estAcceptee, feedbackUtilisateur, tempsResolution, dateCreation, \textbf{\#idTicket}, \textbf{\#idArticle})
 \newline 
-\textbf{KnowledgeBaseArticle} (\underline{id}, titre,  contenu, categorie, statutKB,  tags,  statut,  nombreUtilisations,  tauxReussite)
+\textbf{KnowledgeBaseArticle} (\underline{id}, titre,  contenu, categorie, statutKB,  nombreUtilisations,  tauxReussite)
+\newline
+\textbf{ArticleTag} (\underline{\textit{\#articleId}, tag}) 
 \newline
 \textbf{TicketClassification} (\underline{id}, categorieAuto, prioriteAuto, typeAuto, scoreConfiance, urgenceDetectee, entitesExtraites,  estValidee, dateClassification, \textbf{\#idTicket}) 
 \newline
-\textbf{AssignmentTicket} (\underline{id}, dateDebutReelle, dateFinReelle, commentaireAssignment, progression, estBloque, raisonBlocage, feedbackDeveloppeur, technologiesUtilisees, enTravail, dureeTotaleSecondes, dateCreation, solutionProposee, solutionProposeeAt, \textbf{\#idTicket}, \textbf{\#idProfilEmploye}, \textbf{\#idSolutionProposeepar})
+\textbf{AssignmentTicket} (\underline{id}, dateDebutReelle, dateFinReelle, commentaireAssignment, progression, estBloque, raisonBlocage, feedbackDeveloppeur, enTravail, dureeTotaleSecondes, dateCreation, solutionProposee, solutionProposeeAt, \textbf{\#idTicket}, \textbf{\#idProfilEmploye}, \textbf{\#idSolutionProposeepar})
 \newline
-\textbf{SessionTravail} (\underline{id}, debut, fin, dureeSecondes, note isManual, \textbf{\#idAssignment}) 
+\textbf{AssignmentTechnologie} (\underline{\textit{\#idAssignment}, technologie})
+\newline
+\textbf{SessionTravail} (\underline{id}, debut, fin, dureeSecondes, note, isManual, \textbf{\#idAssignment}) 
 \newline 
 
 

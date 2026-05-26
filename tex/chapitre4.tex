@@ -564,14 +564,21 @@ Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui
 \newline
 \textbf{SLAContrat} (\underline{idSLAContrat}, motifPersonnalisation, dateCreation,dateMiseAJour,\textbf{\#idContrat})
 \newline
-\textbf{DelaiSLA} (\underline{idRegle}, \textbf{\#idSLAContrat}, priorite, delaiReponseMn, delaiResolutionMn, \textbf{\#idSLAGlobal},\textbf{\#idSLAContrat})
+\textbf{DelaiSLA} (\underline{idRegle}, priorite, delaiReponseMn, delaiResolutionMn, \textbf{\#idSLAGlobal},\textbf{\#idSLAContrat})
 \newline
-\textbf{Projet} (\underline{idProjet}, nomProjet, descriptionProjet,statutP, tags, dateDebutP, dateFinP,dateCreationP, dateMiseAJourP \textbf{\#idProfilClient},\textbf{\#idChefProjet})
+\textbf{ConfigurationSlack} (\underline{id}, webhookUrl, canal, notifierSurCreation, notifierSurResolution, estActif, \textit{\#contratId})
 \newline
-\textbf{MembreProjet} (\underline{idMembre}, rolesDansProjet, dateAffectation, dateAffectation, dateDebut, dateFin, statut, motifRefus, \textbf{\#idProjet},\textbf{\#idProfilEmploye})
+\textbf{Projet} (\underline{idProjet}, nomProjet, descriptionProjet,statutP, dateDebutP, dateFinP,dateCreationP, dateMiseAJourP, \textbf{\#idProfilClient},\textbf{\#idChefProjet})
 \newline
-\textbf{FeedbackExpirationContrat} (\underline{idFeedback},  note, commentaire, souhaitRenouveler, raisonsNonRenouvellement, dateCreation, \textbf{\#idContrat})
+\textbf{ProjetTag} (\underline{\textit{\#idProjet}, tag})
+\newline
+\textbf{MembreProjet} (\underline{idMembre}, dateAffectation, dateDebut, dateFin, statut, motifRefus, \textbf{\#idProjet},\textbf{\#idProfilEmploye})
+\newline
+\textbf{MembreProjetRole} (\underline{\textit{\#idMembre}, role})
+\textbf{FeedbackExpirationContrat} (\underline{idFeedback},  note, commentaire, souhaitRenouveler, dateCreation, \textbf{\#idContrat})
 \newline 
+\textbf{RaisonNonRenouvellement} (\underline{\textit{\#idFeedback}, raison})
+\newline  
 \textbf{JournalActivite} (\underline{id}, action, method, path, ipAddress, status, description, metadata, \textbf{\#idUtilisateur})
 
 }
