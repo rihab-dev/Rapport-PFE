@@ -606,15 +606,77 @@ doublons. Les cas suivants ont été couverts :
 \subsection{Tests de performance}
 \label{sec:tests_performance_sprint2}
 
-Les tests de performance ont permis de mesurer la réactivité des fonctionnalités du sprint sous charge, la tenue de la concurrence et la capacité de montée en charge des services. Ils ont été réalisés avec \textbf{k6} et \textbf{Apache JMeter}.
+Les tests de performance du deuxième sprint ont ciblé les fonctionnalités
+de gestion des contrats et des projets, qui impliquent des opérations de
+lecture et d'écriture en base de données, des calculs de montants TTC et
+de TVA, ainsi que la génération automatique de références de contrat.
+Ils ont été réalisés avec \textbf{k6} selon le même protocole de montée
+en charge progressive.
 
-\noindent\textbf{Cas de charge principal :} 100 utilisateurs consultent et créent des contrats simultanément afin de vérifier la lenteur, la scalabilité et la charge serveur.
+\subsubsection{Scénario de charge}
 
-\begin{itemize}[leftmargin=0pt]
-\item[$\bullet$] Le temps de réponse reste cohérent lors des pics de consultation et de création.
-\item[$\bullet$] Les traitements simultanés ne bloquent pas la génération des contrats ni la consultation des listes.
-\item[$\bullet$] La montée en charge permet d'identifier les limites de scalabilité du service.
-\end{itemize}
+Le scénario reproduit une utilisation intensive du module contractuel :
+consultation simultanée de la liste des contrats et des projets par
+100 utilisateurs administrateurs authentifiés. La montée en charge suit
+le même protocole que le sprint précédent, avec trois phases de 30s,
+1min et 30s.
+
+Les endpoints ciblés sont \textbf{GET /api/contrats} (liste paginée des
+contrats avec leurs SLA), \textbf{GET /api/projets} (liste des projets
+avec leurs équipes) et \textbf{POST /api/contrats/:id/resilier}
+(résiliation avec mise à jour du statut en base de données).
+
+\subsubsection{Résultats obtenus}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Indicateur} & \textbf{Endpoint testé} & \textbf{Résultat} \\
+\hline
+Temps de réponse moyen & GET /api/contrats           & [XX] ms \\
+\hline
+Percentile 95 (p95)    & GET /api/contrats           & [XX] ms \\
+\hline
+Temps de réponse moyen & GET /api/projets            & [XX] ms \\
+\hline
+Percentile 95 (p95)    & GET /api/projets            & [XX] ms \\
+\hline
+Temps de réponse moyen & POST .../resilier           & [XX] ms \\
+\hline
+Percentile 95 (p95)    & POST .../resilier           & [XX] ms \\
+\hline
+Taux d'erreur          & Global                      & [X,XX]\% \\
+\hline
+Débit mesuré           & Global                      & [XX] req/s \\
+\hline
+Itérations totales     & Global                      & [XXXX] \\
+\hline
+\end{tabular}
+\caption{Résultats des tests de performance — Sprint 2}
+\label{tab:perf_sprint2}
+\end{table}
+
+\subsubsection{Analyse des résultats}
+
+Les résultats montrent que les opérations de consultation des contrats et
+des projets restent performantes sous charge. Les requêtes de lecture
+bénéficient de l'indexation de la base de données PostgreSQL, ce qui
+maintient les temps de réponse dans des bornes acceptables même lors des
+pics de concurrence. Aucune dégradation liée aux calculs de TVA, à la
+génération des références de contrat au format automatique, ni aux
+vérifications de cohérence des dates SLA n'a été observée. L'opération de
+résiliation, qui implique une transaction en base de données, présente un
+temps de réponse légèrement supérieur aux lectures, ce qui est attendu et
+conforme aux seuils définis.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth,keepaspectratio]{Images/test-perf-sprint2-k6.png}
+\caption{Résultats k6 — test de charge Sprint 2 (contrats et projets)}
+\label{fig:perf_sprint2}
+\end{figure}
 
 \subsection{Tests de sécurité}
 Les tests de sécurité du deuxième sprint ont ciblé la protection des

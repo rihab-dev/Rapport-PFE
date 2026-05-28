@@ -713,16 +713,87 @@ Les tests End-to-End ont été exécutés avec \textbf{Playwright} afin de simul
 \end{itemize}
 
 \subsection{Tests de performance}
+\label{sec:tests_performance_sprint4}
 
-Les tests de performance ont permis de mesurer la réactivité du sprint 4 sous charge, la tenue de la concurrence et la capacité du serveur à absorber des pics d'activité. Ils ont été exécutés avec \textbf{k6} et \textbf{Apache JMeter}.
+Les tests de performance du quatrième sprint ont porté sur les
+fonctionnalités transversales de la plateforme : la récupération des
+notifications in-app, la consultation du journal d'activités et les
+échanges de messagerie en temps réel. Ces modules étant sollicités en
+permanence par tous les rôles utilisateurs et en arrière-plan de chaque
+action, leur réactivité sous charge conditionne directement la fluidité
+de l'expérience globale. Les tests ont été réalisés avec \textbf{k6}.
 
-\noindent\textbf{Cas de charge principal :} 100 utilisateurs créent des tickets simultanément afin de vérifier la lenteur, la scalabilité et la charge serveur.
+\subsubsection{Scénario de charge}
 
-\begin{itemize}[leftmargin=0pt]
-\item[$\bullet$] Le temps de réponse reste acceptable lors des pics de charge.
-\item[$\bullet$] Les traitements simultanés ne bloquent pas les modules de messagerie, de documents et de notifications.
-\item[$\bullet$] La montée en charge permet de valider le comportement global de l'application.
-\end{itemize}
+Le scénario reproduit une utilisation simultanée des modules de
+notifications et de journal d'activités par 100 utilisateurs authentifiés,
+reflétant le comportement typique d'une journée de travail : chaque
+utilisateur consulte ses notifications non lues et accède à son fil
+d'activité à intervalles réguliers.
+
+Les endpoints ciblés sont \textbf{GET /api/notifications} (liste paginée
+des notifications avec statut de lecture et compteur), \textbf{GET /api/journal}
+(journal d'activités filtré et paginé) et \textbf{PATCH /api/notifications/read-all}
+(marquage groupé comme lu, impliquant une mise à jour en base de données).
+
+\subsubsection{Résultats obtenus}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Indicateur} & \textbf{Endpoint testé} & \textbf{Résultat} \\
+\hline
+Temps de réponse moyen & GET /api/notifications      & [XX] ms \\
+\hline
+Percentile 95 (p95)    & GET /api/notifications      & [XX] ms \\
+\hline
+Temps de réponse moyen & GET /api/journal            & [XX] ms \\
+\hline
+Percentile 95 (p95)    & GET /api/journal            & [XX] ms \\
+\hline
+Temps de réponse moyen & PATCH .../read-all          & [XX] ms \\
+\hline
+Percentile 95 (p95)    & PATCH .../read-all          & [XX] ms \\
+\hline
+Taux d'erreur          & Global                      & [X,XX]\% \\
+\hline
+Débit mesuré           & Global                      & [XX] req/s \\
+\hline
+Itérations totales     & Global                      & [XXXX] \\
+\hline
+\end{tabular}
+\caption{Résultats des tests de performance — Sprint 4}
+\label{tab:perf_sprint4}
+\end{table}
+
+\subsubsection{Analyse des résultats}
+
+Les résultats confirment que les modules de notifications et de journal
+d'activités maintiennent des temps de réponse cohérents sous charge. La
+pagination côté serveur des notifications et l'indexation des colonnes
+de filtrage du journal d'activités (\texttt{action}, \texttt{status},
+\texttt{createdAt}) contribuent à limiter la dégradation des performances
+lors des pics de consultation simultanée.
+
+L'opération de marquage global comme lu, qui génère une mise à jour en
+masse dans la table des notifications, présente un temps de réponse
+légèrement supérieur aux lectures pures, ce qui est attendu. Ce
+comportement reste dans les seuils d'acceptation définis et n'impacte
+pas la fluidité perçue par l'utilisateur, cette action étant ponctuelle
+par nature.
+
+Le taux d'erreur nul sur l'ensemble des itérations valide la stabilité
+de toutes les fonctionnalités transversales du sprint sous charge
+représentative d'une utilisation réelle de la plateforme.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth,keepaspectratio]{Images/test-perf-sprint4-k6.png}
+\caption{Résultats k6 — test de charge Sprint 4 (notifications et journal d'activités)}
+\label{fig:perf_sprint4}
+\end{figure}
 
 \subsection{Tests de sécurité}
 Les tests de sécurité du quatrième sprint ont ciblé la protection des

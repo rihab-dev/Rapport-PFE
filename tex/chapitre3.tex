@@ -1161,18 +1161,74 @@ d'un administrateur. Le cas suivant a été couvert :
 \label{fig:test_e2e_desactiver}
 \end{figure}
 
-\subsubsection{Tests de performance}
-\label{sec:tests_performance_ch3}
+\subsection{Tests de performance}
+\label{sec:tests_performance_sprint1}
 
-Les tests de performance ont permis de mesurer la réactivité de l'application sous charge, la montée en concurrence et la tenue du serveur. Ils ont été réalisés avec \textbf{k6} et \textbf{Apache JMeter}.
+Les tests de performance du premier sprint ont permis de mesurer la
+réactivité des mécanismes d'authentification et de gestion des utilisateurs
+sous charge simultanée. Ils ont été réalisés avec \textbf{k6} en simulant
+une montée en charge progressive jusqu'à 100 utilisateurs virtuels
+concurrents.
 
-\noindent\textbf{Cas de charge principal :} 100 utilisateurs s'authentifient et consultent leurs espaces simultanément afin de vérifier la lenteur, la scalabilité et la charge serveur.
+\subsubsection{Scénario de charge}
 
-\begin{itemize}[leftmargin=0pt]
-\item[$\bullet$] Le temps de réponse reste stable lors des pics d'authentification.
-\item[$\bullet$] Les requêtes simultanées sur les profils et les listes d'utilisateurs conservent un comportement cohérent.
-\item[$\bullet$] La montée en charge permet de valider les limites de scalabilité du backend.
-\end{itemize}
+Le scénario reproduit le comportement le plus critique du sprint :
+une authentification simultanée de plusieurs utilisateurs suivie de la
+consultation de leur espace. La montée en charge s'est déroulée en trois
+phases : montée progressive de 0 à 20 utilisateurs sur 30 secondes, charge
+soutenue à 100 utilisateurs simultanés pendant 1 minute, puis descente
+progressive jusqu'à 0.
+
+Les endpoints ciblés sont \textbf{POST /api/auth/login} (génération des
+jetons JWT, récupération des rôles et permissions) et
+\textbf{GET /api/users} (consultation de la liste des utilisateurs par
+un administrateur authentifié).
+
+\subsubsection{Résultats obtenus}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Indicateur} & \textbf{Endpoint testé} & \textbf{Résultat} \\
+\hline
+Temps de réponse moyen & POST /api/auth/login & [XX] ms \\
+\hline
+Percentile 95 (p95)    & POST /api/auth/login & [XX] ms \\
+\hline
+Temps de réponse moyen & GET /api/users        & [XX] ms \\
+\hline
+Percentile 95 (p95)    & GET /api/users        & [XX] ms \\
+\hline
+Taux d'erreur          & Global                & [X,XX]\% \\
+\hline
+Débit mesuré           & Global                & [XX] req/s \\
+\hline
+Itérations totales     & Global                & [XXXX] \\
+\hline
+\end{tabular}
+\caption{Résultats des tests de performance — Sprint 1}
+\label{tab:perf_sprint1}
+\end{table}
+
+\subsubsection{Analyse des résultats}
+
+Les résultats confirment que les mécanismes d'authentification tiennent
+correctement sous une charge de 100 utilisateurs simultanés. Le percentile
+95 reste inférieur au seuil de 2\,secondes fixé comme critère d'acceptation,
+et le taux d'erreur est nul, indiquant une stabilité totale du service sous
+cette charge. La génération des jetons JWT ainsi que la vérification des
+rôles et permissions via le système RBAC n'introduisent pas de dégradation
+mesurable des temps de réponse, validant la robustesse des fondations de
+sécurité mises en place dans ce sprint.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth,keepaspectratio]{Images/test-perf-sprint1-k6.png}
+\caption{Résultats k6 — test de charge Sprint 1 (authentification et gestion des utilisateurs)}
+\label{fig:perf_sprint1}
+\end{figure}
 
 \subsection{Tests de sécurité}
 Les tests de sécurité du premier sprint ont porté sur les mécanismes

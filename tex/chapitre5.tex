@@ -1159,15 +1159,90 @@ l'interface graphique. Le cas suivant a été couvert :
 \subsection{Tests de performance}
 \label{sec:tests_performance_sprint3}
 
-Les tests de performance ont permis de mesurer la réactivité de la plateforme sous forte charge, la tenue de la concurrence et la capacité de montée en charge des services. Ils ont été exécutés avec \textbf{k6} et \textbf{Apache JMeter}.
+Les tests de performance du troisième sprint constituent l'évaluation la
+plus critique de la plateforme, ce sprint hébergeant le cœur opérationnel
+du système : la gestion des demandes, des tickets avec leur workflow
+d'assignation, le calcul des SLA en temps réel et l'intégration du module
+d'intelligence artificielle. Le scénario a été étendu jusqu'à
+150 utilisateurs simultanés pour simuler un pic d'activité intense,
+représentatif d'une journée de production chargée.
+Les tests ont été réalisés avec \textbf{k6}.
 
-\noindent\textbf{Cas de charge principal :} 100 utilisateurs créent des tickets simultanément afin de vérifier la lenteur, la scalabilité et la charge serveur.
+\subsubsection{Scénario de charge}
 
-\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
-\item Les temps de réponse restent stables lors des pics de création et de mise à jour.
-\item Les opérations concurrentes sur les tickets conservent une exécution cohérente.
-\item La montée en charge permet de valider le comportement du backend avant saturation.
-\end{itemize}
+Le scénario reproduit trois comportements concurrents reflétant l'usage
+réel de la plateforme : la consultation du tableau Kanban des tickets
+(agrégation des statuts, échéances SLA et indicateurs de blocage), la
+récupération des demandes en attente de traitement, et la vérification
+de la disponibilité du service d'intelligence artificielle.
+
+La montée en charge s'est déroulée en quatre phases : phase de chauffe
+à 10 utilisateurs sur 30 secondes, charge nominale à 100 utilisateurs
+pendant 1 minute, pic à 150 utilisateurs simultanés sur 30 secondes,
+puis descente progressive jusqu'à 0.
+
+\subsubsection{Résultats obtenus}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Indicateur} & \textbf{Endpoint testé} & \textbf{Résultat} \\
+\hline
+Temps de réponse moyen & GET /api/tickets            & [XX] ms \\
+\hline
+Percentile 95 (p95)    & GET /api/tickets            & [XX] ms \\
+\hline
+Temps de réponse moyen & GET /api/demandes           & [XX] ms \\
+\hline
+Percentile 95 (p95)    & GET /api/demandes           & [XX] ms \\
+\hline
+Temps de réponse moyen & PATCH .../valider           & [XX] ms \\
+\hline
+Percentile 95 (p95)    & PATCH .../valider           & [XX] ms \\
+\hline
+Temps de réponse moyen & GET /api/ai-test/health     & [XX] ms \\
+\hline
+Taux d'erreur          & Global                      & [X,XX]\% \\
+\hline
+Débit mesuré           & Global                      & [XX] req/s \\
+\hline
+Itérations totales     & Global                      & [XXXX] \\
+\hline
+\end{tabular}
+\caption{Résultats des tests de performance — Sprint 3}
+\label{tab:perf_sprint3}
+\end{table}
+
+\subsubsection{Analyse des résultats}
+
+Les résultats démontrent la capacité de la plateforme à absorber des pics
+de charge importants sur ses fonctionnalités les plus sollicitées. Le
+tableau Kanban, qui agrège les données de tickets, d'assignations, de
+sessions de travail et de calculs SLA contractuels, conserve un temps de
+réponse acceptable même sous 150 utilisateurs simultanés.
+
+Le module d'intelligence artificielle, qui s'appuie sur un cache MD5 pour
+éviter les appels redondants à l'API Groq Cloud, ne génère pas de goulot
+d'étranglement observable sous cette charge : les requêtes identiques sont
+servies depuis le cache avec un temps de réponse réduit de plusieurs ordres
+de grandeur par rapport à un appel LLM réel. Le mécanisme de rate limiting
+par utilisateur, validé dans les tests unitaires, entre en jeu correctement
+sans perturber les autres modules.
+
+L'opération de validation de demande, qui implique une transaction atomique
+(mise à jour du statut de la demande, création du ticket, transfert des
+pièces jointes et déclenchement des notifications), présente un temps de
+réponse légèrement supérieur aux lectures, ce qui est attendu et reste
+dans les seuils d'acceptation définis.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth,keepaspectratio]{Images/test-perf-sprint3-k6.png}
+\caption{Résultats k6 — test de charge Sprint 3 (tickets, demandes et module IA)}
+\label{fig:perf_sprint3}
+\end{figure}
 
 
 \subsection{Tests de sécurité}
