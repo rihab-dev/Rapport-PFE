@@ -1174,19 +1174,57 @@ Les tests de performance ont permis de mesurer la réactivité de l'application 
 \item[$\bullet$] La montée en charge permet de valider les limites de scalabilité du backend.
 \end{itemize}
 
-\subsubsection{Tests de sécurité}
-\label{sec:tests_securite_ch3}
+\subsection{Tests de sécurité}
+Les tests de sécurité du premier sprint ont porté sur les mécanismes
+d'authentification, le contrôle d'accès basé sur les rôles (RBAC)
+et la résistance aux attaques courantes, conformément à l'OWASP Top 10.
 
-Les tests de sécurité ont vérifié les contrôles d'accès, la robustesse des jetons JWT et la résistance aux attaques applicatives courantes selon \textbf{OWASP Top 10}. Ils ont été exécutés avec \textbf{OWASP ZAP}.
+\subsubsection{Test de verrouillage de compte}
+Le mécanisme anti-brute-force a été validé en soumettant trois tentatives
+de connexion consécutives avec un mot de passe erroné. À la quatrième
+tentative --- même avec le bon mot de passe --- le système retourne
+\texttt{401 Unauthorized} avec le message « Compte temporairement
+verrouillé », confirmant l'activation du verrou d'une minute.
 
-\noindent\textbf{Scénario de référence :} un utilisateur normal tente d'accéder au dashboard administrateur afin de vérifier le refus d'accès.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{Images/test-secu-verrouillage.png}
+\caption{Test de sécurité — verrouillage après 3 tentatives échouées}
+\end{figure}
 
-\begin{itemize}[leftmargin=0pt]
-\item[$\bullet$] Les tentatives d'injection SQL sont bloquées par les validations et les requêtes paramétrées.
-\item[$\bullet$] Les entrées XSS sont neutralisées avant affichage.
-\item[$\bullet$] Les permissions sont contrôlées avant tout accès aux ressources sensibles.
-\item[$\bullet$] Les jetons JWT invalides, expirés ou falsifiés sont rejetés.
-\item[$\bullet$] Les accès interdits renvoient un message explicite sans exposer de données sensibles.
-\end{itemize}
+\subsubsection{Test du contrôle d'accès RBAC}
+Un utilisateur authentifié avec le rôle \texttt{CLIENT} a tenté d'accéder
+aux endpoints réservés aux administrateurs. Le système a retourné
+\texttt{403 Forbidden} dans tous les cas, confirmant l'isolation des
+périmètres d'accès.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{Images/test-secu-rbac-403.png}
+\caption{Test de sécurité — refus d'accès 403 pour un rôle non autorisé}
+\end{figure}
+
+\subsubsection{Test de robustesse des tokens JWT}
+Les requêtes émises avec un token JWT falsifié ou expiré ont été
+systématiquement rejetées avec le code \texttt{401 Unauthorized},
+confirmant l'intégrité de la validation des jetons.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{Images/test-secu-jwt-401.png}
+\caption{Test de sécurité — refus d'accès 401 pour un token invalide}
+\end{figure}
+
+\subsubsection{Scan automatisé OWASP ZAP}
+Un scan automatisé a été réalisé sur l'ensemble des endpoints exposés.
+Aucune vulnérabilité de niveau \textit{High} ou \textit{Medium} n’a été détectée.
+Les résultats obtenus indiquent uniquement l’identification des mécanismes de gestion de session, 
+sans présence d’alertes critiques liées à la sécurité de l’application.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{Images/test-secu-zap-alertes.png}
+\caption{Rapport OWASP ZAP — absence d’alertes critiques détectées}
+\end{figure}
 
 \end{itemize}

@@ -617,20 +617,26 @@ Les tests de performance ont permis de mesurer la réactivité des fonctionnalit
 \end{itemize}
 
 \subsection{Tests de sécurité}
-\label{sec:tests_securite_sprint2}
+Les tests de sécurité du deuxième sprint ont ciblé la protection des
+données contractuelles et la prévention des accès non autorisés entre
+clients.
 
-Les tests de sécurité ont validé la protection des endpoints, les permissions d'accès et la résistance aux attaques applicatives courantes en s'appuyant sur \textbf{OWASP Top 10} et \textbf{OWASP ZAP}.
+\subsubsection{Test d'isolation des données (IDOR)}
+La vulnérabilité IDOR (\textit{Insecure Direct Object Reference})
+consiste à accéder à une ressource appartenant à un autre utilisateur
+en manipulant un identifiant. Ce test a vérifié qu'un client authentifié
+ne peut pas consulter les contrats d'un autre client.
 
-\noindent\textbf{Scénario de référence :} un utilisateur normal tente d'accéder au dashboard administrateur afin de vérifier le refus d'accès.
+Un utilisateur avec le rôle \texttt{CLIENT} a tenté d'accéder à la liste
+complète des contrats via \texttt{GET /api/contrats}. Le système a
+retourné \texttt{403 Forbidden}, confirmant que l'accès est
+restreint aux seuls contrats appartenant au client authentifié.
 
-\begin{itemize}[leftmargin=0pt]
-\item[$\bullet$] Les tentatives d'injection SQL sont rejetées par les contrôles de validation et les requêtes sécurisées.
-\item[$\bullet$] Les contenus XSS sont filtrés avant affichage.
-\item[$\bullet$] Les permissions sont vérifiées avant tout accès aux ressources sensibles.
-\item[$\bullet$] Les jetons JWT invalides ou expirés sont refusés.
-\item[$\bullet$] Les accès interdits renvoient un code d'erreur sans exposer d'informations internes.
-\end{itemize}
-
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{Images/get client test interg1 sprint 2.png}
+\caption{Test de sécurité — isolation des données contractuelles (IDOR)}
+\end{figure}
 %─────────────────────────────────────────────────────────────────────────────
 %─────────────────────────────────────────────────────────────────────────────
 \subsection{Tests d'intégration}
@@ -641,7 +647,7 @@ Les tests d'intégration valident les endpoints REST des contrats via \textbf{Sw
 
 \item[$\square$] \textbf{Test du module Gestion des contrats}
 \newline \textit{Endpoints : \textbf{POST /api/contrats/:id/resilier}, \textbf{GET /api/contrats}, \textbf{GET /api/contrats/:clientId}}
-\noindent Cette suite valide le comportement complet des endpoints de gestion des contrats.
+\noindent Cette suite valide le comportement des endpoints de gestion des contrats.
 \newline Les cas suivants ont été couverts :
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]

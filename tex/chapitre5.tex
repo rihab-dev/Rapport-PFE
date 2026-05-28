@@ -1032,21 +1032,33 @@ Les tests d'intégration ont été réalisés sur les endpoints principaux du sp
   \item Le cache IA et le rate limiting fonctionnent correctement : les requêtes identiques sont servies depuis le cache et les quotas journaliers sont respectés.
 \end{itemize}
 
-\item[$\square$] \textbf{Test du module IA (Génération des suggestions KB)}
-\newline \textit{Endpoints : \textbf{GET /api/ai/tickets/:id/kb-suggestions}}
-\noindent Cette suite valide la génération automatique de suggestions issues de la base de connaissances à partir d'un ticket créé.
+\item[$\square$] \textbf{Test du module IA (Connectivité, workflow complet et monitoring)}
+\newline \textit{Endpoints : \textbf{GET /api/ai-test/groq/health}, \textbf{GET /api/ai-test/workflow/full-test}, \textbf{GET /api/ai-test/classifications/list}}
+\noindent Cette suite valide la connexion à Groq Cloud, l’exécution du pipeline complet de classification IA, et la consultation des analyses persistées.
 \newline Les cas suivants ont été couverts :
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item Un ticket est analysé et des articles pertinents de la KB sont suggérés : l'endpoint retourne une liste d'articles avec leur score de pertinence et un extrait.
+  \item La connectivité à Groq Cloud est vérifiée : l’endpoint \texttt{groq/health} retourne la liste des modèles disponibles (Llama, Qwen, etc.) avec leurs caractéristiques (fenêtre de contexte, tokens maximum).
   \begin{figure}[H]
   \centering
-  \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/suggestionsKBTest.png}
-  \caption{Test d'intégration - Suggestions KB}
+  \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/groqHealthTest.png}
+  \caption{Test d’intégration - Connexion Groq Cloud}
+  \end{figure}
+  
+  \item Le workflow complet IA est exécuté : l’endpoint \texttt{workflow/full-test} retourne un bilan détaillé incluant la vérification de Groq Cloud, l’accès à la base de données et la classification réelle d’une demande.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/workflowFullTest.png}
+  \caption{Test d’intégration - Workflow complet IA}
+  \end{figure}
+  
+  \item Les classifications existantes peuvent être listées : l’endpoint \texttt{classifications/list} retourne les 10 dernières analyses IA.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/classificationsList.png}
+  \caption{Test d’intégration - Liste des classifications IA}
   \end{figure}
   \end{itemize}
-
-\end{itemize}
 
 \subsubsection{Tests End-to-End}
 \label{sec:tests_e2e_demandes}
@@ -1157,20 +1169,34 @@ Les tests de performance ont permis de mesurer la réactivité de la plateforme 
 \item La montée en charge permet de valider le comportement du backend avant saturation.
 \end{itemize}
 
+
 \subsection{Tests de sécurité}
-\label{sec:tests_securite_sprint3}
+Les tests de sécurité du troisième sprint ont porté sur la protection
+des transitions de statut des tickets, l'isolation des assignations et
+la robustesse du module d'intelligence artificielle.
 
-Les tests de sécurité ont validé les contrôles d'accès, la robustesse des jetons JWT et la résistance aux attaques applicatives courantes en s'appuyant sur \textbf{OWASP Top 10} et \textbf{OWASP ZAP}.
+\subsubsection{Test de contrôle des transitions de statut}
+Le workflow des tickets impose des transitions strictes entre statuts.
+Les tentatives de transition non autorisée --- comme la validation d'une
+demande par un développeur ou la fermeture d'un ticket encore en cours
+--- ont été systématiquement bloquées avec les codes \texttt{403 Forbidden}
+ou \texttt{400 Bad Request}, selon que le blocage est lié aux permissions
+ou à la logique métier.
 
-\noindent\textbf{Scénario de référence :} un utilisateur normal tente d'accéder au dashboard administrateur afin de vérifier le refus d'accès.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{Images/test-secu-transition-statut.png}
+\caption{Test de sécurité — refus des transitions de statut non autorisées}
+\end{figure}
 
-\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
-\item Les tentatives d'injection SQL sont bloquées par les validations et les requêtes paramétrées.
-\item Les entrées XSS sont neutralisées avant affichage.
-\item Les permissions sont contrôlées avant l'accès aux actions sensibles.
-\item Les jetons JWT invalides, expirés ou falsifiés sont rejetés.
-\item Les accès interdits renvoient un statut explicite sans exposer de données internes.
-\end{itemize}
+\subsubsection{Test de sécurité du module IA — Anonymisation des données sensibles (PII)}
+Une demande contenant des informations personnelles identifiables (numéro de téléphone, adresse email, nom complet) a été soumise au module IA. La vérification des logs système confirme que ces données ont été masquées avant transmission à l'API externe Groq Cloud. Aucune information sensible ne quitte le périmètre interne.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{Images/test-secu-ia-anonymisation.png}
+\caption{Test de sécurité — masquage automatique des PII avant appel API externe}
+\end{figure}
 
 \section{Conclusion}
 Ce troisième sprint a permis d’implémenter le noyau fonctionnel de la solution. En combinant workflow métier, suivi temporel, gestion des SLA, visualisation Kanban et assistance intelligente, la plateforme franchit une étape décisive vers un système complet de support et de pilotage des demandes.

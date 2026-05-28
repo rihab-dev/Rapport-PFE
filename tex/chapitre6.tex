@@ -536,7 +536,7 @@ Le diagramme de déploiement permet de représenter l'architecture physique de l
     \label{fig:diagramme_deploiement_sprint4}
 \end{figure}
 
-Le diagramme de déploiement illustre la distribution physique de la plateforme \textbf{SolidMaint}. Le poste client (Device) héberge le navigateur web qui charge l'interface utilisateur. Côté infrastructure, le serveur d'application principal repose sur un environnement d'exécution Docker (Docker Host) qui orchestre les différents conteneurs isolés construits à partir des images du projet~: \texttt{solidcare\_frontend} (Next.js / SSR) et \texttt{solidcare\_backend} (NestJS / API REST). 
+Le diagramme de déploiement illustre la distribution physique de la plateforme \textbf{SolidMaint}. Le poste client (Device) héberge le navigateur web qui charge l'interface utilisateur. Côté infrastructure, le serveur d'application principal repose sur un environnement d'exécution Docker (Docker Host) qui orchestre les différents conteneurs isolés construits à partir des images du projet~: \texttt{solidmaint\_frontend} (Next.js / SSR) et \texttt{solidmaint\_backend} (NestJS / API REST). 
 
 Dans cette configuration, les communications HTTP s'effectuent directement : le navigateur client accède au front-end sur le port 3000, et réalise ses appels API directement vers le back-end sur le port 3001. Enfin, le back-end communique de manière sécurisée en TCP/IP avec les serveurs de données dédiés : le serveur de base de données relationnelle PostgreSQL 16 (port 5432) et le serveur de cache en mémoire Redis 7 (port 6379), assurant ainsi des performances optimales via une gestion efficace du Rate-Limiting et de la persistance.
 
@@ -725,18 +725,34 @@ Les tests de performance ont permis de mesurer la réactivité du sprint 4 sous 
 \end{itemize}
 
 \subsection{Tests de sécurité}
+Les tests de sécurité du quatrième sprint ont ciblé la protection des
+canaux de messagerie et la validation des fichiers uploadés.
 
-Les tests de sécurité ont vérifié les contrôles d'accès, la robustesse des jetons JWT et la résistance aux attaques applicatives courantes en s'appuyant sur \textbf{OWASP Top 10} et \textbf{OWASP ZAP}.
+\subsubsection{Test d'isolation des canaux de messagerie}
+L'accès aux messages d'un canal est strictement limité aux membres de
+ce canal. Un utilisateur non membre ayant tenté de consulter les messages
+d'un canal d'une autre équipe a reçu le code \texttt{403 Forbidden},
+confirmant l'isolation des espaces de communication.
 
-\noindent\textbf{Scénario de référence :} un utilisateur normal tente d'accéder au dashboard administrateur afin de vérifier le refus d'accès.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{Images/test-secu-canal-403.png}
+\caption{Test de sécurité — isolation des canaux de messagerie}
+\end{figure}
 
-\begin{itemize}[leftmargin=0pt]
-\item[$\bullet$] Les tentatives d'injection SQL sont bloquées par les validations et les requêtes sécurisées.
-\item[$\bullet$] Les entrées XSS sont neutralisées avant affichage.
-\item[$\bullet$] Les permissions sont vérifiées avant l'accès aux ressources protégées.
-\item[$\bullet$] Les jetons JWT invalides, expirés ou falsifiés sont rejetés.
-\item[$\bullet$] Les accès interdits renvoient une réponse explicite sans exposer de données sensibles.
-\end{itemize}
+\subsubsection{Test de validation des fichiers uploadés}
+Le module de gestion documentaire intègre une validation des fichiers
+avant stockage. Les tests ont confirmé que les fichiers dont le type
+MIME n'est pas autorisé sont rejetés avec \texttt{400 Bad Request},
+et que les fichiers dépassant la limite de 10 Mo retournent
+\texttt{413 Payload Too Large}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{Images/test-secu-documentaire-413.png}
+\caption{Test de sécurité — validation des fichiers uploadés}
+\end{figure}
+
 % ─────────────────────────────────────────────────────────────────────────────
 % CONCLUSION DU CHAPITRE
 % ─────────────────────────────────────────────────────────────────────────────
