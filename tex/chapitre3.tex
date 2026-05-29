@@ -1080,52 +1080,49 @@ Lee cas suivant ont été couvert :
 \end{itemize}
 
 \subsubsection{Tests End-to-End}
-\label{sec:tests_e2e}
+\label{sec:tests_e2e_demandes}
 
-Les tests End-to-End ont pour objectif de simuler les parcours utilisateurs
-complets dans un navigateur réel piloté par \textbf{Playwright}. Ces tests
-s'exécutent en interaction avec le frontend Next.js, le backend NestJS et
-la base de données PostgreSQL, reproduisant ainsi les conditions réelles
-d'utilisation de la plateforme.
+Les tests End-to-End de création de demande client valident l'intégralité
+du flux fonctionnel d'ajout d'une nouvelle demande au sein d'un navigateur
+réel instrumenté par \textbf{Playwright}. Ces tests interagissent
+conjointement avec le frontend Next.js, le backend NestJS et la base de
+données PostgreSQL, couvrant ainsi l'ensemble du parcours utilisateur,
+depuis l'authentification préalable jusqu'à la validation finale de la
+demande.
 \newline
 
-\noindent\textbf{Bilan : 11 tests exécutés — 11 réussis — 0 échec.}
+\noindent\textbf{Bilan : les scénarios critiques du sprint ont été exécutés avec succès.}
 \vspace{6pt}
 
 \begin{itemize}[leftmargin=0pt]
 
-\item[$\square$] \textbf{Test du module Authentification}
-\newline \textit{10 scénarios : connexion classique, OAuth, déconnexion} 
+\item[$\square$] \textbf{Test du module de création de demande client}
+\newline \textit{3 scénarios : affichage du formulaire, création valide, annulation}
 
-\noindent Cette suite valide le flux complet d'authentification en
-simulant les actions réelles d'un utilisateur sur l'interface. Les cas
-suivants ont été couverts :
+\noindent Cette suite de tests valide le flux complet de création de
+demande en simulant les actions réelles d'un utilisateur sur
+l'interface graphique. Les cas suivants ont été couverts :
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item La page de connexion est chargée : le formulaire et les boutons
-    d'authentification OAuth sont affichés correctement.
-  \item Les champs du formulaire sont vides ou partiellement remplis :
-    le bouton de soumission reste désactivé.
-  \item L'utilisateur soumet des identifiants valides : le flux aboutit
-    à une redirection vers la page d'accueil et une session est créée.
-  \item L'utilisateur saisit un identifiant ou un mot de passe invalide :
-    un message d'erreur approprié est affiché sans redirection.
-  \item L'utilisateur échoue l'authentification \textbf{3 fois
-    consécutives} : le compte est verrouillé pendant \textbf{1 minute}
-    et un message d'information est affiché.
-  \item L'utilisateur se déconnecte : les jetons sont supprimés du
-    \texttt{localStorage} et l'utilisateur est redirigé vers la page
-    \texttt{/connexion}.
-  \item L'utilisateur s'authentifie via \textbf{Google} avec succès :
-    les données du profil sont récupérées et une session valide est
-    créée.
-  \item L'authentification via \textbf{Google} échoue : un message
-    d'erreur technique est affiché.
-  \item L'utilisateur s'authentifie via \textbf{GitHub} avec succès :
-    les données du profil sont récupérées et une session valide est
-    créée.
-  \item L'authentification via \textbf{GitHub} échoue : un message
-    d'erreur technique est affiché.
+  
+  \item Fermeture automatique du modal \og Contrat bientôt expiré \fg{} par clic sur \og Me le rappeler demain \fg{} pour éviter toute interférence.
+  
+  \item Sélection d'un projet via le sélecteur : ouverture de la liste déroulante et enregistrement de la première option.
+  
+  \item Sélection d'un type de demande dans la grille des catégories (cinq colonnes).
+  
+  \item Sélection d'un niveau de priorité via la grille interactive à trois colonnes.
+  
+  \item Renseignement d'un titre descriptif dans le champ dont le placeholder indique \og Ex: Bug sur le module facturation \fg{}.
+  
+  \item Saisie d'une description détaillée via l'éditeur rich-text.
+  
+  \item Soumission du formulaire avec données valides : activation du bouton \og Envoyer \fg{}, création en base de données, redirection vers \texttt{/demandes}, affichage du message \og Demande créée avec succès \fg{}.
+  
+  \item Clic sur \textbf{Annuler} : abandon de la création et redirection vers \texttt{/demandes}.
+  
+  \item Désactivation du bouton de soumission tant que tous les champs obligatoires ne sont pas renseignés.
+  
 \end{itemize}
 
 \begin{figure}[H]

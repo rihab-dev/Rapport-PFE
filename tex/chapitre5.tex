@@ -371,67 +371,10 @@ Dans cette partie, nous allons présenter les cas d'utilisation relatifs au trai
 Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas du traitement des tickets assignés :
 \begin{figure}[H]
         \centering
-        \includegraphics[width=1\textwidth,height=0.75\textheight,keepaspectratio]{Images/traiter_tickets_assignes.png}
+        \includegraphics[width=1\textwidth,height=1\textheight,keepaspectratio]{Images/traiter_tickets_assignes.png}
         \caption{Raffinement du cas d'utilisation « Traiter tickets assignés »}
         \label{fig:traiter_tickets_assignes}
 \end{figure}
-
-\subsubsection{Description textuelle du cas d’utilisation « Gérer chronomètre »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Gérer chronomètre ».
-
-\footnotesize
-\renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-\textbf{Nom du cas d'utilisation} & Gérer chronomètre \\
-\hline
-\textbf{Acteurs} & Développeur \\
-\hline
-\textbf{Précondition} & Le développeur est authentifié et dûment assigné au ticket. Le ticket est dans l’état « Ouvert » ou « En cours ». \\
-\hline
-\textbf{Postcondition} & Le temps de travail effectif est enregistré dans le système. Le ticket peut être soumis en revue ou marqué comme résolu. \\
-\hline
-\textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
-\item Le développeur accède à la page de détail du ticket assigné.
-\item Le système détecte l’absence de session de travail active.
-\item Le système déclenche automatiquement le chronomètre après un délai de trois secondes.
-\item Une session de travail est enregistrée avec l’horodatage de début.
-\item L’état du ticket bascule automatiquement de « Ouvert » à « En cours ».
-\item Le développeur interrompt temporairement le chronomètre en fournissant un motif valide et une note explicative.
-\item Le système calcule et cumule le temps de travail effectif, hors périodes de pause.
-\item À l’issue du travail, le développeur arrête définitivement le chronomètre.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario alternatif} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le système détecte que le chronomètre est déjà actif mais en pause. Le système déclenche la reprise du temps plutôt que la création d'une nouvelle session. Le scénario saute à l'étape 7.
-\item Le développeur tente de faire une pause sans sélectionner de motif valide. Le système bloque l'action et affiche un message requérant la saisie. Le développeur corrige, puis le scénario reprend à l'étape 6.
-\item Si le développeur ne stoppe pas le chronomètre, une tâche système planifiée clôture automatiquement la session après douze heures d'inactivité et envoie une alerte. Le cas se termine.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario d'exception} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le système détecte que le ticket est dans un état final (ex: « résolu » ou « fermé »). Le chronomètre refuse de se lancer, affiche un message d'interdiction au développeur et le processus est interrompu.
-\item Le système détecte que le développeur n'est plus le responsable assigné (ex: réassignation forcée). L'accès est instantanément refusé et le processus s'interrompt avec erreur.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Gérer chronomètre »}
-\normalsize
 
 
 \subsubsection{Description textuelle du cas d’utilisation « Soumettre ticket en revue »}
@@ -504,33 +447,33 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \hline
 \textbf{Acteurs} & Développeur \\
 \hline
-\textbf{Précondition} & Le ticket est dans l’état « En cours ». Une session de travail a été préalablement démarrée. \\
+\textbf{Précondition} & Le ticket est dans l’état « En cours » ou « Ouvert ». Le développeur est authentifié et assigné. Une session de travail est active ou a été démarrée. Aucun autre blocage non résolu n’est en cours sur l’assignation.  \\
 \hline
-\textbf{Postcondition} & Un blocage est enregistré sur l’assignation. Une analyse automatique par IA est déclenchée. Un brouillon d’article pour la base de connaissances est créé. \\
+\textbf{Postcondition} & Un blocage est enregistré sur l’assignation. Une analyse automatique par IA est déclenchée. Un brouillon d’article pour la base de connaissances est créé. Le chef de projet, l’équipe et les administrateurs sont notifiés. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
-\item Le développeur remplit le formulaire de blocage (type prédéfini, priorité, description, pièces jointes) et soumet sa déclaration.
-\item Le système vérifie l'intégrité de la requête (autorisation d'accès, absence d'autres blocages en cours, validation des quotas de temps de travail et de progression).
-\item Le système enregistre techniquement le blocage et notifie immédiatement le chef de projet ainsi que le reste de l'équipe.
-\item En arrière-plan, une Intelligence Artificielle analyse l'incident pour générer et enregistrer un brouillon d'article de résolution.
+\item Le développeur remplit le formulaire de blocage (type, priorité, description, pièces jointes) et soumet sa déclaration.
+\item Le système vérifie l’authentification, l’autorisation, l’absence d’autre blocage actif, et la progression/temps de travail minimum requis (sauf cas d’exemption).
+\item Le système enregistre le blocage, historise l’événement et notifie le chef de projet, l’équipe et les administrateurs.
+\item En arrière-plan, une Intelligence Artificielle analyse l’incident et génère un brouillon d’article de résolution.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Si le type de blocage sélectionné est de nature administrative ou externe (ex: attente de droits d'accès), le système ignore exceptionnellement l'exigence de temps de travail minimal. L'opération est validée et le scénario reprend à l'étape 3.
+\item Si le type de blocage est administratif ou externe (ex : attente de droits d’accès), le système ignore l’exigence de temps de travail ou de progression minimale. L’opération est validée et le scénario reprend à l’étape 3.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le système vérifie le jeton d'authentification et constate que l'acteur n'est pas le développeur officiellement assigné à la session. Une exception "Forbidden" est levée et le signalement est rejeté.
-\item Sans exemption active, le système constate que le temps de travail effectif ou la progression du développeur sont trop faibles (ex: $<$ 30 min). La demande est rejetée et l'opération de signalement s'interrompt.
-\item Le système détecte qu'un problème de blocage est déjà explicitement déclaré et non résolu sur cette assignation. Le nouveau signalement est formellement interdit et le processus s'interrompt.
+\item L’acteur n’est pas le développeur assigné à l’assignation : le système lève une exception « Forbidden » et rejette le signalement.
+\item (Sans exemption) Le temps de travail effectif ou la progression sont insuffisants ($<$ 30 min): la demande est rejetée.
+\item Un blocage non résolu existe déjà sur cette assignation : le nouveau signalement est interdit et le processus s’interrompt.
 \end{enumerate}
 \end{minipage} \\
 \hline
@@ -555,34 +498,34 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \endlastfoot
 \textbf{Nom du cas d'utilisation} & Proposer solution  \\
 \hline
-\textbf{Acteurs} & Autre développeur de l'équipe, Chef de projet, Administrateur \\
+\textbf{Acteurs} & Autre développeur de l'équipe, Chef de projet \\
 \hline
-\textbf{Précondition} & Un signalement de blocage est actif sur l’assignation. L’acteur dispose des permissions appropriées. \\
+\textbf{Précondition} & Un blocage est signalé sur une assignation. L’acteur n’est pas le développeur bloqué et dispose des permissions nécessaires. \\
 \hline
-\textbf{Postcondition} & Une solution technique est enregistrée et placée en attente de test. Le développeur bloqué reçoit une notification. \\
+\textbf{Postcondition} & Une solution technique est enregistrée et placée en attente de validation par le développeur bloqué. Ce dernier reçoit une notification. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
-\item Un membre de l'équipe consulte l'assignation bloquée et actionne  « Proposer une solution ».
-\item Le système valide formellement l'habilitation de l'acteur à proposer cette solution.
-\item L'acteur rédige la solution détaillée dans l'éditeur et valide l'envoi.
-\item Le système enregistre la proposition, historise l'événement et notifie le développeur bloqué.
+\item Un membre autorisé consulte l’assignation bloquée et clique sur « Proposer une solution ».
+\item Le système vérifie que l’acteur n’est pas le développeur bloqué et qu’il a les droits nécessaires.
+\item L’acteur rédige la solution et valide l’envoi.
+\item Le système enregistre la proposition, historise l’événement et notifie le développeur bloqué.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Lors de la soumission, le système détecte que le contenu de la solution est vide ou trop court (ex: $< 10$ caractères). L'envoi est bloqué, l'acteur complète sa rédaction et le scénario reprend à l'étape 3.
-\item L'acteur peut solliciter le module IA du système. L'IA génère une proposition de résolution basée sur la base de connaissances. L'acteur ajuste cette suggestion automatiquement importée dans le champ et reprend son parcours nominal.
+\item Lors de la soumission, le système détecte que le contenu de la solution est vide ou trop court ($< 10$ caractères). L'envoi est bloqué, l'acteur complète sa rédaction et le scénario reprend à l'étape 3.
+\item L’acteur peut solliciter l’IA pour générer une suggestion, qu’il peut ensuite modifier avant validation.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le système détecte formellement que l'acteur essayant de "proposer" une solution est en réalité le développeur qui a lui-même signalé le blocage. Cette action est rejetée par sécurité (ce flux étant réservé à l'aide inter-membre) et le processus d'affichage du formulaire s'interrompt.
+\item Si l’acteur est le développeur bloqué, le système rejette l’action et n’affiche pas le formulaire.
 \end{enumerate}
 \end{minipage} \\
 \hline
@@ -609,133 +552,25 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \hline
 \textbf{Acteurs} & Développeur bloqué \\
 \hline
-\textbf{Précondition} & Une solution a été proposée. Le développeur bloqué est authentifié. \\
+\textbf{Précondition} & Une solution a été proposée et le développeur bloqué est authentifié.\\
 \hline
-\textbf{Postcondition} & Le blocage est levé. L’article de base de connaissances est enrichi par fusion de l’analyse IA et de la solution humaine validée. \\
+\textbf{Postcondition} &  Le blocage est levé. L’article de base de connaissances peut être enrichi par fusion de l’analyse IA et de la solution humaine validée. L’auteur de la solution est notifié. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
-\item Le développeur bloqué consulte la solution qui lui a été proposée.
-\item Il actionne la fonction « Valider et résoudre ».
-\item Le système désactive l'indicateur de blocage.
-\item Le système combine l'analyse automatique avec la solution humaine validée.
+\item Le développeur bloqué consulte la solution proposée.
+\item Il clique sur « Valider la solution ».
+\item Le système désactive l’indicateur de blocage.
+\item Le système fusionne l’analyse automatique et la solution humaine validée (si applicable).
 \item L’article de base de connaissances est mis à jour.
-\item L’auteur de la solution proposée est notifié de la validation.
+\item L’auteur de la solution est notifié de la validation.
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénario alternatif} & le développeur rejette la solution proposée le blocage reste actif, aucune fusion n'est effectuée et et le cas d'utilisation se termine sans résolution. \\
-\hline
+\textbf{Scénario alternatif} & Le développeur bloqué rejette la solution proposée : le blocage reste actif, aucune fusion n’est effectuée, le cas d’utilisation se termine sans résolution. \\
 \end{longtable}
 \captionof{table}{Description textuelle du cas d’utilisation « Résoudre blocage »}
-\normalsize
-
-
-\subsubsection{Description textuelle du cas d’utilisation « Ajouter solution technique »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Ajouter solution technique ».
-\footnotesize
-\renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-\textbf{Nom du cas d'utilisation} & Ajouter solution technique \\
-\hline
-\textbf{Acteurs} & Développeur \\
-\hline
-\textbf{Précondition} & Le ticket est dans l’état « En cours ». Le développeur est authentifié, dispose des droits requis et est assigné à la tâche. \\
-\hline
-\textbf{Postcondition} & La solution technique est enregistrée (désormais protégée en modification stricte pour le développeur) et pré-qualifiée pour la base de connaissances. L'état devient « En revue ». Les chronomètres sont arrêtés. \\
-\hline
-\textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
-\item Le développeur accède au ticket et actionne le déclencheur « En revue ».
-\item Il rédige la solution technique détaillée dans l'éditeur et valide l'envoi.
-\item Le système vérifie l'intégrité de la requête (longueur de la solution, présence de travail effectif, validité des assignations, cohérence de la version optimiste).
-\item Le système enregistre la solution et clôture automatiquement les chronomètres actifs de l'équipe sur ce ticket.
-\item Le système passe l’état du ticket à « En revue », historise l'action et émet les notifications (chef de projet, client).
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario alternatif} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le développeur peut solliciter un brouillon généré par IA ou joindre des fichiers justificatifs avant de valider. Le scénario se poursuit sans interruption.
-\item Le système détecte une solution invalide (ex: $<$ 5 caractères). Un avertissement bloque la soumission. Le développeur corrige sa saisie sur place et le scénario reprend à l'étape 2.
-\item Le système détecte que le ticket a été modifié en parallèle. Le système bloque l'enregistrement, l'acteur actualise ses données sans perdre son contexte, puis le scénario reprend à l'étape 2.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario d'exception} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le système détecte qu'aucune session d'effort n'a jamais été enregistrée pour ce ticket. Le passage en revue est formellement refusé et le processus s'interrompt avec erreur.
-\item Le système constate que le développeur a été explicitement désassigné. L'autorisation d'agir est révoquée immédiatement et le processus s'interrompt.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Ajouter solution technique »}
-\normalsize
-
-
-
-\subsubsection{Description textuelle du cas d’utilisation « Suivre SLA et temps »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Suivre SLA et temps ».
-\footnotesize
-\renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-\textbf{Nom du cas d'utilisation} & Suivre SLA et temps \\
-\hline
-\textbf{Acteurs} & Développeur, Chef de projet, Administrateur \\
-\hline
-\textbf{Précondition} & Le ticket est actif. Le contrat lié possède une configuration de Service Level Agreement. \\
-\hline
-\textbf{Postcondition} & Le temps d'effort, les pauses et les indicateurs SLA sont enregistrés, historisés et affichés en temps réel. \\
-\hline
-\textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le système projette la date d'échéance SLA du ticket, en appliquant les plages horaires contractuelles (ouvrées ou 24/7).
-\item L'acteur (Développeur) démarre l'enregistrement de sa session de travail via le chronomètre.
-\item Le système cumule le temps effectif et actualise les indicateurs (temps écoulé, temps restant) sur l'interface Kanban.
-\item Le système surveille de façon autonome les délais ; au franchissement des seuils, il émet des alertes visuelles de criticité.
-\item L'acteur clôture le travail en effectuant l'action de transition avec une solution documentée.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario alternatif} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'acteur met en pause son chronomètre de travail. Le système conserve le calcul global mais fige l'accumulation du temps effectif. L'acteur relance le chronomètre et le scénario reprend à l'étape 2.
-\item Le système détecte l'omission de la solution technique formelle. L'application bloque la transition, l'acteur rédige sa solution sur place et le scénario reprend à l'étape 5.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario d'exception} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le système détecte formellement que l'acteur essayant de démarrer (ou reprendre) le chronomètre n'est pas ou plus assigné au ticket (ex: révocation récente). L'accès est catégoriquement refusé en base de données et le processus s'interrompt avec erreur.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Suivre SLA et temps »}
 \normalsize
 
 
@@ -872,120 +707,51 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{figure}
 
 
-\subsubsection{Description textuelle du cas d’utilisation « Assigner tickets »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation «  Assigner tickets ».
+\subsubsection{Description textuelle du cas d’utilisation « Assigner un ticket »}
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Assigner un ticket ».
 
 \footnotesize
-% ---- Version corrigée ----
-\renewcommand{\arraystretch}{0.95}
+\renewcommand{\arraystretch}{1.1}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
 \hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-
-\textbf{Nom du cas d'utilisation} & Assigner tickets \\
+\textbf{Nom du cas d'utilisation} & Assigner un ticket \\
 \hline
 \textbf{Acteurs} & Chef de projet, Administrateur \\
 \hline
-\textbf{Précondition} & 
-L'utilisateur est authentifié et autorisé. 
-Le ticket est ouvert ou en cours. \\
+\textbf{Précondition} & L'utilisateur est authentifié et un ticket éligible est sélectionné. \\
 \hline
-\textbf{Postcondition} & 
-L'assignation est enregistrée avec succès et le développeur est notifié (in-app, email, slack). \\
+\textbf{Postcondition} & L'assignation est enregistrée, le planning de charge du développeur est mis à jour et ce dernier est notifié (in-app, e-mail, Slack). \\
 \hline
 \textbf{Scénario nominal} & 
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
-  \item L'utilisateur sélectionne un ticket éligible.
-  \item Le système affiche les développeurs actifs (membres du projet en priorité, puis triés par charge).
-  \item L'utilisateur choisit un développeur.
-  \item Le système vérifie la capacité du développeur.
-  \item Le système enregistre l'assignation, consigne l'historique et notifie le développeur.
+\begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=2pt, itemsep=2pt]
+  \item L'utilisateur clique sur le bouton d'assignation directe depuis la vue d'un ticket.
+  \item Le système extrait et affiche la liste de tous les développeurs actifs, qu'ils soient liés ou non au projet.
+  \item Pour chaque développeur, le système génère un indicateur visuel de sa charge de travail planifiée sur les sept (7) prochains jours.
+  \item L'utilisateur sélectionne le développeur adéquat.
+  \item Le système vérifie que le développeur sélectionné n'a pas dépassé sa limite maximale de tickets actifs.
+  \item Le système enregistre formellement l'assignation, consigne l'action dans l'historique et notifie le développeur.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} & 
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-  \item Si le ticket est en retard SLA, la capacité limite du développeur est relevée à 7 tickets (le système poursuit à l'étape 5).
-  \item Validée si le SLA est dépassé, ou en cas d'urgence (attente > 2h, priorité majeure/critique) sans développeur disponible (le système poursuit à l'étape 5).
-  \item Le développeur a trop de tickets actifs (e.g. limite normale dépassée) ; le système bloque l'ajout et l'utilisateur en choisit un autre (retour à l'étape 3).
-  \item En cas d'assignation concurrente de même profil, le système détecte le doublon ; l'utilisateur choisit un autre développeur (retour à l'étape 3).
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=2pt,itemsep=2pt]
+  \item Surcharge autorisée par SLA ou Urgence (Étape 5) : Si le ticket dépasse le SLA ou présente une urgence critique (attente > 2h, priorité majeure), le système autorise exceptionnellement le dépassement du quota et poursuit à l'étape 6.
+  \item Dépassement de la limite de charge (Étape 5) : Si le développeur a trop de tickets actifs et hors cas d'urgence, le système bloque l'opération ; l'utilisateur choisit un autre développeur (retour à l'étape 4).
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénario d'exception} & 
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-  \item Le système bloque l'opération et affiche une erreur ; le flux d'assignation est abandonné.
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=2pt,itemsep=2pt]
+  \item Assignation concurrente ou doublon (Étape 6) : Si le système détecte qu'un autre gestionnaire a assigné ce même profil simultanément, l'opération est annulée, un message d'erreur s'affiche et le flux est abandonné.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Assigner tickets »}
+\captionof{table}{Description textuelle du cas d’utilisation « Assigner un ticket »}
 \normalsize
-
-
-\subsubsection{Description textuelle du cas d’utilisation « Évaluer capacité développeur »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Évaluer capacité développeur ».
-
-\footnotesize
-\renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-
-\textbf{Nom du cas d'utilisation} & Évaluer capacité développeur \\
-\hline
-\textbf{Acteurs} & Chef de projet, Administrateur \\
-\hline
-\textbf{Précondition} & L’utilisateur est authentifié et dispose des permissions nécessaires. \\
-\hline
-\textbf{Postcondition} & En cas de succès, la liste des développeurs disponibles est affichée de manière structurée et triée par charge croissante. En cas d'échec, le système notifie l'absence de ressources disponibles. \\
-\hline
-\textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
-\item L’utilisateur sélectionne un ticket non assigné.
-\item Le système lance la requête d'évaluation capacitaire.
-\item Le système récupère la liste intégrale des développeurs actifs.
-\item Pour chaque profil, le système calcule sa charge totale (tickets en cours et en revue) et vérifie son appartenance au projet.
-\item Le système filtre les développeurs déjà assignés à ce ticket.
-\item Le système affiche le résultat, séparé en deux catégories (membres et autres développeurs), chacune triée par charge croissante. Les développeurs ayant atteint leur limite maximale de tickets sont signalés visuellement.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario alternatif} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Si l’utilisateur demande la vue planning d'un développeur, alors le système affiche la répartition de ses échéances ; l'utilisateur ferme ensuite la vue (retour à l'étape 6).
-\item Si l’utilisateur consulte les informations d'un développeur , alors le système présente les détails de ce profil ; l'utilisateur ferme ensuite les détails (retour à l'étape 6).
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario d'exception} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item  Si le système ne trouve aucun développeur activé ni disponible dans la base, alors il affiche une notification informant de l'absence de ressources.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Évaluer capacité développeur »}
-\normalsize
-
 
 
 % ─────────────────────────────────────────────────────────────────────────────
@@ -994,8 +760,8 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \section{Conception}
 Après l’analyse des besoins et la définition des cas d’utilisation, nous avons procédé à la conception de la solution en identifiant les composants logiciels, les flux métier, les entités principales et les interactions entre les modules.
 
-\subsection{Diagramme d'activités du flux de travail d'un ticket}
-La figure suivante présente le diagramme d’activité du workflow de gestion des tickets, en mettant l’accent sur la fonctionnalité « Gérer chronomètre ».
+\subsection{Diagramme d'activité du flux de travail d'un ticket}
+La figure suivante présente le diagramme d’activité du workflow de gestion des tickets, en mettant l’accent sur la fonctionnalité « Modifier chronomètre ».
 
 \begin{figure}[H]
     \centering
@@ -1162,7 +928,6 @@ Les tests unitaires du troisième sprint ont été organisés par composant fonc
 
 \begin{itemize}[leftmargin=0pt]
 
-% ── 1. Authentification ───────────────────────────────────────────────────────
 \item[$\square$] \textbf{LLM (Classification IA) — Retry / Backoff}
 \textbf{Objectifs testés :} Chaîne complète LLM — prétraitement, appel externe, post-traitement, fallback sur faible confiance ; politique de retry exponentiel face aux erreurs transitoires de l'API LLM.
 \newline\textbf{Statut :} Couvert.
@@ -1209,38 +974,174 @@ Les tests unitaires du troisième sprint ont été organisés par composant fonc
 \end{figure}
 \end{itemize}
 
-\subsection{Tests d’intégration}
-Les tests d’intégration ont été réalisés sur les endpoints principaux du sprint :
-\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
-\item création et consultation des demandes ;
-\item validation et rejet des demandes ;
-\item assignation et suivi des tickets ;
-\item chronomètre, historique et gestion des blocages ;
-\item classification IA, feedback et reclassification ;
-\item calcul des SLA et génération des suggestions KB.
+\subsection{Tests d'intégration}
+Les tests d'intégration ont été réalisés sur les endpoints principaux du sprint.
+
+\begin{itemize}[leftmargin=0pt]
+
+\item[$\square$] \textbf{Test du module demandes (Validation des demandes)}
+\newline \textit{Endpoints : \textbf{PATCH /api/demandes/:id/valider}, \textbf{PATCH /api/demandes/:id/rejeter}}
+\noindent Cette suite valide le comportement complet des endpoints de validation et de rejet des demandes par le chef de projet.
+\newline Les cas suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item Une demande valide est approuvée par le chef de projet : l'endpoint retourne le code \textbf{200 OK} et le statut de la demande passe à \texttt{CONVERTIE} avec création automatique d'un ticket.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/validerDemandeTest.png}
+  \caption{Test d'intégration - Validation d'une demande}
+  \end{figure}
+  
+  \item Une demande non conforme est rejetée avec un motif : l'endpoint retourne le code \textbf{200 OK} et la demande est marquée comme \texttt{REJETEE}.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/rejeterDemandeTest.png}
+  \caption{Test d'intégration - Rejet d'une demande}
+  \end{figure}
+  
+  \item Une demande de priorité CRITIQUE nécessite un commentaire de justification obligatoire : l'endpoint retourne le code \textbf{400 Bad Request} si le motif est absent ou trop court.
 \end{itemize}
 
-\subsection{Tests End-to-End}
-Les tests End-to-End ont permis de valider des parcours réalistes tels que :
-\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
-\item la création d’une demande client ;
-\item sa validation par un chef de projet avec adopterion de la suggestion IA ;
-\item la création automatique du ticket ;
-\item l’assignation à un développeur ;
-\item l’exécution du chronomètre automiquement lors de l’ouverture du ticket ;
-\item L'assignation d'un blocage et la génération d’une analyse IA ;
+\item[$\square$] \textbf{Test du module IA (Classification IA)}
+\newline \textit{Endpoints : \textbf{GET /api/ai/demandes/:id/suggestions}, \textbf{POST /api/ai/demandes/:id/feedback}, \textbf{POST /api/ai/demandes/:id/reclassify}}
+\noindent Cette suite valide le comportement des endpoints de classification automatique via Groq Cloud, de réception des feedbacks utilisateur et de reclassification.
+\newline Les cas suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item Une demande est soumise à l'IA pour classification automatique : l'endpoint retourne la catégorie prédite (\texttt{typeDemande}) et la priorité avec un niveau de confiance.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/classificationIATest.png}
+  \caption{Test d'intégration - Classification IA}
+  \end{figure}
+  
+  \item Un utilisateur (chef de projet) soumet un feedback sur une classification : l'endpoint retourne le code \textbf{200 OK} et le feedback est enregistré dans l'audit trail.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/feedbackTest.png}
+  \caption{Test d'intégration - Envoi de feedback}
+  \end{figure}
+  
+  \item Une reclassification est déclenchée après feedback ou manuellement : l'endpoint supprime l'ancienne classification et en génère une nouvelle via l'IA.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/reclassificationTest.png}
+  \caption{Test d'intégration - Reclassification}
+  \end{figure}
+  
+  \item Le cache IA et le rate limiting fonctionnent correctement : les requêtes identiques sont servies depuis le cache et les quotas journaliers sont respectés.
 \end{itemize}
 
-\subsection{Résultats obtenus}
-À l’issue de ce sprint, la plateforme est capable de :
-\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
-\item traiter une demande de bout en bout ;
-\item convertir automatiquement la demande validée en ticket ;
-\item piloter les tickets par Kanban ;
-\item suivre le temps de travail réel ;
-\item calculer et afficher les SLA ;
-\item assister les utilisateurs par intelligence artificielle ;
-\item maintenir un haut niveau de traçabilité et de notification.
+\item[$\square$] \textbf{Test du module IA (Génération des suggestions KB)}
+\newline \textit{Endpoints : \textbf{GET /api/ai/tickets/:id/kb-suggestions}}
+\noindent Cette suite valide la génération automatique de suggestions issues de la base de connaissances à partir d'un ticket créé.
+\newline Les cas suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item Un ticket est analysé et des articles pertinents de la KB sont suggérés : l'endpoint retourne une liste d'articles avec leur score de pertinence et un extrait.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/suggestionsKBTest.png}
+  \caption{Test d'intégration - Suggestions KB}
+  \end{figure}
+  \end{itemize}
+
+\end{itemize}
+
+\subsubsection{Tests End-to-End}
+\label{sec:tests_e2e_demandes}
+
+Les tests End-to-End de création de demande client valident l'intégralité
+du flux fonctionnel d'ajout d'une nouvelle demande au sein d'un navigateur
+réel instrumenté par \textbf{Playwright}. Ces tests interagissent
+conjointement avec le frontend Next.js, le backend NestJS et la base de
+données PostgreSQL, couvrant ainsi l'ensemble du parcours utilisateur,
+depuis l'authentification préalable jusqu'à la validation finale de la
+demande.
+\newline
+
+\noindent\textbf{Bilan : les scénarios critiques du sprint ont été exécutés avec succès.}
+\vspace{6pt}
+
+
+\begin{itemize}[leftmargin=0pt]
+
+\item[$\square$] \textbf{Test du module de création de demande client}
+\newline \textit{3 scénarios : affichage du formulaire, création valide, annulation}
+
+\noindent Cette suite de tests valide le flux complet de création de
+demande en simulant les actions réelles d'un utilisateur sur
+l'interface graphique. Les cas suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item L'utilisateur s'authentifie et accède au formulaire de création : toutes les sections obligatoires (projet, type, priorité, titre, description) sont affichées.
+  
+  \item Un modal d'alerte est automatiquement fermé pour ne pas perturber le test.
+  
+  \item L'utilisateur choisit un projet dans une liste déroulante : la sélection est prise en compte.
+  
+  \item L'utilisateur sélectionne un type de demande parmi les catégories proposées.
+  
+  \item L'utilisateur attribue une priorité à la demande.
+  
+  \item L'utilisateur saisit un titre dans le champ correspondant.
+  
+  \item L'utilisateur rédige une description détaillée dans l'éditeur de texte enrichi.
+  
+  \item L'utilisateur soumet un formulaire valide : la demande est enregistrée, l'utilisateur est redirigé vers la liste des demandes et un message de confirmation apparaît.
+  
+  \item L'utilisateur annule la création : aucune demande n'est enregistrée et l'utilisateur retourne à la liste.
+  
+  \item Le bouton de soumission reste inactif tant que tous les champs obligatoires ne sont pas correctement remplis.
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,keepaspectratio]
+  {Images/ExecDeTestCasesReussi-demandes.png}
+\caption{Résultats des tests End-to-End — Création de demande client}
+\label{fig:test_e2e_demandes}
+\end{figure}
+
+\item[$\square$] \textbf{Test du module ticket (Signalement de blocage)} ---
+\newline  \textit{1 scénario : filtrer, accéder au détail, et signaler un blocage avec analyse IA} 
+
+\noindent Cette suite valide le flux complet de déclaration d'un blocage 
+par un développeur assigné sur un ticket, en simulant ses actions réelles sur 
+l'interface graphique. Le cas suivant a été couvert :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  
+  \item Fermeture automatique du modal \og Contrat bientôt expiré \fg{} s'il s'affiche pour éviter toute interférence.
+  
+  \item Navigation vers la liste des tickets et application du filtre via l'URL pour n'afficher que les tickets en statut \og En cours \fg{}.
+  
+  \item Sélection et ouverture du premier ticket de la liste pour accéder à ses détails.
+  
+  \item Navigation vers l'onglet \og Équipe \fg{} du panneau latéral droit pour accéder aux actions de l'assignation.
+  
+  \item Déclenchement du processus via le bouton \og Bloqué \fg{}, qui nécessite que le développeur ait travaillé le temps minimum requis (ex: 30 minutes) et atteint la progression minimale requise (ex: 10\%).
+  
+  \item \textbf{Étape 1 du modal} : Sélection du type de blocage (ex: Technique) et de son niveau de priorité (ex: Haute) via les sélecteurs natifs à liste déroulante, ce qui active le bouton \og Suivant \fg{}.
+  
+  \item \textbf{Étape 2 du modal} : Renseignement d'une description basique du problème rencontré dans la zone de texte.
+  
+  \item \textbf{Analyse IA} : Clic sur le bouton \og Analyser avec l'IA \fg{}, attente de la génération de la suggestion technique détaillée, puis clic sur \og Appliquer \fg{} pour enrichir automatiquement la description.
+  
+  \item Upload conditionnel d'une pièce jointe (capture d'écran ou fichier de log) pour illustrer le blocage.
+  
+  \item Confirmation du signalement : vérification de l'apparition de la notification (toast) de succès \og Blocage signalé \fg{} confirmant l'enregistrement en base de données, l'alerte du chef de projet et la fermeture du modal.
+  
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth,keepaspectratio]
+  {Images/Test e2e blocage ticket.png}
+\caption{Tests End-to-End — Signalement de blocage sur un ticket via Playwright}
+\label{fig:test_e2e_blocage_ticket}
+\end{figure}
+
 \end{itemize}
 
 \subsection{Tests de performance}

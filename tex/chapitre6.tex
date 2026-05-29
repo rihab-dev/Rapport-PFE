@@ -522,7 +522,7 @@ La figure ci-dessous présente le diagramme de composants de l'application.
 \label{fig:diagramme_composants_sprint4}
 \end{figure}
 
-Le diagramme de composants illustre l'architecture de la solution en trois couches. Le front-end (Next.js) regroupe l'interface utilisateur, les modules métiers et un client HTTP (Axios/Fetch). L'API Core (NestJS) structure ses contrôleurs, modules fonctionnels et services transverses (Prisma ORM, cache manager). En infrastructure, PostgreSQL assure la persistance des données et Redis gère les sessions et le cache, tous deux accessibles via TCP/IP. Cette organisation sépare clairement la présentation, la logique métier et les services d'infrastructure.
+Le diagramme de composants illustre l'architecture de la solution en trois couches. Le front-end (Next.js) regroupe l'interface utilisateur, les modules métiers principaux et un client HTTP (Axios/Fetch). L'API Core (NestJS) structure ses contrôleurs, modules fonctionnels et services transverses (Prisma ORM, cache manager). En infrastructure, PostgreSQL assure la persistance des données et Redis gère les sessions et le cache, tous deux accessibles via TCP/IP. Cette organisation sépare clairement la présentation, la logique métier et les services d'infrastructure.
 
 
 \subsection{Diagramme de déploiement}
@@ -616,7 +616,7 @@ Cette section présentera les principales interfaces développées durant le Spr
 
 Les tests unitaires ont été réalisés avec \textbf{Vitest} en isolant les services métier à l'aide de mocks sur les dépendances externes. Cette approche a permis de valider rapidement les règles de gestion propres au dernier sprint, tout en limitant les effets de bord liés aux accès à la base de données, aux services temps réel et aux traitements de fichiers.
 
-Les modules testés en priorité couvrent le calendrier, la messagerie, la gestion documentaire, les notifications ainsi que les indicateurs des tableaux de bord et des rapports.
+Les modules testés en priorité couvrent la messagerie et les notifications, qui sont au cœur des fonctionnalités développées. Les tests ont été conçus pour couvrir les scénarios critiques, les cas limites et les conditions d'erreur afin d'assurer une robustesse maximale.
 
 \begin{itemize}[leftmargin=0pt]
 
@@ -646,76 +646,42 @@ Les tests d'intégration ont été effectués via \textbf{Swagger UI} et les poi
 
 \begin{itemize}[leftmargin=0pt]
 
-\item[$\square$] \textbf{Test du module Calendrier et suivi d'activité}
-
-\noindent Cette suite valide les endpoints qui alimentent le calendrier et les tableaux de bord. Les cas suivants ont été couverts :
-
-\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item Les endpoints de consultation des tickets et des demandes renvoient les données nécessaires à l'affichage calendrier.
-  \item Les endpoints de dashboard retournent les indicateurs globaux, les tendances et les statistiques mensuelles attendues.
-  \item Les filtres par période produisent des résultats cohérents avec les données présentes en base.
-\end{itemize}
-
-\begin{figure}[H]
-\centering
-% \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/dashboard.png}
-\caption{Test d'intégration - Calendrier et suivi d'activité}
-\label{fig:test_integration_calendrier_sprint4}
-\end{figure}
-
-\item[$\square$] \textbf{Test du module Messagerie et collaboration}
-
-\noindent Cette suite valide les routes REST et les échanges temps réel liés à la messagerie. Les cas suivants ont été couverts :
-
-\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item La consultation des canaux de l'utilisateur retourne les bons fils de discussion.
-  \item L'envoi d'un message dans un canal crée l'entrée attendue et déclenche la diffusion WebSocket.
-  \item La modification et la suppression d'un message renvoient les statuts HTTP appropriés.
-  \item Les mentions et les accusés de lecture sont persistés et récupérables via les endpoints dédiés.
-\end{itemize}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth,keepaspectratio]{Images/Capture d'écran 2026-05-21 111918.png}
-\caption{Test d'intégration - Messagerie et collaboration}
-\label{fig:test_integration_messagerie_sprint4}
-\end{figure}
-
-\item[$\square$] \textbf{Test du module Documents et base de connaissances}
-
-\noindent Cette suite valide les routes d'envoi, de remplacement et de consultation des documents, ainsi que les endpoints liés à la base de connaissances. Les cas suivants ont été couverts :
-
-\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item Un document envoyé via l'API est rattaché au ticket ou au contrat demandé.
-  \item La récupération de l'historique des versions retourne bien la suite chronologique attendue.
-  \item La consultation d'un document enregistre correctement l'événement d'accès.
-  \item Les articles de la base de connaissances sont listés et filtrés sans perte de cohérence.
-\end{itemize}
-
-\begin{figure}[H]
-\centering
-% \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/doc.png}
-\caption{Test d'intégration - Documents et base de connaissances}
-\label{fig:test_integration_documents_sprint4}
-\end{figure}
-
 \item[$\square$] \textbf{Test du module Notifications}
-
-\noindent Cette suite valide les endpoints de consultation et de mise à jour des préférences de notification. Les cas suivants ont été couverts :
+\newline \textit{Endpoints :}
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item \textbf{GET /api/notifications}
+  \item \textbf{PATCH /api/notifications/:id/read}
+  \item \textbf{PATCH /api/notifications/read-all}
+  \item \textbf{PATCH /api/notifications/preferences/:type}
+\end{itemize}
+\noindent Cette suite valide les endpoints de mise à jour des préférences de notification. Elle confirme le bon fonctionnement des opérations de lecture, de marquage et de modification des paramètres de notification.
+\newline Les cas suivants ont été couverts :
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
   \item Les notifications in-app sont listées avec leur statut de lecture.
-  \item Le marquage individuel et global comme lu met bien à jour les compteurs.
-  \item Les préférences par type d'événement sont récupérées et modifiées correctement.
-  \item Les configurations push et Slack répondent conformément aux règles métier de la plateforme.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/notificationsListeTestInteg.png}
+  \end{figure}
+  
+  \item Le marquage individuel comme lu met bien à jour les compteurs.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/notificationsMakeReadOneTestInteg.png}
+  \end{figure}
+  
+  \item Le marquage global comme lu met bien à jour les compteurs.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/notificationsMakeReadAllTestInteg.png}
+  \end{figure}
+  
+  \item Les préférences par type d'événement sont modifiées correctement.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/notificationsModifiePreference.png}
+  \end{figure}
 \end{itemize}
-
-\begin{figure}[H]
-\centering
-% \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/notifications.png}
-\caption{Test d'intégration - Notifications}
-\label{fig:test_integration_notifications_sprint4}
-\end{figure}
 
 \end{itemize}
 
@@ -727,78 +693,26 @@ Les tests End-to-End ont été exécutés avec \textbf{Playwright} afin de simul
 \vspace{6pt}
 
 \begin{itemize}[leftmargin=0pt]
-
-\item[$\square$] \textbf{Test du parcours de suivi d'activité}
-
-\noindent Cette suite vérifie qu'un utilisateur autorisé peut consulter son tableau de bord, ouvrir le calendrier et générer un rapport d'activité. Les scénarios suivants ont été couverts :
-
-\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item L'administrateur accède au dashboard global et consulte les statistiques consolidées.
-  \item Le chef de projet visualise la charge de l'équipe et les tickets prioritaires.
-  \item L'utilisateur lance la génération d'un rapport mensuel à partir des filtres disponibles.
-\end{itemize}
-
-\begin{figure}[H]
-\centering
-% \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/dashboard.png}
-\caption{Test End-to-End du parcours de suivi d'activité}
-\label{fig:e2e_suivi_activite_sprint4}
-\end{figure}
-
 \item[$\square$] \textbf{Test du parcours de messagerie}
 
-\noindent Cette suite valide un échange complet au sein d'un canal de discussion. Les scénarios suivants ont été couverts :
+\noindent Cette suite de tests E2E valide le bon fonctionnement des fonctionnalités temps-réel de communication liées aux tickets et la manipulation des messages. Les cas suivants ont été couverts :
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
   \item L'utilisateur ouvre un canal lié à un ticket et retrouve l'historique des messages.
-  \item L'utilisateur envoie un message avec ou sans pièce jointe et observe sa diffusion instantanée.
-  \item Un autre participant répond, modifie ou épingle un message, et l'interface se met à jour correctement.
+  \item L'utilisateur envoie un message avec pièce jointe et observe sa diffusion instantanée.
+  \item Sur un message existant, l'utilisateur l’enregistre, et l’interface se met correctement à jour.
 \end{itemize}
 
 \begin{figure}[H]
 \centering
-% \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/Playwright.png}
+\includegraphics[width=1\textwidth,keepaspectratio]{Images/messgE2e.png}
 \caption{Test End-to-End du parcours de messagerie}
 \label{fig:e2e_messagerie_sprint4}
 \end{figure}
 
-\item[$\square$] \textbf{Test du parcours documentaire}
-
-\noindent Cette suite vérifie le dépôt et la consultation d'un document depuis la fiche d'un ticket ou d'un contrat. Les scénarios suivants ont été couverts :
-
-\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item L'utilisateur ajoute un document depuis la zone dédiée et la liste se rafraîchit immédiatement.
-  \item Le système crée une nouvelle version lorsque le nom du fichier existe déjà.
-  \item Le chef de projet génère un procès-verbal à partir d'un ticket et le retrouve dans l'historique documentaire.
 \end{itemize}
 
-\begin{figure}[H]
-\centering
-    % \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/doc.png}
-\caption{Test End-to-End du parcours documentaire}
-\label{fig:e2e_documentaire_sprint4}
-\end{figure}
-
-\item[$\square$] \textbf{Test du parcours de notifications}
-
-\noindent Cette suite valide la consultation et la configuration des notifications par l'utilisateur. Les scénarios suivants ont été couverts :
-
-\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item L'utilisateur consulte ses notifications in-app et marque certaines entrées comme lues.
-  \item L'utilisateur désactive puis réactive des types d'alertes depuis son profil.
-  \item Une action métier déclenche une notification qui apparaît correctement dans l'interface.
-\end{itemize}
-
-\begin{figure}[H]
-\centering
-    % \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/notifications.png}
-\caption{Test End-to-End du parcours de notifications}
-\label{fig:e2e_notifications_sprint4}
-\end{figure}
-
-\end{itemize}
-
-subsection{Tests de performance}
+\subsection{Tests de performance}
 
 Les tests de performance ont permis de mesurer la réactivité du sprint 4 sous charge, la tenue de la concurrence et la capacité du serveur à absorber des pics d'activité. Ils ont été exécutés avec \textbf{k6} et \textbf{Apache JMeter}.
 

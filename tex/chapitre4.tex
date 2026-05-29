@@ -635,88 +635,76 @@ Les tests de sécurité ont validé la protection des endpoints, les permissions
 %─────────────────────────────────────────────────────────────────────────────
 \subsection{Tests d'intégration}
 \label{sec:tests_integration_sprint2}
-Les tests d’intégration valident les endpoints REST des contrats via \textbf{Swagger UI}, en interagissant directement avec le backend en cours d’exécution.
+Les tests d'intégration valident les endpoints REST des contrats via \textbf{Swagger UI}, en interagissant directement avec le backend en cours d'exécution.
 
 \begin{itemize}[leftmargin=0pt]
 
 \item[$\square$] \textbf{Test du module Gestion des contrats}
-\noindent Cette suite valide le comportement complet des endpoints de
-gestion des contrats. Les cas suivants ont été couverts :
+\newline \textit{Endpoints : \textbf{POST /api/contrats/:id/resilier}, \textbf{GET /api/contrats}, \textbf{GET /api/contrats/:clientId}}
+\noindent Cette suite valide le comportement complet des endpoints de gestion des contrats.
+\newline Les cas suivants ont été couverts :
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item Un contrat actif est résilié par l'administrateur avec un motif
-    valide : l'endpoint retourne le code \textbf{200 OK} et le statut
-    du contrat est mis à jour.
+  \item Un contrat actif est résilié par l'administrateur avec un motif valide : l'endpoint retourne le code \textbf{200 OK} et le statut du contrat est mis à jour.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/resilier.png}
+  \caption{Test d'intégration - Résiliation d'un contrat}
+  \label{fig:test_integration_resiliation_contrat}
+  \end{figure}
+  
+  \item Un client tente d'accéder à la liste complète des contrats : l'endpoint retourne le code \textbf{403 Forbidden}, seuls ses propres contrats lui sont accessibles via \texttt{GET /api/contrats/:clientId}.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/get client test interg sprint 2.png}
+  \caption{Test d'intégration - Accès à la liste des contrats}
+  \label{fig:test_integration_liste_contrats}
+  \end{figure}
 \end{itemize}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.8\textwidth,keepaspectratio]{Images/resilier.png}
-\caption{Test d'intégration - Résiliation d'un contrat}
-\label{fig:test_integration_resiliation_contrat}
-\end{figure}
-
-\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item Un client tente d'accéder à la liste complète des contrats : l'endpoint retourne le code
-    \textbf{403 Forbidden}, seuls ses propres contrats lui sont
-    accessibles via  .
-\end{itemize}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.8\textwidth,keepaspectratio]{Images/get client test interg sprint 2.png}
-\caption{Test d'intégration - Accès à la liste des contrats}
-\label{fig:test_integration_liste_contrats}
-\end{figure}
 
 \end{itemize}
 %─────────────────────────────────────────────────────────────────────────────
 %─────────────────────────────────────────────────────────────────────────────
-\subsection{Tests End-to-End (E2E)}
-\label{sec:tests_e2e_sprint2}
+\subsubsection{Tests End-to-End}
+\label{sec:tests_e2e_contract}
 
-Les tests End-to-End simulent les parcours utilisateurs complets dans un navigateur réel piloté par \textbf{Playwright}. Ils garantissent que le frontend Next.js communique correctement avec le backend NestJS et que les données sont persistées avec intégrité dans PostgreSQL.
+Les tests End-to-End de création de contrat valident le flux complet
+d'ajout d'un nouveau contrat dans un navigateur réel piloté par
+\textbf{Playwright}. Ces tests interagissent avec le frontend Next.js,
+le backend NestJS et la base de données PostgreSQL, couvrant ainsi
+l'intégralité du parcours utilisateur depuis la sélection du mode de
+création jusqu'à la validation finale du contrat.
+\newline
+
+\noindent\textbf{Bilan : les scénarios critiques du sprint ont été exécutés avec succès.}
+\vspace{6pt}
 
 \begin{itemize}[leftmargin=0pt]
 
-\item[$\square$] \textbf{Test Cycle de vie et Intégrité des Contrats}
-\newline
-\hfill\textit{4 scénarios clés validés}
+\item[$\square$] \textbf{Test du module Création de contrat}
+\newline \textit{3 scénarios : affichage formulaire, création valide, annulation}
 
-\noindent Cette suite Playwright valide la robustesse du module de gestion des contrats :
+\noindent Cette suite valide le flux complet de création de contrat en
+simulant les actions réelles d'un utilisateur sur l'interface. Les cas
+suivants ont été couverts :
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item \textbf{Création et Suivi (Admin/Client)} : L'administrateur crée un contrat via un formulaire multi-étapes. Le système calcule automatiquement le montant TTC, génère la référence unique et met à jour le statut à « actif ». Le client peut ensuite consulter son contrat et vérifier les alertes d'expiration.
-  \item \textbf{Sécurité et Anti-Doublon} : Validation de la logique de détection des doublons par hashage de fichier. Le système bloque l'upload d'un document PDF déjà associé à un autre projet actif.
-  \item \textbf{Automatisation de Résiliation} : Simulation d'une résiliation par l'administrateur. Le test vérifie la mise à jour du statut et la \textbf{fermeture en cascade} automatique de tous les tickets de maintenance ouverts sur ce contrat.
-  \item \textbf{Workflow de Demande Client} : Le client soumet une demande de résiliation depuis son espace. Le test valide la transition vers l'état « résiliation en attente » et la notification de l'administrateur.
+  \item Accès à \texttt{/fr/contrats/nouveau} : affichage d'un dialogue proposant \textbf{Saisie Manuelle} et \textbf{Import de document}.
+  \item Choix de \textbf{Saisie Manuelle} puis clic sur \textbf{Continuer} : affichage du formulaire manuel.
+  \item Sélection d'un client (\og Ines Miled \fg{}) et d'un projet (\og app test 2 \fg{}) via les sélecteurs natifs.
+  \item Renseignement d'une date de début, d'une date de fin et d'un montant mensuel (2000).
+  \item Création d'un modèle SLA personnalisé via la modale \og Nouveau modèle SLA \fg{} : saisie du nom, enregistrement, confirmation.
+  \item Soumission du formulaire : redirection vers \texttt{/contrats} et message \og Contrat créé avec succès \fg{}.
+  \item Clic sur \textbf{Abandonner} : redirection vers la liste des contrats sans création.
+  \item Saisie d'une date de fin antérieure à la date de début : détection d'incohérence et blocage de la soumission.
 \end{itemize}
 
 \begin{figure}[H]
 \centering
-%\includegraphics[width=0.85\textwidth,keepaspectratio]
-  %{Images/playwright-results-contrats.png}
-\caption{Test Cycle de vie et Intégrité des Contrats}
-\label{fig:playwright_e2e_sprint2}
-\end{figure}
-
-\item[$\square$] \textbf{Test du module Gestion des Clients et Projets Livrés}
-\newline
-\hfill\textit{scénarios clés validés}
-
-\noindent Cette suite de tests valide le processus d'onboarding complet des clients, incluant l'importation de leurs projets déjà livrés et la configuration des équipes :
-
-\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item \textbf{Onboarding avec Projets Livrés} : Validation de la création simultanée d'un compte client et de ses projets déjà finalisés. Le test confirme l'affectation automatique de l'équipe (Chef de projet et membres) et la mise à jour de leurs statistiques de performance (incrémentation des projets terminés).
-  \item \textbf{Intégrité et Cascade RH} : Vérification des règles métier interdisant la saisie de projets livrés avec des dates futures, et validation du statut automatique des membres (« terminés ») pour ces projets.
-\end{itemize}
-
-\begin{figure}[H]
-\centering
-%\includegraphics[width=0.85\textwidth,keepaspectratio]
- % {Images/test-e2e-clients-onboarding.png}
-\caption{Test du module Gestion des Clients et Projets Livrés}
-\label{fig:playwright_e2e_clients}
+\includegraphics[width=0.8\textwidth,keepaspectratio]
+  {Images/ExecDeTestCasesReussi-contract.png}
+\caption{Tests End-to-End — Création de contrat via Playwright}
+\label{fig:test_e2e_contract}
 \end{figure}
 
 \end{itemize}
