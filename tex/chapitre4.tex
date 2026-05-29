@@ -493,7 +493,7 @@ Dans cette section, nous allons modéliser les intéractions entre l'utilisateur
 \subsection{Diagramme de classes du deuxième sprint}
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\textwidth,keepaspectratio]{Images/diag classe sprint 2.png}
+\includegraphics[width=15cm,height=16cm,,keepaspectratio]{Images/diag classe sprint 2.png}
 
 \caption{Diagramme de classes du deuxième sprint}
 \label{fig:diag_classe_sprint2}
@@ -518,29 +518,53 @@ Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui
 \newline
 \textbf{MembreProjet} (\underline{idMembre}, rolesDansProjet,dateAffectation, dateDebut, dateFin, statut, motifRefus, \textbf{\#idProjet},\textbf{\#idProfilEmploye})
 \newline
-\textbf{FeedbackExpirationContrat} (\underline{idFeedback},  note, commentaire, RaisonNonRenouvellement,souhaitRenouveler, dateCreation, \textbf{\#idContrat})
+\textbf{FeedbackExpirationContrat} (\underline{idFeedback}, note, commentaire, RaisonNonRenouvellement,s ouhaitRenouveler, dateCreation,\textbf{\#idContrat})
 \newline 
-\textbf{JournalActivite} (\underline{id}, action, method, path, ipAddress, status, description, metadata, \textbf{\#idUtilisateur})
+\textbf{JournalActivite} (\underline{id}, action, method, path, ipAddress, status, description, metadata,\textbf{\#idUtilisateur})
 
 }
 
 \section{Réalisation}
 \label{sec:realisation_sprint2}
-
-\subsection{Architecture technique}
-
-Cette section présentera l'architecture technique mise en place pour le Sprint 2, incluant les modules de gestion des clients, projets et contrats.
-
-\textit{[ compléter avec les détails d'implémentation]}
-
-\subsection{Interfaces utilisateur}
-
-Cette section présentera les principales interfaces développées durant le Sprint 2.
-
-\textit{[ compléter avec les captures d'écran]}
+Cette section présente les principales interfaces utilisateur développées durant le deuxième sprint. Chaque interface a été conçue pour offrir une expérience claire aux différents acteurs de la plateforme.
 
 
-\newpage
+\subsection{Interface de la liste des clients}
+L'administrateur et le chef de projet consultent
+la liste complète des clients enregistrés sur la plateforme, avec des
+filtres de recherche et des actions rapides pour accéder aux détails de
+chaque client.
+\begin{figure}[H]
+\centering
+\includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/capture liste client.png}
+\caption{Interface liste des clients}
+\label{fig:interface_liste_clients}
+\end{figure}
+
+
+\subsection{Interface d’historique et de traçabilité}
+L'utilisateur consulte l'historique de ses actions et suivre les modifications apportées aux différentes entités du système.
+\begin{figure}[H]
+\centering
+\includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/capture historique.png}
+\caption{Interface d’historique et de traçabilité}
+\label{fig:interface_historique}
+\end{figure}
+
+
+\subsection{Interface de la liste des contrats}
+L'administrateur consulte la liste des contrats de maintenance avec leurs
+informations principales. il
+permet de filtrer et de rechercher les contrats selon différents critères.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/capture liste contrat.png}
+\caption{Interface de la liste des contrats}
+\label{fig:interface_liste_contrats}
+\end{figure}
+
+
 \section{Tests et Validation}
 \label{sec:tests_sprint2}
 
@@ -595,7 +619,7 @@ doublons. Les cas suivants ont été couverts :
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.65\textwidth,keepaspectratio]
+\includegraphics[width=14cm,height=14cm,keepaspectratio]
   {Images/test-unitaire-contrats-sprint2.png}
 \caption{Test du module Contrats}
 \label{fig:test_unitaire_sprint2}
@@ -648,7 +672,7 @@ Les tests d'intégration valident les endpoints REST des contrats via \textbf{Sw
   \item Un contrat actif est résilié par l'administrateur avec un motif valide : l'endpoint retourne le code \textbf{200 OK} et le statut du contrat est mis à jour.
   \begin{figure}[H]
   \centering
-  \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/resilier.png}
+  \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/resilier.png}
   \caption{Test d'intégration - Résiliation d'un contrat}
   \label{fig:test_integration_resiliation_contrat}
   \end{figure}
@@ -656,7 +680,7 @@ Les tests d'intégration valident les endpoints REST des contrats via \textbf{Sw
   \item Un client tente d'accéder à la liste complète des contrats : l'endpoint retourne le code \textbf{403 Forbidden}, seuls ses propres contrats lui sont accessibles via \texttt{GET /api/contrats/:clientId}.
   \begin{figure}[H]
   \centering
-  \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/get client test interg sprint 2.png}
+  \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/get client test interg sprint 2.png}
   \caption{Test d'intégration - Accès à la liste des contrats}
   \label{fig:test_integration_liste_contrats}
   \end{figure}
@@ -701,7 +725,7 @@ suivants ont été couverts :
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth,keepaspectratio]
+\includegraphics[width=14cm,height=14cm,keepaspectratio]
   {Images/ExecDeTestCasesReussi-contract.png}
 \caption{Tests End-to-End — Création de contrat via Playwright}
 \label{fig:test_e2e_contract}

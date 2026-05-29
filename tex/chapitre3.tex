@@ -1,4 +1,4 @@
-﻿
+
 \section*{Introduction}
 Dans le chapitre précédent, nous avons défini les besoins liés à notre solution et réparti les différentes tâches du projet afin que les phases de travail soient correctement planifiées.
 \newline Au cours de ce chapitre, nous présenterons les fonctionnalités liées  à la gestion des utilisateurs, à l'authentification et au contrôle d'accès basé sur les rôles (RBAC), retenues dans le cadre du premier sprint de notre projet.
@@ -753,6 +753,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle du cas d’utilisation «Attribuer permission à rôle »} 
+}
 \normalsize
 
 
@@ -831,69 +832,68 @@ Dans cette section, nous allons modéliser les intéractions entre l'utilisateur
 % ─────────────────────────────────────────────────────────────────────────────
 
 \section{Réalisation}
-Après avoir analysé les besoins et conçu les solutions, nous passons maintenant à la réalisation. Dans cette phase, nous avons développé toutes les user stories planifiées dans le sprint backlog. Cette section présente le diagramme de composants qui montre l'architecture de notre application, ainsi que les interfaces utilisateur que nous avons créées pour répondre aux besoins des utilisateurs.
 \label{sec:realisation_sprint1}
+Cette section présente les principales interfaces utilisateur développées durant le premier sprint. Chaque interface a été conçue pour offrir une expérience claire aux différents acteurs de la plateforme.
 
-\subsection{Diagramme de composants}
-
-
-\subsection{Description des interfaces}
-Cette section présente les principales interfaces utilisateur développées lors du premier sprint.
-
-\subsubsection{Interface de connexion}
-\begin{figure}[H]
-\centering
-%\includegraphics[width=0.75\textwidth,keepaspectratio]{Images/interface_connexion.png}
-\caption{Interface de connexion — authentification classique et OAuth}
-\label{fig:interface_connexion}
-\end{figure}
+\subsection{Interface de connexion}
 La page de connexion propose deux modes d'authentification : le formulaire
 classique (e-mail + mot de passe) et les boutons OAuth (Google, GitHub).
 En cas de compte inexistant, le visiteur est redirigé vers un flux de
 demande d'inscription.
-
-\subsubsection{Interface de réinitialisation du mot de passe}
 \begin{figure}[H]
 \centering
-%\includegraphics[width=0.75\textwidth,keepaspectratio]{Images/interface_reset_password.png}
-\caption{Interface de réinitialisation du mot de passe}
-\label{fig:interface_reset}
+\includegraphics[width=12cm,height=12cm,keepaspectratio]{Images/capture authentification.png}
+\caption{Interface de connexion}
+\label{fig:interface_connexion}
 \end{figure}
+
+
+\subsection{Interface de réinitialisation du mot de passe}
 Cette interface permet à l'utilisateur de saisir son adresse e-mail pour
 recevoir un lien de réinitialisation valable 1 heure.
 
-\subsubsection{Interface de gestion des utilisateurs}
 \begin{figure}[H]
 \centering
-%\includegraphics[width=0.85\textwidth,keepaspectratio]{Images/interface_users.png}
-\caption{Interface d'administration — liste des utilisateurs}
-\label{fig:interface_users}
+\includegraphics[width=12cm,height=12cm,keepaspectratio]{Images/page reinitialiser mot de passe.PNG}
+\caption{Interface de réinitialisation du mot de passe}
+\label{fig:interface_reset}
 \end{figure}
+
+\subsection{Interface de gestion des utilisateurs}
 L'administrateur dispose d'une vue en grille ou en liste, avec filtres par
 statut et par rôle, barre de recherche et actions rapides (modifier,
 désactiver, voir le profil).
-
-\subsubsection{Interface de gestion des rôles et permissions}
 \begin{figure}[H]
 \centering
-%\includegraphics[width=0.85\textwidth,keepaspectratio]{Images/interface_roles_permissions.png}
-\caption{Interface d'administration — gestion des rôles et permissions}
-\label{fig:interface_roles}
+\includegraphics[width=14cm,height=15cm,keepaspectratio]{Images/capture liste utilisateur.png}
+\caption{Interface liste des utilisateurs}
+\label{fig:interface_users}
 \end{figure}
+
+
+\subsection{Interface de gestion des rôles et permissions}
 La matrice des permissions affiche les rôles en colonnes et les catégories
 de permissions en lignes, avec des cases à cocher pour une attribution
 visuelle et intuitive.
-
-\subsubsection{Interface de gestion des Demandes d'accès via fournisseur externe}
 \begin{figure}[H]
 \centering
-%\includegraphics[width=0.85\textwidth,keepaspectratio]{Images/interface_demandes_oauth.png}
-\caption{Interface d'administration — demandes d'inscription OAuth}
-\label{fig:interface_oauth}
+\includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/gestion permission.png}
+\caption{Interface gestion des rôles et permissions}
+\label{fig:interface_roles}
 \end{figure}
+
+
+\subsection{Interface de gestion des Demandes d'accès via fournisseur externe}
 L'administrateur consulte les demandes en attente, visualise les
 informations récupérées via OAuth et peut approuver ou refuser chaque
 demande avec un motif de refus facultatif.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth,keepaspectratio]{Images/interface demande d'insription.png}
+\caption{Interface d'administration — demandes d'inscription OAuth}
+\label{fig:interface_oauth}
+\end{figure}
+
 
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 5 : TESTS
@@ -957,13 +957,11 @@ de passe. Les cas suivants ont été couverts :
     une \texttt{BadRequestException} est levée.
 \end{itemize}
 \begin{figure}[H]
-\centering
-\begin{minipage}{0.48\textwidth}
   \centering
-  \includegraphics[width=\textwidth,keepaspectratio]
+  \includegraphics[width=12cm,height=12cm,keepaspectratio]
     {Images/test-unitaire-auth.png}
-  \caption*{\small Résultats des tests unitaires — Authentification}
-\end{minipage}
+  \caption{ Test du module Authentification}
+\label{fig:interface_oauth_unit_test}
 \end{figure}
 % ── 2. RBAC ───────────────────────────────────────────────────────────────────
 \item[$\square$] \textbf{Test du module Gestion des rôles et permissions (RBAC)}
@@ -1003,12 +1001,8 @@ Les cas suivants ont été couverts :
 \end{itemize}
 \begin{figure}[H]
    \centering
-\begin{minipage}{0.48\textwidth}
-  \centering
-  \includegraphics[width=\textwidth,keepaspectratio]{Images/test-sprint1-moduleRole+Permession.png}
- 
-\end{minipage}
-\caption{Résultats des tests unitaires — RBAC}
+  \includegraphics[width=12cm,height=12cm,keepaspectratio]{Images/test-sprint1-moduleRole+Permession.png}
+ \caption{Test du module Gestion des rôles et permissions (RBAC)}
 \label{fig:test_unitaires}
 \end{figure}
 % ── 3. Gestion des clients ────────────────────────────────────────────────────
@@ -1057,9 +1051,8 @@ différents cas d'entrée.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.60\textwidth,keepaspectratio]
-  {Images/test-interg-login.png}
-\caption{Test d'intégration — Authentification via Swagger}
+\includegraphics[width=12cm,height=14cm,keepaspectratio]{Images/test-interg-login.png}
+\caption{Test du module Authentification}
 \label{fig:test_integration}
 \end{figure}
 
@@ -1074,13 +1067,13 @@ Lee cas suivant ont été couvert :
 \end{itemize}
 \begin{figure}[H]
         \centering
-        \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/gestion profil Swagger.png}
-        \caption{Test de mise à jour du profil}
+        \includegraphics[width=12cm,height=12cm,keepaspectratio]{Images/gestion profil Swagger.png}
+        \caption{Test du module Gestion du profil}
     \end{figure}
 \end{itemize}
 
 \subsubsection{Tests End-to-End}
-\label{sec:tests_e2e_demandes}
+\label{sec:tests_e2e_demandesch3}
 
 Les tests End-to-End de création de demande client valident l'intégralité
 du flux fonctionnel d'ajout d'une nouvelle demande au sein d'un navigateur
@@ -1127,9 +1120,8 @@ l'interface graphique. Les cas suivants ont été couverts :
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.68\textwidth,keepaspectratio]
-  {Images/ExecDeTestCasesReussi-auth.png}
-\caption{Tests End-to-End — Authentification via Playwright}
+\includegraphics[width=15cm,height=15cm,keepaspectratio]{Images/ExecDeTestCasesReussi-auth.png}
+\caption{Test du module de création de demande client}
 \label{fig:test_e2e_auth}
 \end{figure}
 
@@ -1155,11 +1147,13 @@ d'un administrateur. Le cas suivant a été couvert :
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.68\textwidth,keepaspectratio]
+\includegraphics[width=12cm,height=12cm,keepaspectratio]
   {Images/Test e2e desactiver utilisateu.png}
-\caption{Tests End-to-End — Désactivation utilisateur via Playwright}
+\caption{Test du module Gestion des utilisateurs}
 \label{fig:test_e2e_desactiver}
 \end{figure}
+
+\end{itemize}
 
 \subsubsection{Tests de performance}
 \label{sec:tests_performance_ch3}
@@ -1189,4 +1183,16 @@ Les tests de sécurité ont vérifié les contrôles d'accès, la robustesse des
 \item[$\bullet$] Les accès interdits renvoient un message explicite sans exposer de données sensibles.
 \end{itemize}
 
-\end{itemize}
+% ─────────────────────────────────────────────────────────────────────────────
+% CONCLUSION
+% ─────────────────────────────────────────────────────────────────────────────
+\section*{Conclusion}
+Ce chapitre a présenté le développement du premier sprint de la plateforme
+\textbf{SolidMaint}. Nous avons mis en place la gestion de l'authentification
+JWT avec les boutons OAuth Google et GitHub, ainsi que la gestion des
+rôles et permissions (RBAC). L'ensemble de ces fonctionnalités a été
+validé par une série de tests unitaires, d'intégration et
+End-to-End répartis sur trois niveaux.
+\newline
+Le chapitre suivant détaillera le deuxième sprint, consacré à la gestion
+des contrats, des projets et des clients.
