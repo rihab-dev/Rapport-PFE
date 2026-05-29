@@ -108,15 +108,14 @@ US26 & En tant que \textbf{membre d'équipe}, je souhaite consulter les informat
 
 US27 & En tant qu'\textbf{administrateur}, je souhaite créer un contrat de maintenance afin de formaliser les engagements de service avec le client. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"POST /api/contrats"}\small{} prenant en charge le dépôt du document signé.
+\item Développer l'endpoint \footnotesize{"POST /api/contrats"}\small{} prenant en charge la Création du contrat.
 \item Prévoir l'extraction automatique avec \footnotesize{"POST /api/contrats/extract-pdf"}\small{} et l'upload scanné via \footnotesize{"POST /api/contrats/upload-scanne"}\small.
-\item Mettre à disposition la génération PDF via \footnotesize{"GET /api/contrats/:id/generate-pdf"}\small{} côté frontend.
 \end{itemize} & 2 \\
 \hline
 
 US28 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des contrats afin de suivre les engagements contractuels. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"GET /api/contrats"}\small{} avec filtrage par client, projet et archivage.
+\item Développer l'endpoint \footnotesize{"GET /api/contrats"}\small{} avec filtrage.
 \item Compléter avec \footnotesize{"GET /api/contrats/client/:clientId"}\small, \footnotesize{"GET /api/contrats/archived"}\small{} et \footnotesize{"GET /api/contrats/:id/fichier"}\small.
 \item Concevoir l'interface frontend sous forme de tableau dynamique avec filtres avancés et badges de statut.
 \end{itemize} & 3 \\
