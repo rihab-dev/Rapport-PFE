@@ -1,66 +1,195 @@
+% ============================================================
+%  PAGE DE GARDE — NORME OFFICIELLE ISET RADÈS
+%  Version sans texte arabe (compatible pdflatex standard)
+% ============================================================
+%
+%  Packages requis dans le préambule principal :
+%    \usepackage[T1]{fontenc}
+%    \usepackage[utf8]{inputenc}
+%    \usepackage[french]{babel}
+%    \usepackage{graphicx}
+%    \usepackage{xcolor}
+%    \usepackage{geometry}
+%    \usepackage{setspace}
+% ============================================================
+
+\definecolor{isetred}{RGB}{180, 0, 0}
+\definecolor{darkgray}{RGB}{60, 60, 60}
+
 \begin{titlepage}
-    \begin{center}
-        \vspace*{0.5cm}
-        
-        % En-tête avec logos
-        \begin{minipage}{0.3\textwidth}
-            \includegraphics[width=3cm]{example-image} % Logo ISET
-        \end{minipage}
-        \hfill
-        \begin{minipage}{0.3\textwidth}
-            \flushright
-            \includegraphics[width=3cm]{Images/SolidWall.png}
-        \end{minipage}
-        
-        \vspace{1.5cm}
-        
-        % Titre principal avec encadré
-        \colorbox{primary!10}{
-            \parbox{0.9\textwidth}{
-                \centering
-                \vspace{0.5cm}
-                {\Huge\bfseries\color{primary} 
-                Plateforme de Gestion des Contrats\\ 
-                de Maintenance
-                }
-                \vspace{0.3cm}
+
+% ----------------------------------------------------------
+% FILET ROUGE SUPÉRIEUR
+% ----------------------------------------------------------
+\noindent\textcolor{isetred}{\rule{\textwidth}{2.5pt}}
+\vspace{2pt}
+
+% ----------------------------------------------------------
+% EN-TÊTE : texte institutionnel gauche + logo armoiries
+%           + texte institutionnel droite (fr)
+% ----------------------------------------------------------
+\noindent
+\begin{minipage}[t]{0.42\textwidth}
+    \raggedright
+    {\fontsize{7.5}{9}\selectfont\bfseries
+        République Tunisienne\\[1pt]
+        Ministère de l'Enseignement Supérieur\\
+        et de la Recherche Scientifique\\[1pt]
+        Direction Générale des Études Technologiques\\[1pt]
+        ISET de Radès\\[1pt]
+        Département Technologies de l'Informatique
+    }
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.13\textwidth}
+    \centering
+    % ↓ Logo armoiries tunisiennes — remplacer par votre fichier
+    \includegraphics[height=1.9cm,keepaspectratio]{Images/logo_republique.png}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.42\textwidth}
+    \raggedleft
+    {\fontsize{7.5}{9}\selectfont\bfseries\color{darkgray}
+        Institut Superieur des Etudes\\
+        Technologiques de Rades\\[1pt]
+        Ministere de l'Enseignement Superieur\\
+        et de la Recherche Scientifique\\[1pt]
+        Departement Technologies\\
+        de l'Informatique
+    }
+\end{minipage}
+
+\vspace{3pt}
+\noindent\textcolor{isetred}{\rule{\textwidth}{1pt}}
+
+% ----------------------------------------------------------
+% LOGOS : ISET (gauche) + SolidWall (droite)
+% ----------------------------------------------------------
+\vspace{0.55cm}
+\noindent
+\begin{minipage}[c]{0.30\textwidth}
+    \centering
+    \includegraphics[height=2.5cm,keepaspectratio]{Images/logo iset.png}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.30\textwidth}
+    \centering
+    % Zone centrale — vous pouvez y mettre un 3e logo si besoin
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.30\textwidth}
+    \centering
+    \includegraphics[height=2.5cm,keepaspectratio]{Images/SolidWall.png}
+\end{minipage}
+
+% ----------------------------------------------------------
+% TITRE DU RAPPORT
+% ----------------------------------------------------------
+\vspace{0.9cm}
+\begin{center}
+    {\Large\bfseries Rapport de Projet de Fin d'Etudes}
+\end{center}
+
+\vspace{0.4cm}
+\begin{center}
+    {\normalsize\bfseries\itshape
+        LICENCE EN TECHNOLOGIES DE L'INFORMATIQUE
+    }\\[0.25cm]
+    {\normalsize\bfseries\itshape
+        PARCOURS : D\'EVELOPPEMENT DES SYST\`EMES D'INFORMATIONS (DSI)
+    }
+\end{center}
+
+% ----------------------------------------------------------
+% ENCADRÉ TITRE DU PROJET
+% ----------------------------------------------------------
+\vspace{0.65cm}
+\begin{center}
+    \setlength{\fboxsep}{14pt}
+    \setlength{\fboxrule}{1.5pt}
+    \fcolorbox{isetred}{white}{%
+        \parbox{0.82\textwidth}{%
+            \centering
+            {\large\bfseries
+                SolidMaint : Plateforme Web de Gestion\\[5pt]
+                des Contrats de Maintenance
             }
-        }
-        
-        \vspace{0.8cm}
-        {\LARGE\bfseries SolidWall Consulting}
-        
-        \vspace{1.5cm}
-        
-        {\Large\bfseries Rapport de Projet de Fin d'Études}
-        
-        \vspace{0.3cm}
-        {\large Pour l'obtention du diplôme de}
-        
-        \vspace{0.2cm}
-        {\Large\bfseries Licence Appliquée en Informatique}
-        
-        \vspace{1.5cm}
-        
-        % Informations étudiants et encadrants
-        \begin{minipage}{0.45\textwidth}
-            \begin{flushleft}
-                \textbf{\large Réalisé par :}\\[0.3cm]
-                {\large Rihab CHOUROU}\\
-                {\large Eya GHARBI}
-            \end{flushleft}
-        \end{minipage}
-        \hfill
-        \begin{minipage}{0.45\textwidth}
-            \begin{flushright}
-                \textbf{\large Encadré par :}\\[0.3cm]
-                {\large Encadrant Académique : [Nom]}\\
-                {\large Encadrant Professionnel : [Nom]}
-            \end{flushright}
-        \end{minipage}
-        
-        \vfill
-        
-        {\large\bfseries Année Universitaire 2025-2026}
-    \end{center}
+        }%
+    }
+\end{center}
+
+% ----------------------------------------------------------
+% ENTREPRISE
+% ----------------------------------------------------------
+\vspace{0.65cm}
+\noindent\hspace{1cm}{\large\bfseries Entreprise : SolidWall Consulting}
+
+% ----------------------------------------------------------
+% RÉALISÉ PAR / ENCADRÉ PAR
+% ----------------------------------------------------------
+\vspace{0.85cm}
+\noindent
+\begin{minipage}[t]{0.44\textwidth}
+    \raggedright
+    {\large\bfseries R\'ealis\'e par :}\\[0.5cm]
+    {\large Rihab \textsc{Chourou}}\\[0.25cm]
+    {\large Eya \textsc{Gharbi}}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.52\textwidth}
+    \raggedright
+    {\large\bfseries Encadr\'e par :}\\[0.5cm]
+    {\normalsize\bfseries Encadrante ISET :}\\[0.15cm]
+    {\normalsize\hspace{0.4cm}M\textsuperscript{me} Imen \textsc{Msekni}}\\[0.35cm]
+    {\normalsize\bfseries Encadrante entreprise :}\\[0.15cm]
+    {\normalsize\hspace{0.4cm}M\textsuperscript{me} Maissa \textsc{Ben Fredj}}
+\end{minipage}
+
+% ----------------------------------------------------------
+% CODE PFE + ANNÉE UNIVERSITAIRE
+% ----------------------------------------------------------
+\vspace*{\fill}
+\noindent\textcolor{isetred}{\rule{\textwidth}{1pt}}
+\vspace{3pt}
+
+\noindent
+\begin{minipage}[t]{0.45\textwidth}
+    \raggedright
+    {\small\itshape Code PFE : DSI-25-XX}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.50\textwidth}
+    \raggedleft
+    {\small\itshape Ann\'ee universitaire : 2025/2026}
+\end{minipage}
+
+\vspace{3pt}
+\noindent\textcolor{isetred}{\rule{\textwidth}{1pt}}
+
+% ----------------------------------------------------------
+% PIED DE PAGE — ADRESSE ISET RADÈS
+% ----------------------------------------------------------
+\vspace{2pt}
+\noindent
+\begin{minipage}[t]{0.55\textwidth}
+    \raggedright
+    {\fontsize{7}{8.5}\selectfont
+        Adresse : Rue El Quods, BP 172 - 2098 - Rad\`es\\
+        T\'el\'ephone : 71 460 100 \quad Fax : 71 442 322\\
+        Site Web : \textit{www.isetr.rnu.tn}
+    }
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.40\textwidth}
+    \raggedleft
+    {\fontsize{7}{8.5}\selectfont\color{darkgray}
+        BP 172 - 2098 - Rad\`es\\
+        Fax : 71 442 322 \quad T\'el : 71 460 100\\
+        \textit{www.isetr.rnu.tn}
+    }
+\end{minipage}
+
+\vspace{2pt}
+\noindent\textcolor{isetred}{\rule{\textwidth}{2.5pt}}
+
 \end{titlepage}

@@ -777,7 +777,7 @@ La figure suivante présente le diagramme de séquences du cas d’utilisation �
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/Soumission demande.vpd.png}
+    \includegraphics[width=0.95\textwidth,height=0.85\textheight,keepaspectratio]{Images/Soumission demande.vpd.png}
     \caption{Diagramme de séquences du cas d'utilisation « Soumettre demande »}
     \label{fig:seq_soumettre_demande}
 \end{figure}
@@ -903,7 +903,7 @@ Les tests unitaires du troisième sprint ont été organisés par composant fonc
 \newline\textbf{Observations clés :} Tests couvrant succès, échecs réseau et faible confiance ; réessais validés avec attente simulée.
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\linewidth]{Images/llm_retry_backoff.png}
+  \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/llm_retry_backoff.png}
 \end{figure}
 
 \item[$\square$] \textbf{Cache MD5}
@@ -912,7 +912,7 @@ Les tests unitaires du troisième sprint ont été organisés par composant fonc
 \newline\textbf{Observations clés :} Cache hit évite appel externe ; expiration testée via mock temps.
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.8\linewidth]{Images/cache_md5.png}
+  \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/cache_md5.png}
 \end{figure}
 
 \item[$\square$] \textbf{Création / Assignation / Statuts (Workflow tickets)}
@@ -921,7 +921,7 @@ Les tests unitaires du troisième sprint ont été organisés par composant fonc
 \newline\textbf{Observations clés :} Validations métier et contraintes de transition testées.
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\linewidth]{Images/ticket_workflow.png}
+  \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/ticket_workflow.png}
 \end{figure}
 
 \item[$\square$] \textbf{Rate limiting}
@@ -930,7 +930,7 @@ Les tests unitaires du troisième sprint ont été organisés par composant fonc
 \newline\textbf{Observations clés :} Comptage et refus au seuil vérifiés ; timer reset adapté aux tests.
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.8\linewidth]{Images/rate_limiting.png}
+  \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/rate_limiting.png}
 \end{figure}
 
 \item[$\square$] \textbf{Calcul SLA}
@@ -939,7 +939,7 @@ Les tests unitaires du troisième sprint ont été organisés par composant fonc
 \newline\textbf{Observations clés :} Scénarios 24/7 vs ouvrés et traversée jours fériés testés.
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\linewidth]{Images/sla_deadline.png}
+  \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/sla_deadline.png}
 \end{figure}
 \end{itemize}
 
@@ -957,14 +957,14 @@ Les tests d'intégration ont été réalisés sur les endpoints principaux du sp
   \item Une demande valide est approuvée par le chef de projet : l'endpoint retourne le code \textbf{200 OK} et le statut de la demande passe à \texttt{CONVERTIE} avec création automatique d'un ticket.
   \begin{figure}[H]
   \centering
-  \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/validerDemandeTest.png}
+  \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/validerDemandeTest.png}
   \caption{Test d'intégration - Validation d'une demande}
   \end{figure}
   
   \item Une demande non conforme est rejetée avec un motif : l'endpoint retourne le code \textbf{200 OK} et la demande est marquée comme \texttt{REJETEE}.
   \begin{figure}[H]
   \centering
-  \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/rejeterDemandeTest.png}
+  \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/rejeterDemandeTest.png}
   \caption{Test d'intégration - Rejet d'une demande}
   \end{figure}
   
@@ -980,21 +980,21 @@ Les tests d'intégration ont été réalisés sur les endpoints principaux du sp
   \item Une demande est soumise à l'IA pour classification automatique : l'endpoint retourne la catégorie prédite (\texttt{typeDemande}) et la priorité avec un niveau de confiance.
   \begin{figure}[H]
   \centering
-  \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/classificationIATest.png}
+  \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/classificationIATest.png}
   \caption{Test d'intégration - Classification IA}
   \end{figure}
   
   \item Un utilisateur (chef de projet) soumet un feedback sur une classification : l'endpoint retourne le code \textbf{200 OK} et le feedback est enregistré dans l'audit trail.
   \begin{figure}[H]
   \centering
-  \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/feedbackTest.png}
+  \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/feedbackTest.png}
   \caption{Test d'intégration - Envoi de feedback}
   \end{figure}
   
   \item Une reclassification est déclenchée après feedback ou manuellement : l'endpoint supprime l'ancienne classification et en génère une nouvelle via l'IA.
   \begin{figure}[H]
   \centering
-  \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/reclassificationTest.png}
+  \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/reclassificationTest.png}
   \caption{Test d'intégration - Reclassification}
   \end{figure}
   
@@ -1010,7 +1010,7 @@ Les tests d'intégration ont été réalisés sur les endpoints principaux du sp
   \item Un ticket est analysé et des articles pertinents de la KB sont suggérés : l'endpoint retourne une liste d'articles avec leur score de pertinence et un extrait.
   \begin{figure}[H]
   \centering
-  \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/suggestionsKBTest.png}
+  \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/suggestionsKBTest.png}
   \caption{Test d'intégration - Suggestions KB}
   \end{figure}
   \end{itemize}
@@ -1066,7 +1066,7 @@ l'interface graphique. Les cas suivants ont été couverts :
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth,keepaspectratio]
+\includegraphics[width=14cm,height=14cm,keepaspectratio]
   {Images/ExecDeTestCasesReussi-demandes.png}
 \caption{Résultats des tests End-to-End — Création de demande client}
 \label{fig:test_e2e_demandes}
@@ -1105,7 +1105,7 @@ l'interface graphique. Le cas suivant a été couvert :
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\textwidth,keepaspectratio]
+\includegraphics[width=14cm,height=14cm,keepaspectratio]
   {Images/Test e2e blocage ticket.png}
 \caption{Tests End-to-End — Signalement de blocage sur un ticket via Playwright}
 \label{fig:test_e2e_blocage_ticket}
