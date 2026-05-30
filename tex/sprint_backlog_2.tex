@@ -170,12 +170,18 @@ US35 & En tant qu'\textbf{administrateur}, je souhaite générer un PDF formaté
 \item Intégrer la structure réglementaire et le bouton de téléchargement côté Next.js.
 \end{itemize} & 2 \\
 \hline
+US36 & En tant qu'\textbf{administrateur}, je souhaite consulter les détails d'un contrat afin de visualiser toutes ses informations. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+    \item Développer l'endpoint \footnotesize{"GET /api/contrats/:id"}\small{} pour récupérer les informations complètes d'un contrat par son identifiant unique.
+    \item Réaliser l'interface de visualisation détaillée du contrat côté Next.js avec affichage structuré
+\end{itemize} & 1 \\
+\hline
 
 % Epic 14: Consulter journal d'activité
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 14 - Historique et traçabilité}} \\
 \hline
 
-US101 & En tant qu'\textbf{administrateur}, je souhaite consulter l'historique complet de toutes les actions afin d'assurer la traçabilité. &
+US98 & En tant qu'\textbf{administrateur}, je souhaite consulter l'historique complet de toutes les actions afin d'assurer la traçabilité. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint \footnotesize{"GET /api/activity-logs"}\small{} paginé et filtrable par acteurs, entités, actions, statuts et dates.
 \item Compléter avec \footnotesize{"GET /api/activity-logs/stats"}\small, \footnotesize{"GET /api/activity-logs/user/:userId"}\small{} et \footnotesize{"GET /api/activity-logs/entity/:entityType/:entityId"}\small.
@@ -183,7 +189,7 @@ US101 & En tant qu'\textbf{administrateur}, je souhaite consulter l'historique c
 \end{itemize} & 3 \\
 \hline
 
-US102 & En tant qu'\textbf{administrateur}, je souhaite exporter les logs d'audit afin de répondre aux exigences de conformité. &
+US99 & En tant qu'\textbf{administrateur}, je souhaite exporter les logs d'audit afin de répondre aux exigences de conformité. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Prévoir l'export CSV/JSON des logs consultés depuis l'interface, en s'appuyant sur les données de \footnotesize{"GET /api/activity-logs"}\small.
 \item Utiliser \footnotesize{"GET /api/activity-logs/me/export"}\small{} pour l'export du périmètre utilisateur connecté.

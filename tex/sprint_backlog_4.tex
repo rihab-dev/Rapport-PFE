@@ -21,7 +21,6 @@
 % Epic 14: Historique et traçabilité
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 14 - Historique et traçabilité}} \\
 \hline
-
 US11 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique de mes activités afin de suivre mes actions dans le système. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint \textbf{"GET /api/activity-logs/me"}\small{} avec limitation par défaut aux 30 derniers jours.
@@ -30,18 +29,18 @@ US11 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique de me
 \item Créer une interface de timeline interactive et filtrable côté Next.js.
 \end{itemize} & 2 \\
 \hline
-US88 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique des consultations afin de voir qui a accédé au document. &
+US84 & En tant qu'\textbf{utilisateur}, je souhaite voir qui a consulté un document afin de suivre sa diffusion. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Enregistrer et lister les consultations via \textbf{POST /api/documents/:id/consulter} et \textbf{GET /api/documents/:id/consultations}.
 \item Afficher les statistiques de consultation avec \textbf{GET /api/documents/:id/consultations/stats}.
 \item Restituer une frise chronologique avec les utilisateurs et les dates d'accès.
 \end{itemize} & 1 \\
 \hline
-US103 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique complet d'un ticket afin de retracer son cycle de vie. &
+US100 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique complet d'un ticket afin de retracer son cycle de vie. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Les événements retournés incluent : création, changements de statut, sessions de travail, assignations/désassignations, commentaires, pièces jointes, blocages/résolutions, extensions SLA.
 \item Restituer tous les événements (statuts, sessions, assignations, commentaires, blocages, extensions SLA) avec auteur, date et valeurs avant/après.
-\item Permettre l'export de l'historique au format CSV ou PDF via \textbf{GET /api/tickets/:id/history/export?format=csv|pdf}.
+\item Permettre l'export de l'historique au format CSV ou JSON via \textbf{GET /api/tickets/:id/history/export?format=csv|json}.
 \end{itemize} & 3 \\
 \hline
 
@@ -52,8 +51,8 @@ US103 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique comp
 US65 & En tant qu'\textbf{utilisateur}, je souhaite visualiser les tickets et demandes de maintenance sur un calendrier mensuel afin d'avoir une vue globale des interventions. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item S'appuyer sur les listes de tickets et de demandes déjà exposées par l'API et les afficher dans la vue calendrier de l'application.
-\item Rendre les éléments dans la page \texttt{/calendrier} via les vues \texttt{month} et \texttt{agenda} avec code couleur par type d'élément.
-\item Distinguer tickets et demandes directement dans le composant \texttt{GanttAgendaView}.
+\item Rendre les éléments dans la page "/calendrier" via les vues "month" et "agenda" avec code couleur par type d'élément.
+\item Distinguer tickets et demandes directement dans le composant "GanttAgendaView".
 \end{itemize} & 3 \\
 \hline
 
@@ -138,15 +137,8 @@ US75 & En tant qu'\textbf{utilisateur}, je souhaite épingler des messages impor
 \end{itemize} & 1 \\
 \hline
 
-US76 & En tant que \textbf{chef de projet}, je souhaite voir qui est en ligne dans mon équipe afin de savoir qui je peux solliciter. &
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Exploiter la charge et la disponibilité de l'équipe via \textbf{GET /api/dashboard/chef-projet/equipe-charge}.
-\item Afficher les membres en travail ou disponibles directement dans la vue chef de projet.
-\item Utiliser les états temps réel pour compléter l'information de disponibilité.
-\end{itemize} & 2 \\
-\hline
 
-US77 & En tant qu'\textbf{utilisateur}, je souhaite voir qui est en ligne afin de savoir qui est disponible. &
+US76 & En tant qu'\textbf{utilisateur}, je souhaite voir qui est en ligne afin de savoir qui est disponible. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Diffuser le statut via le namespace WebSocket \texttt{messages} et l'événement \texttt{user:status}.
 \item Mettre à jour la dernière connexion côté backend à la connexion WebSocket.
@@ -156,7 +148,7 @@ US77 & En tant qu'\textbf{utilisateur}, je souhaite voir qui est en ligne afin d
 
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 11 - Gestion des documents}} \\
 \hline
-US78 & En tant qu'\textbf{utilisateur}, je souhaite uploader des documents afin de centraliser les fichiers. &
+US77 & En tant qu'\textbf{utilisateur}, je souhaite uploader des documents afin de centraliser les fichiers. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Utiliser \textbf{POST /api/documents/upload} pour déposer un ou plusieurs fichiers.
 \item Associer les documents à un ticket ou à un contrat via \texttt{ticketId} ou \texttt{contratId}.
@@ -164,7 +156,7 @@ US78 & En tant qu'\textbf{utilisateur}, je souhaite uploader des documents afin 
 \end{itemize} & 3 \\
 \hline
 
-US79 & En tant qu'\textbf{utilisateur}, je souhaite télécharger des documents afin de les consulter hors ligne. &
+US78 & En tant qu'\textbf{utilisateur}, je souhaite télécharger des documents afin de les consulter hors ligne. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item S'appuyer sur la liste des documents et sur l'URL du fichier renvoyée par l'objet document.
 \item Enregistrer la consultation avec \textbf{POST /api/documents/:id/consulter}.
@@ -172,7 +164,7 @@ US79 & En tant qu'\textbf{utilisateur}, je souhaite télécharger des documents 
 \end{itemize} & 2 \\
 \hline
 
-US80 & En tant qu'\textbf{utilisateur}, je souhaite gérer les versions des documents afin d'assurer la traçabilité. &
+US79 & En tant qu'\textbf{utilisateur}, je souhaite gérer les versions des documents afin d'assurer la traçabilité. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Consulter l'historique avec \textbf{GET /api/documents/:id/versions}.
 \item Remplacer un document par une nouvelle version avec \textbf{PATCH /api/documents/:id/replace}.
@@ -180,7 +172,7 @@ US80 & En tant qu'\textbf{utilisateur}, je souhaite gérer les versions des docu
 \end{itemize} & 2 \\
 \hline
 
-US81 & En tant qu'\textbf{administrateur}, je souhaite archiver des documents afin de nettoyer la vue active. &
+US80 & En tant qu'\textbf{administrateur}, je souhaite archiver des documents afin de nettoyer la vue active. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Archiver un document avec \textbf{PATCH /api/documents/:id/archive}.
 \item Restaurer un document avec \textbf{PATCH /api/documents/:id/restore}.
@@ -188,7 +180,7 @@ US81 & En tant qu'\textbf{administrateur}, je souhaite archiver des documents af
 \end{itemize} & 1 \\
 \hline
 
-US82 & En tant que \textbf{chef de projet}, je souhaite générer automatiquement un PV à partir d'un ticket afin de documenter les interventions. &
+US81 & En tant que \textbf{chef de projet}, je souhaite générer automatiquement un PV à partir d'un ticket afin de documenter les interventions. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Préremplir les données du PV avec \textbf{GET /api/pv/prefill/:ticketId}.
 \item Générer le PV avec \textbf{POST /api/pv/generate/:ticketId}.
@@ -196,30 +188,14 @@ US82 & En tant que \textbf{chef de projet}, je souhaite générer automatiquemen
 \end{itemize} & 3 \\
 \hline
 
-US83 & En tant que \textbf{client}, je souhaite accéder aux documents de mes contrats et à mes justificatifs de tickets afin de centraliser nos échanges de fichiers. & 
+US82 & En tant que \textbf{client}, je souhaite accéder aux documents de mes contrats et à mes justificatifs de tickets afin de centraliser nos échanges de fichiers. & 
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Lister les documents via \textbf{GET /api/documents} (avec filtres \textbf{ticketId} ou \textbf{contratId}).
 \item Filtrage automatique côté serveur : sur un ticket, ne retourner que les documents dont l'utilisateur est l'auteur (\textbf{uploadeurId}).
-\item Exclusion totale des types \textbf{PROCES\_VERBAL} et des fichiers techniques déposés par les intervenants.
 \end{itemize} & 1 \\
 \hline
-US84 & En tant que \textbf{développeur ou chef de projet}, je souhaite consulter la base de connaissances afin de trouver des solutions existantes. &
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Consulter les articles via \textbf{GET /api/knowledge-base} et \textbf{GET /api/knowledge-base/:id}.
-\item Rechercher des articles liés à un ticket avec \textbf{GET /api/knowledge-base/by-ticket/:ticketId}.
-\item Utiliser les suggestions contextuelles via \textbf{POST /api/knowledge-base/suggest}.
-\end{itemize} & 2 \\
-\hline
 
-US85 & En tant qu'\textbf{administrateur}, je souhaite créer des articles de la base de connaissances afin d'enrichir la documentation. &
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Créer un article manuel avec \textbf{POST /api/knowledge-base}.
-\item Mettre à jour ou archiver un article avec \textbf{PATCH /api/knowledge-base/:id} et \textbf{DELETE /api/knowledge-base/:id}.
-\item Enregistrer l'usage des articles via \textbf{POST /api/knowledge-base/:id/usage}.
-\end{itemize} & 2 \\
-\hline
-
-US86 & En tant qu'\textbf{utilisateur}, je souhaite créer une nouvelle version d'un document afin de maintenir l'historique. &
+US83 & En tant qu'\textbf{utilisateur}, je souhaite créer une nouvelle version d'un document afin de maintenir l'historique. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Créer une nouvelle version en remplaçant le fichier avec \textbf{PATCH /api/documents/:id/replace}.
 \item Conserver les versions précédentes via \textbf{GET /api/documents/:id/versions}.
@@ -227,16 +203,30 @@ US86 & En tant qu'\textbf{utilisateur}, je souhaite créer une nouvelle version 
 \end{itemize} & 2 \\
 \hline
 
-US87 & En tant qu'\textbf{utilisateur}, je souhaite voir qui a consulté un document afin de suivre sa diffusion. &
+US84 & En tant qu'\textbf{utilisateur}, je souhaite voir qui a consulté un document afin de suivre sa diffusion. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Exploiter \textbf{GET /api/documents/:id/consultations} pour afficher les accès détaillés.
 \item Utiliser \textbf{GET /api/documents/:id/consultations/stats} pour voir les vues uniques et les dates.
 \item Présenter les consults dans une timeline lisible.
 \end{itemize} & 2 \\
 \hline
+US85 & En tant que \textbf{développeur ou chef de projet}, je souhaite consulter la base de connaissances afin de trouver des solutions existantes. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Consulter les articles via \textbf{GET /api/knowledge-base} et \textbf{GET /api/knowledge-base/:id}.
+\item Rechercher des articles liés à un ticket avec \textbf{GET /api/knowledge-base/by-ticket/:ticketId}.
+\item Utiliser les suggestions contextuelles via \textbf{POST /api/knowledge-base/suggest}.
+\end{itemize} & 2 \\
+\hline
+US86 & En tant qu'\textbf{administrateur}, je souhaite créer des articles de la base de connaissances afin d'enrichir la documentation. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Créer un article manuel avec \textbf{POST /api/knowledge-base}.
+\item Mettre à jour ou archiver un article avec \textbf{PATCH /api/knowledge-base/:id} et \textbf{DELETE /api/knowledge-base/:id}.
+\item Enregistrer l'usage des articles via \textbf{POST /api/knowledge-base/:id/usage}.
+\end{itemize} & 2 \\
+\hline
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 12 - Notifications et alertes}} \\
 \hline
-US89 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications in-app afin d'être informé en temps réel. &
+US87 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications in-app afin d'être informé en temps réel. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Lister les notifications via \textbf{GET /api/notifications}.
 \item Marquer une notification comme lue avec \textbf{PATCH /api/notifications/:id/read} ou tout lire avec \textbf{PATCH /api/notifications/read-all}.
@@ -244,7 +234,7 @@ US89 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications i
 \end{itemize} & 2 \\
 \hline
 
-US90 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications par email afin d'être informé hors connexion. &
+US88 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications par email afin d'être informé hors connexion. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Gérer les préférences email avec \textbf{GET /api/notifications/preferences} et \textbf{PATCH /api/notifications/preferences/:type}.
 \item Déclencher les envois depuis les événements métier déjà existants.
@@ -252,7 +242,7 @@ US90 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications p
 \end{itemize} & 2 \\
 \hline
 
-US91 & En tant que \textbf{développeur ou chef de projet}, je souhaite recevoir des notifications Slack afin d'être alerté sur mon outil de travail. &
+US89 & En tant que \textbf{utilisateur}, je souhaite recevoir des notifications Slack afin d'être alerté sur mon outil de travail. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Configurer les intégrations Slack avec \textbf{POST /api/slack/config} et \textbf{GET /api/slack/configs}.
 \item Consulter, modifier ou supprimer une configuration par contrat via \textbf{GET /api/slack/config/:contratId}, \textbf{PATCH /api/slack/config/:contratId} et \textbf{DELETE /api/slack/config/:contratId}.
@@ -260,7 +250,7 @@ US91 & En tant que \textbf{développeur ou chef de projet}, je souhaite recevoir
 \end{itemize} & 2 \\
 \hline
 
-US92 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications push navigateur afin d'être alerté même hors onglet. &
+US90 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications push navigateur afin d'être alerté même hors onglet. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Récupérer la clé publique avec \textbf{GET /api/web-push/vapid-public-key}.
 \item S'abonner ou se désabonner via \textbf{POST /api/web-push/subscribe} et \textbf{DELETE /api/web-push/unsubscribe}.
@@ -268,7 +258,7 @@ US92 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications p
 \end{itemize} & 2 \\
 \hline
 
-US93 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique de mes notifications afin de retrouver une information. &
+US91 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique de mes notifications afin de retrouver une information. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Lister les notifications via \textbf{GET /api/notifications} avec pagination.
 \item Ouvrir le centre de notifications depuis le bouton du header.
@@ -277,7 +267,7 @@ US93 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique de me
 \hline
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 13 - Dashboards et rapports}} \\
 \hline
-US94 & En tant qu'\textbf{administrateur}, je souhaite consulter un dashboard global afin de piloter le système. &
+US92 & En tant qu'\textbf{administrateur}, je souhaite consulter un dashboard global afin de piloter le système. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Consulter les statistiques globales via \textbf{GET /api/dashboard/stats}.
 \item Compléter le tableau de bord avec \textbf{GET /api/dashboard/top-developers}, \textbf{GET /api/dashboard/trend} et \textbf{GET /api/dashboard/rapport-mensuel}.
@@ -285,7 +275,7 @@ US94 & En tant qu'\textbf{administrateur}, je souhaite consulter un dashboard gl
 \end{itemize} & 3 \\
 \hline
 
-US95 & En tant que \textbf{chef de projet}, je souhaite consulter un dashboard d'équipe afin de piloter l'activité. &
+US93 & En tant que \textbf{chef de projet}, je souhaite consulter un dashboard d'équipe afin de piloter l'activité. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Utiliser \textbf{GET /api/dashboard/chef-projet/kpis} pour les indicateurs clés.
 \item Compléter la vue avec \textbf{GET /api/dashboard/chef-projet/demandes-action-requise}, \textbf{GET /api/dashboard/chef-projet/tickets-sla-critique}, \textbf{GET /api/dashboard/chef-projet/projets-synthese} et \textbf{GET /api/dashboard/chef-projet/equipe-charge}.
@@ -293,7 +283,7 @@ US95 & En tant que \textbf{chef de projet}, je souhaite consulter un dashboard d
 \end{itemize} & 2 \\
 \hline
 
-US96 & En tant qu'\textbf{client}, je souhaite consulter mon dashboard afin de suivre mes projets. &
+US94 & En tant que \textbf{client}, je souhaite consulter mon dashboard afin de suivre mes projets. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Consulter le dashboard client via \textbf{GET /api/dashboard/client}.
 \item Afficher les projets, tickets et indicateurs liés au client connecté.
@@ -301,23 +291,14 @@ US96 & En tant qu'\textbf{client}, je souhaite consulter mon dashboard afin de s
 \end{itemize} & 2 \\
 \hline
 
-US97 & En tant qu'\textbf{administrateur}, je souhaite générer un rapport d'activité mensuel afin de présenter les statistiques. &
+US95 & En tant qu'\textbf{administrateur}, je souhaite générer un rapport d'activité mensuel afin de présenter les statistiques. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Générer le rapport via \textbf{GET /api/dashboard/rapport-mensuel} avec \texttt{mois} et \texttt{annee}.
 \item Permettre un filtrage optionnel par client avec \texttt{clientId}.
 \item Réutiliser les métriques déjà calculées par le dashboard admin.
 \end{itemize} & 3 \\
 \hline
-
-US98 & En tant qu'\textbf{administrateur}, je souhaite générer des rapports de conformité SLA afin de justifier les performances. &
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Combiner \textbf{GET /api/dashboard/stats} et \textbf{GET /api/dashboard/trend} pour calculer le taux de conformité SLA.
-\item S'appuyer sur les tickets critiques, les retards et les blocages déjà agrégés par le dashboard.
-\item Ne pas prévoir de route SLA-report séparée, car la conformité est calculée à partir des vues existantes.
-\end{itemize} & 2 \\
-\hline
-
-US99 & En tant que \textbf{chef de projet}, je souhaite générer des rapports d'activité afin de présenter l'avancement. &
+US96 & En tant que \textbf{chef de projet}, je souhaite générer des rapports d'activité afin de présenter l'avancement. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Utiliser \textbf{GET /api/dashboard/chef-projet/rapport} avec \texttt{dateDebut}, \texttt{dateFin}, \texttt{projetId} et \texttt{clientId}.
 \item Produire un rapport par projet ou par période à partir des données réelles de tickets et de demandes.

@@ -1,4 +1,4 @@
-\section*{Introduction}
+﻿\section*{Introduction}
 Dans le chapitre précédent, nous avons mis en place la gestion des projets et des contrats, définissant ainsi le cadre contractuel et organisationnel de notre collaboration avec les clients.
 \newline Au cours de ce chapitre, nous présentons les fonctionnalités du troisième sprint, consacré au cœur métier de la plateforme, à savoir la gestion des demandes, la gestion des tickets, le suivi du temps, le respect des SLA et l’intégration de l’intelligence artificielle. Ce sprint constitue une étape majeure dans la transformation de la solution en un véritable système de pilotage du support et du traitement des incidents.
 
@@ -842,7 +842,7 @@ Le schéma relationnel du sprint 3 s’appuie sur les entités suivantes :
 Cette section présente les principales interfaces utilisateur développées durant le troisième sprint. Chaque interface a été conçue pour offrir une expérience claire aux différents acteurs de la plateforme.
 
 \subsection{Interface de gestion des demandes}
-Dans cette interface, nous avons développé une vue pour que le client puisse soumettre et suivre ses demandes. Pour le chef de projet, ces demandes apparaissent dans un tableau Kanban selon leur état (en attente, infos requises, convertie, rejetée).
+Nous avons mis en place cette interface pour que le client puisse soumettre et suivre ses demandes. Pour le chef de projet, ces demandes apparaissent dans un tableau Kanban selon leur état (en attente, infos requises, convertie, rejetée).
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/interface Liste demandes .png}
@@ -851,7 +851,7 @@ Dans cette interface, nous avons développé une vue pour que le client puisse s
 \end{figure}
 
 \subsection{Interface de validation des demandes}
-Cette interface permet au chef de projet de traiter les demandes reçues pour les valider et les convertir en tickets. Lors de cette étape, l'intelligence artificielle affiche des suggestions pour la catégorie, le type et la priorité de la demande avec un score de confiance, aidant ainsi le chef de projet à valider plus rapidement.
+Nous avons mis en place cette interface pour que le chef de projet puisse traiter les demandes reçues pour les valider et les convertir en tickets. Lors de cette étape, l'intelligence artificielle affiche des suggestions pour la catégorie, le type et la priorité de la demande avec un score de confiance, aidant ainsi le chef de projet à valider plus rapidement.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/Interface Valider_Demande.png}
@@ -859,7 +859,7 @@ Cette interface permet au chef de projet de traiter les demandes reçues pour le
 \label{fig:Interface Valider_Demande}
 \end{figure}
 \subsection{Interface de gestion des tickets}
-Cette page présente la liste des tickets sous forme de tableau Kanban pour faciliter le suivi visuel. Les développeurs peuvent y voir leurs tickets, les filtrer par priorité et changer leur état par un simple glisser-déposer. Elle montre aussi des indicateurs visuels pour les alertes de dépassement de délai (SLA).
+Nous avons mis en place cette interface pour regrouper tous les tickets sous forme de tableau pour faciliter leur suivi. Les développeurs peuvent y voir leurs tickets, les filtrer par priorité et suivre les indicateurs visuels de dépassement de délai (SLA). La mise en œuvre du changement d'état est ensuite gérée dans l'interface par des actions simples.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/Interface liste ticket.png}
@@ -868,7 +868,7 @@ Cette page présente la liste des tickets sous forme de tableau Kanban pour faci
 \end{figure}
 
 \subsection{Interface de gestion du temps}
-Dans cette vue de détails d'un ticket, le développeur peut démarrer un chronomètre pour enregistrer son temps de travail ou ajouter des sessions de manière manuelle. Elle affiche également l'historique complet et les discussions de l'équipe pour garder une trace de toutes les actions sur le ticket.
+Nous avons mis en place cette interface de vue détaillée d'un ticket, le développeur peut démarrer un chronomètre pour enregistrer son temps de travail ou ajouter des sessions de manière manuelle. Elle affiche également l'historique complet et les discussions de l'équipe pour garder une trace de toutes les actions sur le ticket.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/Interface DetailTicket.png}
