@@ -1167,17 +1167,17 @@ d'un administrateur. Le cas suivant a été couvert :
 Les tests de performance du premier sprint ont permis de mesurer la
 réactivité des mécanismes d'authentification et de gestion des utilisateurs
 sous charge simultanée. Ils ont été réalisés avec \textbf{k6} en simulant
-une montée en charge progressive jusqu'à 100 utilisateurs virtuels
-concurrents.
+une charge de travail atteignant un maximum de 20 utilisateurs virtuels
+concurrents (VUs).
 
 \subsubsection{Scénario de charge}
 
 Le scénario reproduit le comportement le plus critique du sprint :
-une authentification simultanée de plusieurs utilisateurs suivie de la
-consultation de leur espace. La montée en charge s'est déroulée en trois
-phases : montée progressive de 0 à 20 utilisateurs sur 30 secondes, charge
-soutenue à 100 utilisateurs simultanés pendant 1 minute, puis descente
-progressive jusqu'à 0.
+une authentification simultanée d'utilisateurs suivie de la
+consultation de leur espace. La charge s'est déroulée sur 3 étapes 
+pour une durée totale de 2 minutes (avec une période de tolérance 
+\textit{graceful ramp-down} et \textit{stop} de 30 secondes), atteignant 
+un pic de 20 utilisateurs simultanés.
 
 Les endpoints ciblés sont \textbf{POST /api/auth/login} (génération des
 jetons JWT, récupération des rôles et permissions) et
@@ -1193,19 +1193,19 @@ un administrateur authentifié).
 \hline
 \textbf{Indicateur} & \textbf{Endpoint testé} & \textbf{Résultat} \\
 \hline
-Temps de réponse moyen & POST /api/auth/login & [XX] ms \\
+Temps de réponse moyen & POST /api/auth/login & 282,51 ms \\
 \hline
-Percentile 95 (p95)    & POST /api/auth/login & [XX] ms \\
+Percentile 95 (p95)    & POST /api/auth/login & 693,78 ms \\
 \hline
-Temps de réponse moyen & GET /api/users        & [XX] ms \\
+Temps de réponse moyen & GET /api/users        & 330,84 ms \\
 \hline
-Percentile 95 (p95)    & GET /api/users        & [XX] ms \\
+Percentile 95 (p95)    & GET /api/users        & 731,54 ms \\
 \hline
-Taux d'erreur          & Global                & [X,XX]\% \\
+Taux d'erreur          & Global                & 0,00\% \\
 \hline
-Débit mesuré           & Global                & [XX] req/s \\
+Débit mesuré (Requêtes) & Global                & 11,42 req/s \\
 \hline
-Itérations totales     & Global                & [XXXX] \\
+Itérations totales     & Global                & 697 \\
 \hline
 \end{tabular}
 \caption{Résultats des tests de performance — Sprint 1}
@@ -1215,17 +1215,21 @@ Itérations totales     & Global                & [XXXX] \\
 \subsubsection{Analyse des résultats}
 
 Les résultats confirment que les mécanismes d'authentification tiennent
-correctement sous une charge de 100 utilisateurs simultanés. Le percentile
-95 reste inférieur au seuil de 2\,secondes fixé comme critère d'acceptation,
-et le taux d'erreur est nul, indiquant une stabilité totale du service sous
-cette charge. La génération des jetons JWT ainsi que la vérification des
-rôles et permissions via le système RBAC n'introduisent pas de dégradation
-mesurable des temps de réponse, validant la robustesse des fondations de
-sécurité mises en place dans ce sprint.
+correctement sous une charge maximale de 20 utilisateurs simultanés. Les 
+percentiles 95 pour l'authentification (693,78 ms) et la récupération des 
+utilisateurs (731,54 ms) restent très nettement inférieurs au seuil de 
+3\,secondes fixé par la validation des \textit{thresholds} k6 (et au critère 
+interne de 2\,secondes validé par les \textit{checks}). 
+
+Le taux d'erreur est strictement nul (0,00\% sur les 1395 requêtes HTTP 
+générées), indiquant une stabilité totale du service. La génération des 
+jetons JWT ainsi que la vérification des rôles et permissions via le système 
+RBAC n'introduisent pas de dégradation critique des temps de réponse, validant 
+la robustesse des fondations de sécurité mises en place dans ce sprint.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.85\textwidth,keepaspectratio]{Images/test-perf-sprint1-k6.png}
+\includegraphics[width=0.5\textwidth,keepaspectratio]{Images/test-perf-sprint1-k6.png}
 \caption{Résultats k6 — test de charge Sprint 1 (authentification et gestion des utilisateurs)}
 \label{fig:perf_sprint1}
 \end{figure}
