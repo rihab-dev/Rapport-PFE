@@ -18,9 +18,6 @@ Forte d'une équipe dynamique et diversifiée et de profils reconnus, l’entrep
 
 L' approche agile de \textbf{SolidWall Consulting} garantit une gestion optimisée et par conséquent, d'un résultat de qualité.
 
-\subsection{Organigramme de l’organisme}
-Pour mettre en valeur la répartition des responsabilités et des fonctions au sein de l’organisation, nous présentons la structure hiérarchique de SolidWall Consulting avec ses principales divisions ainsi que les relations de subordination entre les différentes unités et postes, comme le montre la figure suivante.
-
 
 \section{Cadre du projet}
 \label{sec:cadre_projet}
@@ -138,9 +135,10 @@ Cette solution de gestion des services informatiques, développée en 2003 et ma
 \subsubsection{Critique de l'existant}
 
 Actuellement, la gestion des contrats de maintenance au sein de SolidWall Consulting se fait par échange de courriels. Cette approche présente certaines limites.
+\begin{enumerate}[label=\textcolor{bleuPerso}{\alph*)}, labelsep=0.5em]
 
-\noindent{\textbf{\textcolor{bleuPerso}{Limitations du processus actuel }}}
-\begin{itemize}[label=\ding{109}]
+ \item \noindent{\textbf{\textcolor{bleuPerso}{Limitations du processus actuel }}}
+    \begin{itemize}[label=\ding{109}]
     \item \textbf{processus fragmenté : } La communication via e-mail fragmente la gestion. Les informations étant dispersées, le suivi des composants manquants devient complexe.  En l’absence de structure centralisée, il devient difficile de retrouver l'historique complet d'une intervention.
     \item \textbf{Absence de traçabilité :} L'absence de système de traçabilité rend le suivi des interventions difficile. Cela peut entraîner une perte de visibilité sur leur état, en cas de conflit avec un client ou lors d'un audit interne, ce qui représente un risque pour la crédibilité et la fiabilité de la société.
     \item \textbf{Risque de perte d'informations :} En raison de la fragmentation des processus, il existe un risque accru de perte d'informations importantes. Les documents sont stockés de manière non structurée, ce qui rend leur suivi et leur consolidation difficiles.
@@ -148,19 +146,21 @@ Actuellement, la gestion des contrats de maintenance au sein de SolidWall Consul
     
     \end{itemize}
 
- \noindent{\textbf{\textcolor{bleuPerso}{Limitations des solutions existantes }}}
-
-\noindent\textbf{Complexité d'utilisation et courbe d'apprentissage}
-
-Les solutions existantes présentent une complexité d'usage importante. GLPI nécessite une formation de 2 à 3 jours pour les administrateurs avec une interface peu intuitive. Jira Service Management requiert une connaissance approfondie de l'écosystème Atlassian, créant une dépendance technique majeure.
-
-\noindent\textbf{Coût des licences et investissement financier}
-
-L'investissement financier représente un obstacle majeur. Les tarifs s'échelonnent de 15€/agent/mois pour Freshdesk à 24€/utilisateur/mois pour Helpdesk, tandis que Jira Service Management coûte 20€/agent/mois. GLPI, bien que gratuit en version communautaire, nécessite 1500€/an minimum pour le support entreprise. Pour une équipe de 10 utilisateurs, le coût annuel varie de 1500€ à 12000€.
-
-\noindent\textbf{Dépendance aux extensions et problèmes d'intégration}
-
-Les solutions du marché souffrent d'une architecture modulaire générant des coûts cachés. De nombreuses fonctionnalités avancées nécessitent des extensions payantes supplémentaires. Les mises à jour engendrent des problèmes de compatibilité, et l'intégration avec des systèmes existants nécessite souvent des développements spécifiques onéreux.
+ \item \noindent{\textbf{\textcolor{bleuPerso}{Limitations des solutions existantes }}}
+    \begin{itemize}[label=$\bullet$]
+    \item \noindent\textbf{Complexité d'utilisation et courbe d'apprentissage}
+    
+    Les solutions existantes présentent une complexité d'usage importante. GLPI nécessite une formation de 2 à 3 jours pour les administrateurs avec une interface peu intuitive. Jira Service Management requiert une connaissance approfondie de l'écosystème Atlassian, créant une dépendance technique majeure.
+    
+    \item \noindent\textbf{Coût des licences et investissement financier}
+    
+    L'investissement financier représente un obstacle majeur. Les tarifs s'échelonnent de 15€/agent/mois pour Freshdesk à 24€/utilisateur/mois pour Helpdesk, tandis que Jira Service Management coûte 20€/agent/mois. GLPI, bien que gratuit en version communautaire, nécessite 1500€/an minimum pour le support entreprise. Pour une équipe de 10 utilisateurs, le coût annuel varie de 1500€ à 12000€.
+    
+    \item \noindent\textbf{Dépendance aux extensions et problèmes d'intégration}
+    
+    Les solutions du marché souffrent d'une architecture modulaire générant des coûts cachés. De nombreuses fonctionnalités avancées nécessitent des extensions payantes supplémentaires. Les mises à jour engendrent des problèmes de compatibilité, et l'intégration avec des systèmes existants nécessite souvent des développements spécifiques onéreux.
+    \end{itemize}
+\end{enumerate}
 
 \subsubsection{Tableau comparative des solutions}
 
