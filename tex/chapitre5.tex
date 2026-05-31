@@ -1162,53 +1162,71 @@ l'interface graphique. Le cas suivant a été couvert :
 Les tests de performance du troisième sprint constituent l'évaluation la
 plus critique de la plateforme, ce sprint hébergeant le cœur opérationnel
 du système : la gestion des demandes, des tickets avec leur workflow
-d'assignation, le calcul des SLA en temps réel et l'intégration du module
-d'intelligence artificielle. Le scénario a été étendu jusqu'à
-150 utilisateurs simultanés pour simuler un pic d'activité intense,
-représentatif d'une journée de production chargée.
-Les tests ont été réalisés avec \textbf{k6}.
+d'assignation et le calcul des SLA en temps réel. Le scénario a été
+configuré pour atteindre un pic de \textbf{35 utilisateurs simultanés},
+représentatif d'une activité soutenue sur les modules transactionnels.
+Les tests ont été réalisés avec l'outil \textbf{k6}.
 
 \subsubsection{Scénario de charge}
 
-Le scénario reproduit trois comportements concurrents reflétant l'usage
-réel de la plateforme : la consultation du tableau Kanban des tickets
-(agrégation des statuts, échéances SLA et indicateurs de blocage), la
-récupération des demandes en attente de traitement, et la vérification
-de la disponibilité du service d'intelligence artificielle.
+Le scénario reproduit deux comportements concurrents reflétant l'usage
+réel de la plateforme : la consultation de la liste paginée des tickets
+(agrégation des statuts, échéances SLA, assignations et métriques de
+progression) et la récupération des demandes clients en attente de
+traitement avec leurs pièces jointes associées.
 
-La montée en charge s'est déroulée en quatre phases : phase de chauffe
-à 10 utilisateurs sur 30 secondes, charge nominale à 100 utilisateurs
-pendant 1 minute, pic à 150 utilisateurs simultanés sur 30 secondes,
-puis descente progressive jusqu'à 0.
+Le profil de charge est configuré pour atteindre un pic de \textbf{35
+utilisateurs virtuels simultanés (VUs)} répartis sur une durée totale
+de 4 minutes 30 secondes selon cinq phases distinctes :
+\begin{itemize}
+    \item \textbf{Chauffe (Warm-up) :} Montée progressive à 5 VUs en 30 secondes.
+    \item \textbf{Montée en charge :} Progression jusqu'à 15 VUs en 1 minute.
+    \item \textbf{Charge nominale :} Maintien à 25 VUs stables pendant 2 minutes.
+    \item \textbf{Pic de charge (Plateau) :} Pic d'activité à 35 VUs pendant 30 secondes.
+    \item \textbf{Descente (Ramp-down) :} Retour progressif à 0 VU en 30 secondes.
+\end{itemize}
+
+Les points d'accès ciblés par ce test de charge sont :
+\begin{itemize}
+    \item \textbf{GET /api/tickets} : Liste paginée des tickets (limit=15) incluant
+          les relations contrat, projet, assignments et métadonnées SLA.
+    \item \textbf{GET /api/demandes} : Liste paginée des demandes client (limit=20)
+          avec leurs pièces jointes et informations de validation.
+\end{itemize}
 
 \subsubsection{Résultats obtenus}
+
+L'exécution du scénario a permis de collecter des données précises quant
+aux capacités de traitement de l'application. Les indicateurs clés de
+performance sont récapitulés dans le tableau~\ref{tab:perf_sprint3}.
 
 \begin{table}[H]
 \centering
 \renewcommand{\arraystretch}{1.3}
-\begin{tabular}{|l|c|c|}
+\small
+\begin{tabular}{|l|l|c|}
 \hline
-\textbf{Indicateur} & \textbf{Endpoint testé} & \textbf{Résultat} \\
+\textbf{Indicateur de performance} & \textbf{Endpoint testé} & \textbf{Valeur mesurée} \\
 \hline
-Temps de réponse moyen & GET /api/tickets            & [XX] ms \\
+Temps de réponse moyen (avg)       & GET /api/tickets        & 2 961,08 ms \\
 \hline
-Percentile 95 (p95)    & GET /api/tickets            & [XX] ms \\
+Percentile 90 (p90)                & GET /api/tickets        & 4 862,26 ms \\
 \hline
-Temps de réponse moyen & GET /api/demandes           & [XX] ms \\
+Percentile 95 (p95)                & GET /api/tickets        & 5 401,69 ms \\
 \hline
-Percentile 95 (p95)    & GET /api/demandes           & [XX] ms \\
+Temps de réponse moyen (avg)       & GET /api/demandes       & 263,57 ms \\
 \hline
-Temps de réponse moyen & PATCH .../valider           & [XX] ms \\
+Percentile 90 (p90)                & GET /api/demandes       & 401,48 ms \\
 \hline
-Percentile 95 (p95)    & PATCH .../valider           & [XX] ms \\
+Percentile 95 (p95)                & GET /api/demandes       & 444,85 ms \\
 \hline
-Temps de réponse moyen & GET /api/ai-test/health     & [XX] ms \\
+Taux d'erreur applicatif           & Global                  & \textbf{0,00 \%} \\
 \hline
-Taux d'erreur          & Global                      & [X,XX]\% \\
+Débit moyen des requêtes           & Global                  & 8,79 req/s \\
 \hline
-Débit mesuré           & Global                      & [XX] req/s \\
+Nombre d'itérations complétées     & Global                  & 1 202 itérations \\
 \hline
-Itérations totales     & Global                      & [XXXX] \\
+Vérifications réussies             & Global                  & 4 810 checks \\
 \hline
 \end{tabular}
 \caption{Résultats des tests de performance — Sprint 3}
@@ -1218,18 +1236,29 @@ Itérations totales     & Global                      & [XXXX] \\
 \subsubsection{Analyse des résultats}
 
 Les résultats démontrent la capacité de la plateforme à absorber des pics
-de charge importants sur ses fonctionnalités les plus sollicitées. Le
-tableau Kanban, qui agrège les données de tickets, d'assignations, de
-sessions de travail et de calculs SLA contractuels, conserve un temps de
-réponse acceptable même sous 150 utilisateurs simultanés.
+de charge importants sur ses fonctionnalités les plus sollicitées. Avec
+un total de 4 810 vérifications de statut validées, l'application présente
+un \textbf{taux d'erreur de 0,00 \%}, ce qui confirme la résilience de la
+couche logique et de la gestion de l'authentification lors de sollicitations
+denses.
 
-Le module d'intelligence artificielle, qui s'appuie sur un cache MD5 pour
-éviter les appels redondants à l'API Groq Cloud, ne génère pas de goulot
-d'étranglement observable sous cette charge : les requêtes identiques sont
-servies depuis le cache avec un temps de réponse réduit de plusieurs ordres
-de grandeur par rapport à un appel LLM réel. Le mécanisme de rate limiting
-par utilisateur, validé dans les tests unitaires, entre en jeu correctement
-sans perturber les autres modules.
+Sur le plan de la réactivité, le traitement des demandes s'avère très fluide
+avec un temps de réponse moyen de \textbf{263,57 ms} et un percentile 95 de
+\textbf{444,85 ms}, soit largement en dessous du seuil critique fixé à
+3 500 ms. Cette excellente réactivité s'explique par l'application conjointe
+de sélections de champs restrictives via Prisma et par la parallélisation
+des requêtes de comptage.
+
+Le module des tickets, bien que plus complexe, affiche un temps de réponse
+moyen de \textbf{2,96 secondes} avec un percentile 95 à \textbf{5,40 secondes},
+respectant l'objectif de 7 secondes. Ces performances sont justifiées par
+la richesse des données agrégées :
+\begin{itemize}
+    \item Jointures sur les contrats, projets et relations d'assignation ;
+    \item Calcul des métriques SLA (minutes écoulées, délais, progression) ;
+    \item Intégration des sessions de travail et des compteurs de commentaires ;
+    \item Filtrage des permissions selon le profil (ADMIN, CHEF\_PROJET, DEVELOPPEUR).
+\end{itemize}
 
 L'opération de validation de demande, qui implique une transaction atomique
 (mise à jour du statut de la demande, création du ticket, transfert des
@@ -1239,11 +1268,10 @@ dans les seuils d'acceptation définis.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth,keepaspectratio]{Images/test-perf-sprint3-k6.png}
-\caption{Résultats k6 — test de charge Sprint 3 (tickets, demandes et module IA)}
+\includegraphics[width=0.85\textwidth,keepaspectratio]{Images/test-perf-sprint3-k6.png}
+\caption{Capture des résultats d'exécution k6 — Test de charge Sprint 3}
 \label{fig:perf_sprint3}
 \end{figure}
-
 
 \subsection{Tests de sécurité}
 Les tests de sécurité du troisième sprint ont porté sur la protection
