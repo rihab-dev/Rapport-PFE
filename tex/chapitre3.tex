@@ -901,17 +901,11 @@ demande avec un motif de refus facultatif.
 % SECTION 5 : TESTS
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Tests et Validation}
-La phase de test est essentielle pour garantir la qualité et la fiabilité de la solution. Elle valide que chaque fonctionnalité répond aux exigences métier et identifie les anomalies avant la mise en production. Dans ce sprint, nous avons testé les mécanismes d'authentification, la gestion des utilisateurs et le contrôle d'accès (RBAC) pour assurer la robustesse de nos implémentations.
-
+La phase de test est essentielle pour garantir la qualité, la fiabilité et la sécurité de la solution. Elle valide que chaque fonctionnalité répond aux exigences métier et identifie les anomalies avant la mise en production. Dans ce sprint, nous avons testé les mécanismes d'authentification, la gestion des utilisateurs et le contrôle d'accès (RBAC), mais également la résistance aux attaques courantes et la robustesse des mécanismes de sécurité (verrouillage de compte, isolation des rôles, validation des jetons JWT, scan OWASP ZAP). Pour cela, nous avons mis en œuvre une stratégie de tests couvrant non seulement les niveaux unitaire, d’intégration et end-to-end, mais aussi des tests de sécurité et des tests de performance.
 \subsection{Stratégie de tests adoptée}
-Afin de garantir la qualité et la fiabilité de l'application, nous avons adopté une stratégie de tests structurée, reposant sur une répartition des vérifications à plusieurs niveaux. Cette approche permet d'assurer une bonne couverture fonctionnelle avec un temps d'exécution raisonnable, tout en facilitant l'identification rapide des anomalies.
+Afin de garantir la qualité, la fiabilité et la sécurité de l'application, nous avons adopté une stratégie de tests structurée reposant sur plusieurs niveaux complémentaires : tests unitaires, tests d'intégration, tests end-to-end, tests de performance et tests de sécurité.
 
-Les tests ont été organisés par module fonctionnel afin d'assurer une meilleure traçabilité des vérifications effectuées. Ainsi, les tests unitaires couvrent les règles métier les plus fines, les tests d'intégration valident les échanges avec l'API, et les tests End-to-End reproduisent les scénarios complets d'utilisation de l'application.
-
-La pyramide de tests se compose donc de trois niveaux complémentaires :
-
-
-\subsubsection{Tests unitaires}
+\subsection{Tests unitaires}
 \label{sec:tests_unitaires}
 
 Les tests unitaires ont été réalisés à l'aide du framework \textbf{Vitest},
@@ -921,8 +915,6 @@ détection précoce des anomalies dès la phase de développement. Trois
 modules prioritaires ont été couverts : l'authentification, le contrôle
 d'accès basé sur les rôles (RBAC) et la gestion des clients.
 
-
-\noindent\textbf{Bilan : 45 tests exécutés — 45 réussis — 0 échec.}
 \vspace{6pt}
 
 \begin{itemize}[leftmargin=0pt]
@@ -1011,7 +1003,7 @@ Les cas suivants ont été couverts :
 
 \end{itemize}
 
-\subsubsection{Tests d'intégration}
+\subsection{Tests d'intégration}
 \label{sec:tests_integration}
 
 Les tests d'intégration ont pour objectif de valider les échanges entre
@@ -1074,7 +1066,7 @@ Lee cas suivant ont été couvert :
     \end{figure}
 \end{itemize}
 
-\subsubsection{Tests End-to-End}
+\subsection{Tests End-to-End}
 \label{sec:tests_e2e_demandesch3}
 
 Les tests End-to-End de création de demande client valident l'intégralité
@@ -1157,7 +1149,7 @@ d'un administrateur. Le cas suivant a été couvert :
 
 \end{itemize}
 
-\subsubsection{Tests de performance}
+\subsection{Tests de performance}
 \label{sec:tests_performance_ch3}
 
 Les tests de performance du premier sprint ont permis de mesurer la
@@ -1185,23 +1177,23 @@ un administrateur authentifié).
 \begin{table}[H]
 \centering
 \renewcommand{\arraystretch}{1.3}
-\begin{tabular}{|l|c|c|}
+\begin{tabular}{|l|c|}
 \hline
-\textbf{Indicateur} & \textbf{Endpoint testé} & \textbf{Résultat} \\
+\textbf{Indicateur de performance} & \textbf{Valeur mesurée} \\
 \hline
-Temps de réponse moyen & POST /api/auth/login & 282,51 ms \\
+Temps de réponse moyen (avg) - POST /api/auth/login & 282,51 ms \\
 \hline
-Percentile 95 (p95)    & POST /api/auth/login & 693,78 ms \\
+Percentile 95 (p95) - POST /api/auth/login & 693,78 ms \\
 \hline
-Temps de réponse moyen & GET /api/users        & 330,84 ms \\
+Temps de réponse moyen (avg) - GET /api/users & 330,84 ms \\
 \hline
-Percentile 95 (p95)    & GET /api/users        & 731,54 ms \\
+Percentile 95 (p95) - GET /api/users & 731,54 ms \\
 \hline
-Taux d'erreur          & Global                & 0,00\% \\
+Taux d'erreur applicatif & 0,00 \% \\
 \hline
-Débit mesuré (Requêtes) & Global                & 11,42 req/s \\
+Débit moyen des requêtes & 11,42 req/s \\
 \hline
-Itérations totales     & Global                & 697 \\
+Itérations totales & 697 \\
 \hline
 \end{tabular}
 \caption{Résultats des tests de performance — Sprint 1}
@@ -1210,22 +1202,20 @@ Itérations totales     & Global                & 697 \\
 
 \subsubsection{Analyse des résultats}
 
-Les résultats confirment que les mécanismes d'authentification tiennent
-correctement sous une charge maximale de 20 utilisateurs simultanés. Les 
-percentiles 95 pour l'authentification (693,78 ms) et la récupération des 
-utilisateurs (731,54 ms) restent très nettement inférieurs au seuil de 
-3\,secondes fixé par la validation des \textit{thresholds} k6 (et au critère 
-interne de 2\,secondes validé par les \textit{checks}). 
+Les résultats obtenus montrent que les mécanismes d'authentification et de
+gestion des utilisateurs supportent correctement une charge de 20 utilisateurs
+simultanés. Les temps de réponse moyens (282,51 ms pour l'authentification,
+330,84 ms pour la récupération des utilisateurs) ainsi que les percentiles 95
+(693,78 ms et 731,54 ms) respectent les objectifs fixés.
 
-Le taux d'erreur est strictement nul (0,00\% sur les 1395 requêtes HTTP 
-générées), indiquant une stabilité totale du service. La génération des 
-jetons JWT ainsi que la vérification des rôles et permissions via le système 
-RBAC n'introduisent pas de dégradation critique des temps de réponse, validant 
-la robustesse des fondations de sécurité mises en place dans ce sprint.
+Le taux d'erreur nul (0,00\%) atteste de la stabilité du système. La génération
+des jetons JWT et la vérification des permissions n'introduisent pas de
+dégradation significative des performances, validant ainsi la robustesse des
+fondations sécuritaires mises en place..
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth,keepaspectratio]{Images/test-perf-sprint1-k6.png}
+\includegraphics[width=0.85\textwidth,keepaspectratio]{Images/test-perf-sprint1-k6.png}
 \caption{Résultats k6 — test de charge Sprint 1 (authentification et gestion des utilisateurs)}
 \label{fig:perf_sprint1}
 \end{figure}

@@ -564,8 +564,9 @@ Nous avons mis en place cette interface pour regrouper tous les contrats de main
 
 La phase de test du deuxième sprint valide les fonctionnalités de gestion
 des contrats, des projets et de la traçabilité. Nous avons adopté la même
-stratégie de tests structurée que lors du premier sprint, organisée sur
-trois niveaux complémentaires.
+stratégie de tests structurée que lors du premier sprint, reposant sur
+plusieurs niveaux complémentaires : tests unitaires, tests d'intégration,
+tests end-to-end, tests de performance et tests de sécurité.
 
 \subsection{Tests unitaires}
 \label{sec:tests_unitaires_sprint2}
@@ -647,50 +648,55 @@ Les points d'accès ciblés par ce test de charge sont :
 
 \subsubsection{Résultats obtenus}
 
-L'exécution du scénario a permis de collecter des données précises quant aux capacités de traitement de l'application. Les indicateurs clés de performance sont récapitulés dans le tableau~\ref{tab:perf_sprint2}.
-
 \begin{table}[H]
 \centering
 \renewcommand{\arraystretch}{1.3}
 \small
-\begin{tabular}{|l|l|c|}
+\begin{tabular}{|l|c|}
 \hline
-\textbf{Indicateur de performance} & \textbf{Endpoint / Scope ciblés} & \textbf{Valeur mesurée} \\
+\textbf{Indicateur de performance} & \textbf{Valeur mesurée} \\
 \hline
-Temps de réponse moyen (avg)       & GET /api/contrats                 & 267,06 ms \\
+Temps de réponse moyen (avg) - GET /api/contrats & 267,06 ms \\
 \hline
-Percentile 95 (p95)                & GET /api/contrats                 & 512,40 ms \\
+Percentile 95 (p95) - GET /api/contrats & 512,40 ms \\
 \hline
-Temps de réponse moyen (avg)       & GET /api/projets                  & 281,97 ms \\
+Temps de réponse moyen (avg) - GET /api/projets & 281,97 ms \\
 \hline
-Percentile 95 (p95)                & GET /api/projets                  & 552,42 ms \\
+Percentile 95 (p95) - GET /api/projets & 552,42 ms \\
 \hline
-Temps de réponse moyen (avg)       & GET /api/clients                  & 308,13 ms \\
+Temps de réponse moyen (avg) - GET /api/clients & 308,13 ms \\
 \hline
-Percentile 95 (p95)                & GET /api/clients                  & 613,72 ms \\
+Percentile 95 (p95) - GET /api/clients & 613,72 ms \\
 \hline
-Taux d'erreur applicatif           & Global                            & 0,00 \% \\
+Taux d'erreur applicatif & 0,00 \% \\
 \hline
-Débit moyen des requêtes           & Global                            & 54,57 req/s \\
+Débit moyen des requêtes & 54,57 req/s \\
 \hline
-Nombre d'itérations complétées     & Global (3321 itérations)          & 19 927 checks \\
+Itérations totales & 3 321 \\
+\hline
+Vérifications réussies & 19 927 \\
 \hline
 \end{tabular}
-\caption{Résultats des tests de charge k6 — Sprint 2}
+\caption{Résultats des tests de performance — Sprint 2}
 \label{tab:perf_sprint2}
 \end{table}
 
 \subsubsection{Analyse des résultats}
 
-L'analyse des résultats met en évidence une excellente stabilité du système sous charge. Avec un total de 19 927 vérifications de statut validées, l'application présente un \textbf{taux d'erreur de 0,00 \%}, ce qui confirme la résilience de la couche logique et de la gestion de l'authentification lors de sollicitations denses.
+Les résultats démontrent une excellente stabilité du système sous une charge
+de 50 utilisateurs simultanés. Avec un taux d'erreur nul (0,00\%) et plus de
+19 900 vérifications réussies, l'application confirme sa résilience face à
+des sollicitations soutenues.
 
-Sur le plan de la réactivité, le traitement global s'avère très fluide avec un temps de réponse moyen par requête de \textbf{285,87 ms}. Les percentiles 95 (p95) se stabilisent tous en dessous du seuil critique des 700 ms (512,40 ms pour les contrats et 552,42 ms pour les projets), ce qui est largement inférieur à la contrainte d'éligibilité fixée initialement à 4000 ms. 
-
-Ces performances s'expliquent par l'application conjointe de sélections de champs restrictives via l'ORM Prisma, évitant le chargement de données inutiles en mémoire, ainsi que par la parallélisation systématique des requêtes de comptage et de récupération de données. Les index de clés étrangères sur PostgreSQL permettent également de maintenir la complexité des jointures relationnelles à un niveau optimal, assurant une parfaite scalabilité des modules.
+Les temps de réponse moyens se situent entre 267 ms et 308 ms selon les
+endpoints, avec des percentiles 95 n'excédant pas 614 ms. Ces valeurs
+respectent très largement les objectifs de performance fixés, validant
+ainsi la capacité de la plateforme à gérer efficacement les opérations
+de consultation des contrats, projets et clients.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.90\textwidth,keepaspectratio]{Images/test-perf-sprint2-k6.png}
+\includegraphics[width=0.85\textwidth,keepaspectratio]{Images/test-perf-sprint2-k6.png}
 \caption{Capture des résultats d'exécution k6 — Test de charge Sprint 2}
 \label{fig:perf_sprint2}
 \end{figure}

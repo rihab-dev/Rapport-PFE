@@ -112,7 +112,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \item Il valide l'envoi.
 \item Le système vérifie l'existence d'un contrat actif pour le projet sélectionné.
 \item Le système contrôle les règles métier anti-abus.
-\item Le système calcule l'échéance SLA initiale.
+\item Le système calcule l'échéance SLA initiale sur la base de la priorité finale retenue.
 \item Le système enregistre la demande.
 \item Le système notifie le chef de projet, les administrateurs et le client.
 \item Le système déclenche la classification IA de la demande.
@@ -397,22 +397,29 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \hline
 \textbf{Précondition} & Le ticket est dans l’état « En cours ». Le développeur a documenté une solution technique. \\
 \hline
-\textbf{Postcondition} & Le ticket passe dans l’état « En revue ». Tout chronomètre actif est automatiquement arrêté. Une notification est adressée au chef de projet et au client. \\
+\textbf{Postcondition} & LLe ticket passe dans l'état 
+« En revue ». Toutes les sessions de travail actives sont 
+automatiquement clôturées et le temps total cumulé est 
+mis à jour. Une notification est adressée au chef de projet 
+et au client.
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
 \item Le développeur renseigne la solution technique et actionne la soumission « En revue ».
 \item Le système valide les conditions d'exécution (assignation du développeur, présence d'un temps de travail effectif).
-\item Le système clôture automatiquement tout chronomètre potentiellement encore actif sur ce ticket.
-\item Le système passe l’état du ticket à « En revue », historise l'action et notifie les différentes parties.
+\item Le système clôture automatiquement toutes les sessions de travail encore ouvertes sur le ticket.
+\item Le système calcule la durée effective de chaque session en déduisant les temps de pause.
+\item Le système met à jour le temps total cumulé du ticket.
+\item Le système passe l’état du ticket à « En revue ».
+\item Le système historise l'action et notifie les différentes parties.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le système détecte que la solution obligatoire est invalide (ex: $<$ 5 caractères). Un avertissement bloque la soumission. Le développeur corrige sa saisie et le scénario reprend à l'étape 1.
+\item Le système détecte que la solution obligatoire est invalide ($<$ 5 caractères). Un avertissement bloque la soumission. Le développeur corrige sa saisie et le scénario reprend à l'étape 1.
 \end{enumerate}
 \end{minipage} \\
 \hline
@@ -734,11 +741,11 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{Scénario alternatif} & 
+\textbf{Scénarios alternatifs} & 
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=2pt,itemsep=2pt]
-  \item Surcharge autorisée par SLA ou Urgence (Étape 5) : Si le ticket dépasse le SLA ou présente une urgence critique (attente > 2h, priorité majeure), le système autorise exceptionnellement le dépassement du quota et poursuit à l'étape 6.
-  \item Dépassement de la limite de charge (Étape 5) : Si le développeur a trop de tickets actifs et hors cas d'urgence, le système bloque l'opération ; l'utilisateur choisit un autre développeur (retour à l'étape 4).
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=2pt,itemsep=3pt]
+  \item \textbf{Dérogation pour urgence ou dépassement SLA (Étape 5) :} Si le ticket présente un SLA dépassé ou une criticité majeure (ex. attente supérieure à 2h), le système autorise exceptionnellement le dépassement du quota de charge et poursuit à l'étape 6.
+  \item \textbf{Blocage pour surcharge nominale (Étape 5) :} Si la limite de tickets actifs du développeur est atteinte hors contexte d'urgence, le système interrompt l'affectation et invite l'utilisateur à sélectionner un autre agent (retour à l'étape 4).
 \end{enumerate}
 \end{minipage} \\
 \hline
@@ -758,15 +765,21 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 % SECTION 3 : CONCEPTION
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Conception}
-Après l’analyse des besoins et la définition des cas d’utilisation, nous avons procédé à la conception de la solution en identifiant les composants logiciels, les flux métier, les entités principales et les interactions entre les modules.
+Après l'analyse des besoins et la définition des cas d'utilisation, 
+nous avons procédé à la conception de la solution en identifiant 
+les composants logiciels, les flux métier, les entités principales 
+et les interactions entre les modules.
 
 \subsection{Diagramme d'activité du flux de travail d'un ticket}
-La figure suivante présente le diagramme d’activité du workflow de gestion des tickets, en mettant l’accent sur la fonctionnalité « Modifier chronomètre ».
+La figure suivante présente le diagramme d'activité du workflow 
+de gestion des tickets, en mettant l'accent sur la fonctionnalité 
+« Modifier chronomètre ».
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.90\textwidth,height=0.65\textheight,keepaspectratio]{Images/Diagramme_activite_gerer_cronometre.drawio.png}
-    \caption{Diagramme d'activités du flux de travail d'un ticket}
+    \includegraphics[width=0.90\textwidth,height=0.65\textheight,
+    keepaspectratio]{Images/Diagramme_activite_gerer_cronometre.drawio.png}
+    \caption{Diagramme d'activités « Modifier chronomètre »}
     \label{fig:activite_ticket}
 \end{figure}
 
@@ -880,15 +893,11 @@ Nous avons mis en place cette interface de vue détaillée d'un ticket, le déve
 % SECTION 5 : TESTS
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Tests et Validation}
-La phase de test a permis de vérifier la conformité du sprint 3 aux exigences métier, fonctionnelles et techniques. Elle a également permis de valider les mécanismes de validation, les transitions d’état, le calcul SLA, les comportements Kanban et l’intégration IA.
+\label{sec:tests_sprint3}
 
-\subsection{Stratégie de tests adoptée}
-Afin de garantir la qualité de l’implémentation, une stratégie de tests à plusieurs niveaux a été adoptée :
-\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
-\item \textbf{Tests unitaires} pour valider les règles métier fines et les comportements isolés ;
-\item \textbf{Tests d’intégration} pour vérifier les endpoints et les échanges entre les couches ;
-\item \textbf{Tests End-to-End} pour simuler les scénarios utilisateur complets dans un navigateur réel.
-\end{itemize}
+La phase de test a permis de vérifier la conformité du sprint 3 aux exigences métier, fonctionnelles et techniques. Elle a également permis de valider les mécanismes de validation des demandes, les transitions d'état des tickets, le calcul des SLA ainsi que l'intégration de l'intelligence artificielle.
+
+Nous avons adopté la même stratégie de tests structurée que lors des sprints précédents, reposant sur plusieurs niveaux complémentaires : tests unitaires, tests d'intégration, tests end-to-end, tests de performance et tests de sécurité.
 
 \subsection{Tests unitaires}
 Les tests unitaires du troisième sprint ont été organisés par composant fonctionnel pour assurer une meilleure traçabilité. Exécutés en environnement isolé avec des mocks pour les dépendances externes, ils valident la logique métier critique du sprint : classification IA, cache MD5, mécanismes de reprise, fallback, gestion des tickets, limitation de débit, calcul des SLA et contrôle des transitions autorisées.
@@ -1169,33 +1178,35 @@ L'exécution du scénario a permis de collecter des données précises quant
 aux capacités de traitement de l'application. Les indicateurs clés de
 performance sont récapitulés dans le tableau~\ref{tab:perf_sprint3}.
 
+\subsubsection{Résultats obtenus}
+
 \begin{table}[H]
 \centering
 \renewcommand{\arraystretch}{1.3}
 \small
-\begin{tabular}{|l|l|c|}
+\begin{tabular}{|l|c|}
 \hline
-\textbf{Indicateur de performance} & \textbf{Endpoint testé} & \textbf{Valeur mesurée} \\
+\textbf{Indicateur de performance} & \textbf{Valeur mesurée} \\
 \hline
-Temps de réponse moyen (avg)       & GET /api/tickets        & 2 961,08 ms \\
+Temps de réponse moyen (avg) - GET /api/tickets & 2 961,08 ms \\
 \hline
-Percentile 90 (p90)                & GET /api/tickets        & 4 862,26 ms \\
+Percentile 90 (p90) - GET /api/tickets & 4 862,26 ms \\
 \hline
-Percentile 95 (p95)                & GET /api/tickets        & 5 401,69 ms \\
+Percentile 95 (p95) - GET /api/tickets & 5 401,69 ms \\
 \hline
-Temps de réponse moyen (avg)       & GET /api/demandes       & 263,57 ms \\
+Temps de réponse moyen (avg) - GET /api/demandes & 263,57 ms \\
 \hline
-Percentile 90 (p90)                & GET /api/demandes       & 401,48 ms \\
+Percentile 90 (p90) - GET /api/demandes & 401,48 ms \\
 \hline
-Percentile 95 (p95)                & GET /api/demandes       & 444,85 ms \\
+Percentile 95 (p95) - GET /api/demandes & 444,85 ms \\
 \hline
-Taux d'erreur applicatif           & Global                  & \textbf{0,00 \%} \\
+Taux d'erreur applicatif & 0,00 \% \\
 \hline
-Débit moyen des requêtes           & Global                  & 8,79 req/s \\
+Débit moyen des requêtes & 8,79 req/s \\
 \hline
-Nombre d'itérations complétées     & Global                  & 1 202 itérations \\
+Itérations totales & 1 202 \\
 \hline
-Vérifications réussies             & Global                  & 4 810 checks \\
+Vérifications réussies & 4 810 \\
 \hline
 \end{tabular}
 \caption{Résultats des tests de performance — Sprint 3}
@@ -1204,36 +1215,17 @@ Vérifications réussies             & Global                  & 4 810 checks \\
 
 \subsubsection{Analyse des résultats}
 
-Les résultats démontrent la capacité de la plateforme à absorber des pics
-de charge importants sur ses fonctionnalités les plus sollicitées. Avec
-un total de 4 810 vérifications de statut validées, l'application présente
-un \textbf{taux d'erreur de 0,00 \%}, ce qui confirme la résilience de la
-couche logique et de la gestion de l'authentification lors de sollicitations
-denses.
+Les résultats obtenus confirment la capacité de la plateforme à absorber
+des pics de charge de 35 utilisateurs simultanés sur ses fonctionnalités
+les plus critiques. Le taux d'erreur nul (0,00\%) atteste de la résilience
+de l'ensemble de la chaîne de traitement.
 
-Sur le plan de la réactivité, le traitement des demandes s'avère très fluide
-avec un temps de réponse moyen de \textbf{263,57 ms} et un percentile 95 de
-\textbf{444,85 ms}, soit largement en dessous du seuil critique fixé à
-3 500 ms. Cette excellente réactivité s'explique par l'application conjointe
-de sélections de champs restrictives via Prisma et par la parallélisation
-des requêtes de comptage.
-
-Le module des tickets, bien que plus complexe, affiche un temps de réponse
-moyen de \textbf{2,96 secondes} avec un percentile 95 à \textbf{5,40 secondes},
-respectant l'objectif de 7 secondes. Ces performances sont justifiées par
-la richesse des données agrégées :
-\begin{itemize}
-    \item Jointures sur les contrats, projets et relations d'assignation ;
-    \item Calcul des métriques SLA (minutes écoulées, délais, progression) ;
-    \item Intégration des sessions de travail et des compteurs de commentaires ;
-    \item Filtrage des permissions selon le profil (ADMIN, CHEF\_PROJET, DEVELOPPEUR).
-\end{itemize}
-
-L'opération de validation de demande, qui implique une transaction atomique
-(mise à jour du statut de la demande, création du ticket, transfert des
-pièces jointes et déclenchement des notifications), présente un temps de
-réponse légèrement supérieur aux lectures, ce qui est attendu et reste
-dans les seuils d'acceptation définis.
+Le module de gestion des demandes affiche d'excellentes performances avec
+un temps de réponse moyen de 263,57 ms et un percentile 95 à 444,85 ms.
+Le module des tickets, plus complexe, présente un temps de réponse moyen
+de 2,96 secondes et un percentile 95 à 5,40 secondes, respectant l'objectif
+fixé. Ces résultats valident le bon fonctionnement du cœur opérationnel
+de la plateforme sous une activité soutenue.
 
 \begin{figure}[H]
 \centering
