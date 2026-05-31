@@ -538,11 +538,10 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
   \fbox{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{#2}}
 \end{minipage}\par\vspace{10pt}}
 
-
 \cadretechSecurite{Images/owasp.png}{%
-  \textbf{OWASP :} « L’Open Worldwide Application Security Project (OWASP) est une fondation à but non lucratif qui œuvre pour améliorer la sécurité des logiciels. une communauté ouverte qui a pour mission d'aider les organisations à concevoir, développer, acquérir, exploiter et maintenir des applications fiables » [21]}
+  \textbf{OWASP ZAP :} « L'Open Worldwide Application Security Project (OWASP) est une fondation à but non lucratif qui œuvre pour améliorer la sécurité des logiciels. Dans le cadre de ce projet, l'outil OWASP ZAP a été utilisé pour réaliser des scans automatisés de vulnérabilités sur l'ensemble des endpoints exposés par l'application. » [21]}
 
-  \subsubsection{Outil de test de performance}
+\subsubsection{Outils de test}
 \vspace{12pt}
 
 \newcommand{\cadretechksix}[2]{%
@@ -554,9 +553,29 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
 \end{minipage}\par\vspace{10pt}}
 
 \cadretechksix{Images/k6.png}{%
-  \textbf{Grafana k6 : } « est un outil de test de performance open source, convivial pour les développeurs et extensible, qui vous aide à détecter rapidement les problèmes de performance et à améliorer proactivement la fiabilité. » [22]}
-  
+  \textbf{Grafana k6 :} « est un outil de test de performance open source, convivial pour les développeurs et extensible, qui vous aide à détecter rapidement les problèmes de performance et à améliorer proactivement la fiabilité. » [22]}
 
+\newcommand{\cadretechVitest}[2]{%
+\noindent\begin{minipage}{2.2cm}\centering
+  \includegraphics[width=2cm,height=1.5cm,keepaspectratio]{#1}
+\end{minipage}\hspace{0.5cm}%
+\begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
+  \fbox{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{#2}}
+\end{minipage}\par\vspace{10pt}}
+
+\cadretechVitest{Images/vitest.png}{%
+  \textbf{Vitest :} « est un framework de tests unitaires ultrarapide propulsé par Vite, conçu pour les projets JavaScript et TypeScript modernes. Il permet d'isoler et de valider le comportement de chaque service de manière indépendante grâce à un système de mocks performant. » [23]}
+
+\newcommand{\cadretechPlaywright}[2]{%
+\noindent\begin{minipage}{2.2cm}\centering
+  \includegraphics[width=2cm,height=1.5cm,keepaspectratio]{#1}
+\end{minipage}\hspace{0.5cm}%
+\begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
+  \fbox{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{#2}}
+\end{minipage}\par\vspace{10pt}}
+
+\cadretechPlaywright{Images/playwright.png}{%
+  \textbf{Playwright :} « est un framework de tests End-to-End développé par Microsoft, permettant d'automatiser les interactions avec un navigateur réel. Il a été utilisé pour valider les parcours utilisateur complets en simulant les actions réelles sur l'interface graphique de la plateforme. » [24]}
 
 \subsubsection{Outil de gestion de projet Scrum}
 \vspace{12pt}
