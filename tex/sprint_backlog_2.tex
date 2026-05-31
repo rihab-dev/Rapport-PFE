@@ -95,7 +95,7 @@ US25 & En tant qu'\textbf{administrateur}, je souhaite affecter des développeur
 \end{itemize} & 3 \\
 \hline
 
-US26 & En tant que \textbf{membre d'équipe}, je souhaite consulter les informations du projet afin de comprendre le contexte. &
+US26 & En tant que \textbf{chef de projet}, je souhaite consulter les informations du projet afin de comprendre le contexte. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer les endpoints \footnotesize{"GET /api/projets/:id"}\small{}, \footnotesize{"GET /api/projets/:id/equipe"}\small{} et \footnotesize{"GET /api/projets/:id/charge"}\small.
 \item Fournir une vue consolidée de l'équipe et de la charge de travail côté frontend.
@@ -108,15 +108,14 @@ US26 & En tant que \textbf{membre d'équipe}, je souhaite consulter les informat
 
 US27 & En tant qu'\textbf{administrateur}, je souhaite créer un contrat de maintenance afin de formaliser les engagements de service avec le client. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"POST /api/contrats"}\small{} prenant en charge le dépôt du document signé.
+\item Développer l'endpoint \footnotesize{"POST /api/contrats"}\small{} prenant en charge la Création du contrat.
 \item Prévoir l'extraction automatique avec \footnotesize{"POST /api/contrats/extract-pdf"}\small{} et l'upload scanné via \footnotesize{"POST /api/contrats/upload-scanne"}\small.
-\item Mettre à disposition la génération PDF via \footnotesize{"GET /api/contrats/:id/generate-pdf"}\small{} côté frontend.
 \end{itemize} & 2 \\
 \hline
 
 US28 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des contrats afin de suivre les engagements contractuels. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"GET /api/contrats"}\small{} avec filtrage par client, projet et archivage.
+\item Développer l'endpoint \footnotesize{"GET /api/contrats"}\small{} avec filtrage.
 \item Compléter avec \footnotesize{"GET /api/contrats/client/:clientId"}\small, \footnotesize{"GET /api/contrats/archived"}\small{} et \footnotesize{"GET /api/contrats/:id/fichier"}\small.
 \item Concevoir l'interface frontend sous forme de tableau dynamique avec filtres avancés et badges de statut.
 \end{itemize} & 3 \\
@@ -151,7 +150,7 @@ US32 & En tant qu'\textbf{administrateur}, je souhaite résilier un contrat afin
 \end{itemize} & 2 \\
 \hline
 
-US33 & En tant que \textbf{chef de projet}, je souhaite consulter les contrats dans un calendrier afin de visualiser les dates d'expiration. &
+US33 & En tant qu'\textbf{administrateur}, je souhaite consulter les contrats dans un calendrier afin de visualiser les dates d'expiration. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Exploiter les dates de validité renvoyées par \footnotesize{"GET /api/contrats"}\small{} et \footnotesize{"GET /api/contrats/expiration/status"}\small.
 \item Afficher une vue calendrier avec code couleur selon la proximité de l'échéance contractuelle.
@@ -171,12 +170,18 @@ US35 & En tant qu'\textbf{administrateur}, je souhaite générer un PDF formaté
 \item Intégrer la structure réglementaire et le bouton de téléchargement côté Next.js.
 \end{itemize} & 2 \\
 \hline
+US36 & En tant qu'\textbf{administrateur}, je souhaite consulter les détails d'un contrat afin de visualiser toutes ses informations. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+    \item Développer l'endpoint \footnotesize{"GET /api/contrats/:id"}\small{} pour récupérer les informations complètes d'un contrat par son identifiant unique.
+    \item Réaliser l'interface de visualisation détaillée du contrat côté Next.js avec affichage structuré
+\end{itemize} & 1 \\
+\hline
 
 % Epic 14: Consulter journal d'activité
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 14 - Historique et traçabilité}} \\
 \hline
 
-US101 & En tant qu'\textbf{administrateur}, je souhaite consulter l'historique complet de toutes les actions afin d'assurer la traçabilité. &
+US98 & En tant qu'\textbf{administrateur}, je souhaite consulter l'historique complet de toutes les actions afin d'assurer la traçabilité. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint \footnotesize{"GET /api/activity-logs"}\small{} paginé et filtrable par acteurs, entités, actions, statuts et dates.
 \item Compléter avec \footnotesize{"GET /api/activity-logs/stats"}\small, \footnotesize{"GET /api/activity-logs/user/:userId"}\small{} et \footnotesize{"GET /api/activity-logs/entity/:entityType/:entityId"}\small.
@@ -184,7 +189,7 @@ US101 & En tant qu'\textbf{administrateur}, je souhaite consulter l'historique c
 \end{itemize} & 3 \\
 \hline
 
-US102 & En tant qu'\textbf{administrateur}, je souhaite exporter les logs d'audit afin de répondre aux exigences de conformité. &
+US99 & En tant qu'\textbf{administrateur}, je souhaite exporter les logs d'audit afin de répondre aux exigences de conformité. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Prévoir l'export CSV/JSON des logs consultés depuis l'interface, en s'appuyant sur les données de \footnotesize{"GET /api/activity-logs"}\small.
 \item Utiliser \footnotesize{"GET /api/activity-logs/me/export"}\small{} pour l'export du périmètre utilisateur connecté.

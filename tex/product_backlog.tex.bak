@@ -74,7 +74,7 @@
 
 % Epic 4: Demandes d'inscription OAuth
 \multirow{2}{*}{\centering 4} & \multirow{2}{2.5cm}{\centering Gestion des demandes d'inscription OAuth} 
-& US15 & En tant qu'\textbf{utilisateur}, je souhaite demander l'accès via OAuth afin de m'inscrire facilement. 
+& US15 & En tant qu'\textbf{utilisateur externe}, je souhaite demander l'accès via OAuth afin de m'inscrire facilement. 
 & La demande est enregistrée et l'administrateur reçoit une notification pour traitement. & ++ \\
 \cline{3-6}
 & & US16 & En tant qu'\textbf{administrateur}, je souhaite valider ou rejeter les demandes d'inscription OAuth afin de contrôler les accès. 
@@ -134,7 +134,7 @@
 & & US32 & En tant qu'\textbf{administrateur}, je souhaite résilier un contrat afin de l'interrompre avant terme. 
 & Le contrat est résilié avec date et motif, les tickets ouverts sont clôturés et le client est notifié. & +++ \\
 \cline{3-6}
-& & US33 & En tant qu'\textbf{administrateur}, je souhaite consulter les contrats dans un calendrier afin de visualiser les dates d'expiration.
+& & US33 & En tant que \textbf{chef de projet}, je souhaite consulter les contrats dans un calendrier afin de visualiser les dates d'expiration.
 & Le calendrier affiche les contrats avec leur date d'expiration. Les contrats proches de l'expiration sont mis en évidence. L'administrateur peut exporter le calendrier. & ++ \\
 \cline{3-6}
 & & US34 & En tant que \textbf{client}, je souhaite soumettre un retour d'expérience à l'expiration de mon contrat afin d'exprimer ma satisfaction.
@@ -146,47 +146,49 @@
 & & US36 & En tant qu'\textbf{administrateur}, je souhaite consulter les détails d'un contrat afin de visualiser toutes ses informations.
 & Toutes les informations du contrat sont affichées incluant client, dates, SLA, documents et historique. & ++ \\
 \cline{3-6}
+& & US37 & En tant qu'\textbf{équipe produit}, je souhaite réserver cet identifiant afin de conserver une numérotation continue du backlog.
+& Identifiant réservé pour maintien de la cohérence de numérotation. & + \\
 \hline
 
 % Epic 7: Gestion des demandes clients
 \multirow{7}{*}{\centering 7} & \multirow{7}{2.5cm}{\centering Gestion des demandes clients} 
-& US37 & En tant que \textbf{client}, je souhaite soumettre une demande de maintenance afin de signaler un besoin. 
+& US38 & En tant que \textbf{client}, je souhaite soumettre une demande de maintenance afin de signaler un besoin. 
 & Le client peut joindre des fichiers à sa demande. Le système génère un numéro unique de suivi. Le client reçoit une confirmation de réception. & +++ \\
 \cline{3-6}
-& & US38 & En tant que \textbf{chef de projet}, je souhaite consulter les demandes en attente afin de les traiter. 
+& & US39 & En tant que \textbf{chef de projet}, je souhaite consulter les demandes en attente afin de les traiter. 
 & Le chef de projet visualise toutes les demandes nécessitant un traitement. Les demandes sont triées par date de création. Les demandes urgentes sont identifiables visuellement. & +++ \\
 \cline{3-6}
-& & US39 & En tant que \textbf{chef de projet}, je souhaite valider une demande afin de la convertir en ticket. 
+& & US40 & En tant que \textbf{chef de projet}, je souhaite valider une demande afin de la convertir en ticket. 
 & Le chef de projet peut approuver une demande, définit la catégorie et la priorité. Un ticket est automatiquement créé et lié à la demande. & +++ \\
 \cline{3-6}
-& & US40 & En tant que \textbf{chef de projet}, je souhaite demander des informations complémentaires afin de clarifier une demande. 
+& & US41 & En tant que \textbf{chef de projet}, je souhaite demander des informations complémentaires afin de clarifier une demande. 
 & Le chef de projet peut solliciter des précisions au client. Le client est notifié de la demande d'informations. Un rappel est envoyé si aucune réponse après 48h. & ++ \\
 \cline{3-6}
-& & US41 & En tant que \textbf{client}, je souhaite compléter ma demande afin de fournir les informations manquantes. 
+& & US42 & En tant que \textbf{client}, je souhaite compléter ma demande afin de fournir les informations manquantes. 
 & Le client peut répondre aux questions posées. Le chef de projet est notifié de la réponse. La demande redevient disponible pour traitement. & ++ \\
 \cline{3-6}
-& & US42 & En tant que \textbf{chef de projet}, je souhaite requalifier une demande afin de corriger sa catégorie ou sa priorité. 
+& & US43 & En tant que \textbf{chef de projet}, je souhaite requalifier une demande afin de corriger sa catégorie ou sa priorité. 
 & Le chef de projet peut modifier la catégorie d'une demande et ajuster la priorité. Une justification est obligatoire pour toute modification. Toutes les modifications sont tracées. & ++ \\
 \cline{3-6}
-& & US43 & En tant qu'\textbf{utilisateur}, je souhaite commenter une demande afin de communiquer sur le contexte. 
+& & US44 & En tant qu'\textbf{utilisateur}, je souhaite commenter une demande afin de communiquer sur le contexte. 
 & L'utilisateur peut ajouter des commentaires à une demande et y joindre des fichiers aux commentaires. Les autres parties prenantes sont notifiées des nouveaux commentaires. & ++ \\
 \hline
-% Epic 8: Gestion des tickets
 
-\multirow{21}{*}{\centering 8} & \multirow{21}{2.5cm}{\centering Gestion des tickets} 
-& US44 & En tant que \textbf{Chef de Projet ou Administrateur}, je souhaite visualiser et gérer l'ensemble des tickets dans un tableau Kanban afin de modifier leurs statuts et d'organiser efficacement le flux de travail. 
+% Epic 8: Gestion des tickets
+\multirow{20}{*}{\centering 8} & \multirow{20}{2.5cm}{\centering Gestion des tickets} 
+& US45 & En tant que \textbf{Chef de Projet ou Administrateur}, je souhaite visualiser et gérer l'ensemble des tickets dans un tableau Kanban afin de modifier leurs statuts et d'organiser efficacement le flux de travail. 
 & Le développeur visualise ses tickets organisés par état d'avancement, peut les déplacer d'un état à un autre, et est alerté lorsqu'un ticket risque de dépasser son délai. & +++ \\
 \cline{3-6}
-& & US45 & En tant que \textbf{chef de projet}, je souhaite assigner un ticket à un développeur afin de répartir la charge. 
+& & US46 & En tant que \textbf{chef de projet}, je souhaite assigner un ticket à un développeur afin de répartir la charge. 
 & Le chef de projet sélectionne un développeur disponible. Le système alerte si le développeur a déjà trop de tickets. Le développeur assigné est notifié immédiatement. & +++ \\
 \cline{3-6}
-& & US46 & En tant qu'\textbf{administrateur}, je souhaite assigner un ticket à plusieurs développeurs afin de collaborer sur des tâches complexes. 
+& & US47 & En tant qu'\textbf{administrateur}, je souhaite assigner un ticket à plusieurs développeurs afin de collaborer sur des tâches complexes. 
 & Le chef peut assigner plusieurs développeurs au même ticket(max 3). Le chef visualise le planning de charge d'un développeur.Le client est notifié que son ticket a été pris en charge. & ++ \\
 \cline{3-6}
-& & US47 & En tant que \textbf{chef de projet}, je souhaite consulter une file de priorité intelligente des tickets actifs afin de traiter en premier les interventions les plus critiques.
+& & US48 & En tant que \textbf{chef de projet}, je souhaite consulter une file de priorité intelligente des tickets actifs afin de traiter en premier les interventions les plus critiques.
 & Les tickets sont triés par un score d'urgence composite et affichés avec leur niveau de criticité et le détail du calcul. & ++ \\
 \cline{3-6}
-& & US48 & En tant que \textbf{développeur}, je souhaite me désassigner d'un ticket afin de libérer ma charge. 
+& & US48a & En tant que \textbf{développeur}, je souhaite me désassigner d'un ticket afin de libérer ma charge. 
 & Le développeur doit fournir un motif pour se désassigner. Le ticket redevient disponible pour assignation. Le chef de projet est notifié de la désassignation. & ++ \\
 \cline{3-6}
 & & US49 & En tant que \textbf{développeur}, je souhaite démarrer un chronomètre sur un ticket afin d’enregistrer le temps de travail effectué. 
@@ -276,115 +278,128 @@
 & & US75 & En tant qu'\textbf{utilisateur}, je souhaite épingler des messages importants afin de les retrouver facilement. 
 & L'utilisateur autorisé peut épingler un message. Les messages épinglés sont facilement accessibles. L'utilisateur peut retirer l'épinglage. & ++ \\
 \cline{3-6}
-& & US76 & En tant qu'\textbf{utilisateur}, je souhaite voir qui est en ligne afin de savoir qui est disponible. 
+& & US76 & En tant que \textbf{chef de projet}, je souhaite voir qui est en ligne dans mon équipe afin de savoir qui je peux solliciter. 
+& Le chef de projet visualise les membres actuellement connectés. Le chef de projet peut filtrer par équipe ou projet. Le chef de projet voit l'heure de dernière activité. & ++ \\
+\cline{3-6}
+& & US77 & En tant qu'\textbf{utilisateur}, je souhaite voir qui est en ligne afin de savoir qui est disponible. 
 & L'utilisateur voit le statut de disponibilité des autres membres. L'utilisateur peut modifier son propre statut. Le statut est visible par tous les membres. & ++ \\
 \hline
 
 % Epic 11: Gestion des documents
 \multirow{11}{*}{\centering 11} & \multirow{11}{2.5cm}{\centering Gestion des documents} 
-& US77 & En tant qu'\textbf{utilisateur}, je souhaite uploader des documents afin de centraliser les fichiers. 
+& US78 & En tant qu'\textbf{utilisateur}, je souhaite uploader des documents afin de centraliser les fichiers. 
 & L'utilisateur peut téléverser des documents. L'utilisateur peut associer un document à un contrat, projet ou ticket. L'utilisateur peut ajouter un titre, une description et des tags. & ++ \\
 \cline{3-6}
-& & US78 & En tant qu'\textbf{utilisateur}, je souhaite télécharger des documents afin de les consulter hors ligne. 
+& & US79 & En tant qu'\textbf{utilisateur}, je souhaite télécharger des documents afin de les consulter hors ligne. 
 & L'utilisateur peut télécharger un document individuel. L'utilisateur peut télécharger plusieurs documents simultanément. Le système vérifie les permissions avant le téléchargement. La consultation est enregistrée pour traçabilité. & ++ \\
 \cline{3-6}
-& & US79 & En tant qu'\textbf{utilisateur}, je souhaite gérer les versions des documents afin d'assurer la traçabilité. 
+& & US80 & En tant qu'\textbf{utilisateur}, je souhaite gérer les versions des documents afin d'assurer la traçabilité. 
 & L'utilisateur peut téléverser une nouvelle version d'un document existant. Le système numérote automatiquement les versions. L'utilisateur doit fournir un commentaire pour chaque nouvelle version. & ++ \\
 \cline{3-6}
-& & US80 & En tant qu'\textbf{administrateur}, je souhaite archiver des documents afin de nettoyer la vue active. 
+& & US81 & En tant qu'\textbf{administrateur}, je souhaite archiver des documents afin de nettoyer la vue active. 
 &  L'administrateur peut archiver un document. Une confirmation est demandée avant archivage. Le document archivé peut être restauré ultérieurement. & + \\
 \cline{3-6}
-& & US81 & En tant que \textbf{chef de projet}, je souhaite générer automatiquement un PV à partir d'un ticket afin de documenter les interventions. 
+& & US82 & En tant que \textbf{chef de projet}, je souhaite générer automatiquement un PV à partir d'un ticket afin de documenter les interventions. 
 & Le chef de projet peut générer un procès-verbal depuis un ticket. Le document contient toutes les informations du ticket et les actions réalisées. Le document peut être signé électroniquement. & +++ \\
 \cline{3-6}
-& & US82 & En tant que \textbf{client}, je souhaite accéder aux documents de mes contrats et à mes justificatifs de tickets afin de centraliser nos échanges de fichiers. & 
-Le client peut consulter et télécharger les documents liés à son contrat. Sur ses tickets, il n'accède qu'aux fichiers qu'il a lui-même soumis.& ++ \\
+& & US83 & En tant que \textbf{client}, je souhaite accéder aux documents de mes contrats et à mes justificatifs de tickets afin de centraliser nos échanges de fichiers. & 
+Le client peut consulter et télécharger les documents liés à son contrat. Sur ses tickets, il n'accède qu'aux fichiers qu'il a lui-même soumis. Les documents internes, techniques et les PV sont strictement invisibles pour lui. & ++ \\
 \cline{3-6}
-& & US83 & En tant qu'\textbf{utilisateur}, je souhaite créer une nouvelle version d'un document afin de maintenir l'historique. 
-& L'utilisateur peut téléverser une nouvelle version d'un document. L'utilisateur doit fournir un commentaire pour la nouvelle version. Le système numérote automatiquement les versions. Toutes les versions précédentes sont conservées. & ++ \\
-\cline{3-6}
-& & US84 & En tant qu'\textbf{utilisateur}, je souhaite voir qui a consulté un document afin de suivre sa diffusion. 
-& L'utilisateur visualise la liste des consultations du document. L'historique indique la date, l'heure et l'utilisateur. Des statistiques de consultation sont disponibles. & ++ \\
-\cline{3-6}
-& & US85 & En tant qu'\textbf{développeur ou chef de projet}, je souhaite consulter la base de connaissances afin de trouver des solutions existantes. 
+& & US84 & En tant qu'\textbf{développeur ou chef de projet}, je souhaite consulter la base de connaissances afin de trouver des solutions existantes. 
 & L'utilisateur peut rechercher par mots-clés, catégorie ou tags. Les résultats affichent titre et extrait. Un clic ouvre l'article complet. & ++ \\
 \cline{3-6}
-& & US86 & En tant qu'\textbf{administrateur}, je souhaite créer des articles de la base de connaissances afin d'enrichir la documentation. 
+& & US85 & En tant qu'\textbf{administrateur}, je souhaite créer des articles de la base de connaissances afin d'enrichir la documentation. 
 & L'administrateur peut créer des articles. La création est tracée et horodatée. L'historique des versions est conservé. & ++ \\
 \cline{3-6}
-
+& & US86 & En tant qu'\textbf{utilisateur}, je souhaite créer une nouvelle version d'un document afin de maintenir l'historique. 
+& L'utilisateur peut téléverser une nouvelle version d'un document. L'utilisateur doit fournir un commentaire pour la nouvelle version. Le système numérote automatiquement les versions. Toutes les versions précédentes sont conservées. & ++ \\
+\cline{3-6}
+& & US87 & En tant qu'\textbf{utilisateur}, je souhaite voir qui a consulté un document afin de suivre sa diffusion. 
+& L'utilisateur visualise la liste des consultations du document. L'historique indique la date, l'heure et l'utilisateur. Des statistiques de consultation sont disponibles. & ++ \\
+\cline{3-6}
+& & US89 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique des consultations d'un document afin de voir qui y a accédé. 
+& L'utilisateur visualise qui a consulté le document. L'utilisateur voit la date et l'heure de chaque consultation. & + \\
 \hline
 
 % Epic 12: Notifications
 \multirow{5}{*}{\centering 12} & \multirow{5}{2.5cm}{\centering Notifications et alertes} 
-& US87 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications in-app afin d'être informé en temps réel. 
+& US90 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications in-app afin d'être informé en temps réel. 
 & L'utilisateur visualise le nombre de notifications non lues. L'utilisateur peut consulter la liste des notifications. L'utilisateur peut marquer une notification comme lue. L'utilisateur peut accéder directement à l'élément concerné. & +++ \\
 \cline{3-6}
-& & US88 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications par email afin d'être informé hors connexion. 
-& L'utilisateur reçoit des emails pour les événements importants. & ++ \\
+& & US91 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications par email afin d'être informé hors connexion. 
+& L'utilisateur peut configurer la fréquence des notifications email. L'utilisateur reçoit des emails pour les événements importants. & ++ \\
 \cline{3-6}
-& & US89 & En tant que \textbf{utilisateur}, je souhaite recevoir des notifications Slack afin d'être alerté sur mon outil de travail. 
+& & US92 & En tant qu\textbf{développeur ou chef de projet}, je souhaite recevoir des notifications Slack afin d'être alerté sur mon outil de travail. 
 & L'administrateur peut configurer l'intégration Slack par contrat ou projet. Les événements importants sont envoyés sur Slack. & ++ \\
 \cline{3-6}
-& & US90 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications push navigateur afin d'être alerté même hors onglet. 
+& & US93 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications push navigateur afin d'être alerté même hors onglet. 
 & L'utilisateur peut autoriser les notifications navigateur. L'utilisateur reçoit des alertes pour les événements critiques. L'utilisateur peut accéder à l'application en cliquant sur la notification. & ++ \\
 \cline{3-6}
-& & US91 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique de mes notifications afin de retrouver une information. 
+& & US94 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique de mes notifications afin de retrouver une information. 
 & L'utilisateur accède à l'historique depuis le bouton de notifications du header. Le compteur de notifications non lues reste visible. & ++ \\
 \hline
 
 % Epic 13: Dashboards et rapports
 \multirow{7}{*}{\centering 13} & \multirow{7}{2.5cm}{\centering Dashboards et rapports } 
-& US92 & En tant qu'\textbf{administrateur}, je souhaite consulter un dashboard global afin de piloter le système. 
+& US95 & En tant qu'\textbf{administrateur}, je souhaite consulter un dashboard global afin de piloter le système. 
 & L'administrateur visualise les indicateurs clés du système. L'administrateur peut filtrer les données par période. L'administrateur identifie les alertes nécessitant une action. & +++ \\
 \cline{3-6}
-&  & US93 & En tant que \textbf{chef de projet}, je souhaite consulter un dashboard d'équipe afin de piloter l'activité. 
+&  & US96 & En tant que \textbf{chef de projet}, je souhaite consulter un dashboard d'équipe afin de piloter l'activité. 
 & Le chef de projet visualise la charge de travail de son équipe. Le chef de projet suit la performance par rapport aux délais. Le chef de projet compare le temps passé au temps estimé. & +++ \\
 \cline{3-6}
-& & US94 & En tant que \textbf{client}, je souhaite consulter mon dashboard afin de suivre mes projets.
+& & US97 & En tant que \textbf{client}, je souhaite consulter mon dashboard afin de suivre mes projets. selon notre application
 &Le dashboard permet au client de consulter ses KPIs globaux (haut), de suivre visuellement ses projets et tickets & ++ \\
 \cline{3-6}
-& & US95 & En tant qu'\textbf{administrateur}, je souhaite générer un rapport d'activité mensuel afin de présenter les statistiques. 
+& & US98 & En tant qu'\textbf{administrateur}, je souhaite générer un rapport d'activité mensuel afin de présenter les statistiques. 
 & L'administrateur génère un rapport pour une période donnée. Le rapport contient les tickets traités et le temps passé. Le rapport indique le respect des délais. Le rapport peut être exporté. & +++ \\
 \cline{3-6}
-& & US96 & En tant que\textbf{chef de projet}, je souhaite générer des rapports d'activité afin de présenter l'avancement. 
+& & US99 & En tant qu'\textbf{administrateur}, je souhaite générer des rapports de conformité SLA afin de justifier les performances. 
+& L'administrateur génère un rapport de conformité par contrat. Le rapport affiche le taux de respect des délais. Le rapport détaille les tickets en dépassement. & +++ \\
+\cline{3-6}
+& & US100 & En tant que\textbf{chef de projet}, je souhaite générer des rapports d'activité afin de présenter l'avancement. 
 & Le chef de projet génère un rapport pour son équipe ou projet. Le rapport affiche les tickets traités et le temps passé. Le rapport présente l'évolution de l'activité. & ++ \\
 \cline{3-6}
-& & US97 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique complet d'un ticket afin de retracer son cycle de vie. 
+& & US101 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique complet d'un ticket afin de retracer son cycle de vie. 
 & L'utilisateur visualise tous les événements du ticket (créations, changements de statut, sessions, assignations, commentaires, pièces jointes) avec date, heure et auteur. Un filtre par type d'événement est disponible. L'historique est exportable. & +++ \\
 \hline
 
 % Epic 14: Historique et audit trail
 \multirow{4}{*}{\centering 14} & \multirow{4}{2.5cm}{\centering Historique et traçabilité} 
-& US98 & En tant qu'\textbf{administrateur}, je souhaite consulter l'historique complet de toutes les actions afin d'assurer la traçabilité. 
+& US102 & En tant qu'\textbf{administrateur}, je souhaite consulter l'historique complet de toutes les actions afin d'assurer la traçabilité. 
 & L'administrateur visualise toutes les actions effectuées dans le système. L'historique indique l'utilisateur, la date et l'action réalisée. L'historique conserve les valeurs avant et après modification. & +++ \\
 \cline{3-6}
-& & US99 & En tant qu'\textbf{administrateur}, je souhaite exporter les logs d'audit afin de répondre aux exigences de conformité. 
+& & US103 & En tant qu'\textbf{administrateur}, je souhaite exporter les logs d'audit afin de répondre aux exigences de conformité. 
 & L'administrateur peut exporter l'historique des actions. L'administrateur peut filtrer par période, utilisateur ou type d'action. Les données exportées sont sécurisées. & ++ \\
 \cline{3-6}
-& & US100 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique complet d'un ticket afin de retracer son cycle de vie. 
+& & US104 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique complet d'un ticket afin de retracer son cycle de vie. 
 & L'utilisateur visualise tous les événements du ticket (créations, changements de statut, sessions, assignations, commentaires, pièces jointes) avec date, heure et auteur. Un filtre par type d'événement est disponible. L'historique est exportable. & +++ \\
+\cline{3-6}
+& & US105 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique de mes activités afin de suivre mes actions dans le système. 
+& L'utilisateur visualise toutes ses actions passées avec possibilité de filtrer par date et type d'action. & ++ \\
 \hline
 
 % Epic 15: Assistance intelligente
 \multirow{7}{*}{\centering 15} & \multirow{7}{2.5cm}{\centering Assistance intelligente} 
-& US101 & En tant que \textbf{chef de projet}, je souhaite que l'IA analyse automatiquement les blocages afin d'identifier rapidement les problèmes critiques. 
+& US106 & En tant que \textbf{chef de projet}, je souhaite que l'IA analyse automatiquement les blocages afin d'identifier rapidement les problèmes critiques. 
 & L'analyse est automatique lors du signalement. Le résultat est affiché dans l'interface. Un résumé clair du problème est présenté. & +++ \\
 \cline{3-6}
-& & US102 & En tant que \textbf{chef de projet}, je souhaite que l'IA propose des actions correctives afin de débloquer rapidement un développeur. 
+& & US107 & En tant que \textbf{chef de projet}, je souhaite que l'IA propose des actions correctives afin de débloquer rapidement un développeur. 
 & L'IA affiche 1 à 3 actions suggérées par blocage. Chaque action inclut destinataire et durée estimée. Le chef de projet peut valider une action qui crée automatiquement une tâche. & +++ \\
 \cline{3-6}
-& & US103 & En tant que \textbf{développeur}, je souhaite qu'un brouillon de solution soit généré à la fermeture d'un ticket afin de faciliter la documentation. 
+& & US108 & En tant que \textbf{développeur}, je souhaite qu'un brouillon de solution soit généré à la fermeture d'un ticket afin de faciliter la documentation. 
 & Un brouillon est créé automatiquement contenant : problème identifié, actions réalisées, résultat. Le développeur peut modifier le brouillon avant publication. & +++ \\
 \cline{3-6}
-& & US104 & En tant que \textbf{chef de projet}, je souhaite que l'IA propose une classification des demandes clients afin d'accélérer leur traitement, avec validation avant transmission au client. 
+& & US109 & En tant que \textbf{chef de projet}, je souhaite que l'IA propose une classification des demandes clients afin d'accélérer leur traitement, avec validation avant transmission au client. 
 & L'IA propose type/priorité/catégorie. Le chef de projet peut accepter, modifier ou rejeter. La classification validée est visible par le client. L'audit trace proposition IA vs choix final. & +++ \\
 \cline{3-6}
-& & US105 & En tant que \textbf{chef de projet}, je souhaite que l'IA structure automatiquement les solutions saisies en articles KB afin d'améliorer la documentation. 
+& & US110 & En tant que \textbf{chef de projet}, je souhaite que l'IA structure automatiquement les solutions saisies en articles KB afin d'améliorer la documentation. 
 & La solution brute est transformée en format structuré (Problème/Solution/Détails). Des tags sont générés automatiquement. L'auteur peut modifier avant publication. & ++ \\
 \cline{3-6}
-& & US106 & En tant que \textbf{chef de projet}, je souhaite que l'IA fusionne le brouillon d'un blocage avec la solution humaine afin de produire un article KB définitif. 
+& & US111 & En tant que \textbf{chef de projet}, je souhaite que l'IA fusionne le brouillon d'un blocage avec la solution humaine afin de produire un article KB définitif. 
 & La fusion est proposée pour les blocages résolus. L'article final combine l'analyse IA et la solution humaine. Le responsable peut valider ou modifier avant publication. & + \\
 \hline
+
+
+ \caption{Product Backlog} \label{tab:product_backlog} \\
+    \hline
 \end{longtable}
-\captionof{table}{Product Backlog} \label{tab:product_backlog} 

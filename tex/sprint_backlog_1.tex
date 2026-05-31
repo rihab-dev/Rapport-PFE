@@ -81,8 +81,14 @@ US06 & En tant qu'\textbf{utilisateur}, je souhaite gérer mon profil afin de mo
 \item Concevoir l'interface utilisateur de gestion du profil avec des formulaires synchronisés.
 \end{itemize} & 2 \\
 \hline
-
-US07 & En tant qu'\textbf{administrateur}, je souhaite créer des utilisateurs afin de gérer les accès au système. &
+US07 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des utilisateurs afin de visualiser et gérer efficacement les comptes. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint \footnotesize{"GET /api/users"}\small{} pour l'affichage global des comptes.
+\item Ajouter une recherche dynamique via \footnotesize{"GET /api/users/search"}\small{} avec filtre textuel insensible à la casse.
+\item Concevoir une interface d'administration avec recherche en temps réel et tri des utilisateurs.
+\end{itemize} & 1 \\
+\hline
+US08 & En tant qu'\textbf{administrateur}, je souhaite créer des utilisateurs afin de gérer les accès au système. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint \footnotesize{"POST /api/users"}\small{} avec validation stricte des données d'entrée.
 \item Générer un mot de passe temporaire ainsi qu'un profil employé associé avec matricule unique automatisé.
@@ -91,14 +97,14 @@ US07 & En tant qu'\textbf{administrateur}, je souhaite créer des utilisateurs a
 \end{itemize} & 3 \\
 \hline
 
-US08 & En tant qu'\textbf{administrateur}, je souhaite modifier les informations d'un utilisateur afin de maintenir des données à jour. &
+US09 & En tant qu'\textbf{administrateur}, je souhaite modifier les informations d'un utilisateur afin de maintenir des données à jour. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint \footnotesize{"PUT /api/users/:id"}\small{} assurant la mise à jour des fiches d'information.
 \item Concevoir le formulaire de modification et de mise à jour côté Next.js.
 \end{itemize} & 2 \\
 \hline
 
-US09 & En tant qu'\textbf{administrateur}, je souhaite activer et désactiver un compte utilisateur afin de contrôler l'accès au système. &
+US10 & En tant qu'\textbf{administrateur}, je souhaite activer et désactiver un compte utilisateur afin de contrôler l'accès au système. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer les endpoints \footnotesize{"PATCH /api/users/:id/desactiver"}\small{} et \footnotesize{"PATCH /api/users/:id/reactiver"}\small.
 \item Prévoir les contrôles de réaffectation des tickets ou demandes en cours avant désactivation.
@@ -106,13 +112,7 @@ US09 & En tant qu'\textbf{administrateur}, je souhaite activer et désactiver un
 \end{itemize} & 3 \\
 \hline
 
-US10 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des utilisateurs afin de visualiser et gérer efficacement les comptes. &
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"GET /api/users"}\small{} pour l'affichage global des comptes.
-\item Ajouter une recherche dynamique via \footnotesize{"GET /api/users/search"}\small{} avec filtre textuel insensible à la casse.
-\item Concevoir une interface d'administration avec recherche en temps réel et tri des utilisateurs.
-\end{itemize} & 1 \\
-\hline
+
 
 % Epic 3: Gestion des rôles et permissions
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 3 - Gestion des rôles et permissions}} \\
@@ -146,7 +146,7 @@ US14 & En tant qu'\textbf{administrateur}, je souhaite consulter la matrice rôl
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 4 - Demandes d'inscription OAuth}} \\
 \hline
 
-US15 & En tant qu'\textbf{utilisateur externe}, je souhaite demander l'accès via OAuth afin de m'inscrire facilement. &
+US15 & En tant qu'\textbf{utilisateur}, je souhaite demander l'accès via OAuth afin de m'inscrire facilement. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Intercepter la tentative de connexion externe Google ou GitHub et initialiser automatiquement une demande au statut en attente.
 \item Assurer l'unicité des demandes pour éviter les doublons par couple e-mail et fournisseur.

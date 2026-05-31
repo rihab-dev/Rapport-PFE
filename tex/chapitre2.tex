@@ -521,12 +521,42 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
 \end{minipage}\par\vspace{10pt}}
 
 \cadretechDocker{Images/docker.png}{%
-  \textbf{Docker \& Docker Compose :} « Docker est une plateforme open source qui
+  \textbf{Docker et Docker Compose :} « Docker est une plateforme open source qui
   permet d'automatiser le déploiement d'applications dans des conteneurs logiciels
   légers et portables. Docker Compose permet de définir et d'exécuter des
   applications multi-conteneurs à l'aide d'un fichier de configuration YAML. Dans
   notre projet, Docker Compose orchestre quatre services : PostgreSQL, Redis, le
   backend NestJS et le frontend Next.js. » [20]}
+  
+\subsubsection{Référentiel de sécurité applicative}
+\vspace{12pt}
+\newcommand{\cadretechSecurite}[2]{%
+\noindent\begin{minipage}{2.2cm}\centering
+  \includegraphics[width=2cm,height=1.5cm,keepaspectratio]{#1}
+\end{minipage}\hspace{0.5cm}%
+\begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
+  \fbox{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{#2}}
+\end{minipage}\par\vspace{10pt}}
+
+
+\cadretechSecurite{Images/owasp.png}{%
+  \textbf{OWASP :} « L’Open Worldwide Application Security Project (OWASP) est une fondation à but non lucratif qui œuvre pour améliorer la sécurité des logiciels. une communauté ouverte qui a pour mission d'aider les organisations à concevoir, développer, acquérir, exploiter et maintenir des applications fiables » [21]}
+
+  \subsubsection{Outil de test de performance}
+\vspace{12pt}
+
+\newcommand{\cadretechksix}[2]{%
+\noindent\begin{minipage}{2.2cm}\centering
+  \includegraphics[width=2cm,height=1.5cm,keepaspectratio]{#1}
+\end{minipage}\hspace{0.5cm}%
+\begin{minipage}{\dimexpr\textwidth-2.2cm-0.5cm-2\fboxsep-2\fboxrule\relax}
+  \fbox{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{#2}}
+\end{minipage}\par\vspace{10pt}}
+
+\cadretechksix{Images/k6.png}{%
+  \textbf{Grafana k6 : } « est un outil de test de performance open source, convivial pour les développeurs et extensible, qui vous aide à détecter rapidement les problèmes de performance et à améliorer proactivement la fiabilité. » [22]}
+  
+
 
 \subsubsection{Outil de gestion de projet Scrum}
 \vspace{12pt}
@@ -545,7 +575,7 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
   des collaborateurs. Cette application se révèle indispensable autant pour les
   travailleurs autonomes que pour les professionnels en entreprise. C'est également
   un outil parfait pour gérer son projet agile (Product Backlog, suivi des sprints,
-  rétrospectives). » [21]}
+  rétrospectives). » [23]}
 
 \subsubsection{Environnement de composition de documents}
 \vspace{12pt}
@@ -562,7 +592,7 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
   \textbf{\LaTeX :} « est un système de composition de haute qualité ; il comprend
   des fonctionnalités conçues pour la production de documents techniques et
   scientifiques. \LaTeX{} est la norme de facto pour la communication et la
-  publication de documents scientifiques. » [22]}
+  publication de documents scientifiques. » [24]}
 
 \subsubsection{Outil de design graphique}
 \vspace{12pt}
@@ -578,8 +608,9 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
 \cadretechCanva{Images/canva.png}{%
   \textbf{Canva :} « est une plateforme de conception et de communication visuelle
   en ligne dont la mission est de permettre à chacun dans le monde de concevoir
-  n'importe quoi et de publier n'importe où. » [23]}
+  n'importe quoi et de publier n'importe où. » [25]}
 
+\subsubsection{Logo de SolidMaint}
 \vspace{0.4cm}
 Le logo de \textbf{SolidMaint} a été conçu via \textbf{Canva} en cohérence avec la
 charte visuelle de \textbf{SolidWall Consulting}. Il associe le \textbf{noir} et le
@@ -651,47 +682,3 @@ planification en quatre sprints structurent la démarche de développement.
 L'environnement de développement choisi et l'architecture modulaire garantissent une solution robuste et évolutive. Ces éléments constituent la base solide pour aborder la phase de réalisation.
 \newline Le chapitre suivant détaillera l'implémentation du premier sprint consacré à la gestion des utilisateurs et authentification.
 
-\newpage
-\section*{Références}
-\begin{itemize}
-  \item \textbf{NestJS}, Documentation officielle ---
-    \url{https://docs.nestjs.com} \hfill [6]
-  \item \textbf{Next.js}, Documentation officielle ---
-    \url{https://nextjs.org/docs} \hfill [7]
-  \item \textbf{React}, Guide officiel ---
-    \url{https://react.dev} \hfill [8]
-  \item \textbf{Tailwind CSS}, Documentation ---
-    \url{https://tailwindcss.com} \hfill [9]
-  \item \textbf{shadcn/ui}, Guide des composants ---
-    \url{https://ui.shadcn.com/docs} \hfill [10]
-  \item \textbf{Visual Studio Code}, Documentation officielle ---
-    \url{https://code.visualstudio.com/docs} \hfill [11]
-  \item \textbf{GitLab}, Guide utilisateur ---
-    \url{https://about.gitlab.com} \hfill [12]
-  \item \textbf{UML}, Spécifications officielles ---
-    \url{https://www.omg.org/uml} \hfill [13]
-  \item \textbf{Lucidchart}, Outil de modélisation ---
-    \url{https://www.lucidchart.com} \hfill [14]
-  \item \textbf{Swagger}, Documentation des APIs ---
-    \url{https://swagger.io} \hfill [15]
-  \item \textbf{Prisma ORM}, Documentation ---
-    \url{https://www.prisma.io/docs} \hfill [16]
-  \item \textbf{PostgreSQL}, Site officiel ---
-    \url{https://www.postgresql.org} \hfill [17]
-  \item \textbf{Redis}, Documentation officielle ---
-    \url{https://redis.io/docs} \hfill [18]
-  \item \textbf{Neon}, Cloud Postgres ---
-    \url{https://neon.tech/docs} \hfill [19]
-  \item \textbf{Docker}, Documentation officielle ---
-    \url{https://docs.docker.com} \hfill [20]
-  \item \textbf{Notion}, Espace de travail ---
-    \url{https://www.notion.so} \hfill [21]
-  \item \textbf{\LaTeX}, Système de composition ---
-    \url{https://www.latex-project.org} \hfill [22]
-  \item \textbf{Canva}, Design graphique ---
-    \url{https://www.canva.com} \hfill [23]
-  \item \textbf{Playwright}, Framework de test E2E ---
-    \url{https://playwright.dev/docs/intro} \hfill [24]
-  \item \textbf{Vitest}, Framework de test unitaire ---
-    \url{https://vitest.dev} \hfill [25]
-\end{itemize}

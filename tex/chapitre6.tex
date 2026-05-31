@@ -591,19 +591,69 @@ Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui
 \section{Réalisation}
 \label{sec:realisation_sprint4}
 
-\subsection{Architecture technique}
+Cette section présente les principales interfaces utilisateur développées durant le quatrième sprint. Chaque interface a été conçue pour offrir une expérience claire aux différents acteurs de la plateforme.
 
-Cette section présentera l'architecture technique mise en place pour le Sprint 4, incluant les modules de messagerie temps réel, gestion documentaire et tableaux de bord.
 
-\textit{[À compléter avec les détails d'implémentation]}
 
-\subsection{Interfaces utilisateur}
+\subsection{Interface de la liste des documents}
 
-Cette section présentera les principales interfaces développées durant le Sprint 4, notamment la messagerie, le calendrier, les tableaux de bord et le système de notifications.
+Nous avons mis en place cette interface de liste documents liés aux contrats et aux tickets en un seul endroit. Elle permet de rechercher, filtrer par source, consulter, télécharger ou remplacer un fichier par une nouvelle version. L'administrateur peut également archiver et restaurer des documents.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/Interface Document.png}
+    \caption{Interface de liste des documents}
+    \label{fig:Interface de liste des documents}
+\end{figure}
 
-\textit{[À compléter avec les captures d'écran]}
+\subsection{Interface du tableau de bord administrateur}
+Nous avons mis en place cette interface de tableau de bord afin d’offrir à l'administrateur une vue globale sur l'activité de la plateforme. Il affiche les indicateurs clés, les demandes en attente, les contrats bientôt expirés et les tickets récents. Un rapport mensuel peut aussi être généré et exporté en PDF.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/Interface dashboard admin.png}
+    \caption{Interface du tableau de bord administrateur}
+    \label{fig:Interface du tableau de bord administrateur}
+\end{figure}
 
-\newpage
+\subsection{Interface de suivi des activités}
+Nous avons mis en place cette interface de journal d'activités de l'utilisateur connecté . Elle permet de rechercher, filtrer par période,  consulter les détails d'une action et exporter les entrées sélectionnées au format CSV.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/Interface ses activite.png}
+    \caption{Interface de suivi des activités}
+    \label{fig:Interface de suivi des activités}
+\end{figure}
+
+\subsection{Interface de l'historique d'un ticket}
+
+Nous avons mis en place cette interface d'historique d'un ticket sous forme de timeline chronologique. Elle permet de consulter l'ensemble des événements liés au ticket, de filtrer par type (actions, commentaires, sessions de travail), de rechercher par mot-clé, et d'exporter l'historique au format JSON ou CSV.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/historique ticket.png}
+    \caption{Interface de l'historique d'un ticket}
+    \label{fig:Interface de l'historique d'un ticket}
+\end{figure}
+
+\subsection{Interface de messagerie}
+
+Nous avons mis en place cette interface de messagerie interne organisée en canaux thématiques. Elle permet d'envoyer des messages texte, des fichiers et des messages vocaux, de mentionner des membres, d'épingler des messages importants et d'initier des conversations directes entre utilisateurs.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/Interface messagerie.png}
+    \caption{Interface de messagerie}
+    \label{fig:Interface de messagerie}
+\end{figure}
+
+\subsection{Interface du calendrier}
+
+Nous avons mis en place cette vue Gantt représentant la charge de travail de chaque développeur sous forme de barres horizontales. Elle affiche la progression, le statut et les échéances des tickets assignés, avec la possibilité de naviguer par jour, semaine ou mois.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/Interface calendrier.png}
+    \caption{Interface du calendrier}
+    \label{fig:Interface du calendrier}
+\end{figure}
+
+
 
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 5 : TESTS
