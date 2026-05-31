@@ -1,155 +1,161 @@
-\definecolor{primary}{RGB}{0, 84, 166}
-\definecolor{pgold}{RGB}{212, 175, 55}
-\definecolor{darkgray}{RGB}{80, 80, 80}
-
+% ============================================================
+%  PAGE DE GARDE — SolidMaint PFE 2025–2026
+%  Structure officielle ISET Radès
+% ============================================================
 \begin{titlepage}
+\thispagestyle{empty}
 
+% ================================================================
+%  BANDE DÉCORATIVE GAUCHE (tout au long de la page)
+% ================================================================
 \begin{tikzpicture}[remember picture, overlay]
-    \fill[color=primary!90]
+    % Bande verticale gauche pleine hauteur
+    \fill[primary]
         (current page.north west)
-        rectangle ([xshift=0.85cm] current page.south west);
-    \fill[color=pgold]
-        ([xshift=0.74cm] current page.north west)
-        rectangle ([xshift=0.85cm] current page.south west);
-    \draw[color=primary, line width=1.8pt]
-        ([xshift=1.0cm,  yshift=-2.4cm] current page.north west) --
-        ([xshift=-1.2cm, yshift=-2.4cm] current page.north east);
-    \draw[color=primary, line width=1.8pt]
-        ([xshift=1.0cm,  yshift=2.4cm] current page.south west) --
-        ([xshift=-1.2cm, yshift=2.4cm] current page.south east);
-    \fill[color=primary!15]
-        ([xshift=-3cm, yshift=0cm] current page.south east) --
-        ([xshift=0cm,  yshift=0cm] current page.south east) --
-        ([xshift=0cm,  yshift=3cm] current page.south east) -- cycle;
+        rectangle ([xshift=1.2cm] current page.south west);
+    % Liseré doré sur la bande
+    \fill[pgold]
+        ([xshift=1.12cm] current page.north west)
+        rectangle ([xshift=1.2cm] current page.south west);
 \end{tikzpicture}
 
+% ================================================================
+%  BLOC EN-TÊTE INSTITUTIONNEL
+%  Logo République centré avec texte centré en noir
+% ================================================================
+\noindent
+\begin{minipage}[c]{0.65\textwidth}
+    \centering
+    {\fontsize{7}{6}\selectfont\rmfamily\color{black}\setstretch{1.0}
+        République Tunisienne\\[1pt]
+        Ministère de l'Enseignement Supérieur et de la Recherche Scientifique\\[1pt]
+        Direction Générale des Études Technologiques\\[1pt]
+        ISET de Radès\\[1pt]
+        Département Technologies de l'Informatique}
+\end{minipage}%
+\hfill
+\begin{minipage}[c]{0.15\textwidth}
+    \centering
+    \includegraphics[height=2.0cm]{Images/logo_republique.png}
+\end{minipage}%
+\hfill
+\begin{minipage}[c]{0.14\textwidth}
+    % vide symétrie
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.38\textwidth}
+    
+\end{minipage}
+% ---- Filet sous le bandeau ----
+\vspace{0.30cm}
+\noindent{\color{primary}\rule{\textwidth}{0.8pt}}
+
+% ================================================================
+%  LOGOS ISET + SOLIDWALL
+% ================================================================
+\vspace{0.35cm}
+\noindent
+\begin{minipage}[c]{0.35\textwidth}
+    \centering
+    \includegraphics[height=2.2cm]{Images/logo iset.png}
+\end{minipage}%
+\hfill
+\begin{minipage}[c]{0.35\textwidth}
+    \centering
+    \includegraphics[height=2.2cm]{Images/SolidWall.png}
+\end{minipage}
+
+% ================================================================
+%  CORPS CENTRAL
+% ================================================================
 \begin{center}
-\vspace*{0.2cm}
 
-% ----------------------------------------------------------
-% SECTION 1 — Trois logos sur une même ligne
-% ----------------------------------------------------------
-\begin{minipage}[c]{0.28\textwidth}
-    \centering
-    \includegraphics[height=2.4cm,keepaspectratio]{Images/logo iset.png}\\[4pt]
-    {\scriptsize\bfseries\color{primary}
-        Institut Supérieur des\\
-        Études Technologiques\\
-        de Radès
-    }
-\end{minipage}
-\hfill
-\begin{minipage}[c]{0.28\textwidth}
-    \centering
-    % ↓ Remplacez par votre logo République Tunisienne
-    \includegraphics[height=2.4cm,keepaspectratio]{Images/logo_republique.png}\\[4pt]
-    {\scriptsize\bfseries\color{darkgray}
-        République Tunisienne
-    }
-\end{minipage}
-\hfill
-\begin{minipage}[c]{0.28\textwidth}
-    \centering
-    \includegraphics[height=2.4cm,keepaspectratio]{Images/SolidWall.png}\\[4pt]
-    {\scriptsize\bfseries\color{primary} SolidWall Consulting}
-\end{minipage}
 
-\vspace{0.5cm}
-{\color{primary!60}\rule{0.88\textwidth}{0.6pt}}
-\vspace{0.4cm}
 
-% ----------------------------------------------------------
-% SECTION 2 — Nature du document
-% ----------------------------------------------------------
-{\large\bfseries\color{darkgray} Rapport de Projet de Fin d'Études}
+% ---- Nature du document ----
+{\Large\bfseries\color{black} Rapport de Fin d'Études}
 
-\vspace{0.15cm}
-{\normalsize\color{darkgray} Présenté en vue de l'obtention du diplôme de}
+\vspace{0.30cm}
 
-\vspace{0.15cm}
-{\large\bfseries\color{primary} Licence Appliquée en Informatique}
+% ---- Diplôme ----
+{\large\bfseries\itshape\color{black}
+    LICENCE EN TECHNOLOGIES DE L'INFORMATIQUE}
 
-\vspace{0.08cm}
-{\normalsize\itshape\color{darkgray}
-    Spécialité : Développement des Systèmes d'Information
-}
+\vspace{0.12cm}
 
-% ----------------------------------------------------------
-% SECTION 3 — Titre du projet
-% ----------------------------------------------------------
-\vspace{0.6cm}
+{\normalsize\bfseries\itshape\color{black}
+    PARCOURS : DÉVELOPPEMENT DES SYSTÈMES D'INFORMATIONS (DSI)}
 
+\vspace{0.50cm}
+{\color{primary!50}\rule{0.55\textwidth}{0.5pt}}
+\vspace{0.45cm}
+
+% ---- Titre du sujet encadré fin ----
 \begin{tikzpicture}
-    \node[
-        draw          = primary,
-        line width    = 2pt,
-        fill          = primary!7,
-        rounded corners = 8pt,
-        inner xsep    = 1.0cm,
-        inner ysep    = 0.65cm,
-        text width    = 12.5cm,
-        align         = center
+     \node[
+        draw        = primary,
+        line width  = 1.0pt,
+        fill        = primary!8,        % ← fond bleu très clair
+        inner xsep  = 1.4cm,            % ← plus large horizontalement
+        inner ysep  = 0.85cm,           % ← plus grand verticalement
+        text width  = 13.8cm,           % ← boîte plus large
+        align       = center
     ]{
-        {\Large\bfseries\textcolor{pgold}{SolidMaint}}\\[4pt]
-        \textcolor{primary!40}{\rule{6cm}{0.4pt}}\\[6pt]
-        {\large\bfseries\color{primary}
-            plateforme centralisée de gestion \\[3pt]
-            des contrats de maintenance
-        }\\[8pt]
-        {\small\itshape\color{darkgray}
-            CSolution intelligente de gestion des contrats de maintenance \\
-            avec IA pour l’automatisation des tickets\\
-            
-        }
+       {\large\bfseries\color{black}\setstretch{1.4}
+            Solution intelligente de gestion des contrats\\
+            de maintenance avec IA pour l'automatisation\\
+            des tickets \guillemotleft~SolidMaint~\guillemotright}
     };
 \end{tikzpicture}
 
+\vspace{0.45cm}
+
+% ---- Entreprise d'accueil ----
+{\normalsize\bfseries\color{black} Entreprise : SolidWall Consulting}
+
 \end{center}
 
-% ----------------------------------------------------------
-% SECTION 4 — Réalisé par / Encadré par
-% ----------------------------------------------------------
-\vspace{0.8cm}
+% ================================================================
+%  RÉALISÉ PAR / ENCADRÉ PAR — en gras, sans cadre
+% ================================================================
+\vspace{0.75cm}
 
 \noindent
-\begin{minipage}[t]{0.46\textwidth}
+\begin{minipage}[t]{0.45\textwidth}
     \raggedright
-    \colorbox{primary!12}{%
-        \parbox{\dimexpr\linewidth-8pt\relax}{%
-            \vspace{5pt}
-            \hspace{5pt}{\bfseries\color{primary}\large Réalisé par :}
-            \vspace{5pt}
-        }%
-    }\\[8pt]
-    \hspace{8pt}{\large Rihab \textsc{Chourou}}\\[4pt]
-    \hspace{8pt}{\large Eya \textsc{Gharbi}}
-\end{minipage}
+    {\normalsize\bfseries Réalisé par :}\\[6pt]
+    {\normalsize Rihab Chourou}\\[3pt]
+    {\normalsize Eya Gharbi}\\[12pt]
+    {\small\color{darkgray} Code PFE : DSI26R511}
+\end{minipage}%
 \hfill
 \begin{minipage}[t]{0.50\textwidth}
     \raggedright
-    \colorbox{primary!12}{%
-        \parbox{\dimexpr\linewidth-8pt\relax}{%
-            \vspace{5pt}
-            \hspace{5pt}{\bfseries\color{primary}\large Encadré par :}
-            \vspace{5pt}
-        }%
-    }\\[8pt]
-    \hspace{8pt}{\small\bfseries Encadrante académique : Mme Imen Msekni}\\[2pt]
-    \hspace{8pt}{\small\bfseries Encadrante professionnelle : Mme Maissa Ben Fredj}\\[2pt]
+    {\normalsize\bfseries Encadré par :}\\[6pt]
+    {\normalsize Encadrante entreprise : Mme Mayssa Ben Fredj}\\[3pt]
+    {\normalsize Encadrante ISET : \hspace{17pt} Mme Imen Msakni }
 \end{minipage}
 
-% ----------------------------------------------------------
-% SECTION 5 — Pied de page (taille réduite)
-% ----------------------------------------------------------
+% ================================================================
+%  PIED DE PAGE
+% ================================================================
 \vspace*{\fill}
 
-\begin{center}
-    {\color{primary}\rule{0.6\textwidth}{0.6pt}}\\[5pt]
-    {\small\bfseries\color{darkgray} Année Universitaire 2025--2026}
-    \enspace\textcolor{primary!60}{$\vert$}\enspace
-    {\footnotesize\color{darkgray} Stage : 02 Fév. -- 31 Mai 2026}
-    \enspace\textcolor{primary!60}{$\vert$}\enspace
-    {\footnotesize\color{darkgray} Session Juin 2026}
-\end{center}
+\noindent{\color{primary}\rule{\textwidth}{0.7pt}}
+
+\vspace{4pt}
+\noindent
+\begin{minipage}[t]{0.60\textwidth}
+    \raggedright
+    \footnotesize\color{darkgray}
+    Adresse : Rue El Quods, BP 172 -- 2098 -- Radès\\
+    Téléphone : 71 460 100 \quad Fax : 71 442 322\\
+    Site Web : \url{www.isetr.rnu.tn}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.35\textwidth}
+    \raggedleft
+    {\small\bfseries\color{darkgray} Année universitaire : 2025/2026}
+\end{minipage}
 
 \end{titlepage}
