@@ -77,6 +77,20 @@
 \renewcommand{\cftsubsecleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftsubsubsecleader}{\cftdotfill{\cftdotsep}}
 
+% Configuration de la Table des Figures
+\setlength{\cftfigindent}{0cm}
+\setlength{\cftfignumwidth}{1.5cm}
+\renewcommand{\cftfigfont}{\small\rmfamily\color{black}}
+\renewcommand{\cftfigpagefont}{\small\rmfamily\color{black}}
+\renewcommand{\cftfigleader}{\cftdotfill{\cftdotsep}}
+
+% Configuration de la Liste des Tableaux
+\setlength{\cfttabindent}{0cm}
+\setlength{\cfttabnumwidth}{1.5cm}
+\renewcommand{\cfttabfont}{\small\rmfamily\color{black}}
+\renewcommand{\cfttabpagefont}{\small\rmfamily\color{black}}
+\renewcommand{\cfttableader}{\cftdotfill{\cftdotsep}}
+
 \usepackage{chngpage}
 \usepackage{hyperref}
 
@@ -317,7 +331,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\small\nouppercase{\leftmark}}
-\fancyhead[R]{\small\thepage}
+\fancyfoot[R]{\small\thepage}
 \renewcommand{\headrulewidth}{0.8pt}
 \renewcommand{\footrulewidth}{0pt}
 \renewcommand{\headrule}{\hbox to\headwidth{%
@@ -385,6 +399,65 @@
 \makeatother
 \markboth{}{}%
 \cleardoublepage
+
+% Table des figures
+\newpage
+\pagestyle{empty} 
+\thispagestyle{empty}
+\begin{center}
+\vspace*{0.5cm}
+\begin{tikzpicture}
+  \node[
+    draw        = primary,
+    line width  = 0.8pt,
+    fill        = white,
+    inner xsep  = 2.0cm,
+    inner ysep  = 0.7cm,
+    text width  = 10cm,
+    align       = center
+  ]{
+    {\fontsize{16}{20}\selectfont\bfseries\scshape\rmfamily\color{primary}
+    Table des figures}
+  };
+\end{tikzpicture}
+\vspace{0.5cm}
+\end{center}
+\addcontentsline{toc}{chapter}{Table des figures}
+\makeatletter
+{\renewcommand{\listoffigures}{\@starttoc{lof}}\listoffigures}
+\makeatother
+\markboth{}{}%
+\cleardoublepage
+
+% Liste des tableaux
+\newpage
+\pagestyle{empty} 
+\thispagestyle{empty}
+\begin{center}
+\vspace*{0.5cm}
+\begin{tikzpicture}
+  \node[
+    draw        = primary,
+    line width  = 0.8pt,
+    fill        = white,
+    inner xsep  = 2.0cm,
+    inner ysep  = 0.7cm,
+    text width  = 10cm,
+    align       = center
+  ]{
+    {\fontsize{16}{20}\selectfont\bfseries\scshape\rmfamily\color{primary}
+    Liste des tableaux}
+  };
+\end{tikzpicture}
+\vspace{0.5cm}
+\end{center}
+\addcontentsline{toc}{chapter}{Liste des tableaux}
+\makeatletter
+{\renewcommand{\listoftables}{\@starttoc{lot}}\listoftables}
+\makeatother
+\markboth{}{}%
+\cleardoublepage
+
 % Numérotation arabe
 \pagenumbering{arabic}
 \pagestyle{fancy}
