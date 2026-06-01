@@ -1,48 +1,48 @@
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {I}Sprint Planning Meeting}{\reset@font\mtcSfont 167}{section.6.1}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Objectif du Sprint}{\reset@font\mtcSSfont 167}{subsection.6.1.1}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {1.1}Backlog du quatrième sprint}{\reset@font\mtcSSSfont 167}{subsubsection.6.1.1.1}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {II}Analyse}{\reset@font\mtcSfont 178}{section.6.2}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Diagramme de cas d'utilisation du quatrième sprint}{\reset@font\mtcSSfont 178}{subsection.6.2.1}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Analyse de la fonctionnalité « Suivre Activité »}{\reset@font\mtcSSfont 178}{subsection.6.2.2}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {2.1}Raffinement du cas d'utilisation « Suivre Activité »}{\reset@font\mtcSSSfont 178}{subsubsection.6.2.2.1}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {2.2}Description textuelle du cas d'utilisation « Consulter rapport »}{\reset@font\mtcSSSfont 179}{subsubsection.6.2.2.2}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {3}Analyse de la fonctionnalité « Gérer messagerie »}{\reset@font\mtcSSfont 180}{subsection.6.2.3}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {3.1}Raffinement du cas d'utilisation « Gérer messagerie »}{\reset@font\mtcSSSfont 180}{subsubsection.6.2.3.1}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {3.2}Description textuelle du cas d'utilisation « Envoyer message privé »}{\reset@font\mtcSSSfont 180}{subsubsection.6.2.3.2}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {3.3}Description textuelle du cas d'utilisation « Envoyer message audio »}{\reset@font\mtcSSSfont 181}{subsubsection.6.2.3.3}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4}Analyse de la fonctionnalité « Gérer documents »}{\reset@font\mtcSSfont 182}{subsection.6.2.4}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.1}Raffinement du cas d'utilisation « Gérer documents »}{\reset@font\mtcSSSfont 182}{subsubsection.6.2.4.1}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.2}Description textuelle du cas d'utilisation « Ajouter document »}{\reset@font\mtcSSSfont 182}{subsubsection.6.2.4.2}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3}Description textuelle du cas d'utilisation « Générer document PV »}{\reset@font\mtcSSSfont 183}{subsubsection.6.2.4.3}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.4}Raffinement du cas d'utilisation « Gérer base de connaissances »}{\reset@font\mtcSSSfont 184}{subsubsection.6.2.4.4}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.5}Description textuelle du cas d'utilisation « Ajouter article »}{\reset@font\mtcSSSfont 184}{subsubsection.6.2.4.5}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {5}Analyse de la fonctionnalité « Consulter Notifications »}{\reset@font\mtcSSfont 185}{subsection.6.2.5}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {5.1}Raffinement du cas d'utilisation « Consulter Notifications »}{\reset@font\mtcSSSfont 185}{subsubsection.6.2.5.1}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {5.2}Description textuelle du cas d'utilisation « Configurer préférences notifications »}{\reset@font\mtcSSSfont 186}{subsubsection.6.2.5.2}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {5.3}Description textuelle du cas d’utilisation « Configurer intégration Slack »}{\reset@font\mtcSSSfont 187}{subsubsection.6.2.5.3}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {III}Conception}{\reset@font\mtcSfont 187}{section.6.3}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Diagrammes de séquence}{\reset@font\mtcSSfont 187}{subsection.6.3.1}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {1.1}Diagramme de séquences du cas d'utilisation « Envoyer message multimédia »}{\reset@font\mtcSSSfont 188}{subsubsection.6.3.1.1}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Diagramme de composants}{\reset@font\mtcSSfont 188}{subsection.6.3.2}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {3}Diagramme de déploiement}{\reset@font\mtcSSfont 189}{subsection.6.3.3}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4}Diagramme de classes du quatrième sprint}{\reset@font\mtcSSfont 191}{subsection.6.3.4}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {IV}Schéma relationnel}{\reset@font\mtcSfont 191}{section.6.4}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {V}Réalisation}{\reset@font\mtcSfont 192}{section.6.5}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Interface de la liste des documents}{\reset@font\mtcSSfont 192}{subsection.6.5.1}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Interface du tableau de bord administrateur}{\reset@font\mtcSSfont 192}{subsection.6.5.2}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {3}Interface de suivi des activités}{\reset@font\mtcSSfont 193}{subsection.6.5.3}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4}Interface de l'historique d'un ticket}{\reset@font\mtcSSfont 193}{subsection.6.5.4}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {5}Interface de messagerie}{\reset@font\mtcSSfont 194}{subsection.6.5.5}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {6}Interface du calendrier}{\reset@font\mtcSSfont 194}{subsection.6.5.6}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {VI}Tests}{\reset@font\mtcSfont 195}{section.6.6}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Tests unitaires}{\reset@font\mtcSSfont 195}{subsection.6.6.1}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Tests d'intégration}{\reset@font\mtcSSfont 196}{subsection.6.6.2}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {3}Tests End-to-End (E2E)}{\reset@font\mtcSSfont 198}{subsection.6.6.3}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4}Tests de performance}{\reset@font\mtcSSfont 198}{subsection.6.6.4}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.1}Scénario de charge}{\reset@font\mtcSSSfont 199}{subsubsection.6.6.4.1}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.2}Résultats obtenus}{\reset@font\mtcSSSfont 199}{subsubsection.6.6.4.2}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3}Analyse des résultats}{\reset@font\mtcSSSfont 199}{subsubsection.6.6.4.3}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {5}Tests de sécurité}{\reset@font\mtcSSfont 200}{subsection.6.6.5}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {5.1}Test d'isolation des canaux de messagerie}{\reset@font\mtcSSSfont 200}{subsubsection.6.6.5.1}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {5.2}Test de validation des fichiers uploadés}{\reset@font\mtcSSSfont 201}{subsubsection.6.6.5.2}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {VII}Conclusion}{\reset@font\mtcSfont 201}{section.6.7}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {I}Sprint Planning Meeting}{\reset@font\mtcSfont 166}{section.6.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Objectif du Sprint}{\reset@font\mtcSSfont 166}{subsection.6.1.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {1.1}Backlog du quatrième sprint}{\reset@font\mtcSSSfont 166}{subsubsection.6.1.1.1}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {II}Analyse}{\reset@font\mtcSfont 177}{section.6.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Diagramme de cas d'utilisation du quatrième sprint}{\reset@font\mtcSSfont 177}{subsection.6.2.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Analyse de la fonctionnalité « Suivre Activité »}{\reset@font\mtcSSfont 177}{subsection.6.2.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {2.1}Raffinement du cas d'utilisation « Suivre Activité »}{\reset@font\mtcSSSfont 177}{subsubsection.6.2.2.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {2.2}Description textuelle du cas d'utilisation « Consulter rapport »}{\reset@font\mtcSSSfont 178}{subsubsection.6.2.2.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {3}Analyse de la fonctionnalité « Gérer messagerie »}{\reset@font\mtcSSfont 179}{subsection.6.2.3}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {3.1}Raffinement du cas d'utilisation « Gérer messagerie »}{\reset@font\mtcSSSfont 179}{subsubsection.6.2.3.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {3.2}Description textuelle du cas d'utilisation « Envoyer message privé »}{\reset@font\mtcSSSfont 179}{subsubsection.6.2.3.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {3.3}Description textuelle du cas d'utilisation « Envoyer message audio »}{\reset@font\mtcSSSfont 180}{subsubsection.6.2.3.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4}Analyse de la fonctionnalité « Gérer documents »}{\reset@font\mtcSSfont 181}{subsection.6.2.4}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.1}Raffinement du cas d'utilisation « Gérer documents »}{\reset@font\mtcSSSfont 181}{subsubsection.6.2.4.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.2}Description textuelle du cas d'utilisation « Ajouter document »}{\reset@font\mtcSSSfont 181}{subsubsection.6.2.4.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3}Description textuelle du cas d'utilisation « Générer document PV »}{\reset@font\mtcSSSfont 182}{subsubsection.6.2.4.3}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.4}Raffinement du cas d'utilisation « Gérer base de connaissances »}{\reset@font\mtcSSSfont 183}{subsubsection.6.2.4.4}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.5}Description textuelle du cas d'utilisation « Ajouter article »}{\reset@font\mtcSSSfont 183}{subsubsection.6.2.4.5}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {5}Analyse de la fonctionnalité « Consulter Notifications »}{\reset@font\mtcSSfont 184}{subsection.6.2.5}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {5.1}Raffinement du cas d'utilisation « Consulter Notifications »}{\reset@font\mtcSSSfont 184}{subsubsection.6.2.5.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {5.2}Description textuelle du cas d'utilisation « Configurer préférences notifications »}{\reset@font\mtcSSSfont 185}{subsubsection.6.2.5.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {5.3}Description textuelle du cas d’utilisation « Configurer intégration Slack »}{\reset@font\mtcSSSfont 186}{subsubsection.6.2.5.3}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {III}Conception}{\reset@font\mtcSfont 186}{section.6.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Diagrammes de séquence}{\reset@font\mtcSSfont 186}{subsection.6.3.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {1.1}Diagramme de séquences du cas d'utilisation « Envoyer message multimédia »}{\reset@font\mtcSSSfont 187}{subsubsection.6.3.1.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Diagramme de composants}{\reset@font\mtcSSfont 187}{subsection.6.3.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {3}Diagramme de déploiement}{\reset@font\mtcSSfont 188}{subsection.6.3.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4}Diagramme de classes du quatrième sprint}{\reset@font\mtcSSfont 190}{subsection.6.3.4}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {IV}Schéma relationnel}{\reset@font\mtcSfont 190}{section.6.4}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {V}Réalisation}{\reset@font\mtcSfont 191}{section.6.5}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Interface de la liste des documents}{\reset@font\mtcSSfont 191}{subsection.6.5.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Interface du tableau de bord administrateur}{\reset@font\mtcSSfont 191}{subsection.6.5.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {3}Interface de suivi des activités}{\reset@font\mtcSSfont 192}{subsection.6.5.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4}Interface de l'historique d'un ticket}{\reset@font\mtcSSfont 192}{subsection.6.5.4}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {5}Interface de messagerie}{\reset@font\mtcSSfont 193}{subsection.6.5.5}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {6}Interface du calendrier}{\reset@font\mtcSSfont 193}{subsection.6.5.6}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {VI}Tests}{\reset@font\mtcSfont 194}{section.6.6}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Tests unitaires}{\reset@font\mtcSSfont 194}{subsection.6.6.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Tests d'intégration}{\reset@font\mtcSSfont 195}{subsection.6.6.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {3}Tests End-to-End (E2E)}{\reset@font\mtcSSfont 197}{subsection.6.6.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4}Tests de performance}{\reset@font\mtcSSfont 197}{subsection.6.6.4}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.1}Scénario de charge}{\reset@font\mtcSSSfont 198}{subsubsection.6.6.4.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.2}Résultats obtenus}{\reset@font\mtcSSSfont 198}{subsubsection.6.6.4.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3}Analyse des résultats}{\reset@font\mtcSSSfont 198}{subsubsection.6.6.4.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {5}Tests de sécurité}{\reset@font\mtcSSfont 199}{subsection.6.6.5}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {5.1}Test d'isolation des canaux de messagerie}{\reset@font\mtcSSSfont 199}{subsubsection.6.6.5.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {5.2}Test de validation des fichiers uploadés}{\reset@font\mtcSSSfont 200}{subsubsection.6.6.5.2}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {VII}Conclusion}{\reset@font\mtcSfont 200}{section.6.7}}
