@@ -1,10 +1,10 @@
-﻿
+
 \section*{Introduction}
 Ce chapitre pose les fondations du projet en présentant le contexte organisationnel et technique de sa réalisation. Après la présentation de \textbf{SolidWall Consulting}, entreprise d'accueil du stage, nous analysons les processus actuels de gestion de maintenance et leurs limitations. L'étude comparative des solutions du marché permet d'identifier les axes d'amélioration et de définir les contours de \textbf{SolidMaint}. Enfin, nous exposons la méthodologie Scrum, le langage UML et la planification prévisionnelle du développement.
 
 \section{Présentation de l’organisme d’accueil} 
 « Solid Wall Consulting est une société de services informatiques, spécialisée dans le développement web, le développement mobile et l'intégration de solutions et d'infrastructures systèmes « Microsoft ». 
-Forte d'une équipe dynamique et diversifiée et de profils reconnus, l’entreprise a pour objectif constant d'apporter une forte valeur ajoutée et de proposer des solutions modernes permettant aux entreprises de se démarquer sur leurs marchés respectifs. » [1] « Fondée avec la vision d'accompagner les organisations publiques et privées vers l'excellence technologique et opérationnelle, Solid Wall Consulting s'est rapidement imposée comme un partenaire de confiance à l'international. » |2|.
+Forte d'une équipe dynamique et diversifiée et de profils reconnus, l’entreprise a pour objectif constant d'apporter une forte valeur ajoutée et de proposer des solutions modernes permettant aux entreprises de se démarquer sur leurs marchés respectifs. » [1] « Fondée avec la vision d'accompagner les organisations publiques et privées vers l'excellence technologique et opérationnelle, Solid Wall Consulting s'est rapidement imposée comme un partenaire de confiance à l'international. » [2].
 
 \begin{figure}[H]
         \centering
@@ -97,9 +97,14 @@ Le suivi des interventions repose sur des fils de discussion par e-mail. L'affec
             Avant de concevoir notre propre solution, nous allons étudier les solutions disponibles sur le marché afin d'analyser les fonctionnalités proposées. Cette démarche permet d'identifier les bonnes pratiques et d'orienter efficacement le développement de notre système.\newline
             Dans ce cadre, nous avons étudié plusieurs solutions existantes couvrant différents segments du marché : solutions open-source, solutions SaaS et solutions enterprise.
             \newline
-                    --\hspace{0.5cm}  \textbf{GLPI (Gestion Libre de Parc Informatique) }\par\medskip
-Cette solution de gestion des services informatiques, développée en 2003 et maintenue par la société française Teclib, est open source, ce qui signifie que son code est librement accessible et peut être modifié et adapté selon les besoins des utilisateurs. Principalement utilisée par les équipes internes d’une organisation, elle peut également, selon sa configuration, recevoir des demandes externes. Elle assure un système de gestion de tickets structurant les demandes des utilisateurs. De plus, elle prend en charge différents canaux de communication, garantissant ainsi la centralisation des échanges. La version communautaire est gratuite, mais nécessite une formation de 2 à 3 jours pour les administrateurs. La version entreprise, avec support professionnel, coûte à partir de \textbf{1500€} par an.                      
-                       \begin{figure}[H]
+                    --\hspace{0.5cm}  \textbf{GLPI (Gestionnaire Libre de Parc Informatique)}\par\medskip
+                    Initialement lancé en 2003 sous l'égide de l'association INDEPNET et activement développé et soutenu aujourd'hui par l'éditeur français Teclib' ainsi qu'une vaste communauté internationale, GLPI (Gestionnaire Libre de Parc Informatique) est une solution open-source de premier plan pour la gestion des services informatiques (ITSM) et l'administration des infrastructures. 
+                    
+                    Sur le plan fonctionnel, GLPI offre une couverture complète et intégrée de la gestion de parc (inventaire automatique du matériel et des logiciels, gestion des licences et du cycle de vie des actifs) couplée à un centre de services (Service Desk) robuste. Ce dernier prend en charge la gestion des incidents et des demandes, le suivi des changements, le respect des accords de niveau de service (SLA) ainsi qu'une base de connaissances intégrée. L'outil est particulièrement réputé pour sa conformité aux bonnes pratiques du référentiel ITIL (Information Technology Infrastructure Library).
+                    
+                    En termes de modèle économique et de licence, GLPI repose sur un modèle libre sous licence GPLv3+, rendant sa version communautaire totalement gratuite pour un déploiement sur site (on-premise). Pour les organisations recherchant une maintenance simplifiée et un accompagnement professionnel, Teclib' propose des abonnements payants sous forme d'offres Cloud managées ou d'abonnements d'assistance sur site, avec des tarifs structurés selon la taille du parc ou le niveau de support requis.[28]
+ 
+                    \begin{figure}[H]
                             \centering
                             \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/GLPI.png}
                             \caption{Interface de GLPI }
@@ -108,11 +113,13 @@ Cette solution de gestion des services informatiques, développée en 2003 et ma
             \noindent
             \newline
                     --\hspace{0.5cm}  \textbf{Freshdesk}\par\medskip
-            Cette solution cloud de service desk, développée en 2011 par la société indienne Freshworks, est une solution SaaS hébergée dans le cloud et accessible via navigateur web. \textbf{Freshdesk} se caractérise par sa facilité de déploiement et une maintenance entièrement assurée par le fournisseur.
-
-            Elle propose une interface intuitive pour la gestion des tickets avec support multicanal (courriel, chat, téléphone, réseaux sociaux). \textbf{Freshdesk} intègre des fonctionnalités d'automatisation avancées et d'intelligence artificielle pour la catégorisation automatique des tickets.
-
-            La solution propose un plan gratuit limité, tandis que les offres payantes démarrent à partir de \textbf{15€ par agent et par mois}                        \begin{figure}[H]
+                    Lancé en 2011 par la société indienne Freshworks (fondée par Girish Mathrubootham et Shan Krishnasamy), Freshdesk s'est imposé comme l'un des leaders mondiaux des solutions logicielles de support client en mode SaaS (Software as a Service). 
+                    
+                    Sur le plan fonctionnel, Freshdesk est conçu pour centraliser et simplifier la relation client grâce à une gestion de support omnicanale performante. La plateforme regroupe au sein d'une boîte de réception unique les requêtes provenant de divers canaux tels que les courriels, le chat en direct, le téléphone, les réseaux sociaux et les formulaires web. Ses fonctionnalités phares intègrent la distribution intelligente des tickets, des outils d'automatisation des tâches répétitives, une base de connaissances pour l'auto-assistance des clients (Self-Service) ainsi que le moteur d'intelligence artificielle « Freddy AI » qui propose des suggestions de réponses et automatise la classification des requêtes.
+                    
+                    Concernant son modèle tarifaire, Freshdesk adopte un modèle SaaS basé sur un abonnement par agent et par mois. La solution propose un modèle freemium comprenant une offre de départ gratuite mais limitée en fonctionnalités pour les petites équipes (jusqu'à 10 agents), suivie de différents paliers d'abonnements payants facturés mensuellement ou annuellement (Growth, Pro et Enterprise) débloquant des fonctionnalités avancées d'automatisation, d'IA et de rapports personnalisés.[29]
+                   
+                    \begin{figure}[H]
                                         \centering
                             \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/FreshDesk.png}
                             \caption{Interface de Freshdesk}
@@ -121,8 +128,7 @@ Cette solution de gestion des services informatiques, développée en 2003 et ma
             \noindent
             \newline
                     --\hspace{0.5cm}  \textbf{Jira Service Management (Atlassian)}\par\medskip
-                    Développée en 2002 et maintenue par Atlassian, entreprise australienne leader dans les outils de gestion de projet,  cette solution enterprise s'intègre parfaitement à l'écosystème Atlassian (Jira Software, Confluence). Elle propose des fonctionnalités avancées de gestion des incidents, des changements et des actifs, ainsi que des capacités d'IA pour l'automatisation et la prédiction. Les tarifs démarrent à \textbf{20€/agent/mois}, mais augmentent considérablement avec les modules avancés. La maîtrise de l'écosystème Atlassian est nécessaire pour exploiter pleinement ses capacités.
-                        \begin{figure}[H]
+Créée en 2002 par Atlassian, la gamme Jira a évolué pour donner naissance à Jira Service Management, une solution dédiée aux opérations IT destinée à gérer incidents, demandes de service et changements. Elle propose des workflows configurables, un catalogue de services avec formulaires utilisateurs, des processus d’approbation et de suivi des SLA, des automatisations et des intégrations étroites avec l’écosystème Atlassian. La solution est disponible en SaaS (abonnement par agent) ou en éditions self‑managed (Data Center) pour les organisations ayant des besoins d’échelle. [30]                        \begin{figure}[H]
                             \centering
                             \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/appJira.png}
                             \caption{Interface de Jira Service Management}
@@ -154,7 +160,7 @@ Actuellement, la gestion des contrats de maintenance au sein de SolidWall Consul
     
     \item \noindent\textbf{Coût des licences et investissement financier}
     
-    L'investissement financier représente un obstacle majeur. Les tarifs s'échelonnent de 15€ /agent/mois pour Freshdesk à 24€/utilisateur/mois pour Helpdesk, tandis que Jira Service Management coûte 20€/agent/mois. GLPI, bien que gratuit en version communautaire, nécessite 1500€/an minimum pour le support entreprise. Pour une équipe de 10 utilisateurs, le coût annuel varie de 1500€ à 12000€.
+    L'investissement financier représente un obstacle majeur pour l'adoption des solutions existantes. Les tarifs varient considérablement selon les offres : Freshdesk propose ses offres payantes à partir de 15€ par agent et par mois, tandis que Jira Service Management est tarifé à 20€/agent/mois. GLPI, bien que gratuit en version communautaire, nécessite un minimum de 1500€ par an pour accéder au support entreprise. Pour une équipe de 10 utilisateurs, le coût annuel total s'élève ainsi à 1800€ pour Freshdesk, 2400€ pour Jira Service Management et 1500€ pour GLPI avec support.
     
     \item \noindent\textbf{Dépendance aux extensions et problèmes d'intégration}
     
@@ -172,7 +178,8 @@ Ces limitations se reflètent clairement dans l'analyse comparative des principa
     \arrayrulecolor{gray!70}
     \rowcolors{2}{gray!5}{white}
     \small
-    \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{3.5cm}|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|}
+    % Corrigé ici : 4 colonnes au lieu de 6
+    \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{3.5cm}|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|}
     \hline
     \rowcolor{blue!20}
     \textbf{Critères} & \textbf{GLPI}  & \textbf{Jira SM} & \textbf{Freshdesk} \\
@@ -187,14 +194,14 @@ Ces limitations se reflètent clairement dans l'analyse comparative des principa
     \hline
     Facilité d'utilisation & Moyenne  & Moyenne & Facile  \\
     \hline
-    Coût (10 users/an) & 1500€  & 2000€ & 1800€ \\
+    Coût (10 users/an) & 1500€  & 2400€ & 1800€ \\
     \hline
     \end{tabularx}
     \caption{Tableau comparatif des solutions de gestion de maintenance existantes}
     \label{tab:comparaison_solutions}
 \end{table}
 
-\noindent\textbf{Note sur les coûts :} Les tarifs indiqués correspondent au coût total annuel pour une équipe de 10 utilisateurs, calculés selon les grilles tarifaires officielles de chaque éditeur. Ces montants incluent uniquement les fonctionnalités de base et peuvent augmenter significativement avec l'ajout de modules complémentaires, de support premium ou de services de personnalisation.
+\noindent\textbf{Note sur les coûts :} Les tarifs annuels affichés pour 10 utilisateurs sont calculés selon la formule : (Prix mensuel par utilisateur) × 10 utilisateurs × 12 mois. GLPI représente le coût du support entreprise annuel (version communautaire gratuite). Freshdesk : 15€/mois × 10 × 12 = 1800€/an. Jira SM : 20€/mois × 10 × 12 = 2400€/an. Ces montants correspondent aux offres de base et peuvent augmenter avec des fonctionnalités additionnelles, supports premium ou services de personnalisation.
 
 \subsubsection{Solution proposée}
 
@@ -239,43 +246,31 @@ de renforcer la qualité de ses prestations.
 
 \section{Méthodologie adaptée}
 \label{sec:methodologie}
-Le choix méthodologique est déterminant pour la réussite d'un projet de développement. Une méthodologie appropriée structure le travail, optimise la gestion des ressources et garantit la qualité du livrable dans le respect des délais impartis.\newline
+Le choix méthodologique est déterminant pour la réussite d'un projet de développement. Une méthodologie appropriée structure le travail, optimise la gestion des ressources et garantit la qualité du livrable dans le respect des délais impartis.
 
-\subsection{Méthodologie classique}
-La méthodologie classique de la gestion de projet s’articule autour d’une série d’étapes consécutives, où l'approbation de chaque phase est essentielle pour progresser vers la suivante. Les projets se déroulent selon des phases distinctes et structurées, représentées par différents modèles de cycle de vie : cascade, V ou spirale.
-\newline
-Cette approche convient particulièrement aux projets dont les besoins sont stables et exhaustivement définis dès le départ. Elle offre une planification détaillée facilitant le suivi des délais et des coûts. Cependant, sa rigidité constitue une limitation majeure face aux changements de besoins en cours de développement, rendant difficile l'intégration de retours clients durant le processus.
-\newline
-Afin de mieux comprendre le fonctionnement de cette approche, il convient de présenter ses caractéristiques fondamentales.
+\subsection{Méthodologie classique (cycle en V / cascade)}
+La méthodologie classique s'appuie sur une planification prédictive et une exécution séquentielle : chaque phase est définie au préalable, puis réalisée de l'analyse des besoins à la mise en production. Cette stratégie offre une maîtrise élevée des livrables, des délais et des coûts lorsque les exigences sont stables et que le périmètre évolue peu.
+
+Cependant, cette rigidité expose le projet à des retours en arrière coûteux dès qu'une correction ou un nouveau besoin apparaît après la conception. Le cycle en V met en lumière cette logique en associant systématiquement chaque phase de conception à une phase de validation, ce qui privilégie la conformité au détriment de l'adaptabilité.
+
 \subsubsection{Principes de la méthodologie classique}
- Cette approche repose sur une organisation linéaire où chaque phase doit être validée avant progression. Elle exige une définition exhaustive des besoins en phase initiale et une planification servant de base à la gestion. Le contrôle et la validation s'effectuent de manière progressive tout au long du cycle de vie.
-\newline Dans ce contexte, la méthodologie Agile a été adoptée comme une alternative à cette approche.
+L'approche repose sur une progression linéaire où chaque étape sert de fondation à la suivante. Elle exige une définition détaillée des besoins en phase initiale et une validation formelle à chaque transition, ce qui limite la capacité d'adaptation en cas de changement ultérieur.
 
 
 
 \subsection{Méthodologie Agile}
+L'approche agile s'appuie sur une progression itérative et sur l'apprentissage continu. Plutôt que de figer l'ensemble du périmètre en début de projet, elle privilégie des cycles de travail courts qui permettent de valider des fonctionnalités opérationnelles et de réajuster les priorités selon les retours métiers. Cette dynamique permet au projet de rester proche des attentes des utilisateurs et de limiter les écarts entre les besoins réels et les livrables.
 
-« La méthodologie Agile décompose le travail en phases, mettant l'accent sur la livraison continue et l'amélioration. Agile profite aux équipes en permettant une planification adaptative, une exécution rapide et une évaluation continue, garantissant des résultats plus réactifs et plus réussis. » [3]
-\newline
-La méthodologie Agile est adoptée pour répondre rapidement aux retours des clients. Elle valorise la collaboration plutôt que la négociation contractuelle, en proposant d'abord une version minimale, puis en intégrant des fonctionnalités supplémentaires. L'approche Agile est une démarche moderne qui offre souplesse et performance dans la gestion de projet.
-\newline
-Afin de mieux comprendre les fondements de cette approche, il est important de présenter ses valeurs essentielles.
+Dans le contexte de SolidMaint, l'agilité renforce la capacité à intégrer rapidement de nouvelles demandes ou des corrections, tout en maintenant un rythme de livraison régulier. Ce mode de travail favorise une collaboration étroite entre l'équipe de développement, le Product Owner et les parties prenantes, et transforme le changement en levier d'amélioration plutôt qu'en source de retard. [3]
+
 \subsubsection{Les valeurs agiles}
-Les valeurs de la méthodologie Agile constituent des principes fondamentaux qui guident l’organisation et le fonctionnement des projets agiles. Elles permettent d’améliorer la collaboration, la qualité du travail et la réactivité de l’équipe face aux changements.
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/4-valeur-agile.png}
-        \caption{les valeurs agiles}
-    \end{figure}
-
-Cette figure présente les quatre valeurs principales de la méthode Agile qui mettent l’accent sur :
-\newline    
-\noindent
-         --\hspace{0.5cm} Les individus et leurs interactions plus que les processus et les outils
-\newline --\hspace{0.5cm} Des logiciels opérationnels plus qu'une documentation exhaustive
-\newline --\hspace{0.5cm} La collaboration avec les clients plus que la négociation contractuelle  
-\newline --\hspace{0.5cm} L'adaptation au changement plus que le suivi d'un plan
-\newline À partir de ces valeurs, plusieurs méthodes Agile ont été développées et peuvent être comparées selon différents critères.
+Les valeurs du Manifeste Agile sont ici reformulées pour refléter une appropriation concrète du projet.
+\begin{itemize}[label=\textbullet, left=0pt, nosep]
+\item \textbf{Privilégier les personnes et leurs interactions plutôt que les processus et les outils} : nous considérons la qualité des échanges et la réactivité de l'équipe comme des facteurs clés de succès, y compris lorsqu'un cadre méthodologique est en place.
+\item \textbf{Préférer un logiciel fonctionnel à une documentation excessive} : l'objectif est de générer rapidement des résultats tangibles, tout en gardant une documentation utile mais non envahissante.
+\item \textbf{Collaborer avec le client plutôt que négocier un contrat figé} : l'écoute des besoins réels et les retours fréquents permettent de réorienter le produit en fonction de la valeur métier, plutôt que de s'enfermer dans un cahier des charges statique.
+\item \textbf{Accepter le changement plutôt que suivre un plan immuable} : nous voyons le changement comme une opportunité d'adaptation. Le projet doit pouvoir évoluer sans sacrifier la cohérence globale ni la qualité des livraisons. [3]
+\end{itemize}
 
 \subsection{Choix de la méthode de travail}
 Après avoir présenté les différentes approches et méthodes de gestion de projet, il convient de justifier les choix adoptés dans le cadre de ce travail.
@@ -334,35 +329,45 @@ Scrum a été retenue comme cadre de travail pour structurer le développement e
 \end{figure}
 
 \subsection{Fondements de SCRUM }
-Scrum est une méthode agile structurant le développement en sprints, cycles courts de 2 à 4 semaines. Les besoins sont exprimés sous forme de user stories décrivant les fonctionnalités attendues et leur priorité. Cette approche vise à maximiser la productivité tout en assurant la satisfaction client par des livraisons régulières.
-\newline
-La méthode repose sur trois piliers fondamentaux : la transparence garantit la visibilité sur l'avancement, l'inspection permet d'évaluer régulièrement le produit et le processus, et l'adaptation autorise les ajustements nécessaires en fonction des retours.
+Scrum est un cadre organisationnel qui structure le développement itératif par successifs cycles courts appelés sprints, généralement étalés sur 2 à 4 semaines. Ce modèle s'appuie sur l'expression des besoins sous forme d'items de travail (user stories) ordonnancés et priorisés, permettant une livraison régulière de valeur métier mesurable et exploitable. La philosophie sous-jacente vise à concilier productivité de l'équipe et satisfaction continue du client par l'ajustement perpétuel. 
+
+Scrum repose sur trois piliers fondamentaux qui constituent sa colonne vertébrale : la \textbf{transparence} crée une visibilité partagée et incontestable sur la progression réelle du travail, les risques et les décisions ; l'\textbf{inspection} encourage l'évaluation critique et régulière des artefacts (produit, processus, incrément) pour identifier rapidement tout écart ou opportunité ; enfin, l'\textbf{adaptation} autorise l'équipe à réviser son approche, ses priorités et ses méthodes en réaction directe aux faits observés et aux retours des parties prenantes.[31]
 
 \subsection{Rôles de SCRUM}
-L’équipe Scrum est auto-organisée et prend les décisions sur la manière dont le travail sera
-réalisé afin d'atteindre l’objectif du sprint. Elle est composée d’un propriétaire de produit, d’un 
-Scrum Master et d’une équipe de développement :
-    \newline Le \textbf{Product Owner} est l'expert du domaine métier du projet qui porte la vision du produit à réaliser. Ce rôle repose sur la représentation de la voix du client et veille à ce que le produit reste aligné sur la vision stratégique de l'organisation.
-    \newline Le \textbf{Scrum Master} a pour objectif d’assurer la productivité de l’équipe dans l’application de Scrum. Sa collaboration avec l’équipe vise à maximiser la performance globale, en alignant les efforts sur les objectifs stratégiques.
-    \newline L' \textbf{équipe de développement} est constituée des personnes chargées de la réalisation du sprint, ayant pour mission de transformer les besoins exprimés en fonctionnalités utilisables du produit.
+La structure organisationnelle de Scrum s'appuie sur trois rôles qui répartissent clairement les responsabilités entre le pilotage métier, la facilitation du cadre et la réalisation technique.
 
-    \subsection{Evènements Scrum}
-    Ce sont des rendez-vous clés qui rythment le projet Scrum, créent une routine de transparence et d'inspection, et permettent à l'équipe de s'adapter pour livrer la meilleure valeur possible.
-    \begin{itemize}[nosep, left=0pt, label=\textbullet]
-        \item \textbf{Sprint :} Un sprint est une itération de développement d'une durée fixe (généralement \textbf{2 à 4 semaines}) durant laquelle une version potentiellement livrable du produit est réalisée.
-        \item \textbf{Sprint Planning :} Réunion de planification du sprint où l'équipe définit les objectifs et sélectionne les éléments du Product Backlog à réaliser pendant le sprint.
-        \item \textbf{Daily Scrum :} Réunion quotidienne de \textbf{15 minutes} permettant à l'équipe de synchroniser ses actions, d'identifier les obstacles et d'ajuster le plan de travail.
-        \item \textbf{Revue de Sprint :} Réunion à la fin du sprint pour présenter le travail accompli, recueillir les retours et adapter le Product Backlog si nécessaire.
-        \item \textbf{Sprint Rétrospective :} Réunion d'amélioration continue où l'équipe analyse le déroulement du sprint, identifie ce qui a bien fonctionné et ce qui doit être amélioré.
-    \end{itemize}
+\subsubsection{Product Owner}
+Le Product Owner est responsable de la valeur métier du produit. Il formalise les besoins, priorise le Product Backlog et arbitre les choix fonctionnels pour garantir que chaque incrément livre un bénéfice réel.
 
-    \subsection{Artéfacts Scrum}
-    Ce sont les supports d'information qui matérialisent le travail, la valeur et l'avancement du projet, garantissant une transparence totale entre l'équipe et les parties prenantes.
-    \begin{itemize}[nosep, left=0pt, label=\textbullet]
-        \item \textbf{Product Backlog :} Liste priorisée de toutes les fonctionnalités, évolutions, corrections et tâches à réaliser pour le produit.
-        \item \textbf{Sprint Backlog :} Sous-ensemble du Product Backlog sélectionné pour le sprint en cours, accompagné d'un plan pour livrer l'incrément.
-        \item \textbf{Incrément :} Somme de tous les éléments du Product Backlog terminés durant un sprint et les sprints précédents, représentant une version utilisable du produit.
-    \end{itemize}
+Dans le cadre de SolidMaint, ce rôle est incarné par notre encadrante en entreprise. Elle porte la vision métier du projet, définit les exigences de l'application et priorise les éléments du Product Backlog en fonction des objectifs de SolidWall Consulting.
+
+\subsubsection{Scrum Master}
+Le Scrum Master est le garant du cadre Scrum. Il veille à ce que les pratiques agiles soient respectées, facilite les cérémonies et aide à lever les obstacles qui freinent l'équipe.
+
+Sur ce projet, cette responsabilité est assurée par le responsable de l'entreprise. Il anime les points de synchronisation et veille à la bonne application des principes agiles au quotidien.
+
+\subsubsection{Les développeurs}
+L'équipe de développement est chargée de la réalisation opérationnelle : conception, configuration, développement et tests. Elle transforme les besoins priorisés en incréments fonctionnels prêts à être validés.
+
+Pour SolidMaint, ce rôle est incarné par le binôme d'étudiantes Rihab Chourou et Eya Gharbi, qui assurent conjointement l'ensemble des travaux techniques du projet.
+
+\subsection{Événements Scrum}
+Les événements Scrum constituent des points de synchronisation structurés qui rythment l'exécution, entretiennent la discipline itérative, et incarnent les trois piliers de transparence, d'inspection et d'adaptation. Chaque événement possède une durée maximale prescrite et sert un objectif métier bien défini.
+\begin{itemize}[nosep, left=0pt, label=\textbullet]
+\item \textbf{Sprint~:} Conteneur itératif d'une durée fixe (généralement 2 à 4 semaines) au cours duquel l'équipe s'engage à livrer un incrément potentiellement commercialisable du produit. Chaque sprint débute par une planification et s'achève par une revue et une rétrospective.
+\item \textbf{Sprint Planning~:} Événement de lancement où l'équipe et le Product Owner se rencontrent pour définir l'objectif du sprint et sélectionner les éléments du Product Backlog jugés réalisables. Cet atelier établit le Sprint Backlog et fixe les attentes de livrables.
+\item \textbf{Daily Scrum (ou Mêlée quotidienne)~:} Synchronisation brève de 15 minutes maximum où l'équipe revient sur ses accomplissements, anticipe les travaux prévus et signale les obstacles rencontrés. Cet instant de transparence quotidienne renforce cohésion et réactivité.
+\item \textbf{Sprint Review~:} Présentation et démonstration du travail accompli durant le sprint devant les parties prenantes. Elle permet la collecte de retours formels et l'ajustement du Product Backlog selon les commentaires et les besoins révisés.
+\item \textbf{Sprint Retrospective~:} Moment d'introspection où l'équipe analyse collectivement son fonctionnement, met en lumière réussites et difficultés, et décide d'actions concrètes pour l'amélioration continue des futurs sprints.
+\end{itemize}
+
+\subsection{Artéfacts Scrum}
+Les artéfacts Scrum matérialisent et expriment le travail, la valeur livrée et l'avancement du projet. Ils constituent des vecteurs de transparence et de communication pour tous les acteurs.
+\begin{itemize}[nosep, left=0pt, label=\textbullet]
+\item \textbf{Product Backlog~:} Inventaire dynamique et ordonné de tous les besoins, fonctionnalités, corrections et tâches à réaliser. Maintenu et priorisé par le Product Owner selon retours clients et valeur métier, il évolue constamment et reflète l'état réel du produit visé.
+\item \textbf{Sprint Backlog~:} Projection du Product Backlog pour le sprint en cours, sélectionné collectivement lors de la planification. Il formalise l'engagement de l'équipe sur les éléments à livrer et constitue la source unique de vérité pour le travail en cours.
+\item \textbf{Incrément du Produit~:} Somme des éléments du Product Backlog finalisés au cours du sprint actuel et de tous les sprints précédents. Il représente une version cohérente, intégrée et testée du produit, offrant une valeur tangible et démontrée au destinataire. Seul un incrément répondant aux critères d'acceptation est comptabilisé.
+\end{itemize}
 \subsection{Cycle de vie}
     Le cycle de vie Scrum se compose de sprints successifs, chacun comprenant une planification, le développement, des réunions quotidiennes, une revue et une rétrospective. Ce processus itératif permet d'adapter le produit en continu aux besoins du client et d'améliorer l'équipe à chaque itération.
 

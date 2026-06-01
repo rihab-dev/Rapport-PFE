@@ -1,0 +1,40 @@
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {I}Sprint Planning Meeting }{\reset@font\mtcSfont 96}{section.4.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Objectif du Sprint}{\reset@font\mtcSSfont 96}{subsection.4.1.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {1.1}Backlog du deuxième sprint}{\reset@font\mtcSSSfont 96}{subsubsection.4.1.1.1}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {II}Analyse}{\reset@font\mtcSfont 102}{section.4.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Diagramme de cas d'utilisation du deuxième sprint}{\reset@font\mtcSSfont 102}{subsection.4.2.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Descriptions textuelles des cas d'utilisation sans raffinement}{\reset@font\mtcSSfont 103}{subsection.4.2.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {2.1}Description textuelle du cas d’utilisation « Consulter journal d'activités »}{\reset@font\mtcSSSfont 103}{subsubsection.4.2.2.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {3}Analyse de la fonctionnalité « Gérer clients »}{\reset@font\mtcSSfont 104}{subsection.4.2.3}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {3.1}Raffinement du cas d'utilisation « Gérer clients »}{\reset@font\mtcSSSfont 104}{subsubsection.4.2.3.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {3.2}Description textuelle du cas d’utilisation « Ajouter client »}{\reset@font\mtcSSSfont 104}{subsubsection.4.2.3.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {3.3}Description textuelle du cas d’utilisation « Désactiver client »}{\reset@font\mtcSSSfont 105}{subsubsection.4.2.3.3}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {3.4}Description textuelle du cas d’utilisation « Ajouter projet livré »}{\reset@font\mtcSSSfont 106}{subsubsection.4.2.3.4}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4}Analyse de la fonctionnalité « Gérer Contrats »}{\reset@font\mtcSSfont 107}{subsection.4.2.4}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.1}Raffinement du cas d'utilisation « Gérer Contrats »}{\reset@font\mtcSSSfont 107}{subsubsection.4.2.4.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.2}Description textuelle du cas d’utilisation « Créer contrat »}{\reset@font\mtcSSSfont 108}{subsubsection.4.2.4.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3}Description textuelle du cas d’utilisation « Archiver contrat »}{\reset@font\mtcSSSfont 108}{subsubsection.4.2.4.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {5}Analyse de la fonctionnalité « Suivre contrats »}{\reset@font\mtcSSfont 109}{subsection.4.2.5}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {5.1}Raffinement du cas d'utilisation « Suivre Contrats »}{\reset@font\mtcSSSfont 109}{subsubsection.4.2.5.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {5.2}Description textuelle du cas d’utilisation « Demander résiliation »}{\reset@font\mtcSSSfont 110}{subsubsection.4.2.5.2}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {III}Conception}{\reset@font\mtcSfont 110}{section.4.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Diagramme de séquences}{\reset@font\mtcSSfont 111}{subsection.4.3.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {1.1}Diagramme de séquences du cas d'utilisation « Demander Résiliation »}{\reset@font\mtcSSSfont 111}{subsubsection.4.3.1.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {1.2}Diagramme de séquences du cas d'utilisation « Résilier contrat »}{\reset@font\mtcSSSfont 112}{subsubsection.4.3.1.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Diagramme de classes du deuxième sprint}{\reset@font\mtcSSfont 113}{subsection.4.3.2}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {IV}Schéma relationnel}{\reset@font\mtcSfont 113}{section.4.4}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {V}Réalisation}{\reset@font\mtcSfont 114}{section.4.5}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Interface de la liste des clients}{\reset@font\mtcSSfont 114}{subsection.4.5.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Interface d’historique et de traçabilité}{\reset@font\mtcSSfont 114}{subsection.4.5.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {3}Interface de la liste des contrats}{\reset@font\mtcSSfont 115}{subsection.4.5.3}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {VI}Tests et Validation}{\reset@font\mtcSfont 115}{section.4.6}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1}Tests unitaires}{\reset@font\mtcSSfont 116}{subsection.4.6.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2}Tests de performance}{\reset@font\mtcSSfont 117}{subsection.4.6.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {2.1}Scénario de charge}{\reset@font\mtcSSSfont 117}{subsubsection.4.6.2.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {2.2}Résultats obtenus}{\reset@font\mtcSSSfont 118}{subsubsection.4.6.2.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {2.3}Analyse des résultats}{\reset@font\mtcSSSfont 118}{subsubsection.4.6.2.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {3}Tests de sécurité}{\reset@font\mtcSSfont 118}{subsection.4.6.3}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {3.1}Test d'isolation des données (IDOR)}{\reset@font\mtcSSSfont 119}{subsubsection.4.6.3.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4}Tests d'intégration}{\reset@font\mtcSSfont 119}{subsection.4.6.4}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.1}Tests End-to-End}{\reset@font\mtcSSSfont 120}{subsubsection.4.6.4.1}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {VII}Conclusion}{\reset@font\mtcSfont 121}{section.4.7}}
