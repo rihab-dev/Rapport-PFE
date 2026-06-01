@@ -1,87 +1,87 @@
-ï»¿\section*{Introduction}
-Dans le chapitre prÃ©cÃ©dent, nous avons mis en place la gestion des projets et des contrats, dÃ©finissant ainsi le cadre contractuel et organisationnel de notre collaboration avec les clients.
-\newline Au cours de ce chapitre, nous prÃ©sentons les fonctionnalitÃ©s du troisiÃ¨me sprint, consacrÃ© au cÅ“ur mÃ©tier de la plateforme, Ã  savoir la gestion des demandes, la gestion des tickets, le suivi du temps, le respect des SLA et lâ€™intÃ©gration de lâ€™intelligence artificielle. Ce sprint constitue une Ã©tape majeure dans la transformation de la solution en un vÃ©ritable systÃ¨me de pilotage du support et du traitement des incidents.
+\section*{Introduction}
+Dans le chapitre précédent, nous avons mis en place la gestion des projets et des contrats, définissant ainsi le cadre contractuel et organisationnel de notre collaboration avec les clients.
+\newline Au cours de ce chapitre, nous présentons les fonctionnalités du troisième sprint, consacré au cœur métier de la plateforme, à savoir la gestion des demandes, la gestion des tickets, le suivi du temps, le respect des SLA et l’intégration de l’intelligence artificielle. Ce sprint constitue une étape majeure dans la transformation de la solution en un véritable système de pilotage du support et du traitement des incidents.
 
-% â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+% -----------------------------------------------------------------------------
 % SECTION 1 : BACKLOG DU SPRINT 3
-% â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+% -----------------------------------------------------------------------------
 \section{Sprint Planning Meeting}
-La planification du sprint est une Ã©tape essentielle du processus de dÃ©veloppement, car elle permet de clarifier les fonctionnalitÃ©s Ã  implÃ©menter, de prioriser les besoins mÃ©tier et dâ€™organiser la rÃ©alisation dans une logique incrÃ©mentale.
-\newline Lâ€™objectif principal de ce sprint Ã©tait dâ€™implÃ©menter le cÅ“ur opÃ©rationnel de la plateforme de gestion des tickets, en assurant la prise en charge complÃ¨te du cycle de vie dâ€™une demande jusquâ€™Ã  sa conversion en ticket, puis son traitement collaboratif par les Ã©quipes techniques. Ce sprint visait Ã©galement Ã  intÃ©grer des mÃ©canismes avancÃ©s de suivi du temps, de gestion des SLA, de pilotage via Kanban et dâ€™assistance intelligente Ã  la dÃ©cision.
+La planification du sprint est une étape essentielle du processus de développement, car elle permet de clarifier les fonctionnalités à implémenter, de prioriser les besoins métier et d’organiser la réalisation dans une logique incrémentale.
+\newline L’objectif principal de ce sprint était d’implémenter le cœur opérationnel de la plateforme de gestion des tickets, en assurant la prise en charge complète du cycle de vie d’une demande jusqu’à sa conversion en ticket, puis son traitement collaboratif par les équipes techniques. Ce sprint visait également à intégrer des mécanismes avancés de suivi du temps, de gestion des SLA, de pilotage via Kanban et d’assistance intelligente à la décision.
 
-\subsection{IntÃ©gration de l'intelligence artificielle}
-Dans le cadre du prÃ©sent sprint, l'intÃ©gration de l'intelligence artificielle a Ã©tÃ© traitÃ©e comme une dÃ©cision de conception. L'objectif principal est d'automatiser et d'assister plusieurs Ã©tapes du cycle de traitement des demandesÂ : qualification initiale, priorisation, analyse des blocages et capitalisation des connaissances.
+\subsection{Intégration de l'intelligence artificielle}
+Dans le cadre du présent sprint, l'intégration de l'intelligence artificielle a été traitée comme une décision de conception. L'objectif principal est d'automatiser et d'assister plusieurs étapes du cycle de traitement des demandes : qualification initiale, priorisation, analyse des blocages et capitalisation des connaissances.
 
-\subsubsection{Choix du modÃ¨le}
-Le choix des LLM repose sur leur capacitÃ© Ã  saisir l'intention rÃ©elle d'une demande sans nÃ©cessiter de phase d'apprentissage sur des donnÃ©es massives. Cette technologie offre une prÃ©cision proche de l'humain et une flexibilitÃ© immÃ©diate, constituant une solution opÃ©rationnelle qui simplifie l'Ã©volution et la maintenance du systÃ¨me.
+\subsubsection{Choix du modèle}
+Le choix des LLM repose sur leur capacité à saisir l'intention réelle d'une demande sans nécessiter de phase d'apprentissage sur des données massives. Cette technologie permet d'interpréter la demande sans phase d'apprentissage préalable et reste simple à faire évoluer, constituant une solution opérationnelle qui simplifie la maintenance du système.
 \newline
-Le modÃ¨le retenu pour l'expÃ©rimentation est LLaMA~3.3 (70B), exploitÃ© via l'API Groq Cloud. Ce choix se justifie par la qualitÃ© des rÃ©ponses en langue franÃ§aise technique, la possibilitÃ© d'obtenir des sorties structurÃ©es (format JSON) pour une intÃ©gration automatisÃ©e, des temps de latence compatibles avec l'usage interactif et une tarification permettant une phase d'Ã©valuation sans investissement initial significatif.
+Le modèle retenu pour l'expérimentation est LLaMA~3.3 (70B), exploité via l'API Groq Cloud. Ce choix se justifie par la qualité des réponses en langue française technique, la possibilité d'obtenir des sorties structurées (format JSON) pour une intégration automatisée, des temps de latence compatibles avec l'usage interactif et une tarification permettant une phase d'évaluation sans investissement initial significatif.
 
-\subsubsection{FonctionnalitÃ©s attendues}
+\subsubsection{Fonctionnalités attendues}
 Les fonctions couvertes par le composant d'intelligence artificielle sont les suivantes :
 
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
-\item L'analyse automatique des blocages rencontrÃ©s par les dÃ©veloppeurs, permettant d'identifier rapidement les problÃ¨mes critiques et d'en faciliter la rÃ©solution ;
-\item La proposition d'actions correctives adaptÃ©es Ã  chaque situation de blocage, afin d'accÃ©lÃ©rer le dÃ©blocage des dÃ©veloppeurs et de rÃ©duire les temps d'immobilisation ;
-\item La gÃ©nÃ©ration automatique d'un brouillon de solution pour assister les dÃ©veloppeurs dans la documentation de leurs rÃ©solutions et faciliter la capitalisation des connaissances ;
-\item La classification intelligente des demandes clients, incluant le type, la prioritÃ© et la catÃ©gorie, soumise Ã  validation du chef de projet avant transmission au client ;
-\item La structuration automatique des solutions brutes en articles de base de connaissances, favorisant la standardisation et la rÃ©utilisabilitÃ© de l'information ;
-\item La fusion automatique de l'analyse IA et de la solution humaine pour chaque blocage rÃ©solu, produisant ainsi des articles de connaissance consolidÃ©s et directement exploitables.
+\item L'analyse automatique des blocages rencontrés par les développeurs, permettant d'identifier rapidement les problèmes critiques et d'en faciliter la résolution ;
+\item La proposition d'actions correctives adaptées à chaque situation de blocage, afin d'accélérer le déblocage des développeurs et de réduire les temps d'immobilisation ;
+\item La génération automatique d'un brouillon de solution pour assister les développeurs dans la documentation de leurs résolutions et faciliter la capitalisation des connaissances ;
+\item La classification intelligente des demandes clients, incluant le type, la priorité et la catégorie, soumise à validation du chef de projet avant transmission au client ;
+\item La structuration automatique des solutions brutes en articles de base de connaissances, favorisant la standardisation et la réutilisabilité de l'information ;
+\item La fusion automatique de l'analyse IA et de la solution humaine pour chaque blocage résolu, produisant ainsi des articles de connaissance consolidés et directement exploitables.
 \end{itemize}
 
-\subsubsection{Robustesse opÃ©rationnelle et gouvernance}
-Afin d'assurer la fiabilitÃ© et la conformitÃ© du service, l'intÃ©gration s'appuie sur plusieurs gardeâ€‘fousÂ :
+\subsubsection{Robustesse opérationnelle et gouvernance}
+Afin d'assurer la fiabilité et la conformité du service, l'intégration s'appuie sur plusieurs garde-fous :
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
-\item anonymisation et protection de la confidentialitÃ© : dÃ©tection et masquage automatique des donnÃ©es sensibles (PII) avant transmission aux APIs externes, garantissant la sÃ©curitÃ© des donnÃ©es clients ;
-\item mise en place d'un cache systÃ¨me : rÃ©duction du nombre d'appels externes et de la latence par la mÃ©morisation des classifications rÃ©currentes ;
-\item intÃ©gration de mÃ©canismes de repli : basculement automatique vers des rÃ¨gles mÃ©tiers ou une rÃ©vision humaine en cas d'indisponibilitÃ© ou d'incertitude de l'IA ;
-\item limitation des flux et des quotas : rÃ©gulation des appels par utilisateur pour prÃ©venir les usages abusifs et respecter les limites de l'API ;
-\item maintien d'une traÃ§abilitÃ© complÃ¨te : archivage systÃ©matique des mÃ©tadonnÃ©es dÃ©cisionnelles (modÃ¨le, score, raisonnement) pour l'audit et l'amÃ©lioration continue .
+\item anonymisation et protection de la confidentialité : détection et masquage automatique des données sensibles (PII) avant transmission aux APIs externes, garantissant la sécurité des données clients ;
+\item mise en place d'un cache système : réduction du nombre d'appels externes et de la latence par la mémorisation des classifications récurrentes ;
+\item intégration de mécanismes de repli : basculement automatique vers des règles métiers ou une révision humaine en cas d'indisponibilité ou d'incertitude de l'IA ;
+\item limitation des flux et des quotas : régulation des appels par utilisateur pour prévenir les usages abusifs et respecter les limites de l'API ;
+\item maintien d'une traçabilité complète : archivage systématique des métadonnées décisionnelles (modèle, score, raisonnement) pour l'audit et l'amélioration continue .
 \end{itemize}
 
-\subsubsection{Apport mÃ©tier}
-L'Ã©valuation conduite pendant le sprint montre que l'usage de l'IA apporte des bÃ©nÃ©fices mesurablesÂ : rÃ©duction du temps de qualification, homogÃ©nÃ©isation des priorisations, diminution des Ã©changes nÃ©cessaires entre clients et Ã©quipes techniques et enrichissement automatique de la base de connaissances. Ces apports sont considÃ©rÃ©s comme complÃ©mentaires au travail humainÂ : l'IA fournit des suggestions et des brouillons destinÃ©s Ã  soutenir la dÃ©cision, sans s'y substituer.
+\subsubsection{Apport métier}
+L'usage de l'IA a apporté des bénéfices observés en interne : un gain de temps à la qualification des demandes, une priorisation plus homogène et une diminution des échanges nécessaires entre clients et équipes techniques, ainsi qu'un enrichissement progressif de la base de connaissances. Ces apports sont considérés comme complémentaires au travail humain : l'IA fournit des suggestions et des brouillons destinés à soutenir la décision, sans s'y substituer.
 
-\subsection{Backlog du troisiÃ¨me sprint}
+\subsection{Backlog du troisième sprint}
 \label{sec:backlog_sprint3}
 
-Voici lâ€™ensemble des user stories retenues pour ce sprint, correspondant aux Ã©pics liÃ©s Ã  la gestion des demandes, Ã  la gestion des tickets et Ã  lâ€™intelligence artificielle.
+Voici l’ensemble des user stories retenues pour ce sprint, correspondant aux épics liés à la gestion des demandes, à la gestion des tickets et à l’intelligence artificielle.
 \newline
-	\textbf{1 : Effort faible, 2 : Effort moyen, 3 : Effort Ã©levÃ©}
+	\textbf{1 : Effort faible, 2 : Effort moyen, 3 : Effort élevé}
 \input{tex/sprint_backlog_3}
 
-% â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+% -----------------------------------------------------------------------------
 % SECTION 2 : ANALYSE
-% â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+% -----------------------------------------------------------------------------
 \section{Analyse}
-Dans le cadre de ce sprint, lâ€™analyse fonctionnelle a consistÃ© Ã  formaliser les interactions entre les diffÃ©rents acteurs et les modules mÃ©tiers de la solution. Cette Ã©tape a permis de traduire les besoins exprimÃ©s dans le backlog en cas dâ€™utilisation concrets, en tenant compte des contraintes de sÃ©curitÃ©, de validation, de priorisation et de traÃ§abilitÃ©.
+Dans le cadre de ce sprint, l’analyse fonctionnelle a consisté à formaliser les interactions entre les différents acteurs et les modules métiers de la solution. Cette étape a permis de traduire les besoins exprimés dans le backlog en cas d’utilisation concrets, en tenant compte des contraintes de sécurité, de validation, de priorisation et de traçabilité.
 
 \label{sec:analyse_sprint3}
 
-\subsection{Diagramme de cas d'utilisation du troisiÃ¨me sprint}
-La figure ci-dessous prÃ©sente le diagramme de cas dâ€™utilisation du troisiÃ¨me sprint.
+\subsection{Diagramme de cas d'utilisation du troisième sprint}
+La figure ci-dessous présente le diagramme de cas d’utilisation du troisième sprint.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.70\textwidth,keepaspectratio]{Images/diagramme cas utilisation sprint3.png}
-    \caption{Diagramme de cas d'utilisation du troisiÃ¨me sprint}
+    \caption{Diagramme de cas d'utilisation du troisième sprint}
     \label{fig:use_case_sprint3}
 \end{figure}
 
-Nous allons accompagner les cas d'utilisation d'un texte descriptif pour expliquer le scÃ©nario de chaque cas ainsi que ses exceptions.
-\subsection{Analyse de la fonctionnalitÃ© Â« Suivre demandes Â»}
-Dans cette partie, nous allons prÃ©senter les cas d'utilisation relatifs au suivi des demandes afin de comprendre les principales fonctionnalitÃ©s du systÃ¨me, ce qui permet d'avoir une vue globale des interactions.
-\subsubsection{Raffinement du cas d'utilisation Â« Suivre demandes Â»}
-Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffinÃ© pour le cas du suivi des demandes :
+Nous allons accompagner les cas d'utilisation d'un texte descriptif pour expliquer le scénario de chaque cas ainsi que ses exceptions.
+\subsection{Analyse de la fonctionnalité « Suivre demandes »}
+Dans cette partie, nous allons présenter les cas d'utilisation relatifs au suivi des demandes afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
+\subsubsection{Raffinement du cas d'utilisation « Suivre demandes »}
+Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas du suivi des demandes :
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.85\textwidth,keepaspectratio]{Images/suivre_demandes.png}
-  \caption{Raffinement du cas d'utilisation Â« Suivre demandes Â»}
+  \caption{Raffinement du cas d'utilisation « Suivre demandes »}
   \label{fig:suivre_demandes}
 \end{figure}
 
-\subsubsection{Description textuelle du cas dâ€™utilisation Â« Soumettre demande Â»}
-La figure ci-dessous prÃ©sente la description textuelle du cas dâ€™utilisation Â« Soumettre demande Â».
+\subsubsection{Description textuelle du cas d’utilisation « Soumettre demande »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Soumettre demande ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -98,50 +98,50 @@ La figure ci-dessous prÃ©sente la description textuelle du cas dâ€™utilisation Â
 \hline
 \textbf{Acteurs} & Client \\
 \hline
-\textbf{PrÃ©condition} & Le client est authentifiÃ© et possÃ¨de au moins un projet couvert par un contrat actif. \\
+\textbf{Précondition} & Le client est authentifié et possède au moins un projet couvert par un contrat actif. \\
 \hline
-\textbf{Postcondition} & La demande est crÃ©Ã©e avec le statut Â« En attente Â», les piÃ¨ces jointes Ã©ventuelles sont enregistrÃ©es et les acteurs concernÃ©s sont notifiÃ©s. \\
+\textbf{Postcondition} & La demande est créée avec le statut « En attente », les pièces jointes éventuelles sont enregistrées et les acteurs concernés sont notifiés. \\
 \hline
-\textbf{ScÃ©nario nominal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le client accÃ¨de au formulaire de crÃ©ation d'une demande.
-\item Il saisit un titre, une description, un type de demande et une prioritÃ©.
-\item Il sÃ©lectionne le projet concernÃ©.
-\item Il joint Ã©ventuellement des fichiers justificatifs.
+\item Le client accède au formulaire de création d'une demande.
+\item Il saisit un titre, une description, un type de demande et une priorité.
+\item Il sélectionne le projet concerné.
+\item Il joint éventuellement des fichiers justificatifs.
 \item Il valide l'envoi.
-\item Le systÃ¨me vÃ©rifie l'existence d'un contrat actif pour le projet sÃ©lectionnÃ©.
-\item Le systÃ¨me contrÃ´le les rÃ¨gles mÃ©tier anti-abus.
-\item Le systÃ¨me calcule l'Ã©chÃ©ance SLA initiale sur la base de la prioritÃ© finale retenue.
-\item Le systÃ¨me enregistre la demande.
-\item Le systÃ¨me notifie le chef de projet, les administrateurs et le client.
-\item Le systÃ¨me dÃ©clenche la classification IA de la demande.
+\item Le système vérifie l'existence d'un contrat actif pour le projet sélectionné.
+\item Le système contrôle les règles métier anti-abus.
+\item Le système calcule l'échéance SLA initiale sur la base de la priorité finale retenue.
+\item Le système enregistre la demande.
+\item Le système notifie le chef de projet, les administrateurs et le client.
+\item Le système déclenche la classification IA de la demande.
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{ScÃ©nario alternatif} &
+\textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le systÃ¨me signale que le projet sÃ©lectionnÃ© n'est plus Ã©ligible  le client sÃ©lectionne un autre projet actif et \textbf{reprend Ã  l'Ã©tape 3}.
-\item Le systÃ¨me rejette le fichier (format non autorisÃ© ou taille dÃ©passÃ©e)  le client supprime le fichier, joint un fichier conforme et \textbf{reprend Ã  l'Ã©tape 5}.
-\item Les fichiers joints sont associÃ©s Ã  la demande et contrÃ´lÃ©s par le systÃ¨me.
+\item Le système signale que le projet sélectionné n'est plus éligible  le client sélectionne un autre projet actif et \textbf{reprend à l'étape 3}.
+\item Le système rejette le fichier (format non autorisé ou taille dépassée)  le client supprime le fichier, joint un fichier conforme et \textbf{reprend à l'étape 5}.
+\item Les fichiers joints sont associés à la demande et contrôlés par le système.
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{ScÃ©nario d'exception} &
+\textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item  Le client a dÃ©jÃ  soumis une demande du mÃªme type sur le mÃªme projet dans les 24 heures  le systÃ¨me bloque la crÃ©ation de maniÃ¨re irrÃ©versible jusqu'Ã  l'expiration du dÃ©lai.
-\item Le nombre maximal de demandes en attente est atteint  le systÃ¨me refuse la soumission tant que des demandes existantes ne sont pas traitÃ©es.
+\item  Le client a déjà soumis une demande du même type sur le même projet dans les 24 heures  le système bloque la création de manière irréversible jusqu'à l'expiration du délai.
+\item Le nombre maximal de demandes en attente est atteint  le système refuse la soumission tant que des demandes existantes ne sont pas traitées.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas dâ€™utilisation Â« Soumettre demande Â»}
+\captionof{table}{Description textuelle du cas d’utilisation « Soumettre demande »}
 \normalsize
 
-\subsubsection{Description textuelle du cas dâ€™utilisation Â« ComplÃ©ter demande existante Â»}
-La figure ci-dessous prÃ©sente la description textuelle du cas dâ€™utilisation Â« ComplÃ©ter demande existante Â».
+\subsubsection{Description textuelle du cas d’utilisation « Compléter demande existante »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Compléter demande existante ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -155,60 +155,60 @@ La figure ci-dessous prÃ©sente la description textuelle du cas dâ€™utilisation Â
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & ComplÃ©ter demande existante \\
+\textbf{Nom du cas d'utilisation} & Compléter demande existante \\
 \hline
 \textbf{Acteurs} & Client \\
 \hline
-\textbf{PrÃ©condition} & Le client est authentifiÃ©, propriÃ©taire de la demande, et la demande est au statut Â« Infos requises Â». \\
+\textbf{Précondition} & Le client est authentifié, propriétaire de la demande, et la demande est au statut « Infos requises ». \\
 \hline
-\textbf{Postcondition} & La description complÃ©mentaire est enregistrÃ©e, la demande repasse au statut Â« En attente Â», une entrÃ©e de commentaire est crÃ©Ã©e et le chef de projet ainsi que les administrateurs sont notifiÃ©s. \\
+\textbf{Postcondition} & La description complémentaire est enregistrée, la demande repasse au statut « En attente », une entrée de commentaire est créée et le chef de projet ainsi que les administrateurs sont notifiés. \\
 \hline
-\textbf{ScÃ©nario nominal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le client localise sa demande en statut Â« Infos requises Â» dans la liste et clique sur le bouton de complÃ©tion.
-\item Le systÃ¨me prÃ©sente un formulaire permettant de saisir une description complÃ©mentaire.
-\item Le client saisit les informations demandÃ©es et confirme l'envoi.
-\item Le systÃ¨me vÃ©rifie que la demande est toujours au statut Â« Infos requises Â» et que le client en est le propriÃ©taire.
-\item Le systÃ¨me enregistre la description complÃ©mentaire, crÃ©e une entrÃ©e de commentaire et repasse la demande au statut Â« En attente Â».
-\item Le systÃ¨me notifie le chef de projet et les administrateurs.
-\item Le client reÃ§oit une confirmation de la prise en compte de son envoi.
+\item Le client localise sa demande en statut « Infos requises » dans la liste et clique sur le bouton de complétion.
+\item Le système présente un formulaire permettant de saisir une description complémentaire.
+\item Le client saisit les informations demandées et confirme l'envoi.
+\item Le système vérifie que la demande est toujours au statut « Infos requises » et que le client en est le propriétaire.
+\item Le système enregistre la description complémentaire, crée une entrée de commentaire et repasse la demande au statut « En attente ».
+\item Le système notifie le chef de projet et les administrateurs.
+\item Le client reçoit une confirmation de la prise en compte de son envoi.
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{ScÃ©nario alternatif} &
+\textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item \textbf{Envois successifs :} si la demande repasse au statut Â« Infos requises Â» suite Ã  une nouvelle demande du responsable, le client peut soumettre un nouveau complÃ©ment  chaque envoi est historisÃ© et notifie les acteurs concernÃ©s.
+\item \textbf{Envois successifs :} si la demande repasse au statut « Infos requises » suite à une nouvelle demande du responsable, le client peut soumettre un nouveau complément  chaque envoi est historisé et notifie les acteurs concernés.
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{ScÃ©nario d'exception} &
+\textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le statut de la demande a changÃ© depuis l'ouverture du formulaire et n'est plus Â« Infos requises Â»  le systÃ¨me lÃ¨ve une exception bloquante et refuse l'opÃ©ration.
-\item Une erreur technique survient lors de la persistance des donnÃ©es  le systÃ¨me informe le client d'un problÃ¨me technique et l'opÃ©ration est interrompue.
+\item Le statut de la demande a changé depuis l'ouverture du formulaire et n'est plus « Infos requises »  le système lève une exception bloquante et refuse l'opération.
+\item Une erreur technique survient lors de la persistance des données  le système informe le client d'un problème technique et l'opération est interrompue.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas dâ€™utilisation Â« ComplÃ©ter demande existante Â»}
+\captionof{table}{Description textuelle du cas d’utilisation « Compléter demande existante »}
 }
 \normalsize
 
-\subsection{Analyse de la fonctionnalitÃ© Â« GÃ©rer demandes Â»}
-Dans cette partie, nous allons prÃ©senter les cas d'utilisation relatifs Ã  la gestion des demandes afin de comprendre les principales fonctionnalitÃ©s du systÃ¨me, ce qui permet d'avoir une vue globale des interactions.
-\subsubsection{Raffinement du cas d'utilisation Â« GÃ©rer demandes Â»}
-Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffinÃ© pour le cas du gestion des demandes :
+\subsection{Analyse de la fonctionnalité « Gérer demandes »}
+Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des demandes afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
+\subsubsection{Raffinement du cas d'utilisation « Gérer demandes »}
+Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas du gestion des demandes :
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.85\textwidth,keepaspectratio]{Images/gerer_demandes.png}
-  \caption{Raffinement du cas d'utilisation Â« gÃ©rer demandes Â»}
+  \caption{Raffinement du cas d'utilisation « gérer demandes »}
   \label{fig:gerer_demandes}
 \end{figure}
 
-\subsubsection{Description textuelle du cas dâ€™utilisation Â« Valider demande Â»}
-La figure ci-dessous prÃ©sente la description textuelle du cas dâ€™utilisation Â« Valider demande Â».
+\subsubsection{Description textuelle du cas d’utilisation « Valider demande »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Valider demande ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -225,43 +225,43 @@ La figure ci-dessous prÃ©sente la description textuelle du cas dâ€™utilisation Â
 \hline
 \textbf{Acteurs} & Chef de projet, Administrateur \\
 \hline
-\textbf{PrÃ©condition} & La demande est au statut Â« En attente Â» ou Â« Infos requises Â». L'acteur dispose de la permission de validation. \\
+\textbf{Précondition} & La demande est au statut « En attente » ou « Infos requises ». L'acteur dispose de la permission de validation. \\
 \hline
-\textbf{Postcondition} & La demande passe au statut Â« Convertie Â», un ticket est crÃ©Ã© automatiquement avec le statut Â« Ouvert Â». L'assignation du ticket sera effectuÃ©e ultÃ©rieurement de maniÃ¨re manuelle. \\
+\textbf{Postcondition} & La demande passe au statut « Convertie », un ticket est créé automatiquement avec le statut « Ouvert ». L'assignation du ticket sera effectuée ultérieurement de manière manuelle. \\
 \hline
-\textbf{ScÃ©nario nominal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le chef de projet sÃ©lectionne une demande en attente depuis la liste ou son dÃ©tail.
-\item Il conserve les informations initiales ou requalifie le type et/ou la prioritÃ©.
+\item Le chef de projet sélectionne une demande en attente depuis la liste ou son détail.
+\item Il conserve les informations initiales ou requalifie le type et/ou la priorité.
 \item Il valide la demande.
-\item Le systÃ¨me vÃ©rifie les permissions et l'existence d'un contrat actif couvrant le projet.
-\item Le systÃ¨me met Ã  jour la demande au statut Â« Convertie Â».
-\item Le systÃ¨me crÃ©e automatiquement un ticket liÃ© Ã  la demande avec le statut Â« Ouvert Â».
-\item Le systÃ¨me transfÃ¨re les piÃ¨ces jointes de la demande vers les documents du ticket.
-\item Le systÃ¨me notifie le client et les utilisateurs concernÃ©s.
-\item L'assignation du ticket est rÃ©alisÃ©e dans un second temps via le module de gestion des tickets.
+\item Le système vérifie les permissions et l'existence d'un contrat actif couvrant le projet.
+\item Le système met à jour la demande au statut « Convertie ».
+\item Le système crée automatiquement un ticket lié à la demande avec le statut « Ouvert ».
+\item Le système transfère les pièces jointes de la demande vers les documents du ticket.
+\item Le système notifie le client et les utilisateurs concernés.
+\item L'assignation du ticket est réalisée dans un second temps via le module de gestion des tickets.
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{ScÃ©nario alternatif} &
+\textbf{Scénario alternatif} &
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le validateur modifie le type de demande et/ou la prioritÃ© avant de valider  les modifications sont enregistrÃ©es et historisÃ©es avec la validation.
-\item Si la prioritÃ© est reclassÃ©e en critique, un commentaire de justification est requis  le validateur saisit le commentaire et \textbf{reprend Ã  l'Ã©tape 3}.
-\item Le commentaire saisi est trop court ou vide  le systÃ¨me signale l'erreur, le validateur complÃ¨te le commentaire et \textbf{reprend Ã  l'Ã©tape 3}.
+\item Le validateur modifie le type de demande et/ou la priorité avant de valider  les modifications sont enregistrées et historisées avec la validation.
+\item Si la priorité est reclassée en critique, un commentaire de justification est requis  le validateur saisit le commentaire et \textbf{reprend à l'étape 3}.
+\item Le commentaire saisi est trop court ou vide  le système signale l'erreur, le validateur complète le commentaire et \textbf{reprend à l'étape 3}.
 \end{enumerate} \\
 \hline
-\textbf{ScÃ©nario d'exception} &
+\textbf{Scénario d'exception} &
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item La demande est dÃ©jÃ  au statut Â« Convertie Â» ou Â« RejetÃ©e Â»  le systÃ¨me lÃ¨ve une exception bloquante, aucune modification n'est possible.
-\item Aucun contrat actif ne couvre le projet de la demande  le systÃ¨me refuse la validation, le validateur ne peut pas crÃ©er un contrat sur place.
+\item La demande est déjà au statut « Convertie » ou « Rejetée »  le système lève une exception bloquante, aucune modification n'est possible.
+\item Aucun contrat actif ne couvre le projet de la demande  le système refuse la validation, le validateur ne peut pas créer un contrat sur place.
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas dâ€™utilisation Â« Valider demande Â»}
+\captionof{table}{Description textuelle du cas d’utilisation « Valider demande »}
 \normalsize
-\subsubsection{Description textuelle du cas dâ€™utilisation Â« Demander informations complÃ©mentaires Â»}
-La figure ci-dessous prÃ©sente la description textuelle du cas dâ€™utilisation Â« Demander informations complÃ©mentaires Â».
+\subsubsection{Description textuelle du cas d’utilisation « Demander informations complémentaires »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Demander informations complémentaires ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -274,46 +274,46 @@ La figure ci-dessous prÃ©sente la description textuelle du cas dâ€™utilisation Â
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Demander informations complÃ©mentaires \\
+\textbf{Nom du cas d'utilisation} & Demander informations complémentaires \\
 \hline
 \textbf{Acteurs} & Chef de projet, Administrateur \\
 \hline
-\textbf{PrÃ©condition} & L'acteur est authentifiÃ© et dispose des droits pour solliciter des complÃ©ments ; la demande est accessible. \\
+\textbf{Précondition} & L'acteur est authentifié et dispose des droits pour solliciter des compléments ; la demande est accessible. \\
 \hline
-\textbf{Postcondition} & Un message de demande d'information est enregistrÃ© dans l'historique ; le statut de la demande passe en attente d'informations ; le propriÃ©taire de la demande est notifiÃ©. \\
+\textbf{Postcondition} & Un message de demande d'information est enregistré dans l'historique ; le statut de la demande passe en attente d'informations ; le propriétaire de la demande est notifié. \\
 \hline
-\textbf{ScÃ©nario nominal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'acteur identifie un besoin d'informations supplÃ©mentaires pour analyser la demande.
-\item L'acteur saisit le motif et les Ã©lÃ©ments attendus puis envoie la demande d'informations.
-\item Le systÃ¨me enregistre la requÃªte dans l'historique et modifie le statut de la demande pour indiquer qu'elle attend des informations.
-\item Le systÃ¨me notifie le propriÃ©taire de la demande et les parties prenantes.
+\item L'acteur identifie un besoin d'informations supplémentaires pour analyser la demande.
+\item L'acteur saisit le motif et les éléments attendus puis envoie la demande d'informations.
+\item Le système enregistre la requête dans l'historique et modifie le statut de la demande pour indiquer qu'elle attend des informations.
+\item Le système notifie le propriétaire de la demande et les parties prenantes.
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{ScÃ©nario alternatif} &
+\textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'acteur enrichit le motif avec des exemples ou des documents attendus. Le systÃ¨me intÃ¨gre l'ensemble du motif dans le commentaire crÃ©Ã© dans l'historique de la demande. Le scÃ©nario reprend Ã  l'Ã©tape 3.
-\item La demande est dÃ©jÃ  dans l'Ã©tat INFOS REQUISES. Le systÃ¨me autorise nÃ©anmoins la soumission et crÃ©e un nouveau commentaire dans l'historique. Le scÃ©nario reprend Ã  l'Ã©tape 3.
+\item L'acteur enrichit le motif avec des exemples ou des documents attendus. Le système intègre l'ensemble du motif dans le commentaire créé dans l'historique de la demande. Le scénario reprend à l'étape 3.
+\item La demande est déjà dans l'état INFOS REQUISES. Le système autorise néanmoins la soumission et crée un nouveau commentaire dans l'historique. Le scénario reprend à l'étape 3.
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{ScÃ©nario d'exception} &
+\textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le systÃ¨me dÃ©tecte que les droits de l'acteur ont Ã©tÃ© rÃ©voquÃ©s depuis sa connexion. La soumission est rejetÃ©e avec un message d'erreur d'autorisation ; l'acteur ne peut pas poursuivre sans reconnexion.
-\item Une dÃ©faillance technique empÃªche l'enregistrement de la requÃªte. Le systÃ¨me affiche un message d'Ã©chec, journalise l'incident et interrompt le cas d'utilisation sans modifier le statut de la demande.
+\item Le système détecte que les droits de l'acteur ont été révoqués depuis sa connexion. La soumission est rejetée avec un message d'erreur d'autorisation ; l'acteur ne peut pas poursuivre sans reconnexion.
+\item Une défaillance technique empêche l'enregistrement de la requête. Le système affiche un message d'échec, journalise l'incident et interrompt le cas d'utilisation sans modifier le statut de la demande.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas dâ€™utilisation Â« Demander informations complÃ©mentaires Â»}
+\captionof{table}{Description textuelle du cas d’utilisation « Demander informations complémentaires »}
 \normalsize
 
-\subsubsection{Description textuelle du cas dâ€™utilisation Â« GÃ©rer qualification Â»}
-La figure ci-dessous prÃ©sente la description textuelle du cas dâ€™utilisation Â« GÃ©rer qualification Â».
+\subsubsection{Description textuelle du cas d’utilisation « Gérer qualification »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Gérer qualification ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -326,59 +326,59 @@ La figure ci-dessous prÃ©sente la description textuelle du cas dâ€™utilisation Â
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & GÃ©rer qualification \\
+\textbf{Nom du cas d'utilisation} & Gérer qualification \\
 \hline
 \textbf{Acteurs} & Chef de projet, Administrateur \\
 \hline
-\textbf{PrÃ©condition} & La demande est persistÃ©e dans la base de donnÃ©es et son statut autorise la modification ; l'acteur est authentifiÃ© et dispose des droits requis. \\
+\textbf{Précondition} & La demande est persistée dans la base de données et son statut autorise la modification ; l'acteur est authentifié et dispose des droits requis. \\
 \hline
-\textbf{Postcondition} & La qualification de la demande a Ã©tÃ© mise Ã  jour ; la modification est historisÃ©e et les parties prenantes sont informÃ©es. \\
+\textbf{Postcondition} & La qualification de la demande a été mise à jour ; la modification est historisée et les parties prenantes sont informées. \\
 \hline
-\textbf{ScÃ©nario nominal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-    \item L'acteur modifie le type ou la prioritÃ© de la demande (Ã©ventuellement suggÃ©rÃ©s par l'IA).
+    \item L'acteur modifie le type ou la priorité de la demande (éventuellement suggérés par l'IA).
     \item L'acteur saisit une justification et soumet la requalification.
-    \item Le systÃ¨me valide les conditions d'exÃ©cution.
-    \item Le systÃ¨me met Ã  jour la qualification, historise l'action et notifie le client.
+    \item Le système valide les conditions d'exécution.
+    \item Le système met à jour la qualification, historise l'action et notifie le client.
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{ScÃ©nario alternatif} &
+\textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-    \item La soumission intervient dans le cadre de la validation formelle de la demande. Le systÃ¨me enregistre la requalification simultanÃ©ment Ã  la crÃ©ation du ticket. Le scÃ©nario reprend Ã  l'Ã©tape 4.
-    \item Le systÃ¨me dÃ©tecte qu'aucune valeur n'a Ã©tÃ© modifiÃ©e. Un avertissement bloque la soumission et invite l'acteur Ã  faire un vrai changement. Le scÃ©nario reprend Ã  l'Ã©tape 1.
+    \item La soumission intervient dans le cadre de la validation formelle de la demande. Le système enregistre la requalification simultanément à la création du ticket. Le scénario reprend à l'étape 4.
+    \item Le système détecte qu'aucune valeur n'a été modifiée. Un avertissement bloque la soumission et invite l'acteur à faire un vrai changement. Le scénario reprend à l'étape 1.
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{ScÃ©nario d'exception} &
+\textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-    \item Le systÃ¨me dÃ©tecte des droits insuffisants. L'opÃ©ration est rejetÃ©e et le cas d'utilisation est interrompu.
-    \item Le systÃ¨me dÃ©tecte que la demande est finalisÃ©e (Â« convertie Â» ou Â« rejetÃ©e Â»). La modification est interdite, une erreur est retournÃ©e et le cas d'utilisation s'interrompt.
+    \item Le système détecte des droits insuffisants. L'opération est rejetée et le cas d'utilisation est interrompu.
+    \item Le système détecte que la demande est finalisée (« convertie » ou « rejetée »). La modification est interdite, une erreur est retournée et le cas d'utilisation s'interrompt.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas dâ€™utilisation Â« GÃ©rer qualification Â»}
+\captionof{table}{Description textuelle du cas d’utilisation « Gérer qualification »}
 \normalsize
 
-\subsection{Analyse de la fonctionnalitÃ© Â« Traiter tickets assignÃ©s Â»}
-Dans cette partie, nous allons prÃ©senter les cas d'utilisation relatifs au traitement des tickets assignÃ©s afin de comprendre les principales fonctionnalitÃ©s du systÃ¨me, ce qui permet d'avoir une vue globale des interactions.
+\subsection{Analyse de la fonctionnalité « Traiter tickets assignés »}
+Dans cette partie, nous allons présenter les cas d'utilisation relatifs au traitement des tickets assignés afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
 
-\subsubsection{Raffinement du cas d'utilisation Â« Traiter tickets assignÃ©s Â»}
-Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffinÃ© pour le cas du traitement des tickets assignÃ©s :
+\subsubsection{Raffinement du cas d'utilisation « Traiter tickets assignés »}
+Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas du traitement des tickets assignés :
 \begin{figure}[H]
         \centering
         \includegraphics[width=1\textwidth,keepaspectratio]{Images/traiter_tickets_assignes.png}
-        \caption{Raffinement du cas d'utilisation Â« Traiter tickets assignÃ©s Â»}
+        \caption{Raffinement du cas d'utilisation « Traiter tickets assignés »}
         \label{fig:traiter_tickets_assignes}
 \end{figure}
 
 
-\subsubsection{Description textuelle du cas dâ€™utilisation Â« Soumettre ticket en revue Â»}
-La figure ci-dessous prÃ©sente la description textuelle du cas dâ€™utilisation Â« Soumettre ticket en revue Â».
+\subsubsection{Description textuelle du cas d’utilisation « Soumettre ticket en revue »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Soumettre ticket en revue ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -393,51 +393,51 @@ La figure ci-dessous prÃ©sente la description textuelle du cas dâ€™utilisation Â
 \endlastfoot
 \textbf{Nom du cas d'utilisation} & Soumettre ticket en revue \\
 \hline
-\textbf{Acteurs} & DÃ©veloppeur \\
+\textbf{Acteurs} & Développeur \\
 \hline
-\textbf{PrÃ©condition} & Le ticket est dans lâ€™Ã©tat Â« En cours Â». Le dÃ©veloppeur a documentÃ© une solution technique. \\
+\textbf{Précondition} & Le ticket est dans l’état « En cours ». Le développeur a documenté une solution technique. \\
 \hline
-\textbf{Postcondition} & Le ticket passe dans l'Ã©tat Â« En revue Â».Toutes les sessions de travail actives sont 
-automatiquement clÃ´turÃ©es et le temps total cumulÃ© est 
-mis Ã  jour. Une notification est adressÃ©e au chef de projet 
+\textbf{Postcondition} & Le ticket passe dans l'état « En revue ».Toutes les sessions de travail actives sont 
+automatiquement clôturées et le temps total cumulé est 
+mis à jour. Une notification est adressée au chef de projet 
 et au client.
 \\
 \hline
-\textbf{ScÃ©nario nominal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
-\item Le dÃ©veloppeur renseigne la solution technique et actionne la soumission Â« En revue Â».
-\item Le systÃ¨me valide les conditions d'exÃ©cution (assignation du dÃ©veloppeur, prÃ©sence d'un temps de travail effectif).
-\item Le systÃ¨me clÃ´ture automatiquement toutes les sessions de travail encore ouvertes sur le ticket.
-\item Le systÃ¨me calcule la durÃ©e effective de chaque session en dÃ©duisant les temps de pause.
-\item Le systÃ¨me met Ã  jour le temps total cumulÃ© du ticket.
-\item Le systÃ¨me passe lâ€™Ã©tat du ticket Ã  Â« En revue Â».
-\item Le systÃ¨me historise l'action et notifie les diffÃ©rentes parties.
+\item Le développeur renseigne la solution technique et actionne la soumission « En revue ».
+\item Le système valide les conditions d'exécution (assignation du développeur, présence d'un temps de travail effectif).
+\item Le système clôture automatiquement toutes les sessions de travail encore ouvertes sur le ticket.
+\item Le système calcule la durée effective de chaque session en déduisant les temps de pause.
+\item Le système met à jour le temps total cumulé du ticket.
+\item Le système passe l’état du ticket à « En revue ».
+\item Le système historise l'action et notifie les différentes parties.
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{ScÃ©nario alternatif} &
+\textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le systÃ¨me dÃ©tecte que la solution obligatoire est invalide ($<$ 5 caractÃ¨res). Un avertissement bloque la soumission. Le dÃ©veloppeur corrige sa saisie et le scÃ©nario reprend Ã  l'Ã©tape 1.
+\item Le système détecte que la solution obligatoire est invalide ($<$ 5 caractères). Un avertissement bloque la soumission. Le développeur corrige sa saisie et le scénario reprend à l'étape 1.
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{ScÃ©nario d'exception} &
+\textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le systÃ¨me dÃ©tecte qu'aucune session (chronomÃ¨tre) n'a Ã©tÃ© enregistrÃ©e pour ce ticket. Le passage en revue est refusÃ© et le processus s'interrompt avec erreur.
-\item Le systÃ¨me constate que le dÃ©veloppeur ne fait scrupuleusement plus partie des personnes assignÃ©es (ex: dÃ©sassignation forcÃ©e). L'opÃ©ration est rejetÃ©e pour raison de sÃ©curitÃ© et le processus s'interrompt.
+\item Le système détecte qu'aucune session (chronomètre) n'a été enregistrée pour ce ticket. Le passage en revue est refusé et le processus s'interrompt avec erreur.
+\item Le système constate que le développeur ne fait scrupuleusement plus partie des personnes assignées (ex: désassignation forcée). L'opération est rejetée pour raison de sécurité et le processus s'interrompt.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas dâ€™utilisation Â« Soumettre ticket en revue Â»}
+\captionof{table}{Description textuelle du cas d’utilisation « Soumettre ticket en revue »}
 \normalsize
 
 
-\subsubsection{Description textuelle du cas dâ€™utilisation Â« Signaler blocage Â»}
-La figure ci-dessous prÃ©sente la description textuelle du cas dâ€™utilisation Â« Signaler blocage Â».
+\subsubsection{Description textuelle du cas d’utilisation « Signaler blocage »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Signaler blocage ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -452,45 +452,45 @@ La figure ci-dessous prÃ©sente la description textuelle du cas dâ€™utilisation Â
 \endlastfoot
 \textbf{Nom du cas d'utilisation} & Signaler blocage \\
 \hline
-\textbf{Acteurs} & DÃ©veloppeur \\
+\textbf{Acteurs} & Développeur \\
 \hline
-\textbf{PrÃ©condition} & Le ticket est dans lâ€™Ã©tat Â« En cours Â» ou Â« Ouvert Â». Le dÃ©veloppeur est authentifiÃ© et assignÃ©. Une session de travail est active ou a Ã©tÃ© dÃ©marrÃ©e. Aucun autre blocage non rÃ©solu nâ€™est en cours sur lâ€™assignation.  \\
+\textbf{Précondition} & Le ticket est dans l’état « En cours » ou « Ouvert ». Le développeur est authentifié et assigné. Une session de travail est active ou a été démarrée. Aucun autre blocage non résolu n’est en cours sur l’assignation.  \\
 \hline
-\textbf{Postcondition} & Un blocage est enregistrÃ© sur lâ€™assignation. Une analyse automatique par IA est dÃ©clenchÃ©e. Un brouillon dâ€™article pour la base de connaissances est crÃ©Ã©. Le chef de projet, lâ€™Ã©quipe et les administrateurs sont notifiÃ©s. \\
+\textbf{Postcondition} & Un blocage est enregistré sur l’assignation. Une analyse automatique par IA est déclenchée. Un brouillon d’article pour la base de connaissances est créé. Le chef de projet, l’équipe et les administrateurs sont notifiés. \\
 \hline
-\textbf{ScÃ©nario nominal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
-\item Le dÃ©veloppeur remplit le formulaire de blocage (type, prioritÃ©, description, piÃ¨ces jointes) et soumet sa dÃ©claration.
-\item Le systÃ¨me vÃ©rifie lâ€™authentification, lâ€™autorisation, lâ€™absence dâ€™autre blocage actif, et la progression/temps de travail minimum requis (sauf cas dâ€™exemption).
-\item Le systÃ¨me enregistre le blocage, historise lâ€™Ã©vÃ©nement et notifie le chef de projet, lâ€™Ã©quipe et les administrateurs.
-\item En arriÃ¨re-plan, une Intelligence Artificielle analyse lâ€™incident et gÃ©nÃ¨re un brouillon dâ€™article de rÃ©solution.
+\item Le développeur remplit le formulaire de blocage (type, priorité, description, pièces jointes) et soumet sa déclaration.
+\item Le système vérifie l’authentification, l’autorisation, l’absence d’autre blocage actif, et la progression/temps de travail minimum requis (sauf cas d’exemption).
+\item Le système enregistre le blocage, historise l’événement et notifie le chef de projet, l’équipe et les administrateurs.
+\item En arrière-plan, une Intelligence Artificielle analyse l’incident et génère un brouillon d’article de résolution.
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{ScÃ©nario alternatif} &
+\textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Si le type de blocage est administratif ou externe (ex : attente de droits dâ€™accÃ¨s), le systÃ¨me ignore lâ€™exigence de temps de travail ou de progression minimale. Lâ€™opÃ©ration est validÃ©e et le scÃ©nario reprend Ã  lâ€™Ã©tape 3.
+\item Si le type de blocage est administratif ou externe (ex : attente de droits d’accès), le système ignore l’exigence de temps de travail ou de progression minimale. L’opération est validée et le scénario reprend à l’étape 3.
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{ScÃ©nario d'exception} &
+\textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Lâ€™acteur nâ€™est pas le dÃ©veloppeur assignÃ© Ã  lâ€™assignation : le systÃ¨me lÃ¨ve une exception Â« Forbidden Â» et rejette le signalement.
-\item (Sans exemption) Le temps de travail effectif ou la progression sont insuffisants ($<$ 30 min): la demande est rejetÃ©e.
-\item Un blocage non rÃ©solu existe dÃ©jÃ  sur cette assignation : le nouveau signalement est interdit et le processus sâ€™interrompt.
+\item L’acteur n’est pas le développeur assigné à l’assignation : le système lève une exception « Forbidden » et rejette le signalement.
+\item (Sans exemption) Le temps de travail effectif ou la progression sont insuffisants ($<$ 30 min): la demande est rejetée.
+\item Un blocage non résolu existe déjà sur cette assignation : le nouveau signalement est interdit et le processus s’interrompt.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas dâ€™utilisation Â« Signaler blocage Â»}
+\captionof{table}{Description textuelle du cas d’utilisation « Signaler blocage »}
 \normalsize
 
 
-\subsubsection{Description textuelle du cas dâ€™utilisation Â« Proposer solution Â»}
-La figure ci-dessous prÃ©sente la description textuelle du cas dâ€™utilisation Â« Proposer solution Â».
+\subsubsection{Description textuelle du cas d’utilisation « Proposer solution »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Proposer solution ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -505,44 +505,44 @@ La figure ci-dessous prÃ©sente la description textuelle du cas dâ€™utilisation Â
 \endlastfoot
 \textbf{Nom du cas d'utilisation} & Proposer solution  \\
 \hline
-\textbf{Acteurs} & Autre dÃ©veloppeur de l'Ã©quipe, Chef de projet \\
+\textbf{Acteurs} & Autre développeur de l'équipe, Chef de projet \\
 \hline
-\textbf{PrÃ©condition} & Un blocage est signalÃ© sur une assignation. Lâ€™acteur nâ€™est pas le dÃ©veloppeur bloquÃ© et dispose des permissions nÃ©cessaires. \\
+\textbf{Précondition} & Un blocage est signalé sur une assignation. L’acteur n’est pas le développeur bloqué et dispose des permissions nécessaires. \\
 \hline
-\textbf{Postcondition} & Une solution technique est enregistrÃ©e et placÃ©e en attente de validation par le dÃ©veloppeur bloquÃ©. Ce dernier reÃ§oit une notification. \\
+\textbf{Postcondition} & Une solution technique est enregistrée et placée en attente de validation par le développeur bloqué. Ce dernier reçoit une notification. \\
 \hline
-\textbf{ScÃ©nario nominal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
-\item Un membre autorisÃ© consulte lâ€™assignation bloquÃ©e et clique sur Â« Proposer une solution Â».
-\item Le systÃ¨me vÃ©rifie que lâ€™acteur nâ€™est pas le dÃ©veloppeur bloquÃ© et quâ€™il a les droits nÃ©cessaires.
-\item Lâ€™acteur rÃ©dige la solution et valide lâ€™envoi.
-\item Le systÃ¨me enregistre la proposition, historise lâ€™Ã©vÃ©nement et notifie le dÃ©veloppeur bloquÃ©.
+\item Un membre autorisé consulte l’assignation bloquée et clique sur « Proposer une solution ».
+\item Le système vérifie que l’acteur n’est pas le développeur bloqué et qu’il a les droits nécessaires.
+\item L’acteur rédige la solution et valide l’envoi.
+\item Le système enregistre la proposition, historise l’événement et notifie le développeur bloqué.
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{ScÃ©nario alternatif} &
+\textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Lors de la soumission, le systÃ¨me dÃ©tecte que le contenu de la solution est vide ou trop court ($< 10$ caractÃ¨res). L'envoi est bloquÃ©, l'acteur complÃ¨te sa rÃ©daction et le scÃ©nario reprend Ã  l'Ã©tape 3.
-\item Lâ€™acteur peut solliciter lâ€™IA pour gÃ©nÃ©rer une suggestion, quâ€™il peut ensuite modifier avant validation.
+\item Lors de la soumission, le système détecte que le contenu de la solution est vide ou trop court ($< 10$ caractères). L'envoi est bloqué, l'acteur complète sa rédaction et le scénario reprend à l'étape 3.
+\item L’acteur peut solliciter l’IA pour générer une suggestion, qu’il peut ensuite modifier avant validation.
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{ScÃ©nario d'exception} &
+\textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Si lâ€™acteur est le dÃ©veloppeur bloquÃ©, le systÃ¨me rejette lâ€™action et nâ€™affiche pas le formulaire.
+\item Si l’acteur est le développeur bloqué, le système rejette l’action et n’affiche pas le formulaire.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas dâ€™utilisation Â« Proposer solution Â»}
+\captionof{table}{Description textuelle du cas d’utilisation « Proposer solution »}
 \normalsize
 
 
-\subsubsection{Description textuelle du cas dâ€™utilisation Â« RÃ©soudre blocage Â»}
-La figure ci-dessous prÃ©sente la description textuelle du cas dâ€™utilisation Â« RÃ©soudre blocage Â».
+\subsubsection{Description textuelle du cas d’utilisation « Résoudre blocage »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Résoudre blocage ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -555,48 +555,48 @@ La figure ci-dessous prÃ©sente la description textuelle du cas dâ€™utilisation Â
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & RÃ©soudre blocage \\
+\textbf{Nom du cas d'utilisation} & Résoudre blocage \\
 \hline
-\textbf{Acteurs} & DÃ©veloppeur bloquÃ© \\
+\textbf{Acteurs} & Développeur bloqué \\
 \hline
-\textbf{PrÃ©condition} & Une solution a Ã©tÃ© proposÃ©e et le dÃ©veloppeur bloquÃ© est authentifiÃ©.\\
+\textbf{Précondition} & Une solution a été proposée et le développeur bloqué est authentifié.\\
 \hline
-\textbf{Postcondition} &  Le blocage est levÃ©. Lâ€™article de base de connaissances peut Ãªtre enrichi par fusion de lâ€™analyse IA et de la solution humaine validÃ©e. Lâ€™auteur de la solution est notifiÃ©. \\
+\textbf{Postcondition} &  Le blocage est levé. L’article de base de connaissances peut être enrichi par fusion de l’analyse IA et de la solution humaine validée. L’auteur de la solution est notifié. \\
 \hline
-\textbf{ScÃ©nario nominal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
-\item Le dÃ©veloppeur bloquÃ© consulte la solution proposÃ©e.
-\item Il clique sur Â« Valider la solution Â».
-\item Le systÃ¨me dÃ©sactive lâ€™indicateur de blocage.
-\item Le systÃ¨me fusionne lâ€™analyse automatique et la solution humaine validÃ©e (si applicable).
-\item Lâ€™article de base de connaissances est mis Ã  jour.
-\item Lâ€™auteur de la solution est notifiÃ© de la validation.
+\item Le développeur bloqué consulte la solution proposée.
+\item Il clique sur « Valider la solution ».
+\item Le système désactive l’indicateur de blocage.
+\item Le système fusionne l’analyse automatique et la solution humaine validée (si applicable).
+\item L’article de base de connaissances est mis à jour.
+\item L’auteur de la solution est notifié de la validation.
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{ScÃ©nario alternatif} & Le dÃ©veloppeur bloquÃ© rejette la solution proposÃ©e : le blocage reste actif, aucune fusion nâ€™est effectuÃ©e, le cas dâ€™utilisation se termine sans rÃ©solution. \\
+\textbf{Scénario alternatif} & Le développeur bloqué rejette la solution proposée : le blocage reste actif, aucune fusion n’est effectuée, le cas d’utilisation se termine sans résolution. \\
 \end{longtable}
-\captionof{table}{Description textuelle du cas dâ€™utilisation Â« RÃ©soudre blocage Â»}
+\captionof{table}{Description textuelle du cas d’utilisation « Résoudre blocage »}
 \normalsize
 
 
-\subsection{Analyse de la fonctionnalitÃ© Â« GÃ©rer clÃ´ture tickets Â»}
+\subsection{Analyse de la fonctionnalité « Gérer clôture tickets »}
 
-Dans cette partie, nous allons prÃ©senter les cas d'utilisation relatifs Ã  la clÃ´ture des tickets afin de comprendre les principales fonctionnalitÃ©s du systÃ¨me, ce qui permet d'avoir une vue globale des interactions.
+Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la clôture des tickets afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
 
-\subsubsection{Raffinement du cas d'utilisation Â« GÃ©rer clÃ´ture tickets Â»}
-Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffinÃ© pour le cas de la gestion de la clÃ´ture des tickets :
+\subsubsection{Raffinement du cas d'utilisation « Gérer clôture tickets »}
+Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de la gestion de la clôture des tickets :
 
 \begin{figure}[H]
         \centering
         \includegraphics[width=0.85\textwidth,keepaspectratio]{Images/cloturer_ticket.png}
-        \caption{Raffinement du cas d'utilisation Â« GÃ©rer clÃ´ture tickets Â»}
+        \caption{Raffinement du cas d'utilisation « Gérer clôture tickets »}
         \label{fig:cloturer_ticket}
 \end{figure}
 
-\subsubsection{Description textuelle du cas dâ€™utilisation Â« Signaler problÃ¨me Â»}
-La figure ci-dessous prÃ©sente la description textuelle du cas dâ€™utilisation Â« Signaler problÃ¨me Â».
+\subsubsection{Description textuelle du cas d’utilisation « Signaler problème »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Signaler problème ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -609,46 +609,46 @@ La figure ci-dessous prÃ©sente la description textuelle du cas dâ€™utilisation Â
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Signaler problÃ¨me\\
+\textbf{Nom du cas d'utilisation} & Signaler problème\\
 \hline
 \textbf{Acteurs} & Client \\
 \hline
-\textbf{PrÃ©condition} & Le ticket est dans l'Ã©tat Â« RÃ©solu Â». Le client est authentifiÃ© et est le propriÃ©taire du ticket. \\
+\textbf{Précondition} & Le ticket est dans l'état « Résolu ». Le client est authentifié et est le propriétaire du ticket. \\
 \hline
-\textbf{Postcondition} & Le ticket reste au statut Â« RÃ©solu Â». Sa date de rÃ©solution est rÃ©initialisÃ©e, suspendant la clÃ´ture automatique. Un commentaire d'alerte et une entrÃ©e \texttt{RESOLUTION\_REJECTED} sont inscrits dans l'historique du ticket. \\
+\textbf{Postcondition} & Le ticket reste au statut « Résolu ». Sa date de résolution est réinitialisée, suspendant la clôture automatique. Un commentaire d'alerte et une entrée \texttt{RESOLUTION\_REJECTED} sont inscrits dans l'historique du ticket. \\
 \hline
-\textbf{ScÃ©nario nominal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
-\item Le client accÃ¨de Ã  son ticket rÃ©solu et actionne la fonctionnalitÃ© Â« Signaler un problÃ¨me non rÃ©solu Â».
-\item Il rÃ©dige la description de la persistance de l'anomalie dans le formulaire et valide la soumission.
-\item Le systÃ¨me vÃ©rifie l'intÃ©gritÃ© de la requÃªte (statut valide du ticket, appartenance au client authentifiÃ©).
-\item Le systÃ¨me enregistre l'action, gÃ©nÃ¨re un commentaire interne automatique et purge la date de rÃ©solution pour suspendre la clÃ´ture automatique.
-\item Le systÃ¨me notifie le chef de projet par email et alerte in-app, et notifie l'Ã©quipe de dÃ©veloppeurs assignÃ©e.
+\item Le client accède à son ticket résolu et actionne la fonctionnalité « Signaler un problème non résolu ».
+\item Il rédige la description de la persistance de l'anomalie dans le formulaire et valide la soumission.
+\item Le système vérifie l'intégrité de la requête (statut valide du ticket, appartenance au client authentifié).
+\item Le système enregistre l'action, génère un commentaire interne automatique et purge la date de résolution pour suspendre la clôture automatique.
+\item Le système notifie le chef de projet par email et alerte in-app, et notifie l'équipe de développeurs assignée.
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{ScÃ©nario alternatif} &
+\textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le systÃ¨me dÃ©tecte que la description est vide ou infÃ©rieure Ã  10 caractÃ¨res. La soumission est bloquÃ©e cÃ´tÃ© interface, un message d'erreur s'affiche sur le formulaire, et le client corrige sa saisie. Le scÃ©nario reprend Ã  l'Ã©tape 2.
+\item Le système détecte que la description est vide ou inférieure à 10 caractères. La soumission est bloquée côté interface, un message d'erreur s'affiche sur le formulaire, et le client corrige sa saisie. Le scénario reprend à l'étape 2.
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{ScÃ©nario d'exception} &
+\textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le systÃ¨me constate que le ticket n'est plus au statut Â« RÃ©solu Â» (ex : il a Ã©tÃ© fermÃ© dÃ©finitivement en parallÃ¨le). Le signalement est rejetÃ© par le serveur avant toute Ã©criture et le processus s'interrompt avec une erreur retournÃ©e au client.
+\item Le système constate que le ticket n'est plus au statut « Résolu » (ex : il a été fermé définitivement en parallèle). Le signalement est rejeté par le serveur avant toute écriture et le processus s'interrompt avec une erreur retournée au client.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas dâ€™utilisation Â« Signaler problÃ¨me Â»}
+\captionof{table}{Description textuelle du cas d’utilisation « Signaler problème »}
 \normalsize
 
 
-\subsubsection{Description textuelle du cas dâ€™utilisation Â« Demander extension dÃ©lai Â»}
-La figure ci-dessous prÃ©sente la description textuelle du cas dâ€™utilisation Â« Demander extension dÃ©lai Â».
+\subsubsection{Description textuelle du cas d’utilisation « Demander extension délai »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Demander extension délai ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -661,61 +661,61 @@ La figure ci-dessous prÃ©sente la description textuelle du cas dâ€™utilisation Â
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Demander extension dÃ©lai \\
+\textbf{Nom du cas d'utilisation} & Demander extension délai \\
 \hline
 \textbf{Acteurs} & Client \\
 \hline
-\textbf{PrÃ©condition} & Le ticket est dans l'Ã©tat Â« RÃ©solu Â». Le client est authentifiÃ© et propriÃ©taire du ticket. Aucune extension n'a dÃ©jÃ  Ã©tÃ© demandÃ©e pour ce ticket. \\
+\textbf{Précondition} & Le ticket est dans l'état « Résolu ». Le client est authentifié et propriétaire du ticket. Aucune extension n'a déjà été demandée pour ce ticket. \\
 \hline
-\textbf{Postcondition} & L'extension est automatiquement accordÃ©e. Un commentaire est insÃ©rÃ© dans le fil de discussion. \\
+\textbf{Postcondition} & L'extension est automatiquement accordée. Un commentaire est inséré dans le fil de discussion. \\
 \hline
-\textbf{ScÃ©nario nominal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
-\item Le client accÃ¨de Ã  la page de dÃ©tail du ticket rÃ©solu et actionne le bouton Â« Demander une extension Â».
-\item Le systÃ¨me affiche un formulaire de saisie du motif de la demande.
+\item Le client accède à la page de détail du ticket résolu et actionne le bouton « Demander une extension ».
+\item Le système affiche un formulaire de saisie du motif de la demande.
 \item Le client saisit son motif et valide la soumission.
-\item Le systÃ¨me vÃ©rifie l'intÃ©gritÃ© de la requÃªte (statut du ticket, propriÃ©tÃ© du client, unicitÃ© de la demande, longueur minimale du motif).
-\item Le systÃ¨me enregistre la demande, accorde automatiquement l'extension de 7 jours, insÃ¨re un commentaire et crÃ©e une trace dans l'historique.
-\item Le systÃ¨me notifie les dÃ©veloppeurs assignÃ©s de l'extension accordÃ©e.
+\item Le système vérifie l'intégrité de la requête (statut du ticket, propriété du client, unicité de la demande, longueur minimale du motif).
+\item Le système enregistre la demande, accorde automatiquement l'extension de 7 jours, insère un commentaire et crée une trace dans l'historique.
+\item Le système notifie les développeurs assignés de l'extension accordée.
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{ScÃ©nario alternatif} &
+\textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le systÃ¨me dÃ©tecte que le motif saisi est vide ou infÃ©rieur au minimum requis (10 caractÃ¨res). La soumission est bloquÃ©e, un message d'erreur s'affiche, et le client corrige sa saisie. Le scÃ©nario reprend Ã  l'Ã©tape 3.
+\item Le système détecte que le motif saisi est vide ou inférieur au minimum requis (10 caractères). La soumission est bloquée, un message d'erreur s'affiche, et le client corrige sa saisie. Le scénario reprend à l'étape 3.
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{ScÃ©nario d'exception} &
+\textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le systÃ¨me constate que le ticket n'est plus au statut Â« RÃ©solu Â». La demande est rejetÃ©e par le serveur avant toute Ã©criture et le processus s'interrompt avec une erreur retournÃ©e au client.
+\item Le système constate que le ticket n'est plus au statut « Résolu ». La demande est rejetée par le serveur avant toute écriture et le processus s'interrompt avec une erreur retournée au client.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas dâ€™utilisation Â« Demander extension dÃ©lai Â»}
+\captionof{table}{Description textuelle du cas d’utilisation « Demander extension délai »}
 \normalsize
 
-\subsection{Analyse de la fonctionnalitÃ© Â« Assigner tickets Â»}
+\subsection{Analyse de la fonctionnalité « Assigner tickets »}
 
-Dans cette partie, nous allons prÃ©senter les cas d'utilisation relatifs Ã  lâ€™assignation des tickets afin de comprendre les principales fonctionnalitÃ©s du systÃ¨me, ce qui permet d'avoir une vue globale des interactions.
+Dans cette partie, nous allons présenter les cas d'utilisation relatifs à l’assignation des tickets afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
 
-\subsubsection{Raffinement du cas d'utilisation Â« Assigner tickets Â»}
-Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffinÃ© pour le cas de la gestion de l'assignation des tickets :
+\subsubsection{Raffinement du cas d'utilisation « Assigner tickets »}
+Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de la gestion de l'assignation des tickets :
 
 \begin{figure}[H]
         \centering
         \includegraphics[width=0.85\textwidth,keepaspectratio]{Images/assigner_ticket.png}
-        \caption{Raffinement du cas d'utilisation Â« Assigner tickets Â»}
+        \caption{Raffinement du cas d'utilisation « Assigner tickets »}
         \label{fig:assigner_ticket}
 \end{figure}
 
 
-\subsubsection{Description textuelle du cas dâ€™utilisation Â« Assigner un ticket Â»}
-Le tableau ci-dessous prÃ©sente la description textuelle du cas dâ€™utilisation Â« Assigner un ticket Â».
+\subsubsection{Description textuelle du cas d’utilisation « Assigner un ticket »}
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Assigner un ticket ».
 
 \footnotesize
 \renewcommand{\arraystretch}{1.1}
@@ -725,111 +725,111 @@ Le tableau ci-dessous prÃ©sente la description textuelle du cas dâ€™utilisation 
 \hline
 \textbf{Acteurs} & Chef de projet, Administrateur \\
 \hline
-\textbf{PrÃ©condition} & L'utilisateur est authentifiÃ© et un ticket Ã©ligible est sÃ©lectionnÃ©. \\
+\textbf{Précondition} & L'utilisateur est authentifié et un ticket éligible est sélectionné. \\
 \hline
-\textbf{Postcondition} & L'assignation est enregistrÃ©e, le planning de charge du dÃ©veloppeur est mis Ã  jour et ce dernier est notifiÃ© (in-app, e-mail, Slack). \\
+\textbf{Postcondition} & L'assignation est enregistrée, le planning de charge du développeur est mis à jour et ce dernier est notifié (in-app, e-mail, Slack). \\
 \hline
-\textbf{ScÃ©nario nominal} & 
+\textbf{Scénario nominal} & 
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=2pt, itemsep=2pt]
   \item L'utilisateur clique sur le bouton d'assignation directe depuis la vue d'un ticket.
-  \item Le systÃ¨me extrait et affiche la liste de tous les dÃ©veloppeurs actifs, qu'ils soient liÃ©s ou non au projet.
-  \item Pour chaque dÃ©veloppeur, le systÃ¨me gÃ©nÃ¨re un indicateur visuel de sa charge de travail planifiÃ©e sur les sept (7) prochains jours.
-  \item L'utilisateur sÃ©lectionne le dÃ©veloppeur adÃ©quat.
-  \item Le systÃ¨me vÃ©rifie que le dÃ©veloppeur sÃ©lectionnÃ© n'a pas dÃ©passÃ© sa limite maximale de tickets actifs.
-  \item Le systÃ¨me enregistre formellement l'assignation, consigne l'action dans l'historique et notifie le dÃ©veloppeur.
+  \item Le système extrait et affiche la liste de tous les développeurs actifs, qu'ils soient liés ou non au projet.
+  \item Pour chaque développeur, le système génère un indicateur visuel de sa charge de travail planifiée sur les sept (7) prochains jours.
+  \item L'utilisateur sélectionne le développeur adéquat.
+  \item Le système vérifie que le développeur sélectionné n'a pas dépassé sa limite maximale de tickets actifs.
+  \item Le système enregistre formellement l'assignation, consigne l'action dans l'historique et notifie le développeur.
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{ScÃ©narios alternatifs} & 
+\textbf{Scénarios alternatifs} & 
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=2pt,itemsep=3pt]
-  \item \textbf{DÃ©rogation pour urgence ou dÃ©passement SLA (Ã‰tape 5) :} Si le ticket prÃ©sente un SLA dÃ©passÃ© ou une criticitÃ© majeure (ex. attente supÃ©rieure Ã  2h), le systÃ¨me autorise exceptionnellement le dÃ©passement du quota de charge et poursuit Ã  l'Ã©tape 6.
-  \item \textbf{Blocage pour surcharge nominale (Ã‰tape 5) :} Si la limite de tickets actifs du dÃ©veloppeur est atteinte hors contexte d'urgence, le systÃ¨me interrompt l'affectation et invite l'utilisateur Ã  sÃ©lectionner un autre agent (retour Ã  l'Ã©tape 4).
+  \item \textbf{Dérogation pour urgence ou dépassement SLA (Étape 5) :} Si le ticket présente un SLA dépassé ou une criticité majeure (ex. attente supérieure à 2h), le système autorise exceptionnellement le dépassement du quota de charge et poursuit à l'étape 6.
+  \item \textbf{Blocage pour surcharge nominale (Étape 5) :} Si la limite de tickets actifs du développeur est atteinte hors contexte d'urgence, le système interrompt l'affectation et invite l'utilisateur à sélectionner un autre agent (retour à l'étape 4).
 \end{enumerate}
 \end{minipage} \\
 \hline
-\textbf{ScÃ©nario d'exception} & 
+\textbf{Scénario d'exception} & 
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=2pt,itemsep=2pt]
-  \item Assignation concurrente ou doublon (Ã‰tape 6) : Si le systÃ¨me dÃ©tecte qu'un autre gestionnaire a assignÃ© ce mÃªme profil simultanÃ©ment, l'opÃ©ration est annulÃ©e, un message d'erreur s'affiche et le flux est abandonnÃ©.
+  \item Assignation concurrente ou doublon (Étape 6) : Si le système détecte qu'un autre gestionnaire a assigné ce même profil simultanément, l'opération est annulée, un message d'erreur s'affiche et le flux est abandonné.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas dâ€™utilisation Â« Assigner un ticket Â»}
+\captionof{table}{Description textuelle du cas d’utilisation « Assigner un ticket »}
 \normalsize
 
 
-% â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+% -----------------------------------------------------------------------------
 % SECTION 3 : CONCEPTION
-% â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+% -----------------------------------------------------------------------------
 \section{Conception}
-AprÃ¨s l'analyse des besoins et la dÃ©finition des cas d'utilisation, 
-nous avons procÃ©dÃ© Ã  la conception de la solution en identifiant 
-les composants logiciels, les flux mÃ©tier, les entitÃ©s principales 
+Après l'analyse des besoins et la définition des cas d'utilisation, 
+nous avons procédé à la conception de la solution en identifiant 
+les composants logiciels, les flux métier, les entités principales 
 et les interactions entre les modules.
 
-\subsection{Diagramme d'activitÃ© du flux de travail d'un ticket}
-La figure suivante prÃ©sente le diagramme d'activitÃ© du workflow 
-de gestion des tickets, en mettant l'accent sur la fonctionnalitÃ© 
-Â« Modifier chronomÃ¨tre Â».
+\subsection{Diagramme d'activité du flux de travail d'un ticket}
+La figure suivante présente le diagramme d'activité du workflow 
+de gestion des tickets, en mettant l'accent sur la fonctionnalité 
+« Modifier chronomètre ».
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.90\textwidth,height=0.65\textheight,
     keepaspectratio]{Images/Diagramme_activite_gerer_cronometre.drawio.png}
-    \caption{Diagramme d'activitÃ©s Â« Modifier chronomÃ¨tre Â»}
+    \caption{Diagramme d'activités « Modifier chronomètre »}
     \label{fig:activite_ticket}
 \end{figure}
 
-\subsection{Diagramme de sÃ©quences}
-Dans cette section, nous allons modÃ©liser les intÃ©ractions entre l'utilisateur et le systÃ¨me Ã  l'aide de diagrammes de sÃ©quences pour mieux comprendre la logique de la solution.
-\subsubsection{Diagramme de sÃ©quences du cas d'utilisation Â« Soumettre demande Â»}
-La figure suivante prÃ©sente le diagramme de sÃ©quences du cas dâ€™utilisation Â« Soumettre demande Â».
+\subsection{Diagramme de séquences}
+Dans cette section, nous allons modéliser les intéractions entre l'utilisateur et le système à l'aide de diagrammes de séquences pour mieux comprendre la logique de la solution.
+\subsubsection{Diagramme de séquences du cas d'utilisation « Soumettre demande »}
+La figure suivante présente le diagramme de séquences du cas d’utilisation « Soumettre demande ».
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.95\textwidth,keepaspectratio]{Images/Soumission demande.vpd.png}
-    \caption{Diagramme de sÃ©quences du cas d'utilisation Â« Soumettre demande Â»}
+    \caption{Diagramme de séquences du cas d'utilisation « Soumettre demande »}
     \label{fig:seq_soumettre_demande}
 \end{figure}
 
-\subsubsection{Diagramme de sÃ©quences du cas d'utilisation Â« Valider demande Â»}
-La figure suivante prÃ©sente le diagramme de sÃ©quences du cas dâ€™utilisation Â« Valider demande Â».
+\subsubsection{Diagramme de séquences du cas d'utilisation « Valider demande »}
+La figure suivante présente le diagramme de séquences du cas d’utilisation « Valider demande ».
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.90\textwidth,keepaspectratio]{Images/Diagramme sequence valider Demande.vpd.png}
-    \caption{Diagramme de sÃ©quences du cas d'utilisation Â« Valider demande Â»}
+    \caption{Diagramme de séquences du cas d'utilisation « Valider demande »}
     \label{fig:seq_valider_demande}
 \end{figure}
 
-%\subsection{Diagramme de sÃ©quences du cas d'utilisation Â« Signaler blocage Â»}
-%a figure suivante prÃ©sente le diagramme de sÃ©quences du cas dâ€™utilisation Â« Signaler blocage Â».
+%\subsection{Diagramme de séquences du cas d'utilisation « Signaler blocage »}
+%a figure suivante présente le diagramme de séquences du cas d’utilisation « Signaler blocage ».
 
 %\begin{figure}[htbp]
  %   \centering
     %\includegraphics[width=0.90\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_seq_signaler_bloquer.png}
-  %  \caption{Diagramme de sÃ©quences du cas d'utilisation Â« Signaler blocage Â»}
+  %  \caption{Diagramme de séquences du cas d'utilisation « Signaler blocage »}
    % \label{fig:seq_signaler_bloquer}
 %\end{figure}
 
 
-\subsection{Diagramme de classes du troisiÃ¨me sprint}
-Le diagramme de classes met en Ã©vidence les entitÃ©s mÃ©tiers centrales du sprint, notamment \textit{DemandeClient}, \textit{Ticket}, \textit{AssignmentTicket}, \textit{SessionTravail}, \textit{TicketSolution}, \textit{ConfigurationSLA} et les entitÃ©s liÃ©es Ã  lâ€™intelligence artificielle et Ã  la base de connaissances. Il illustre Ã©galement les relations de dÃ©pendance entre les contrats, les projets, les tickets, les utilisateurs et les notifications.
+\subsection{Diagramme de classes du troisième sprint}
+Le diagramme de classes met en évidence les entités métiers centrales du sprint, notamment \textit{DemandeClient}, \textit{Ticket}, \textit{AssignmentTicket}, \textit{SessionTravail}, \textit{TicketSolution}, \textit{ConfigurationSLA} et les entités liées à l’intelligence artificielle et à la base de connaissances. Il illustre également les relations de dépendance entre les contrats, les projets, les tickets, les utilisateurs et les notifications.
 
-La figure suivante prÃ©sente le diagramme de classes du troisiÃ¨me sprint.
+La figure suivante présente le diagramme de classes du troisième sprint.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.98\textwidth,keepaspectratio]{Images/Diagramme de classe sprint3.png}
-    \caption{Diagramme de classes du troisiÃ¨me sprint}
+    \caption{Diagramme de classes du troisième sprint}
     \label{fig:diag_classe_sprint3}
 \end{figure}
 
-\section{SchÃ©ma relationnel}
-Le schÃ©ma relationnel du sprint 3 sâ€™appuie sur les entitÃ©s suivantes :
+\section{Schéma relationnel}
+Le schéma relationnel du sprint 3 s’appuie sur les entités suivantes :
 \textbf{DemandeClient} (\underline{id}, titreDemande, typeDemande, statutDemande, typeSLA, descriptionDemande, dateSoumission, dateCreation, dateMiseAJour, dateValidation, motifRejet, motifRequalification, echeanceInitiale, \textbf{\#idProjet})
 \newline
 \textbf{DemandeClassificationIA} (\underline{id}, categorieAuto, typeAuto, prioriteAuto, scoreConfiance, entitesExtraites, urgenceDetectee, estUtiliseeValidation, estCorrigeeParAgent, feedbackAgent, dateClassification, modeleUtilise, \textbf{\#idDemande})
@@ -847,15 +847,15 @@ Le schÃ©ma relationnel du sprint 3 sâ€™appuie sur les entitÃ©s suivantes :
 \textbf{SessionTravail} (\underline{id}, debut, fin, dureeSecondes, note, isManual, \textbf{\#idAssignment}) 
 
 
-% â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-% SECTION 4 : RÃ‰ALISATION
-% â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-\section{RÃ©alisation}
+% -----------------------------------------------------------------------------
+% SECTION 4 : RÉALISATION
+% -----------------------------------------------------------------------------
+\section{Réalisation}
 \label{sec:realisation_sprint3}
-Cette section prÃ©sente les principales interfaces utilisateur dÃ©veloppÃ©es durant le troisiÃ¨me sprint. Chaque interface a Ã©tÃ© conÃ§ue pour offrir une expÃ©rience claire aux diffÃ©rents acteurs de la plateforme.
+Cette section présente les principales interfaces utilisateur développées durant le troisième sprint. Chaque interface a été conçue pour offrir une expérience claire aux différents acteurs de la plateforme.
 
 \subsection{Interface de gestion des demandes}
-Nous avons mis en place cette interface pour que le client puisse soumettre et suivre ses demandes. Pour le chef de projet, ces demandes apparaissent dans un tableau Kanban selon leur Ã©tat (en attente, infos requises, convertie, rejetÃ©e).
+Nous avons mis en place cette interface pour que le client puisse soumettre et suivre ses demandes. Pour le chef de projet, ces demandes apparaissent dans un tableau Kanban selon leur état (en attente, infos requises, convertie, rejetée).
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,keepaspectratio]{Images/interface Liste demandes .png}
@@ -864,7 +864,7 @@ Nous avons mis en place cette interface pour que le client puisse soumettre et s
 \end{figure}
 
 \subsection{Interface de validation des demandes}
-Nous avons mis en place cette interface pour que le chef de projet puisse traiter les demandes reÃ§ues pour les valider et les convertir en tickets. Lors de cette Ã©tape, l'intelligence artificielle affiche des suggestions pour la catÃ©gorie, le type et la prioritÃ© de la demande avec un score de confiance, aidant ainsi le chef de projet Ã  valider plus rapidement.
+Nous avons mis en place cette interface pour que le chef de projet puisse traiter les demandes reçues pour les valider et les convertir en tickets. Lors de cette étape, l'intelligence artificielle affiche des suggestions pour la catégorie, le type et la priorité de la demande avec un score de confiance, aidant ainsi le chef de projet à valider plus rapidement.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,keepaspectratio]{Images/Interface Valider_Demande.png}
@@ -872,7 +872,7 @@ Nous avons mis en place cette interface pour que le chef de projet puisse traite
 \label{fig:Interface Valider_Demande}
 \end{figure}
 \subsection{Interface de gestion des tickets}
-Nous avons mis en place cette interface pour regrouper tous les tickets sous forme de tableau pour faciliter leur suivi. Les dÃ©veloppeurs peuvent y voir leurs tickets, les filtrer par prioritÃ© et suivre les indicateurs visuels de dÃ©passement de dÃ©lai (SLA). La mise en Å“uvre du changement d'Ã©tat est ensuite gÃ©rÃ©e dans l'interface par des actions simples.
+Nous avons mis en place cette interface pour regrouper tous les tickets sous forme de tableau pour faciliter leur suivi. Les développeurs peuvent y voir leurs tickets, les filtrer par priorité et suivre les indicateurs visuels de dépassement de délai (SLA). La mise en œuvre du changement d'état est ensuite gérée dans l'interface par des actions simples.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,keepaspectratio]{Images/Interface liste ticket.png}
@@ -881,7 +881,7 @@ Nous avons mis en place cette interface pour regrouper tous les tickets sous for
 \end{figure}
 
 \subsection{Interface de gestion du temps}
-Nous avons mis en place cette interface de vue dÃ©taillÃ©e d'un ticket, le dÃ©veloppeur peut dÃ©marrer un chronomÃ¨tre pour enregistrer son temps de travail ou ajouter des sessions de maniÃ¨re manuelle. Elle affiche Ã©galement l'historique complet et les discussions de l'Ã©quipe pour garder une trace de toutes les actions sur le ticket.
+Nous avons mis en place cette interface de vue détaillée d'un ticket, le développeur peut démarrer un chronomètre pour enregistrer son temps de travail ou ajouter des sessions de manière manuelle. Elle affiche également l'historique complet et les discussions de l'équipe pour garder une trace de toutes les actions sur le ticket.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,keepaspectratio]{Images/Interface DetailTicket.png}
@@ -889,198 +889,198 @@ Nous avons mis en place cette interface de vue dÃ©taillÃ©e d'un ticket, le dÃ©ve
 \label{fig:Interface de gestion du temps}
 \end{figure}
 
-% â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+% -----------------------------------------------------------------------------
 % SECTION 5 : TESTS
-% â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+% -----------------------------------------------------------------------------
 \section{Tests et Validation}
 \label{sec:tests_sprint3}
 
-La phase de test a permis de vÃ©rifier la conformitÃ© du sprint 3 aux exigences mÃ©tier, fonctionnelles et techniques. Elle a Ã©galement permis de valider les mÃ©canismes de validation des demandes, les transitions d'Ã©tat des tickets, le calcul des SLA ainsi que l'intÃ©gration de l'intelligence artificielle.
+La phase de test a permis de vérifier la conformité du sprint 3 aux exigences métier, fonctionnelles et techniques. Elle a également permis de valider les mécanismes de validation des demandes, les transitions d'état des tickets, le calcul des SLA ainsi que l'intégration de l'intelligence artificielle.
 
-Nous avons adoptÃ© la mÃªme stratÃ©gie de tests structurÃ©e que lors des sprints prÃ©cÃ©dents, reposant sur plusieurs niveaux complÃ©mentaires : tests unitaires, tests d'intÃ©gration, tests end-to-end, tests de performance et tests de sÃ©curitÃ©.
+Nous avons adopté la même stratégie de tests structurée que lors des sprints précédents, reposant sur plusieurs niveaux complémentaires : tests unitaires, tests d'intégration, tests end-to-end, tests de performance et tests de sécurité.
 
 \subsection{Tests unitaires}
-Les tests unitaires du troisiÃ¨me sprint ont Ã©tÃ© organisÃ©s par composant fonctionnel pour assurer une meilleure traÃ§abilitÃ©. ExÃ©cutÃ©s en environnement isolÃ© avec des mocks pour les dÃ©pendances externes, ils valident la logique mÃ©tier critique du sprint : classification IA, cache MD5, mÃ©canismes de reprise, fallback, gestion des tickets, limitation de dÃ©bit, calcul des SLA et contrÃ´le des transitions autorisÃ©es.
+Les tests unitaires du troisième sprint ont été organisés par composant fonctionnel pour assurer une meilleure traçabilité. Exécutés en environnement isolé avec des mocks pour les dépendances externes, ils valident la logique métier critique du sprint : classification IA, cache MD5, mécanismes de reprise, fallback, gestion des tickets, limitation de débit, calcul des SLA et contrôle des transitions autorisées.
 
-\noindent\textbf{SynthÃ¨se :} La synthÃ¨se suivante prÃ©sente, par composant, les objectifs testÃ©s, le statut gÃ©nÃ©ral et les observations clÃ©s (extraits des runs locaux).
+\noindent\textbf{Synthèse :} La synthèse suivante présente, par composant, les objectifs testés, le statut général et les observations clés (extraits des runs locaux).
 
 \begin{itemize}[leftmargin=0pt]
 
-\item[$\square$] \textbf{LLM (Classification IA) â€” Retry / Backoff}
-\textbf{Objectifs testÃ©s :} ChaÃ®ne complÃ¨te LLM â€” prÃ©traitement, appel externe, post-traitement, fallback sur faible confiance ; politique de retry exponentiel face aux erreurs transitoires de l'API LLM.
+\item[$\square$] \textbf{LLM (Classification IA) — Retry / Backoff}
+\textbf{Objectifs testés :} Chaîne complète LLM — prétraitement, appel externe, post-traitement, fallback sur faible confiance ; politique de retry exponentiel face aux erreurs transitoires de l'API LLM.
 \newline\textbf{Statut :} Couvert.
-\newline\textbf{Observations clÃ©s :} Tests couvrant succÃ¨s, Ã©checs rÃ©seau et faible confiance ; rÃ©essais validÃ©s avec attente simulÃ©e.
+\newline\textbf{Observations clés :} Tests couvrant succès, échecs réseau et faible confiance ; réessais validés avec attente simulée.
 \begin{figure}[H]
   \centering
   \includegraphics[width=14cm,keepaspectratio]{Images/llm_retry_backoff.png}
 \end{figure}
 
 \item[$\square$] \textbf{Cache MD5}
-\textbf{Objectifs testÃ©s :} Hashing de texte, mise en cache, TTL/expiration.
+\textbf{Objectifs testés :} Hashing de texte, mise en cache, TTL/expiration.
 \newline\textbf{Statut :} Couvert.
-\newline\textbf{Observations clÃ©s :} Cache hit Ã©vite appel externe ; expiration testÃ©e via mock temps.
+\newline\textbf{Observations clés :} Cache hit évite appel externe ; expiration testée via mock temps.
 \begin{figure}[H]
   \centering
   \includegraphics[width=14cm,keepaspectratio]{Images/cache_md5.png}
 \end{figure}
 
-\item[$\square$] \textbf{CrÃ©ation / Assignation / Statuts (Workflow tickets)}
-\textbf{Objectifs testÃ©s :} Flux mÃ©tier complet et effets secondaires (crÃ©ation, assignation, transitions d'Ã©tat).
+\item[$\square$] \textbf{Création / Assignation / Statuts (Workflow tickets)}
+\textbf{Objectifs testés :} Flux métier complet et effets secondaires (création, assignation, transitions d'état).
 \newline\textbf{Statut :} Couvert.
-\newline\textbf{Observations clÃ©s :} Validations mÃ©tier et contraintes de transition testÃ©es.
+\newline\textbf{Observations clés :} Validations métier et contraintes de transition testées.
 \begin{figure}[H]
   \centering
   \includegraphics[width=14cm,keepaspectratio]{Images/ticket_workflow.png}
 \end{figure}
 
 \item[$\square$] \textbf{Rate limiting}
-\textbf{Objectifs testÃ©s :} Quotas par utilisateur et global, remise Ã  zÃ©ro planifiÃ©e.
+\textbf{Objectifs testés :} Quotas par utilisateur et global, remise à zéro planifiée.
 \newline\textbf{Statut :} Couvert.
-\newline\textbf{Observations clÃ©s :} Comptage et refus au seuil vÃ©rifiÃ©s ; timer reset adaptÃ© aux tests.
+\newline\textbf{Observations clés :} Comptage et refus au seuil vérifiés ; timer reset adapté aux tests.
 \begin{figure}[H]
   \centering
   \includegraphics[width=14cm,keepaspectratio]{Images/rate_limiting.png}
 \end{figure}
 
 \item[$\square$] \textbf{Calcul SLA}
-\textbf{Objectifs testÃ©s :} Minutes ouvrÃ©es, ajout de minutes ouvrÃ©es, jours fÃ©riÃ©s et traversÃ©e de plages non ouvrÃ©es.
+\textbf{Objectifs testés :} Minutes ouvrées, ajout de minutes ouvrées, jours fériés et traversée de plages non ouvrées.
 \newline\textbf{Statut :} Couvert.
-\newline\textbf{Observations clÃ©s :} ScÃ©narios 24/7 vs ouvrÃ©s et traversÃ©e jours fÃ©riÃ©s testÃ©s.
+\newline\textbf{Observations clés :} Scénarios 24/7 vs ouvrés et traversée jours fériés testés.
 \begin{figure}[H]
   \centering
   \includegraphics[width=14cm,keepaspectratio]{Images/sla_deadline.png}
 \end{figure}
 \end{itemize}
 
-\subsection{Tests d'intÃ©gration}
-Les tests d'intÃ©gration ont Ã©tÃ© rÃ©alisÃ©s sur les endpoints principaux du sprint.
+\subsection{Tests d'intégration}
+Les tests d'intégration ont été réalisés sur les endpoints principaux du sprint.
 
 \begin{itemize}[leftmargin=0pt]
 
 \item[$\square$] \textbf{Test du module demandes (Validation des demandes)}
 \newline \textit{Endpoints : \textbf{PATCH /api/demandes/:id/valider}, \textbf{PATCH /api/demandes/:id/rejeter}}
 \noindent Cette suite valide le comportement complet des endpoints de validation et de rejet des demandes par le chef de projet.
-\newline Les cas suivants ont Ã©tÃ© couverts :
+\newline Les cas suivants ont été couverts :
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item Une demande valide est approuvÃ©e par le chef de projet : l'endpoint retourne le code \textbf{200 OK} et le statut de la demande passe Ã  \texttt{CONVERTIE} avec crÃ©ation automatique d'un ticket.
+  \item Une demande valide est approuvée par le chef de projet : l'endpoint retourne le code \textbf{200 OK} et le statut de la demande passe à \texttt{CONVERTIE} avec création automatique d'un ticket.
   \begin{figure}[H]
   \centering
   \includegraphics[width=14cm,keepaspectratio]{Images/validerDemandeTest.png}
-  \caption{Test d'intÃ©gration - Validation d'une demande}
+  \caption{Test d'intégration - Validation d'une demande}
   \end{figure}
   
-  \item Une demande non conforme est rejetÃ©e avec un motif : l'endpoint retourne le code \textbf{200 OK} et la demande est marquÃ©e comme \texttt{REJETEE}.
+  \item Une demande non conforme est rejetée avec un motif : l'endpoint retourne le code \textbf{200 OK} et la demande est marquée comme \texttt{REJETEE}.
   \begin{figure}[H]
   \centering
   \includegraphics[width=14cm,keepaspectratio]{Images/rejeterDemandeTest.png}
-  \caption{Test d'intÃ©gration - Rejet d'une demande}
+  \caption{Test d'intégration - Rejet d'une demande}
   \end{figure}
   
-  \item Une demande de prioritÃ© CRITIQUE nÃ©cessite un commentaire de justification obligatoire : l'endpoint retourne le code \textbf{400 Bad Request} si le motif est absent ou trop court.
+  \item Une demande de priorité CRITIQUE nécessite un commentaire de justification obligatoire : l'endpoint retourne le code \textbf{400 Bad Request} si le motif est absent ou trop court.
 \end{itemize}
 
 \item[$\square$] \textbf{Test du module IA (Classification IA)}
 \newline \textit{Endpoints : \textbf{GET /api/ai/demandes/:id/suggestions}, \textbf{POST /api/ai/demandes/:id/feedback}, \textbf{POST /api/ai/demandes/:id/reclassify}}
-\noindent Cette suite valide le comportement des endpoints de classification automatique via Groq Cloud, de rÃ©ception des feedbacks utilisateur et de reclassification.
-\newline Les cas suivants ont Ã©tÃ© couverts :
+\noindent Cette suite valide le comportement des endpoints de classification automatique via Groq Cloud, de réception des feedbacks utilisateur et de reclassification.
+\newline Les cas suivants ont été couverts :
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item Une demande est soumise Ã  l'IA pour classification automatique : l'endpoint retourne la catÃ©gorie prÃ©dite (\texttt{typeDemande}) et la prioritÃ© avec un niveau de confiance.
+  \item Une demande est soumise à l'IA pour classification automatique : l'endpoint retourne la catégorie prédite (\texttt{typeDemande}) et la priorité avec un niveau de confiance.
   \begin{figure}[H]
   \centering
   \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/classificationIATest.png}
-  \caption{Test d'intÃ©gration - Classification IA}
+  \caption{Test d'intégration - Classification IA}
   \end{figure}
   
-  \item Un utilisateur (chef de projet) soumet un feedback sur une classification : l'endpoint retourne le code \textbf{200 OK} et le feedback est enregistrÃ© dans l'audit trail.
+  \item Un utilisateur (chef de projet) soumet un feedback sur une classification : l'endpoint retourne le code \textbf{200 OK} et le feedback est enregistré dans l'audit trail.
   \begin{figure}[H]
   \centering
   \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/feedbackTest.png}
-  \caption{Test d'intÃ©gration - Envoi de feedback}
+  \caption{Test d'intégration - Envoi de feedback}
   \end{figure}
   
-  \item Une reclassification est dÃ©clenchÃ©e aprÃ¨s feedback ou manuellement : l'endpoint supprime l'ancienne classification et en gÃ©nÃ¨re une nouvelle via l'IA.
+  \item Une reclassification est déclenchée après feedback ou manuellement : l'endpoint supprime l'ancienne classification et en génère une nouvelle via l'IA.
   \begin{figure}[H]
   \centering
   \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/reclassificationTest.png}
-  \caption{Test d'intÃ©gration - Reclassification}
+  \caption{Test d'intégration - Reclassification}
   \end{figure}
   
-  \item Le cache IA et le rate limiting fonctionnent correctement : les requÃªtes identiques sont servies depuis le cache et les quotas journaliers sont respectÃ©s.
+  \item Le cache IA et le rate limiting fonctionnent correctement : les requêtes identiques sont servies depuis le cache et les quotas journaliers sont respectés.
 \end{itemize}
 
-\item[$\square$] \textbf{Test du module IA (ConnectivitÃ©, workflow complet et monitoring)}
+\item[$\square$] \textbf{Test du module IA (Connectivité, workflow complet et monitoring)}
 \newline \textit{Endpoints : \textbf{GET /api/ai-test/groq/health}, \textbf{GET /api/ai-test/workflow/full-test}, \textbf{GET /api/ai-test/classifications/list}}
-\noindent Cette suite valide la connexion Ã  Groq Cloud, lâ€™exÃ©cution du pipeline complet de classification IA, et la consultation des analyses persistÃ©es.
-\newline Les cas suivants ont Ã©tÃ© couverts :
+\noindent Cette suite valide la connexion à Groq Cloud, l’exécution du pipeline complet de classification IA, et la consultation des analyses persistées.
+\newline Les cas suivants ont été couverts :
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item La connectivitÃ© Ã  Groq Cloud est vÃ©rifiÃ©e : lâ€™endpoint \texttt{groq/health} retourne la liste des modÃ¨les disponibles (Llama, Qwen, etc.) avec leurs caractÃ©ristiques (fenÃªtre de contexte, tokens maximum).
+  \item La connectivité à Groq Cloud est vérifiée : l’endpoint \texttt{groq/health} retourne la liste des modèles disponibles (Llama, Qwen, etc.) avec leurs caractéristiques (fenêtre de contexte, tokens maximum).
   \begin{figure}[H]
   \centering
   \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/groqHealthTest.png}
-  \caption{Test dâ€™intÃ©gration - Connexion Groq Cloud}
+  \caption{Test d’intégration - Connexion Groq Cloud}
   \end{figure}
   
-  \item Le workflow complet IA est exÃ©cutÃ© : lâ€™endpoint \texttt{workflow/full-test} retourne un bilan dÃ©taillÃ© incluant la vÃ©rification de Groq Cloud, lâ€™accÃ¨s Ã  la base de donnÃ©es et la classification rÃ©elle dâ€™une demande.
+  \item Le workflow complet IA est exécuté : l’endpoint \texttt{workflow/full-test} retourne un bilan détaillé incluant la vérification de Groq Cloud, l’accès à la base de données et la classification réelle d’une demande.
   \begin{figure}[H]
   \centering
   \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/workflowFullTest.png}
-  \caption{Test dâ€™intÃ©gration - Workflow complet IA}
+  \caption{Test d’intégration - Workflow complet IA}
   \end{figure}
   
-  \item Les classifications existantes peuvent Ãªtre listÃ©es : lâ€™endpoint \texttt{classifications/list} retourne les 10 derniÃ¨res analyses IA.
+  \item Les classifications existantes peuvent être listées : l’endpoint \texttt{classifications/list} retourne les 10 dernières analyses IA.
   \begin{figure}[H]
   \centering
   \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/classificationsList.png}
-  \caption{Test dâ€™intÃ©gration - Liste des classifications IA}
+  \caption{Test d’intégration - Liste des classifications IA}
   \end{figure}
   \end{itemize}
 
 \subsubsection{Tests End-to-End}
 \label{sec:tests_e2e_demandesch5}
 
-Les tests End-to-End de crÃ©ation de demande client valident l'intÃ©gralitÃ©
+Les tests End-to-End de création de demande client valident l'intégralité
 du flux fonctionnel d'ajout d'une nouvelle demande au sein d'un navigateur
-rÃ©el instrumentÃ© par \textbf{Playwright}. Ces tests interagissent
+réel instrumenté par \textbf{Playwright}. Ces tests interagissent
 conjointement avec le frontend Next.js, le backend NestJS et la base de
-donnÃ©es PostgreSQL, couvrant ainsi l'ensemble du parcours utilisateur,
-depuis l'authentification prÃ©alable jusqu'Ã  la validation finale de la
+données PostgreSQL, couvrant ainsi l'ensemble du parcours utilisateur,
+depuis l'authentification préalable jusqu'à la validation finale de la
 demande.
 \newline
 
-\noindent\textbf{Bilan : les scÃ©narios critiques du sprint ont Ã©tÃ© exÃ©cutÃ©s avec succÃ¨s.}
+\noindent\textbf{Bilan : les scénarios critiques du sprint ont été exécutés avec succès.}
 \vspace{6pt}
 
 
 \begin{itemize}[leftmargin=0pt]
 
-\item[$\square$] \textbf{Test du module de crÃ©ation de demande client}
-\newline \textit{3 scÃ©narios : affichage du formulaire, crÃ©ation valide, annulation}
+\item[$\square$] \textbf{Test du module de création de demande client}
+\newline \textit{3 scénarios : affichage du formulaire, création valide, annulation}
 
-\noindent Cette suite de tests valide le flux complet de crÃ©ation de
-demande en simulant les actions rÃ©elles d'un utilisateur sur
-l'interface graphique. Les cas suivants ont Ã©tÃ© couverts :
+\noindent Cette suite de tests valide le flux complet de création de
+demande en simulant les actions réelles d'un utilisateur sur
+l'interface graphique. Les cas suivants ont été couverts :
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item L'utilisateur s'authentifie et accÃ¨de au formulaire de crÃ©ation : toutes les sections obligatoires (projet, type, prioritÃ©, titre, description) sont affichÃ©es.
+  \item L'utilisateur s'authentifie et accède au formulaire de création : toutes les sections obligatoires (projet, type, priorité, titre, description) sont affichées.
   
-  \item Un modal d'alerte est automatiquement fermÃ© pour ne pas perturber le test.
+  \item Un modal d'alerte est automatiquement fermé pour ne pas perturber le test.
   
-  \item L'utilisateur choisit un projet dans une liste dÃ©roulante : la sÃ©lection est prise en compte.
+  \item L'utilisateur choisit un projet dans une liste déroulante : la sélection est prise en compte.
   
-  \item L'utilisateur sÃ©lectionne un type de demande parmi les catÃ©gories proposÃ©es.
+  \item L'utilisateur sélectionne un type de demande parmi les catégories proposées.
   
-  \item L'utilisateur attribue une prioritÃ© Ã  la demande.
+  \item L'utilisateur attribue une priorité à la demande.
   
   \item L'utilisateur saisit un titre dans le champ correspondant.
   
-  \item L'utilisateur rÃ©dige une description dÃ©taillÃ©e dans l'Ã©diteur de texte enrichi.
+  \item L'utilisateur rédige une description détaillée dans l'éditeur de texte enrichi.
   
-  \item L'utilisateur soumet un formulaire valide : la demande est enregistrÃ©e, l'utilisateur est redirigÃ© vers la liste des demandes et un message de confirmation apparaÃ®t.
+  \item L'utilisateur soumet un formulaire valide : la demande est enregistrée, l'utilisateur est redirigé vers la liste des demandes et un message de confirmation apparaît.
   
-  \item L'utilisateur annule la crÃ©ation : aucune demande n'est enregistrÃ©e et l'utilisateur retourne Ã  la liste.
+  \item L'utilisateur annule la création : aucune demande n'est enregistrée et l'utilisateur retourne à la liste.
   
   \item Le bouton de soumission reste inactif tant que tous les champs obligatoires ne sont pas correctement remplis.
 \end{itemize}
@@ -1089,38 +1089,38 @@ l'interface graphique. Les cas suivants ont Ã©tÃ© couverts :
 \centering
 \includegraphics[width=14cm,height=14cm,keepaspectratio]
   {Images/ExecDeTestCasesReussi-demandes.png}
-\caption{RÃ©sultats des tests End-to-End â€” CrÃ©ation de demande client}
+\caption{Résultats des tests End-to-End — Création de demande client}
 \label{fig:test_e2e_demandes}
 \end{figure}
 
 \item[$\square$] \textbf{Test du module ticket (Signalement de blocage)} ---
-\newline  \textit{1 scÃ©nario : filtrer, accÃ©der au dÃ©tail, et signaler un blocage avec analyse IA} 
+\newline  \textit{1 scénario : filtrer, accéder au détail, et signaler un blocage avec analyse IA} 
 
-\noindent Cette suite valide le flux complet de dÃ©claration d'un blocage 
-par un dÃ©veloppeur assignÃ© sur un ticket, en simulant ses actions rÃ©elles sur 
-l'interface graphique. Le cas suivant a Ã©tÃ© couvert :
+\noindent Cette suite valide le flux complet de déclaration d'un blocage 
+par un développeur assigné sur un ticket, en simulant ses actions réelles sur 
+l'interface graphique. Le cas suivant a été couvert :
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
   
-  \item Fermeture automatique du modal \og Contrat bientÃ´t expirÃ© \fg{} s'il s'affiche pour Ã©viter toute interfÃ©rence.
+  \item Fermeture automatique du modal \og Contrat bientôt expiré \fg{} s'il s'affiche pour éviter toute interférence.
   
   \item Navigation vers la liste des tickets et application du filtre via l'URL pour n'afficher que les tickets en statut \og En cours \fg{}.
   
-  \item SÃ©lection et ouverture du premier ticket de la liste pour accÃ©der Ã  ses dÃ©tails.
+  \item Sélection et ouverture du premier ticket de la liste pour accéder à ses détails.
   
-  \item Navigation vers l'onglet \og Ã‰quipe \fg{} du panneau latÃ©ral droit pour accÃ©der aux actions de l'assignation.
+  \item Navigation vers l'onglet \og Équipe \fg{} du panneau latéral droit pour accéder aux actions de l'assignation.
   
-  \item DÃ©clenchement du processus via le bouton \og BloquÃ© \fg{}, qui nÃ©cessite que le dÃ©veloppeur ait travaillÃ© le temps minimum requis (ex: 30 minutes) et atteint la progression minimale requise (ex: 10\%).
+  \item Déclenchement du processus via le bouton \og Bloqué \fg{}, qui nécessite que le développeur ait travaillé le temps minimum requis (ex: 30 minutes) et atteint la progression minimale requise (ex: 10\%).
   
-  \item \textbf{Ã‰tape 1 du modal} : SÃ©lection du type de blocage (ex: Technique) et de son niveau de prioritÃ© (ex: Haute) via les sÃ©lecteurs natifs Ã  liste dÃ©roulante, ce qui active le bouton \og Suivant \fg{}.
+  \item \textbf{Étape 1 du modal} : Sélection du type de blocage (ex: Technique) et de son niveau de priorité (ex: Haute) via les sélecteurs natifs à liste déroulante, ce qui active le bouton \og Suivant \fg{}.
   
-  \item \textbf{Ã‰tape 2 du modal} : Renseignement d'une description basique du problÃ¨me rencontrÃ© dans la zone de texte.
+  \item \textbf{Étape 2 du modal} : Renseignement d'une description basique du problème rencontré dans la zone de texte.
   
-  \item \textbf{Analyse IA} : Clic sur le bouton \og Analyser avec l'IA \fg{}, attente de la gÃ©nÃ©ration de la suggestion technique dÃ©taillÃ©e, puis clic sur \og Appliquer \fg{} pour enrichir automatiquement la description.
+  \item \textbf{Analyse IA} : Clic sur le bouton \og Analyser avec l'IA \fg{}, attente de la génération de la suggestion technique détaillée, puis clic sur \og Appliquer \fg{} pour enrichir automatiquement la description.
   
-  \item Upload conditionnel d'une piÃ¨ce jointe (capture d'Ã©cran ou fichier de log) pour illustrer le blocage.
+  \item Upload conditionnel d'une pièce jointe (capture d'écran ou fichier de log) pour illustrer le blocage.
   
-  \item Confirmation du signalement : vÃ©rification de l'apparition de la notification (toast) de succÃ¨s \og Blocage signalÃ© \fg{} confirmant l'enregistrement en base de donnÃ©es, l'alerte du chef de projet et la fermeture du modal.
+  \item Confirmation du signalement : vérification de l'apparition de la notification (toast) de succès \og Blocage signalé \fg{} confirmant l'enregistrement en base de données, l'alerte du chef de projet et la fermeture du modal.
   
 \end{itemize}
 
@@ -1128,7 +1128,7 @@ l'interface graphique. Le cas suivant a Ã©tÃ© couvert :
 \centering
 \includegraphics[width=14cm,height=14cm,keepaspectratio]
   {Images/Test e2e blocage ticket.png}
-\caption{Tests End-to-End â€” Signalement de blocage sur un ticket via Playwright}
+\caption{Tests End-to-End — Signalement de blocage sur un ticket via Playwright}
 \label{fig:test_e2e_blocage_ticket}
 \end{figure}
 
@@ -1137,48 +1137,48 @@ l'interface graphique. Le cas suivant a Ã©tÃ© couvert :
 \subsection{Tests de performance}
 \label{sec:tests_performance_sprint3}
 
-Les tests de performance du troisiÃ¨me sprint constituent l'Ã©valuation la
-plus critique de la plateforme, ce sprint hÃ©bergeant le cÅ“ur opÃ©rationnel
-du systÃ¨me : la gestion des demandes, des tickets avec leur workflow
-d'assignation et le calcul des SLA en temps rÃ©el. Le scÃ©nario a Ã©tÃ©
-configurÃ© pour atteindre un pic de \textbf{35 utilisateurs simultanÃ©s},
-reprÃ©sentatif d'une activitÃ© soutenue sur les modules transactionnels.
-Les tests ont Ã©tÃ© rÃ©alisÃ©s avec l'outil \textbf{k6}.
+Les tests de performance du troisième sprint constituent l'évaluation la
+plus critique de la plateforme, ce sprint hébergeant le cœur opérationnel
+du système : la gestion des demandes, des tickets avec leur workflow
+d'assignation et le calcul des SLA en temps réel. Le scénario a été
+configuré pour atteindre un pic de \textbf{35 utilisateurs simultanés},
+représentatif d'une activité soutenue sur les modules transactionnels.
+Les tests ont été réalisés avec l'outil \textbf{k6}.
 
-\subsubsection{ScÃ©nario de charge}
+\subsubsection{Scénario de charge}
 
-Le scÃ©nario reproduit deux comportements concurrents reflÃ©tant l'usage
-rÃ©el de la plateforme : la consultation de la liste paginÃ©e des tickets
-(agrÃ©gation des statuts, Ã©chÃ©ances SLA, assignations et mÃ©triques de
-progression) et la rÃ©cupÃ©ration des demandes clients en attente de
-traitement avec leurs piÃ¨ces jointes associÃ©es.
+Le scénario reproduit deux comportements concurrents reflétant l'usage
+réel de la plateforme : la consultation de la liste paginée des tickets
+(agrégation des statuts, échéances SLA, assignations et métriques de
+progression) et la récupération des demandes clients en attente de
+traitement avec leurs pièces jointes associées.
 
-Le profil de charge est configurÃ© pour atteindre un pic de \textbf{35
-utilisateurs virtuels simultanÃ©s (VUs)} rÃ©partis sur une durÃ©e totale
+Le profil de charge est configuré pour atteindre un pic de \textbf{35
+utilisateurs virtuels simultanés (VUs)} répartis sur une durée totale
 de 4 minutes 30 secondes selon cinq phases distinctes :
 \begin{itemize}
-    \item \textbf{Chauffe (Warm-up) :} MontÃ©e progressive Ã  5 VUs en 30 secondes.
-    \item \textbf{MontÃ©e en charge :} Progression jusqu'Ã  15 VUs en 1 minute.
-    \item \textbf{Charge nominale :} Maintien Ã  25 VUs stables pendant 2 minutes.
-    \item \textbf{Pic de charge (Plateau) :} Pic d'activitÃ© Ã  35 VUs pendant 30 secondes.
-    \item \textbf{Descente (Ramp-down) :} Retour progressif Ã  0 VU en 30 secondes.
+    \item \textbf{Chauffe (Warm-up) :} Montée progressive à 5 VUs en 30 secondes.
+    \item \textbf{Montée en charge :} Progression jusqu'à 15 VUs en 1 minute.
+    \item \textbf{Charge nominale :} Maintien à 25 VUs stables pendant 2 minutes.
+    \item \textbf{Pic de charge (Plateau) :} Pic d'activité à 35 VUs pendant 30 secondes.
+    \item \textbf{Descente (Ramp-down) :} Retour progressif à 0 VU en 30 secondes.
 \end{itemize}
 
-Les points d'accÃ¨s ciblÃ©s par ce test de charge sont :
+Les points d'accès ciblés par ce test de charge sont :
 \begin{itemize}
-    \item \textbf{GET /api/tickets} : Liste paginÃ©e des tickets (limit=15) incluant
-          les relations contrat, projet, assignments et mÃ©tadonnÃ©es SLA.
-    \item \textbf{GET /api/demandes} : Liste paginÃ©e des demandes client (limit=20)
-          avec leurs piÃ¨ces jointes et informations de validation.
+    \item \textbf{GET /api/tickets} : Liste paginée des tickets (limit=15) incluant
+          les relations contrat, projet, assignments et métadonnées SLA.
+    \item \textbf{GET /api/demandes} : Liste paginée des demandes client (limit=20)
+          avec leurs pièces jointes et informations de validation.
 \end{itemize}
 
-\subsubsection{RÃ©sultats obtenus}
+\subsubsection{Résultats obtenus}
 
-L'exÃ©cution du scÃ©nario a permis de collecter des donnÃ©es prÃ©cises quant
-aux capacitÃ©s de traitement de l'application. Les indicateurs clÃ©s de
-performance sont rÃ©capitulÃ©s dans le tableau~\ref{tab:perf_sprint3}.
+L'exécution du scénario a permis de collecter des données précises quant
+aux capacités de traitement de l'application. Les indicateurs clés de
+performance sont récapitulés dans le tableau~\ref{tab:perf_sprint3}.
 
-\subsubsection{RÃ©sultats obtenus}
+\subsubsection{Résultats obtenus}
 
 \begin{table}[H]
 \centering
@@ -1186,15 +1186,15 @@ performance sont rÃ©capitulÃ©s dans le tableau~\ref{tab:perf_sprint3}.
 \small
 \begin{tabular}{|l|c|}
 \hline
-\textbf{Indicateur de performance} & \textbf{Valeur mesurÃ©e} \\
+\textbf{Indicateur de performance} & \textbf{Valeur mesurée} \\
 \hline
-Temps de rÃ©ponse moyen (avg) - GET /api/tickets & 2 961,08 ms \\
+Temps de réponse moyen (avg) - GET /api/tickets & 2 961,08 ms \\
 \hline
 Percentile 90 (p90) - GET /api/tickets & 4 862,26 ms \\
 \hline
 Percentile 95 (p95) - GET /api/tickets & 5 401,69 ms \\
 \hline
-Temps de rÃ©ponse moyen (avg) - GET /api/demandes & 263,57 ms \\
+Temps de réponse moyen (avg) - GET /api/demandes & 263,57 ms \\
 \hline
 Percentile 90 (p90) - GET /api/demandes & 401,48 ms \\
 \hline
@@ -1202,66 +1202,66 @@ Percentile 95 (p95) - GET /api/demandes & 444,85 ms \\
 \hline
 Taux d'erreur applicatif & 0,00 \% \\
 \hline
-DÃ©bit moyen des requÃªtes & 8,79 req/s \\
+Débit moyen des requêtes & 8,79 req/s \\
 \hline
-ItÃ©rations totales & 1 202 \\
+Itérations totales & 1 202 \\
 \hline
-VÃ©rifications rÃ©ussies & 4 810 \\
+Vérifications réussies & 4 810 \\
 \hline
 \end{tabular}
-\caption{RÃ©sultats des tests de performance â€” Sprint 3}
+\caption{Résultats des tests de performance — Sprint 3}
 \label{tab:perf_sprint3}
 \end{table}
 
-\subsubsection{Analyse des rÃ©sultats}
+\subsubsection{Analyse des résultats}
 
-Les rÃ©sultats obtenus confirment la capacitÃ© de la plateforme Ã  absorber
-des pics de charge de 35 utilisateurs simultanÃ©s sur ses fonctionnalitÃ©s
-les plus critiques. Le taux d'erreur nul (0,00\%) atteste de la rÃ©silience
-de l'ensemble de la chaÃ®ne de traitement.
+Les résultats obtenus confirment la capacité de la plateforme à absorber
+des pics de charge de 35 utilisateurs simultanés sur ses fonctionnalités
+les plus critiques. Le taux d'erreur nul (0,00\%) atteste de la résilience
+de l'ensemble de la chaîne de traitement.
 
 Le module de gestion des demandes affiche d'excellentes performances avec
-un temps de rÃ©ponse moyen de 263,57 ms et un percentile 95 Ã  444,85 ms.
-Le module des tickets, plus complexe, prÃ©sente un temps de rÃ©ponse moyen
-de 2,96 secondes et un percentile 95 Ã  5,40 secondes, respectant l'objectif
-fixÃ©. Ces rÃ©sultats valident le bon fonctionnement du cÅ“ur opÃ©rationnel
-de la plateforme sous une activitÃ© soutenue.
+un temps de réponse moyen de 263,57 ms et un percentile 95 à 444,85 ms.
+Le module des tickets, plus complexe, présente un temps de réponse moyen
+de 2,96 secondes et un percentile 95 à 5,40 secondes, respectant l'objectif
+fixé. Ces résultats valident le bon fonctionnement du cœur opérationnel
+de la plateforme sous une activité soutenue.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth,keepaspectratio]{Images/test-perf-sprint3-k6.png}
-\caption{Capture des rÃ©sultats d'exÃ©cution k6 â€” Test de charge Sprint 3}
+\caption{Capture des résultats d'exécution k6 — Test de charge Sprint 3}
 \label{fig:perf_sprint3}
 \end{figure}
 
-\subsection{Tests de sÃ©curitÃ©}
-Les tests de sÃ©curitÃ© du troisiÃ¨me sprint ont portÃ© sur la protection
+\subsection{Tests de sécurité}
+Les tests de sécurité du troisième sprint ont porté sur la protection
 des transitions de statut des tickets, l'isolation des assignations et
 la robustesse du module d'intelligence artificielle.
 
-\subsubsection{Test de contrÃ´le des transitions de statut}
+\subsubsection{Test de contrôle des transitions de statut}
 Le workflow des tickets impose des transitions strictes entre statuts.
-Les tentatives de transition non autorisÃ©e --- comme la validation d'une
-demande par un dÃ©veloppeur ou la fermeture d'un ticket encore en cours
---- ont Ã©tÃ© systÃ©matiquement bloquÃ©es avec les codes \texttt{403 Forbidden}
-ou \texttt{400 Bad Request}, selon que le blocage est liÃ© aux permissions
-ou Ã  la logique mÃ©tier.
+Les tentatives de transition non autorisée --- comme la validation d'une
+demande par un développeur ou la fermeture d'un ticket encore en cours
+--- ont été systématiquement bloquées avec les codes \texttt{403 Forbidden}
+ou \texttt{400 Bad Request}, selon que le blocage est lié aux permissions
+ou à la logique métier.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.75\textwidth]{Images/test-secu-transition-statut.png}
-\caption{Test de sÃ©curitÃ© â€” refus des transitions de statut non autorisÃ©es}
+\caption{Test de sécurité — refus des transitions de statut non autorisées}
 \end{figure}
 
-\subsubsection{Test de sÃ©curitÃ© du module IA â€” Anonymisation des donnÃ©es sensibles (PII)}
-Une demande contenant des informations personnelles identifiables (numÃ©ro de tÃ©lÃ©phone, adresse email, nom complet) a Ã©tÃ© soumise au module IA. La vÃ©rification des logs systÃ¨me confirme que ces donnÃ©es ont Ã©tÃ© masquÃ©es avant transmission Ã  l'API externe Groq Cloud. Aucune information sensible ne quitte le pÃ©rimÃ¨tre interne.
+\subsubsection{Test de sécurité du module IA — Anonymisation des données sensibles (PII)}
+Une demande contenant des informations personnelles identifiables (numéro de téléphone, adresse email, nom complet) a été soumise au module IA. La vérification des logs système confirme que ces données ont été masquées avant transmission à l'API externe Groq Cloud. Aucune information sensible ne quitte le périmètre interne.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.75\textwidth]{Images/test-secu-ia-anonymisation.png}
-\caption{Test de sÃ©curitÃ© â€” masquage automatique des PII avant appel API externe}
+\caption{Test de sécurité — masquage automatique des PII avant appel API externe}
 \end{figure}
 
 \section{Conclusion}
-Ce troisiÃ¨me sprint a permis dâ€™implÃ©menter le noyau fonctionnel de la solution. En combinant workflow mÃ©tier, suivi temporel, gestion des SLA, visualisation Kanban et assistance intelligente, la plateforme franchit une Ã©tape dÃ©cisive vers un systÃ¨me complet de support et de pilotage des demandes.
-\par Ce sprint met en Ã©vidence la dimension opÃ©rationnelle du projet, tout en renforÃ§ant sa robustesse technique, sa traÃ§abilitÃ© et sa valeur mÃ©tier.
+Ce troisième sprint a permis d’implémenter le noyau fonctionnel de la solution. En combinant workflow métier, suivi temporel, gestion des SLA, visualisation Kanban et assistance intelligente, la plateforme franchit une étape décisive vers un système complet de support et de pilotage des demandes.
+\par Ce sprint met en évidence la dimension opérationnelle du projet, tout en renforçant sa robustesse technique, sa traçabilité et sa valeur métier.
