@@ -1,9 +1,22 @@
 \documentclass[12pt,a4paper]{report}
 % Packages communs
-\usepackage[french]{babel}
-\usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage[LAE,T1]{fontenc}
+\usepackage[arabic,french]{babel}
+\addto\extrasfrench{\inputencoding{utf8}}
 \usepackage[table,dvipsnames]{xcolor}
+
+% ============================================================
+%  COULEURS
+% ============================================================
+\definecolor{lightblue}{RGB}{173, 216, 230}
+\definecolor{gray}{gray}{0.85}
+\definecolor{bleuPerso}{HTML}{35858E}
+\definecolor{primary}{RGB}{0, 48, 73}
+\definecolor{secondary}{RGB}{41, 128, 185}
+\definecolor{isetred}{RGB}{180, 0, 0}
+\definecolor{darkgray}{RGB}{60, 60, 60}
+\definecolor{pgold}{RGB}{212, 175, 55}
 
 \usepackage{graphicx}
 \usepackage{enumitem}
@@ -18,8 +31,57 @@
 \usepackage{times}
 \usepackage{setspace}
 \usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{caption}
+\captionsetup{font={small,it}, labelfont=bf, skip=6pt}
 % ============================================================
-%  MINITOC — sommaire par chapitre
+%  TOCLOFT — configuration de la table des matières
+% ============================================================
+\usepackage[titles]{tocloft}
+\renewcommand{\cfttoctitlefont}{\relax\vspace*{-2cm}}
+\renewcommand{\cftaftertoctitle}{}
+
+% Indentation hiérarchique claire et équilibrée (escalier uniforme pour les numéros et titres)
+\setlength{\cftchapindent}{0cm}
+\setlength{\cftsecindent}{0.8cm}
+\setlength{\cftsubsecindent}{1.8cm}
+\setlength{\cftsubsubsecindent}{2.8cm}
+
+% Largeur des numéros (évite les chevauchements avec les chiffres romains larges)
+\setlength{\cftchapnumwidth}{1.2cm}
+\setlength{\cftsecnumwidth}{1.0cm}
+\setlength{\cftsubsecnumwidth}{1.0cm}
+\setlength{\cftsubsubsecnumwidth}{1.2cm}
+
+% Espacements verticaux hiérarchiques pour aérer le document et bien séparer les sections
+\setlength{\cftbeforechapskip}{8pt plus 1pt minus 1pt}
+\setlength{\cftbeforesecskip}{6pt plus 1pt}
+\setlength{\cftbeforesubsecskip}{4pt plus 1pt}
+\setlength{\cftbeforesubsubsecskip}{3pt}
+
+% Style et couleurs premium de la hiérarchie
+\renewcommand{\cftchapfont}{\large\bfseries\color{primary}}
+\renewcommand{\cftchappagefont}{\large\bfseries\color{primary}}
+
+\renewcommand{\cftsecfont}{\normalsize\bfseries\color{primary}}
+\renewcommand{\cftsecpagefont}{\normalsize\bfseries\color{primary}}
+
+\renewcommand{\cftsubsecfont}{\small\bfseries\color{secondary}}
+\renewcommand{\cftsubsecpagefont}{\small\bfseries\color{secondary}}
+
+\renewcommand{\cftsubsubsecfont}{\small\color{darkgray}}
+\renewcommand{\cftsubsubsecpagefont}{\small\color{darkgray}}
+
+% Points de conduite (dot leaders) pour toutes les sections
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsubsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsubsubsecleader}{\cftdotfill{\cftdotsep}}
+
+\usepackage{chngpage}
+\usepackage{hyperref}
+
+% ============================================================
+%  MINITOC — sommaire par chapitre (caption et titlesec chargés AVANT)
 % ============================================================
 \usepackage[french]{minitoc}
 \mtcsetdepth{minitoc}{1}
@@ -28,11 +90,6 @@
 \mtcsetfont{minitoc}{section}{\normalsize\bfseries\rmfamily\color{primary}}
 \mtcsetfont{minitoc}{subsection}{\small\rmfamily\color{secondary}}
 \renewcommand{\mtctitle}{}
-\usepackage{titlesec}
-\usepackage{caption}
-\captionsetup{font={small,it}, labelfont=bf, skip=6pt}
-\usepackage{chngpage}
-\usepackage{hyperref}
 \usepackage{xurl}
 \usepackage[protrusion=true, expansion=false]{microtype}
 \usepackage{amssymb}
@@ -55,17 +112,8 @@
 
 \newcolumntype{P}[1]{>{\RaggedRight\arraybackslash}p{#1}}
 
-% ============================================================
-%  COULEURS
-% ============================================================
-\definecolor{lightblue}{RGB}{173, 216, 230}
-\definecolor{gray}{gray}{0.85}
-\definecolor{bleuPerso}{HTML}{35858E}
-\definecolor{primary}{RGB}{0, 48, 73}
-\definecolor{secondary}{RGB}{41, 128, 185}
-\definecolor{isetred}{RGB}{180, 0, 0}
-\definecolor{darkgray}{RGB}{60, 60, 60}
-\definecolor{pgold}{RGB}{212, 175, 55}
+\renewcommand{\contentsname}{}
+
 % ============================================================
 %  RENDRE \chapter INVISIBLE (pas de page, pas de titre affiché)
 %  Le chapitre est enregistré dans les compteurs et dans minitoc
@@ -181,7 +229,51 @@
   \end{adjustwidth}
   \newpage
 }
+% ============================================================
+%  PAGE DE SÉPARATION CONCLUSION / INTRODUCTION
+%  Usage : \simplecover{Titre}
+% ============================================================
+\newcommand{\simplecover}[1]{%
+  \newpage
+  \thispagestyle{empty}%
+  \begin{tikzpicture}[remember picture, overlay]
 
+    \fill[white!97!gray]
+      (current page.south west) rectangle (current page.north east);
+
+    \fill[primary]
+      (current page.north west)
+      rectangle
+      ([xshift=0.012\paperwidth] current page.south west);
+
+    \fill[primary, opacity=0.12]
+      (current page.south west) --
+      ([xshift=0.28\paperwidth] current page.south west) --
+      ([yshift=0.22\paperheight] current page.south west) --
+      cycle;
+
+    \fill[secondary, opacity=0.10]
+      (current page.north east) --
+      ([xshift=-0.18\paperwidth] current page.north east) --
+      ([yshift=-0.18\paperheight] current page.north east) --
+      cycle;
+
+    % Cadre rectangulaire centré
+    \node[
+      draw        = primary,
+      line width  = 0.8pt,
+      fill        = white,
+      inner xsep  = 2.0cm,
+      inner ysep  = 0.9cm,
+      anchor      = center
+    ] at (current page.center)
+    {%
+      {\fontsize{20}{24}\selectfont\bfseries\scshape\rmfamily\color{primary} #1}%
+    };
+
+  \end{tikzpicture}%
+  \newpage
+}
 % ============================================================
 
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
@@ -266,16 +358,43 @@
 \input{tex/page_de_garde}
 
 % Table des matières
+% Table des matières
+\newpage
+\pagestyle{empty} 
 \thispagestyle{empty}
-\tableofcontents
+\begin{center}
+\vspace*{0.5cm}
+\begin{tikzpicture}
+  \node[
+    draw        = primary,
+    line width  = 0.8pt,
+    fill        = white,
+    inner xsep  = 2.0cm,
+    inner ysep  = 0.7cm,
+    text width  = 10cm,
+    align       = center
+  ]{
+    {\fontsize{16}{20}\selectfont\bfseries\scshape\rmfamily\color{primary}
+    Table des matières}
+  };
+\end{tikzpicture}
+\vspace{0.5cm}
+\end{center}
+\makeatletter
+{\renewcommand{\tableofcontents}{\@starttoc{toc}}\tableofcontents}
+\makeatother
+\markboth{}{}%
 \cleardoublepage
-
 % Numérotation arabe
 \pagenumbering{arabic}
 \pagestyle{fancy}
 
 % Introduction
 \input{tex/Introduction_General}
+
+% Numérotation arabe
+
+
 
 % ============================================================
 % STRUCTURE CORRECTE POUR CHAQUE CHAPITRE :

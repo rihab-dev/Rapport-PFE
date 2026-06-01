@@ -21,30 +21,42 @@
 
 % ================================================================
 %  BLOC EN-TÊTE INSTITUTIONNEL
-%  Logo République centré avec texte centré en noir
 % ================================================================
+% ============================================================
+% EN-TÊTE INSTITUTIONNEL (petit mais lisible)
+% ============================================================
+\vspace*{0.3cm}
 \noindent
-\begin{minipage}[c]{0.65\textwidth}
+\begin{minipage}[c]{0.40\textwidth}
     \centering
-    {\fontsize{7}{6}\selectfont\rmfamily\color{black}\setstretch{1.0}
-        République Tunisienne\\[1pt]
-        Ministère de l'Enseignement Supérieur et de la Recherche Scientifique\\[1pt]
-        Direction Générale des Études Technologiques\\[1pt]
-        ISET de Radès\\[1pt]
-        Département Technologies de l'Informatique}
+    \footnotesize\rmfamily\color{black}
+    \setstretch{1.1}
+    République Tunisienne\\
+    Ministère de l'Enseignement Supérieur\\
+    et de la Recherche Scientifique\\
+    Direction Générale des Études Technologiques\\
+    ISET de Radès\\
+    Département Technologies de l'Informatique
 \end{minipage}%
 \hfill
-\begin{minipage}[c]{0.15\textwidth}
+\begin{minipage}[c]{0.18\textwidth}
     \centering
-    \includegraphics[height=2.0cm]{Images/logo_republique.png}
+    \includegraphics[height=1.8cm]{Images/logo_republique.png}
 \end{minipage}%
-\hfill
-\begin{minipage}[c]{0.14\textwidth}
-    % vide symétrie
-\end{minipage}
 \hfill
 \begin{minipage}[c]{0.38\textwidth}
-    
+    \centering
+    \begin{otherlanguage*}{arabic}
+        \footnotesize\color{black}
+        \baselineskip=11pt  % ← forcé ici
+        \lineskip=0pt
+        \nointerlineskip
+        الجمهورية التونسية\\
+        وزارة التعليم العالي والبحث العلمي\\
+        الإدارة العامة للدراسات التكنولوجية\\
+        المعهد العالي للدراسات التكنولوجية برادس\\
+        قسم تكنولوجيات الإعلامية
+    \end{otherlanguage*}
 \end{minipage}
 % ---- Filet sous le bandeau ----
 \vspace{0.30cm}
