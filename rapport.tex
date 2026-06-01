@@ -142,6 +142,7 @@
 }
 \makeatother
 
+
 % ============================================================
 %  COMMANDE PAGE DE SÉPARATION — LOSANGES + TITRE + SOMMAIRE
 %  Usage : \chaptercover{N}{Titre}
@@ -423,6 +424,7 @@
 \vspace{0.5cm}
 \end{center}
 \addcontentsline{toc}{chapter}{Table des figures}
+\mtcaddchapter
 \makeatletter
 {\renewcommand{\listoffigures}{\@starttoc{lof}}\listoffigures}
 \makeatother
@@ -452,6 +454,7 @@
 \vspace{0.5cm}
 \end{center}
 \addcontentsline{toc}{chapter}{Liste des tableaux}
+\mtcaddchapter
 \makeatletter
 {\renewcommand{\listoftables}{\@starttoc{lot}}\listoftables}
 \makeatother
