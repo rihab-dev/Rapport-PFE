@@ -10,14 +10,7 @@
 *.out
 *.synctex.gz
 *.toc
-*.mtc
-*.mtc0
-*.mtc1
-*.mtc2
-*.mtc3
-*.mtc4
-*.mtc5
-*.mtc6
+*.mtc*
 *.maf
 *.idx
 *.ilg
