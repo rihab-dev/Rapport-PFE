@@ -89,7 +89,7 @@ Afin de garantir des latences minimales, même sous affluence critique, l'archit
 Pour les modules nécessitant une synchronisation instantanée (tels que les notifications ou les alertes de gestion), le système doit garantir une communication bidirectionnelle à faible latence entre le serveur et les clients afin d'assurer la transmission immédiate des flux d'informations.
 
 \item \textbf{Maintenabilité et Extensibilité :} 
-Le code source doit être structuré de manière modulaire en respectant les standards de conception logicielle (notamment les principes SOLID [32]). Cela assure une maintenance facilitée, une documentation claire des interfaces (API) et une couverture de tests automatisés pour prévenir les régressions lors des évolutions futures.
+Le code source doit être structuré de manière modulaire en respectant les standards de conception logicielle (notamment les principes SOLID \refweb{32}). Cela assure une maintenance facilitée, une documentation claire des interfaces (API) et une couverture de tests automatisés pour prévenir les régressions lors des évolutions futures.
 
 \end{itemize}
 
@@ -178,7 +178,7 @@ La figure suivante présente le déroulement chronologique de nos sprints.
 \label{fig:planification_sprints}
 \end{figure}
 
-\subsubsection{Sprint 1 -- Authentification, Sécurité et Gestion des Utilisateurs}
+\subsubsection{Sprint 1 -- Socle Sécurité et Contrôle d'Accès}
 \textbf{Période :} du 17 février au 11 mars (\textbf{3 semaines})
 \newline
 \textbf{Objectif du sprint :} Mettre en place le système d'authentification sécurisé
@@ -200,7 +200,7 @@ les rôles (RBAC).
   \item Système RBAC complet avec gestion des rôles et permissions granulaires
 \end{itemize}
 
-\subsubsection{Sprint 2 -- Gestion des Clients, Projets et Contrats}
+\subsubsection{Sprint 2 -- Gestion Contractuelle et Traçabilité}
 \textbf{Période :} du 12 mars au 2 avril (\textbf{3 semaines})
 \newline
 \textbf{Objectif du sprint :} Développer la gestion complète des clients, des projets et contrats
@@ -223,7 +223,7 @@ de maintenance avec système d'alertes d'expiration et configuration SLA.
   \item Système d'audit et traçabilité complet (ActivityLog)
 \end{itemize}
 
-\subsubsection{Sprint 3 -- Gestion des Demandes et Tickets}
+\subsubsection{Sprint 3 -- Gestion des Demandes, Tickets & Assistance IA}
 \textbf{Période :} du 3 avril au 24 avril (\textbf{4 semaines})
 \newline
 \textbf{Objectif du sprint :} Implémenter le cœur métier avec la gestion des
@@ -244,7 +244,7 @@ demandes et tickets incluant suivi du temps, SLA et tableau Kanban.
   \item Moteur d'IA pour classification automatique des demandes et assistance intelligente
 \end{itemize}
 
-\subsubsection{Sprint 4 -- Collaboration, Documents et Planification}
+\subsubsection{Sprint 4 -- Collaboration et Dashboards}
 \textbf{Période :} du 25 avril au 22 mai (\textbf{3 semaines})
 \par\noindent\textbf{Objectif du sprint :} Finaliser les fonctionnalités avancées de
 collaboration, de gestion documentaire, de notifications multicanales et de
@@ -282,7 +282,7 @@ différenciantes du sprint final.
 « Un diagramme de Gantt est un outil d'organisation et de gestion de projets. Il
 s'agit d'un diagramme à barres horizontales qui présente toutes les tâches d'un
 projet en fonction d'un calendrier. Il aide les chefs de projet à visualiser les
-tâches requises et à suivre l'avancement de leur projet. » [5]
+tâches requises et à suivre l'avancement de leur projet. » \refweb{5}
 \newline
 Dans le cadre du développement de notre projet \textbf{SolidMaint}, le planning
 prévisionnel a été réalisé pour organiser les différentes phases de développement.
@@ -347,28 +347,28 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
   \textbf{NestJS v11 :} « C'est un framework permettant de créer des applications
   serveur Node.js performantes et évolutives. Il utilise JavaScript progressif, est
   conçu avec TypeScript et le prend entièrement en charge (tout en permettant aux
-  développeurs de coder en JavaScript pur). » [6]}
+  développeurs de coder en JavaScript pur). » \refweb{6}}
 
 \cadretech{Images/nextjs.png}{%
   \textbf{Next.js v16 :} « C'est un framework React permettant de créer des
   applications web complètes. Il configure également automatiquement les outils de
-  bas niveau tels que les modules de regroupement et les compilateurs. » [7]}
+  bas niveau tels que les modules de regroupement et les compilateurs. » \refweb{7}}
 
 \cadretech{Images/React-icon.png}{%
   \textbf{React 18.3 :} « React est une bibliothèque JavaScript pour la construction
   d'interfaces utilisateur. Elle permet de créer des composants réutilisables qui
-  gèrent leur propre état et se composent pour former des interfaces complexes. » [8]}
+  gèrent leur propre état et se composent pour former des interfaces complexes. » \refweb{8}}
 
 \cadretech{Images/Tailwind.png}{%
   \textbf{Tailwind CSS v4.2 :} « Un framework CSS utilitaire, doté de classes telles
   que \texttt{flex}, \texttt{pt-4}, \texttt{text-center} et \texttt{rotate-90}, qui
   peuvent être combinées pour créer n'importe quel design, directement dans votre
-  balisage. » [9]}
+  balisage. » \refweb{9}}
 
 \cadretech{Images/chadcn.png}{%
   \textbf{shadcn/ui v3.8 :} « est un ensemble de composants élégants et accessibles,
   ainsi qu'une plateforme de distribution de code. Compatible avec vos frameworks et
-  modèles d'IA préférés. Logiciel libre. » [10]}
+  modèles d'IA préférés. Logiciel libre. » \refweb{10}}
 
 \subsubsection{Outils de développement et modélisation}
 \vspace{12pt}
@@ -385,7 +385,7 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
   \textbf{Visual Studio Code :} « est un éditeur de code source léger mais puissant,
   disponible sur Windows, macOS et Linux. Il intègre la coloration syntaxique, la
   complétion intelligente du code (IntelliSense), le débogage, le contrôle de version
-  Git et une riche bibliothèque d'extensions. » [11]}
+  Git et une riche bibliothèque d'extensions. » \refweb{11}}
 
 \newcommand{\cadretechGitlab}[2]{%
     \noindent
@@ -405,7 +405,7 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
     \vspace{10pt}
 }
 \cadretechGitlab{Images/gitlab.png}{ \textbf{GitLab : } « offre un espace de stockage de code en ligne ainsi que des fonctionnalités de suivi des problèmes et d'intégration continue/déploiement continu ( CI/CD). Le dépôt permet d'héberger différentes branches de développement et
-  versions. » [12]}
+  versions. » \refweb{12}}
 
 \newcommand{\cadretechUml}[2]{%
 \noindent\begin{minipage}{2.2cm}\centering
@@ -420,7 +420,7 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
   documenter les artefacts des systèmes logiciels, ainsi que de modéliser des systèmes
   métier et d'autres systèmes non logiciels. L'UML représente un ensemble de bonnes
   pratiques d'ingénierie qui ont fait leurs preuves dans la modélisation de systèmes
-  vastes et complexes. » [13]}
+  vastes et complexes. » \refweb{13}}
 
 \newcommand{\cadretechDrowio}[2]{%
 \noindent\begin{minipage}{2.2cm}\centering
@@ -433,7 +433,7 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
 \cadretechDrowio{Images/lucidchart.png}{%
   \textbf{Lucidchart :} « est un environnement de travail visuel qui associe création
   de diagrammes, visualisation de données et fonctionnalités de collaboration afin de
-  faciliter la communication et stimuler l'innovation. » [14]}
+  faciliter la communication et stimuler l'innovation. » \refweb{14}}
 
 \newcommand{\cadretechSwagger}[2]{%
 \noindent\begin{minipage}{2.2cm}\centering
@@ -447,7 +447,7 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
   \textbf{Swagger / OpenAPI :} « Swagger permet la conception, la gouvernance et les
   tests tout au long du cycle de vie complet des API, garantissant ainsi la qualité à
   chaque étape. Il génère automatiquement une documentation interactive de l'API à
-  partir des annotations du code source. » [15]}
+  partir des annotations du code source. » \refweb{15}}
 
 \subsubsection{Systèmes de gestion de bases de données}
 \vspace{12pt}
@@ -465,7 +465,7 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
   un accès rapide et sécurisé aux bases de données PostgreSQL, MySQL et autres. Il
   fournit un client typé généré automatiquement à partir du schéma de données,
   garantissant la sécurité des types à la compilation et des requêtes SQL optimisées
-  à l'exécution. » [16]}
+  à l'exécution. » \refweb{16}}
 
 \newcommand{\cadretechPostgres}[2]{%
 \noindent\begin{minipage}{2.2cm}\centering
@@ -480,7 +480,7 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
   objet-relationnelles (SGBD-OR) open source. Il a été pionnier dans de nombreux
   concepts qui ne sont devenus disponibles que bien plus tard dans certains systèmes
   de bases de données commerciaux. Il est reconnu pour sa robustesse, sa conformité
-  aux standards SQL et ses performances sur de grands volumes de données. » [17]}
+  aux standards SQL et ses performances sur de grands volumes de données. » \refweb{17}}
 
 \newcommand{\cadretechRedis}[2]{%
 \noindent\begin{minipage}{2.2cm}\centering
@@ -496,7 +496,7 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
   données en mémoire vive lui confère des performances de lecture/écriture
   exceptionnellement rapides. Dans notre projet, Redis est utilisé comme couche de
   cache pour les permissions utilisateurs et les données fréquemment consultées,
-  avec une durée de vie (TTL) de 60 secondes. » [18]}
+  avec une durée de vie (TTL) de 60 secondes. » \refweb{18}}
 
 \newcommand{\cadretechNeon}[2]{%
 \noindent\begin{minipage}{2.2cm}\centering
@@ -510,7 +510,7 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
   \textbf{Neon :} « est un service de base de données PostgreSQL cloud natif, sans
   serveur et entièrement managé. Il offre une mise à l'échelle automatique, une
   séparation calcul/stockage et une compatibilité totale avec PostgreSQL, permettant
-  de démarrer sans infrastructure à gérer. » [19]}
+  de démarrer sans infrastructure à gérer. » \refweb{19}}
 
 \subsubsection{Conteneurisation et déploiement}
 \vspace{12pt}
@@ -529,7 +529,7 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
   légers et portables. Docker Compose permet de définir et d'exécuter des
   applications multi-conteneurs à l'aide d'un fichier de configuration YAML. Dans
   notre projet, Docker Compose orchestre quatre services : PostgreSQL, Redis, le
-  backend NestJS et le frontend Next.js. » [20]}
+  backend NestJS et le frontend Next.js. » \refweb{20}}
   
 \subsubsection{Référentiel de sécurité applicative}
 \vspace{12pt}
@@ -542,7 +542,7 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
 \end{minipage}\par\vspace{10pt}}
 
 \cadretechSecurite{Images/owasp.png}{%
-  \textbf{OWASP ZAP :} « L'Open Worldwide Application Security Project (OWASP) est une fondation à but non lucratif qui œuvre pour améliorer la sécurité des logiciels. Dans le cadre de ce projet, l'outil OWASP ZAP a été utilisé pour réaliser des scans automatisés de vulnérabilités sur l'ensemble des endpoints exposés par l'application. » [21]}
+  \textbf{OWASP ZAP :} « L'Open Worldwide Application Security Project (OWASP) est une fondation à but non lucratif qui œuvre pour améliorer la sécurité des logiciels. Dans le cadre de ce projet, l'outil OWASP ZAP a été utilisé pour réaliser des scans automatisés de vulnérabilités sur l'ensemble des endpoints exposés par l'application. » \refweb{21}}
 
 \subsubsection{Outils de test}
 \vspace{12pt}
@@ -556,7 +556,7 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
 \end{minipage}\par\vspace{10pt}}
 
 \cadretechksix{Images/k6.png}{%
-  \textbf{Grafana k6 :} « est un outil de test de performance open source, convivial pour les développeurs et extensible, qui vous aide à détecter rapidement les problèmes de performance et à améliorer proactivement la fiabilité. » [22]}
+  \textbf{Grafana k6 :} « est un outil de test de performance open source, convivial pour les développeurs et extensible, qui vous aide à détecter rapidement les problèmes de performance et à améliorer proactivement la fiabilité. » \refweb{22}}
 
 \newcommand{\cadretechVitest}[2]{%
 \noindent\begin{minipage}{2.2cm}\centering
@@ -567,7 +567,7 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
 \end{minipage}\par\vspace{10pt}}
 
 \cadretechVitest{Images/vitest.png}{%
-  \textbf{Vitest :} « est un framework de tests unitaires ultrarapide propulsé par Vite, conçu pour les projets JavaScript et TypeScript modernes. Il permet d'isoler et de valider le comportement de chaque service de manière indépendante grâce à un système de mocks performant. » [26]}
+  \textbf{Vitest :} « est un framework de tests unitaires ultrarapide propulsé par Vite, conçu pour les projets JavaScript et TypeScript modernes. Il permet d'isoler et de valider le comportement de chaque service de manière indépendante grâce à un système de mocks performant. » \refweb{26}}
 
 \newcommand{\cadretechPlaywright}[2]{%
 \noindent\begin{minipage}{2.2cm}\centering
@@ -578,7 +578,7 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
 \end{minipage}\par\vspace{10pt}}
 
 \cadretechPlaywright{Images/playwright.png}{%
-  \textbf{Playwright :} « est un framework de tests End-to-End développé par Microsoft, permettant d'automatiser les interactions avec un navigateur réel. Il a été utilisé pour valider les parcours utilisateur complets en simulant les actions réelles sur l'interface graphique de la plateforme. » [27]}
+  \textbf{Playwright :} « est un framework de tests End-to-End développé par Microsoft, permettant d'automatiser les interactions avec un navigateur réel. Il a été utilisé pour valider les parcours utilisateur complets en simulant les actions réelles sur l'interface graphique de la plateforme. » \refweb{27}}
 
 \subsubsection{Outil de gestion de projet Scrum}
 \vspace{12pt}
@@ -597,7 +597,7 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
   des collaborateurs. Cette application se révèle indispensable autant pour les
   travailleurs autonomes que pour les professionnels en entreprise. C'est également
   un outil parfait pour gérer son projet agile (Product Backlog, suivi des sprints,
-  rétrospectives). » [23]}
+  rétrospectives). » \refweb{23}}
 
 \subsubsection{Environnement de composition de documents}
 \vspace{12pt}
@@ -614,7 +614,7 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
   \textbf{\LaTeX :} « est un système de composition de haute qualité ; il comprend
   des fonctionnalités conçues pour la production de documents techniques et
   scientifiques. \LaTeX{} est la norme de facto pour la communication et la
-  publication de documents scientifiques. » [24]}
+  publication de documents scientifiques. » \refweb{24}}
 
 \subsubsection{Outil de design graphique}
 \vspace{12pt}
@@ -630,7 +630,7 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
 \cadretechCanva{Images/canva.png}{%
   \textbf{Canva :} « est une plateforme de conception et de communication visuelle
   en ligne dont la mission est de permettre à chacun dans le monde de concevoir
-  n'importe quoi et de publier n'importe où. » [25]}
+  n'importe quoi et de publier n'importe où. » \refweb{25}}
 
 \subsubsection{Logo de SolidMaint}
 \vspace{0.4cm}

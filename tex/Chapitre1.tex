@@ -1,10 +1,10 @@
-
+﻿
 \section*{Introduction}
 Ce chapitre pose les fondations du projet en présentant le contexte organisationnel et technique de sa réalisation. Après la présentation de \textbf{SolidWall Consulting}, entreprise d'accueil du stage, nous analysons les processus actuels de gestion de maintenance et leurs limitations. L'étude comparative des solutions du marché permet d'identifier les axes d'amélioration et de définir les contours de \textbf{SolidMaint}. Enfin, nous exposons la méthodologie Scrum, le langage UML et la planification prévisionnelle du développement.
 
 \section{Présentation de l’organisme d’accueil} 
 « Solid Wall Consulting est une société de services informatiques, spécialisée dans le développement web, le développement mobile et l'intégration de solutions et d'infrastructures systèmes « Microsoft ». 
-Forte d'une équipe dynamique et diversifiée et de profils reconnus, l’entreprise a pour objectif constant d'apporter une forte valeur ajoutée et de proposer des solutions modernes permettant aux entreprises de se démarquer sur leurs marchés respectifs. » [1] « Fondée avec la vision d'accompagner les organisations publiques et privées vers l'excellence technologique et opérationnelle, Solid Wall Consulting s'est rapidement imposée comme un partenaire de confiance à l'international. » [2].
+Forte d'une équipe dynamique et diversifiée et de profils reconnus, l’entreprise a pour objectif constant d'apporter une forte valeur ajoutée et de proposer des solutions modernes permettant aux entreprises de se démarquer sur leurs marchés respectifs. » \refweb{1} « Fondée avec la vision d'accompagner les organisations publiques et privées vers l'excellence technologique et opérationnelle, Solid Wall Consulting s'est rapidement imposée comme un partenaire de confiance à l'international. » \refweb{2}.
 
 \begin{figure}[H]
         \centering
@@ -98,7 +98,7 @@ Le suivi des interventions repose sur des fils de discussion par e-mail. L'affec
             Dans ce cadre, nous avons étudié plusieurs solutions existantes couvrant différents segments du marché : solutions open-source, solutions SaaS et solutions enterprise.
             \newline
                     --\hspace{0.5cm}  \textbf{GLPI (Gestionnaire Libre de Parc Informatique)}\par\medskip
-Lancée en 2003 et maintenue par l'éditeur français Teclib, GLPI est une solution open-source leader en gestion des services informatiques (ITSM) et d'infrastructures. \textbf{Fonctionnalités clés} : gestion de parc (inventaire, licences, cycle de vie des actifs), centre de services avec gestion d'incidents et demandes, suivi des SLA et base de connaissances, conformité ITIL. \textbf{Tarification} : version communautaire gratuite (on-premise) sous licence GPLv3+, avec abonnements payants optionnels pour support Cloud managé ou assistance professionnelle. [28]
+Lancée en 2003 et maintenue par l'éditeur français Teclib, GLPI est une solution open-source leader en gestion des services informatiques (ITSM) et d'infrastructures. \textbf{Fonctionnalités clés} : gestion de parc (inventaire, licences, cycle de vie des actifs), centre de services avec gestion d'incidents et demandes, suivi des SLA et base de connaissances, conformité ITIL. \textbf{Tarification} : version communautaire gratuite (on-premise) sous licence GPLv3+, avec abonnements payants optionnels pour support Cloud managé ou assistance professionnelle. \refweb{28}
  
                     \begin{figure}[H]
                             \centering
@@ -109,7 +109,7 @@ Lancée en 2003 et maintenue par l'éditeur français Teclib, GLPI est une solut
             \noindent
             \newline
                     --\hspace{0.5cm}  \textbf{Freshdesk}\par\medskip
-Créée en 2011 par Freshworks, Freshdesk est une plateforme SaaS leader en gestion de support client omnicanale. \textbf{Fonctionnalités clés} : centralisation des demandes (email, chat, téléphone, réseaux sociaux), distribution intelligente des tickets, automatisation, base de connaissances et IA (Freddy AI). \textbf{Tarification} : modèle freemium (gratuit limité à 10 agents) suivi de plans payants mensuels ou annuels (Growth, Pro, Enterprise) au prix de 15€/agent/mois. [29]
+Créée en 2011 par Freshworks, Freshdesk est une plateforme SaaS leader en gestion de support client omnicanale. \textbf{Fonctionnalités clés} : centralisation des demandes (email, chat, téléphone, réseaux sociaux), distribution intelligente des tickets, automatisation, base de connaissances et IA (Freddy AI). \textbf{Tarification} : modèle freemium (gratuit limité à 10 agents) suivi de plans payants mensuels ou annuels (Growth, Pro, Enterprise) au prix de 15€/agent/mois. \refweb{29}
                    
                     \begin{figure}[H]
                                         \centering
@@ -120,7 +120,7 @@ Créée en 2011 par Freshworks, Freshdesk est une plateforme SaaS leader en gest
             \noindent
             \newline
                     --\hspace{0.5cm}  \textbf{Jira Service Management (Atlassian)}\par\medskip
-Fondée en 2002, Atlassian a développé Jira Service Management, solution IT dédiée à la gestion des incidents, demandes de service et changements. \textbf{Fonctionnalités clés} : workflows configurables, catalogue de services, suivi des SLA, automatisations et intégrations étroites avec l'écosystème Atlassian. \textbf{Tarification} : modèle SaaS par agent (20€/mois) ou éditions self-managed (Data Center) pour les organisations à grande échelle. [30]
+Fondée en 2002, Atlassian a développé Jira Service Management, solution IT dédiée à la gestion des incidents, demandes de service et changements. \textbf{Fonctionnalités clés} : workflows configurables, catalogue de services, suivi des SLA, automatisations et intégrations étroites avec l'écosystème Atlassian. \textbf{Tarification} : modèle SaaS par agent (20€/mois) ou éditions self-managed (Data Center) pour les organisations à grande échelle. \refweb{30}
                     
                     \begin{figure}[H]
                         \centering
@@ -171,7 +171,7 @@ Actuellement, la gestion des contrats de maintenance au sein de SolidWall Consul
     \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{4cm}|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|}
     \hline
     \rowcolor{blue!20}
-    \textbf{Critères de comparaison} & \textbf{GLPI [28]} & \textbf{Jira SM [30]} & \textbf{Freshdesk [29]} \\
+    \textbf{Critères de comparaison} & \textbf{GLPI \refweb{28}} & \textbf{Jira SM \refweb{30}} & \textbf{Freshdesk \refweb{29}} \\
     \hline
     Gestion des tickets & \checkmark & \checkmark & \checkmark \\
     \hline
@@ -253,7 +253,7 @@ L'approche repose sur une progression linéaire où chaque étape sert de fondat
 \subsection{Méthodologie Agile}
 L'approche agile s'appuie sur une progression itérative et sur l'apprentissage continu. Plutôt que de figer l'ensemble du périmètre en début de projet, elle privilégie des cycles de travail courts qui permettent de valider des fonctionnalités opérationnelles et de réajuster les priorités selon les retours métiers. Cette dynamique permet au projet de rester proche des attentes des utilisateurs et de limiter les écarts entre les besoins réels et les livrables.
 
-Dans le contexte de SolidMaint, l'agilité renforce la capacité à intégrer rapidement de nouvelles demandes ou des corrections, tout en maintenant un rythme de livraison régulier. Ce mode de travail favorise une collaboration étroite entre l'équipe de développement, le Product Owner et les parties prenantes, et transforme le changement en levier d'amélioration plutôt qu'en source de retard. [3]
+Dans le contexte de SolidMaint, l'agilité renforce la capacité à intégrer rapidement de nouvelles demandes ou des corrections, tout en maintenant un rythme de livraison régulier. Ce mode de travail favorise une collaboration étroite entre l'équipe de développement, le Product Owner et les parties prenantes, et transforme le changement en levier d'amélioration plutôt qu'en source de retard. \refweb{3}
 
 \subsubsection{Les valeurs agiles}
 Les valeurs du Manifeste Agile sont ici reformulées pour refléter une appropriation concrète du projet.
@@ -261,7 +261,7 @@ Les valeurs du Manifeste Agile sont ici reformulées pour refléter une appropri
 \item \textbf{Privilégier les personnes et leurs interactions plutôt que les processus et les outils} : nous considérons la qualité des échanges et la réactivité de l'équipe comme des facteurs clés de succès, y compris lorsqu'un cadre méthodologique est en place.
 \item \textbf{Préférer un logiciel fonctionnel à une documentation excessive} : l'objectif est de générer rapidement des résultats tangibles, tout en gardant une documentation utile mais non envahissante.
 \item \textbf{Collaborer avec le client plutôt que négocier un contrat figé} : l'écoute des besoins réels et les retours fréquents permettent de réorienter le produit en fonction de la valeur métier, plutôt que de s'enfermer dans un cahier des charges statique.
-\item \textbf{Accepter le changement plutôt que suivre un plan immuable} : nous voyons le changement comme une opportunité d'adaptation. Le projet doit pouvoir évoluer sans sacrifier la cohérence globale ni la qualité des livraisons. [3]
+\item \textbf{Accepter le changement plutôt que suivre un plan immuable} : nous voyons le changement comme une opportunité d'adaptation. Le projet doit pouvoir évoluer sans sacrifier la cohérence globale ni la qualité des livraisons. \refweb{3}
 \end{itemize}
 
 \subsection{Choix de la méthode de travail}
@@ -323,7 +323,7 @@ Scrum a été retenue comme cadre de travail pour structurer le développement e
 \subsection{Fondements de SCRUM }
 Scrum est un cadre organisationnel qui structure le développement itératif par successifs cycles courts appelés sprints, généralement étalés sur 2 à 4 semaines. Ce modèle s'appuie sur l'expression des besoins sous forme d'items de travail (user stories) ordonnancés et priorisés, permettant une livraison régulière de valeur métier mesurable et exploitable. La philosophie sous-jacente vise à concilier productivité de l'équipe et satisfaction continue du client par l'ajustement perpétuel. 
 
-Scrum repose sur trois piliers fondamentaux qui constituent sa colonne vertébrale : la \textbf{transparence} crée une visibilité partagée et incontestable sur la progression réelle du travail, les risques et les décisions ; l'\textbf{inspection} encourage l'évaluation critique et régulière des artefacts (produit, processus, incrément) pour identifier rapidement tout écart ou opportunité ; enfin, l'\textbf{adaptation} autorise l'équipe à réviser son approche, ses priorités et ses méthodes en réaction directe aux faits observés et aux retours des parties prenantes.[31]
+Scrum repose sur trois piliers fondamentaux qui constituent sa colonne vertébrale : la \textbf{transparence} crée une visibilité partagée et incontestable sur la progression réelle du travail, les risques et les décisions ; l'\textbf{inspection} encourage l'évaluation critique et régulière des artefacts (produit, processus, incrément) pour identifier rapidement tout écart ou opportunité ; enfin, l'\textbf{adaptation} autorise l'équipe à réviser son approche, ses priorités et ses méthodes en réaction directe aux faits observés et aux retours des parties prenantes.\refweb{31}
 
 \subsection{Rôles de SCRUM}
 La structure organisationnelle de Scrum s'appuie sur trois rôles qui répartissent clairement les responsabilités entre le pilotage métier, la facilitation du cadre et la réalisation technique.
@@ -371,7 +371,7 @@ Les artéfacts Scrum matérialisent et expriment le travail, la valeur livrée e
     
    
 \section{Langage de modélisation UML – Unified Modeling Language}
-« Le langage de modélisation unifié (UML) est un langage permettant de spécifier, visualiser, construire et documenter les artefacts des systèmes logiciels, ainsi que de modéliser des systèmes métier et d'autres systèmes non logiciels. L'UML représente un ensemble de bonnes pratiques d'ingénierie qui ont fait leurs preuves dans la modélisation de systèmes vastes et complexes. » [4]
+« Le langage de modélisation unifié (UML) est un langage permettant de spécifier, visualiser, construire et documenter les artefacts des systèmes logiciels, ainsi que de modéliser des systèmes métier et d'autres systèmes non logiciels. L'UML représente un ensemble de bonnes pratiques d'ingénierie qui ont fait leurs preuves dans la modélisation de systèmes vastes et complexes. » \refweb{4}
 
 \begin{figure}[H]
         \centering

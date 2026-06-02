@@ -297,6 +297,12 @@
 \newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
 \newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
 
+% ============================================================
+%  MACRO RÉFÉRENCE CLIQUABLE vers la webographie
+%  Usage : \refweb{N}  → affiche [N] cliquable vers l'entrée N
+% ============================================================
+\newcommand{\refweb}[1]{\hyperref[ref:#1]{[#1]}}
+
 % Configuration hyperref
 \hypersetup{
     pdftitle={Plateforme de Gestion des Contrats de Maintenance},
@@ -493,23 +499,23 @@
 \input{tex/chapitre2}
 
 % ---- Chapitre 3 ----
-\hiddenpart{Sprint 1 -- Authentification, Sécurité et Gestion des Utilisateurs}
-\chaptercover{3}{Sprint 1 -- Authentification, Sécurité et Gestion des Utilisateurs}
+\hiddenpart{Sprint 1 -- Socle Sécurité \& Contrôle d'Accès}
+\chaptercover{3}{Sprint 1 -- Socle Sécurité et Contrôle d'Accès}
 \input{tex/chapitre3}
 
 % ---- Chapitre 4 ----
-\hiddenpart{Sprint 2 -- Gestion des Clients, Projets et Contrats}
-\chaptercover{4}{Sprint 2 -- Gestion des Clients, Projets et Contrats}
+\hiddenpart{Sprint 2 -- Gestion Contractuelle et Traçabilité}
+\chaptercover{4}{Sprint 2 -- Gestion Contractuelle et Traçabilité}
 \input{tex/chapitre4}
 
 % ---- Chapitre 5 ----
-\hiddenpart{Sprint 3 -- Gestion des Demandes et Tickets}
-\chaptercover{5}{Sprint 3 -- Gestion des Demandes et Tickets}
+\hiddenpart{Sprint 3 -- Gestion des Demandes, Tickets & Assistance IA}
+\chaptercover{5}{Sprint 3 -- Gestion des Demandes, Tickets & Assistance IA}
 \input{tex/chapitre5}
 
 % ---- Chapitre 6 ----
-\hiddenpart{Sprint 4 -- Collaboration, Documents et Planification}
-\chaptercover{6}{Sprint 4 -- Collaboration, Documents et Planification}
+\hiddenpart{Sprint 4 -- Collaboration et Dashboards}
+\chaptercover{6}{Sprint 4 -- Collaboration et Dashboards}
 \input{tex/chapitre6}
 \cleardoublepage
 \input{tex/Conclusion_General}
