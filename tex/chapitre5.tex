@@ -725,15 +725,15 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \hline
 \textbf{Acteurs} & Chef de projet, Administrateur \\
 \hline
-\textbf{Précondition} & L'utilisateur est authentifié et un ticket éligible est sélectionné. \\
+\textbf{Précondition} & L'utilisateur est authentifié et un ticket éligible (non assigné ou avec moins de 3 développeurs) est sélectionné. \\
 \hline
-\textbf{Postcondition} & L'assignation est enregistrée, le planning de charge du développeur est mis à jour et ce dernier est notifié (in-app, e-mail, Slack). \\
+\textbf{Postcondition} & L'assignation est enregistrée, la charge de travail du développeur est mise à jour, et ce dernier est notifié. \\
 \hline
 \textbf{Scénario nominal} & 
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=2pt, itemsep=2pt]
   \item L'utilisateur clique sur le bouton d'assignation directe depuis la vue d'un ticket.
-  \item Le système extrait et affiche la liste de tous les développeurs actifs, qu'ils soient liés ou non au projet.
+  \item Le système affiche la liste des développeurs disponibles, organisée en trois sections : recommandés, membres du projet, autres développeurs.
   \item Pour chaque développeur, le système génère un indicateur visuel de sa charge de travail planifiée sur les sept (7) prochains jours.
   \item L'utilisateur sélectionne le développeur adéquat.
   \item Le système vérifie que le développeur sélectionné n'a pas dépassé sa limite maximale de tickets actifs.
