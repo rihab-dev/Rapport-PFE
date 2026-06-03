@@ -247,32 +247,35 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \hline
 \textbf{Acteurs} & Administrateur \\
 \hline
-\textbf{Précondition} & L'administrateur est sur la page de création ou de détail d'un client. \\
+\textbf{Précondition} & L'administrateur est authentifié et se trouve sur la page de liste des clients ou sur la page de détail d'un client existant. \\
 \hline
-\textbf{Postcondition} & Le projet est enregistré dans le système en tant que projet en maintenance. \\
+\textbf{Postcondition} & Le projet est enregistré avec le statut « En maintenance » et l'équipe est associée. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., leftmargin=*]
-\item L'administrateur clique sur « Ajouter un projet livré » et renseigne (le nom, la description..).
-\item L'administrateur sélectionne le chef de projet et au moins un membre de l'équipe ayant réalisé le projet.
-\item L'administrateur valide le formulaire.
-\item Le système contrôle la cohérence des dates et l'existence des intervenants.
-\item Le système enregistre le projet, associe l'équipe et confirme l'ajout par un message de succès.
+\item L'administrateur clique sur « Ajouter projet » ; le système affiche un formulaire en deux étapes.
+\item L'administrateur renseigne le nom, la description, les tags et les trois dates obligatoires (début, fin et livraison), toutes antérieures à la date du jour.
+\item L'administrateur passe à l'étape suivante et sélectionne le chef de projet ainsi qu'au moins un membre de l'équipe ayant réalisé le projet.
+\item L'administrateur soumet le formulaire.
+\item Le système vérifie la cohérence des dates, l'unicité du nom du projet et l'existence des intervenants.
+\item Le système enregistre le projet, crée les membres associés et incrémente les statistiques de projets terminés des membres actifs.
+\item Le système confirme l'ajout par un message de succès.
 \end{enumerate}
 \vspace{2pt}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item  L'administrateur saisit une date dans le futur ou incohérente  le système affiche une erreur, l'administrateur corrige et \textbf{reprend à l'étape 3}.
-\item  L'administrateur valide sans chef de projet ou sans équipe  le système bloque l'envoi, l'administrateur complète sa saisie et \textbf{reprend à l'étape 3}.
-\item Le nom du projet existe déjà  le système signale le conflit, l'administrateur modifie le nom et \textbf{reprend à l'étape 3}.
+\item Une date est manquante, dans le futur ou incohérente (ex. fin antérieure au début). Le système affiche un message d'erreur ; l'administrateur corrige et \textbf{reprend à l'étape 4}.
+\item L'administrateur soumet sans chef de projet ou sans membre d'équipe. Le système bloque l'envoi et affiche un message ; l'administrateur complète sa saisie et \textbf{reprend à l'étape 4}.
+\item Le nom du projet existe déjà pour ce client. Le système signale le conflit ; l'administrateur modifie le nom et \textbf{reprend à l'étape 4}.
+\item L'administrateur active l'option « Créer un contrat ». Le système redirige vers le formulaire de contrat pré-rempli après la création du projet. \textit{Succès alternatif.}
 \end{enumerate} \\
 \hline
 \textbf{Scénario d'exception} &
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item  Le profil du client a été supprimé en arrière-plan  le système lève l'exception « Client introuvable » et l'opération s'arrête définitivement.
+\item Le profil du client ou un intervenant (chef de projet, membre) est introuvable en base. Le système lève une exception et annule la transaction ; l'opération s'arrête définitivement.
 \end{enumerate} \\
 \hline
 \end{longtable}

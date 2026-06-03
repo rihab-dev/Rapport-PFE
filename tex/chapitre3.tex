@@ -192,36 +192,39 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \hline
 \textbf{Acteurs} & Visiteur \\
 \hline
-\textbf{Précondition} & Le visiteur n'a pas de compte existant dans le système et se trouve sur la page d'authentification. \\
+\textbf{Précondition} & Le visiteur ne possède pas de compte actif dans le système et se trouve sur la page d'authentification (\texttt{/connexion}). \\
 \hline
-\textbf{Postcondition} & La demande d'inscription est créée « en attente », ou le visiteur est connecté s'il possède déjà un accès. \\
+\textbf{Postcondition} & Une demande d'inscription est enregistrée avec le statut « en attente », les administrateurs sont notifiés, et le visiteur reçoit un accusé de réception par e-mail. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
-\item Le système affiche le formulaire de connexion avec les onglets \textit{Connexion} et \textit{Inscription OAuth}.
-\item L'utilisateur choisit l'onglet \textit{Inscription OAuth}.
-\item Le visiteur choisit son rôle sur la page de connexion.
-\item Le visiteur sélectionne un fournisseur externe (Google/GitHub).
-\item Le visiteur est redirigé vers le fournisseur pour s'authentifier et autoriser l'accès à son profil.
-\item De retour sur l'application, le système réceptionne les données OAuth et vérifie l'inexistence d'un compte actif.
+\item Le système affiche la page d'authentification avec deux onglets : \textit{Connexion} et \textit{Demander l'accès}.
+\item Le visiteur choisit l'onglet \textit{Demander l'accès}.
+\item Le visiteur sélectionne son rôle cible parmi les profils disponibles.
+\item Le visiteur sélectionne un fournisseur externe (Google ou GitHub).
+\item Le système redirige le visiteur vers le fournisseur pour s'authentifier et autoriser l'accès à son profil.
+\item De retour sur l'application, le système réceptionne les données OAuth et vérifie l'absence de compte actif associé à l'e-mail.
 \item Le système crée la demande d'inscription avec le statut « en attente ».
-\item Le système notifie l'équipe d'administration (via e-mail et notification interne).
-\item Le système confirme au visiteur par e-mail que la demande est en cours d'examen et affiche l'interface d'attente.
+\item Le système notifie l'équipe d'administration par e-mail et par notification interne.
+\item Le système envoie un accusé de réception par e-mail au visiteur.
+\item Le système redirige le visiteur vers l'interface d'attente.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item  Le système détecte que l'e-mail OAuth est déjà rattaché à un compte actif. Au lieu de créer la demande, le système connecte directement l'utilisateur. \textit{Succès alternatif.}
-\item  Le système détecte le doublon, bloque la création pour éviter les spams, mais rassure l'utilisateur en affichant l'interface d'attente. \textit{Résolution gracieuse.}
+\item Le système détecte un compte actif associé à l'e-mail OAuth avec le rôle demandé. Il ne crée pas de demande et invite le visiteur à se connecter directement. \textit{Résolution gracieuse.}
+\item Le système détecte un compte actif avec un rôle différent. Il crée une demande de changement de rôle et notifie les administrateurs. \textit{Résolution gracieuse.}
+\item Le système détecte une demande déjà en attente pour cet e-mail. Il bloque la création du doublon et informe le visiteur de l'état de sa demande. \textit{Résolution gracieuse.}
+\item Le système détecte une demande antérieurement refusée. Il la renouvelle, notifie les administrateurs et confirme au visiteur. \textit{Succès alternatif.}
 \end{enumerate} \\
 \hline
 \textbf{Scénario d'exception} &
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le visiteur annule le processus externe. Le système avorte l'opération et le ramène à la connexion. \textit{Échec de l'action.}
-\item  Le service externe masque l'e-mail de l'utilisateur. Le système bloque l'inscription et affiche une erreur. \textit{Arrêt du processus.}
-\item  Le service externe est indisponible. Le système affiche une erreur réseau. \textit{Arrêt du processus.}
+\item Le visiteur annule l'autorisation côté fournisseur. Le système avorte l'opération et le ramène à la page de connexion avec un message d'erreur. \textit{Échec de l'action.}
+\item Le fournisseur ne transmet pas l'e-mail du visiteur. Le système bloque l'inscription et affiche un message explicatif. \textit{Arrêt du processus.}
+\item Le fournisseur externe est indisponible. Le système affiche une erreur réseau et ramène le visiteur à la connexion. \textit{Arrêt du processus.}
 \end{enumerate} \\
 \hline
 \end{longtable}
@@ -263,23 +266,28 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \hline
 \textbf{Précondition} & L'administrateur est connecté et dispose des droits de création de compte. \\
 \hline
-\textbf{Postcondition} & Le compte est opérationnel en base de données et l'utilisateur reçoit ses accès par courriel. \\
+\textbf{Postcondition} & Le compte est créé en base de données avec un mot de passe temporaire, et l'utilisateur reçoit ses identifiants par courriel. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
-    \item L'administrateur ouvre le formulaire d'ajout et saisit les coordonnées (nom, e-mail, rôle...).
-    \item À la validation, le système s'assure que l'e-mail n'est pas déjà pris.
-    \item Le système génère automatiquement un mot de passe temporaire et enregistre le compte actif.
-    \item Un e-mail de bienvenue contenant les identifiants est envoyé au nouvel utilisateur.
-    \item La liste se met à jour et l'administrateur reçoit une confirmation de succès.
+\item L'administrateur ouvre le formulaire d'ajout.
+    \item Il saisit les informations de la première étape (nom, prénom, email, téléphone, date de naissance, rôle).
+    \item Il clique sur « Suivant ». Le système valide les champs.
+    \item Il complète la deuxième étape (poste, spécialisation, date d'embauche) si le rôle n'est pas « Client ».
+    \item Il valide le formulaire. Le système vérifie que l'email n'est pas déjà utilisé.
+    \item Le système génère automatiquement un mot de passe temporaire.
+    \item Le système crée le compte, l'assigne au rôle choisi, et crée le profil correspondant.
+    \item Un email de bienvenue contenant le mot de passe temporaire et un lien de réinitialisation est envoyé.
+    \item L'administrateur reçoit une confirmation visuelle et la liste des utilisateurs se met à jour.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L’administrateur oublie un champ ou se trompe de format. Le système signale le champ erroné. L’administrateur le corrige et valide à nouveau.
-\item  L'adresse e-mail est déjà attribuée à un autre compte. Le système affiche une alerte. L'administrateur change l'adresse e-mail pour continuer.
+\item L'administrateur oublie un champ obligatoire ou saisit un format incorrect (email invalide, date de naissance dans le futur, âge inférieur à 18 ans). Le système signale le champ erroné avec un message d'erreur. L'administrateur corrige et valide à nouveau.
+\item L'adresse e-mail est déjà attribuée à un autre compte. Le système affiche une alerte. L'administrateur change l'adresse e-mail pour continuer.
+\item L'administrateur sélectionne le rôle « Client ». Le système saute la deuxième étape (saisie du poste et de la date d'embauche) et passe directement à la création du compte.
 \end{enumerate} \\
 \hline
 \end{longtable}
@@ -788,7 +796,7 @@ Dans cette section, nous allons modéliser les intéractions entre l'utilisateur
 
 \begin{figure}[H]
         \centering
-        \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme changer Mot de passe.png}
+        \includegraphics[width=0.85\textwidth,height=0.95\textheight,keepaspectratio]{Images/Diagramme changer Mot de passe.png}
         \caption{Diagramme de séquences du cas d'utilisation « Mot de passe oublié »}
         \label{fig:password_reset_sequence}
 \end{figure}
