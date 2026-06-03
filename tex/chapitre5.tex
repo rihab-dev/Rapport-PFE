@@ -889,6 +889,32 @@ Nous avons mis en place cette interface de vue détaillée d'un ticket, le déve
 \label{fig:Interface de gestion du temps}
 \end{figure}
 
+\subsection{Interface de priorisation intelligente des tickets}
+Nous avons mis en place cette interface pour que l'IA puisse analyser automatiquement chaque demande soumise et lui attribuer un type (correctif, évolutif, préventif) ainsi qu'une priorité (mineur, majeur, critique) avec un score de confiance. Pour le chef de projet, ces suggestions apparaissent directement lors de la validation, lui permettant de les accepter ou de les corriger avant de convertir la demande en ticket.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=14cm,keepaspectratio]{Images/Interface priotite.png}
+\caption{Interface de priorisation des demandes}
+\label{fig:Interface priorisation}
+\end{figure}
+\subsection{Interface d'analyse et de gestion des blocages}
+Nous avons mis en place cette interface pour que le développeur puisse signaler un blocage sur un ticket en cours et recevoir une analyse intelligente générée par l'IA. Pour le chef de projet, ces blocages remontent avec une suggestion de solution et une recommandation d'escalade selon le temps écoulé et la priorité du ticket, afin d'intervenir rapidement sans attendre un signalement manuel.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=14cm,keepaspectratio]{Images/Interface Developpeur Brouillon IA.png}
+\caption{Interface d'analyse des blocages}
+\label{fig:Interface analyse blocages}
+\end{figure}
+\subsection{Interface de capitalisation des connaissances}
+Nous avons mis en place cette interface pour que les tickets soient automatiquement triés selon un score d'urgence calculé en temps réel. Pour le développeur et le chef de projet, chaque ticket reçoit un score combinant sa priorité (critique, majeur, mineur) et le taux du SLA écoulé, ce qui fait remonter en tête de liste les tickets les plus urgents  notamment ceux dont le délai est dépassé  sans aucune intervention manuelle.
+\begin{figure}[H]
+\centering
+\includegraphics[width=14cm,keepaspectratio]{Images/Interface Base de connaissance.png}
+\caption{Interface de capitalisation des connaissances}
+\label{fig:Interface capitalisation connaissances}
+\end{figure}
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 5 : TESTS
 % ─────────────────────────────────────────────────────────────────────────────
