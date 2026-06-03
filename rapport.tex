@@ -1,11 +1,12 @@
 \documentclass[12pt,a4paper]{report}
 % Packages communs
-\usepackage[utf8]{inputenc}
-% \usepackage[LAE,T1]{fontenc}
-\usepackage[T1]{fontenc}
-\usepackage[french]{babel}
-% \usepackage[arabic]{babel}
-\addto\extrasfrench{\inputencoding{utf8}}
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\setmainfont{Times New Roman}
+\newfontfamily\arabicfont[Script=Arabic,Scale=1.1]{Arial}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setotherlanguage{arabic}
 \usepackage[table,dvipsnames]{xcolor}
 
 % ============================================================
@@ -30,7 +31,6 @@
 
 \usepackage{multirow}
 \usepackage{amssymb}
-\usepackage{times}
 \usepackage{setspace}
 \usepackage{fancyhdr}
 \usepackage{titlesec}
@@ -370,6 +370,8 @@
 \titlespacing*{\subsubsection}{0pt}{12pt}{4pt}
 
 % 
+\newcommand{\og}{«~}
+\newcommand{\fg}{~»}
 \begin{document}
 % ============================================================
 
