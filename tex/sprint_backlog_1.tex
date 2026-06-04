@@ -141,6 +141,22 @@ US14 & En tant qu'\textbf{administrateur}, je souhaite consulter la matrice rôl
 \item Structurer et modéliser ces données côté frontend sous forme de tableau synthétique et filtrable.
 \end{itemize} & 3 \\
 \hline
+US15 & En tant qu'\textbf{administrateur}, je souhaite attribuer un rôle à un utilisateur afin de lui accorder les accès correspondants au système. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint d'attribution de rôle à un utilisateur.
+\item Implémenter les règles d'exclusivité entre rôles incompatibles.
+\item Notifier l'utilisateur par email et notification in-app avec le récapitulatif des permissions accordées.
+\item Concevoir le composant d'attribution côté Next.js.
+\end{itemize} & 3 \\
+\hline
+
+US16 & En tant qu'\textbf{administrateur}, je souhaite retirer un rôle d'un utilisateur afin de révoquer ses droits d'accès associés. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Développer l'endpoint de retrait de rôle d'un utilisateur.
+\item Notifier l'utilisateur par email et notification in-app de la révocation du rôle.
+\item Mettre à jour l'interface Next.js pour refléter immédiatement le changement.
+\end{itemize} & 2 \\
+\hline
 
 % Epic 4: Gestion des demandes d'inscription OAuth
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 4 - Gestion des demandes d'inscription OAuth}} \\

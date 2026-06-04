@@ -5,6 +5,27 @@
 \hypersetup{urlcolor=primary}
 
 {\color{primary}
+\renewcommand{\bibname}{Webographie}
+
+% On force l'environnement à NE PAS créer de nouveau titre ni de saut de page
+\makeatletter
+\renewenvironment{thebibliography}[1]{%
+  \list{\@biblabel{\@arabic\c@enumiv}}%
+       {\settowidth\labelwidth{\@biblabel{#1}}%
+        \leftmargin\labelwidth
+        \advance\leftmargin\labelsep
+        \@openbib@code
+        \usecounter{enumiv}%
+        \let\p@enumiv\@empty
+        \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+  \sloppy
+  \sfcode`\.\@m}
+ {\def\@noitemerr
+   {\@latex@warning{Empty `thebibliography' environment}}%
+  \endlist}
+\makeatother
+
+% C'est cette balise qu'il ne faut pas oublier d'ouvrir :
 \begin{thebibliography}{99}
 
 \bibitem{site-solidwall} 
@@ -106,5 +127,6 @@ R. C. Martin, « Agile Software Development: Principles, Patterns, and Practices
 \bibitem{canva} 
 \url{https://www.canva.com} \hfill Consulté le 25 avril 2026
 
+% Et celle-ci qu'il faut bien fermer à la fin :
 \end{thebibliography}
 }

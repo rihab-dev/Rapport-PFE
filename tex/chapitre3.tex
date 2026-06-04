@@ -623,7 +623,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \hline
 \textbf{Précondition} & L'administrateur est authentifié avec la permission d'attribuer des rôles. L'utilisateur et le rôle cibles existent. \\
 \hline
-\textbf{Postcondition} & Le rôle est attribué à l'utilisateur ciblé. \\
+\textbf{Postcondition} & Le rôle est attribué à l'utilisateur ciblé et ce dernier est notifié par email et notification in-app. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -631,9 +631,12 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \item L'administrateur accède au profil d'un utilisateur.
 \item Il clique sur « Ajouter un rôle ».
 \item Le système affiche la liste des rôles disponibles.
-\item L'administrateur sélectionne un rôle et valide.
+\item L'administrateur sélectionne un rôle.
+\item L'administrateur valide son choix.
 \item Le système vérifie les règles d'exclusivité métier.
-\item Le système enregistre l'attribution et confirme le succès.
+\item Le système enregistre l'attribution.
+\item Le système notifie l'utilisateur par email et notification in-app.
+\item Le système confirme le succès à l'administrateur.
 \end{enumerate}
 \end{minipage} \\
 \hline
@@ -674,16 +677,18 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \hline
 \textbf{Précondition} & L'administrateur est authentifié et dispose de la permission de gestion des rôles. \\
 \hline
-\textbf{Postcondition} & Le rôle est retiré de l'utilisateur. \\
+\textbf{Postcondition} & Le rôle est retiré de l'utilisateur et ce dernier est notifié par email et notification in-app. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
-\item L'administrateur consulte le profil d'un utilisateur.
+\item L'administrateur accède au profil d'un utilisateur.
 \item Il clique sur l'icône de suppression du rôle visé.
-\item Le système demande une confirmation.
-\item L'administrateur confirme.
-\item Le système supprime le lien et affiche un message de succès.
+\item Le système affiche une demande de confirmation.
+\item L'administrateur confirme l'opération.
+\item Le système supprime le lien utilisateur-rôle.
+\item Le système notifie l'utilisateur par email et notification in-app.
+\item Le système affiche un message de succès à l'administrateur.
 \end{enumerate}
 \end{minipage} \\
 \hline
@@ -700,6 +705,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \end{longtable}
 \captionof{table}{Description textuelle du cas d’utilisation «Retirer rôle utilisateur »} 
 \normalsize
+
 
 \subsection{Analyse de la fonctionnalité « Gérer permissions »}
 Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des permissions afin
