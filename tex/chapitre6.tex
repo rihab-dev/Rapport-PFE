@@ -1,4 +1,4 @@
-\section*{Introduction}
+﻿\section*{Introduction}
 
 Ce chapitre présente le quatrième et dernier sprint du projet \textbf{SolidMaint}. Les sprints précédents nous ont permis de mettre en place les principales fonctionnalités du système : la gestion des utilisateurs, des clients, des contrats, ainsi que le traitement des demandes et des tickets. Ce sprint vient compléter la plateforme avec des fonctionnalités de collaboration et de suivi qui étaient encore manquantes.
 \newline
@@ -22,10 +22,8 @@ L'objectif principal de ce sprint est de finaliser la plateforme en offrant aux 
 Le tableau ci-dessous présente le Sprint Backlog détaillé avec les descriptions techniques et l'effort estimé pour chaque user story.
 
 \textbf{1 : Effort faible, 2 : Effort moyen, 3 : Effort élevé}
-\newpage
-\input{tex/sprint_backlog_4}
 
-\newpage
+\input{tex/sprint_backlog_4}
 
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 2 : ANALYSE
@@ -63,7 +61,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{figure}
 
 \subsubsection{Description textuelle du cas d'utilisation « Consulter rapport »}
-La figure ci-dessous présente la description textuelle du cas d'utilisation « Consulter rapport ».
+Le tableau ci-dessous présente la description textuelle du cas d'utilisation « Consulter rapport ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -92,6 +90,7 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \item L'acteur modifie les filtres ; le système recharge automatiquement les données.
 \item L'acteur clique sur le bouton « PDF » ; le système génère et télécharge le fichier de rapport.
 \end{enumerate}
+\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -149,6 +148,7 @@ Dans cette partie, nous présentons le raffinement des scénarios liés à la me
 \item Le système vérifie l'appartenance au canal et les permissions d'écriture.
 \item Le système enregistre le message et diffuse l'événement temps réel.
 \end{enumerate}
+\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -157,6 +157,7 @@ Dans cette partie, nous présentons le raffinement des scénarios liés à la me
 \item Si le canal privé n'existe pas, le système le crée puis poursuit l'envoi du message.
 \item Si le message comporte une mention, le système crée la notification correspondante après l'enregistrement.
 \end{enumerate}
+\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario d'exception} &
@@ -165,6 +166,7 @@ Dans cette partie, nous présentons le raffinement des scénarios liés à la me
 \item Destinataire introuvable ou inactif : l'opération est refusée.
 \item Limite anti-abus atteinte (rate limit) : l'envoi est temporairement bloqué.
 \end{enumerate}
+\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \end{longtable}
@@ -199,6 +201,7 @@ Dans cette partie, nous présentons le raffinement des scénarios liés à la me
 \item Le système crée le message, stocke le fichier audio, puis associe la durée.
 \item Le système publie le nouveau message dans le canal/conversation.
 \end{enumerate}
+\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario d'exception} &
@@ -207,6 +210,7 @@ Dans cette partie, nous présentons le raffinement des scénarios liés à la me
 \item Microphone refusé ou inaccessible : l'enregistrement est annulé et une erreur est affichée.
 \item Fichier trop volumineux ou type MIME non autorisé : l'upload est rejeté.
 \end{enumerate}
+\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \end{longtable}
@@ -226,7 +230,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{figure}
 
 \subsubsection{Description textuelle du cas d'utilisation « Ajouter document »}
-La figure ci-dessous présente la description textuelle du cas d'utilisation « Ajouter document ».
+Le tableau ci-dessous présente la description textuelle du cas d'utilisation « Ajouter document ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -257,6 +261,7 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \item  Il sélectionne un ou plusieurs fichiers (max 5) via l'explorateur ou par glisser-déposer.
 \item La liste des documents s'actualise instantanément.
 \end{enumerate}
+\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -266,6 +271,7 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \item Si un fichier dépasse 10 Mo, le système bloque l'upload avant l'envoi et affiche une alerte visuelle à l'utilisateur.
 \item Sur un même ticket ou contrat, si un nouveau fichier porte le même nom qu'un document existant, le système crée une nouvelle version (V2, V3...) au lieu d'écraser l'existant, conservant ainsi l'historique complet.
 \end{enumerate}
+\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \end{longtable}
@@ -274,7 +280,7 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 
 
 \subsubsection{Description textuelle du cas d'utilisation « Générer document PV »}
-La figure ci-dessous présente la description textuelle du cas d'utilisation « Générer document PV ».
+Le tableau ci-dessous présente la description textuelle du cas d'utilisation « Générer document PV ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -304,6 +310,7 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \item L'acteur complète les champs libres : "Observations particulières" et "Matériel utilisé".
 \item Le système enregistre le PDF comme document définitif rattaché au ticket.
 \end{enumerate}
+\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -311,6 +318,7 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item l'acteur saisit ses observations dans le champ "Observations particulières" ou "Matériel utilisé" puis réalise qu'il a fait une faute de frappe ou oublié une information. Il modifie directement le texte dans la zone de saisie avant de cliquer sur le bouton. Le système accepte la nouvelle saisie et génère le PDF avec les données corrigées.
 \end{enumerate}
+\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \end{longtable}
@@ -328,7 +336,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{figure}
 
 \subsubsection{Description textuelle du cas d'utilisation « Ajouter article »}
-La figure ci-dessous présente la description textuelle du cas d'utilisation « Ajouter article ».
+Le tableau ci-dessous présente la description textuelle du cas d'utilisation « Ajouter article ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -360,6 +368,7 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \item Le système affiche un message de succès.
 \item La liste des articles est rafraîchie automatiquement.
 \end{enumerate}
+\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -369,6 +378,7 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \item L'utilisateur choisit « Autre » comme catégorie ; le système affiche un champ de saisie libre pour définir une catégorie personnalisée.
 \item L'utilisateur clique sur « Annuler » ou ferme la fenêtre ; le système abandonne la création sans enregistrer l'article.
 \end{enumerate}
+\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario d'exception} &
@@ -377,6 +387,7 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \item Les données sont invalides: le système refuse l'enregistrement et affiche un message d'erreur.
 \item L'utilisateur ne possède pas les droits requis: le système bloque la création.
 \end{enumerate}
+\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \end{longtable}
@@ -399,7 +410,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{figure}
 
 \subsubsection{Description textuelle du cas d'utilisation « Configurer préférences notifications »}
-La figure ci-dessous présente la description textuelle du cas d'utilisation « Configurer préférences notifications ».
+Le tableau ci-dessous présente la description textuelle du cas d'utilisation « Configurer préférences notifications ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -428,6 +439,7 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \item L'acteur clique sur une catégorie pour la déplier et consulte les types d'événements associés, chacun accompagné de son interrupteur.
 \item L'acteur désactive un type d'événement en basculant son interrupteur à \textbf{INACTIF}.
 \end{enumerate}
+\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénarios alternatifs} &
@@ -440,7 +452,7 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \newpage
 
 \subsubsection{Description textuelle du cas d’utilisation « Configurer intégration Slack »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Configurer intégration Slack ».
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Configurer intégration Slack ».
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
@@ -684,7 +696,7 @@ utilisateur d'être alerté en temps réel selon ses préférences. Les notifica
 in-app s'affichent directement dans la barre de navigation avec un compteur de 
 messages non lus ; les notifications email sont envoyées automatiquement pour les 
 événements critiques ; les notifications push navigateur alertent l'utilisateur même 
-hors de l'application ; ensfin, l'intégration Slack permet de relayer les alertes 
+hors de l'application ; enfin, l'intégration Slack permet de relier les alertes 
 sur un canal dédié, configurable par contrat. Chaque utilisateur peut personnaliser 
 ses préférences par type d'événement depuis son profil.
 \begin{figure}[H]
@@ -693,9 +705,6 @@ ses préférences par type d'événement depuis son profil.
     \caption{Interface du centre de notifications}
     \label{fig:Interface du centre de notifications}
 \end{figure}
-
-
-
 
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 5 : TESTS

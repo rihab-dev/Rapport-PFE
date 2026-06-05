@@ -32,7 +32,7 @@ US20 & En tant qu'\textbf{administrateur}, je souhaite créer un profil client a
 \end{itemize} & 1 \\
 \hline
 
-US21 & En tant que \textbf{Chef de Projet ou Administrateur}, je souhaite consulter la liste des clients afin de visualiser les clients existants. &
+US21 & En tant que \textbf{Chef de Projet}, je souhaite consulter la liste des clients afin de visualiser les clients existants. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint \footnotesize{"GET /api/clients"}\small{} sécurisé par contrôle d'accès selon le rôle de l'utilisateur connecté.
 \item Permettre l'export et l'impression depuis l'interface à partir des données récupérées.
@@ -40,7 +40,7 @@ US21 & En tant que \textbf{Chef de Projet ou Administrateur}, je souhaite consul
 \end{itemize} & 2 \\
 \hline
 
-US22 & En tant que \textbf{Chef de Projet ou Administrateur}, je souhaite consulter le profil détaillé d'un client afin de visualiser toutes ses informations. &
+US22 & En tant que \textbf{Chef de Projet}, je souhaite consulter le profil détaillé d'un client afin de visualiser toutes ses informations. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer les endpoints \footnotesize{"GET /api/clients/:id"}\small{} et \footnotesize{"GET /api/clients/:id/business-overview"}\small{} pour restituer une vue métier consolidée.
 \item Compléter la consultation avec \footnotesize{"GET /api/clients/:id/projets"}\small, \footnotesize{"GET /api/clients/:id/contrats"}\small, \footnotesize{"GET /api/clients/:id/tickets"}\small{}, \footnotesize{"GET /api/clients/:id/documents"}\small{} et \footnotesize{"GET /api/clients/:id/demandes"}\small.
@@ -80,14 +80,15 @@ US26 & En tant qu'\textbf{administrateur}, je souhaite créer un projet rattach�
 \end{itemize} & 3 \\
 \hline
 
-US27 & En tant que \textbf{chef de projet ou administrateur}, je souhaite consulter la liste des projets d'un client afin de piloter l'activité. &
+US27 & En tant que \textbf{chef de projet}, je souhaite consulter la liste des projets d'un client afin de piloter l'activité. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
   \item Développer l'endpoint \footnotesize{\texttt{GET /api/clients/:id/projets}}\small{} avec filtres par recherche textuelle et statut projet, et pagination serveur.
   \item Cloisonner la visibilité des données selon les permissions : la colonne contrats et certaines actions sont réservées à l'administrateur.
   \item Réaliser l'interface liste côté Next.js.
   \item Implémenter un organigramme hiérarchique interactif ,rendu côté client avec \textit{Framer Motion}.
 
-\end{itemize}
+\end{itemize} 
+ & 1 \\
 \hline
 
 % Epic 6: Gestion des contrats

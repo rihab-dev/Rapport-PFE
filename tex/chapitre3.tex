@@ -1,4 +1,4 @@
-
+﻿
 \section*{Introduction}
 Dans le chapitre précédent, nous avons défini les besoins liés à notre solution et réparti les différentes tâches du projet afin que les phases de travail soient correctement planifiées.
 \newline Au cours de ce chapitre, nous présenterons les fonctionnalités liées  à la gestion des utilisateurs, à l'authentification et au contrôle d'accès basé sur les rôles (RBAC), retenues dans le cadre du premier sprint de notre projet.
@@ -51,7 +51,7 @@ Nous allons accompagner les cas d'utilisation d'un texte descriptif pour expliqu
 Dans cette partie, nous présentons les cas d'utilisation qui ne nécessitent pas de raffinement de diagramme, leur comportement étant suffisamment direct pour être décrit uniquement par leur scénario textuel.
 
 \subsubsection{Description textuelle du cas d’utilisation «S'authentifier »}
-La figure ci-dessous présente la description textuelle du cas d'utilisation « S'authentifier » :
+Le tableau ci-dessous présente la description textuelle du cas d'utilisation « S'authentifier » :
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -91,6 +91,7 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \item Si tel est le cas, le système affiche une fenêtre bloquante contraignant l'utilisateur à définir un mot de passe personnel avant tout accès au tableau de bord.
 \item Le système redirige l'utilisateur vers le tableau de bord correspondant à son rôle.
 \end{enumerate}
+\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -111,7 +112,7 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \normalsize
 
 \subsubsection{Description textuelle du cas d’utilisation «Changer mot de passe »}
-La figure ci-dessous présente la description textuelle du cas d'utilisation « Changer le mot de passe » :
+Le tableau ci-dessous présente la description textuelle du cas d'utilisation « Changer le mot de passe » :
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -146,6 +147,7 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \item Le système valide et enregistre le nouveau mot de passe.
 \item Le système envoie un e-mail de confirmation à l'utilisateur.
 \end{enumerate}
+\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario d'exception} &
@@ -175,7 +177,7 @@ Au cours de cette partie, nous allons analyser les sous-cas d'utilisation pour l
 \end{figure}
 
 \subsubsection{Description textuelle du cas d’utilisation « Demander inscription »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Demander inscription ».
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Demander inscription ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -211,6 +213,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \item Le système envoie un accusé de réception par e-mail au visiteur.
 \item Le système redirige le visiteur vers l'interface d'attente.
 \end{enumerate}
+\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -249,7 +252,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 
 \subsubsection{Description textuelle du cas d’utilisation « Ajouter utilisateur »}
 
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Ajouter utilisateur ».
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Ajouter utilisateur ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -263,7 +266,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \hline
 \endlastfoot
 
-\textbf{Nom du cas d'utilisation} & Ajouter un utilisateur \\
+\textbf{Nom du cas d'utilisation} & Ajouter utilisateur \\
 \hline
 \textbf{Acteurs} & Administrateur \\
 \hline
@@ -284,6 +287,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
     \item Un email de bienvenue contenant le mot de passe temporaire et un lien de réinitialisation est envoyé.
     \item L'administrateur reçoit une confirmation visuelle et la liste des utilisateurs se met à jour.
 \end{enumerate}
+\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -294,12 +298,12 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «Ajouter un utilisateur »} 
+\captionof{table}{Description textuelle du cas d’utilisation «Ajouter utilisateur »} 
 \normalsize
 
 
-\subsubsection{Description textuelle du cas d’utilisation « Désactiver un utilisateur »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Désactiver un utilisateur ».
+\subsubsection{Description textuelle du cas d’utilisation « Désactiver utilisateur »}
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Désactiver utilisateur ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -313,7 +317,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Désactiver un utilisateur \\
+\textbf{Nom du cas d'utilisation} & Désactiver utilisateur \\
 \hline
 \textbf{Acteurs} & Administrateur \\
 \hline
@@ -331,6 +335,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
     \item L'administrateur valide son choix.
     \item Le système désactive le compte en base et envoie la notification e-mail.
 \end{enumerate}
+\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -341,11 +346,11 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \hline
 
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «Désactiver un utilisateur »} 
+\captionof{table}{Description textuelle du cas d’utilisation «Désactiver utilisateur »} 
 \normalsize
 
 \subsubsection{Description textuelle du cas d’utilisation « Modifier Profil »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Modifier Profil ».
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Modifier Profil ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -359,7 +364,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Modifier le Profil \\
+\textbf{Nom du cas d'utilisation} & Modifier Profil \\
 \hline
 \textbf{Acteurs} &Utilisateur \\
 \hline
@@ -377,6 +382,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
     \item Le système valide les données et met à jour le profil en base.
     \item L'utilisateur reçoit une confirmation de succès à l'écran.
 \end{enumerate}
+\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -390,10 +396,10 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «Modifier le Profil »} 
+\captionof{table}{Description textuelle du cas d’utilisation «Modifier Profil »} 
 \normalsize
 \subsubsection{Description textuelle du cas d’utilisation « Valider demande inscription »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Valider demande inscription ».
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Valider demande inscription ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -428,6 +434,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \item Le système envoie un e-mail de confirmation à l'utilisateur.
 \item Le système affiche un message de succès à l'administrateur.
 \end{enumerate}
+\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -460,7 +467,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{figure}
 
 \subsubsection{Description textuelle de cas d'utilisation « Ajouter rôle »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Ajouter rôle ».
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Ajouter rôle ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -496,6 +503,7 @@ La liste des rôles est affichée. \\
 \item Le système attribue automatiquement les permissions de base.
 \item Le système affiche le message de succès.
 \end{enumerate}
+\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -510,7 +518,7 @@ La liste des rôles est affichée. \\
 \vspace{-0.3cm}
 
 \subsubsection{Description textuelle du cas d’utilisation « Archiver rôle »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Archiver rôle ».
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Archiver rôle ».
 
 \footnotesize
 
@@ -571,7 +579,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \item Le système affiche un message de succès.
 
 \end{enumerate}
-
+\vspace{0.2cm}
 \end{minipage} \\
 
 \hline
@@ -605,22 +613,15 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 
 
 
-\subsubsection{Description textuelle du cas d’utilisation «Attribuer rôle à utilisateur »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Attribuer rôle à utilisateur ».
+\subsubsection{Description textuelle du cas d’utilisation «Attribuer rôle »}
+\nopagebreak
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Attribuer rôle ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\needspace{10\baselineskip}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
 \hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-\textbf{Nom du cas d'utilisation} & Attribuer rôle à utilisateur \\
+\textbf{Nom du cas d'utilisation} & Attribuer rôle \\
 \hline
 \textbf{Acteurs} & Administrateur \\
 \hline
@@ -641,6 +642,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \item Le système notifie l'utilisateur par email et notification in-app.
 \item Le système confirme le succès à l'administrateur.
 \end{enumerate}
+\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -656,11 +658,11 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «Attribuer rôle à utilisateur »}
+\captionof{table}{Description textuelle du cas d’utilisation «Attribuer rôle »}
 \normalsize
 
-\subsubsection{Description textuelle du cas d’utilisation « Retirer rôle utilisateur »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Retirer rôle utilisateur ».
+\subsubsection{Description textuelle du cas d’utilisation « Retirer rôle »}
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Retirer rôle  ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -674,7 +676,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Retirer rôle utilisateur \\
+\textbf{Nom du cas d'utilisation} & Retirer rôle  \\
 \hline
 \textbf{Acteurs} & Administrateur \\
 \hline
@@ -693,6 +695,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \item Le système notifie l'utilisateur par email et notification in-app.
 \item Le système affiche un message de succès à l'administrateur.
 \end{enumerate}
+\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -706,8 +709,9 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «Retirer rôle utilisateur »} 
+\captionof{table}{Description textuelle du cas d’utilisation «Retirer rôle»} 
 \normalsize
+
 
 \subsection{Analyse de la fonctionnalité « Gérer permissions »}
 Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des permissions afin
@@ -724,7 +728,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{figure}
 
 \subsubsection{Description textuelle du cas d’utilisation « Attribuer permission à rôle »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Attribuer permission à rôle ».
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Attribuer permission à rôle ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -755,6 +759,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \item L'administrateur valide sa sélection.
 \item Le système enregistre les liaisons en base et confirme le succès.
 \end{enumerate}
+\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -922,14 +927,14 @@ Nous avons mis en place un flux d'inscription OAuth en deux étapes. D'abord, l'
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.85\textwidth,keepaspectratio]{Images/demande inscription user.png}
+\includegraphics[width=11cm,height=11cm,keepaspectratio]{Images/demande inscription user.png}
 \caption{Interface utilisateur — demande d'inscription OAuth}
 \label{fig:oauth_user_demande}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.85\textwidth,keepaspectratio]{Images/interface demande d'insription.png}
+\includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/interface demande d'insription.png}
 \caption{Interface administrateur — validation des demandes OAuth}
 \label{fig:oauth_admin_validation}
 \end{figure}
@@ -1099,7 +1104,7 @@ Lee cas suivant ont été couvert :
 \end{itemize}
 \begin{figure}[H]
         \centering
-        \includegraphics[width=12cm,height=12cm,keepaspectratio]{Images/gestion profil Swagger.png}
+        \includegraphics[width=11cm,height=13cm,keepaspectratio]{Images/gestion profil Swagger.png}
         \caption{Test du module Gestion du profil}
     \end{figure}
 \end{itemize}

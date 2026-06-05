@@ -1,4 +1,4 @@
-﻿
+
 \section*{Introduction}
 Ce chapitre pose les fondations du projet en présentant le contexte organisationnel et technique de sa réalisation. Après la présentation de \textbf{SolidWall Consulting}, entreprise d'accueil du stage, nous analysons les processus actuels de gestion de maintenance et leurs limitations. L'étude comparative des solutions du marché permet d'identifier les axes d'amélioration et de définir les contours de \textbf{SolidMaint}. Enfin, nous exposons la méthodologie Scrum, le langage UML et la planification prévisionnelle du développement.
 
@@ -14,11 +14,9 @@ Forte d'une équipe dynamique et diversifiée et de profils reconnus, l’entrep
 \end{figure}
 
 \subsection{ Services de SolidWall Consulting}
-«\textbf{SolidWall Consulting} propose des services conseil pour accompagner ses clients dans la réalisation de leurs projets et assure la qualité de ses prestations ainsi que le développement de solutions numériques. 
+\textbf{SolidWall Consulting} est une société spécialisée dans les services informatiques et le développement numérique. Elle accompagne ses clients dans la réussite de leurs projets technologiques en privilégiant une approche agile, ce qui lui permet d'optimiser la gestion de ses prestations et de garantir des solutions modernes, performantes et à forte valeur ajoutée. \cite{site-solidwall}
 
-L' approche agile de \textbf{SolidWall Consulting} garantit une gestion optimisée et par conséquent, d'un résultat de qualité.»\cite{site-solidwall}
-
-
+\newpage
 \section{Cadre du projet}
 \label{sec:cadre_projet}
 \subsection{Contexte du projet}
@@ -80,9 +78,8 @@ L'étude de l'existant constitue une étape fondamentale de notre démarche proj
             \noindent
             --\hspace{0.5cm} \textbf{Processus de suivi des tickets de maintenance }
             \newline
-Le suivi des interventions repose sur des fils de discussion par e-mail. L'affectation des tickets aux développeurs s'effectue par le responsable, généralement via un message direct.
-\newline Afin d’illustrer plus concrètement ce processus de gestion, un exemple de suivi des tickets de maintenance réalisé sous forme du fichier Excel est présenté ci-dessous.
-
+Le suivi des interventions repose au quotidien sur des fils de discussion par e-mail, et l’affectation des tickets aux développeurs est effectuée par le responsable, généralement via un message direct. 
+\newline Afin d’illustrer plus concrètement ce processus, un exemple de rapport de test et de suivi des anomalies, consigné dans un fichier Excel où sont répertoriés les modules touchés, la description des problèmes rencontrés et leur statut, est présenté ci-dessous.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.45\textwidth, height=0.65\textheight, keepaspectratio]{Images/demande de maintenance sous format excel.png}
@@ -96,9 +93,8 @@ Le suivi des interventions repose sur des fils de discussion par e-mail. L'affec
     \item  \textcolor{bleuPerso} {Étude de l'existant à l'échelle internationale}~\newline
             Avant de concevoir notre propre solution, nous allons étudier les solutions disponibles sur le marché afin d'analyser les fonctionnalités proposées. Cette démarche permet d'identifier les bonnes pratiques et d'orienter efficacement le développement de notre système.\newline
             Dans ce cadre, nous avons étudié plusieurs solutions existantes couvrant différents segments du marché : solutions open-source, solutions SaaS et solutions enterprise.
-            \newline
-\medskip
-                    --\hspace{0.5cm}  \textbf{GLPI (Gestionnaire Libre de Parc Informatique)}\par\smallskip
+\vspace{0.4cm}
+                  \noindent  --\hspace{0.5cm}  \textbf{GLPI (Gestionnaire Libre de Parc Informatique)}\par\smallskip
 GLPI, lancée en 2003 et maintenue par l’éditeur français Teclib, est une solution open-source de référence pour la gestion des services informatiques et des infrastructures. Elle permet de gérer le parc informatique avec inventaire, licences et cycle de vie des actifs, tout en offrant un centre de services pour le traitement des incidents et des demandes, le suivi des SLA et le maintien d’une base de connaissances conforme aux bonnes pratiques ITIL (Information Technology Infrastructure Library). La version communautaire est gratuite en on-premise sous licence GPLv3+, tandis que des abonnements payants sont disponibles pour un support cloud managé ou une assistance professionnelle. \cite{glpi} 
                     \begin{figure}[H]
                             \centering
@@ -106,10 +102,8 @@ GLPI, lancée en 2003 et maintenue par l’éditeur français Teclib, est une so
                             \caption{Interface de GLPI }
                             \label{fig:GLPI}
                         \end{figure}
-            \noindent
-            \newline
-\medskip
-                    --\hspace{0.5cm}  \textbf{Freshdesk}\par\smallskip
+  \vspace{0.4cm}
+                  \noindent  --\hspace{0.5cm}  \textbf{Freshdesk}\par\smallskip
 Freshdesk, créée en 2011 par Freshworks, s’impose comme une plateforme SaaS de support client omnicanale capable de traiter les messages email, chat et réseaux sociaux tout en orchestrant une distribution intelligente des tickets et en enrichissant les interactions grâce à l’IA Freddy AI. Cette solution conjugue la gestion des demandes, le suivi des SLA et l’automatisation des workflows pour améliorer la réactivité des équipes. Son modèle économique repose sur un principe freemium, avec un tarif de base à partir de 15~€/agent/mois et des options payantes pour des fonctionnalités avancées. \cite{freshdesk}                   
                     \begin{figure}[H]
                                         \centering
@@ -117,10 +111,8 @@ Freshdesk, créée en 2011 par Freshworks, s’impose comme une plateforme SaaS 
                             \caption{Interface de Freshdesk}
                             \label{fig:freshdesk}
                         \end{figure}
-            \noindent
-            \newline
-\medskip
-                    --\hspace{0.5cm}  \textbf{Jira Service Management (Atlassian)}\par\smallskip
+ \vspace{0.4cm}
+                  \noindent --\hspace{0.5cm}  \textbf{Jira Service Management (Atlassian)}\par\smallskip
 Jira Service Management, lancé en 2013 par Atlassian, propose un cadre ITSM (Information Technology Service Management) centré sur la gestion des incidents, des demandes et des changements, avec des tableaux de bord dédiés au suivi des engagements de service et des automatisations pour fluidifier les processus. Cette offre tire parti de l'écosystème Jira pour relier opérationnel et développement, ce qui facilite le pilotage des équipes et des actifs. Elle est distribuée principalement via un modèle d'abonnement SaaS, avec des versions cloud et des licences self-hosted pour les organisations qui préfèrent héberger leur solution en interne. \cite{jira-service-management}                    
                     \begin{figure}[H]
                         \centering
@@ -171,7 +163,7 @@ Actuellement, la gestion des contrats de maintenance au sein de SolidWall Consul
     \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{4cm}|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|}
     \hline
     \rowcolor{blue!20}
-    \textbf{Critères de comparaison} & \textbf{GLPI \refweb{28}} & \textbf{Jira SM \refweb{30}} & \textbf{Freshdesk \refweb{29}} \\
+    \textbf{Critères de comparaison} & \textbf{GLPI \cite{glpi}} & \textbf{Jira SM \cite{jira-service-management}} & \textbf{Freshdesk \cite{freshdesk}} \\
     \hline
     Gestion des tickets & \checkmark & \checkmark & \checkmark \\
     \hline
@@ -265,7 +257,7 @@ Les valeurs du Manifeste Agile sont ici reformulées pour refléter une appropri
 \end{itemize}
 
 \subsection{Choix de la méthode de travail}
-Après avoir présenté les différentes approches et méthodes de gestion de projet, il convient de justifier les choix adoptés dans le cadre de ce travail.
+Après avoir présenté les différentes approches et méthodes de gestion de projet, il convient de justifier les choix retenus dans le cadre de ce travail.
 \subsubsection{Choix de l’approche Agile}
 Le domaine de la maintenance impose des besoins variables et imprévisibles, rendant impossible une planification exhaustive. Cette réalité justifie l'adoption d'une méthodologie agile privilégiant la flexibilité et la collaboration continue avec les clients. Parmi les méthodes disponibles, Scrum offre le cadre itératif le plus adapté à notre contexte.
 
@@ -341,7 +333,7 @@ Sur ce projet, cette responsabilité est assurée par le responsable de l'entrep
 \subsubsection{Les développeurs}
 L'équipe de développement est chargée de la réalisation opérationnelle : conception, configuration, développement et tests. Elle transforme les besoins priorisés en incréments fonctionnels prêts à être validés.
 
-Pour SolidMaint, ce rôle est incarné par le binôme d'étudiantes Rihab Chourou et Eya Gharbi, qui assurent conjointement l'ensemble des travaux techniques du projet.
+Pour SolidMaint, ce rôle est incarné par le binôme d'étudiantes Rihab Chourou et Eya Gharbi, qui assure conjointement l'ensemble des travaux techniques du projet.
 
 \subsection{Événements Scrum}
 Les événements Scrum constituent des points de synchronisation structurés qui rythment l'exécution, entretiennent la discipline itérative, et incarnent les trois piliers de transparence, d'inspection et d'adaptation. Chaque événement possède une durée maximale prescrite et sert un objectif métier bien défini.
