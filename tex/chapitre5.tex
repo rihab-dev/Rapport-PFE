@@ -859,9 +859,10 @@ Nous avons conçu cette interface pour permettre au client de soumettre et
 de suivre ses demandes de maintenance ou d'évolution directement depuis
 son espace. Pour le chef de projet, les demandes reçues sont organisées
 selon leur état courant~: \textit{en attente}, \textit{informations
-requises}, \textit{convertie en ticket} ou \textit{rejetée}. Un système
-de filtres et de tri facilite le traitement priorisé des demandes les
-plus urgentes.
+requises}, \textit{convertie en ticket} ou \textit{rejetée}.  L'interface propose quatre modes 
+d'affichage (liste, cartes, Kanban et timeline), un système de filtres multicritères 
+et des actions groupées permettant de valider ou rejeter plusieurs demandes en une 
+seule opération.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,keepaspectratio]{Images/interface Liste demandes .png}
@@ -870,15 +871,11 @@ plus urgentes.
 \end{figure}
 
 \subsection{Interface de validation des demandes avec assistance IA}
-Cette interface permet au chef de projet de traiter chaque demande reçue~:
-il peut la valider et la convertir en ticket, demander des informations
-complémentaires au client, ou la rejeter en motivant sa décision. Lors de
-la validation, le système d'intelligence artificielle propose automatiquement
-une catégorie (\textit{correctif}, \textit{évolutif}, \textit{préventif}),
-un type et un niveau de priorité (\textit{mineur}, \textit{majeur},
-\textit{critique}), accompagnés d'un score de confiance. Ces suggestions
-peuvent être acceptées ou corrigées par le chef de projet avant la
-conversion de la demande en ticket.
+Cette interface permet au chef de projet de traiter chaque demande reçue~: il peut 
+la valider et la convertir en ticket, demander des informations complémentaires au 
+client, ou la rejeter en motivant sa décision. Lors de la validation, le système 
+d'intelligence artificielle propose automatiquement une catégorie, un type et un niveau 
+de priorité, accompagnés d'un score de confiance et d'un raisonnement explicatif. Ces suggestions peuvent être acceptées ou corrigées avant la conversion de la demande en ticket.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,keepaspectratio]{Images/Interface Valider_Demande.png}
@@ -886,8 +883,14 @@ conversion de la demande en ticket.
 \label{fig:Interface Valider_Demande}
 \end{figure}
 
-\subsection{Interface de gestion des tickets (vue Kanban)}
-Nous avons développé cette interface sous forme de tableau Kanban pour regrouper l'ensemble des tickets et faciliter leur suivi. Les administrateurs voient tous les tickets, les chefs de projet accèdent aux tickets de leurs projets. Des indicateurs visuels signalent le dépassement des délais SLA, et les changements d'état s'effectuent par glisser-déposer.
+\subsection{Interface de gestion des tickets }
+Nous avons développé cette interface proposant trois modes de visualisation~: un 
+tableau Kanban, une vue liste et une file de priorité. La vue Kanban regroupe les 
+tickets par statut et permet le changement d'état par glisser-déposer, avec une 
+validation obligatoire (commentaire et solution en cas de résolution). Les 
+administrateurs et les chefs de projet voient tous les tickets de leurs périmètres, 
+tandis que les développeurs n'accèdent qu'à leurs tickets assignés. Des indicateurs 
+visuels signalent les dépassements de délai SLA et les blocages actifs.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,keepaspectratio]{Images/Interface liste ticket.png}
@@ -906,7 +909,7 @@ Nous avons mis en place une interface permettant au chef de projet d'assigner de
 \end{figure}
 
 \subsection{Interface de détail ticket}
-Dans la vue détaillée d'un ticket, le développeur peut démarrer un chronomètre pour enregistrer ses sessions de travail, les mettre en pause ou les arrêter. L'interface affiche l'historique complet des actions et les discussions de l'équipe. Un composant dédié présente en temps réel la durée accumulée et l'avancement par rapport au délai SLA.
+Dans la vue détaillée d'un ticket, le développeur assigné peut démarrer automatiquement un chronomètre lors de la première ouverture du ticket, enregistrer ses sessions de travail, les mettre en pause ou les arrêter. L'interface affiche l'historique complet des actions et les discussions de l'équipe. Un composant dédié présente en temps réel la durée accumulée et l'avancement par rapport au délai SLA.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,keepaspectratio]{Images/Interface DetailTicket.png}
@@ -941,8 +944,7 @@ projet, elle facilite la supervision et la validation par ordre d'urgence.
 \end{figure}
 \subsection{Interface d'analyse et de gestion des blocages}
 Lorsqu'un développeur rencontre un obstacle l'empêchant de progresser sur
-un ticket, il peut signaler un blocage en précisant son type (\textit{technique},
-\textit{informationnel}, \textit{dépendance}, etc.) et sa priorité. Le chef
+un ticket, il peut signaler un blocage en précisant son type et sa priorité. Le chef
 de projet est alors notifié en temps réel. Un membre de l'équipe peut
 proposer une solution, que le développeur bloqué accepte ou rejette avec
 un motif. En cas de validation, le blocage est levé automatiquement et

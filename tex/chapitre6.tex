@@ -615,15 +615,23 @@ Nous avons mis en place cette interface de tableau de bord afin d’offrir à l'
 \end{figure}
 
 \subsection{Interface du tableau de bord de chef de projet}
+Nous avons mis en place cette interface de tableau de bord permettant au chef de projet 
+de suivre en temps réel les indicateurs clés de son activité : projets en maintenance, 
+demandes en attente, tickets ouverts, taux SLA, ainsi que des graphiques d'avancement 
+des tickets, d'évolution mensuelle et de synthèse par projet, avec la possibilité de 
+générer un rapport exportable au format PDF.. 
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/Interface Dashboard Chef de projet.png}
-    \caption{Interface du tableau de chef de projetr}
+    \caption{Interface du tableau de chef de projet}
     \label{fig:Interface du tableau de chef de projet}
 \end{figure}
 
 \subsection{Interface de suivi des activités}
-Nous avons mis en place cette interface de journal d'activités de l'utilisateur connecté . Elle permet de rechercher, filtrer par période,  consulter les détails d'une action et exporter les entrées sélectionnées au format CSV.
+Nous avons mis en place cette interface de journal d'activités de l'utilisateur connecté. 
+Elle permet de rechercher et de filtrer les entrées par période (aujourd'hui, 7 derniers jours, 
+30 derniers jours ou tout afficher), par type d'action et par entité, de consulter les détails 
+d'une action, ainsi que d'exporter les entrées sélectionnées au format CSV.
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/Interface ses activite.png}
@@ -632,8 +640,11 @@ Nous avons mis en place cette interface de journal d'activités de l'utilisateur
 \end{figure}
 
 \subsection{Interface de l'historique d'un ticket}
-
-Nous avons mis en place cette interface d'historique d'un ticket sous forme de timeline chronologique. Elle permet de consulter l'ensemble des événements liés au ticket, de filtrer par type (actions, commentaires, sessions de travail), de rechercher par mot-clé, et d'exporter l'historique au format JSON ou CSV.
+Nous avons mis en place cette interface d'historique d'un ticket sous forme de timeline 
+chronologique. Elle permet de consulter l'ensemble des événements liés au ticket, de filtrer 
+par type (toutes les entrées, audit, actions, commentaires ou sessions de travail), de 
+rechercher par mot-clé, de filtrer par acteur, et d'exporter l'historique au format JSON 
+ou CSV.
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/historique ticket.png}
@@ -643,7 +654,11 @@ Nous avons mis en place cette interface d'historique d'un ticket sous forme de t
 
 \subsection{Interface de messagerie}
 
-Nous avons mis en place cette interface de messagerie interne organisée en canaux thématiques. Elle permet d'envoyer des messages texte, des fichiers et des messages vocaux, de mentionner des membres, d'épingler des messages importants et d'initier des conversations directes entre utilisateurs.
+Nous avons mis en place cette interface de messagerie interne organisée en canaux thématiques 
+(généraux, tickets et messages directs). Elle permet d'envoyer des 
+messages texte, des fichiers et des messages vocaux, de mentionner des membres, d'enregistrer
+des messages importants, de réagir aux messages avec des émojis et d'initier des conversations 
+directes entre utilisateurs.
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/Interface messagerie.png}
@@ -652,14 +667,33 @@ Nous avons mis en place cette interface de messagerie interne organisée en cana
 \end{figure}
 
 \subsection{Interface du calendrier}
-
-Nous avons mis en place cette vue Gantt représentant la charge de travail de chaque développeur sous forme de barres horizontales. Elle affiche la progression, le statut et les échéances des tickets assignés, avec la possibilité de naviguer par jour, semaine ou mois.
+Nous avons mis en place cette interface de calendrier proposant une vue mensuelle et une vue 
+agenda de type Gantt. La vue Gantt représente la charge de travail de chaque développeur sous 
+forme de barres horizontales par couloir. Elle affiche la progression, le statut et les 
+échéances des tickets assignés, avec la possibilité de naviguer par jour, semaine ou mois.
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/Interface calendrier.png}
     \caption{Interface du calendrier}
     \label{fig:Interface du calendrier}
 \end{figure}
+
+\subsection{Interface du centre de notifications}
+Nous avons mis en place un système de notifications multicanaux permettant à chaque 
+utilisateur d'être alerté en temps réel selon ses préférences. Les notifications 
+in-app s'affichent directement dans la barre de navigation avec un compteur de 
+messages non lus ; les notifications email sont envoyées automatiquement pour les 
+événements critiques ; les notifications push navigateur alertent l'utilisateur même 
+hors de l'application ; ensfin, l'intégration Slack permet de relayer les alertes 
+sur un canal dédié, configurable par contrat. Chaque utilisateur peut personnaliser 
+ses préférences par type d'événement depuis son profil.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/Interface notifications.png}
+    \caption{Interface du centre de notifications}
+    \label{fig:Interface du centre de notifications}
+\end{figure}
+
 
 
 
