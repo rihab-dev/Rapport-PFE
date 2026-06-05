@@ -2,171 +2,171 @@
 %  PAGE DE GARDE — SolidMaint PFE 2025–2026
 %  Structure officielle ISET Radès
 % ============================================================
-\begin{titlepage}
-\thispagestyle{empty}
-
-% ================================================================
-%  BANDE DÉCORATIVE GAUCHE (tout au long de la page)
-% ================================================================
-\begin{tikzpicture}[remember picture, overlay]
-    % Bande verticale gauche pleine hauteur
-    \fill[primary]
-        (current page.north west)
-        rectangle ([xshift=1.2cm] current page.south west);
-    % Liseré doré sur la bande
-    \fill[pgold]
-        ([xshift=1.12cm] current page.north west)
-        rectangle ([xshift=1.2cm] current page.south west);
-\end{tikzpicture}
-
-% ================================================================
-%  BLOC EN-TÊTE INSTITUTIONNEL
-% ================================================================
-% ============================================================
-% EN-TÊTE INSTITUTIONNEL (petit mais lisible)
-% ============================================================
-\vspace*{0.3cm}
-\noindent
-\begin{minipage}[c]{0.40\textwidth}
-    \centering
-    \footnotesize\rmfamily\color{black}
-    \setstretch{1.1}
-    République Tunisienne\\
-    Ministère de l'Enseignement Supérieur\\
-    et de la Recherche Scientifique\\
-    Direction Générale des Études Technologiques\\
-    ISET de Radès\\
-    Département Technologies de l'Informatique
-\end{minipage}%
-\hfill
-\begin{minipage}[c]{0.18\textwidth}
-    \centering
-    \includegraphics[height=1.8cm]{Images/logo_republique.png}
-\end{minipage}%
- \hfill
-\begin{minipage}[c]{0.38\textwidth}
-     \centering
-    \begin{otherlanguage*}{arabic}
-        \footnotesize\color{black}
-        \baselineskip=11pt  % ← forcé ici
-        \lineskip=0pt
-        \nointerlineskip
-        الجمهورية التونسية\\
-        وزارة التعليم العالي والبحث العلمي\\
-        الإدارة العامة للدراسات التكنولوجية\\
-        المعهد العالي للدراسات التكنولوجية برادس\\
-        قسم تكنولوجيات الإعلامية
-    \end{otherlanguage*}
-\end{minipage}
-% ---- Filet sous le bandeau ----
-\vspace{0.30cm}
-\noindent{\color{primary}\rule{\textwidth}{0.8pt}}
-
-% ================================================================
-%  LOGOS ISET + SOLIDWALL
-% ================================================================
-\vspace{0.35cm}
-\noindent
-\begin{minipage}[c]{0.35\textwidth}
-    \centering
-    \includegraphics[height=2.2cm]{Images/logo iset.png}
-\end{minipage}%
-\hfill
-\begin{minipage}[c]{0.35\textwidth}
-    \centering
-    \includegraphics[height=2.2cm]{Images/SolidWall.png}
-\end{minipage}
-
-% ================================================================
-%  CORPS CENTRAL
-% ================================================================
-\begin{center}
-
-
-
-% ---- Nature du document ----
-{\Large\bfseries\color{black} Rapport de Fin d'Études}
-
-\vspace{0.30cm}
-
-% ---- Diplôme ----
-{\large\bfseries\itshape\color{black}
-    LICENCE EN TECHNOLOGIES DE L'INFORMATIQUE}
-
-\vspace{0.12cm}
-
-{\normalsize\bfseries\itshape\color{black}
-    PARCOURS : DÉVELOPPEMENT DES SYSTÈMES D'INFORMATIONS (DSI)}
-
-\vspace{0.50cm}
-{\color{primary!50}\rule{0.55\textwidth}{0.5pt}}
-\vspace{0.45cm}
-
-% ---- Titre du sujet encadré fin ----
-\begin{tikzpicture}
-     \node[
-        draw        = primary,
-        line width  = 1.0pt,
-        fill        = primary!8,        % ← fond bleu très clair
-        inner xsep  = 1.4cm,            % ← plus large horizontalement
-        inner ysep  = 0.85cm,           % ← plus grand verticalement
-        text width  = 13.8cm,           % ← boîte plus large
-        align       = center
-    ]{
-       {\large\bfseries\color{black}\setstretch{1.4}
-       Conception et Réalisation d'une Application Web B2B  \\
-       de Gestion des Contrats et du Support de Maintenance}
-    };
-\end{tikzpicture}
-
-\vspace{0.45cm}
-
-% ---- Entreprise d'accueil ----
-{\normalsize\bfseries\color{black} Entreprise : SolidWall Consulting}
-
-\end{center}
-
-% ================================================================
-%  RÉALISÉ PAR / ENCADRÉ PAR — en gras, sans cadre
-% ================================================================
-\vspace{0.75cm}
-
-\noindent
-\begin{minipage}[t]{0.45\textwidth}
-    \raggedright
-    {\normalsize\bfseries Réalisé par :}\\[6pt]
-    {\normalsize Rihab Chourou}\\[3pt]
-    {\normalsize Eya Gharbi}\\[12pt]
-    {\small\color{darkgray} Code PFE : DSI26R511}
-\end{minipage}%
-\hfill
-\begin{minipage}[t]{0.50\textwidth}
-    \raggedright
-    {\normalsize\bfseries Encadré par :}\\[6pt]
-    {\normalsize Encadrante entreprise : Mme Mayssa Ben Fredj}\\[3pt]
-    {\normalsize Encadrante ISET : \hspace{17pt} Mme Imen Msakni }
-\end{minipage}
-
-% ================================================================
-%  PIED DE PAGE
-% ================================================================
-\vspace*{\fill}
-
-\noindent{\color{primary}\rule{\textwidth}{0.7pt}}
-
-\vspace{4pt}
-\noindent
-\begin{minipage}[t]{0.60\textwidth}
-    \raggedright
-    \footnotesize\color{darkgray}
-    Adresse : Rue El Quods, BP 172 -- 2098 -- Radès\\
-    Téléphone : 71 460 100 \quad Fax : 71 442 322\\
-    Site Web : \url{www.isetr.rnu.tn}
-\end{minipage}%
-\hfill
-\begin{minipage}[t]{0.35\textwidth}
-    \raggedleft
-    {\small\bfseries\color{darkgray} Année universitaire : 2025/2026}
-\end{minipage}
-
-\end{titlepage}
+% \begin{titlepage}
+% \thispagestyle{empty}
+% 
+% % ================================================================
+% %  BANDE DÉCORATIVE GAUCHE (tout au long de la page)
+% % ================================================================
+% \begin{tikzpicture}[remember picture, overlay]
+%     % Bande verticale gauche pleine hauteur
+%     \fill[primary]
+%         (current page.north west)
+%         rectangle ([xshift=1.2cm] current page.south west);
+%     % Liseré doré sur la bande
+%     \fill[pgold]
+%         ([xshift=1.12cm] current page.north west)
+%         rectangle ([xshift=1.2cm] current page.south west);
+% \end{tikzpicture}
+% 
+% % ================================================================
+% %  BLOC EN-TÊTE INSTITUTIONNEL
+% % ================================================================
+% % ============================================================
+% % EN-TÊTE INSTITUTIONNEL (petit mais lisible)
+% % ============================================================
+% \vspace*{0.3cm}
+% \noindent
+% \begin{minipage}[c]{0.40\textwidth}
+%     \centering
+%     \footnotesize\rmfamily\color{black}
+%     \setstretch{1.1}
+%     République Tunisienne\\
+%     Ministère de l'Enseignement Supérieur\\
+%     et de la Recherche Scientifique\\
+%     Direction Générale des Études Technologiques\\
+%     ISET de Radès\\
+%     Département Technologies de l'Informatique
+% \end{minipage}%
+% \hfill
+% \begin{minipage}[c]{0.18\textwidth}
+%     \centering
+%     \includegraphics[height=1.8cm]{Images/logo_republique.png}
+% \end{minipage}%
+%  \hfill
+% \begin{minipage}[c]{0.38\textwidth}
+%      \centering
+%     \begin{otherlanguage*}{arabic}
+%         \footnotesize\color{black}
+%         \baselineskip=11pt  % ← forcé ici
+%         \lineskip=0pt
+%         \nointerlineskip
+%         الجمهورية التونسية\\
+%         وزارة التعليم العالي والبحث العلمي\\
+%         الإدارة العامة للدراسات التكنولوجية\\
+%         المعهد العالي للدراسات التكنولوجية برادس\\
+%         قسم تكنولوجيات الإعلامية
+%     \end{otherlanguage*}
+% \end{minipage}
+% % ---- Filet sous le bandeau ----
+% \vspace{0.30cm}
+% \noindent{\color{primary}\rule{\textwidth}{0.8pt}}
+% 
+% % ================================================================
+% %  LOGOS ISET + SOLIDWALL
+% % ================================================================
+% \vspace{0.35cm}
+% \noindent
+% \begin{minipage}[c]{0.35\textwidth}
+%     \centering
+%     \includegraphics[height=2.2cm]{Images/logo iset.png}
+% \end{minipage}%
+% \hfill
+% \begin{minipage}[c]{0.35\textwidth}
+%     \centering
+%     \includegraphics[height=2.2cm]{Images/SolidWall.png}
+% \end{minipage}
+% 
+% % ================================================================
+% %  CORPS CENTRAL
+% % ================================================================
+% \begin{center}
+% 
+% 
+% 
+% % ---- Nature du document ----
+% {\Large\bfseries\color{black} Rapport de Fin d'Études}
+% 
+% \vspace{0.30cm}
+% 
+% % ---- Diplôme ----
+% {\large\bfseries\itshape\color{black}
+%     LICENCE EN TECHNOLOGIES DE L'INFORMATIQUE}
+% 
+% \vspace{0.12cm}
+% 
+% {\normalsize\bfseries\itshape\color{black}
+%     PARCOURS : DÉVELOPPEMENT DES SYSTÈMES D'INFORMATIONS (DSI)}
+% 
+% \vspace{0.50cm}
+% {\color{primary!50}\rule{0.55\textwidth}{0.5pt}}
+% \vspace{0.45cm}
+% 
+% % ---- Titre du sujet encadré fin ----
+% \begin{tikzpicture}
+%      \node[
+%         draw        = primary,
+%         line width  = 1.0pt,
+%         fill        = primary!8,        % ← fond bleu très clair
+%         inner xsep  = 1.4cm,            % ← plus large horizontalement
+%         inner ysep  = 0.85cm,           % ← plus grand verticalement
+%         text width  = 13.8cm,           % ← boîte plus large
+%         align       = center
+%     ]{
+%        {\large\bfseries\color{black}\setstretch{1.4}
+%        Conception et Réalisation d'une Application Web B2B  \\
+%        de Gestion des Contrats et du Support de Maintenance}
+%     };
+% \end{tikzpicture}
+% 
+% \vspace{0.45cm}
+% 
+% % ---- Entreprise d'accueil ----
+% {\normalsize\bfseries\color{black} Entreprise : SolidWall Consulting}
+% 
+% \end{center}
+% 
+% % ================================================================
+% %  RÉALISÉ PAR / ENCADRÉ PAR — en gras, sans cadre
+% % ================================================================
+% \vspace{0.75cm}
+% 
+% \noindent
+% \begin{minipage}[t]{0.45\textwidth}
+%     \raggedright
+%     {\normalsize\bfseries Réalisé par :}\\[6pt]
+%     {\normalsize Rihab Chourou}\\[3pt]
+%     {\normalsize Eya Gharbi}\\[12pt]
+%     {\small\color{darkgray} Code PFE : DSI26R511}
+% \end{minipage}%
+% \hfill
+% \begin{minipage}[t]{0.50\textwidth}
+%     \raggedright
+%     {\normalsize\bfseries Encadré par :}\\[6pt]
+%     {\normalsize Encadrante entreprise : Mme Mayssa Ben Fredj}\\[3pt]
+%     {\normalsize Encadrante ISET : \hspace{17pt} Mme Imen Msakni }
+% \end{minipage}
+% 
+% % ================================================================
+% %  PIED DE PAGE
+% % ================================================================
+% \vspace*{\fill}
+% 
+% \noindent{\color{primary}\rule{\textwidth}{0.7pt}}
+% 
+% \vspace{4pt}
+% \noindent
+% \begin{minipage}[t]{0.60\textwidth}
+%     \raggedright
+%     \footnotesize\color{darkgray}
+%     Adresse : Rue El Quods, BP 172 -- 2098 -- Radès\\
+%     Téléphone : 71 460 100 \quad Fax : 71 442 322\\
+%     Site Web : \url{www.isetr.rnu.tn}
+% \end{minipage}%
+% \hfill
+% \begin{minipage}[t]{0.35\textwidth}
+%     \raggedleft
+%     {\small\bfseries\color{darkgray} Année universitaire : 2025/2026}
+% \end{minipage}
+% 
+% \end{titlepage}
