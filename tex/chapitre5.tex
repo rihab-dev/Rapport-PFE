@@ -81,7 +81,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{figure}
 
 \subsubsection{Description textuelle du cas d’utilisation « Soumettre demande »}
-Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Soumettre demande ».
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Soumettre demande ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -117,7 +117,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \item Le système notifie le chef de projet, les administrateurs et le client.
 \item Le système déclenche la classification IA de la demande.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -127,7 +126,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \item Le système rejette le fichier (format non autorisé ou taille dépassée)  le client supprime le fichier, joint un fichier conforme et \textbf{reprend à l'étape 5}.
 \item Les fichiers joints sont associés à la demande et contrôlés par le système.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario d'exception} &
@@ -136,7 +134,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \item  Le client a déjà soumis une demande du même type sur le même projet dans les 24 heures  le système bloque la création de manière irréversible jusqu'à l'expiration du délai.
 \item Le nombre maximal de demandes en attente est atteint  le système refuse la soumission tant que des demandes existantes ne sont pas traitées.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \end{longtable}
@@ -144,7 +141,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \normalsize
 
 \subsubsection{Description textuelle du cas d’utilisation « Compléter demande existante »}
-Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Compléter demande existante ».
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Compléter demande existante ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -177,7 +174,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \item Le système notifie le chef de projet et les administrateurs.
 \item Le client reçoit une confirmation de la prise en compte de son envoi.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -185,7 +181,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item \textbf{Envois successifs :} si la demande repasse au statut « Infos requises » suite à une nouvelle demande du responsable, le client peut soumettre un nouveau complément  chaque envoi est historisé et notifie les acteurs concernés.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario d'exception} &
@@ -194,7 +189,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \item Le statut de la demande a changé depuis l'ouverture du formulaire et n'est plus « Infos requises »  le système lève une exception bloquante et refuse l'opération.
 \item Une erreur technique survient lors de la persistance des données  le système informe le client d'un problème technique et l'opération est interrompue.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \end{longtable}
@@ -214,7 +208,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{figure}
 
 \subsubsection{Description textuelle du cas d’utilisation « Valider demande »}
-Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Valider demande ».
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Valider demande ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -248,7 +242,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \item Le système notifie le client et les utilisateurs concernés.
 \item L'assignation du ticket est réalisée dans un second temps via le module de gestion des tickets.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -268,7 +261,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \captionof{table}{Description textuelle du cas d’utilisation « Valider demande »}
 \normalsize
 \subsubsection{Description textuelle du cas d’utilisation « Demander informations complémentaires »}
-Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Demander informations complémentaires ».
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Demander informations complémentaires ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -297,7 +290,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \item Le système enregistre la requête dans l'historique et modifie le statut de la demande pour indiquer qu'elle attend des informations.
 \item Le système notifie le propriétaire de la demande et les parties prenantes.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -306,7 +298,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \item L'acteur enrichit le motif avec des exemples ou des documents attendus. Le système intègre l'ensemble du motif dans le commentaire créé dans l'historique de la demande. Le scénario reprend à l'étape 3.
 \item La demande est déjà dans l'état INFOS REQUISES. Le système autorise néanmoins la soumission et crée un nouveau commentaire dans l'historique. Le scénario reprend à l'étape 3.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario d'exception} &
@@ -315,7 +306,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \item Le système détecte que les droits de l'acteur ont été révoqués depuis sa connexion. La soumission est rejetée avec un message d'erreur d'autorisation ; l'acteur ne peut pas poursuivre sans reconnexion.
 \item Une défaillance technique empêche l'enregistrement de la requête. Le système affiche un message d'échec, journalise l'incident et interrompt le cas d'utilisation sans modifier le statut de la demande.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \end{longtable}
@@ -323,7 +313,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \normalsize
 
 \subsubsection{Description textuelle du cas d’utilisation « Gérer qualification »}
-Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Gérer qualification ».
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Gérer qualification ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -352,7 +342,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
     \item Le système valide les conditions d'exécution.
     \item Le système met à jour la qualification, historise l'action et notifie le client.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -361,7 +350,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
     \item La soumission intervient dans le cadre de la validation formelle de la demande. Le système enregistre la requalification simultanément à la création du ticket. Le scénario reprend à l'étape 4.
     \item Le système détecte qu'aucune valeur n'a été modifiée. Un avertissement bloque la soumission et invite l'acteur à faire un vrai changement. Le scénario reprend à l'étape 1.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario d'exception} &
@@ -370,7 +358,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
     \item Le système détecte des droits insuffisants. L'opération est rejetée et le cas d'utilisation est interrompu.
     \item Le système détecte que la demande est finalisée (« convertie » ou « rejetée »). La modification est interdite, une erreur est retournée et le cas d'utilisation s'interrompt.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \end{longtable}
@@ -391,7 +378,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 
 
 \subsubsection{Description textuelle du cas d’utilisation « Soumettre ticket en revue »}
-Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Soumettre ticket en revue ».
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Soumettre ticket en revue ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -427,7 +414,6 @@ et au client.
 \item Le système passe l’état du ticket à « En revue ».
 \item Le système historise l'action et notifie les différentes parties.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -435,7 +421,6 @@ et au client.
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le système détecte que la solution obligatoire est invalide ($<$ 5 caractères). Un avertissement bloque la soumission. Le développeur corrige sa saisie et le scénario reprend à l'étape 1.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario d'exception} &
@@ -444,7 +429,6 @@ et au client.
 \item Le système détecte qu'aucune session (chronomètre) n'a été enregistrée pour ce ticket. Le passage en revue est refusé et le processus s'interrompt avec erreur.
 \item Le système constate que le développeur ne fait scrupuleusement plus partie des personnes assignées (ex: désassignation forcée). L'opération est rejetée pour raison de sécurité et le processus s'interrompt.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \end{longtable}
@@ -453,7 +437,7 @@ et au client.
 
 
 \subsubsection{Description textuelle du cas d’utilisation « Signaler blocage »}
-Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Signaler blocage ».
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Signaler blocage ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -482,7 +466,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \item Le système enregistre le blocage, historise l’événement et notifie le chef de projet, l’équipe et les administrateurs.
 \item En arrière-plan, une Intelligence Artificielle analyse l’incident et génère un brouillon d’article de résolution.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -490,7 +473,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Si le type de blocage est administratif ou externe (ex : attente de droits d’accès), le système ignore l’exigence de temps de travail ou de progression minimale. L’opération est validée et le scénario reprend à l’étape 3.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario d'exception} &
@@ -500,7 +482,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \item (Sans exemption) Le temps de travail effectif ou la progression sont insuffisants ($<$ 30 min): la demande est rejetée.
 \item Un blocage non résolu existe déjà sur cette assignation : le nouveau signalement est interdit et le processus s’interrompt.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \end{longtable}
@@ -509,7 +490,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 
 \subsubsection{Description textuelle du cas d’utilisation « Proposer solution »}
-Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Proposer solution ».
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Proposer solution ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -538,7 +519,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \item L’acteur rédige la solution et valide l’envoi.
 \item Le système enregistre la proposition, historise l’événement et notifie le développeur bloqué.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -547,7 +527,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \item Lors de la soumission, le système détecte que le contenu de la solution est vide ou trop court ($< 10$ caractères). L'envoi est bloqué, l'acteur complète sa rédaction et le scénario reprend à l'étape 3.
 \item L’acteur peut solliciter l’IA pour générer une suggestion, qu’il peut ensuite modifier avant validation.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario d'exception} &
@@ -555,7 +534,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Si l’acteur est le développeur bloqué, le système rejette l’action et n’affiche pas le formulaire.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \end{longtable}
@@ -564,7 +542,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 
 \subsubsection{Description textuelle du cas d’utilisation « Résoudre blocage »}
-Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Résoudre blocage ».
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Résoudre blocage ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -595,7 +573,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \item L’article de base de connaissances est mis à jour.
 \item L’auteur de la solution est notifié de la validation.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} & Le développeur bloqué rejette la solution proposée : le blocage reste actif, aucune fusion n’est effectuée, le cas d’utilisation se termine sans résolution. \\
@@ -619,7 +596,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{figure}
 
 \subsubsection{Description textuelle du cas d’utilisation « Signaler problème »}
-Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Signaler problème ».
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Signaler problème ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -649,7 +626,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \item Le système enregistre l'action, génère un commentaire interne automatique et purge la date de résolution pour suspendre la clôture automatique.
 \item Le système notifie le chef de projet par email et alerte in-app, et notifie l'équipe de développeurs assignée.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -657,7 +633,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le système détecte que la description est vide ou inférieure à 10 caractères. La soumission est bloquée côté interface, un message d'erreur s'affiche sur le formulaire, et le client corrige sa saisie. Le scénario reprend à l'étape 2.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario d'exception} &
@@ -665,7 +640,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le système constate que le ticket n'est plus au statut « Résolu » (ex : il a été fermé définitivement en parallèle). Le signalement est rejeté par le serveur avant toute écriture et le processus s'interrompt avec une erreur retournée au client.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \end{longtable}
@@ -674,7 +648,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 
 \subsubsection{Description textuelle du cas d’utilisation « Demander extension délai »}
-Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Demander extension délai ».
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Demander extension délai ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -705,7 +679,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \item Le système enregistre la demande, accorde automatiquement l'extension de 7 jours, insère un commentaire et crée une trace dans l'historique.
 \item Le système notifie les développeurs assignés de l'extension accordée.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -713,7 +686,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le système détecte que le motif saisi est vide ou inférieur au minimum requis (10 caractères). La soumission est bloquée, un message d'erreur s'affiche, et le client corrige sa saisie. Le scénario reprend à l'étape 3.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario d'exception} &
@@ -721,7 +693,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le système constate que le ticket n'est plus au statut « Résolu ». La demande est rejetée par le serveur avant toute écriture et le processus s'interrompt avec une erreur retournée au client.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \end{longtable}
@@ -743,14 +714,14 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{figure}
 
 
-\subsubsection{Description textuelle du cas d’utilisation « Assigner ticket »}
-Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Assigner ticket ».
+\subsubsection{Description textuelle du cas d’utilisation « Assigner un ticket »}
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Assigner un ticket ».
 
 \footnotesize
 \renewcommand{\arraystretch}{1.1}
 \begin{longtable}{|P{3.5cm}|P{10.5cm}|}
 \hline
-\textbf{Nom du cas d'utilisation} & Assigner ticket \\
+\textbf{Nom du cas d'utilisation} & Assigner un ticket \\
 \hline
 \textbf{Acteurs} & Chef de projet, Administrateur \\
 \hline
@@ -768,7 +739,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
   \item Le système vérifie que le développeur sélectionné n'a pas dépassé sa limite maximale de tickets actifs.
   \item Le système enregistre formellement l'assignation, consigne l'action dans l'historique et notifie le développeur.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénarios alternatifs} & 
@@ -777,7 +747,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
   \item \textbf{Dérogation pour urgence ou dépassement SLA (Étape 5) :} Si le ticket présente un SLA dépassé ou une criticité majeure (ex. attente supérieure à 2h), le système autorise exceptionnellement le dépassement du quota de charge et poursuit à l'étape 6.
   \item \textbf{Blocage pour surcharge nominale (Étape 5) :} Si la limite de tickets actifs du développeur est atteinte hors contexte d'urgence, le système interrompt l'affectation et invite l'utilisateur à sélectionner un autre agent (retour à l'étape 4).
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario d'exception} & 
@@ -785,11 +754,10 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=2pt,itemsep=2pt]
   \item Assignation concurrente ou doublon (Étape 6) : Si le système détecte qu'un autre gestionnaire a assigné ce même profil simultanément, l'opération est annulée, un message d'erreur s'affiche et le flux est abandonné.
 \end{enumerate}
-\vspace{0.2cm}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Assigner ticket »}
+\captionof{table}{Description textuelle du cas d’utilisation « Assigner un ticket »}
 \normalsize
 
 
@@ -822,7 +790,7 @@ La figure suivante présente le diagramme de séquences du cas d’utilisation �
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.85\textwidth,height=0.95\textheight,keepaspectratio]{Images/Soumission demande.vpd.png}
+    \includegraphics[width=0.95\textwidth,keepaspectratio]{Images/Soumission demande.vpd.png}
     \caption{Diagramme de séquences du cas d'utilisation « Soumettre demande »}
     \label{fig:seq_soumettre_demande}
 \end{figure}
@@ -891,9 +859,10 @@ Nous avons conçu cette interface pour permettre au client de soumettre et
 de suivre ses demandes de maintenance ou d'évolution directement depuis
 son espace. Pour le chef de projet, les demandes reçues sont organisées
 selon leur état courant~: \textit{en attente}, \textit{informations
-requises}, \textit{convertie en ticket} ou \textit{rejetée}. Un système
-de filtres et de tri facilite le traitement priorisé des demandes les
-plus urgentes.
+requises}, \textit{convertie en ticket} ou \textit{rejetée}.  L'interface propose quatre modes 
+d'affichage (liste, cartes, Kanban et timeline), un système de filtres multicritères 
+et des actions groupées permettant de valider ou rejeter plusieurs demandes en une 
+seule opération.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,keepaspectratio]{Images/interface Liste demandes .png}
@@ -902,15 +871,11 @@ plus urgentes.
 \end{figure}
 
 \subsection{Interface de validation des demandes avec assistance IA}
-Cette interface permet au chef de projet de traiter chaque demande reçue~:
-il peut la valider et la convertir en ticket, demander des informations
-complémentaires au client, ou la rejeter en motivant sa décision. Lors de
-la validation, le système d'intelligence artificielle propose automatiquement
-une catégorie (\textit{correctif}, \textit{évolutif}, \textit{préventif}),
-un type et un niveau de priorité (\textit{mineur}, \textit{majeur},
-\textit{critique}), accompagnés d'un score de confiance. Ces suggestions
-peuvent être acceptées ou corrigées par le chef de projet avant la
-conversion de la demande en ticket.
+Cette interface permet au chef de projet de traiter chaque demande reçue~: il peut 
+la valider et la convertir en ticket, demander des informations complémentaires au 
+client, ou la rejeter en motivant sa décision. Lors de la validation, le système 
+d'intelligence artificielle propose automatiquement une catégorie, un type et un niveau 
+de priorité, accompagnés d'un score de confiance et d'un raisonnement explicatif. Ces suggestions peuvent être acceptées ou corrigées avant la conversion de la demande en ticket.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,keepaspectratio]{Images/Interface Valider_Demande.png}
@@ -918,8 +883,14 @@ conversion de la demande en ticket.
 \label{fig:Interface Valider_Demande}
 \end{figure}
 
-\subsection{Interface de gestion des tickets}
-Nous avons développé cette interface sous forme de tableau pour regrouper l'ensemble des tickets et faciliter leur suivi. Les administrateurs voient tous les tickets, les chefs de projet accèdent aux tickets de leurs projets. Des indicateurs visuels signalent le dépassement des délais SLA.
+\subsection{Interface de gestion des tickets }
+Nous avons développé cette interface proposant trois modes de visualisation~: un 
+tableau Kanban, une vue liste et une file de priorité. La vue Kanban regroupe les 
+tickets par statut et permet le changement d'état par glisser-déposer, avec une 
+validation obligatoire (commentaire et solution en cas de résolution). Les 
+administrateurs et les chefs de projet voient tous les tickets de leurs périmètres, 
+tandis que les développeurs n'accèdent qu'à leurs tickets assignés. Des indicateurs 
+visuels signalent les dépassements de délai SLA et les blocages actifs.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,keepaspectratio]{Images/Interface liste ticket.png}
@@ -938,7 +909,7 @@ Nous avons mis en place une interface permettant au chef de projet d'assigner de
 \end{figure}
 
 \subsection{Interface de détail ticket}
-Dans la vue détaillée d'un ticket, le développeur peut démarrer un chronomètre pour enregistrer ses sessions de travail, les mettre en pause ou les arrêter. L'interface affiche l'historique complet des actions et les discussions de l'équipe. Un composant dédié présente en temps réel la durée accumulée et l'avancement par rapport au délai SLA.
+Dans la vue détaillée d'un ticket, le développeur assigné peut démarrer automatiquement un chronomètre lors de la première ouverture du ticket, enregistrer ses sessions de travail, les mettre en pause ou les arrêter. L'interface affiche l'historique complet des actions et les discussions de l'équipe. Un composant dédié présente en temps réel la durée accumulée et l'avancement par rapport au délai SLA.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,keepaspectratio]{Images/Interface DetailTicket.png}
@@ -973,8 +944,7 @@ projet, elle facilite la supervision et la validation par ordre d'urgence.
 \end{figure}
 \subsection{Interface d'analyse et de gestion des blocages}
 Lorsqu'un développeur rencontre un obstacle l'empêchant de progresser sur
-un ticket, il peut signaler un blocage en précisant son type (\textit{technique},
-\textit{informationnel}, \textit{dépendance}, etc.) et sa priorité. Le chef
+un ticket, il peut signaler un blocage en précisant son type et sa priorité. Le chef
 de projet est alors notifié en temps réel. Un membre de l'équipe peut
 proposer une solution, que le développeur bloqué accepte ou rejette avec
 un motif. En cas de validation, le blocage est levé automatiquement et
