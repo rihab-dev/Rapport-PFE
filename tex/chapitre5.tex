@@ -852,10 +852,16 @@ Le schéma relationnel du sprint 3 s’appuie sur les entités suivantes :
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Réalisation}
 \label{sec:realisation_sprint3}
-Cette section présente les principales interfaces utilisateur développées durant le troisième sprint. Chaque interface a été conçue pour offrir une expérience claire aux différents acteurs de la plateforme.
+Cette section présente les principales interfaces utilisateur développées durant le troisième sprint. Chaque interface a été conçue pour offrir une expérience adaptée aux différents acteurs de la plateforme.
 
 \subsection{Interface de gestion des demandes}
-Nous avons mis en place cette interface pour que le client puisse soumettre et suivre ses demandes. Pour le chef de projet, ces demandes apparaissent dans un tableau Kanban selon leur état (en attente, infos requises, convertie, rejetée).
+Nous avons conçu cette interface pour permettre au client de soumettre et
+de suivre ses demandes de maintenance ou d'évolution directement depuis
+son espace. Pour le chef de projet, les demandes reçues sont organisées
+selon leur état courant~: \textit{en attente}, \textit{informations
+requises}, \textit{convertie en ticket} ou \textit{rejetée}. Un système
+de filtres et de tri facilite le traitement priorisé des demandes les
+plus urgentes.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,keepaspectratio]{Images/interface Liste demandes .png}
@@ -863,16 +869,25 @@ Nous avons mis en place cette interface pour que le client puisse soumettre et s
 \label{fig:Interface de gestion des demandes}
 \end{figure}
 
-\subsection{Interface de validation des demandes}
-Nous avons mis en place cette interface pour que le chef de projet puisse traiter les demandes reçues pour les valider et les convertir en tickets. Lors de cette étape, l'intelligence artificielle affiche des suggestions pour la catégorie, le type et la priorité de la demande avec un score de confiance, aidant ainsi le chef de projet à valider plus rapidement.
+\subsection{Interface de validation des demandes avec assistance IA}
+Cette interface permet au chef de projet de traiter chaque demande reçue~:
+il peut la valider et la convertir en ticket, demander des informations
+complémentaires au client, ou la rejeter en motivant sa décision. Lors de
+la validation, le système d'intelligence artificielle propose automatiquement
+une catégorie (\textit{correctif}, \textit{évolutif}, \textit{préventif}),
+un type et un niveau de priorité (\textit{mineur}, \textit{majeur},
+\textit{critique}), accompagnés d'un score de confiance. Ces suggestions
+peuvent être acceptées ou corrigées par le chef de projet avant la
+conversion de la demande en ticket.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,keepaspectratio]{Images/Interface Valider_Demande.png}
-\caption{Interface de validation d'une demande}
+\caption{Interface de validation d'une demande avec suggestions IA}
 \label{fig:Interface Valider_Demande}
 \end{figure}
-\subsection{Interface de gestion des tickets}
-Nous avons mis en place cette interface pour regrouper tous les tickets sous forme de tableau pour faciliter leur suivi. Les développeurs peuvent y voir leurs tickets, les filtrer par priorité et suivre les indicateurs visuels de dépassement de délai (SLA). La mise en œuvre du changement d'état est ensuite gérée dans l'interface par des actions simples.
+
+\subsection{Interface de gestion des tickets (vue Kanban)}
+Nous avons développé cette interface sous forme de tableau Kanban pour regrouper l'ensemble des tickets et faciliter leur suivi. Les administrateurs voient tous les tickets, les chefs de projet accèdent aux tickets de leurs projets. Des indicateurs visuels signalent le dépassement des délais SLA, et les changements d'état s'effectuent par glisser-déposer.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,keepaspectratio]{Images/Interface liste ticket.png}
@@ -880,38 +895,84 @@ Nous avons mis en place cette interface pour regrouper tous les tickets sous for
 \label{fig:Interface de gestion des tickets}
 \end{figure}
 
-\subsection{Interface de gestion du temps}
-Nous avons mis en place cette interface de vue détaillée d'un ticket, le développeur peut démarrer un chronomètre pour enregistrer son temps de travail ou ajouter des sessions de manière manuelle. Elle affiche également l'historique complet et les discussions de l'équipe pour garder une trace de toutes les actions sur le ticket.
+\subsection{Interface d'assignation des développeurs}
+Nous avons mis en place une interface permettant au chef de projet d'assigner des développeurs à un ticket. La modale affiche les développeurs recommandés et les autres développeurs, avec pour chacun : nom, niveau, nombre de tickets actifs et planning hebdomadaire. Un bouton « Assigner » permet d'affecter le développeur. Trois développeurs maximum peuvent être assignés par ticket.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=14cm,keepaspectratio]{Images/assigner-developpeurs.png}
+\caption{Interface d'assignation des développeurs}
+\label{fig:interface_assigner_developpeurs}
+\end{figure}
+
+\subsection{Interface de détail ticket}
+Dans la vue détaillée d'un ticket, le développeur peut démarrer un chronomètre pour enregistrer ses sessions de travail, les mettre en pause ou les arrêter. L'interface affiche l'historique complet des actions et les discussions de l'équipe. Un composant dédié présente en temps réel la durée accumulée et l'avancement par rapport au délai SLA.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,keepaspectratio]{Images/Interface DetailTicket.png}
-\caption{Interface de gestion du temps}
-\label{fig:Interface de gestion du temps}
+\caption{Interface de détail d'un ticket}
+\label{fig:Interface de détail ticket}
+\end{figure}
+
+\subsection{Interface de génération de suggestion de solution par IA}
+Nous avons mis en place une fonctionnalité permettant aux développeurs assignés à un ticket de générer collaborativement une suggestion de solution assistée par intelligence artificielle. En cliquant sur « Générer par l'IA », le système propose un brouillon structuré. Tous les membres de l'équipe assignée voient cette suggestion en temps réel et peuvent simultanément la modifier, l'enrichir ou proposer des alternatives via WebSockets. Une fois la solution validée collectivement, elle peut être soumise. Cette approche favorise l'intelligence collective et accélère la résolution des tickets complexes.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=14cm,keepaspectratio]{Images/Interface generation solution IA.png}
+\caption{Interface de génération de suggestion de solution par IA avec collaboration temps réel}
+\label{fig:interface_generation_solution_ia}
 \end{figure}
 
 \subsection{Interface de priorisation intelligente des tickets}
-Nous avons mis en place cette interface pour que l'IA puisse analyser automatiquement chaque demande soumise et lui attribuer un type (correctif, évolutif, préventif) ainsi qu'une priorité (mineur, majeur, critique) avec un score de confiance. Pour le chef de projet, ces suggestions apparaissent directement lors de la validation, lui permettant de les accepter ou de les corriger avant de convertir la demande en ticket.
-
+Nous avons mis en place une file de priorité qui trie automatiquement les
+tickets actifs selon un score d'urgence calculé en temps réel. Ce score
+combine la priorité contractuelle du ticket (\textit{critique}, \textit{majeur},
+\textit{mineur}) et le taux du délai SLA écoulé, faisant remonter en tête
+les tickets les plus critiques, notamment ceux dont le délai est dépassé,
+sans aucune intervention manuelle. Pour les développeurs, cette file
+constitue leur tableau de bord de travail quotidien~; pour les chefs de
+projet, elle facilite la supervision et la validation par ordre d'urgence.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,keepaspectratio]{Images/Interface priotite.png}
-\caption{Interface de priorisation des demandes}
-\label{fig:Interface priorisation}
+ \caption{Interface de priorisation intelligente des tickets}
+ \label{fig:Interface priorisation}
 \end{figure}
 \subsection{Interface d'analyse et de gestion des blocages}
-Nous avons mis en place cette interface pour que les tickets soient automatiquement triés selon un score d'urgence calculé en temps réel. Chaque ticket reçoit un score combinant sa priorité (critique, majeur, mineur) et le taux du SLA écoulé, ce qui fait remonter en tête de liste les tickets les plus urgents, notamment ceux dont le délai est dépassé, sans aucune intervention manuelle.
+Lorsqu'un développeur rencontre un obstacle l'empêchant de progresser sur
+un ticket, il peut signaler un blocage en précisant son type (\textit{technique},
+\textit{informationnel}, \textit{dépendance}, etc.) et sa priorité. Le chef
+de projet est alors notifié en temps réel. Un membre de l'équipe peut
+proposer une solution, que le développeur bloqué accepte ou rejette avec
+un motif. En cas de validation, le blocage est levé automatiquement et
+la solution est soumise à la base de connaissances pour enrichissement. La
+plateforme intègre également un brouillon de solution assisté par
+intelligence artificielle, permettant au développeur de générer une
+proposition initiale à partir de la description du ticket et des articles
+de la base de connaissances
 \begin{figure}[H]
-\centering
-\includegraphics[width=14cm,keepaspectratio]{Images/Interface Developpeur Brouillon IA.png}
-\caption{Interface d'analyse des blocages}
-\label{fig:Interface analyse blocages}
+  \centering
+  \includegraphics[width=14cm,keepaspectratio]{Images/Interface Developpeur Brouillon IA.png}
+  \caption{Interface d'analyse et de gestion des blocages avec brouillon IA}
+  \label{fig:Interface_blocages_IA}
 \end{figure}
+
 \subsection{Interface de capitalisation des connaissances}
+Nous avons mis en place cette interface pour constituer une base de connaissances
+partagée et consultable par l'ensemble de l'équipe technique. Les articles sont
+générés semi-automatiquement à partir des solutions validées lors de la
+résolution des blocages, enrichis et reformulés par le module d'intelligence
+artificielle avant d'être soumis à validation par un administrateur. Les
+développeurs peuvent rechercher des articles existants directement depuis la
+vue de détail d'un ticket lorsqu'ils rencontrent un problème similaire,
+accélérant ainsi la résolution et capitalisant sur l'expérience collective.
+
 \begin{figure}[H]
-\centering
-\includegraphics[width=14cm,keepaspectratio]{Images/Interface Base de connaissance.png}
-\caption{Interface de capitalisation des connaissances}
-\label{fig:Interface capitalisation connaissances}
+  \centering
+  \includegraphics[width=14cm,keepaspectratio]{Images/Interface Base de connaissance.png}
+  \caption{Interface de capitalisation des connaissances}
+  \label{fig:interface_kb}
 \end{figure}
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 5 : TESTS

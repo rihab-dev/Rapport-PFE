@@ -69,11 +69,19 @@ US05 & En tant qu'\textbf{utilisateur}, je souhaite que mon compte soit protég�
 \end{itemize} & 2 \\
 \hline
 
+US06 & En tant qu'\textbf{utilisateur} nouvellement créé, je souhaite être contraint de définir un mot de passe personnel lors de ma première connexion afin de sécuriser mon accès. &
+\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
+\item Détecter le flag \texttt{doitChangerMotDePasse} à l'authentification et afficher une modale bloquante côté Next.js.
+\item Développer l'endpoint \footnotesize{"POST /api/profil/changer-mot-de-passe"}\small{} avec validation des règles de robustesse.
+\item Mettre à jour le flag en base de données et dans le localStorage après succès.
+\end{itemize} & 2 \\
+\hline
+
 % Epic 2: Gestion des utilisateurs
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 2 - Gestion des utilisateurs}} \\
 \hline
 
-US06 & En tant qu'\textbf{utilisateur}, je souhaite gérer mon profil afin de modifier et mettre à jour mes informations. &
+US07 & En tant qu'\textbf{utilisateur}, je souhaite gérer mon profil afin de modifier et mettre à jour mes informations. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer les endpoints \footnotesize{"GET /api/profil"}\small{} et \footnotesize{"PUT /api/profil"}\small{} pour la consultation et l'édition des données.
 \item Créer les routes \footnotesize{"POST /api/profil/change-password"}\small{} et \footnotesize{"POST /api/profil/upload-photo"}\small{} pour la sécurité et l'avatar.
@@ -81,14 +89,14 @@ US06 & En tant qu'\textbf{utilisateur}, je souhaite gérer mon profil afin de mo
 \item Concevoir l'interface utilisateur de gestion du profil avec des formulaires synchronisés.
 \end{itemize} & 2 \\
 \hline
-US07 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des utilisateurs afin de visualiser et gérer efficacement les comptes. &
+US08 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des utilisateurs afin de visualiser et gérer efficacement les comptes. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint \footnotesize{"GET /api/users"}\small{} pour l'affichage global des comptes.
 \item Ajouter une recherche dynamique via \footnotesize{"GET /api/users/search"}\small{} avec filtre textuel insensible à la casse.
 \item Concevoir une interface d'administration avec recherche en temps réel et tri des utilisateurs.
 \end{itemize} & 1 \\
 \hline
-US08 & En tant qu'\textbf{administrateur}, je souhaite créer des utilisateurs afin de gérer les accès au système. &
+US09 & En tant qu'\textbf{administrateur}, je souhaite créer des utilisateurs afin de gérer les accès au système. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint \footnotesize{"POST /api/users"}\small{} avec validation stricte des données d'entrée.
 \item Générer un mot de passe temporaire ainsi qu'un profil employé associé avec matricule unique automatisé.
@@ -97,14 +105,14 @@ US08 & En tant qu'\textbf{administrateur}, je souhaite créer des utilisateurs a
 \end{itemize} & 3 \\
 \hline
 
-US09 & En tant qu'\textbf{administrateur}, je souhaite modifier les informations d'un utilisateur afin de maintenir des données à jour. &
+US10 & En tant qu'\textbf{administrateur}, je souhaite modifier les informations d'un utilisateur afin de maintenir des données à jour. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint \footnotesize{"PUT /api/users/:id"}\small{} assurant la mise à jour des fiches d'information.
 \item Concevoir le formulaire de modification et de mise à jour côté Next.js.
 \end{itemize} & 2 \\
 \hline
 
-US10 & En tant qu'\textbf{administrateur}, je souhaite activer et désactiver un compte utilisateur afin de contrôler l'accès au système. &
+US11 & En tant qu'\textbf{administrateur}, je souhaite activer et désactiver un compte utilisateur afin de contrôler l'accès au système. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer les endpoints \footnotesize{"PATCH /api/users/:id/desactiver"}\small{} et \footnotesize{"PATCH /api/users/:id/reactiver"}\small.
 \item Prévoir les contrôles de réaffectation des tickets ou demandes en cours avant désactivation.
@@ -118,7 +126,7 @@ US10 & En tant qu'\textbf{administrateur}, je souhaite activer et désactiver un
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 3 - Gestion des rôles et permissions}} \\
 \hline
 
-US12 & En tant qu'\textbf{administrateur}, je souhaite gérer des rôles afin de structurer les accès au système. &
+US13 & En tant qu'\textbf{administrateur}, je souhaite gérer des rôles afin de structurer les accès au système. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer les routes de gestion sous \footnotesize{"api/admin/roles-permissions"}\small{} pour les rôles.
 \item Implémenter les opérations de création, lecture, mise à jour, suppression, archivage et restauration.
@@ -127,7 +135,7 @@ US12 & En tant qu'\textbf{administrateur}, je souhaite gérer des rôles afin de
 \end{itemize} & 3 \\
 \hline
 
-US13 & En tant qu'\textbf{administrateur}, je souhaite attribuer des permissions granulaires aux rôles afin de contrôler précisément les accès. &
+US14 & En tant qu'\textbf{administrateur}, je souhaite attribuer des permissions granulaires aux rôles afin de contrôler précisément les accès. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer les endpoints d'ajout et de retrait de permissions sur un rôle.
 \item Assurer le contrôle de duplication des droits en base de données.
@@ -135,14 +143,14 @@ US13 & En tant qu'\textbf{administrateur}, je souhaite attribuer des permissions
 \end{itemize} & 2 \\
 \hline
 
-US14 & En tant qu'\textbf{administrateur}, je souhaite consulter la matrice rôles-permissions afin de visualiser rapidement les droits de chaque rôle. &
+US15 & En tant qu'\textbf{administrateur}, je souhaite consulter la matrice rôles-permissions afin de visualiser rapidement les droits de chaque rôle. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer les APIs de récupération des rôles, des permissions et des associations utilisateur-rôle.
 \item Structurer et modéliser ces données côté frontend sous forme de tableau synthétique et filtrable.
 \end{itemize} & 3 \\
 \hline
 
-US15 & En tant qu'\textbf{administrateur}, je souhaite attribuer un rôle à un utilisateur afin de lui accorder les accès correspondants au système. &
+US16 & En tant qu'\textbf{administrateur}, je souhaite attribuer un rôle à un utilisateur afin de lui accorder les accès correspondants au système. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint d'attribution de rôle à un utilisateur.
 \item Implémenter les règles d'exclusivité entre rôles incompatibles.
@@ -151,7 +159,7 @@ US15 & En tant qu'\textbf{administrateur}, je souhaite attribuer un rôle à un 
 \end{itemize} & 3 \\
 \hline
 
-US16 & En tant qu'\textbf{administrateur}, je souhaite retirer un rôle d'un utilisateur afin de révoquer ses droits d'accès associés. &
+US17 & En tant qu'\textbf{administrateur}, je souhaite retirer un rôle d'un utilisateur afin de révoquer ses droits d'accès associés. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint de retrait de rôle d'un utilisateur.
 \item Notifier l'utilisateur par email et notification in-app de la révocation du rôle.
@@ -164,7 +172,7 @@ US16 & En tant qu'\textbf{administrateur}, je souhaite retirer un rôle d'un uti
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 4 - Gestion des demandes d'inscription OAuth}} \\
 \hline
 
-US15 & En tant qu'\textbf{utilisateur}, je souhaite demander l'accès via OAuth afin de m'inscrire facilement. &
+US18 & En tant qu'\textbf{utilisateur}, je souhaite demander l'accès via OAuth afin de m'inscrire facilement. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Intercepter la tentative de connexion externe Google ou GitHub et initialiser automatiquement une demande au statut en attente.
 \item Assurer l'unicité des demandes pour éviter les doublons par couple e-mail et fournisseur.
@@ -172,11 +180,11 @@ US15 & En tant qu'\textbf{utilisateur}, je souhaite demander l'accès via OAuth 
 \end{itemize} & 3 \\
 \hline
 
-US16 & En tant qu'\textbf{administrateur}, je souhaite valider ou rejeter les demandes d'inscription OAuth afin de contrôler les accès. &
+US19 & En tant qu'\textbf{administrateur}, je souhaite valider ou rejeter les demandes d'inscription OAuth afin de contrôler les accès. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint \footnotesize{"GET /api/admin/demandes-inscription"}\small{} filtrable par état.
 \item Implémenter la logique d'approbation avec finalisation du compte et attribution du rôle.
-\item Gérer le refus avec saisie du motif et automatiser l'envoi des e-mails de notification.
+\item Gérer le refus avec génération automatique du motif et envoi des e-mails de notification.
 \item Concevoir l'interface de modération sur Next.js.
 \end{itemize} & 3 \\
 \hline

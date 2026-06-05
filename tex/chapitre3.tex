@@ -87,6 +87,8 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \item Le système met à jour la date de dernière connexion et réinitialise le compteur de tentatives infructueuses.
 \item Le système génère un jeton d'accès et un jeton de rafraîchissement.
 \item Le système renvoie les informations de l'utilisateur.
+\item Le système vérifie si l'utilisateur doit changer son mot de passe temporaire.
+\item Si tel est le cas, le système affiche une fenêtre bloquante contraignant l'utilisateur à définir un mot de passe personnel avant tout accès au tableau de bord.
 \item Le système redirige l'utilisateur vers le tableau de bord correspondant à son rôle.
 \end{enumerate}
 \end{minipage} \\
@@ -107,7 +109,6 @@ La figure ci-dessous présente la description textuelle du cas d'utilisation « 
 \end{longtable}
 \captionof{table}{Description textuelle du cas d’utilisation «S'authentifier »}
 \normalsize
-
 
 \subsubsection{Description textuelle du cas d’utilisation «Changer mot de passe »}
 La figure ci-dessous présente la description textuelle du cas d'utilisation « Changer le mot de passe » :
@@ -216,6 +217,8 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le système détecte un compte actif associé à l'e-mail OAuth avec le rôle demandé. Il ne crée pas de demande et invite le visiteur à se connecter directement. \textit{Résolution gracieuse.}
 \item Le système détecte un compte actif avec un rôle différent. Il crée une demande de changement de rôle et notifie les administrateurs. \textit{Résolution gracieuse.}
+\item Le système détecte un compte actif avec un rôle différent et une demande antérieure déjà \textbf{approuvée} pour ce même rôle différent. Il bloque la création d'une nouvelle demande et invite le visiteur à contacter l'administrateur pour l'ajout du nouveau rôle. \textit{Résolution gracieuse.}
+\item Le système détecte un compte actif avec un rôle différent et une demande antérieure \textbf{approuvée} portant sur le rôle demandé. Il bloque la création d'une nouvelle demande et invite le visiteur à se connecter via l'onglet \textit{Connexion}. \textit{Résolution gracieuse.}
 \item Le système détecte une demande déjà en attente pour cet e-mail. Il bloque la création du doublon et informe le visiteur de l'état de sa demande. \textit{Résolution gracieuse.}
 \item Le système détecte une demande antérieurement refusée. Il la renouvelle, notifie les administrateurs et confirme au visiteur. \textit{Succès alternatif.}
 \end{enumerate} \\
@@ -850,16 +853,23 @@ Dans cette section, nous allons modéliser les intéractions entre l'utilisateur
 \label{sec:realisation_sprint1}
 Cette section présente les principales interfaces utilisateur développées durant le premier sprint. Chaque interface a été conçue pour offrir une expérience claire aux différents acteurs de la plateforme.
 
-\subsection{Interface de connexion}
-Nous avons mis en place cette interface de connexion, qui propose deux modes d'authentification : le formulaire
-classique (e-mail + mot de passe) et les boutons OAuth (Google, GitHub).
-En cas de compte inexistant, le visiteur est redirigé vers un flux de
-demande d'inscription.
+\subsection{Interfaces de connexion et d'accueil}
+Nous avons mis en place une interface de connexion qui propose deux modes d'authentification : le formulaire classique (e-mail + mot de passe) et les boutons OAuth (Google, GitHub). En cas de compte inexistant, le visiteur est redirigé vers un flux de demande d'inscription.
+
+\noindent Une fois authentifié, l'utilisateur accède à l'interface d'accueil (\textit{home}) qui présente les fonctionnalités principales de l'application (tableau de bord, navigation, accès rapides, etc.).
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=10cm,height=10cm,keepaspectratio]{Images/capture authentification.png}
 \caption{Interface de connexion}
 \label{fig:interface_connexion}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm,height=10cm,keepaspectratio]{Images/capture home.png}
+\caption{Interface d'accueil (home)}
+\label{fig:interface_home}
 \end{figure}
 
 
@@ -887,26 +897,42 @@ désactiver, voir le profil).
 
 
 \subsection{Interface de gestion des rôles et permissions}
-Nous avons mis en place cette interface de La matrice des permissions qui affiche les rôles en colonnes et les catégories
-de permissions en lignes, avec des cases à cocher pour une attribution
-visuelle et intuitive.
+Nous avons mis en place une interface complète de gestion des rôles et permissions. Celle-ci se compose de deux vues principales :
+
+\noindent\textbf{Liste des rôles :} Cette vue permet de visualiser l'ensemble des rôles existants, d'en ajouter de nouveaux, d'en modifier ou archiver/restaurer.
+
+\noindent\textbf{Matrice des permissions :} Cette vue affiche les rôles en colonnes et les catégories de permissions en lignes, avec des cases à cocher pour une attribution visuelle et intuitive des droits.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/liste roles.png}
+\caption{Interface de liste des rôles}
+\label{fig:liste_roles}
+\end{figure}
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/gestion permission.png}
-\caption{Interface gestion des rôles et permissions}
-\label{fig:interface_roles}
+\caption{Matrice des permissions par rôle}
+\label{fig:matrice_permissions}
 \end{figure}
 
 
-\subsection{Interface de gestion des Demandes d'accès via fournisseur externe}
-Nous avons mis en place cette interface pour que L'administrateur consulte les demandes en attente, visualise les
-informations récupérées via OAuth et peut approuver ou refuser chaque
-demande avec un motif de refus facultatif.
+\subsection{Interface de gestion des demandes d'accès via fournisseur externe}
+Nous avons mis en place un flux d'inscription OAuth en deux étapes. D'abord, l'utilisateur peut demander l'accès via son fournisseur externe (Google, GitHub) afin de s'inscrire facilement sans créer de mot de passe (Figure \ref{fig:oauth_user_demande}). Ensuite, l'administrateur consulte dans une interface dédiée les demandes en attente, visualise les informations récupérées via OAuth, et peut approuver ou refuser chaque demande avec un motif de refus facultatif (Figure \ref{fig:oauth_admin_validation}). Ce processus permet à l'utilisateur de s'inscrire simplement tout en laissant à l'administrateur un contrôle rigoureux des inscriptions.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth,keepaspectratio]{Images/demande inscription user.png}
+\caption{Interface utilisateur — demande d'inscription OAuth}
+\label{fig:oauth_user_demande}
+\end{figure}
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth,keepaspectratio]{Images/interface demande d'insription.png}
-\caption{Interface d'administration — demandes d'inscription OAuth}
-\label{fig:interface_oauth}
+\caption{Interface administrateur — validation des demandes OAuth}
+\label{fig:oauth_admin_validation}
 \end{figure}
 
 
