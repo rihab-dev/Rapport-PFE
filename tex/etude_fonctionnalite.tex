@@ -13,7 +13,7 @@ Ce module assure l'authentification sécurisée via identifiants classiques ou O
 
 \subsubsection{Gestion des Utilisateurs et Demandes d'Inscription}
 
-Ce module permet aux administrateurs de gérer le cycle de vie complet des comptes utilisateurs avec création automatisée, gestion des profils et contrôle des activations/désactivations. Un mécanisme de recherche et filtrage multicritères avancé permet de localiser rapidement un utilisateur spécifique selon des critères combinés (nom, rôle, statut, date de création). Le traitement des demandes d'inscription s'effectue via une interface centralisée permettant approbation, rejet ou mise en attente avec notifications automatiques.
+Ce module permet aux administrateurs de gérer le cycle de vie complet des comptes utilisateurs avec création automatisée, gestion des profils et contrôle des activations/désactivations. Le traitement des demandes d'inscription s'effectue via une interface centralisée permettant approbation, rejet ou mise en attente avec notifications automatiques.
 
 \begin{figure}[H]
     \centering
@@ -39,7 +39,7 @@ Les droits sont gérés par rôles selon un modèle RBAC (Role-Based Access Cont
 
 \subsubsection{Gestion des Clients et Projets}
 
-Ce module centralise la gestion des clients avec création automatisée des comptes et récupération automatique des logos d'entreprise depuis les ressources en ligne. Le système génère des organigrammes visuels et interactifs pour chaque projet, présentant la hiérarchie complète (client, chef de projet, équipe) avec accès direct aux coordonnées de tous les interlocuteurs. Cette visualisation facilite l'identification rapide des contacts et optimise la communication en cas de problème, tout en maintenant la traçabilité via des notes confidentielles horodatées.
+Ce module centralise la gestion des clients avec création automatisée des comptes. Le système génère des organigrammes visuels et interactifs pour chaque projet, présentant la hiérarchie complète (client, chef de projet, équipe) avec accès direct aux coordonnées de tous les interlocuteurs. Cette visualisation facilite l'identification rapide des contacts et optimise la communication en cas de problème.
 
 \begin{figure}[H]
     \centering
@@ -50,8 +50,7 @@ Ce module centralise la gestion des clients avec création automatisée des comp
 
 \subsubsection{Gestion des Contrats de Maintenance}
 
-Ce module automatise le cycle de vie complet des contrats de maintenance avec système d'alertes préventives échelonnées (30, 15, 7 jours avant expiration). L'import de contrats s'effectue à partir de fichiers PDF, avec extraction automatique de données pour pré-remplir les formulaires de création. Un dispositif de détection de doublons basé sur le calcul d'empreintes cryptographiques garantit l'unicité des contrats et prévient toute duplication accidentelle lors des téléversements.
-
+Ce module automatise le cycle de vie complet des contrats de maintenance avec système d'alertes préventives échelonnées. L'import de contrats s'effectue à partir de fichiers PDF, avec extraction automatique de données pour pré-remplir les formulaires de création.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/gestion_contrat.png}
@@ -61,7 +60,7 @@ Ce module automatise le cycle de vie complet des contrats de maintenance avec sy
 
 \subsubsection{Gestion des Demandes d'Intervention}
 
-Ce module structure la soumission des demandes d'intervention avec vérification automatique de couverture contractuelle et validation des types d'intervention éligibles. Une contrainte temporelle de vingt-quatre heures est appliquée entre deux demandes de même type pour un projet identique, prévenant la surcharge des équipes de support. Le processus de validation intègre un système de relance automatique garantissant le traitement dans les délais impartis avec escalade vers les responsables en cas de dépassement des seuils temporels.
+Ce module structure la soumission des demandes d'intervention avec vérification automatique de couverture contractuelle et validation des types d'intervention éligibles. Le processus de validation intègre un système de relance automatique garantissant le traitement dans les délais impartis avec escalade vers les responsables en cas de dépassement des seuils temporels.
 
 \begin{figure}[H]
     \centering
@@ -76,7 +75,7 @@ Ce module implémente un processus structuré avec assignation limitée à cinq 
 
 \subsubsection{Tableaux de Bord, Traçabilité et Documentation}
 
-Ce module offre des tableaux de bord personnalisés par rôle avec indicateurs clés de performance et visualisations analytiques en temps réel. Il maintient un historique exhaustif de toutes les opérations avec traçabilité complète (utilisateur, action, valeurs avant/après, horodatage) et système de notifications multicanaux (web, email, Slack). La génération automatique de procès-verbaux PDF s'effectue à partir des informations de tickets (temps passé, description, solution) lors de la résolution, produisant une documentation contractuelle structurée.
+Ce module offre des tableaux de bord personnalisés par rôle avec indicateurs clés de performance. Il maintient un historique exhaustif de toutes les opérations avec traçabilité complète et système de notifications multicanaux (web, email, Slack). La génération automatique de procès-verbaux PDF s'effectue à partir des informations de tickets lors de la résolution, produisant une documentation contractuelle structurée.
 
 \begin{figure}[H]
     \centering
