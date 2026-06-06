@@ -5,7 +5,7 @@ Dans le chapitre précédent, nous avons mis en place la gestion des projets et 
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 1 : BACKLOG DU SPRINT 3
 % ─────────────────────────────────────────────────────────────────────────────
-\section{Sprint Planning Meeting}
+\section{Réunion de planification du sprint (Sprint Planning Meeting)}
 La planification du sprint est une étape essentielle du processus de développement, car elle permet de clarifier les fonctionnalités à implémenter, de prioriser les besoins métier et d’organiser la réalisation dans une logique incrémentale.
 \subsection{Objectifs du sprint}
 L’objectif principal de ce sprint était d’implémenter le cœur opérationnel de la plateforme de gestion des tickets, en assurant la prise en charge complète du cycle de vie d’une demande jusqu’à sa conversion en ticket, puis son traitement collaboratif par les équipes techniques. Ce sprint visait également à intégrer des mécanismes avancés de suivi du temps, de gestion des SLA, de pilotage via Kanban et d’assistance intelligente à la décision.
@@ -16,9 +16,7 @@ Dans le cadre de ce sprint, l'intégration de l'intelligence artificielle
 a constitué un axe transversal visant à automatiser et à assister plusieurs
 étapes critiques du cycle de traitement des demandes : qualification
 initiale, priorisation, analyse des blocages et capitalisation des
-connaissances. Cette intégration a été pensée comme un composant à part
-entière de la plateforme, conçu pour amplifier l'efficacité des équipes
-sans se substituer à leur jugement.
+connaissances. Cette intégration a été pensée comme un composant à part entière de la plateforme, permettant ainsi de fluidifier le travail des équipes tout en garantissant des réponses plus rapides et fiables.
 
 \subsubsection{Fonctionnalités développées}
 
@@ -149,7 +147,8 @@ Pour le \textbf{chef de projet}, la classification automatique réduit le
 temps de qualification des demandes : plutôt que d'analyser chaque texte
 libre, il valide ou corrige une proposition déjà structurée accompagnée
 d'un raisonnement explicite, ce qui homogénéise les décisions de
-priorisation. Pour le \textbf{développeur}, la génération de pistes de
+priorisation. 
+\newline Pour le \textbf{développeur}, la génération de pistes de
 résolution et de brouillons de solution accélère le déblocage sans attendre
 une intervention humaine. La structuration automatique des résolutions en
 articles enrichit progressivement la base de connaissances collective,
@@ -362,8 +361,8 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \captionof{table}{Description textuelle du cas d’utilisation « Soumettre demande »}
 \normalsize
 
-\subsubsection{Description textuelle du cas d’utilisation « Compléter demande existante »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Compléter demande existante ».
+\subsubsection{Description textuelle du cas d’utilisation « Compléter demande »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Compléter demande ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -377,7 +376,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Compléter demande existante \\
+\textbf{Nom du cas d'utilisation} & Compléter demande \\
 \hline
 \textbf{Acteurs} & Client \\
 \hline
@@ -414,7 +413,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Compléter demande existante »}
+\captionof{table}{Description textuelle du cas d’utilisation « Compléter demande »}
 }
 \normalsize
 
@@ -879,23 +878,23 @@ et dépendances qui les unissent.
 
 \section{Schéma relationnel}
 Le schéma relationnel du premier sprint s’appuie sur les relations suivantes :
-\textbf{DemandeClient} (\underline{id}, titreDemande, typeDemande, statutDemande, typeSLA, descriptionDemande, dateSoumission, dateCreation, dateMiseAJour, dateValidation, motifRejet, motifRequalification, echeanceInitiale, \textbf{\#idProjet})
-\newline
-\textbf{DemandeClassificationIA} (\underline{id}, categorieAuto, typeAuto, prioriteAuto, scoreConfiance, entitesExtraites, urgenceDetectee, estUtiliseeValidation, estCorrigeeParAgent, feedbackAgent, dateClassification, modeleUtilise, \textbf{\#idDemande})
-\newline
-\textbf{Ticket} (\underline{id}, titreTicket, typeSLA, statutTicket, categorieTicket,  descriptionTicket, dateCreationTicket, dateMiseAJourTicket, dateResolutionTicket, delaiReponse, delaiResolution, dateEcheanceResponse, dateEcheanceResolution, slaReponseExpire, slaResolutionExpire, extensionDemandee, extensionMotif, extensionDemandeeAt, extensionAccordee, alerteSLAEnvoyee, scoreUrgenceIA, nombreTicketsBloquesParCelui, nombreUtilisateursAffectes,\textbf{\#idDemande}, \textbf{\#idContrat}) 
-\newline  
-\textbf{SolutionTicket} (\underline{Id}, solutionSuggeree, scoreConfiance, estAcceptee, feedbackUtilisateur, tempsResolution, dateCreation, \textbf{\#idTicket})
-\newline 
-\textbf{KnowledgeBaseArticle} (\underline{id}, titre,  contenu, categorie, statutKB, tag, nombreUtilisations,  tauxReussite)
-\newline
-\textbf{TicketClassification} (\underline{id}, categorieAuto, prioriteAuto, typeAuto, scoreConfiance, urgenceDetectee, entitesExtraites,  estValidee, dateClassification, \textbf{\#idTicket}) 
-\newline
-\textbf{AssignmentTicket} (\underline{id}, dateDebutReelle, dateFinReelle, commentaireAssignment, progression, estBloque, raisonBlocage, feedbackDeveloppeur, technologiesUtilisees, enTravail, dureeTotaleSecondes, dateCreation, solutionProposee, solutionProposeeAt, \textbf{\#idTicket}, \textbf{\#idProfilEmploye}, \textbf{\#idSolutionProposeepar})
-\newline 
-\textbf{SessionTravail} (\underline{id}, debut, fin, dureeSecondes, note, isManual, \textbf{\#idAssignment}) 
 
-
+\noindent
+\textbf{DemandeClient} (\underline{idDemandeClient}, titreDemande, typeDemande, statutDemande, typeSLA, descriptionDemande, dateSoumission, dateCreation, dateMiseAJour, dateValidation, motifRejet, motifRequalification, echeanceInitiale, \textbf{\#idProjet})
+\newline
+\textbf{DemandeClassificationIA} (\underline{idDemandeClassifIA}, categorieAuto, typeAuto, prioriteAuto, scoreConfiance, entitesExtraites, urgenceDetectee, estUtiliseeValidation, estCorrigeeParAgent, feedbackAgent, dateClassification, modeleUtilise, \textbf{\#idDemandeClient})
+\newline
+\textbf{Ticket} (\underline{idTicket}, titreTicket, typeSLA, statutTicket, categorieTicket, descriptionTicket, dateCreationTicket, dateMiseAJourTicket, dateResolutionTicket, delaiReponse, delaiResolution, dateEcheanceResponse, dateEcheanceResolution, slaReponseExpire, slaResolutionExpire, extensionDemandee, extensionMotif, extensionDemandeeAt, extensionAccordee, alerteSLAEnvoyee, scoreUrgenceIA, nombreTicketsBloquesParCelui, nombreUtilisateursAffectes, \textbf{\#idDemandeClient}, \textbf{\#idContrat}, \textbf{\#idProjet})
+\newline
+\textbf{SolutionTicket} (\underline{idSolutionTicket}, solutionSuggeree, scoreConfiance, estAcceptee, feedbackUtilisateur, tempsResolution, dateCreation, \textbf{\#idTicket})
+\newline
+\textbf{ArticleConnaissance} (\underline{idArticleKB}, titre, contenu, categorie, statutKB, tag, nombreUtilisations, tauxReussite, \textbf{\#idSolutionTicket})
+\newline
+\textbf{TicketClassification} (\underline{idTicketClassif}, categorieAuto, prioriteAuto, typeAuto, scoreConfiance, urgenceDetectee, entitesExtraites, estValidee, dateClassification, \textbf{\#idTicket})
+\newline
+\textbf{AssignmentTicket} (\underline{\#idTicket}, \underline{\#idProfilEmploye}, idAssignment, dateDebutReelle, dateFinReelle, commentaireAssignment, progression, estBloque, raisonBlocage, feedbackDeveloppeur, technologiesUtilisees, enTravail, dureeTotaleSecondes, dateCreation, solutionProposee, solutionProposeeAt)
+\newline
+\textbf{SessionTravail} (\underline{idSessionTravail}, debut, fin, dureeSecondes, note, isManual, \textbf{\#idTicket}, \textbf{\#idProfilEmploye}, \textbf{\#idArticleKB})
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 4 : RÉALISATION
 % ─────────────────────────────────────────────────────────────────────────────
@@ -1029,57 +1028,77 @@ La phase de test a permis de vérifier la conformité du sprint 3 aux exigences 
 Nous avons adopté la même stratégie de tests structurée que lors des sprints précédents, reposant sur plusieurs niveaux complémentaires : tests unitaires, tests d'intégration, tests end-to-end, tests de performance et tests de sécurité.
 
 \subsection{Tests unitaires}
-Les tests unitaires du troisième sprint ont été organisés par composant fonctionnel pour assurer une meilleure traçabilité. Exécutés en environnement isolé avec des mocks pour les dépendances externes, ils valident la logique métier critique du sprint : classification IA, cache MD5, mécanismes de reprise, fallback, gestion des tickets, limitation de débit, calcul des SLA et contrôle des transitions autorisées.
+Les tests unitaires de ce troisième sprint ont été structurés par composant fonctionnel afin de garantir une traçabilité optimale. Exécutés dans un environnement isolé à l'aide de doublons de test (\textit{mocks}) pour simuler les dépendances externes, ils valident la logique métier critique du système : classification par IA, hachage MD5 pour la mise en cache, politiques de résilience (\textit{retry} et \textit{fallback}), cycle de vie des tickets, limitation de débit (\textit{rate limiting}) et calcul précis des SLA.
 
-\noindent\textbf{Synthèse :} La synthèse suivante présente, par composant, les objectifs testés, le statut général et les observations clés (extraits des runs locaux).
+subsubsection{Synthèse des résultats}
+La synthèse suivante présente, pour chaque fonctionnalité majeure, les objectifs visés, le statut de couverture ainsi que les observations clés issues des rapports d'exécution locaux.
 
-\begin{itemize}[leftmargin=0pt]
+\begin{description}
+    \item[\textbf{Classification par IA \& Résilience (LLM)}] \leavevmode
+    \begin{itemize}
+        \item \textbf{Objectifs testés :} Validation de la chaîne de traitement (prétraitement, appel API externe, post-traitement) ; gestion du repli (\textit{fallback}) en cas de score de confiance insuffisant ; application de la politique de reconnexion exponentielle (\textit{exponential backoff}) face aux erreurs réseau transitoires.
+        \item \textbf{Statut :} Validé (Couverture totale).
+        \item \textbf{Observations :} Les scénarios de succès, d'échecs réseau et de faible confiance ont été validés avec simulation des délais d'attente.
+    \end{itemize}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=14cm,keepaspectratio]{Images/llm_retry_backoff.png}
+        \caption{Résultats des tests unitaires du mécanisme de retry du LLM}
+        \label{fig:llm_retry}
+    \end{figure}
 
-\item[$\square$] \textbf{LLM (Classification IA) — Retry / Backoff}
-\textbf{Objectifs testés :} Chaîne complète LLM — prétraitement, appel externe, post-traitement, fallback sur faible confiance ; politique de retry exponentiel face aux erreurs transitoires de l'API LLM.
-\newline\textbf{Statut :} Couvert.
-\newline\textbf{Observations clés :} Tests couvrant succès, échecs réseau et faible confiance ; réessais validés avec attente simulée.
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=14cm,keepaspectratio]{Images/llm_retry_backoff.png}
-\end{figure}
+    \item[\textbf{Mécanisme de mise en cache (MD5)}] \leavevmode
+    \begin{itemize}
+        \item \textbf{Objectifs testés :} Génération de l'empreinte numérique (\textit{hashing}), stockage en cache et gestion de la durée de vie des données (\textit{TTL/Expiration}).
+        \item \textbf{Statut :} Validé (Couverture totale).
+        \item \textbf{Observations :} Le succès de mise en cache (\textit{cache hit}) évite les appels externes redondants. L'expiration a été validée via la simulation du temps système (\textit{time mocking}).
+    \end{itemize}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=14cm,keepaspectratio]{Images/cache_md5.png}
+        \caption{Validation du cycle de vie et de l'expiration du cache MD5}
+        \label{fig:cache_md5}
+    \end{figure}
 
-\item[$\square$] \textbf{Cache MD5}
-\textbf{Objectifs testés :} Hashing de texte, mise en cache, TTL/expiration.
-\newline\textbf{Statut :} Couvert.
-\newline\textbf{Observations clés :} Cache hit évite appel externe ; expiration testée via mock temps.
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=14cm,keepaspectratio]{Images/cache_md5.png}
-\end{figure}
+    \item[\textbf{Workflow et Gestion des Tickets}] \leavevmode
+    \begin{itemize}
+        \item \textbf{Objectifs testés :} Cycle de vie complet des tickets (création, assignation automatique, transitions d'état) et vérification des effets de bord.
+        \item \textbf{Statut :} Validé (Couverture totale).
+        \item \textbf{Observations :} Les règles de gestion métier et les contraintes d'intégrité lors des changements d'état sont rigoureusement respectées.
+    \end{itemize}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=14cm,keepaspectratio]{Images/ticket_workflow.png}
+        \caption{Rapport d'exécution des tests du cycle de vie des tickets}
+        \label{fig:ticket_workflow}
+    \end{figure}
 
-\item[$\square$] \textbf{Création / Assignation / Statuts (Workflow tickets)}
-\textbf{Objectifs testés :} Flux métier complet et effets secondaires (création, assignation, transitions d'état).
-\newline\textbf{Statut :} Couvert.
-\newline\textbf{Observations clés :} Validations métier et contraintes de transition testées.
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=14cm,keepaspectratio]{Images/ticket_workflow.png}
-\end{figure}
+    \item[\textbf{Limitation de débit (Rate Limiting)}] \leavevmode
+    \begin{itemize}
+        \item \textbf{Objectifs testés :} Respect des quotas de requêtes par utilisateur et au niveau global ; vérification de la réinitialisation planifiée des compteurs.
+        \item \textbf{Statut :} Validé (Couverture totale).
+        \item \textbf{Observations :} Le blocage des requêtes au-delà du seuil configuré est effectif. Le déclencheur de réinitialisation (\textit{reset timer}) a été adapté et validé pour les tests.
+    \end{itemize}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=14cm,keepaspectratio]{Images/rate_limiting.png}
+        \caption{Vérification des règles de limitation de débit}
+        \label{fig:rate_limiting}
+    \end{figure}
 
-\item[$\square$] \textbf{Rate limiting}
-\textbf{Objectifs testés :} Quotas par utilisateur et global, remise à zéro planifiée.
-\newline\textbf{Statut :} Couvert.
-\newline\textbf{Observations clés :} Comptage et refus au seuil vérifiés ; timer reset adapté aux tests.
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=14cm,keepaspectratio]{Images/rate_limiting.png}
-\end{figure}
-
-\item[$\square$] \textbf{Calcul SLA}
-\textbf{Objectifs testés :} Minutes ouvrées, ajout de minutes ouvrées, jours fériés et traversée de plages non ouvrées.
-\newline\textbf{Statut :} Couvert.
-\newline\textbf{Observations clés :} Scénarios 24/7 vs ouvrés et traversée jours fériés testés.
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=14cm,keepaspectratio]{Images/sla_deadline.png}
-\end{figure}
-\end{itemize}
+    \item[\textbf{Moteur de calcul des SLA}] \leavevmode
+    \begin{itemize}
+        \item \textbf{Objectifs testés :} Prise en compte des minutes ouvrées, exclusion des jours fériés et des week-ends, et gestion des échéances traversant des périodes non ouvrées.
+        \item \textbf{Statut :} Validé (Couverture totale).
+        \item \textbf{Observations :} Les algorithmes basés sur le calendrier standard (24/7) et le calendrier personnalisé (heures de bureau) renvoient des résultats conformes aux spécifications.
+    \end{itemize}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=14cm,keepaspectratio]{Images/sla_deadline.png}
+        \caption{Résultats des tests du calcul des échéances SLA}
+        \label{fig:sla_deadline}
+    \end{figure}
+\end{description}
 
 \subsection{Tests d'intégration}
 Les tests d'intégration ont été réalisés sur les endpoints principaux du sprint.
@@ -1167,7 +1186,7 @@ Les tests d'intégration ont été réalisés sur les endpoints principaux du sp
   \end{figure}
   \end{itemize}
 
-\subsubsection{Tests End-to-End}
+\subsubsection{Tests End-to-End (\textbf{E2E})}
 \label{sec:tests_e2e_demandesch5}
 
 Les tests End-to-End de création de demande client valident l'intégralité
@@ -1263,6 +1282,35 @@ l'interface graphique. Le cas suivant a été couvert :
 
 \end{itemize}
 
+
+\subsection{Tests de sécurité}
+Les tests de sécurité du troisième sprint ont porté sur la protection
+des transitions de statut des tickets, l'isolation des assignations et
+la robustesse du module d'intelligence artificielle.
+
+\subsubsection{Test de contrôle des transitions de statut}
+Le workflow des tickets impose des transitions strictes entre statuts.
+Les tentatives de transition non autorisée --- comme la validation d'une
+demande par un développeur ou la fermeture d'un ticket encore en cours
+--- ont été systématiquement bloquées avec les codes \texttt{403 Forbidden}
+ou \texttt{400 Bad Request}, selon que le blocage est lié aux permissions
+ou à la logique métier.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{Images/test-secu-transition-statut.png}
+\caption{Test de sécurité — refus des transitions de statut non autorisées}
+\end{figure}
+
+\subsubsection{Test de sécurité du module IA — Anonymisation des données sensibles (PII)}
+Une demande contenant des informations personnelles identifiables (numéro de téléphone, adresse email, nom complet) a été soumise au module IA. La vérification des logs système confirme que ces données ont été masquées avant transmission à l'API externe Groq Cloud. Aucune information sensible ne quitte le périmètre interne.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{Images/test-secu-ia-anonymisation.png}
+\caption{Test de sécurité — masquage automatique des PII avant appel API externe}
+\end{figure}
+
 \subsection{Tests de performance}
 \label{sec:tests_performance_sprint3}
 
@@ -1303,11 +1351,6 @@ Les points d'accès ciblés par ce test de charge sont :
 
 \subsubsection{Résultats obtenus}
 
-L'exécution du scénario a permis de collecter des données précises quant
-aux capacités de traitement de l'application. Les indicateurs clés de
-performance sont récapitulés dans le tableau~\ref{tab:perf_sprint3}.
-
-\subsubsection{Résultats obtenus}
 L'exécution du scénario a permis de collecter des données précises quant
 aux capacités de traitement de l'application. Les indicateurs clés de
 performance sont récapitulés dans le tableau~\ref{tab:perf_sprint3}.
@@ -1364,34 +1407,6 @@ de la plateforme sous une activité soutenue.
 \includegraphics[width=0.85\textwidth,keepaspectratio]{Images/test-perf-sprint3-k6.png}
 \caption{Capture des résultats d'exécution k6 — Test de charge Sprint 3}
 \label{fig:perf_sprint3}
-\end{figure}
-
-\subsection{Tests de sécurité}
-Les tests de sécurité du troisième sprint ont porté sur la protection
-des transitions de statut des tickets, l'isolation des assignations et
-la robustesse du module d'intelligence artificielle.
-
-\subsubsection{Test de contrôle des transitions de statut}
-Le workflow des tickets impose des transitions strictes entre statuts.
-Les tentatives de transition non autorisée --- comme la validation d'une
-demande par un développeur ou la fermeture d'un ticket encore en cours
---- ont été systématiquement bloquées avec les codes \texttt{403 Forbidden}
-ou \texttt{400 Bad Request}, selon que le blocage est lié aux permissions
-ou à la logique métier.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.75\textwidth]{Images/test-secu-transition-statut.png}
-\caption{Test de sécurité — refus des transitions de statut non autorisées}
-\end{figure}
-
-\subsubsection{Test de sécurité du module IA — Anonymisation des données sensibles (PII)}
-Une demande contenant des informations personnelles identifiables (numéro de téléphone, adresse email, nom complet) a été soumise au module IA. La vérification des logs système confirme que ces données ont été masquées avant transmission à l'API externe Groq Cloud. Aucune information sensible ne quitte le périmètre interne.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.75\textwidth]{Images/test-secu-ia-anonymisation.png}
-\caption{Test de sécurité — masquage automatique des PII avant appel API externe}
 \end{figure}
 
 \section*{Conclusion}
