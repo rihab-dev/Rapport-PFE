@@ -1,20 +1,21 @@
 ﻿\section*{Introduction}
 
+\section*{Introduction}
+
 Dans le chapitre précédent, nous avons mis en place les fondations du
 système : l'authentification, la gestion des utilisateurs avec leurs rôles
 et permissions, ainsi que le traitement des demandes d'inscription via
-OAuth. L'ensemble de ces fonctionnalités a été testé et validé.
-
+\textit{Open Authorization} (\textbf{OAuth}). L'ensemble de ces fonctionnalités a été testé et validé.
 
 Dans ce chapitre, nous abordons le cœur métier de la plateforme. Il s'agit
 principalement de la gestion des clients, des contrats de maintenance avec
-leurs niveaux de service (SLA), de la gestion des projets et de leurs
+leurs niveaux de service (\textbf{SLA} - \textit{Service Level Agreement}), de la gestion des projets et de leurs
 équipes, ainsi que de la traçabilité complète des opérations à travers le
 journal d'activités.
 % ------------------------------------------------------------------
 % SECTION 1 : BACKLOG DU SPRINT 2
 % ------------------------------------------------------------------
-\section{Sprint Planning Meeting }
+\section{Réunion de planification du sprint (Sprint Planning Meeting)}
 La réunion de planification du deuxième sprint nous a permis de définir les objectifs à atteindre durant les trois prochaines semaines. Nous avons sélectionné les user stories prioritaires et estimé l'effort nécessaire pour chacune d'elles. Cette étape est importante pour que toute l'équipe comprenne bien le travail à réaliser.
 \subsection{Objectif du Sprint}
 Ce sprint vise à développer les fonctionnalités essentielles du système.
@@ -23,10 +24,11 @@ et des contrats de maintenance, d'assurer le suivi des engagements de
 service à travers leurs SLA, de faciliter la collaboration via l'affectation
 des équipes aux projets, et de garantir la traçabilité complète des
 opérations effectuées à travers le journal d'activités.
+
 \subsubsection{Backlog du deuxième sprint}
 \label{sec:backlog_sprint2}
 
-Le tableau ci-dessous présente le Sprint Backlog détaillé avec les descriptions techniques et l'effort estimé pour chaque user story.
+Le tableau ci-dessous présente le \textbf{Sprint Backlog} (ensemble des tâches sélectionnées pour le sprint) détaillé, avec les descriptions techniques et l'effort estimé pour chaque \textit{user story} (récit utilisateur).
 
 \textbf{1 : Effort faible, 2 : Effort moyen, 3 : Effort élevé}
 \newpage
@@ -513,24 +515,21 @@ et dépendances qui les unissent.
 Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui détaille les différentes tables de la base de données ainsi que leurs relations :
 
 \noindent
-
-
-\textbf{Contrat} (\underline{idContrat}, referenceContrat, dateDebutContratM, dateExpirationContratM, montantMensuel, montantSemestriel, tauxTVA, montantTVA, montantTTC, typeSLA, fichierContrat, statutContratM, estArchive, dateCreation, dateMiseAJour, dateArchivage, \textbf{\#idProfilClient}, \textbf{\#idProjet},\textbf{\#idSLAGlobal})
+\textbf{Projet} (\underline{idProjet}, nomProjet, descriptionProjet, ProjetTag, statutP, dateDebutP, dateFinP, dateCreationP, dateMiseAJourP, \textbf{\#idProfilClient})
 \newline
-\textbf{SLAContrat} (\underline{idSLAContrat}, motifPersonnalisation, dateCreation,dateMiseAJour,\textbf{\#idContrat})
+\textbf{Contrat} (\underline{idContrat}, referenceContrat, dateDebutContratM, dateExpirationContratM, montantMensuel, montantSemestriel, tauxTVA, montantTVA, montantTTC, typeSLA, fichierContrat, statutContrat, estArchive, dateCreation, dateMiseAJour, dateArchivage, \textbf{\#idProjet})
 \newline
-\textbf{DelaiSLA} (\underline{idRegle}, priorite, delaiReponseMn, delaiResolutionMn, \textbf{\#idSLAGlobal},\textbf{\#idSLAContrat})
+\textbf{SLAGlobal} (\underline{idSLAGlobal}, typeSLA, description, dateCreation, dateMiseAJour)
 \newline
-\textbf{ConfigurationSlack} (\underline{id}, webhookUrl, canal, notifierSurCreation, notifierSurResolution, estActif, \textit{\#contratId})
+\textbf{SLAContrat} (\underline{idSLAContrat}, motifPersonnalisation, dateCreation, dateMiseAJour, \textbf{\#idContrat}, \textbf{\#idSLAGlobal})
 \newline
-\textbf{Projet} (\underline{idProjet}, nomProjet, descriptionProjet ,ProjetTag, statutP, dateDebutP, dateFinP,dateCreationP, dateMiseAJourP, \textbf{\#idProfilClient},\textbf{\#idChefProjet})
+\textbf{ConfigurationSlack} (\underline{id}, webhookUrl, canal, notifierSurCreation, notifierSurResolution, estActif, \textbf{\#idContrat})
 \newline
-\textbf{MembreProjet} (\underline{idMembre}, rolesDansProjet,dateAffectation, dateDebut, dateFin, statut, motifRefus, \textbf{\#idProjet},\textbf{\#idProfilEmploye})
+\textbf{MembreProjet} (\underline{\#idProjet}, \underline{\#idProfilEmploye}, rolesDansProjet, dateAffectation, dateDebut, dateFin, statut, motifRefus)
 \newline
-\textbf{FeedbackExpirationContrat} (\underline{idFeedback}, note, commentaire, RaisonNonRenouvellement,s ouhaitRenouveler, dateCreation,\textbf{\#idContrat})
-\newline 
-\textbf{JournalActivite} (\underline{id}, action, method, path, ipAddress, status, description, metadata,\textbf{\#idUtilisateur})
-
+\textbf{FeedbackExpirationContrat} (\underline{idFeedback}, note, commentaire, RaisonNonRenouvellement, souhaitRenouveler, dateCreation, \textbf{\#idContrat})
+\newline
+\textbf{JournalActivite} (\underline{id}, action, method, path, ipAddress, status, description, metadata, \textbf{\#idUtilisateur})
 }
 
 \section{Réalisation}
@@ -597,9 +596,8 @@ tests end-to-end, tests de performance et tests de sécurité.
 \subsection{Tests unitaires}
 \label{sec:tests_unitaires_sprint2}
 
-Les tests unitaires ont été réalisés avec \textbf{Vitest} en isolant
-chaque service grâce à des mocks Prisma. Deux modules sont couverts :
-la création de contrats et la gestion des projets.
+
+Les tests unitaires ont été réalisés avec \textbf{Vitest} (framework de test JavaScript/TypeScript) en isolant chaque service grâce à des mocks Prisma (simulations d'objets pour la base de données).
 
 
 \begin{itemize}[leftmargin=0pt]
@@ -732,10 +730,8 @@ Les tests de sécurité du deuxième sprint ont ciblé la protection des
 données contractuelles et la prévention des accès non autorisés entre
 clients.
 
-\subsubsection{Test d'isolation des données (IDOR)}
-La vulnérabilité IDOR (\textit{Insecure Direct Object Reference})
-consiste à accéder à une ressource appartenant à un autre utilisateur
-en manipulant un identifiant. Ce test a vérifié qu'un client authentifié
+\subsubsection{Test d'isolation des données (\textbf{IDOR} - \textit{Insecure Direct Object Reference})}
+La vulnérabilité \textbf{IDOR} consiste à accéder à une ressource appartenant à un autre utilisateur en manipulant un identifiant. Ce test a vérifié qu'un client authentifié
 ne peut pas consulter les contrats d'un autre client.
 
 Un utilisateur avec le rôle \texttt{CLIENT} a tenté d'accéder à la liste
@@ -752,8 +748,7 @@ restreint aux seuls contrats appartenant au client authentifié.
 %─────────────────────────────────────────────────────────────────────────────
 \subsection{Tests d'intégration}
 \label{sec:tests_integration_sprint2}
-Les tests d'intégration valident les endpoints REST des contrats via \textbf{Swagger UI}, en interagissant directement avec le backend en cours d'exécution.
-
+Les tests d'intégration valident les endpoints \textbf{REST} (\textit{Representational State Transfer}) des contrats via \textbf{Swagger UI} (interface utilisateur de documentation d'API), en interagissant directement avec le backend en cours d'exécution.
 \begin{itemize}[leftmargin=0pt]
 
 \item[$\square$] \textbf{Test du module Gestion des contrats}
@@ -782,7 +777,7 @@ Les tests d'intégration valident les endpoints REST des contrats via \textbf{Sw
 \end{itemize}
 %─────────────────────────────────────────────────────────────────────────────
 %─────────────────────────────────────────────────────────────────────────────
-\subsubsection{Tests End-to-End}
+\subsubsection{Tests End-to-End (\textbf{E2E})}
 \label{sec:tests_e2e_contract}
 
 Les tests End-to-End de création de contrat valident le flux complet

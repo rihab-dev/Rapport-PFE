@@ -1,12 +1,12 @@
 ﻿
 \section*{Introduction}
 Dans le chapitre précédent, nous avons défini les besoins liés à notre solution et réparti les différentes tâches du projet afin que les phases de travail soient correctement planifiées.
-\newline Au cours de ce chapitre, nous présenterons les fonctionnalités liées  à la gestion des utilisateurs, à l'authentification et au contrôle d'accès basé sur les rôles (RBAC), retenues dans le cadre du premier sprint de notre projet.
+\newline Au cours de ce chapitre, nous présenterons les fonctionnalités liées  à la gestion des utilisateurs, à l'authentification et au contrôle d'accès basé sur les rôles (\textbf{RBAC} - \textit{Role-Based Access Control}), retenues dans le cadre du premier sprint de notre projet.
 
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 1 : BACKLOG DU SPRINT 1
 % ─────────────────────────────────────────────────────────────────────────────
-\section{Sprint Planning Meeting }
+\section{Réunion de planification du sprint (Sprint Planning Meeting)}
 La planification du sprint est essentielle à la réussite de notre solution. Elle permet de clarifier les différentes fonctionnalités à implémenter lors du sprint à venir. Cette partie est efficace afin de préparer des objectifs clairs.
 
 \subsection{Objectifs du sprint}
@@ -15,13 +15,12 @@ sécuritaires de la solution, en implémentant les mécanismes d'authentificatio
 de sécurisation des accès ainsi que les fonctionnalités de gestion des utilisateurs
 et de leurs profils. Il s'agit également d'assurer un contrôle efficace des accès
 et des permissions en introduisant l'administration du système à travers la gestion
-des comptes utilisateurs, des rôles et des permissions (RBAC).
+des comptes utilisateurs, des rôles et des permissions (\textbf{RBAC}).
 
 Dans ce premier sprint, nous avons aussi défini l'identité visuelle et conçu le logo de \textbf{SolidMaint}. Le détail graphique est présenté dans le chapitre 2.
 \subsection{Backlog du premier sprint}
 \label{sec:backlog_sprint1}
-
-Voici l'ensemble des fonctionnalités issues du Product Backlog, qui seront réalisées dans le cadre de ce sprint.
+Le tableau \ref{tab:sprint_backlog} ci-dessous présente le \textbf{Sprint Backlog} (ensemble des tâches sélectionnées pour le sprint) détaillé, avec les descriptions techniques et l'effort estimé pour chaque \textit{user story} (récit utilisateur).
 \newline
 \textbf{1 : Effort faible, 2 : Effort moyen, 3 : Effort élevé}
 \input{tex/sprint_backlog_1}
@@ -34,7 +33,7 @@ Voici l'ensemble des fonctionnalités issues du Product Backlog, qui seront réa
 
 \section{Analyse}
 Dans le processus de développement, l'analyse joue un rôle important ; elle permet d'identifier les exigences du système et de traduire les besoins exprimés en spécifications claires et cohérentes.
-C'est pour cela que nous allons présenter les diagrammes ainsi que les tableaux descriptifs des cas d'utilisation
+C'est pourquoi nous allons présenter les diagrammes ainsi que les tableaux descriptifs des cas d'utilisation.
 \label{sec:analyse_sprint1}
 
 \subsection{Diagramme des cas d'utilisation du premier sprint}
@@ -106,7 +105,7 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item  Après 3 tentatives échouées, le système affiche \texttt{401 Unauthorized} et le compte est verrouillé strictement pendant 1 minute. Aucune action de l'utilisateur ne permet de forcer l'entrée.
 \item  Le compte a été révoqué. Le système bloque impérativement la connexion.
-\item  La demande d'inscription OAuth est en « en attente ». L'accès est bloqué tant qu'un administrateur n'a pas validé.
+\item  La demande d'inscription \textit{Open Authorization} (\textbf{OAuth}) est en « en attente ». L'accès est bloqué tant qu'un administrateur n'a pas validé.
 \end{enumerate} \\
 \hline
 \end{longtable}
@@ -209,7 +208,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \item Le visiteur sélectionne son rôle cible parmi les profils disponibles.
 \item Le visiteur sélectionne un fournisseur externe (Google ou GitHub).
 \item Le système redirige le visiteur vers le fournisseur pour s'authentifier et autoriser l'accès à son profil.
-\item De retour sur l'application, le système réceptionne les données OAuth et vérifie l'absence de compte actif associé à l'e-mail.
+\item De retour sur l'application, le système réceptionne les données \textit{Open Authorization} (\textbf{OAuth}) et vérifie l'absence de compte actif associé à l'e-mail.
 \item Le système crée la demande d'inscription avec le statut « en attente ».
 \item Le système notifie l'équipe d'administration par e-mail et par notification interne.
 \item Le système envoie un accusé de réception par e-mail au visiteur.
@@ -220,7 +219,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \hline
 \textbf{Scénario alternatif} &
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le système détecte un compte actif associé à l'e-mail OAuth avec le rôle demandé. Il ne crée pas de demande et invite le visiteur à se connecter directement. \textit{Résolution gracieuse.}
+\item Le système détecte un compte actif associé à l'e-mail \textit{Open Authorization} (\textbf{OAuth}) avec le rôle demandé. Il ne crée pas de demande et invite le visiteur à se connecter directement. \textit{Résolution gracieuse.}
 \item Le système détecte un compte actif avec un rôle différent. Il crée une demande de changement de rôle et notifie les administrateurs. \textit{Résolution gracieuse.}
 \item Le système détecte un compte actif avec un rôle différent et une demande antérieure déjà \textbf{approuvée} pour ce même rôle différent. Il bloque la création d'une nouvelle demande et invite le visiteur à contacter l'administrateur pour l'ajout du nouveau rôle. \textit{Résolution gracieuse.}
 \item Le système détecte un compte actif avec un rôle différent et une demande antérieure \textbf{approuvée} portant sur le rôle demandé. Il bloque la création d'une nouvelle demande et invite le visiteur à se connecter via l'onglet \textit{Connexion}. \textit{Résolution gracieuse.}
@@ -428,7 +427,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \item L'administrateur accède au module de gestion des demandes d'inscription.
 \item Le système affiche la liste des demandes en attente.
 \item L'administrateur sélectionne une demande à traiter.
-\item Le système affiche les informations du demandeur récupérées via OAuth.
+\item Le système affiche les informations du demandeur récupérées via \textit{Open Authorization} (\textbf{OAuth}).
 \item L'administrateur clique sur « Approuver ».
 \item Le système crée le compte utilisateur à partir des informations de la demande.
 \item Le système attribue le rôle correspondant à l'utilisateur.
@@ -845,19 +844,19 @@ et dépendances qui les unissent.
 Le schéma relationnel du premier sprint s’appuie sur les relations suivantes :
 \textbf{Utilisateur} (\underline{idUtilisateur}, nom, prenom, email, emailsSecondaires, motDePasse, numTel, photoProfil, estActif, doitChangerMotDePasse, dateCreation, dateMiseAJour, derniereConnexion)
 \newline
-\textbf{UtilisateurRole} (\underline{idUtilisateurRole}, dateAttribution, description, \textbf{\#idUtilisateur}, \textbf{\#idRole})
+\textbf{Role} (\underline{idRole}, nomRole, description, roleSysteme, estArchive, dateCreation)
+\newline
+\textbf{Permission} (\underline{idPermission}, codePermission, description)
+\newline
+\textbf{UtilisateurRole} (\underline{\#idUtilisateur}, \underline{\#idRole}, dateAttribution, description)
+\newline
+\textbf{RolePermission} (\underline{\#idRole}, \underline{\#idPermission}, description)
 \newline
 \textbf{ProfilEmploye} (\underline{\textbf{\#idUtilisateur}}, matricule, dateEmbauche, poste, specialisation, anneesExperience, disponibilite, competences)
 \newline
 \textbf{ProfilClient} (\underline{\textbf{\#idUtilisateur}}, nomSociete, telSociete, adresseSociete, secteurActivite, logo)
 \newline
-\textbf{Role} (\underline{idRole}, nomRole, description, roleSysteme, estArchive, dateCreation)
-\newline
-\textbf{Permission} (\underline{idPermission}, codePermission, description)
-\newline
-\textbf{RolePermission} (\underline{idRolePermission}, description, \textbf{\#idRole}, \textbf{\#idPermission})
-\newline
-\textbf{DemandeInscription} (\underline{idDemande}, fournisseur, statusDemandeInsc, dateCreation, dateMiseAJour, motifRefus, \textbf{\#idUtilisateur})
+\textbf{DemandeInscription} (\underline{idDemandeInsc}, fournisseur, statusDemandeInsc, dateCreationInsc, dateCreation, dateMiseAJour, motifRefus, \textbf{\#idUtilisateur})
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 4 : RÉALISATION
 % ─────────────────────────────────────────────────────────────────────────────
@@ -932,19 +931,19 @@ Nous avons mis en place une interface complète de gestion des rôles et permiss
 
 
 \subsection{Interface de gestion des demandes d'accès via fournisseur externe}
-Nous avons mis en place un flux d'inscription OAuth en deux étapes. D'abord, l'utilisateur peut demander l'accès via son fournisseur externe (Google, GitHub) afin de s'inscrire facilement sans créer de mot de passe (Figure \ref{fig:oauth_user_demande}). Ensuite, l'administrateur consulte dans une interface dédiée les demandes en attente, visualise les informations récupérées via OAuth, et peut approuver ou refuser chaque demande avec un motif de refus facultatif (Figure \ref{fig:oauth_admin_validation}). Ce processus permet à l'utilisateur de s'inscrire simplement tout en laissant à l'administrateur un contrôle rigoureux des inscriptions.
+Nous avons mis en place un flux d'inscription \textit{Open Authorization} (\textbf{OAuth}) en deux étapes. D'abord, l'utilisateur peut demander l'accès via son fournisseur externe (Google, GitHub) afin de s'inscrire facilement sans créer de mot de passe (Figure \ref{fig:oauth_user_demande}). Ensuite, l'administrateur consulte dans une interface dédiée les demandes en attente, visualise les informations récupérées via \textit{Open Authorization} (\textbf{OAuth}), et peut approuver ou refuser chaque demande avec un motif de refus facultatif (Figure \ref{fig:oauth_admin_validation}). Ce processus permet à l'utilisateur de s'inscrire simplement tout en laissant à l'administrateur un contrôle rigoureux des inscriptions.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=11cm,height=11cm,keepaspectratio]{Images/demande inscription user.png}
-\caption{Interface utilisateur — demande d'inscription OAuth}
+\caption{Interface utilisateur — demande d'inscription \textit{Open Authorization} (\textbf{OAuth})}
 \label{fig:oauth_user_demande}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/interface demande d'insription.png}
-\caption{Interface administrateur — validation des demandes OAuth}
+\caption{Interface administrateur — validation des demandes \textit{Open Authorization} (\textbf{OAuth})}
 \label{fig:oauth_admin_validation}
 \end{figure}
 
@@ -960,7 +959,7 @@ Afin de garantir la qualité, la fiabilité et la sécurité de l'application, n
 \subsection{Tests unitaires}
 \label{sec:tests_unitaires}
 
-Les tests unitaires ont été réalisés à l'aide du framework \textbf{Vitest},
+Les tests unitaires ont été réalisés à l'aide du framework \textbf{Vitest} (framework de test JavaScript/TypeScript),
 en isolant chaque service du reste de l'application grâce à des mocks
 Prisma. Cette approche garantit l'indépendance des tests et permet une
 détection précoce des anomalies dès la phase de développement. Trois
@@ -1060,8 +1059,7 @@ Les cas suivants ont été couverts :
 
 Les tests d'intégration ont pour objectif de valider les échanges entre
 les différentes couches de l'application (contrôleur, service et base de
-données) en testant les endpoints REST dans leur ensemble. Ces tests sont
-effectués via \textbf{Swagger UI} en soumettant des requêtes HTTP réelles
+données) en testant les endpoints REST dans leur ensemble. Ces tests sont effectués via \textbf{Swagger UI} (interface utilisateur de documentation d'API), en soumettant des requêtes HTTP réelles
 contre le backend en cours d'exécution, ce qui permet de vérifier le
 comportement de l'API dans des conditions proches de la production.
 
@@ -1118,7 +1116,7 @@ Lee cas suivant ont été couvert :
     \end{figure}
 \end{itemize}
 
-\subsection{Tests End-to-End}
+\subsubsection{Tests End-to-End (\textbf{E2E})}
 \label{sec:tests_e2e_demandesch3}
 
 Les tests End-to-End de création de demande client valident l'intégralité
@@ -1302,7 +1300,7 @@ périmètres d'accès.
 \caption{Test de sécurité — refus d'accès 403 pour un rôle non autorisé}
 \end{figure}
 
-\subsubsection{Test de robustesse des tokens JWT}
+\subsubsection{Test de robustesse des tokens JWT (\textit{JSON Web Token})}
 Les requêtes émises avec un token JWT falsifié ou expiré ont été
 systématiquement rejetées avec le code \texttt{401 Unauthorized},
 confirmant l'intégrité de la validation des jetons.
@@ -1313,7 +1311,7 @@ confirmant l'intégrité de la validation des jetons.
 \caption{Test de sécurité — refus d'accès 401 pour un token invalide}
 \end{figure}
 
-\subsubsection{Scan automatisé OWASP ZAP}
+\subsubsection{Scan automatisé OWASP ZAP (\textit{Open Web Application Security Project} - \textit{Zed Attack Proxy})}
 Un scan automatisé a été réalisé sur l'ensemble des endpoints exposés.
 Aucune vulnérabilité de niveau \textit{High} ou \textit{Medium} n’a été détectée.
 Les résultats obtenus indiquent uniquement l’identification des mécanismes de gestion de session, 
@@ -1330,8 +1328,9 @@ sans présence d’alertes critiques liées à la sécurité de l’application.
 % ─────────────────────────────────────────────────────────────────────────────
 \section*{Conclusion}
 Ce chapitre a présenté le développement du premier sprint de la plateforme
-\textbf{SolidMaint}. Nous avons mis en place la gestion de l'authentification
-JWT avec les boutons OAuth Google et GitHub, ainsi que la gestion des
+\textbf{SolidMaint}. Nous avons mis en place la gestion de l'authentification 
+par \textit{JSON Web Token} (\textbf{JWT}) avec les boutons \textit{Open Authorization} 
+(\textbf{OAuth}) Google et GitHub, ainsi que la gestion des
 rôles et permissions (RBAC). L'ensemble de ces fonctionnalités a été
 validé par une série de tests unitaires, d'intégration et
 End-to-End répartis sur trois niveaux.
