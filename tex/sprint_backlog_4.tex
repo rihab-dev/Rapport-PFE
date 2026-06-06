@@ -260,30 +260,31 @@ US90 & En tant qu'\textbf{administrateur}, je souhaite consulter un dashboard gl
 
 US91 & En tant que \textbf{chef de projet}, je souhaite consulter un dashboard d'équipe afin de piloter l'activité. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Utiliser \textbf{GET /api/dashboard/chef-projet/kpis} pour les indicateurs clés.
-\item Compléter la vue avec \textbf{GET /api/dashboard/chef-projet/demandes-action-requise}, \textbf{GET /api/dashboard/chef-projet/tickets-sla-critique}, \textbf{GET /api/dashboard/chef-projet/projets-synthese} et \textbf{GET /api/dashboard/chef-projet/equipe-charge}.
-\item Suivre l'évolution via \textbf{GET /api/dashboard/chef-projet/evolution} et \textbf{GET /api/dashboard/chef-projet/activite-recente}.
+\item Développer les endpoints de récupération des indicateurs clés de performance (KPI) du chef de projet.
+\item Suivre l'évolution de l'activité et afficher les actions récentes.
+\item Visualiser les indicateurs clés de performance (KPI) de suivi d'activité.
+\item Suivre l'évolution de la progression des projets.
 \end{itemize} & 2 \\
 \hline
 
 US92 & En tant que \textbf{client}, je souhaite consulter mon dashboard afin de suivre mes projets. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Consulter le dashboard client via \textbf{GET /api/dashboard/client}.
-\item Afficher les projets, tickets et indicateurs liés au client connecté.
-\item Présenter une vue synthétique adaptée au compte client.
+\item Accéder à une vue de suivi personnalisée pour le client.
+\item Afficher les projets, tickets et indicateurs clés relatifs au périmètre du compte client.
+\item Présenter une vue synthétique et intuitive de l'avancement.
 \end{itemize} & 2 \\
 \hline
 
 US93 & En tant qu'\textbf{administrateur}, je souhaite générer un rapport d'activité mensuel afin de présenter les statistiques. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Générer le rapport via \textbf{GET /api/dashboard/rapport-mensuel} avec \texttt{mois} et \texttt{annee}.
-\item Permettre un filtrage optionnel par client avec \texttt{clientId}.
+\item Développer l'endpoint de génération du rapport mensuel avec paramètres de mois et d'année.
+\item Permettre un filtrage optionnel par client.
 \item Réutiliser les métriques déjà calculées par le dashboard admin.
 \end{itemize} & 3 \\
 \hline
 US94 & En tant que \textbf{chef de projet}, je souhaite générer des rapports d'activité afin de présenter l'avancement. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Utiliser \textbf{GET /api/dashboard/chef-projet/rapport} avec \texttt{dateDebut}, \texttt{dateFin}, \texttt{projetId} et \texttt{clientId}.
+\item Développer l'endpoint de génération du rapport du chef de projet avec filtres par période, projet et client.
 \item Produire un rapport par projet ou par période à partir des données réelles de tickets et de demandes.
 \item Réutiliser les métriques d'évolution et d'activité déjà exposées au chef de projet.
 \end{itemize} & 2 \\
