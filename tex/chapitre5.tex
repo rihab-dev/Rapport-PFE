@@ -56,8 +56,8 @@ automatique des demandes, l'analyse des blocages techniques et la
 structuration des solutions en articles de base de connaissances.
 Afin de retenir le modèle le plus adapté, nous avons comparé les principaux
 LLM disponibles selon les critères pertinents pour notre cas d'usage :
-qualité de traitement du français technique, support natif du format JSON,
-latence et coût d'accès via API, comme le présente le
+qualité de traitement du français technique, support natif du format JSON (\textit{JavaScript Object Notation}),
+latence et coût d'accès via API (\textit{Application Programming Interface}), comme le présente le
 tableau~\ref{tab:comparaison_llm}.
 
 \begin{table}[H]
@@ -87,9 +87,9 @@ LLaMA 3.3 (70B)   & Meta / Groq & Bonne      & Oui & Très faible & Faible \\
 \subsubsection{Choix du modèle}
 
 À l'issue de cette analyse comparative et au regard des fonctionnalités
-à couvrir, le modèle retenu est \textbf{LLaMA~3.3 (70B)}, exploité via
+à couvrir, le modèle retenu est (\textit{Large Language Model Meta AI}) \textbf{LLaMA~3.3 (70B)}, exploité via
 l'\textbf{API Groq Cloud}. Ce choix se justifie par plusieurs facteurs
-complémentaires : une latence très faible grâce aux processeurs LPU de
+complémentaires : une latence très faible grâce aux processeurs LPU (\textit{Language Processing Unit}) de
 Groq (environ 700 tokens par seconde), le support natif du format JSON
 permettant une intégration directe avec la base de données, une qualité
 suffisante en français technique pour les cas d'usage ciblés, et un accès
@@ -1028,7 +1028,7 @@ La phase de test a permis de vérifier la conformité du sprint 3 aux exigences 
 Nous avons adopté la même stratégie de tests structurée que lors des sprints précédents, reposant sur plusieurs niveaux complémentaires : tests unitaires, tests d'intégration, tests end-to-end, tests de performance et tests de sécurité.
 
 \subsection{Tests unitaires}
-Les tests unitaires de ce troisième sprint ont été structurés par composant fonctionnel afin de garantir une traçabilité optimale. Exécutés dans un environnement isolé à l'aide de doublons de test (\textit{mocks}) pour simuler les dépendances externes, ils valident la logique métier critique du système : classification par IA, hachage MD5 pour la mise en cache, politiques de résilience (\textit{retry} et \textit{fallback}), cycle de vie des tickets, limitation de débit (\textit{rate limiting}) et calcul précis des SLA.
+Les tests unitaires de ce troisième sprint ont été structurés par composant fonctionnel afin de garantir une traçabilité optimale. Exécutés dans un environnement isolé à l'aide de doublons de test (\textit{mocks}) pour simuler les dépendances externes, ils valident la logique métier critique du système : classification par IA, hachage MD5 (\textit{ Message Digest 5})pour la mise en cache, politiques de résilience (\textit{retry} et \textit{fallback}), cycle de vie des tickets, limitation de débit (\textit{rate limiting}) et calcul précis des SLA.
 
 subsubsection{Synthèse des résultats}
 La synthèse suivante présente, pour chaque fonctionnalité majeure, les objectifs visés, le statut de couverture ainsi que les observations clés issues des rapports d'exécution locaux.
@@ -1049,7 +1049,7 @@ La synthèse suivante présente, pour chaque fonctionnalité majeure, les object
 
     \item[\textbf{Mécanisme de mise en cache (MD5)}] \leavevmode
     \begin{itemize}
-        \item \textbf{Objectifs testés :} Génération de l'empreinte numérique (\textit{hashing}), stockage en cache et gestion de la durée de vie des données (\textit{TTL/Expiration}).
+        \item \textbf{Objectifs testés :} Génération de l'empreinte numérique (\textit{hashing}), stockage en cache et gestion de la durée de vie des données (\textit{TTL(Time To Live)/Expiration}).
         \item \textbf{Statut :} Validé (Couverture totale).
         \item \textbf{Observations :} Le succès de mise en cache (\textit{cache hit}) évite les appels externes redondants. L'expiration a été validée via la simulation du temps système (\textit{time mocking}).
     \end{itemize}
@@ -1338,7 +1338,7 @@ de 4 minutes 30 secondes selon cinq phases distinctes :
     \item \textbf{Montée en charge :} Progression jusqu'à 15 VUs en 1 minute.
     \item \textbf{Charge nominale :} Maintien à 25 VUs stables pendant 2 minutes.
     \item \textbf{Pic de charge (Plateau) :} Pic d'activité à 35 VUs pendant 30 secondes.
-    \item \textbf{Descente (Ramp-down) :} Retour progressif à 0 VU en 30 secondes.
+    \item \textbf{Descente (Ramp-down) :} Retour progressif à 0 VU  en 30 secondes.
 \end{itemize}
 
 Les points d'accès ciblés par ce test de charge sont :
@@ -1377,7 +1377,7 @@ Percentile 95 (p95) - GET /api/demandes & 444,85 ms \\
 \hline
 Taux d'erreur applicatif & 0,00 \% \\
 \hline
-Débit moyen des requêtes & 8,79 req/s \\
+Débit moyen des requêtes & 8,79 req/s (\textit{requêtes par seconde})\\
 \hline
 Itérations totales & 1 202 \\
 \hline

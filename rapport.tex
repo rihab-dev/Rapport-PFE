@@ -45,13 +45,6 @@
 \renewcommand{\cfttoctitlefont}{\relax\vspace*{-2cm}}
 \renewcommand{\cftaftertoctitle}{}
 
-% --- CORRECTION : Nettoyage des caractères invisibles ---
-\makeatletter
-\renewcommand{\numberline}[1]{%
-  \hb@xt@\@nameuse{cft#1numwidth}{#1\hfil}%
-}
-\makeatother
-
 % --- Alignements exacts calqués sur l'image de référence ---
 \setlength{\cftchapindent}{0pt}
 \setlength{\cftchapnumwidth}{22pt} 
