@@ -7,7 +7,9 @@ Dans le chapitre précédent, nous avons défini les besoins liés à notre solu
 % SECTION 1 : BACKLOG DU SPRINT 1
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Sprint Planning Meeting }
-La planification du sprint est essentielle à la réussite de notre solution, au bout de laquelle on clarifie les différentes fonctionnalités à implémenter lors du sprint à venir. Cette partie est efficace afin de préparer des objectifs clairs.
+La planification du sprint est essentielle à la réussite de notre solution. Elle permet de clarifier les différentes fonctionnalités à implémenter lors du sprint à venir. Cette partie est efficace afin de préparer des objectifs clairs.
+
+\subsection{Objectifs du sprint}
 L'objectif de ce sprint est de mettre en place les fondations fonctionnelles et
 sécuritaires de la solution, en implémentant les mécanismes d'authentification et
 de sécurisation des accès ainsi que les fonctionnalités de gestion des utilisateurs
@@ -785,16 +787,16 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Conception}
 Cette section présente les choix de conception retenus pour ce sprint,
-à travers les diagrammes d'activité et de séquences modélisant les
+à travers les diagrammes d'activités et de séquences modélisant les
 principaux flux fonctionnels
 
-\subsection{Diagramme d'activité « Authentification et Demander accés via fournisseur externe »}
+\subsection{Diagramme d'activités « Authentification et Demander accés via fournisseur externe »}
 Le diagramme ci-dessous illustre le flux d'activités relatif à l'authentification
 et à la demande d'accès via un fournisseur externe.
 \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_activites_demande_insc.png}
-        \caption{Diagramme d’activité d’authentification et d’inscription}
+        \caption{Diagramme d’activités d’authentification et d’inscription}
         \label{fig:oauth_activity_diagram}
 \end{figure}
 
@@ -840,7 +842,7 @@ et dépendances qui les unissent.
 \end{figure}
 
 \section{Schéma relationnel}
-
+Le schéma relationnel du premier sprint s’appuie sur les relations suivantes :
 \textbf{Utilisateur} (\underline{idUtilisateur}, nom, prenom, email, emailsSecondaires, motDePasse, numTel, photoProfil, estActif, doitChangerMotDePasse, dateCreation, dateMiseAJour, derniereConnexion)
 \newline
 \textbf{UtilisateurRole} (\underline{idUtilisateurRole}, dateAttribution, description, \textbf{\#idUtilisateur}, \textbf{\#idRole})
@@ -1326,7 +1328,7 @@ sans présence d’alertes critiques liées à la sécurité de l’application.
 % ─────────────────────────────────────────────────────────────────────────────
 % CONCLUSION
 % ─────────────────────────────────────────────────────────────────────────────
-\section{Conclusion}
+\section*{Conclusion}
 Ce chapitre a présenté le développement du premier sprint de la plateforme
 \textbf{SolidMaint}. Nous avons mis en place la gestion de l'authentification
 JWT avec les boutons OAuth Google et GitHub, ainsi que la gestion des

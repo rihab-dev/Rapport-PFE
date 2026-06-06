@@ -25,16 +25,16 @@
 
 US20 & En tant qu'\textbf{administrateur}, je souhaite créer un profil client afin de centraliser ses informations. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"POST /api/clients"}\small{} pour créer le compte utilisateur et la fiche client.
-\item Prévoir l'upload du logo via \footnotesize{"POST /api/clients/:id/logo"}\small{} après création du client, ainsi que la suppression via \footnotesize{"DELETE /api/clients/:id/logo"}\small.
-\item Ajouter l'assistance à la saisie d'adresse avec \footnotesize{"GET /api/clients/geocode"}\small{} et la recherche de logos via \footnotesize{"GET /api/clients/logo"}\small{} et \footnotesize{"GET /api/clients/logo-search"}\small.
+\item Développer l'endpoint pour créer le compte utilisateur et la fiche client.
+\item Développer l'endpoint pour l'upload et la suppression du logo après création du client.
+\item Développer l'endpoint pour l'assistance à la saisie d'adresse et la recherche de logos.
 \item Concevoir le formulaire d'inscription et de configuration client côté Next.js.
 \end{itemize} & 1 \\
 \hline
 
 US21 & En tant que \textbf{Chef de Projet}, je souhaite consulter la liste des clients afin de visualiser les clients existants. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"GET /api/clients"}\small{} sécurisé par contrôle d'accès selon le rôle de l'utilisateur connecté.
+\item Développer l'endpoint sécurisé par contrôle d'accès selon le rôle de l'utilisateur connecté.
 \item Permettre l'export et l'impression depuis l'interface à partir des données récupérées.
 \item Réaliser l'interface de gestion de liste adaptative avec recherche, tri et export.
 \end{itemize} & 2 \\
@@ -42,39 +42,39 @@ US21 & En tant que \textbf{Chef de Projet}, je souhaite consulter la liste des c
 
 US22 & En tant que \textbf{Chef de Projet}, je souhaite consulter le profil détaillé d'un client afin de visualiser toutes ses informations. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer les endpoints \footnotesize{"GET /api/clients/:id"}\small{} et \footnotesize{"GET /api/clients/:id/business-overview"}\small{} pour restituer une vue métier consolidée.
-\item Compléter la consultation avec \footnotesize{"GET /api/clients/:id/projets"}\small, \footnotesize{"GET /api/clients/:id/contrats"}\small, \footnotesize{"GET /api/clients/:id/tickets"}\small{}, \footnotesize{"GET /api/clients/:id/documents"}\small{} et \footnotesize{"GET /api/clients/:id/demandes"}\small.
+\item Développer l'endpoint pour restituer une vue métier consolidée.
+\item Développer l'endpoint pour compléter la consultation avec les projets, contrats, tickets, documents et demandes.
 \item Réaliser l'interface du profil client structurée en sections thématiques.
 \end{itemize} & 1 \\
 \hline
 
 US23 & En tant qu'\textbf{administrateur}, je souhaite modifier les informations d'un client afin de maintenir des données à jour. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"PUT /api/clients/:id"}\small{} de mise à jour des informations client.
+\item Développer l'endpoint de mise à jour des informations client.
 \item Tracer les modifications en base de données et notifier le client par e-mail en cas de changement de coordonnées.
-\item Assurer les endpoints \footnotesize{"POST /api/clients/:id/logo"}\small{} et \footnotesize{"DELETE /api/clients/:id/logo"}\small{} pour gérer le logo entreprise.
+\item Développer l'endpoint pour gérer le logo entreprise.
 \item Concevoir l'interface d'édition Next.js avec gestion des champs modifiés.
 \end{itemize} & 2 \\
 \hline
 
 US24 & En tant qu'\textbf{administrateur}, je souhaite activer et désactiver un compte client afin de contrôler l'accès. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer les routes \footnotesize{"PATCH /api/clients/:id/desactiver"}\small{} et \footnotesize{"PATCH /api/clients/:id/reactiver"}\small.
-\item Injecter la vérification préalable via \footnotesize{"GET /api/clients/:id/verifier-desactivation"}\small{} avant toute désactivation.
+\item Développer l'endpoint.
+\item Développer l'endpoint de vérification préalable avant toute désactivation.
 \item Déclencher une notification e-mail automatique et intégrer les boutons d'action sur les modales de confirmation.
 \end{itemize} & 3 \\
 \hline
 
 US25 & En tant qu'\textbf{administrateur}, je souhaite imprimer l'annuaire d'un client afin de disposer d'une version papier. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Préparer l'export imprimable depuis l'interface à partir de \footnotesize{"GET /api/clients"}\small{} et des vues détaillées client.
+\item Développer l'endpoint pour l'export imprimable depuis l'interface.
 \item Générer une version PDF côté frontend pour l'impression.
 \end{itemize} & 1 \\
 \hline
 
 US26 & En tant qu'\textbf{administrateur}, je souhaite créer un projet rattaché à un client afin d'organiser les interventions. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"POST /api/projets"}\small{} gérant l'association projet-client.
+\item Développer l'endpoint gérant l'association projet-client.
 \item Permettre l'affectation initiale du chef de projet et de l'équipe, et notifier les acteurs clés du projet.
 \item Modéliser le formulaire de création de projet côté Next.js.
 \end{itemize} & 3 \\
@@ -82,7 +82,7 @@ US26 & En tant qu'\textbf{administrateur}, je souhaite créer un projet rattach�
 
 US27 & En tant que \textbf{chef de projet}, je souhaite consulter la liste des projets d'un client afin de piloter l'activité. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-  \item Développer l'endpoint \footnotesize{\texttt{GET /api/clients/:id/projets}}\small{} avec filtres par recherche textuelle et statut projet, et pagination serveur.
+  \item Développer l'endpoint avec filtres par recherche textuelle et statut projet, et pagination serveur.
   \item Cloisonner la visibilité des données selon les permissions : la colonne contrats et certaines actions sont réservées à l'administrateur.
   \item Réaliser l'interface liste côté Next.js.
   \item Implémenter un organigramme hiérarchique interactif ,rendu côté client avec \textit{Framer Motion}.
@@ -97,15 +97,15 @@ US27 & En tant que \textbf{chef de projet}, je souhaite consulter la liste des p
 
 US28 & En tant qu'\textbf{administrateur}, je souhaite créer un contrat de maintenance afin de formaliser les engagements de service avec le client. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"POST /api/contrats"}\small{} prenant en charge la Création du contrat.
-\item Prévoir l'extraction automatique avec \footnotesize{"POST /api/contrats/extract-pdf"}\small{} et l'upload scanné via \footnotesize{"POST /api/contrats/upload-scanne"}\small.
+\item Développer l'endpoint prenant en charge la création du contrat.
+\item Développer l'endpoint pour l'extraction automatique et l'upload scanné.
 \end{itemize} & 2 \\
 \hline
 
 US29 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des contrats afin de suivre les engagements contractuels. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"GET /api/contrats"}\small{} avec filtrage.
-\item Compléter avec \footnotesize{"GET /api/contrats/client/:clientId"}\small, \footnotesize{"GET /api/contrats/archived"}\small{} et \footnotesize{"GET /api/contrats/:id/fichier"}\small.
+\item Développer l'endpoint avec filtrage.
+\item Développer l'endpoint.
 \item Concevoir l'interface frontend sous forme de tableau dynamique avec filtres avancés et badges de statut.
 \end{itemize} & 3 \\
 \hline
@@ -113,55 +113,55 @@ US29 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des co
 US30 & En tant qu'\textbf{administrateur}, je souhaite recevoir des alertes avant l'expiration des contrats afin d'anticiper les renouvellements. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer une tâche planifiée quotidienne via \footnotesize{Cron}\small{} pour vérifier les échéances à J-30, J-15 et J-7.
-\item Exposer \footnotesize{"GET /api/contrats/expiration/status"}\small{} pour afficher les alertes côté interface.
+\item Développer l'endpoint pour afficher les alertes côté interface.
 \item Présenter l'état d'expiration et les jalons de renouvellement sur le tableau de bord.
 \end{itemize} & 2 \\
 \hline
 
 US31 & En tant qu'\textbf{administrateur}, je souhaite archiver un contrat afin de conserver l'historique. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer les routes \footnotesize{"PATCH /api/contrats/:id/archive"}\small{} avec motif obligatoire d'au moins 10 caractères, \footnotesize{"PATCH /api/contrats/:id/restore"}\small{} et \footnotesize{"DELETE /api/contrats/:id"}\small.
+\item Développer l'endpoint avec motif obligatoire d'au moins 10 caractères.
 \item Conserver la traçabilité historique des motifs et des dates de modification.
 \end{itemize} & 3 \\
 \hline
 
 US32 & En tant que \textbf{client}, je souhaite demander la résiliation de mon contrat afin d'interrompre le service. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"POST /api/contrats/:id/demande-resiliation"}\small{} avec motif obligatoire.
+\item Développer l'endpoint avec motif obligatoire.
 \item Alerter l'équipe d'administration et mettre à disposition un écran de suivi des demandes de résiliation en attente.
 \end{itemize} & 1 \\
 \hline
 
 US33 & En tant qu'\textbf{administrateur}, je souhaite résilier un contrat afin de l'interrompre avant terme. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"PATCH /api/contrats/:id/resilier"}\small{} exigeant une note explicative d'au moins 10 caractères.
+\item Développer l'endpoint exigeant une note explicative d'au moins 10 caractères.
 \item Mettre à jour le cycle de vie du contrat, consigner l'opération dans l'audit et informer automatiquement le client par e-mail.
 \end{itemize} & 2 \\
 \hline
 
 US34 & En tant qu'\textbf{administrateur}, je souhaite consulter les contrats dans un calendrier afin de visualiser les dates d'expiration. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Exploiter les dates de validité renvoyées par \footnotesize{"GET /api/contrats"}\small{} et \footnotesize{"GET /api/contrats/expiration/status"}\small.
+\item Développer l'endpoint.
 \item Afficher une vue calendrier avec code couleur selon la proximité de l'échéance contractuelle.
 \end{itemize} & 1 \\
 \hline
 
 US35 & En tant que \textbf{client}, je souhaite soumettre un retour d'expérience à l'expiration de mon contrat afin d'exprimer ma satisfaction. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"POST /api/contrats/:id/feedback"}\small{} pour enregistrer la notation et les intentions de renouvellement.
-\item Prévoir aussi \footnotesize{"POST /api/contrats/:id/demande-renouvellement"}\small{} pour la demande directe côté client.
+\item Développer l'endpoint pour enregistrer la notation et les intentions de renouvellement.
+\item Développer l'endpoint pour la demande directe côté client.
 \end{itemize} & 1 \\
 \hline
 
 US36 & En tant qu'\textbf{administrateur}, je souhaite générer un PDF formaté du contrat afin de le partager avec le client. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"GET /api/contrats/:id/generate-pdf"}\small{} pour la génération du PDF.
+\item Développer l'endpoint pour la génération du PDF.
 \item Intégrer la structure réglementaire et le bouton de téléchargement côté Next.js.
 \end{itemize} & 2 \\
 \hline
 US37 & En tant qu'\textbf{administrateur}, je souhaite consulter les détails d'un contrat afin de visualiser toutes ses informations. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-    \item Développer l'endpoint \footnotesize{"GET /api/contrats/:id"}\small{} pour récupérer les informations complètes d'un contrat par son identifiant unique.
+    \item Développer l'endpoint pour récupérer les informations complètes d'un contrat par son identifiant unique.
     \item Réaliser l'interface de visualisation détaillée du contrat côté Next.js avec affichage structuré
 \end{itemize} & 1 \\
 \hline
@@ -172,17 +172,17 @@ US37 & En tant qu'\textbf{administrateur}, je souhaite consulter les détails d'
 
 US95 & En tant qu'\textbf{administrateur}, je souhaite consulter l'historique complet de toutes les actions afin d'assurer la traçabilité. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"GET /api/activity-logs"}\small{} paginé et filtrable par acteurs, entités, actions, statuts et dates.
-\item Compléter avec \footnotesize{"GET /api/activity-logs/stats"}\small, \footnotesize{"GET /api/activity-logs/user/:userId"}\small{} et \footnotesize{"GET /api/activity-logs/entity/:entityType/:entityId"}\small.
+\item Développer l'endpoint paginé et filtrable par acteurs, entités, actions, statuts et dates.
+\item Développer l'endpoint.
 \item Fournir l'interface d'administration pour consulter l'historique de façon centralisée.
 \end{itemize} & 3 \\
 \hline
 
 US96 & En tant qu'\textbf{administrateur}, je souhaite exporter les logs d'audit afin de répondre aux exigences de conformité. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Prévoir l'export CSV/JSON des logs consultés depuis l'interface, en s'appuyant sur les données de \footnotesize{"GET /api/activity-logs"}\small.
-\item Utiliser \footnotesize{"GET /api/activity-logs/me/export"}\small{} pour l'export du périmètre utilisateur connecté.
-\item Mettre en place la purge manuelle via \footnotesize{"POST /api/activity-logs/cleanup"}\small{} pour la maintenance.
+\item Développer l'endpoint pour l'export CSV/JSON des logs consultés depuis l'interface.
+\item Développer l'endpoint pour l'export du périmètre utilisateur connecté.
+\item Développer l'endpoint pour la maintenance.
 \item Créer l'interface d'exportation avec configuration des périmètres temporels côté Next.js.
 \end{itemize} & 2 \\
 \hline

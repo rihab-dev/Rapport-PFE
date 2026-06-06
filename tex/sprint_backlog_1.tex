@@ -27,7 +27,7 @@
 
 US01 & En tant qu'\textbf{utilisateur}, je souhaite m'authentifier avec email et mot de passe afin d'accéder à mes informations de manière sécurisée. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"POST /api/auth/login"}\small.
+\item Développer l'endpoint.
 \item Mettre en place la gestion de session sécurisée par jetons d'accès et de rafraîchissement.
 \item Gérer les tentatives infructueuses avec limitation à 3 essais et verrouillage temporaire du compte pendant 1 minute.
 \item Réaliser l'interface de connexion côté Next.js et consommer l'API.
@@ -36,7 +36,7 @@ US01 & En tant qu'\textbf{utilisateur}, je souhaite m'authentifier avec email et
 
 US02 & En tant qu'\textbf{utilisateur}, je souhaite réinitialiser mon mot de passe afin de retrouver l'accès à mon compte. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer les endpoints \footnotesize{"POST /api/auth/mot-de-passe-oublie"}\small{} et \footnotesize{"POST /api/auth/reinitialiser-mot-de-passe"}\small.
+\item Développer l'endpoint.
 \item Générer un jeton sécurisé à durée de validité limitée (1 heure), utilisable une seule fois, et invalider les anciens jetons non utilisés.
 \item Configurer l'envoi automatisé des e-mails de réinitialisation et de confirmation.
 \item Créer les formulaires de demande et de saisie du nouveau mot de passe sur Next.js.
@@ -45,7 +45,7 @@ US02 & En tant qu'\textbf{utilisateur}, je souhaite réinitialiser mon mot de pa
 
 US03 & En tant qu'\textbf{utilisateur}, je souhaite m'authentifier via Google ou GitHub afin de me connecter rapidement sans créer de compte. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Implémenter les routes \footnotesize{"GET /api/auth/google"}\small, \footnotesize{"GET /api/auth/google/callback"}\small, \footnotesize{"GET /api/auth/github"}\small{} et \footnotesize{"GET /api/auth/github/callback"}\small.
+\item Développer l'endpoint.
 \item Gérer le cas où le compte n'est pas encore validé en redirigeant vers un état d'attente OAuth.
 \item Vérifier l'état du compte après finalisation et rediriger vers le tableau de bord si l'accès est autorisé.
 \item Intégrer les boutons de connexion sociale sur l'interface d'authentification.
@@ -54,7 +54,7 @@ US03 & En tant qu'\textbf{utilisateur}, je souhaite m'authentifier via Google ou
 
 US04 & En tant qu'\textbf{utilisateur}, je souhaite me déconnecter de la plateforme afin de sécuriser ma session. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"POST /api/auth/logout"}\small{} avec révocation de la session de rafraîchissement.
+\item Développer l'endpoint avec révocation de la session de rafraîchissement.
 \item Nettoyer les jetons stockés côté client et réinitialiser le cache des requêtes de l'application.
 \item Intégrer le bouton de déconnexion dans le composant d'en-tête ou de navigation.
 \end{itemize} & 1 \\
@@ -72,7 +72,7 @@ US05 & En tant qu'\textbf{utilisateur}, je souhaite que mon compte soit protég�
 US06 & En tant qu'\textbf{utilisateur} nouvellement créé, je souhaite être contraint de définir un mot de passe personnel lors de ma première connexion afin de sécuriser mon accès. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Détecter le flag \texttt{doitChangerMotDePasse} à l'authentification et afficher une modale bloquante côté Next.js.
-\item Développer l'endpoint \footnotesize{"POST /api/profil/changer-mot-de-passe"}\small{} avec validation des règles de robustesse.
+\item Développer l'endpoint avec validation des règles de robustesse.
 \item Mettre à jour le flag en base de données et dans le localStorage après succès.
 \end{itemize} & 2 \\
 \hline
@@ -83,22 +83,22 @@ US06 & En tant qu'\textbf{utilisateur} nouvellement créé, je souhaite être co
 
 US07 & En tant qu'\textbf{utilisateur}, je souhaite gérer mon profil afin de modifier et mettre à jour mes informations. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer les endpoints \footnotesize{"GET /api/profil"}\small{} et \footnotesize{"PUT /api/profil"}\small{} pour la consultation et l'édition des données.
-\item Créer les routes \footnotesize{"POST /api/profil/change-password"}\small{} et \footnotesize{"POST /api/profil/upload-photo"}\small{} pour la sécurité et l'avatar.
-\item Gérer les e-mails secondaires via \footnotesize{"GET /api/profil/emails"}\small, \footnotesize{"POST /api/profil/emails"}\small, \footnotesize{"DELETE /api/profil/emails"}\small{} et \footnotesize{"PATCH /api/profil/emails/principal"}\small.
+\item Développer l'endpoint pour la consultation et l'édition des données.
+\item Développer l'endpoint pour la sécurité et l'avatar.
+\item Développer l'endpoint pour la gestion des e-mails secondaires.
 \item Concevoir l'interface utilisateur de gestion du profil avec des formulaires synchronisés.
 \end{itemize} & 2 \\
 \hline
 US08 & En tant qu'\textbf{administrateur}, je souhaite consulter la liste des utilisateurs afin de visualiser et gérer efficacement les comptes. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"GET /api/users"}\small{} pour l'affichage global des comptes.
-\item Ajouter une recherche dynamique via \footnotesize{"GET /api/users/search"}\small{} avec filtre textuel insensible à la casse.
+\item Développer l'endpoint pour l'affichage global des comptes.
+\item Développer l'endpoint de recherche dynamique avec filtre textuel insensible à la casse.
 \item Concevoir une interface d'administration avec recherche en temps réel et tri des utilisateurs.
 \end{itemize} & 1 \\
 \hline
 US09 & En tant qu'\textbf{administrateur}, je souhaite créer des utilisateurs afin de gérer les accès au système. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"POST /api/users"}\small{} avec validation stricte des données d'entrée.
+\item Développer l'endpoint avec validation stricte des données d'entrée.
 \item Générer un mot de passe temporaire ainsi qu'un profil employé associé avec matricule unique automatisé.
 \item Prévoir l'affectation initiale du rôle et l'envoi d'un e-mail d'invitation.
 \item Réaliser le formulaire de création d'utilisateurs sur l'interface d'administration.
@@ -107,14 +107,14 @@ US09 & En tant qu'\textbf{administrateur}, je souhaite créer des utilisateurs a
 
 US10 & En tant qu'\textbf{administrateur}, je souhaite modifier les informations d'un utilisateur afin de maintenir des données à jour. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"PUT /api/users/:id"}\small{} assurant la mise à jour des fiches d'information.
+\item Développer l'endpoint assurant la mise à jour des fiches d'information.
 \item Concevoir le formulaire de modification et de mise à jour côté Next.js.
 \end{itemize} & 2 \\
 \hline
 
 US11 & En tant qu'\textbf{administrateur}, je souhaite activer et désactiver un compte utilisateur afin de contrôler l'accès au système. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer les endpoints \footnotesize{"PATCH /api/users/:id/desactiver"}\small{} et \footnotesize{"PATCH /api/users/:id/reactiver"}\small.
+\item Développer l'endpoint.
 \item Prévoir les contrôles de réaffectation des tickets ou demandes en cours avant désactivation.
 \item Notifier le collaborateur par e-mail et implémenter les contrôles d'activation sur l'interface.
 \end{itemize} & 3 \\
@@ -128,7 +128,7 @@ US11 & En tant qu'\textbf{administrateur}, je souhaite activer et désactiver un
 
 US13 & En tant qu'\textbf{administrateur}, je souhaite gérer des rôles afin de structurer les accès au système. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer les routes de gestion sous \footnotesize{"api/admin/roles-permissions"}\small{} pour les rôles.
+\item Développer l'endpoint pour les rôles.
 \item Implémenter les opérations de création, lecture, mise à jour, suppression, archivage et restauration.
 \item Protéger les routes par les guards et les permissions adaptées.
 \item Réaliser l'interface de configuration des rôles côté Next.js.
@@ -182,7 +182,7 @@ US18 & En tant qu'\textbf{utilisateur}, je souhaite demander l'accès via OAuth 
 
 US19 & En tant qu'\textbf{administrateur}, je souhaite valider ou rejeter les demandes d'inscription OAuth afin de contrôler les accès. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"GET /api/admin/demandes-inscription"}\small{} filtrable par état.
+\item Développer l'endpoint filtrable par état.
 \item Implémenter la logique d'approbation avec finalisation du compte et attribution du rôle.
 \item Gérer le refus avec génération automatique du motif et envoi des e-mails de notification.
 \item Concevoir l'interface de modération sur Next.js.

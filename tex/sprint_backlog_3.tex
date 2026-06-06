@@ -24,7 +24,7 @@
 
 US38 & En tant que \textbf{client}, je souhaite soumettre une demande de maintenance afin de signaler un besoin. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"POST /api/demandes"}\small.
+\item Développer l'endpoint.
 \item Valider l'éligibilité de la demande (contrat en cours) et calculer automatiquement l'échéance de prise en charge (SLA).
 \item Assurer le téléversement de pièces jointes justificatives.
 \item Réaliser l'interface de dépôt de dossier côté Next.js.
@@ -40,35 +40,35 @@ US39 & En tant que \textbf{chef de projet}, je souhaite consulter les demandes e
 
 US40 & En tant que \textbf{chef de projet}, je souhaite valider une demande afin de la convertir en ticket. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"PATCH /api/demandes/:id/valider"}\small.
+\item Développer l'endpoint.
 \item Exécuter la routine de conversion automatique de la demande validée en ticket d'intervention et notifier le client.
 \end{itemize} & 2 \\
 \hline
 
 US41 & En tant que \textbf{chef de projet}, je souhaite demander des informations complémentaires afin de clarifier une demande. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"PATCH /api/demandes/:id/demander-infos"}\small.
+\item Développer l'endpoint.
 \item Basculer le statut de la demande en attente, consigner l'action à l'historique et alerter le client.
 \end{itemize} & 2 \\
 \hline
 
 US42 & En tant que \textbf{client}, je souhaite compléter ma demande afin de fournir les informations manquantes. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"PATCH /api/demandes/:id/fournir-infos"}\small{} recueillant les réponses du client.
+\item Développer l'endpoint recueillant les réponses du client.
 \item Réactualiser l'état d'avancement de la demande et notifier le chef de projet référent.
 \end{itemize} & 2 \\
 \hline
 
 US43 & En tant que \textbf{chef de projet}, je souhaite requalifier une demande afin de corriger sa catégorie ou sa priorité. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"PATCH /api/demandes/:id/requalifier"}\small{} avec obligation de renseigner un motif.
+\item Développer l'endpoint avec obligation de renseigner un motif.
 \item Inscrire les modifications typologiques au journal d'audit pour garantir la cohérence des indicateurs.
 \end{itemize} & 1 \\
 \hline
 
 US44 & En tant qu'\textbf{utilisateur}, je souhaite commenter une demande afin de communiquer sur le contexte. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"POST /api/demandes/:id/commentaires"}\small{} pour centraliser le fil de discussion.
+\item Développer l'endpoint pour centraliser le fil de discussion.
 \item Assurer l'historisation des échanges et l'envoi d'alertes aux acteurs engagés sur la demande.
 \end{itemize} & 2 \\
 \hline
@@ -79,14 +79,14 @@ US44 & En tant qu'\textbf{utilisateur}, je souhaite commenter une demande afin d
 
 US45 & En tant que \textbf{Chef de Projet}, je souhaite visualiser et gérer l'ensemble des tickets dans un tableau Kanban afin de modifier leurs statuts et d'organiser efficacement le flux de travail. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"GET /api/tickets/kanban"}\small{} ségréguant les tickets par colonnes d'état.
+\item Développer l'endpoint ségréguant les tickets par colonnes d'état.
 \item Modéliser l'interface Kanban interactive en Next.js avec gestion des transitions fluides et affichage des alertes de SLA.
 \end{itemize} & 3 \\
 \hline
 
 US46 & En tant que \textbf{chef de projet}, je souhaite assigner un ticket à un développeur afin de répartir la charge. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer les endpoints d'affectation unitaire (\footnotesize{"POST /api/tickets/:id/assign"}\small) et de récupération des collaborateurs disponibles.
+\item Développer l'endpoint.
 \item Garantir l'unicité de l'affectation principale et expédier une notification au développeur retenu.
 \end{itemize} & 2 \\
 \hline
@@ -100,21 +100,21 @@ US47 & En tant que \textbf{chef de projet}, je souhaite assigner un ticket à pl
 \hline
  US48 & En tant que \textbf{chef de projet}, je souhaite consulter une file de priorité intelligente des tickets actifs afin de traiter en premier les interventions les plus critiques.&
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"GET /api/tickets/priority-queue"}\small{} calculant un score d'urgence composite par ticket.
+\item Développer l'endpoint calculant un score d'urgence composite par ticket.
 \item Agréger les quatre composantes du score (priorité TypeSLA, \% SLA écoulé, utilisateurs impactés, tickets bloqués dépendants) et trier les résultats par ordre décroissant.
 \item Restituer la file dans l'interface Next.js avec indicateur visuel par palier de criticité et détail du score en survol.
 \end{itemize} & 2 \\
 \hline
 US49 & En tant que \textbf{développeur}, je souhaite me désassigner d'un ticket afin de libérer ma charge. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"POST /api/tickets/:id/unassign"}\small{} conditionné par la saisie obligatoire d'une justification.
+\item Développer l'endpoint conditionné par la saisie obligatoire d'une justification.
 \item Notifier l'encadrement technique et actualiser instantanément le journal d'activité du ticket.
 \end{itemize} & 1 \\
 \hline
 
 US50 & En tant que \textbf{développeur}, je souhaite démarrer un chronomètre sur un ticket afin d’enregistrer le temps de travail effectué. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"POST /api/tickets/chrono/lancer/:assignmentId"}\small{} pour instancier une session d'activité active.
+\item Développer l'endpoint pour instancier une session d'activité active.
 \item Bloquer toute tentative d'activation si une autre session de suivi du temps est déjà en cours pour l'utilisateur.
 \item Réaliser l'affichage du widget de chronométrage en temps réel sur le bandeau Next.js.
 \end{itemize} & 2 \\
@@ -122,42 +122,42 @@ US50 & En tant que \textbf{développeur}, je souhaite démarrer un chronomètre 
 
 US51 & En tant que \textbf{développeur}, je souhaite mettre en pause mon chronomètre afin de gérer les interruptions. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"POST /api/tickets/chrono/pause/:assignmentId"}\small{} lié à un référentiel de motifs de suspension.
+\item Développer l'endpoint lié à un référentiel de motifs de suspension.
 \item Figer l'état de la session courante tout en sauvegardant le cumul des minutes consommées.
 \end{itemize} & 1 \\
 \hline
 
 US52 & En tant que \textbf{développeur}, je souhaite arrêter le chronomètre afin de finaliser ma session. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"POST /api/tickets/chrono/arreter/:assignmentId"}\small{} consolidant la session de travail.
+\item Développer l'endpoint consolidant la session de travail.
 \item Clôturer la mesure, stocker la durée finale sommée et inscrire la ligne de temps dans l'historique de production.
 \end{itemize} & 1 \\
 \hline
 
 US53 & En tant que \textbf{développeur}, je souhaite ajouter manuellement une session de travail afin de corriger des oublis. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"POST /api/tickets/chrono/manuel"}\small{} permettant la saisie a posteriori d'un volume horaire.
+\item Développer l'endpoint permettant la saisie a posteriori d'un volume horaire.
 \item Valider la cohérence des dates saisies par rapport au cycle de vie et aux affectations du ticket.
 \end{itemize} & 2 \\
 \hline
 
 US54 & En tant que \textbf{développeur}, je souhaite changer le statut d'un ticket afin de refléter l'avancement. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"PATCH /api/tickets/:id/statut"}\small{} contrôlant les règles de transition d'états.
+\item Développer l'endpoint contrôlant les règles de transition d'états.
 \item Auditer le changement d'état et pousser des notifications automatisées aux parties prenantes.
 \end{itemize} & 2 \\
 \hline
 
 US55 & En tant que \textbf{client}, je souhaite valider la résolution d'un ticket afin de confirmer que le problème est résolu. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"POST /api/tickets/:id/validate-resolution"}\small{} actant la fin de l'intervention.
+\item Développer l'endpoint actant la fin de l'intervention.
 \item Recueillir l'avis de clôture du client, verrouiller le ticket et envoyer une notification de succès à l'équipe technique.
 \end{itemize} & 1 \\
 \hline
 
 US56 & En tant que \textbf{chef de projet}, je souhaite rouvrir un ticket fermé afin de traiter un problème récurrent. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"POST /api/tickets/:id/signaler-probleme-non-resolu"}\small{} suite à une réclamation.
+\item Développer l'endpoint suite à une réclamation.
 \item Réinitialiser le cycle de vie du ticket vers un état d'analyse et ré-alerter la maîtrise d'œuvre.
 \end{itemize} & 1 \\
 \hline
@@ -185,14 +185,14 @@ US59 & En tant que \textbf{chef de projet}, je souhaite résoudre un blocage afi
 
 US60 & En tant que \textbf{utilisateur}, je souhaite commenter un ticket avec mentions afin de communiquer efficacement. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"POST /api/tickets/:id/commentaires"}\small{} prenant en charge l'identification ciblée d'utilisateurs.
+\item Développer l'endpoint prenant en charge l'identification ciblée d'utilisateurs.
 \item Segmenter l'affichage pour isoler les notes internes (visibilité équipe) des commentaires partagés (visibles par le client).
 \end{itemize} & 2 \\
 \hline
 
 US61 & En tant que \textbf{utilisateur}, je souhaite ajouter des pièces jointes aux tickets afin de fournir du contexte. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"POST /api/tickets/:id/commentaires/with-attachments"}\small.
+\item Développer l'endpoint.
 \item Assurer le contrôle de conformité des fichiers (poids, extensions autorisées) et leur association croisée au fil de discussion.
 \end{itemize} & 2 \\
 \hline
@@ -206,7 +206,7 @@ US62 & En tant que \textbf{développeur}, je souhaite être informé lorsqu'un a
 
 US63 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique complet d'un ticket afin de comprendre son évolution. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \footnotesize{"GET /api/tickets/:id/history"}\small{} compilant l'ensemble des mutations de l'entité.
+\item Développer l'endpoint compilant l'ensemble des mutations de l'entité.
 \item Restituer une frise chronologique (timeline) unifiée mêlant changements de statuts, assignations successives et jalons de vie.
 \end{itemize} & 2 \\
 \hline

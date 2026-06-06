@@ -37,6 +37,7 @@
 \usepackage{titlesec}
 \usepackage{caption}
 \captionsetup{font={small,it}, labelfont=bf, skip=6pt}
+
 % ============================================================
 %  TOCLOFT — configuration de la table des matières
 % ============================================================
@@ -44,38 +45,47 @@
 \renewcommand{\cfttoctitlefont}{\relax\vspace*{-2cm}}
 \renewcommand{\cftaftertoctitle}{}
 
-% Indentation hiérarchique claire et équilibrée (escalier uniforme pour les numéros et titres)
-\setlength{\cftchapindent}{0cm}
-\setlength{\cftsecindent}{0.8cm}
-\setlength{\cftsubsecindent}{1.8cm}
-\setlength{\cftsubsubsecindent}{2.8cm}
+% --- CORRECTION : Nettoyage des caractères invisibles ---
+\makeatletter
+\renewcommand{\numberline}[1]{%
+  \hb@xt@\@nameuse{cft#1numwidth}{#1\hfil}%
+}
+\makeatother
 
-% Largeur des numéros (évite les chevauchements avec les chiffres romains larges)
-\setlength{\cftchapnumwidth}{1.2cm}
-\setlength{\cftsecnumwidth}{1.0cm}
-\setlength{\cftsubsecnumwidth}{1.0cm}
-\setlength{\cftsubsubsecnumwidth}{1.2cm}
+% --- Alignements exacts calqués sur l'image de référence ---
+\setlength{\cftchapindent}{0pt}
+\setlength{\cftchapnumwidth}{22pt} 
 
-% Espacements verticaux hiérarchiques pour aérer le document et bien séparer les sections
-\setlength{\cftbeforechapskip}{8pt plus 1pt minus 1pt}
-\setlength{\cftbeforesecskip}{6pt plus 1pt}
-\setlength{\cftbeforesubsecskip}{4pt plus 1pt}
-\setlength{\cftbeforesubsubsecskip}{3pt}
+\setlength{\cftsecindent}{22pt}
+\setlength{\cftsecnumwidth}{28pt}
 
-% Style et couleurs premium de la hiérarchie
-\renewcommand{\cftchapfont}{\large\bfseries\color{primary}}
-\renewcommand{\cftchappagefont}{\large\bfseries\color{primary}}
+\setlength{\cftsubsecindent}{50pt}   
+\setlength{\cftsubsecnumwidth}{32pt}
 
-\renewcommand{\cftsecfont}{\normalsize\bfseries\color{primary}}
-\renewcommand{\cftsecpagefont}{\normalsize\bfseries\color{primary}}
+\setlength{\cftsubsubsecindent}{82pt} 
+\setlength{\cftsubsubsecnumwidth}{42pt}
 
-\renewcommand{\cftsubsecfont}{\small\bfseries\color{secondary}}
-\renewcommand{\cftsubsecpagefont}{\small\bfseries\color{secondary}}
+% --- Espacements verticaux hiérarchiques ---
+\setlength{\cftbeforechapskip}{14pt plus 1pt minus 1pt}
+\setlength{\cftbeforesecskip}{10pt plus 1pt}
+\setlength{\cftbeforesubsecskip}{8pt plus 1pt}
+\setlength{\cftbeforesubsubsecskip}{6pt}
 
-\renewcommand{\cftsubsubsecfont}{\small\color{darkgray}}
-\renewcommand{\cftsubsubsecpagefont}{\small\color{darkgray}}
+% Style et couleurs uniformes (noir et même taille) de la hiérarchie
+\renewcommand{\cftchapfont}{\normalsize\bfseries\color{black}}
+\renewcommand{\cftchappagefont}{\normalsize\color{black}}
+
+\renewcommand{\cftsecfont}{\normalsize\bfseries\color{black}}
+\renewcommand{\cftsecpagefont}{\normalsize\color{black}}
+
+\renewcommand{\cftsubsecfont}{\normalsize\color{black}}
+\renewcommand{\cftsubsecpagefont}{\normalsize\color{black}}
+
+\renewcommand{\cftsubsubsecfont}{\normalsize\color{black}}
+\renewcommand{\cftsubsubsecpagefont}{\normalsize\color{black}}
 
 % Points de conduite (dot leaders) pour toutes les sections
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftsubsecleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftsubsubsecleader}{\cftdotfill{\cftdotsep}}
@@ -98,7 +108,7 @@
 \usepackage{hyperref}
 
 % ============================================================
-%  MINITOC — sommaire par chapitre (caption et titlesec chargés AVANT)
+%  MINITOC — sommaire par chapitre
 % ============================================================
 \usepackage[french]{minitoc}
 \mtcsetdepth{minitoc}{1}
@@ -109,7 +119,6 @@
 \renewcommand{\mtctitle}{}
 \usepackage{xurl}
 \usepackage[protrusion=true, expansion=false]{microtype}
-\usepackage{amssymb}
 \usepackage{tabularx}
 \usepackage{longtable}
 \setlength{\LTpre}{8pt}    
@@ -119,12 +128,10 @@
 \usetikzlibrary{calc}
 \usepackage{pifont}
 \usepackage{capt-of}
-\usepackage{float}
 \usepackage{etoolbox}
 \usepackage{subcaption}
 
 \usepackage{needspace}
-\usepackage{ragged2e}
 \usepackage{array}
 
 \newcolumntype{P}[1]{>{\RaggedRight\arraybackslash}p{#1}}
@@ -132,24 +139,19 @@
 \renewcommand{\contentsname}{}
 
 % ============================================================
-%  RENDRE \chapter INVISIBLE (pas de page, pas de titre affiché)
-%  Le chapitre est enregistré dans les compteurs et dans minitoc
-%  mais n'imprime rien — \chaptercover prend tout en charge visuellement.
+%  RENDRE \chapter INVISIBLE
 % ============================================================
 \makeatletter
 \newcommand{\hiddenpart}[1]{%
   \refstepcounter{chapter}%
-  \addcontentsline{toc}{chapter}{#1}%
+  \addcontentsline{toc}{chapter}{\protect\numberline{\thechapter}#1}%
   \chaptermark{#1}%
-  \mtcaddchapter%           % enregistre le chapitre dans minitoc
+  \mtcaddchapter% 
 }
 \makeatother
 
-
 % ============================================================
 %  COMMANDE PAGE DE SÉPARATION — LOSANGES + TITRE + SOMMAIRE
-%  Usage : \chaptercover{N}{Titre}
-%  À appeler APRÈS \hiddenpart{Titre}
 % ============================================================
 \newcommand{\chaptercover}[2]{%
   \newpage
@@ -193,7 +195,7 @@
         \begin{tikzpicture}
           \draw[secondary, line width=0.8pt, opacity=0.45] (-4.2cm,0) -- (-1.2cm,0);
           \fill[secondary, opacity=0.70] (-0.9cm,0) -- (-0.55cm,0.18cm) -- (-0.2cm,0) -- (-0.55cm,-0.18cm) -- cycle;
-          \fill[primary,   opacity=0.85] (0,0) -- (0.42cm,0.22cm) -- (0.84cm,0) -- (0.42cm,-0.22cm) -- cycle;
+          \fill[primary,    opacity=0.85] (0,0) -- (0.42cm,0.22cm) -- (0.84cm,0) -- (0.42cm,-0.22cm) -- cycle;
           \fill[secondary, opacity=0.70] (1.1cm,0) -- (1.45cm,0.18cm) -- (1.8cm,0) -- (1.45cm,-0.18cm) -- cycle;
           \draw[secondary, line width=0.8pt, opacity=0.45] (2.1cm,0) -- (6.3cm,0);
         \end{tikzpicture}%
@@ -247,9 +249,9 @@
   \end{adjustwidth}
   \newpage
 }
+
 % ============================================================
 %  PAGE DE SÉPARATION CONCLUSION / INTRODUCTION
-%  Usage : \simplecover{Titre}
 % ============================================================
 \newcommand{\simplecover}[1]{%
   \newpage
@@ -298,10 +300,6 @@
 \newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
 \newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
 
-% ============================================================
-%  MACRO RÉFÉRENCE CLIQUABLE vers la webographie
-%  Usage : \refweb{N}  → affiche [N] cliquable vers l'entrée N
-% ============================================================
 \newcommand{\refweb}[1]{\hyperref[ref:#1]{[#1]}}
 
 % Configuration hyperref
@@ -311,7 +309,7 @@
     pdfsubject={Rapport de Projet de Fin d'Études},
     pdfkeywords={Gestion de contrats, Maintenance, SolidWall, Scrum, Next.js, NestJS},
     colorlinks=true,
-    linkcolor=primary,
+    linkcolor=black,
     citecolor=primary,
     urlcolor=secondary,
     bookmarksnumbered=true
@@ -325,10 +323,11 @@
     headheight=25pt
 }
 \setstretch{1.5}
-% Espacement flottants (figures et tableaux)
-\setlength{\intextsep}{12pt}     % espace au-dessus et en-dessous des flottants
-\setlength{\textfloatsep}{14pt}  % espace entre flottant et texte
-\setlength{\floatsep}{10pt}      %
+
+\setlength{\intextsep}{12pt}
+\setlength{\textfloatsep}{14pt}
+\setlength{\floatsep}{10pt}
+
 % Numérotation personnalisée
 \renewcommand{\thechapter}{\Roman{chapter}}
 \renewcommand{\thesection}{\Roman{section}}
@@ -355,35 +354,31 @@
 \titlespacing*{\chapter}{0pt}{0pt}{20pt}
 
 % Style des sections
-% Style des sections
 \titleformat{\section}
   {\fontsize{13}{15}\selectfont\bfseries\color{primary}}{\thesection}{1em}{}
-\titlespacing*{\section}{0pt}{18pt}{8pt}     % ← AJOUTER
+\titlespacing*{\section}{0pt}{18pt}{8pt}
 
 % Style des subsections
 \titleformat{\subsection}
   {\fontsize{12}{14}\selectfont\bfseries\color{secondary}}{\thesubsection}{1em}{}
-\titlespacing*{\subsection}{0pt}{14pt}{6pt}  % ← AJOUTER
+\titlespacing*{\subsection}{0pt}{14pt}{6pt}
 
 % Style des subsubsections
 \titleformat{\subsubsection}
   {\normalsize\bfseries\color{secondary}}{\thesubsubsection}{1em}{}
 \titlespacing*{\subsubsection}{0pt}{12pt}{4pt}
 
-% 
 \newcommand{\og}{«~}
 \newcommand{\fg}{~»}
-\begin{document}
-% ============================================================
 
-% Initialisation minitoc — OBLIGATOIRE juste après \begin{document}
+\begin{document}
+
 \dominitoc
 
 % Page de garde
 \pagenumbering{gobble}
 \input{tex/page_de_garde}
 
-% Table des matières
 % Table des matières
 \newpage
 \pagestyle{empty} 
@@ -434,7 +429,6 @@
 \end{tikzpicture}
 \vspace{0.5cm}
 \end{center}
-\addcontentsline{toc}{chapter}{Table des figures}
 \mtcaddchapter
 \makeatletter
 {\renewcommand{\listoffigures}{\@starttoc{lof}}\listoffigures}
@@ -464,7 +458,6 @@
 \end{tikzpicture}
 \vspace{0.5cm}
 \end{center}
-\addcontentsline{toc}{chapter}{Liste des tableaux}
 \mtcaddchapter
 \makeatletter
 {\renewcommand{\listoftables}{\@starttoc{lot}}\listoftables}
@@ -478,18 +471,6 @@
 
 % Introduction
 \input{tex/Introduction_General}
-
-% Numérotation arabe
-
-
-
-% ============================================================
-% STRUCTURE CORRECTE POUR CHAQUE CHAPITRE :
-%   1. \hiddenpart{Titre}   ← enregistre le chapitre dans minitoc
-%                              sans rien afficher
-%   2. \chaptercover{N}{Titre} ← page déco + sommaire correct
-%   3. \input{...}          ← contenu du chapitre
-% ============================================================
 
 % ---- Chapitre 1 ----
 \hiddenpart{Cadre général du projet}
@@ -513,7 +494,7 @@
 
 % ---- Chapitre 5 ----
 \hiddenpart{Sprint 3 -- Gestion Opérationnelle et Assistance IA}
-\chaptercover{5}{Sprint 3 -- GGestion Opérationnelle et Assistance IA}
+\chaptercover{5}{Sprint 3 -- Gestion Opérationnelle et Assistance IA}
 \input{tex/chapitre5}
 
 % ---- Chapitre 6 ----
@@ -521,6 +502,7 @@
 \chaptercover{6}{Sprint 4 -- Collaboration et Dashboards}
 \input{tex/chapitre6}
 \cleardoublepage
+
 \input{tex/Conclusion_General}
 \newpage
 \input{tex/webographie}

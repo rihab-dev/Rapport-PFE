@@ -23,16 +23,16 @@
 \hline
 US12 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique de mes activités afin de suivre mes actions dans le système. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint \textbf{"GET /api/activity-logs/me"}\small{} avec limitation par défaut aux 30 derniers jours.
-\item Développer les endpoints \textbf{"GET /api/activity-logs/me/stats"}\small{} et \textbf{"GET /api/activity-logs/me/export"}\small{} pour les statistiques et l'export.
+\item Développer l'endpoint avec limitation par défaut aux 30 derniers jours.
+\item Développer les endpoints pour les statistiques et l'export.
 \item Mettre en place des filtres multicritères (types d'actions, entités, statuts, plages de dates).
 \item Créer une interface de timeline interactive et filtrable côté Next.js.
 \end{itemize} & 2 \\
 \hline
 US82 & En tant qu'\textbf{utilisateur}, je souhaite voir qui a consulté un document afin de suivre sa diffusion. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Enregistrer et lister les consultations via \textbf{POST /api/documents/:id/consulter} et \textbf{GET /api/documents/:id/consultations}.
-\item Afficher les statistiques de consultation avec \textbf{GET /api/documents/:id/consultations/stats}.
+\item  Développer l'endpoint pour enregistrer et lister les consultations.
+\item  Développer l'endpoint pour afficher les statistiques de consultation.
 \item Restituer une frise chronologique avec les utilisateurs et les dates d'accès.
 \end{itemize} & 1 \\
 \hline
@@ -40,7 +40,7 @@ US97 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique compl
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Les événements retournés incluent : création, changements de statut, sessions de travail, assignations/désassignations, commentaires, pièces jointes, blocages/résolutions, extensions SLA.
 \item Restituer tous les événements (statuts, sessions, assignations, commentaires, blocages, extensions SLA) avec auteur, date et valeurs avant/après.
-\item Permettre l'export de l'historique au format CSV ou JSON via \textbf{GET /api/tickets/:id/history/export?format=csv|json}.
+\item Permettre l'export de l'historique au format CSV ou JSON.
 \end{itemize} & 3 \\
 \hline
 
@@ -66,7 +66,7 @@ US65 & En tant qu'\textbf{administrateur}, je souhaite identifier visuellement l
 
 US66 & En tant que \textbf{chef de projet}, je souhaite accéder à une vue Gantt / Agenda afin d'analyser la charge de travail et la progression de chaque développeur. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Exploiter \textbf{GET /api/tickets/developer-workload} et \textbf{GET /api/tickets/developer-schedule} pour alimenter la vue de planning.
+\item Exploiter les endpoints pour alimenter la vue de planning.
 \item Réutiliser le composant \texttt{GanttAgendaView} pour afficher la charge par développeur et la progression des tickets.
 \item Permettre un filtrage temporel par jour, semaine et mois dans l'interface calendrier.
 \end{itemize} & 3 \\
@@ -74,8 +74,8 @@ US66 & En tant que \textbf{chef de projet}, je souhaite accéder à une vue Gant
 
 US67 & En tant qu'\textbf{utilisateur}, je souhaite accéder aux détails d'un ticket directement depuis le calendrier afin de consulter ou modifier l'intervention rapidement. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Ouvrir les fiches ticket ou demande depuis le calendrier via \textbf{GET /api/tickets/:id} et \textbf{GET /api/demandes/:id}.
-\item Utiliser \textbf{GET /api/tickets/:id/history} pour afficher la timeline d'un ticket depuis sa fiche détaillée.
+\item Ouvrir les fiches ticket ou demande depuis le calendrier.
+\item Afficher la timeline d'un ticket depuis sa fiche détaillée.
 \item Permettre un accès rapide à la consultation et à la mise à jour depuis la vue calendrier.
 \end{itemize} & 2 \\
 \hline
@@ -83,7 +83,7 @@ US67 & En tant qu'\textbf{utilisateur}, je souhaite accéder aux détails d'un t
 \hline
 US68 & En tant qu'\textbf{utilisateur}, je souhaite accéder à une messagerie intégrée afin de communiquer avec mon équipe. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item S'appuyer sur \textbf{GET /api/channels/my}, \textbf{GET /api/channels/ticket/:ticketId} et le namespace WebSocket \texttt{messages}.
+\item S'appuyer sur les endpoints et le namespace WebSocket.
 \item Afficher les canaux personnels, les canaux liés aux tickets et les messages directs.
 \item Synchroniser l'interface avec le temps réel pour refléter les nouveaux messages et les présences.
 \end{itemize} & 3 \\
@@ -91,47 +91,47 @@ US68 & En tant qu'\textbf{utilisateur}, je souhaite accéder à une messagerie i
 
 US69 & En tant qu'\textbf{utilisateur}, je souhaite envoyer des messages dans un Canal afin de communiquer. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Utiliser \textbf{POST /api/messages/channel/:channelId} pour envoyer un message dans un canal.
-\item Gérer aussi l'envoi avec pièces jointes via \textbf{POST /api/messages/channel/:channelId/with-attachments}.
-\item Diffuser les nouveaux messages en temps réel via l'événement \texttt{message:new}.
+\item Utiliser les endpoints pour envoyer un message dans un canal.
+\item Gérer aussi l'envoi avec pièces jointes.
+\item Diffuser les nouveaux messages en temps réel via l'événement.
 \end{itemize} & 2 \\
 \hline
 
 US70 & En tant qu'\textbf{utilisateur}, je souhaite répondre à un message afin de créer un fil de discussion. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Réutiliser \textbf{POST /api/messages/channel/:channelId} avec \texttt{parentMessageId} pour créer une réponse liée.
-\item Afficher le fil associé à partir de \textbf{GET /api/messages/:messageId/history}.
+\item Réutiliser les endpoints pour créer une réponse liée.
+\item Afficher le fil associé.
 \item Conserver la lisibilité des échanges en chaîne dans la vue message.
 \end{itemize} & 2 \\
 \hline
 
 US71 & En tant qu'\textbf{utilisateur}, je souhaite mentionner des collègues afin d'attirer leur attention. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Détecter les mentions lors de l'envoi d'un message via \textbf{POST /api/messages/channel/:channelId}.
-\item Centraliser les mentions reçues avec \textbf{GET /api/messages/mentions}.
-\item Permettre le marquage comme lue via \textbf{PATCH /api/messages/mentions/:mentionId/read}.
+\item Détecter les mentions lors de l'envoi d'un message.
+\item Centraliser les mentions reçues avec l'endpoint.
+\item Permettre le marquage comme lue.
 \end{itemize} & 2 \\
 \hline
 
 US72 & En tant qu'\textbf{utilisateur}, je souhaite éditer mes messages afin de corriger des erreurs. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Autoriser la modification d'un message avec \textbf{PATCH /api/messages/:messageId}.
-\item Rafraîchir le fil en temps réel via l'événement \texttt{message:updated}.
+\item Autoriser la modification d'un message.
+\item Rafraîchir le fil en temps réel via l'événement.
 \item Conserver l'historique d'édition côté service pour la traçabilité.
 \end{itemize} & 1 \\
 \hline
 
 US73 & En tant qu'\textbf{utilisateur}, je souhaite supprimer mes messages afin de retirer du contenu inapproprié. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Supprimer un message via \textbf{DELETE /api/messages/:messageId}.
-\item Diffuser la suppression en temps réel avec \texttt{message:deleted}.
+\item Supprimer un message.
+\item Diffuser la suppression en temps réel.
 \item Masquer le contenu supprimé tout en conservant la cohérence du fil.
 \end{itemize} & 1 \\
 \hline
 
 US74 & En tant qu'\textbf{utilisateur}, je souhaite voir qui est en ligne afin de savoir qui est disponible. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Diffuser le statut via le namespace WebSocket \texttt{messages} et l'événement \texttt{user:status}.
+\item Diffuser le statut via le namespace WebSocket et l'événement.
 \item Mettre à jour la dernière connexion côté backend à la connexion WebSocket.
 \item Afficher un état simple en ligne / hors ligne dans l'interface de messagerie.
 \end{itemize} & 2 \\
@@ -141,7 +141,7 @@ US74 & En tant qu'\textbf{utilisateur}, je souhaite voir qui est en ligne afin d
 \hline
 US75 & En tant qu'\textbf{utilisateur}, je souhaite uploader des documents afin de centraliser les fichiers. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Utiliser \textbf{POST /api/documents/upload} pour déposer un ou plusieurs fichiers.
+\item Utiliser l'endpoint d'upload pour déposer un ou plusieurs fichiers.
 \item Associer les documents à un ticket ou à un contrat via \texttt{ticketId} ou \texttt{contratId}.
 \item Respecter les types et tailles de fichiers autorisés par l'API.
 \end{itemize} & 3 \\
@@ -150,76 +150,76 @@ US75 & En tant qu'\textbf{utilisateur}, je souhaite uploader des documents afin 
 US76 & En tant qu'\textbf{utilisateur}, je souhaite télécharger des documents afin de les consulter hors ligne. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item S'appuyer sur la liste des documents et sur l'URL du fichier renvoyée par l'objet document.
-\item Enregistrer la consultation avec \textbf{POST /api/documents/:id/consulter}.
+\item Enregistrer la consultation.
 \item Ne pas inventer de route de téléchargement dédiée, l'accès au fichier se fait via l'URL exposée.
 \end{itemize} & 2 \\
 \hline
 
 US77 & En tant qu'\textbf{utilisateur}, je souhaite gérer les versions des documents afin d'assurer la traçabilité. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Consulter l'historique avec \textbf{GET /api/documents/:id/versions}.
-\item Remplacer un document par une nouvelle version avec \textbf{PATCH /api/documents/:id/replace}.
+\item Consulter l'historique.
+\item Remplacer un document par une nouvelle version.
 \item Conserver l'ancienne version pour assurer la traçabilité.
 \end{itemize} & 2 \\
 \hline
 
 US78 & En tant qu'\textbf{administrateur}, je souhaite archiver des documents afin de nettoyer la vue active. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Archiver un document avec \textbf{PATCH /api/documents/:id/archive}.
-\item Restaurer un document avec \textbf{PATCH /api/documents/:id/restore}.
+\item Archiver un document.
+\item Restaurer un document.
 \item Réserver ces actions aux rôles administrateur.
 \end{itemize} & 1 \\
 \hline
 
 US79 & En tant que \textbf{chef de projet}, je souhaite générer automatiquement un PV à partir d'un ticket afin de documenter les interventions. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Préremplir les données du PV avec \textbf{GET /api/pv/prefill/:ticketId}.
-\item Générer le PV avec \textbf{POST /api/pv/generate/:ticketId}.
+\item Préremplir les données du PV.
+\item Générer le PV.
 \item Lier le PV au ticket source et conserver les données utiles à la rédaction.
 \end{itemize} & 3 \\
 \hline
 
 US80 & En tant que \textbf{client}, je souhaite accéder aux documents de mes contrats et à mes justificatifs de tickets afin de centraliser nos échanges de fichiers. & 
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Lister les documents via \textbf{GET /api/documents} (avec filtres \textbf{ticketId} ou \textbf{contratId}).
+\item Lister les documents (avec filtres \textbf{ticketId} ou \textbf{contratId}).
 \item Filtrage automatique côté serveur : sur un ticket, ne retourner que les documents dont l'utilisateur est l'auteur (\textbf{uploadeurId}).
 \end{itemize} & 1 \\
 \hline
 
 US81 & En tant qu'\textbf{utilisateur}, je souhaite créer une nouvelle version d'un document afin de maintenir l'historique. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Créer une nouvelle version en remplaçant le fichier avec \textbf{PATCH /api/documents/:id/replace}.
-\item Conserver les versions précédentes via \textbf{GET /api/documents/:id/versions}.
+\item Créer une nouvelle version en remplaçant le fichier.
+\item Conserver les versions précédentes.
 \item Assurer la continuité de l'historique documentaire.
 \end{itemize} & 2 \\
 \hline
 US83 & En tant que \textbf{développeur ou chef de projet}, je souhaite consulter la base de connaissances afin de trouver des solutions existantes. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Consulter les articles via \textbf{GET /api/knowledge-base} et \textbf{GET /api/knowledge-base/:id}.
-\item Rechercher des articles liés à un ticket avec \textbf{GET /api/knowledge-base/by-ticket/:ticketId}.
-\item Utiliser les suggestions contextuelles via \textbf{POST /api/knowledge-base/suggest}.
+\item Consulter les articles.
+\item Rechercher des articles liés à un ticket.
+\item Utiliser les suggestions contextuelles.
 \end{itemize} & 2 \\
 \hline
 US84 & En tant qu'\textbf{administrateur}, je souhaite créer des articles de la base de connaissances afin d'enrichir la documentation. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Créer un article manuel avec \textbf{POST /api/knowledge-base}.
-\item Mettre à jour ou archiver un article avec \textbf{PATCH /api/knowledge-base/:id} et \textbf{DELETE /api/knowledge-base/:id}.
-\item Enregistrer l'usage des articles via \textbf{POST /api/knowledge-base/:id/usage}.
+\item Créer un article manuel.
+\item Mettre à jour ou archiver un article.
+\item Enregistrer l'usage des articles.
 \end{itemize} & 2 \\
 \hline
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 12 - Notifications et alertes}} \\
 \hline
 US85 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications in-app afin d'être informé en temps réel. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Lister les notifications via \textbf{GET /api/notifications}.
-\item Marquer une notification comme lue avec \textbf{PATCH /api/notifications/:id/read} ou tout lire avec \textbf{PATCH /api/notifications/read-all}.
+\item Lister les notifications.
+\item Marquer une notification comme lue ou tout lire.
 \item Mettre à jour le badge temps réel via le gateway de notifications.
 \end{itemize} & 2 \\
 \hline
 
 US86 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications par email afin d'être informé hors connexion. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Gérer les préférences email avec \textbf{GET /api/notifications/preferences} et \textbf{PATCH /api/notifications/preferences/:type}.
+\item Gérer les préférences email.
 \item Déclencher les envois depuis les événements métier déjà existants.
 \item Permettre l'activation ou la désactivation par type de notification.
 \end{itemize} & 2 \\
@@ -227,23 +227,23 @@ US86 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications p
 
 US87 & En tant que \textbf{utilisateur}, je souhaite recevoir des notifications Slack afin d'être alerté sur mon outil de travail. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Configurer les intégrations Slack avec \textbf{POST /api/slack/config} et \textbf{GET /api/slack/configs}.
-\item Consulter, modifier ou supprimer une configuration par contrat via \textbf{GET /api/slack/config/:contratId}, \textbf{PATCH /api/slack/config/:contratId} et \textbf{DELETE /api/slack/config/:contratId}.
-\item Tester une configuration avec \textbf{POST /api/slack/config/:contratId/test}.
+\item Configurer les intégrations Slack.
+\item Consulter, modifier ou supprimer une configuration par contrat.
+\item Tester une configuration.
 \end{itemize} & 2 \\
 \hline
 
 US88 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications push navigateur afin d'être alerté même hors onglet. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Récupérer la clé publique avec \textbf{GET /api/web-push/vapid-public-key}.
-\item S'abonner ou se désabonner via \textbf{POST /api/web-push/subscribe} et \textbf{DELETE /api/web-push/unsubscribe}.
+\item Récupérer la clé publique.
+\item S'abonner ou se désabonner.
 \item Associer les abonnements aux événements métier et aux alertes temps réel.
 \end{itemize} & 2 \\
 \hline
 
 US89 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique de mes notifications afin de retrouver une information. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Lister les notifications via \textbf{GET /api/notifications} avec pagination.
+\item Lister les notifications avec pagination.
 \item Ouvrir le centre de notifications depuis le bouton du header.
 \item Afficher l'historique dans une vue chronologique avec le compteur de non lus.
 \end{itemize} & 1 \\
@@ -252,8 +252,8 @@ US89 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique de me
 \hline
 US90 & En tant qu'\textbf{administrateur}, je souhaite consulter un dashboard global afin de piloter le système. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Consulter les statistiques globales via \textbf{GET /api/dashboard/stats}.
-\item Compléter le tableau de bord avec \textbf{GET /api/dashboard/top-developers}, \textbf{GET /api/dashboard/trend} et \textbf{GET /api/dashboard/rapport-mensuel}.
+\item Consulter les statistiques globales.
+\item Compléter le tableau de bord.
 \item Afficher les alertes, les tickets critiques et les tendances de l'application.
 \end{itemize} & 3 \\
 \hline

@@ -7,7 +7,8 @@ Dans le chapitre précédent, nous avons mis en place la gestion des projets et 
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Sprint Planning Meeting}
 La planification du sprint est une étape essentielle du processus de développement, car elle permet de clarifier les fonctionnalités à implémenter, de prioriser les besoins métier et d’organiser la réalisation dans une logique incrémentale.
-\newline L’objectif principal de ce sprint était d’implémenter le cœur opérationnel de la plateforme de gestion des tickets, en assurant la prise en charge complète du cycle de vie d’une demande jusqu’à sa conversion en ticket, puis son traitement collaboratif par les équipes techniques. Ce sprint visait également à intégrer des mécanismes avancés de suivi du temps, de gestion des SLA, de pilotage via Kanban et d’assistance intelligente à la décision.
+\subsection{Objectifs du sprint}
+L’objectif principal de ce sprint était d’implémenter le cœur opérationnel de la plateforme de gestion des tickets, en assurant la prise en charge complète du cycle de vie d’une demande jusqu’à sa conversion en ticket, puis son traitement collaboratif par les équipes techniques. Ce sprint visait également à intégrer des mécanismes avancés de suivi du temps, de gestion des SLA, de pilotage via Kanban et d’assistance intelligente à la décision.
 
 \subsection{Intégration de l'intelligence artificielle}
 
@@ -190,7 +191,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.85\textwidth,keepaspectratio]{Images/gerer_demandes.png}
-  \caption{Raffinement du cas d'utilisation « gérer demandes »}
+  \caption{Raffinement du cas d'utilisation « Gérer demandes »}
   \label{fig:gerer_demandes}
 \end{figure}
 
@@ -819,10 +820,10 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Conception}
 Cette section présente les choix de conception retenus pour ce sprint,
-à travers les diagrammes d'activité et de séquences modélisant les
+à travers les diagrammes d'activités et de séquences modélisant les
 principaux flux fonctionnels.
 
-\subsection{Diagramme d'activité « Modifier chronomètre »}
+\subsection{Diagramme d'activités « Modifier chronomètre »}
 Le diagramme ci-dessous illustre le flux d'activités relatif à la modification du chronomètre dans le cadre du traitement des tickets assignés. 
 
 \begin{figure}[H]
@@ -877,14 +878,14 @@ et dépendances qui les unissent.
 \end{figure}
 
 \section{Schéma relationnel}
-Le schéma relationnel du sprint 3 s’appuie sur les entités suivantes :
+Le schéma relationnel du premier sprint s’appuie sur les relations suivantes :
 \textbf{DemandeClient} (\underline{id}, titreDemande, typeDemande, statutDemande, typeSLA, descriptionDemande, dateSoumission, dateCreation, dateMiseAJour, dateValidation, motifRejet, motifRequalification, echeanceInitiale, \textbf{\#idProjet})
 \newline
 \textbf{DemandeClassificationIA} (\underline{id}, categorieAuto, typeAuto, prioriteAuto, scoreConfiance, entitesExtraites, urgenceDetectee, estUtiliseeValidation, estCorrigeeParAgent, feedbackAgent, dateClassification, modeleUtilise, \textbf{\#idDemande})
 \newline
 \textbf{Ticket} (\underline{id}, titreTicket, typeSLA, statutTicket, categorieTicket,  descriptionTicket, dateCreationTicket, dateMiseAJourTicket, dateResolutionTicket, delaiReponse, delaiResolution, dateEcheanceResponse, dateEcheanceResolution, slaReponseExpire, slaResolutionExpire, extensionDemandee, extensionMotif, extensionDemandeeAt, extensionAccordee, alerteSLAEnvoyee, scoreUrgenceIA, nombreTicketsBloquesParCelui, nombreUtilisateursAffectes,\textbf{\#idDemande}, \textbf{\#idContrat}) 
 \newline  
-\textbf{SolutionTicket} (\underline{Id}, solutionSuggeree, scoreConfiance, estAcceptee, feedbackUtilisateur, tempsResolution, dateCreation, \textbf{\#idTicket}, \textbf{\#idArticle})
+\textbf{SolutionTicket} (\underline{Id}, solutionSuggeree, scoreConfiance, estAcceptee, feedbackUtilisateur, tempsResolution, dateCreation, \textbf{\#idTicket})
 \newline 
 \textbf{KnowledgeBaseArticle} (\underline{id}, titre,  contenu, categorie, statutKB, tag, nombreUtilisations,  tauxReussite)
 \newline
@@ -903,14 +904,7 @@ Le schéma relationnel du sprint 3 s’appuie sur les entités suivantes :
 Cette section présente les principales interfaces utilisateur développées durant le troisième sprint. Chaque interface a été conçue pour offrir une expérience adaptée aux différents acteurs de la plateforme.
 
 \subsection{Interface de gestion des demandes}
-Nous avons conçu cette interface pour permettre au client de soumettre et
-de suivre ses demandes de maintenance ou d'évolution directement depuis
-son espace. Pour le chef de projet, les demandes reçues sont organisées
-selon leur état courant~: \textit{en attente}, \textit{informations
-requises}, \textit{convertie en ticket} ou \textit{rejetée}.  L'interface propose quatre modes 
-d'affichage (liste, cartes, Kanban et timeline), un système de filtres multicritères 
-et des actions groupées permettant de valider ou rejeter plusieurs demandes en une 
-seule opération.
+ Cette interface présente la vue liste des demandes en version arabe, illustrant le support multilingue et l'adaptation automatique de la mise en page de droite à gauche. Elle intègre une barre de recherche globale et un système de filtrage multicritère pour cibler rapidement les tickets. Le tableau affiche de façon détaillée le demandeur, le projet concerné avec son chef responsable, la date de création relative, ainsi que des indicateurs visuels colorés pour identifier instantanément le type de demande, son niveau de priorité et son statut actuel. 
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,keepaspectratio]{Images/interface Liste demandes .png}
@@ -1400,6 +1394,6 @@ Une demande contenant des informations personnelles identifiables (numéro de t�
 \caption{Test de sécurité — masquage automatique des PII avant appel API externe}
 \end{figure}
 
-\section{Conclusion}
+\section*{Conclusion}
 Ce troisième sprint a permis d’implémenter le noyau fonctionnel de la solution. En combinant workflow métier, suivi temporel, gestion des SLA, visualisation Kanban et assistance intelligente, la plateforme franchit une étape décisive vers un système complet de support et de pilotage des demandes.
 \par Ce sprint met en évidence la dimension opérationnelle du projet, tout en renforçant sa robustesse technique, sa traçabilité et sa valeur métier.
