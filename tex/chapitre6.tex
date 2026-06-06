@@ -509,10 +509,14 @@ Les notifications sont actives selon les préférences choisies. \\
 \section{Conception}
 \label{sec:conception_sprint4}
 
-Dans cette section, nous présentons la conception des principales fonctionnalités développées durant le quatrième sprint. L'objectif est de mettre en évidence les échanges entre les acteurs et les composants du système au moyen de diagrammes de séquence.
+Cette section présente les choix de conception retenus pour ce sprint,
+à travers les diagrammes d'activité et de séquences modélisant les
+principaux flux fonctionnels
 
 \subsection{Diagrammes de séquence}
-Les diagrammes de séquence permettent d'illustrer le déroulement temporel des interactions entre l'utilisateur, l'interface, les services applicatifs et la base de données. Ils mettent en évidence l'ordre des appels, les échanges de messages et la coordination entre les différents composants du système.
+Dans cette section, nous allons modéliser les intéractions entre l'utilisateur
+et le système à l'aide de diagrammes de séquences pour mieux comprendre
+la logique de la solution.
 
 \subsubsection{Diagramme de séquences du cas d'utilisation « Envoyer message multimédia »}
 
@@ -524,8 +528,8 @@ Les diagrammes de séquence permettent d'illustrer le déroulement temporel des 
 \end{figure}
 
 \subsection{Diagramme de composants}
-
-La figure ci-dessous présente le diagramme de composants de l'application.
+Le diagramme de composants ci-dessous représente l'organisation structurelle
+des modules et leurs interactions au sein de l'architecture de la solution.
 
 \begin{figure}[H]
 \centering
@@ -538,8 +542,9 @@ Le diagramme de composants illustre l'architecture de la solution en trois couch
 
 
 \subsection{Diagramme de déploiement}
-
-Le diagramme de déploiement permet de représenter l'architecture physique de la solution \textbf{SolidMaint}. Il décrit la disposition matérielle des nœuds d'exécution, la répartition des composants logiciels développés (Front-end et API) sur ces infrastructures, ainsi que les protocoles de communication utilisés pour interconnecter ces différents environnements.
+Le diagramme de déploiement ci-dessous décrit l'infrastructure physique
+et logique sur laquelle repose la solution, ainsi que la répartition
+des composants sur les différents nœuds d'exécution.
 
 \begin{figure}[H]
     \centering
@@ -555,6 +560,9 @@ Dans cette configuration, les communications HTTP s'effectuent directement : le 
 
 
 \subsection{Diagramme de classes du quatrième sprint}
+Le diagramme de classes ci-dessous présente la structure statique des
+entités métier introduites lors de ce sprint, ainsi que les relations
+et dépendances qui les unissent.
 
 \begin{figure}[H]
 \centering
@@ -604,9 +612,6 @@ Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui
 \label{sec:realisation_sprint4}
 
 Cette section présente les principales interfaces utilisateur développées durant le quatrième sprint. Chaque interface a été conçue pour offrir une expérience claire aux différents acteurs de la plateforme.
-
-
-
 \subsection{Interface de la liste des documents}
 
 Nous avons mis en place cette interface de liste documents liés aux contrats et aux tickets en un seul endroit. Elle permet de rechercher, filtrer par source, consulter, télécharger ou remplacer un fichier par une nouvelle version. L'administrateur peut également archiver et restaurer des documents.
@@ -849,6 +854,7 @@ Les points d'accès ciblés par ce test de charge sont :
 \end{itemize}
 
 \subsubsection{Résultats obtenus}
+Les indicateurs clés de performance collectés lors de l'exécution du scénario de charge sont récapitulés dans le tableau~\ref{tab:perf_sprint4}.
 
 \begin{table}[H]
 \centering
