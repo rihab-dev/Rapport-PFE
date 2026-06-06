@@ -784,8 +784,13 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 % SECTION 3 : CONCEPTION
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Conception}
-\subsection{Diagramme d'activité « Authentification et Demander accés via fournisseur externe »}
+Cette section présente les choix de conception retenus pour ce sprint,
+à travers les diagrammes d'activité et de séquences modélisant les
+principaux flux fonctionnels
 
+\subsection{Diagramme d'activité « Authentification et Demander accés via fournisseur externe »}
+Le diagramme ci-dessous illustre le flux d'activités relatif à l'authentification
+et à la demande d'accès via un fournisseur externe.
 \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_activites_demande_insc.png}
@@ -824,7 +829,9 @@ Dans cette section, nous allons modéliser les intéractions entre l'utilisateur
 \end{figure}
 
 \subsection{Diagramme de classes du premier sprint}
-
+Le diagramme de classes ci-dessous présente la structure statique des
+entités métier introduites lors de ce sprint, ainsi que les relations
+et dépendances qui les unissent.
 \begin{figure}[H]
         \centering
         \includegraphics[width=1\textwidth,height=0.9\textheight,keepaspectratio]{Images/diag classe sprint 1.png}
@@ -1216,7 +1223,7 @@ jetons JWT, récupération des rôles et permissions) et
 un administrateur authentifié).
 
 \subsubsection{Résultats obtenus}
-
+Les indicateurs clés de performance collectés lors de l'exécution du scénario de charge sont récapitulés dans le tableau~\ref{tab:perf_sprint1}.
 \begin{table}[H]
 \centering
 \renewcommand{\arraystretch}{1.3}

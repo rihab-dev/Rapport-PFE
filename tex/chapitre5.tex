@@ -10,39 +10,153 @@ La planification du sprint est une étape essentielle du processus de développe
 \newline L’objectif principal de ce sprint était d’implémenter le cœur opérationnel de la plateforme de gestion des tickets, en assurant la prise en charge complète du cycle de vie d’une demande jusqu’à sa conversion en ticket, puis son traitement collaboratif par les équipes techniques. Ce sprint visait également à intégrer des mécanismes avancés de suivi du temps, de gestion des SLA, de pilotage via Kanban et d’assistance intelligente à la décision.
 
 \subsection{Intégration de l'intelligence artificielle}
-Dans le cadre du présent sprint, l'intégration de l'intelligence artificielle a été traitée comme une décision de conception. L'objectif principal est d'automatiser et d'assister plusieurs étapes du cycle de traitement des demandes : qualification initiale, priorisation, analyse des blocages et capitalisation des connaissances.
+
+Dans le cadre de ce sprint, l'intégration de l'intelligence artificielle
+a constitué un axe transversal visant à automatiser et à assister plusieurs
+étapes critiques du cycle de traitement des demandes : qualification
+initiale, priorisation, analyse des blocages et capitalisation des
+connaissances. Cette intégration a été pensée comme un composant à part
+entière de la plateforme, conçu pour amplifier l'efficacité des équipes
+sans se substituer à leur jugement.
+
+\subsubsection{Fonctionnalités développées}
+
+Le composant IA expose des services asynchrones déclenchés automatiquement
+aux moments clés du cycle de vie des demandes et des tickets, sans bloquer
+les flux principaux. Les fonctionnalités intégrées au cours de ce sprint
+sont les suivantes :
+
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+    \item \textbf{Classification automatique des demandes :} à la soumission
+    d'une demande client, le service IA analyse le titre et la description
+    pour inférer le type, la priorité et la catégorie. Le résultat inclut un
+    score de confiance et un raisonnement explicatif, soumis à validation du
+    chef de projet avant application.
+    \item \textbf{Analyse des blocages :} à la déclaration d'un blocage, une
+    analyse est déclenchée en arrière-plan pour identifier la nature probable
+    de l'obstacle et proposer des actions correctives adaptées au contexte
+    du ticket.
+    \item \textbf{Génération d'un brouillon de solution :} le module génère
+    un premier jet de résolution structuré, que le développeur peut consulter,
+    modifier et soumettre depuis l'interface de détail du ticket.
+    \item \textbf{Structuration en articles de base de connaissances :} lors
+    de la résolution d'un blocage, la solution validée et l'analyse IA sont
+    fusionnées pour produire un article structuré, soumis à validation avant
+    publication dans la base de connaissances partagée.
+\end{itemize}
+
+\subsubsection{Les grands modèles de langage (LLM)}
+
+Les grands modèles de langage (\textit{Large Language Models}, LLM) sont
+des modèles entraînés sur des corpus textuels massifs, fondés sur
+l'architecture \textit{Transformer}. Ils permettent de comprendre
+l'intention d'un texte en langue naturelle et de produire des réponses
+structurées sans nécessiter d'apprentissage spécifique au domaine métier.
+Dans notre contexte, ils couvrent trois besoins : la qualification
+automatique des demandes, l'analyse des blocages techniques et la
+structuration des solutions en articles de base de connaissances.
+Afin de retenir le modèle le plus adapté, nous avons comparé les principaux
+LLM disponibles selon les critères pertinents pour notre cas d'usage :
+qualité de traitement du français technique, support natif du format JSON,
+latence et coût d'accès via API, comme le présente le
+tableau~\ref{tab:comparaison_llm}.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\small
+\begin{tabular}{|P{2.8cm}|P{2.3cm}|P{2.0cm}|P{2.0cm}|P{2.0cm}|P{2.0cm}|}
+\hline
+\textbf{Modèle} & \textbf{Éditeur} & \textbf{Qualité FR} &
+\textbf{JSON natif} & \textbf{Latence} & \textbf{Coût API} \\
+\hline
+GPT-4o            & OpenAI      & Excellente & Oui & Modérée     & Élevé  \\
+\hline
+Claude 3.5 Sonnet & Anthropic   & Très bonne & Oui & Modérée     & Élevé  \\
+\hline
+Gemini 1.5 Pro    & Google      & Très bonne & Oui & Variable    & Modéré \\
+\hline
+Mistral Large     & Mistral AI  & Très bonne & Oui & Faible      & Modéré \\
+\hline
+LLaMA 3.3 (70B)   & Meta / Groq & Bonne      & Oui & Très faible & Faible \\
+\hline
+\end{tabular}
+\caption{Comparaison des principaux LLM selon les critères du projet}
+\label{tab:comparaison_llm}
+\end{table}
 
 \subsubsection{Choix du modèle}
-Le choix des LLM repose sur leur capacité à saisir l'intention réelle d'une demande sans nécessiter de phase d'apprentissage sur des données massives. Cette technologie permet d'interpréter la demande sans phase d'apprentissage préalable et reste simple à faire évoluer, constituant une solution opérationnelle qui simplifie la maintenance du système.
-\newline
-Le modèle retenu pour l'expérimentation est LLaMA~3.3 (70B), exploité via l'API Groq Cloud. Ce choix se justifie par la qualité des réponses en langue française technique, la possibilité d'obtenir des sorties structurées (format JSON) pour une intégration automatisée, des temps de latence compatibles avec l'usage interactif et une tarification permettant une phase d'évaluation sans investissement initial significatif.
 
-\subsubsection{Fonctionnalités attendues}
-Les fonctions couvertes par le composant d'intelligence artificielle sont les suivantes :
-
-\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
-\item L'analyse automatique des blocages rencontrés par les développeurs, permettant d'identifier rapidement les problèmes critiques et d'en faciliter la résolution ;
-\item La proposition d'actions correctives adaptées à chaque situation de blocage, afin d'accélérer le déblocage des développeurs et de réduire les temps d'immobilisation ;
-\item La génération automatique d'un brouillon de solution pour assister les développeurs dans la documentation de leurs résolutions et faciliter la capitalisation des connaissances ;
-\item La classification intelligente des demandes clients, incluant le type, la priorité et la catégorie, soumise à validation du chef de projet avant transmission au client ;
-\item La structuration automatique des solutions brutes en articles de base de connaissances, favorisant la standardisation et la réutilisabilité de l'information ;
-\item La fusion automatique de l'analyse IA et de la solution humaine pour chaque blocage résolu, produisant ainsi des articles de connaissance consolidés et directement exploitables.
-\end{itemize}
+À l'issue de cette analyse comparative et au regard des fonctionnalités
+à couvrir, le modèle retenu est \textbf{LLaMA~3.3 (70B)}, exploité via
+l'\textbf{API Groq Cloud}. Ce choix se justifie par plusieurs facteurs
+complémentaires : une latence très faible grâce aux processeurs LPU de
+Groq (environ 700 tokens par seconde), le support natif du format JSON
+permettant une intégration directe avec la base de données, une qualité
+suffisante en français technique pour les cas d'usage ciblés, et un accès
+gratuit lors de la phase de développement. Par ailleurs, LLaMA étant un
+modèle open-source, il offre la possibilité d'un hébergement local à terme,
+garantissant une indépendance vis-à-vis d'un fournisseur externe.
 
 \subsubsection{Robustesse opérationnelle et gouvernance}
-Afin d'assurer la fiabilité et la conformité du service, l'intégration s'appuie sur plusieurs garde‑fous :
-\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
-\item anonymisation et protection de la confidentialité : détection et masquage automatique des données sensibles (PII) avant transmission aux APIs externes, garantissant la sécurité des données clients ;
-\item mise en place d'un cache système : réduction du nombre d'appels externes et de la latence par la mémorisation des classifications récurrentes ;
-\item intégration de mécanismes de repli : basculement automatique vers des règles métiers ou une révision humaine en cas d'indisponibilité ou d'incertitude de l'IA ;
-\item limitation des flux et des quotas : régulation des appels par utilisateur pour prévenir les usages abusifs et respecter les limites de l'API ;
-\item maintien d'une traçabilité complète : archivage systématique des métadonnées décisionnelles (modèle, score, raisonnement) pour l'audit et l'amélioration continue .
-\end{itemize}
 
-\subsubsection{Apport métier}
-L'évaluation conduite pendant le sprint montre que l'usage de l'IA apporte des bénéfices opérationnels concrets : réduction du temps de qualification, homogénéisation des priorisations, diminution des échanges nécessaires entre clients et équipes techniques et enrichissement automatique de la base de connaissances. \newline Ces apports sont considérés comme complémentaires au travail humain : l'IA fournit des suggestions et des brouillons destinés à soutenir la décision, sans s'y substituer.
+Afin d'assurer la fiabilité du composant IA en conditions réelles,
+plusieurs mécanismes complémentaires ont été mis en place.
 
-\subsection{Backlog du troisième sprint}
+\paragraph{Protection des données personnelles.}
+Avant toute transmission d'un texte à l'API Groq Cloud, un filtre
+détecte et masque automatiquement les informations personnelles
+identifiables : un numéro de téléphone, une adresse électronique ou
+un nom complet présents dans la description d'une demande sont
+remplacés par des marqueurs neutres avant envoi, garantissant qu'aucune
+donnée sensible ne quitte le périmètre de la plateforme.
+
+\paragraph{Cache par empreinte de contenu.}
+Pour éviter des appels redondants à l'API externe, chaque texte soumis
+à la classification est identifié par une empreinte numérique calculée
+sur son contenu normalisé. Si une demande au libellé identique a déjà
+été classifiée, le résultat est restitué directement depuis le cache
+sans solliciter le modèle, avec une durée de validité d'une heure
+réinitialisée à chaque mise à jour.
+
+\paragraph{Réessais et mécanisme de repli.}
+En cas d'erreur transitoire lors de l'appel au modèle, le service
+effectue jusqu'à deux nouvelles tentatives avec des délais croissants
+entre chaque essai. Si, après épuisement des tentatives, le score de
+confiance retourné reste inférieur au seuil minimal accepté, la
+demande est automatiquement marquée pour révision manuelle par le
+chef de projet, sans interrompre le flux de traitement.
+
+\paragraph{Limitation des appels par utilisateur.}
+Un système de quotas journaliers est appliqué par utilisateur et de
+manière globale. Lorsque le seuil d'alerte est atteint (80\% du quota),
+le système émet un avertissement interne. Au-delà du quota journalier,
+les appels supplémentaires sont rejetés avec un message explicite,
+les compteurs étant réinitialisés automatiquement à minuit.
+
+\paragraph{Traçabilité des décisions.}
+Chaque décision IA est enregistrée avec l'ensemble de ses métadonnées :
+modèle utilisé, score de confiance, raisonnement produit, feedback
+éventuel du chef de projet et horodatage. Une tâche planifiée quotidienne
+supprime les entrées de plus de quatre-vingt-dix jours conformément aux
+exigences de protection des données, tout en conservant les statistiques
+agrégées pour le suivi de la qualité du service.
+
+\subsubsection{Apport métier de l'IA}
+
+Pour le \textbf{chef de projet}, la classification automatique réduit le
+temps de qualification des demandes : plutôt que d'analyser chaque texte
+libre, il valide ou corrige une proposition déjà structurée accompagnée
+d'un raisonnement explicite, ce qui homogénéise les décisions de
+priorisation. Pour le \textbf{développeur}, la génération de pistes de
+résolution et de brouillons de solution accélère le déblocage sans attendre
+une intervention humaine. La structuration automatique des résolutions en
+articles enrichit progressivement la base de connaissances collective,
+réduisant les délais de résolution pour des problèmes récurrents.
+Ces apports restent complémentaires au travail humain : toute suggestion
+IA est soumise à validation avant d'être appliquée ou publiée.
+
+\section{Backlog du troisième sprint}
 \label{sec:backlog_sprint3}
 
 Voici l’ensemble des user stories retenues pour ce sprint, correspondant aux épics liés à la gestion des demandes, à la gestion des tickets et à l’intelligence artificielle.
@@ -69,16 +183,123 @@ La figure ci-dessous présente le diagramme de cas d’utilisation du troisième
 \end{figure}
 
 Nous allons accompagner les cas d'utilisation d'un texte descriptif pour expliquer le scénario de chaque cas ainsi que ses exceptions.
-\subsection{Analyse de la fonctionnalité « Suivre demandes »}
-Dans cette partie, nous allons présenter les cas d'utilisation relatifs au suivi des demandes afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
-\subsubsection{Raffinement du cas d'utilisation « Suivre demandes »}
-Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas du suivi des demandes :
+\subsection{Analyse de la fonctionnalité « Gérer demandes »}
+Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des demandes afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
+\subsubsection{Raffinement du cas d'utilisation « Gérer demandes »}
+Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas du gestion des demandes :
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.85\textwidth,keepaspectratio]{Images/suivre_demandes.png}
-  \caption{Raffinement du cas d'utilisation « Suivre demandes »}
-  \label{fig:suivre_demandes}
+  \includegraphics[width=0.85\textwidth,keepaspectratio]{Images/gerer_demandes.png}
+  \caption{Raffinement du cas d'utilisation « gérer demandes »}
+  \label{fig:gerer_demandes}
 \end{figure}
+
+\subsubsection{Description textuelle du cas d’utilisation « Valider demande »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Valider demande ».
+
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Valider demande \\
+\hline
+\textbf{Acteurs} & Chef de projet, Administrateur \\
+\hline
+\textbf{Précondition} & La demande est au statut « En attente » ou « Infos requises ». L'acteur dispose de la permission de validation. \\
+\hline
+\textbf{Postcondition} & La demande passe au statut « Convertie » ; un ticket est créé automatiquement avec le statut « Ouvert ». Toute requalification effectuée est historisée et les parties prenantes sont notifiées. L'assignation du ticket sera effectuée ultérieurement. \\
+\hline
+\textbf{Scénario nominal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+    \item Le chef de projet sélectionne une demande en attente depuis la liste ou son détail.
+    \item Il conserve les informations initiales ou requalifie le type et/ou la priorité (éventuellement suggérés par l'IA).
+    \item Il valide la demande.
+    \item Le système vérifie les permissions et l'existence d'un contrat actif couvrant le projet.
+    \item Le système met à jour la demande au statut « Convertie ».
+    \item Le système crée automatiquement un ticket lié à la demande avec le statut « Ouvert ».
+    \item Le système transfère les pièces jointes de la demande vers les documents du ticket.
+    \item Le système notifie le client et les utilisateurs concernés.
+    \item L'assignation du ticket est réalisée dans un second temps via le module de gestion des tickets.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+    \item Le validateur modifie le type de demande et/ou la priorité avant de valider  les modifications sont enregistrées et historisées simultanément à la validation.
+    \item Si la priorité est reclassée en critique, un commentaire de justification est requis  le validateur saisit le commentaire et \textbf{reprend à l'étape 3}.
+    \item Le commentaire saisi est trop court ou vide  le système signale l'erreur, le validateur complète le commentaire et \textbf{reprend à l'étape 3}.
+\end{enumerate} \\
+\hline
+\textbf{Scénario d'exception} &
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+    \item Le système détecte des droits insuffisants  l'opération est rejetée et le cas d'utilisation est interrompu.
+    \item La demande est déjà au statut « Convertie » ou « Rejetée »  le système lève une exception bloquante, aucune modification n'est possible.
+    \item Aucun contrat actif ne couvre le projet de la demande  le système refuse la validation, le validateur ne peut pas créer un contrat sur place.
+\end{enumerate} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d’utilisation « Valider demande »}
+\normalsize
+
+\subsubsection{Description textuelle du cas d’utilisation « Demander informations complémentaires »}
+La figure ci-dessous présente la description textuelle du cas d’utilisation « Demander informations complémentaires ».
+
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Demander informations complémentaires \\
+\hline
+\textbf{Acteurs} & Chef de projet, Administrateur \\
+\hline
+\textbf{Précondition} & L'acteur est authentifié et dispose des droits pour solliciter des compléments ; la demande est accessible. \\
+\hline
+\textbf{Postcondition} & Un message de demande d'information est enregistré dans l'historique ; le statut de la demande passe en attente d'informations ; le propriétaire de la demande est notifié. \\
+\hline
+\textbf{Scénario nominal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item L'acteur identifie un besoin d'informations supplémentaires pour analyser la demande.
+\item L'acteur saisit le motif et les éléments attendus puis envoie la demande d'informations.
+\item Le système enregistre la requête dans l'historique et modifie le statut de la demande pour indiquer qu'elle attend des informations.
+\item Le système notifie le propriétaire de la demande et les parties prenantes.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénario alternatif} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item L'acteur enrichit le motif avec des exemples ou des documents attendus. Le système intègre l'ensemble du motif dans le commentaire créé dans l'historique de la demande. Le scénario reprend à l'étape 3.
+\item La demande est déjà dans l'état INFOS REQUISES. Le système autorise néanmoins la soumission et crée un nouveau commentaire dans l'historique. Le scénario reprend à l'étape 3.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\textbf{Scénario d'exception} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item Le système détecte que les droits de l'acteur ont été révoqués depuis sa connexion. La soumission est rejetée avec un message d'erreur d'autorisation ; l'acteur ne peut pas poursuivre sans reconnexion.
+\item Une défaillance technique empêche l'enregistrement de la requête. Le système affiche un message d'échec, journalise l'incident et interrompt le cas d'utilisation sans modifier le statut de la demande.
+\end{enumerate}
+\end{minipage} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d’utilisation « Demander informations complémentaires »}
+\normalsize
 
 \subsubsection{Description textuelle du cas d’utilisation « Soumettre demande »}
 La figure ci-dessous présente la description textuelle du cas d’utilisation « Soumettre demande ».
@@ -194,174 +415,6 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \end{longtable}
 \captionof{table}{Description textuelle du cas d’utilisation « Compléter demande existante »}
 }
-\normalsize
-
-\subsection{Analyse de la fonctionnalité « Gérer demandes »}
-Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des demandes afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
-\subsubsection{Raffinement du cas d'utilisation « Gérer demandes »}
-Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas du gestion des demandes :
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.85\textwidth,keepaspectratio]{Images/gerer_demandes.png}
-  \caption{Raffinement du cas d'utilisation « gérer demandes »}
-  \label{fig:gerer_demandes}
-\end{figure}
-
-\subsubsection{Description textuelle du cas d’utilisation « Valider demande »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Valider demande ».
-
-\footnotesize
-\renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-\textbf{Nom du cas d'utilisation} & Valider demande \\
-\hline
-\textbf{Acteurs} & Chef de projet, Administrateur \\
-\hline
-\textbf{Précondition} & La demande est au statut « En attente » ou « Infos requises ». L'acteur dispose de la permission de validation. \\
-\hline
-\textbf{Postcondition} & La demande passe au statut « Convertie », un ticket est créé automatiquement avec le statut « Ouvert ». L'assignation du ticket sera effectuée ultérieurement de manière manuelle. \\
-\hline
-\textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le chef de projet sélectionne une demande en attente depuis la liste ou son détail.
-\item Il conserve les informations initiales ou requalifie le type et/ou la priorité.
-\item Il valide la demande.
-\item Le système vérifie les permissions et l'existence d'un contrat actif couvrant le projet.
-\item Le système met à jour la demande au statut « Convertie ».
-\item Le système crée automatiquement un ticket lié à la demande avec le statut « Ouvert ».
-\item Le système transfère les pièces jointes de la demande vers les documents du ticket.
-\item Le système notifie le client et les utilisateurs concernés.
-\item L'assignation du ticket est réalisée dans un second temps via le module de gestion des tickets.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario alternatif} &
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le validateur modifie le type de demande et/ou la priorité avant de valider  les modifications sont enregistrées et historisées avec la validation.
-\item Si la priorité est reclassée en critique, un commentaire de justification est requis  le validateur saisit le commentaire et \textbf{reprend à l'étape 3}.
-\item Le commentaire saisi est trop court ou vide  le système signale l'erreur, le validateur complète le commentaire et \textbf{reprend à l'étape 3}.
-\end{enumerate} \\
-\hline
-\textbf{Scénario d'exception} &
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item La demande est déjà au statut « Convertie » ou « Rejetée »  le système lève une exception bloquante, aucune modification n'est possible.
-\item Aucun contrat actif ne couvre le projet de la demande  le système refuse la validation, le validateur ne peut pas créer un contrat sur place.
-\end{enumerate} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Valider demande »}
-\normalsize
-\subsubsection{Description textuelle du cas d’utilisation « Demander informations complémentaires »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Demander informations complémentaires ».
-
-\footnotesize
-\renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-\textbf{Nom du cas d'utilisation} & Demander informations complémentaires \\
-\hline
-\textbf{Acteurs} & Chef de projet, Administrateur \\
-\hline
-\textbf{Précondition} & L'acteur est authentifié et dispose des droits pour solliciter des compléments ; la demande est accessible. \\
-\hline
-\textbf{Postcondition} & Un message de demande d'information est enregistré dans l'historique ; le statut de la demande passe en attente d'informations ; le propriétaire de la demande est notifié. \\
-\hline
-\textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'acteur identifie un besoin d'informations supplémentaires pour analyser la demande.
-\item L'acteur saisit le motif et les éléments attendus puis envoie la demande d'informations.
-\item Le système enregistre la requête dans l'historique et modifie le statut de la demande pour indiquer qu'elle attend des informations.
-\item Le système notifie le propriétaire de la demande et les parties prenantes.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario alternatif} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'acteur enrichit le motif avec des exemples ou des documents attendus. Le système intègre l'ensemble du motif dans le commentaire créé dans l'historique de la demande. Le scénario reprend à l'étape 3.
-\item La demande est déjà dans l'état INFOS REQUISES. Le système autorise néanmoins la soumission et crée un nouveau commentaire dans l'historique. Le scénario reprend à l'étape 3.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario d'exception} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le système détecte que les droits de l'acteur ont été révoqués depuis sa connexion. La soumission est rejetée avec un message d'erreur d'autorisation ; l'acteur ne peut pas poursuivre sans reconnexion.
-\item Une défaillance technique empêche l'enregistrement de la requête. Le système affiche un message d'échec, journalise l'incident et interrompt le cas d'utilisation sans modifier le statut de la demande.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Demander informations complémentaires »}
-\normalsize
-
-\subsubsection{Description textuelle du cas d’utilisation « Gérer qualification »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Gérer qualification ».
-
-\footnotesize
-\renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-\textbf{Nom du cas d'utilisation} & Gérer qualification \\
-\hline
-\textbf{Acteurs} & Chef de projet, Administrateur \\
-\hline
-\textbf{Précondition} & La demande est persistée dans la base de données et son statut autorise la modification ; l'acteur est authentifié et dispose des droits requis. \\
-\hline
-\textbf{Postcondition} & La qualification de la demande a été mise à jour ; la modification est historisée et les parties prenantes sont informées. \\
-\hline
-\textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-    \item L'acteur modifie le type ou la priorité de la demande (éventuellement suggérés par l'IA).
-    \item L'acteur saisit une justification et soumet la requalification.
-    \item Le système valide les conditions d'exécution.
-    \item Le système met à jour la qualification, historise l'action et notifie le client.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario alternatif} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-    \item La soumission intervient dans le cadre de la validation formelle de la demande. Le système enregistre la requalification simultanément à la création du ticket. Le scénario reprend à l'étape 4.
-    \item Le système détecte qu'aucune valeur n'a été modifiée. Un avertissement bloque la soumission et invite l'acteur à faire un vrai changement. Le scénario reprend à l'étape 1.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario d'exception} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-    \item Le système détecte des droits insuffisants. L'opération est rejetée et le cas d'utilisation est interrompu.
-    \item Le système détecte que la demande est finalisée (« convertie » ou « rejetée »). La modification est interdite, une erreur est retournée et le cas d'utilisation s'interrompt.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Gérer qualification »}
 \normalsize
 
 \subsection{Analyse de la fonctionnalité « Traiter tickets assignés »}
@@ -765,15 +818,12 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 % SECTION 3 : CONCEPTION
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Conception}
-Après l'analyse des besoins et la définition des cas d'utilisation, 
-nous avons procédé à la conception de la solution en identifiant 
-les composants logiciels, les flux métier, les entités principales 
-et les interactions entre les modules.
+Cette section présente les choix de conception retenus pour ce sprint,
+à travers les diagrammes d'activité et de séquences modélisant les
+principaux flux fonctionnels.
 
-\subsection{Diagramme d'activité du flux de travail d'un ticket}
-La figure suivante présente le diagramme d'activité du workflow 
-de gestion des tickets, en mettant l'accent sur la fonctionnalité 
-« Modifier chronomètre ».
+\subsection{Diagramme d'activité « Modifier chronomètre »}
+Le diagramme ci-dessous illustre le flux d'activités relatif à la modification du chronomètre dans le cadre du traitement des tickets assignés. 
 
 \begin{figure}[H]
     \centering
@@ -786,7 +836,6 @@ de gestion des tickets, en mettant l'accent sur la fonctionnalité
 \subsection{Diagramme de séquences}
 Dans cette section, nous allons modéliser les intéractions entre l'utilisateur et le système à l'aide de diagrammes de séquences pour mieux comprendre la logique de la solution.
 \subsubsection{Diagramme de séquences du cas d'utilisation « Soumettre demande »}
-La figure suivante présente le diagramme de séquences du cas d’utilisation « Soumettre demande ».
 
 \begin{figure}[H]
     \centering
@@ -796,7 +845,6 @@ La figure suivante présente le diagramme de séquences du cas d’utilisation �
 \end{figure}
 
 \subsubsection{Diagramme de séquences du cas d'utilisation « Valider demande »}
-La figure suivante présente le diagramme de séquences du cas d’utilisation « Valider demande ».
 
 \begin{figure}[H]
     \centering
@@ -817,9 +865,9 @@ La figure suivante présente le diagramme de séquences du cas d’utilisation �
 
 
 \subsection{Diagramme de classes du troisième sprint}
-Le diagramme de classes met en évidence les entités métiers centrales du sprint, notamment \textit{DemandeClient}, \textit{Ticket}, \textit{AssignmentTicket}, \textit{SessionTravail}, \textit{TicketSolution}, \textit{ConfigurationSLA} et les entités liées à l’intelligence artificielle et à la base de connaissances. Il illustre également les relations de dépendance entre les contrats, les projets, les tickets, les utilisateurs et les notifications.
-
-La figure suivante présente le diagramme de classes du troisième sprint.
+Le diagramme de classes ci-dessous présente la structure statique des
+entités métier introduites lors de ce sprint, ainsi que les relations
+et dépendances qui les unissent.
 
 \begin{figure}[H]
     \centering
@@ -1266,6 +1314,9 @@ aux capacités de traitement de l'application. Les indicateurs clés de
 performance sont récapitulés dans le tableau~\ref{tab:perf_sprint3}.
 
 \subsubsection{Résultats obtenus}
+L'exécution du scénario a permis de collecter des données précises quant
+aux capacités de traitement de l'application. Les indicateurs clés de
+performance sont récapitulés dans le tableau~\ref{tab:perf_sprint3}.
 
 \begin{table}[H]
 \centering
