@@ -4,6 +4,8 @@
 \usepackage{fontspec}
 \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
 \setmainfont{Times New Roman}
+% Fix encodage UTF-8 pour les fichiers auxiliaires (toc, lof, lot)
+\usepackage{etoolbox}
 %\newfontfamily\arabicfont[Script=Arabic,Scale=1.1]{Arial}
 \usepackage{polyglossia}
 \setdefaultlanguage{french}
@@ -21,6 +23,7 @@
 \definecolor{isetred}{RGB}{180, 0, 0}
 \definecolor{darkgray}{RGB}{60, 60, 60}
 \definecolor{pgold}{RGB}{212, 175, 55}
+\definecolor{pastelBlue}{RGB}{235, 243, 250}
 
 \usepackage{graphicx}
 \usepackage{enumitem}
@@ -36,7 +39,7 @@
 \usepackage{fancyhdr}
 \usepackage{titlesec}
 \usepackage{caption}
-\captionsetup{font={small,it}, labelfont=bf, skip=6pt}
+\captionsetup{font={small,it}, labelfont=bf, skip=6pt, hypcap=false}
 
 % ============================================================
 %  TOCLOFT — configuration de la table des matières
@@ -114,8 +117,8 @@
 \usepackage[protrusion=true, expansion=false]{microtype}
 \usepackage{tabularx}
 \usepackage{longtable}
-\setlength{\LTpre}{8pt}    
-\setlength{\LTpost}{8pt}
+\setlength{\LTpre}{6pt}    
+\setlength{\LTpost}{6pt}
 \usepackage{placeins}
 \usepackage{tikz}
 \usetikzlibrary{calc}
@@ -126,6 +129,9 @@
 
 \usepackage{needspace}
 \usepackage{array}
+
+\setlength{\extrarowheight}{0pt}
+\setlength{\arrayrulewidth}{0.4pt}
 
 \newcolumntype{P}[1]{>{\RaggedRight\arraybackslash}p{#1}}
 
@@ -139,7 +145,7 @@
   \refstepcounter{chapter}%
   \addcontentsline{toc}{chapter}{\protect\numberline{\thechapter}#1}%
   \chaptermark{#1}%
-  \mtcaddchapter% 
+  \mtcaddchapter% ajouter l'entrée xchapter au TOC et incrémenter le compteur minitoc
 }
 \makeatother
 
@@ -366,10 +372,8 @@
 
 \begin{document}
 
-\dominitoc
-
-% Page de garde
 \pagenumbering{gobble}
+% Page de garde
 \input{tex/page_de_garde}
 
 % Table des matières
@@ -394,13 +398,11 @@
 \end{tikzpicture}
 \vspace{0.5cm}
 \end{center}
-\makeatletter
-{\renewcommand{\tableofcontents}{\@starttoc{toc}}\tableofcontents}
-\makeatother
+\dominitoc
+\tableofcontents
 \markboth{}{}%
 \cleardoublepage
 
-% Table des figures
 \newpage
 \pagestyle{empty} 
 \thispagestyle{empty}
@@ -422,10 +424,7 @@
 \end{tikzpicture}
 \vspace{0.5cm}
 \end{center}
-\mtcaddchapter
-\makeatletter
-{\renewcommand{\listoffigures}{\@starttoc{lof}}\listoffigures}
-\makeatother
+\listoffigures
 \markboth{}{}%
 \cleardoublepage
 
@@ -451,16 +450,17 @@
 \end{tikzpicture}
 \vspace{0.5cm}
 \end{center}
-\mtcaddchapter
-\makeatletter
-{\renewcommand{\listoftables}{\@starttoc{lot}}\listoftables}
-\makeatother
+\listoftables
 \markboth{}{}%
 \cleardoublepage
 
 % Numérotation arabe
 \pagenumbering{arabic}
 \pagestyle{fancy}
+
+% Liste des abréviations
+\input{tex/liste_abreviations}
+\cleardoublepage
 
 % Introduction
 \input{tex/Introduction_General}

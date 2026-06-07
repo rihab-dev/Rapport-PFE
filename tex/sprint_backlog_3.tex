@@ -18,8 +18,8 @@
 \hline
 \endlastfoot
 
-% Epic 8: Gestion des demandes clients
-\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 8 - Gestion des demandes clients}} \\
+% Epic 7: Gestion des demandes clients
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 7 - Gestion des demandes clients}} \\
 \hline
 
 US38 & En tant que \textbf{client}, je souhaite soumettre une demande de maintenance afin de signaler un besoin. &
@@ -73,8 +73,8 @@ US44 & En tant qu'\textbf{utilisateur}, je souhaite commenter une demande afin d
 \end{itemize} & 2 \\
 \hline
 
-% Epic 9: Gestion des tickets
-\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 9 - Gestion des tickets}} \\
+% Epic 8: Gestion des tickets
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 8 - Gestion des tickets}} \\
 \hline
 
 US45 & En tant que \textbf{Chef de Projet}, je souhaite visualiser et gérer l'ensemble des tickets dans un tableau Kanban afin de modifier leurs statuts et d'organiser efficacement le flux de travail. &
@@ -98,21 +98,16 @@ US47 & En tant que \textbf{chef de projet}, je souhaite assigner un ticket à pl
 \item Journaliser le collectif d'intervention dans l'historique d'audit du ticket.
 \end{itemize} & 2 \\
 \hline
- US48 & En tant que \textbf{chef de projet}, je souhaite consulter une file de priorité intelligente des tickets actifs afin de traiter en premier les interventions les plus critiques.&
+
+US48 & En tant que \textbf{chef de projet}, je souhaite consulter une file de priorité intelligente des tickets actifs afin de traiter en premier les interventions les plus critiques. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint calculant un score d'urgence composite par ticket.
 \item Agréger les quatre composantes du score (priorité TypeSLA, \% SLA écoulé, utilisateurs impactés, tickets bloqués dépendants) et trier les résultats par ordre décroissant.
 \item Restituer la file dans l'interface Next.js avec indicateur visuel par palier de criticité et détail du score en survol.
 \end{itemize} & 2 \\
 \hline
-US49 & En tant que \textbf{développeur}, je souhaite me désassigner d'un ticket afin de libérer ma charge. &
-\begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer l'endpoint conditionné par la saisie obligatoire d'une justification.
-\item Notifier l'encadrement technique et actualiser instantanément le journal d'activité du ticket.
-\end{itemize} & 1 \\
-\hline
 
-US50 & En tant que \textbf{développeur}, je souhaite démarrer un chronomètre sur un ticket afin d’enregistrer le temps de travail effectué. &
+US49 & En tant que \textbf{développeur}, je souhaite démarrer un chronomètre sur un ticket afin d'enregistrer le temps de travail effectué. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint pour instancier une session d'activité active.
 \item Bloquer toute tentative d'activation si une autre session de suivi du temps est déjà en cours pour l'utilisateur.
@@ -120,91 +115,91 @@ US50 & En tant que \textbf{développeur}, je souhaite démarrer un chronomètre 
 \end{itemize} & 2 \\
 \hline
 
-US51 & En tant que \textbf{développeur}, je souhaite mettre en pause mon chronomètre afin de gérer les interruptions. &
+US50 & En tant que \textbf{développeur}, je souhaite mettre en pause mon chronomètre afin de gérer les interruptions. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint lié à un référentiel de motifs de suspension.
 \item Figer l'état de la session courante tout en sauvegardant le cumul des minutes consommées.
 \end{itemize} & 1 \\
 \hline
 
-US52 & En tant que \textbf{développeur}, je souhaite arrêter le chronomètre afin de finaliser ma session. &
+US51 & En tant que \textbf{développeur}, je souhaite arrêter le chronomètre afin de finaliser ma session. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint consolidant la session de travail.
 \item Clôturer la mesure, stocker la durée finale sommée et inscrire la ligne de temps dans l'historique de production.
 \end{itemize} & 1 \\
 \hline
 
-US53 & En tant que \textbf{développeur}, je souhaite ajouter manuellement une session de travail afin de corriger des oublis. &
+US52 & En tant que \textbf{développeur}, je souhaite ajouter manuellement une session de travail afin de corriger des oublis. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint permettant la saisie a posteriori d'un volume horaire.
 \item Valider la cohérence des dates saisies par rapport au cycle de vie et aux affectations du ticket.
 \end{itemize} & 2 \\
 \hline
 
-US54 & En tant que \textbf{développeur}, je souhaite changer le statut d'un ticket afin de refléter l'avancement. &
+US53 & En tant que \textbf{développeur}, je souhaite changer le statut d'un ticket afin de refléter l'avancement. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint contrôlant les règles de transition d'états.
 \item Auditer le changement d'état et pousser des notifications automatisées aux parties prenantes.
 \end{itemize} & 2 \\
 \hline
 
-US55 & En tant que \textbf{client}, je souhaite valider la résolution d'un ticket afin de confirmer que le problème est résolu. &
+US54 & En tant que \textbf{client}, je souhaite valider la résolution d'un ticket afin de confirmer que le problème est résolu. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint actant la fin de l'intervention.
 \item Recueillir l'avis de clôture du client, verrouiller le ticket et envoyer une notification de succès à l'équipe technique.
 \end{itemize} & 1 \\
 \hline
 
-US56 & En tant que \textbf{chef de projet}, je souhaite rouvrir un ticket fermé afin de traiter un problème récurrent. &
+US55 & En tant que \textbf{chef de projet}, je souhaite rouvrir un ticket fermé afin de traiter un problème récurrent. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint suite à une réclamation.
 \item Réinitialiser le cycle de vie du ticket vers un état d'analyse et ré-alerter la maîtrise d'œuvre.
 \end{itemize} & 1 \\
 \hline
 
-US57 & En tant que \textbf{chef de projet}, je souhaite consulter le temps passé par ticket afin d'analyser la productivité. &
+US56 & En tant que \textbf{chef de projet}, je souhaite consulter le temps passé par ticket afin d'analyser la productivité. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer un service d'agrégation calculant le ratio entre le temps estimé initial et le cumul des sessions réelles.
 \item Modéliser les graphiques de consommation horaire directement dans la vue détaillée du ticket.
 \end{itemize} & 2 \\
 \hline
 
-US58 & En tant que \textbf{développeur}, je souhaite signaler un blocage afin d'alerter sur un obstacle. &
+US57 & En tant que \textbf{développeur}, je souhaite signaler un blocage afin d'alerter sur un obstacle. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Mettre en place la procédure de levée d'incident bloquant sur une affectation avec description obligatoire de la cause.
 \item Taguer visuellement le ticket comme "bloqué" et émettre une alerte prioritaire vers l'encadrement.
 \end{itemize} & 2 \\
 \hline
 
-US59 & En tant que \textbf{chef de projet}, je souhaite résoudre un blocage afin de permettre au développeur de reprendre son travail. &
+US58 & En tant que \textbf{chef de projet}, je souhaite résoudre un blocage afin de permettre au développeur de reprendre son travail. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer la cinématique d'arbitrage (soumission, validation ou rejet d'une solution de déblocage).
 \item Restaurer le statut de production nominal du ticket et archiver la résolution pour la base de connaissances.
 \end{itemize} & 1 \\
 \hline
 
-US60 & En tant que \textbf{utilisateur}, je souhaite commenter un ticket avec mentions afin de communiquer efficacement. &
+US59 & En tant que \textbf{utilisateur}, je souhaite commenter un ticket avec mentions afin de communiquer efficacement. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint prenant en charge l'identification ciblée d'utilisateurs.
 \item Segmenter l'affichage pour isoler les notes internes (visibilité équipe) des commentaires partagés (visibles par le client).
 \end{itemize} & 2 \\
 \hline
 
-US61 & En tant que \textbf{utilisateur}, je souhaite ajouter des pièces jointes aux tickets afin de fournir du contexte. &
+US60 & En tant que \textbf{utilisateur}, je souhaite ajouter des pièces jointes aux tickets afin de fournir du contexte. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint.
 \item Assurer le contrôle de conformité des fichiers (poids, extensions autorisées) et leur association croisée au fil de discussion.
 \end{itemize} & 2 \\
 \hline
 
-US62 & En tant que \textbf{développeur}, je souhaite être informé lorsqu'un autre utilisateur modifie le même ticket. &
+US61 & En tant que \textbf{développeur}, je souhaite être informé lorsqu'un autre utilisateur modifie le même ticket. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Mettre en œuvre un service de synchronisation d'état en temps réel pour signaler la présence ou l'édition simultanée.
+\item Mettre en oeuvre un service de synchronisation d'état en temps réel pour signaler la présence ou l'édition simultanée.
 \item Rafraîchir dynamiquement les données à l'écran pour prévenir les collisions et écrasements de saisie.
 \end{itemize} & 3 \\
 \hline
 
-US63 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique complet d'un ticket afin de comprendre son évolution. &
+US62 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique complet d'un ticket afin de comprendre son évolution. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint compilant l'ensemble des mutations de l'entité.
 \item Restituer une frise chronologique (timeline) unifiée mêlant changements de statuts, assignations successives et jalons de vie.
@@ -215,49 +210,49 @@ US63 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique compl
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 15 - Assistance intelligente (IA)}} \\
 \hline
 
-US98 & En tant que \textbf{chef de projet}, je souhaite que l'IA analyse automatiquement les blocages afin d'identifier rapidement les problèmes critiques. &
+US97 & En tant que \textbf{chef de projet}, je souhaite que l'IA analyse automatiquement les blocages afin d'identifier rapidement les problèmes critiques. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item S'appuyer sur le service d'analyse des blocages exposé par l'API IA pour générer un diagnostic à partir du ticket signalé.
 \item Restituer une synthèse du blocage avec un niveau de confiance et l'afficher dans l'interface de suivi.
 \end{itemize} & 3 \\
 \hline
 
-US99 & En tant que \textbf{chef de projet}, je souhaite que l'IA propose des actions correctives afin de débloquer rapidement un développeur. &
+US98 & En tant que \textbf{chef de projet}, je souhaite que l'IA propose des actions correctives afin de débloquer rapidement un développeur. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Exploiter les endpoints d'analyse de blocage de l'API IA pour proposer des pistes de résolution à partir du contexte du ticket.
 \item Permettre au chef de projet de consulter les suggestions et de suivre l'escalade ou la validation de la solution proposée.
 \end{itemize} & 3 \\
 \hline
 
-US100 & En tant que \textbf{développeur}, je souhaite générer une suggestion de solution via l'IA afin de m'aider à rédiger la solution d'un ticket. &
+US99 & En tant que \textbf{développeur}, je souhaite générer une suggestion de solution via l'IA afin de m'aider à rédiger la solution d'un ticket. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Mettre à disposition un bouton de génération sur la fiche ticket permettant de déclencher manuellement la suggestion IA.
 \item Permettre au développeur de modifier ou compléter la suggestion avant publication sans aucune soumission automatique.
 \end{itemize} & 2 \\
 \hline
 
-US101 & En tant que \textbf{développeur}, je souhaite qu'un brouillon de solution soit généré à la fermeture d'un ticket afin de faciliter la documentation. &
+US100 & En tant que \textbf{développeur}, je souhaite qu'un brouillon de solution soit généré à la fermeture d'un ticket afin de faciliter la documentation. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Générer un brouillon de solution à partir du ticket via l'endpoint IA dédié, sans prétendre produire directement un article final publié.
 \item Afficher ce brouillon dans l'interface du ticket pour permettre une relecture et une édition manuelle avant toute mise en forme documentaire.
 \end{itemize} & 3 \\
 \hline
 
-US102 & En tant que \textbf{chef de projet}, je souhaite que l'IA propose une classification des demandes clients afin d'accélérer leur traitement. &
+US101 & En tant que \textbf{chef de projet}, je souhaite que l'IA propose une classification des demandes clients afin d'accélérer leur traitement. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Utiliser l'endpoint IA de suggestions sur les demandes pour récupérer une classification automatique avec score de confiance.
 \item Prévoir la reclassification et le feedback métier afin d'affiner les résultats de l'IA sur les demandes futures.
 \end{itemize} & 3 \\
 \hline
 
-US103 & En tant que \textbf{chef de projet}, je souhaite que l'IA structure automatiquement les solutions saisies en articles KB afin d'améliorer la documentation. &
+US102 & En tant que \textbf{chef de projet}, je souhaite que l'IA structure automatiquement les solutions saisies en articles KB afin d'améliorer la documentation. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item S'appuyer sur le brouillon de solution généré par l'IA pour structurer une base de documentation réutilisable.
 \item Laisser la possibilité de compléter, corriger et valider le contenu manuellement avant publication dans la base de connaissances.
 \end{itemize} & 2 \\
 \hline
 
-US104 & En tant que \textbf{chef de projet}, je souhaite que l'IA fusionne le brouillon d'un blocage avec la solution humaine afin de produire un article KB définitif. &
+US103 & En tant que \textbf{chef de projet}, je souhaite que l'IA fusionne le brouillon d'un blocage avec la solution humaine afin de produire un article KB définitif. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Fusionner le brouillon de blocage et la solution issue du ticket pour produire un contenu de type base de connaissances prêt à relecture.
 \item Conserver l'historique de l'analyse IA et de la résolution humaine afin d'éviter les doublons et de faciliter la validation finale.

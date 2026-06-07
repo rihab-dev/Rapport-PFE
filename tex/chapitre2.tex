@@ -89,7 +89,7 @@ Afin de garantir des latences minimales, même sous affluence critique, l'archit
 Pour les modules nécessitant une synchronisation instantanée (tels que les notifications ou les alertes de gestion), le système doit garantir une communication bidirectionnelle à faible latence entre le serveur et les clients afin d'assurer la transmission immédiate des flux d'informations.
 
 \item \textbf{Maintenabilité et Extensibilité :} 
-Le code source doit être structuré de manière modulaire en respectant les standards de conception logicielle (notamment les principes \textbf{SOLID} (acronyme des cinq principes de conception : \textit{Single responsibility} \cite{martin-agile}). Cela assure une maintenance facilitée, une documentation claire des interfaces (API) et une couverture de tests automatisés pour prévenir les régressions lors des évolutions futures.
+Le code source doit être structuré de manière modulaire en respectant les standards de conception logicielle, notamment les principes \textbf{SOLID} \cite{martin-agile}, acronyme des cinq principes fondamentaux : \textit{Single responsibility} (responsabilité unique), \textit{Open/closed} (ouvert à l'extension, fermé à la modification), \textit{Liskov substitution} (substitution de Liskov), \textit{Interface segregation} (ségrégation des interfaces) et \textit{Dependency inversion} (inversion des dépendances). Cela assure une maintenance facilitée, une documentation claire des interfaces (API) et une couverture de tests automatisés pour prévenir les régressions lors des évolutions futures.
 
 \end{itemize}
 
@@ -165,7 +165,7 @@ structuré selon les éléments suivants :
 \input{tex/product_backlog}
 
 \subsection{Planification des sprints}
-Le projet a été mené selon la méthodologie Scrum, structuré en quatre sprints successifs s'étalant sur une période globale d'environ quatres mois. Cette approche itérative suit une logique architecturale rigoureuse : la mise en place des fondations sécuritaires, le développement de la gestion contractuelle, l'implémentation du cœur métier, et enfin l'intégration des modules collaboratifs et analytiques.
+Le projet a été mené selon la méthodologie Scrum, structuré en quatre sprints successifs s'étalant sur une période globale d'environ quatre mois. Cette approche itérative suit une logique architecturale rigoureuse : la mise en place des fondations sécuritaires, le développement de la gestion contractuelle, l'implémentation du cœur métier, et enfin l'intégration des modules collaboratifs et analytiques.
 
 Chaque itération respecte le cycle Scrum, initié par une phase de planification (\textit{Sprint Planning}) et clôturé par les phases de revue (\textit{Sprint Review}) et de rétrospective (\textit{Sprint Retrospective}).
 
@@ -188,14 +188,14 @@ les rôles (RBAC).
 \noindent\textbf{User Stories sélectionnées :}
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
   \item \textbf{Epic 1 -- Authentification et Sécurité} : US01 à US06 (6 user stories)
-  \item \textbf{Epic 2 -- Gestion des utilisateurs} : US06 à US11 (5 user stories)
+  \item \textbf{Epic 2 -- Gestion des utilisateurs} : US07 à US11 (5 user stories)
   \item \textbf{Epic 3 -- Gestion des rôles et permissions} : US13 à US17 (5 user stories)
   \item \textbf{Epic 4 -- Demandes d'inscription OAuth} : US18 à US19 (2 user stories)
 \end{itemize}
 
 \noindent\textbf{Livrables attendus :}
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
-  \item Système d'authentification fonctionnel (JWT + OAuth Google/GitHub)
+  \item Système d'authentification fonctionnel (JWT (\textit{JSON Web Token}) + \textit{Open Authorization} Google/GitHub)
   \item Module de gestion des utilisateurs avec verrouillage de compte
   \item Système RBAC complet avec gestion des rôles et permissions granulaires
 \end{itemize}
@@ -211,7 +211,7 @@ de maintenance avec système d'alertes d'expiration et configuration SLA.
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
   \item \textbf{Epic 5 -- Gestion des clients et projets} : US20 à US27 (8 user stories)
   \item \textbf{Epic 6 -- Gestion des contrats} : US28 à US37 (10 user stories)
-  \item \textbf{Epic 14 -- Historique et traçabilité} : US97 à US96 (2 user stories)
+  \item \textbf{Epic 14 -- Historique et traçabilité} : US94 à US95 (2 user stories)
 \end{itemize}
 
 \noindent\textbf{Livrables attendus :}
@@ -231,9 +231,9 @@ demandes et tickets incluant suivi du temps, SLA et tableau Kanban.
 
 \noindent\textbf{User Stories sélectionnées :}
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
-  \item \textbf{Epic 8 -- Gestion des demandes clients} : US38 à US44 (7 user stories)
-  \item \textbf{Epic 9 -- Gestion des tickets} : US45 à US63 (19 user stories)
-  \item \textbf{Epic 15 -- Assistance intelligente} : US98 à US104 (7 user stories)
+  \item \textbf{Epic 7 -- Gestion des demandes clients} : US38 à US44 (7 user stories)
+  \item \textbf{Epic 8 -- Gestion des tickets} : US45 à US62 (18 user stories)
+  \item \textbf{Epic 15 -- Assistance intelligente} : US97 à US103 (7 user stories)
 \end{itemize}
 
 \noindent\textbf{Livrables attendus :}
@@ -252,12 +252,12 @@ planification.
 
 \noindent\textbf{User Stories sélectionnées :}
 \begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
-  \item \textbf{Epic 13 -- Calendrier et planification} : US64 à US67 (4 user stories)
-  \item \textbf{Epic 10 -- Messagerie et collaboration} : US68 à US74 (7 user stories)
-  \item \textbf{Epic 11 -- Gestion des documents} : US75 à US84 (9 user stories)
-  \item \textbf{Epic 12 -- Notifications et alertes} : US85 à US89 (5 user stories)
-  \item \textbf{Epic 13 -- Dashboards et rapports} : US90 à US94 (5 user stories)
-  \item \textbf{Epic 14 -- Historique et traçabilité} : US12, US82 et US97 (3 user stories)
+  \item \textbf{Epic 9 -- Calendrier et planification} : US63 à US66 (4 user stories)
+  \item \textbf{Epic 10 -- Messagerie et collaboration} : US67 à US73 (7 user stories)
+  \item \textbf{Epic 11 -- Gestion des documents} : US74 à US83 (9 user stories)
+  \item \textbf{Epic 12 -- Notifications et alertes} : US84 à US88 (5 user stories)
+  \item \textbf{Epic 13 -- Dashboards et rapports} : US89 à US93 (5 user stories)
+  \item \textbf{Epic 14 -- Historique et traçabilité} : US12, US81 et US96 (3 user stories)
 \end{itemize}
 
 \noindent
@@ -266,7 +266,7 @@ planification.
   \item Système de messagerie et collaboration temps réel (WebSocket)
   \item Module de gestion documentaire avec versioning et base de connaissances
   \item Système de notifications multicanaux (in-app, email, Slack et Web Push)
-  \item Module de génération de rapports et procès-verbaux PDF
+  \item Module de génération de rapports et procès-verbaux (PV) de résolution (documents récapitulatifs générés automatiquement à la clôture d’un ticket) 
   \item Tableaux de bord pour pilotage et calendrier de planification
   \item Système de traçabilité et historique des activités
 \end{itemize}
@@ -300,8 +300,7 @@ La figure ci-dessous illustre cette planification :
 \newpage
 \section{Environnement de Développement}
 \label{sec:environnement}
-On va commencer par la présentation de l'environnement matériel et logiciel que nous
-utilisons.
+Cette section présente l'environnement matériel et logiciel utilisé dans le cadre du développement de la plateforme.
 
 \subsection{Environnement matériel}
 \begin{table}[H]
@@ -366,7 +365,7 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
   balisage. » \cite{tailwindcss}}
 
 \cadretech{Images/chadcn.png}{%
-  \textbf{shadcn/ui v3.8 :} « est un ensemble de composants élégants et accessibles,
+  \textbf{shadcn/ui :} « est un ensemble de composants élégants et accessibles,
   ainsi qu'une plateforme de distribution de code. Compatible avec vos frameworks et
   modèles d'IA préférés. Logiciel libre. » \cite{shadcn-ui}}
 
@@ -404,7 +403,7 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
     \par
     \vspace{10pt}
 }
-\cadretechGitlab{Images/gitlab.png}{ \textbf{GitLab : } « offre un espace de stockage de code en ligne ainsi que des fonctionnalités de suivi des problèmes et d'intégration continue/déploiement continu ( CI/CD). Le dépôt permet d'héberger différentes branches de développement et
+\cadretechGitlab{Images/gitlab.png}{ \textbf{GitLab : } « offre un espace de stockage de code en ligne ainsi que des fonctionnalités de suivi des problèmes et d'intégration continue/déploiement continu (CI/CD — \textit{Continuous Integration / Continuous Deployment}). Le dépôt permet d'héberger différentes branches de développement et
   versions. » \cite{gitlab}}
 
 \newcommand{\cadretechUml}[2]{%
@@ -461,7 +460,7 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
 \end{minipage}\par\vspace{10pt}}
 
 \cadretechPrisma{Images/prisma.png}{%
-  \textbf{Prisma ORM v7 :} « est un ORM open source de nouvelle génération qui offre
+  \textbf{Prisma ORM (\textit{Object-Relational Mapping}) v7 :} « est un ORM (\textit{Object-Relational Mapping}) open source de nouvelle génération qui offre
   un accès rapide et sécurisé aux bases de données PostgreSQL, MySQL et autres. Il
   fournit un client typé généré automatiquement à partir du schéma de données,
   garantissant la sécurité des types à la compilation et des requêtes SQL optimisées
@@ -476,8 +475,7 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
 \end{minipage}\par\vspace{10pt}}
 
 \cadretechPostgres{Images/postgres.png}{%
-  \textbf{PostgreSQL 16 :} « est un système de gestion de bases de données
-  objet-relationnelles (SGBD-OR) open source. Il a été pionnier dans de nombreux
+  \textbf{PostgreSQL 16 :} « est un système de gestion de bases de données objet-relationnelles (SGBD-OR — \textit{Système de Gestion de Bases de Données} objet-relationnelles) (\textit{Système de Gestion de Bases de Données}) open source. Il a été pionnier dans de nombreux
   concepts qui ne sont devenus disponibles que bien plus tard dans certains systèmes
   de bases de données commerciaux. Il est reconnu pour sa robustesse, sa conformité
   aux standards SQL et ses performances sur de grands volumes de données. » \cite{postgresql}}

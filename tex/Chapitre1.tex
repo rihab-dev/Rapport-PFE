@@ -1,6 +1,6 @@
-
+﻿
 \section*{Introduction}
-Ce chapitre pose les fondations du projet en présentant le contexte organisationnel et technique de sa réalisation. Après la présentation de \textbf{SolidWall Consulting}, entreprise d'accueil du stage, nous analysons les processus actuels de gestion de maintenance et leurs limitations. L'étude comparative des solutions du marché permet d'identifier les axes d'amélioration et de définir les contours de \textbf{SolidMaint}. Enfin, nous exposons la méthodologie Scrum, le langage UML et la planification prévisionnelle du développement.
+Ce chapitre pose les fondations du projet en présentant le contexte organisationnel et technique de sa réalisation. Après la présentation de \textbf{SolidWall Consulting}, entreprise d'accueil du stage, nous analysons les processus actuels de gestion de maintenance et leurs limitations. L'étude comparative des solutions du marché permet d'identifier les axes d'amélioration et de définir les contours de \textbf{SolidMaint}. Enfin, nous exposons la méthodologie Scrum, le langage UML (\textit{Unified Modeling Language}) et la planification prévisionnelle du développement.
 
 \section{Présentation de l’organisme d’accueil} 
 « Solid Wall Consulting est une société de services informatiques, spécialisée dans le développement web, le développement mobile et l'intégration de solutions et d'infrastructures systèmes « Microsoft ». 
@@ -20,7 +20,7 @@ Forte d'une équipe dynamique et diversifiée et de profils reconnus, l’entrep
 \section{Cadre du projet}
 \label{sec:cadre_projet}
 \subsection{Contexte du projet}
-Dans le cadre de notre projet de fin d’études à l’\textbf{Institut Supérieur des Études Technologiques de Radès}, nous avons effectué un stage de quatre mois au sein de \textbf{SolidWall Consulting}, du 02 février au 31 mai 2026.
+Dans le cadre de notre projet de fin d’études (PFE) à l’\textbf{Institut Supérieur des Études Technologiques de Radès} (ISET), nous avons effectué un stage de quatre mois au sein de \textbf{SolidWall Consulting}, du 02 février au 31 mai 2026.
 Notre mission consiste à concevoir et à réaliser une application web de gestion des contrats de maintenance.
 \newline
 Cette solution vise à automatiser et à centraliser l’ensemble du processus métier, garantissant ainsi une traçabilité complète des interventions techniques ainsi que le respect rigoureux des engagements contractuels.
@@ -126,7 +126,7 @@ Jira Service Management, lancé en 2013 par Atlassian, propose un cadre ITSM (In
 
 \subsubsection{Critique de l'existant}
 
-Actuellement, la gestion des contrats de maintenance au sein de SolidWall Consulting se fait par échange de courriels. Cette approche présente certaines limites.
+Actuellement, la gestion des contrats de maintenance au sein de SolidWall Consulting repose sur un ensemble d'outils disparates : des documents Word pour les contrats, WhatsApp ou des courriels pour les demandes clients, et des fichiers Excel pour le suivi des interventions, sans système centralisé. Cette approche présente certaines limites.
 \begin{enumerate}[label=\textcolor{bleuPerso}{\alph*)}, labelsep=0.5em]
 
  \item \noindent{\textbf{\textcolor{bleuPerso}{Limitations du processus actuel }}}
@@ -171,7 +171,7 @@ Actuellement, la gestion des contrats de maintenance au sein de SolidWall Consul
     \hline
     Gestion de parc (Assets) & \checkmark & Limité (Payant) & $\times$ \\
     \hline
-    Messagerie \& Chat intégré & $\times$ & Limité & \checkmark \\
+    Messagerie \& Chat intégré & Limité & Limité & \checkmark \\
     \hline
     IA \& Suggestions automatiques & $\times$ & \checkmark & \checkmark \\
     \hline
@@ -323,17 +323,17 @@ La structure organisationnelle de Scrum s'appuie sur trois rôles qui répartiss
 \subsubsection{Product Owner}
 Le Product Owner est responsable de la valeur métier du produit. Il formalise les besoins, priorise le Product Backlog et arbitre les choix fonctionnels pour garantir que chaque incrément livre un bénéfice réel.
 
-Dans le cadre de SolidMaint, ce rôle est incarné par notre encadrante en entreprise. Elle porte la vision métier du projet, définit les exigences de l'application et priorise les éléments du Product Backlog en fonction des objectifs de SolidWall Consulting.
+Dans le cadre de SolidMaint, ce rôle est assuré par \textbf{Monsieur Mejdi Dhokar}. Il porte la vision métier du projet, définit les exigences de l’application et priorise les éléments du Product Backlog en fonction des objectifs de SolidWall Consulting.
 
 \subsubsection{Scrum Master}
 Le Scrum Master est le garant du cadre Scrum. Il veille à ce que les pratiques agiles soient respectées, facilite les cérémonies et aide à lever les obstacles qui freinent l'équipe.
 
-Sur ce projet, cette responsabilité est assurée par le responsable de l'entreprise. Il anime les points de synchronisation et veille à la bonne application des principes agiles au quotidien.
+Sur ce projet, ce rôle est assuré par \textbf{Madame Maissa Ben Fredj}, encadrante en entreprise. Elle anime les points de synchronisation et veille à la bonne application des principes agiles au quotidien.
 
 \subsubsection{Les développeurs}
 L'équipe de développement est chargée de la réalisation opérationnelle : conception, configuration, développement et tests. Elle transforme les besoins priorisés en incréments fonctionnels prêts à être validés.
 
-Pour SolidMaint, ce rôle est incarné par le binôme d'étudiantes Rihab Chourou et Eya Gharbi, qui assure conjointement l'ensemble des travaux techniques du projet.
+Pour SolidMaint, ce rôle est assuré par Rihab Chourou et Eya Gharbi, qui prennent en charge l’ensemble des travaux techniques du projet.
 
 \subsection{Événements Scrum}
 Les événements Scrum constituent des points de synchronisation structurés qui rythment l'exécution, entretiennent la discipline itérative, et incarnent les trois piliers de transparence, d'inspection et d'adaptation. Chaque événement possède une durée maximale prescrite et sert un objectif métier bien défini.

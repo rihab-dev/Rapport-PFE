@@ -29,14 +29,14 @@ US12 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique de me
 \item Créer une interface de timeline interactive et filtrable côté Next.js.
 \end{itemize} & 2 \\
 \hline
-US82 & En tant qu'\textbf{utilisateur}, je souhaite voir qui a consulté un document afin de suivre sa diffusion. &
+US81 & En tant qu'\textbf{utilisateur}, je souhaite voir qui a consulté un document afin de suivre sa diffusion. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item  Développer l'endpoint pour enregistrer et lister les consultations.
 \item  Développer l'endpoint pour afficher les statistiques de consultation.
 \item Restituer une frise chronologique avec les utilisateurs et les dates d'accès.
 \end{itemize} & 1 \\
 \hline
-US97 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique complet d'un ticket afin de retracer son cycle de vie. &
+US96 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique complet d'un ticket afin de retracer son cycle de vie. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Les événements retournés incluent : création, changements de statut, sessions de travail, assignations/désassignations, commentaires, pièces jointes, blocages/résolutions, extensions SLA.
 \item Restituer tous les événements (statuts, sessions, assignations, commentaires, blocages, extensions SLA) avec auteur, date et valeurs avant/après.
@@ -44,11 +44,11 @@ US97 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique compl
 \end{itemize} & 3 \\
 \hline
 
-% Epic 13: Calendrier et planification
-\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 13 - Calendrier et planification}} \\
+% Epic 9: Calendrier et planification
+\multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 9 - Calendrier et planification}} \\
 \hline
 
-US64 & En tant qu'\textbf{utilisateur}, je souhaite visualiser les tickets et demandes de maintenance sur un calendrier mensuel afin d'avoir une vue globale des interventions. &
+US63 & En tant qu'\textbf{utilisateur}, je souhaite visualiser les tickets et demandes de maintenance sur un calendrier mensuel afin d'avoir une vue globale des interventions. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item S'appuyer sur les listes de tickets et de demandes déjà exposées par l'API et les afficher dans la vue calendrier de l'application.
 \item Rendre les éléments dans la page "/calendrier" via les vues "month" et "agenda" avec code couleur par type d'élément.
@@ -56,7 +56,7 @@ US64 & En tant qu'\textbf{utilisateur}, je souhaite visualiser les tickets et de
 \end{itemize} & 3 \\
 \hline
 
-US65 & En tant qu'\textbf{administrateur}, je souhaite identifier visuellement les urgences SLA sur le calendrier afin de prioriser les interventions critiques. &
+US64 & En tant qu'\textbf{administrateur}, je souhaite identifier visuellement les urgences SLA sur le calendrier afin de prioriser les interventions critiques. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Calculer l'urgence à partir des dates d'échéance des tickets et des indicateurs SLA déjà présents dans le dashboard.
 \item Mettre en évidence les tickets critiques ou expirés dans le calendrier sans créer de route dédiée supplémentaire.
@@ -64,7 +64,7 @@ US65 & En tant qu'\textbf{administrateur}, je souhaite identifier visuellement l
 \end{itemize} & 2 \\
 \hline
 
-US66 & En tant que \textbf{chef de projet}, je souhaite accéder à une vue Gantt / Agenda afin d'analyser la charge de travail et la progression de chaque développeur. &
+US65 & En tant que \textbf{chef de projet}, je souhaite accéder à une vue Gantt / Agenda afin d'analyser la charge de travail et la progression de chaque développeur. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Exploiter les endpoints pour alimenter la vue de planning.
 \item Réutiliser le composant \texttt{GanttAgendaView} pour afficher la charge par développeur et la progression des tickets.
@@ -72,16 +72,17 @@ US66 & En tant que \textbf{chef de projet}, je souhaite accéder à une vue Gant
 \end{itemize} & 3 \\
 \hline
 
-US67 & En tant qu'\textbf{utilisateur}, je souhaite accéder aux détails d'un ticket directement depuis le calendrier afin de consulter ou modifier l'intervention rapidement. &
+US66 & En tant qu'\textbf{utilisateur}, je souhaite accéder aux détails d'un ticket directement depuis le calendrier afin de consulter ou modifier l'intervention rapidement. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Ouvrir les fiches ticket ou demande depuis le calendrier.
 \item Afficher la timeline d'un ticket depuis sa fiche détaillée.
 \item Permettre un accès rapide à la consultation et à la mise à jour depuis la vue calendrier.
 \end{itemize} & 2 \\
 \hline
+
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 10 - Messagerie et collaboration}} \\
 \hline
-US68 & En tant qu'\textbf{utilisateur}, je souhaite accéder à une messagerie intégrée afin de communiquer avec mon équipe. &
+US67 & En tant qu'\textbf{utilisateur}, je souhaite accéder à une messagerie intégrée afin de communiquer avec mon équipe. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item S'appuyer sur les endpoints et le namespace WebSocket.
 \item Afficher les canaux personnels, les canaux liés aux tickets et les messages directs.
@@ -89,7 +90,7 @@ US68 & En tant qu'\textbf{utilisateur}, je souhaite accéder à une messagerie i
 \end{itemize} & 3 \\
 \hline
 
-US69 & En tant qu'\textbf{utilisateur}, je souhaite envoyer des messages dans un Canal afin de communiquer. &
+US68 & En tant qu'\textbf{utilisateur}, je souhaite envoyer des messages dans un Canal afin de communiquer. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Utiliser les endpoints pour envoyer un message dans un canal.
 \item Gérer aussi l'envoi avec pièces jointes.
@@ -97,7 +98,7 @@ US69 & En tant qu'\textbf{utilisateur}, je souhaite envoyer des messages dans un
 \end{itemize} & 2 \\
 \hline
 
-US70 & En tant qu'\textbf{utilisateur}, je souhaite répondre à un message afin de créer un fil de discussion. &
+US69 & En tant qu'\textbf{utilisateur}, je souhaite répondre à un message afin de créer un fil de discussion. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Réutiliser les endpoints pour créer une réponse liée.
 \item Afficher le fil associé.
@@ -105,7 +106,7 @@ US70 & En tant qu'\textbf{utilisateur}, je souhaite répondre à un message afin
 \end{itemize} & 2 \\
 \hline
 
-US71 & En tant qu'\textbf{utilisateur}, je souhaite mentionner des collègues afin d'attirer leur attention. &
+US70 & En tant qu'\textbf{utilisateur}, je souhaite mentionner des collègues afin d'attirer leur attention. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Détecter les mentions lors de l'envoi d'un message.
 \item Centraliser les mentions reçues avec l'endpoint.
@@ -113,7 +114,7 @@ US71 & En tant qu'\textbf{utilisateur}, je souhaite mentionner des collègues af
 \end{itemize} & 2 \\
 \hline
 
-US72 & En tant qu'\textbf{utilisateur}, je souhaite éditer mes messages afin de corriger des erreurs. &
+US71 & En tant qu'\textbf{utilisateur}, je souhaite éditer mes messages afin de corriger des erreurs. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Autoriser la modification d'un message.
 \item Rafraîchir le fil en temps réel via l'événement.
@@ -121,7 +122,7 @@ US72 & En tant qu'\textbf{utilisateur}, je souhaite éditer mes messages afin de
 \end{itemize} & 1 \\
 \hline
 
-US73 & En tant qu'\textbf{utilisateur}, je souhaite supprimer mes messages afin de retirer du contenu inapproprié. &
+US72 & En tant qu'\textbf{utilisateur}, je souhaite supprimer mes messages afin de retirer du contenu inapproprié. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Supprimer un message.
 \item Diffuser la suppression en temps réel.
@@ -129,7 +130,7 @@ US73 & En tant qu'\textbf{utilisateur}, je souhaite supprimer mes messages afin 
 \end{itemize} & 1 \\
 \hline
 
-US74 & En tant qu'\textbf{utilisateur}, je souhaite voir qui est en ligne afin de savoir qui est disponible. &
+US73 & En tant qu'\textbf{utilisateur}, je souhaite voir qui est en ligne afin de savoir qui est disponible. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Diffuser le statut via le namespace WebSocket et l'événement.
 \item Mettre à jour la dernière connexion côté backend à la connexion WebSocket.
@@ -139,7 +140,7 @@ US74 & En tant qu'\textbf{utilisateur}, je souhaite voir qui est en ligne afin d
 
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 11 - Gestion des documents}} \\
 \hline
-US75 & En tant qu'\textbf{utilisateur}, je souhaite uploader des documents afin de centraliser les fichiers. &
+US74 & En tant qu'\textbf{utilisateur}, je souhaite uploader des documents afin de centraliser les fichiers. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Utiliser l'endpoint d'upload pour déposer un ou plusieurs fichiers.
 \item Associer les documents à un ticket ou à un contrat via \texttt{ticketId} ou \texttt{contratId}.
@@ -147,7 +148,7 @@ US75 & En tant qu'\textbf{utilisateur}, je souhaite uploader des documents afin 
 \end{itemize} & 3 \\
 \hline
 
-US76 & En tant qu'\textbf{utilisateur}, je souhaite télécharger des documents afin de les consulter hors ligne. &
+US75 & En tant qu'\textbf{utilisateur}, je souhaite télécharger des documents afin de les consulter hors ligne. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item S'appuyer sur la liste des documents et sur l'URL du fichier renvoyée par l'objet document.
 \item Enregistrer la consultation.
@@ -155,7 +156,7 @@ US76 & En tant qu'\textbf{utilisateur}, je souhaite télécharger des documents 
 \end{itemize} & 2 \\
 \hline
 
-US77 & En tant qu'\textbf{utilisateur}, je souhaite gérer les versions des documents afin d'assurer la traçabilité. &
+US76 & En tant qu'\textbf{utilisateur}, je souhaite gérer les versions des documents afin d'assurer la traçabilité. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Consulter l'historique.
 \item Remplacer un document par une nouvelle version.
@@ -163,7 +164,7 @@ US77 & En tant qu'\textbf{utilisateur}, je souhaite gérer les versions des docu
 \end{itemize} & 2 \\
 \hline
 
-US78 & En tant qu'\textbf{administrateur}, je souhaite archiver des documents afin de nettoyer la vue active. &
+US77 & En tant qu'\textbf{administrateur}, je souhaite archiver des documents afin de nettoyer la vue active. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Archiver un document.
 \item Restaurer un document.
@@ -171,7 +172,7 @@ US78 & En tant qu'\textbf{administrateur}, je souhaite archiver des documents af
 \end{itemize} & 1 \\
 \hline
 
-US79 & En tant que \textbf{chef de projet}, je souhaite générer automatiquement un PV à partir d'un ticket afin de documenter les interventions. &
+US78 & En tant que \textbf{chef de projet}, je souhaite générer automatiquement un PV (\textit{Procès-Verbal}) à partir d'un ticket afin de documenter les interventions. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Préremplir les données du PV.
 \item Générer le PV.
@@ -179,37 +180,40 @@ US79 & En tant que \textbf{chef de projet}, je souhaite générer automatiquemen
 \end{itemize} & 3 \\
 \hline
 
-US80 & En tant que \textbf{client}, je souhaite accéder aux documents de mes contrats et à mes justificatifs de tickets afin de centraliser nos échanges de fichiers. & 
+US79 & En tant que \textbf{client}, je souhaite accéder aux documents de mes contrats et à mes justificatifs de tickets afin de centraliser nos échanges de fichiers. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Lister les documents (avec filtres \textbf{ticketId} ou \textbf{contratId}).
 \item Filtrage automatique côté serveur : sur un ticket, ne retourner que les documents dont l'utilisateur est l'auteur (\textbf{uploadeurId}).
 \end{itemize} & 1 \\
 \hline
 
-US81 & En tant qu'\textbf{utilisateur}, je souhaite créer une nouvelle version d'un document afin de maintenir l'historique. &
+US80 & En tant qu'\textbf{utilisateur}, je souhaite créer une nouvelle version d'un document afin de maintenir l'historique. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Créer une nouvelle version en remplaçant le fichier.
 \item Conserver les versions précédentes.
 \item Assurer la continuité de l'historique documentaire.
 \end{itemize} & 2 \\
 \hline
-US83 & En tant que \textbf{développeur ou chef de projet}, je souhaite consulter la base de connaissances afin de trouver des solutions existantes. &
+
+US82 & En tant que \textbf{développeur ou chef de projet}, je souhaite consulter la base de connaissances afin de trouver des solutions existantes. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Consulter les articles.
 \item Rechercher des articles liés à un ticket.
 \item Utiliser les suggestions contextuelles.
 \end{itemize} & 2 \\
 \hline
-US84 & En tant qu'\textbf{administrateur}, je souhaite créer des articles de la base de connaissances afin d'enrichir la documentation. &
+
+US83 & En tant qu'\textbf{administrateur}, je souhaite créer des articles de la base de connaissances afin d'enrichir la documentation. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Créer un article manuel.
 \item Mettre à jour ou archiver un article.
 \item Enregistrer l'usage des articles.
 \end{itemize} & 2 \\
 \hline
+
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 12 - Notifications et alertes}} \\
 \hline
-US85 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications in-app afin d'être informé en temps réel. &
+US84 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications in-app afin d'être informé en temps réel. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Lister les notifications.
 \item Marquer une notification comme lue ou tout lire.
@@ -217,7 +221,7 @@ US85 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications i
 \end{itemize} & 2 \\
 \hline
 
-US86 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications par email afin d'être informé hors connexion. &
+US85 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications par email afin d'être informé hors connexion. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Gérer les préférences email.
 \item Déclencher les envois depuis les événements métier déjà existants.
@@ -225,7 +229,7 @@ US86 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications p
 \end{itemize} & 2 \\
 \hline
 
-US87 & En tant que \textbf{utilisateur}, je souhaite recevoir des notifications Slack afin d'être alerté sur mon outil de travail. &
+US86 & En tant que \textbf{utilisateur}, je souhaite recevoir des notifications Slack afin d'être alerté sur mon outil de travail. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Configurer les intégrations Slack.
 \item Consulter, modifier ou supprimer une configuration par contrat.
@@ -233,7 +237,7 @@ US87 & En tant que \textbf{utilisateur}, je souhaite recevoir des notifications 
 \end{itemize} & 2 \\
 \hline
 
-US88 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications push navigateur afin d'être alerté même hors onglet. &
+US87 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications push navigateur afin d'être alerté même hors onglet. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Récupérer la clé publique.
 \item S'abonner ou se désabonner.
@@ -241,16 +245,17 @@ US88 & En tant qu'\textbf{utilisateur}, je souhaite recevoir des notifications p
 \end{itemize} & 2 \\
 \hline
 
-US89 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique de mes notifications afin de retrouver une information. &
+US88 & En tant qu'\textbf{utilisateur}, je souhaite consulter l'historique de mes notifications afin de retrouver une information. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Lister les notifications avec pagination.
 \item Ouvrir le centre de notifications depuis le bouton du header.
 \item Afficher l'historique dans une vue chronologique avec le compteur de non lus.
 \end{itemize} & 1 \\
 \hline
+
 \multicolumn{4}{|l|}{\cellcolor{blue!20}\textbf{Epic 13 - Dashboards et rapports}} \\
 \hline
-US90 & En tant qu'\textbf{administrateur}, je souhaite consulter un dashboard global afin de piloter le système. &
+US89 & En tant qu'\textbf{administrateur}, je souhaite consulter un dashboard global afin de piloter le système. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Consulter les statistiques globales.
 \item Compléter le tableau de bord.
@@ -258,16 +263,16 @@ US90 & En tant qu'\textbf{administrateur}, je souhaite consulter un dashboard gl
 \end{itemize} & 3 \\
 \hline
 
-US91 & En tant que \textbf{chef de projet}, je souhaite consulter un dashboard d'équipe afin de piloter l'activité. &
+US90 & En tant que \textbf{chef de projet}, je souhaite consulter un dashboard d'équipe afin de piloter l'activité. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
-\item Développer les endpoints de récupération des indicateurs clés de performance (KPI) du chef de projet.
+\item Développer les endpoints de récupération des indicateurs clés de performance (KPI) (\textit{Key Performance Indicator}) du chef de projet.
 \item Suivre l'évolution de l'activité et afficher les actions récentes.
 \item Visualiser les indicateurs clés de performance (KPI) de suivi d'activité.
 \item Suivre l'évolution de la progression des projets.
 \end{itemize} & 2 \\
 \hline
 
-US92 & En tant que \textbf{client}, je souhaite consulter mon dashboard afin de suivre mes projets. &
+US91 & En tant que \textbf{client}, je souhaite consulter mon dashboard afin de suivre mes projets. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Accéder à une vue de suivi personnalisée pour le client.
 \item Afficher les projets, tickets et indicateurs clés relatifs au périmètre du compte client.
@@ -275,14 +280,15 @@ US92 & En tant que \textbf{client}, je souhaite consulter mon dashboard afin de 
 \end{itemize} & 2 \\
 \hline
 
-US93 & En tant qu'\textbf{administrateur}, je souhaite générer un rapport d'activité mensuel afin de présenter les statistiques. &
+US92 & En tant qu'\textbf{administrateur}, je souhaite générer un rapport d'activité mensuel afin de présenter les statistiques. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint de génération du rapport mensuel avec paramètres de mois et d'année.
 \item Permettre un filtrage optionnel par client.
 \item Réutiliser les métriques déjà calculées par le dashboard admin.
 \end{itemize} & 3 \\
 \hline
-US94 & En tant que \textbf{chef de projet}, je souhaite générer des rapports d'activité afin de présenter l'avancement. &
+
+US93 & En tant que \textbf{chef de projet}, je souhaite générer des rapports d'activité afin de présenter l'avancement. &
 \begin{itemize}[nosep, left=0pt, label={$\bullet$}]
 \item Développer l'endpoint de génération du rapport du chef de projet avec filtres par période, projet et client.
 \item Produire un rapport par projet ou par période à partir des données réelles de tickets et de demandes.

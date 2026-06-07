@@ -9,11 +9,10 @@ Dans ce chapitre, nous présentons donc les fonctionnalités développées duran
 % SECTION 1 : SPRINT PLANNING MEETING
 % ─────────────────────────────────────────────────────────────────────────────
 
-\section{Réunion de planification du sprint (Sprint Planning Meeting)}
+\section{Réunion de planification du sprint}
 La réunion de planification du quatrième sprint nous a permis de définir les objectifs à atteindre durant les trois dernières semaines de développement. Nous avons sélectionné les user stories prioritaires correspondant aux fonctionnalités de collaboration, de suivi et de communication, et nous avons estimé l'effort nécessaire pour chacune d'elles. Cette étape est déterminante pour garantir que l'ensemble de l'équipe partage une vision commune du travail à accomplir et que les livrables finaux répondent aux exigences exprimées dans le product backlog.
 
 \subsection{Objectif du Sprint}
-
 L'objectif principal de ce sprint est de finaliser la plateforme en offrant aux utilisateurs des outils de suivi, de communication et de gestion documentaire efficaces. Il s'agit concrètement de mettre en place un calendrier interactif permettant de visualiser les tickets et les demandes d'intervention dans le temps, d'intégrer des tableaux de bord personnalisés par rôle pour piloter l'activité et générer des rapports périodiques, de déployer un module de messagerie interne en temps réel facilitant la collaboration entre les membres de l'équipe au sein de canaux dédiés, de proposer un espace documentaire centralisé avec gestion des versions et traçabilité des consultations, et enfin de mettre en place un système de notifications multicanaux in-app, email, push navigateur et Slack afin que chaque acteur reçoive les informations pertinentes au moment opportun.
 
 \subsubsection{Backlog du quatrième sprint}
@@ -65,7 +64,7 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -121,7 +120,7 @@ Dans cette partie, nous présentons le raffinement des scénarios liés à la me
 \subsubsection{Description textuelle du cas d'utilisation « Envoyer message privé »}
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -175,7 +174,7 @@ Dans cette partie, nous présentons le raffinement des scénarios liés à la me
 \subsubsection{Description textuelle du cas d'utilisation « Envoyer message audio »}
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -224,7 +223,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/gererDocumentsdrawio.png}
+  \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme cas d'utilisationDocument.png}
   \caption{Raffinement du cas d'utilisation « Gérer documents »}
   \label{fig:gerer_documents}
 \end{figure}
@@ -234,7 +233,7 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -284,7 +283,7 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -304,11 +303,12 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'acteur ouvre un ticket et sélectionne l'action "Générer le PV"
-\item Le système interroge la base et charge instantanément le contexte du ticket
-\item Le système affiche la fenêtre modale du PV. Les champs client, temps passé, et la solution apportée sont affichés automatiquement sans saisie manuelle.
-\item L'acteur complète les champs libres : "Observations particulières" et "Matériel utilisé".
-\item Le système enregistre le PDF comme document définitif rattaché au ticket.
+\item Dès que le ticket passe à l'état "Résolu", le système déclenche automatiquement la génération du Procès-Verbal (PV).
+\item Le système interroge la base de données et extrait instantanément le contexte global du ticket.
+\item Les informations essentielles (client, temps passé, solution apportée) ainsi que les détails complémentaires (observations particulières et matériel utilisé) sont récupérés et insérés dans le document sans aucune saisie manuelle.
+\item Le système génère le fichier PDF de manière totalement autonome.
+\item Le système enregistre le PDF comme document définitif et le rattache automatiquement au ticket.
+
 \end{enumerate}
 \vspace{0.2cm}
 \end{minipage} \\
@@ -340,7 +340,7 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -404,7 +404,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme Consulter Notification.drawio.png}
+  \includegraphics[width=0.65\textwidth,height=0.65\textheight,keepaspectratio]{Images/Diagramme Consulter Notification.png}
   \caption{Raffinement du cas d'utilisation « Gérer notifications »}
   \label{fig:consulter_notifications}
 \end{figure}
@@ -414,7 +414,7 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -449,14 +449,13 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle du cas d'utilisation « Configurer préférences notifications »}
-\newpage
 
 \subsubsection{Description textuelle du cas d’utilisation « Configurer intégration Slack »}
 Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Configurer intégration Slack ».
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\begin{longtable}{|P{4cm}|P{11.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{4cm}|p{11.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -499,7 +498,7 @@ Les notifications sont actives selon les préférences choisies. \\
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «Configurer intégration Slack »}
+\captionof{table}{Description textuelle du cas d’utilisation «~Configurer intégration Slack »}
 \normalsize
 
 % ─────────────────────────────────────────────────────────────────────────────
@@ -514,9 +513,7 @@ Cette section présente les choix de conception retenus pour ce sprint,
 principaux flux fonctionnels
 
 \subsection{Diagrammes de séquence}
-Dans cette section, nous allons modéliser les intéractions entre l'utilisateur
-et le système à l'aide de diagrammes de séquences pour mieux comprendre
-la logique de la solution.
+Dans cette section, modélisons les interactions entre les acteurs et le système, à l'aide de diagrammes de séquences, afin de détailler les flux de collaboration et de communication en temps réel.
 
 \subsubsection{Diagramme de séquences du cas d'utilisation « Envoyer message multimédia »}
 
@@ -533,7 +530,7 @@ des modules et leurs interactions au sein de l'architecture de la solution.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1.3\textwidth,keepaspectratio]{Images/diag comp.png}
+\includegraphics[width=1.1\textwidth,keepaspectratio]{Images/diag comp.png}
 \caption{Diagramme de composants de l'application}
 \label{fig:diagramme_composants_sprint4}
 \end{figure}
@@ -553,7 +550,7 @@ des composants sur les différents nœuds d'exécution.
     \label{fig:diagramme_deploiement_sprint4}
 \end{figure}
 
-Le diagramme de déploiement illustre la distribution physique de la plateforme \textbf{SolidMaint}. Le poste client (Device) héberge le navigateur web qui charge l'interface utilisateur. Côté infrastructure, le serveur d'application principal repose sur un environnement d'exécution Docker (Docker Host) qui orchestre les différents conteneurs isolés construits à partir des images du projet~: \texttt{solidmaint\_frontend} (Next.js / SSR) et \texttt{solidmaint\_backend} (NestJS / API REST). 
+Le diagramme de déploiement illustre la distribution physique de la plateforme \textbf{SolidMaint}. Le poste client (Device) héberge le navigateur web qui charge l'interface utilisateur. Côté infrastructure, le serveur d'application principal repose sur un environnement d'exécution Docker (Docker Host) qui orchestre les différents conteneurs isolés construits à partir des images du projet~: \texttt{solidmaint\_frontend} (Next.js / SSR (\textit{Server-Side Rendering} )) et \texttt{solidmaint\_backend} (NestJS / API REST). 
 
 Dans cette configuration, les communications HTTP s'effectuent directement : le navigateur client accède au front-end sur le port 3000, et réalise ses appels API directement vers le back-end sur le port 3001. Enfin, le back-end communique de manière sécurisée en TCP/IP avec les serveurs de données dédiés : le serveur de base de données relationnelle PostgreSQL 16 (port 5432) et le serveur de cache en mémoire Redis 7 (port 6379), assurant ainsi des performances optimales via une gestion efficace du Rate-Limiting et de la persistance.
 
@@ -596,9 +593,65 @@ Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui
 }
 
 % ─────────────────────────────────────────────────────────────────────────────
-% SECTION 4 : RÉALISATION
+% SECTION 5 : RÉTROSPECTIVE DU SPRINT
 % ─────────────────────────────────────────────────────────────────────────────
+\section{Rétrospective du Sprint}
+\label{sec:retrospective_sprint4}
+À la fin de ce quatrième et dernier sprint, l'équipe a tenu une réunion de rétrospective afin d'évaluer le travail accompli. Le tableau \ref{tab:retrospective_sprint4} présente les points clés de cette session, en structurant les réussites, les difficultés fonctionnelles et techniques, ainsi que les axes d'amélioration.
 
+\begingroup
+\renewcommand{\arraystretch}{1.4}
+\small
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{5.5cm}|p{9.5cm}|}
+\hline
+\rowcolor{secondary}
+\multicolumn{1}{|>{\centering\arraybackslash}p{5.5cm}|}{\textbf{\color{white}Question}} & \multicolumn{1}{>{\centering\arraybackslash}p{9.5cm}|}{\textbf{\color{white}Réponse}} \\
+\hline
+\endfirsthead
+\hline
+\endlastfoot
+Qu'est-ce qu'on a bien fait ? & 
+Intégration du module de messagerie instantanée en temps réel et du système de notifications multicanaux (internes, courriels, push, Slack). \newline
+Centralisation de la gestion documentaire avec versionnage automatique et génération automatisée des rapports d'activité. \\
+\hline
+Qu'est-ce qui ne s'est pas bien passé ? & 
+L'adaptation responsive des graphiques sur les tableaux de bord a causé des retards d'intégration. \newline
+La gestion et le stockage des messages vocaux ont nécessité des ajustements de synchronisation temps réel. \newline
+Le chargement des anciens messages lors du défilement vers le haut a provoqué des sauts visuels de l'interface. \newline
+Les temps de réponse des requêtes de filtrage sur le journal d'activités ont augmenté sous charge. \\
+\hline
+Que devrions-nous arrêter de faire ? & 
+Concevoir des interfaces de tableaux de bord en testant le rendu uniquement sur grand écran. \newline
+Envoyer les messages vocaux au format brut (WAV) sans compression. \newline
+Réinitialiser la position du défilement (scroll) lors de l'insertion de nouveaux messages dans la liste. \newline
+Lancer des requêtes de recherche vers le serveur à chaque saisie de caractère sans délai d'attente (debounce). \\
+\hline
+Que devrions-nous commencer à faire ? & 
+Valider l'affichage des graphiques sur différentes résolutions d'écran. \newline
+Écrire des tests unitaires avec Vitest pour valider l'encodage des messages vocaux. \newline
+Créer des tests End-to-End avec Playwright pour valider le défilement et la messagerie. \newline
+Lancer des tests de charge avec k6 pour valider la performance des filtres sous charge. \\
+\hline
+\end{longtable}
+\vspace{-15pt}
+\captionof{table}{Rétrospective du quatrième sprint}
+\label{tab:retrospective_sprint4}
+\endgroup
+
+% ─────────────────────────────────────────────────────────────────────────────
+% SECTION 6 : RÉALISATION
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Suivi des user stories avec Notion}
+
+La figure ci-dessous présente le tableau Notion récapitulant l'ensemble des user stories 
+du quatrième sprint, toutes marquées comme terminées à l'issue de ce sprint.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio]{Images/notion sprint 4.png}
+    \caption{Tableau Notion — User Stories du quatrième sprint }
+    \label{fig:notion_sprint4}
+\end{figure}
 \section{Réalisation}
 \label{sec:realisation_sprint4}
 
@@ -706,7 +759,7 @@ ses préférences par type d'événement depuis son profil.
 % SECTION 5 : TESTS
 % ─────────────────────────────────────────────────────────────────────────────
 
-\section{Tests}
+\section{Tests et Validation}
 \label{sec:tests_sprint4}
 
 La phase de test du quatrième et dernier sprint a permis de valider les fonctionnalités transversales de la plateforme : messagerie interne, gestion documentaire, calendrier, tableaux de bord, journal d'activités et notifications multicanaux.
@@ -786,7 +839,7 @@ Les tests d'intégration ont été effectués via \textbf{Swagger UI} et les poi
 
 \end{itemize}
 
-\subsubsection{Tests End-to-End (\textbf{E2E})}
+\subsection{Tests End-to-End}
 
 Les tests End-to-End ont été exécutés avec \textbf{Playwright} afin de simuler des parcours utilisateur complets dans un navigateur réel. Ils permettent de vérifier l'enchaînement réel entre l'interface Next.js, l'API NestJS et la persistance en base de données, en particulier pour les fonctionnalités transversales du sprint 4.
 
@@ -796,7 +849,7 @@ Les tests End-to-End ont été exécutés avec \textbf{Playwright} afin de simul
 \begin{itemize}[leftmargin=0pt]
 \item[$\square$] \textbf{Test du parcours de messagerie}
 
-\noindent Cette suite de tests E2E valide le bon fonctionnement des fonctionnalités temps-réel de communication liées aux tickets et la manipulation des messages. Les cas suivants ont été couverts :
+\noindent Cette suite de tests End-to-End valide le bon fonctionnement des fonctionnalités temps-réel de communication liées aux tickets et la manipulation des messages. Les cas suivants ont été couverts :
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
   \item L'utilisateur ouvre un canal lié à un ticket et retrouve l'historique des messages.
@@ -932,7 +985,7 @@ et que les fichiers dépassant la limite de 10 Mo retournent
 \includegraphics[width=0.75\textwidth]{Images/test-secu-documentaire-413.png}
 \caption{Test de sécurité — validation des fichiers uploadés}
 \end{figure}
-\end{itemize}
+
 
 % ─────────────────────────────────────────────────────────────────────────────
 % CONCLUSION DU CHAPITRE

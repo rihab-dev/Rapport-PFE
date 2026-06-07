@@ -1,7 +1,5 @@
 ﻿\section*{Introduction}
 
-\section*{Introduction}
-
 Dans le chapitre précédent, nous avons mis en place les fondations du
 système : l'authentification, la gestion des utilisateurs avec leurs rôles
 et permissions, ainsi que le traitement des demandes d'inscription via
@@ -15,15 +13,13 @@ journal d'activités.
 % ------------------------------------------------------------------
 % SECTION 1 : BACKLOG DU SPRINT 2
 % ------------------------------------------------------------------
-\section{Réunion de planification du sprint (Sprint Planning Meeting)}
+\section{Réunion de planification du sprint}
 La réunion de planification du deuxième sprint nous a permis de définir les objectifs à atteindre durant les trois prochaines semaines. Nous avons sélectionné les user stories prioritaires et estimé l'effort nécessaire pour chacune d'elles. Cette étape est importante pour que toute l'équipe comprenne bien le travail à réaliser.
+
 \subsection{Objectif du Sprint}
-Ce sprint vise à développer les fonctionnalités essentielles du système.
-L'objectif principal est de mettre en place la gestion complète des clients
-et des contrats de maintenance, d'assurer le suivi des engagements de
-service à travers leurs SLA, de faciliter la collaboration via l'affectation
-des équipes aux projets, et de garantir la traçabilité complète des
-opérations effectuées à travers le journal d'activités.
+Ce sprint vise à développer la gestion complète des clients, des projets et des contrats de maintenance, à intégrer le suivi des engagements SLA, à faciliter la collaboration via l'affectation des équipes aux projets, et à implémenter le journal d'activités pour assurer la traçabilité complète des opérations.
+Dans ce deuxième sprint, nous avons également défini l'identité visuelle de \textbf{SolidMaint}, incluant la conception de son logo, présentée dans le chapitre 2.
+
 
 \subsubsection{Backlog du deuxième sprint}
 \label{sec:backlog_sprint2}
@@ -64,7 +60,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\begin{longtable}{|P{4cm}|P{11.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{4cm}|p{11.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -98,13 +94,13 @@ Le journal d'activités est affiché avec les filtres appliqués. \\
 \hline
 \textbf{Scénario alternatif} &
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Aucun log ne correspond aux filtres appliqués le système affiche un message « Aucun résultat trouvé », l'administrateur modifie ou réinitialise les filtres et \textbf{reprend à l'étape 3}.
+\item Aucun log ne correspond aux filtres appliqués ; le système affiche un message « Aucun résultat trouvé », l'administrateur modifie ou réinitialise les filtres et \textbf{reprend à l'étape 3}.
 \item L'administrateur choisit d'afficher les statistiques globales : le système présente le total du jour, le taux de succès, les utilisateurs uniques, les actions les plus fréquentes et l'activité par heure.
-\item L'administrateur sélectionne un utilisateur spécifique le système affiche son activité des 30 derniers jours, son taux de succès et les entités les plus actives.
+\item L'administrateur sélectionne un utilisateur spécifique ; le système affiche son activité des 30 derniers jours, son taux de succès et les entités les plus actives.
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «Consulter journal d'activités »}
+\captionof{table}{Description textuelle du cas d’utilisation «~Consulter journal d'activités »}
 \normalsize
 
 \subsection{Analyse de la fonctionnalité « Gérer clients »}
@@ -126,7 +122,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\begin{longtable}{|P{4cm}|P{11.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{4cm}|p{11.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -165,7 +161,7 @@ Un message de confirmation est affiché. \\
 \hline
 \textbf{Scénario alternatif} &
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'administrateur ajoute ou corrige manuellement le logo de la société et l'adresse le flux continue normalement.
+\item L'administrateur ajoute ou corrige manuellement le logo de la société et l'adresse ; le flux continue normalement.
 \item Si un champ obligatoire est vide ou invalide : le système affiche une erreur, l'administrateur corrige la saisie et \textbf{retourne à l'étape 3}.
 \item Si l'e-mail est déjà utilisé : le système signale le doublon, l'administrateur saisit un autre e-mail et \textbf{retourne à l'étape 3}.
 \end{enumerate} \\
@@ -176,14 +172,14 @@ Un message de confirmation est affiché. \\
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «Ajouter client »} 
+\captionof{table}{Description textuelle du cas d’utilisation «~Ajouter client »} 
 \normalsize
 \subsubsection{Description textuelle du cas d’utilisation « Désactiver client »}
 Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Désactiver client ».
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\begin{longtable}{|P{4cm}|P{11.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{4cm}|p{11.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -221,13 +217,13 @@ Le client à désactiver doit être actuellement actif. \\
 \hline
 \textbf{Scénario alternatif} &
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item  Le système détecte des contrats actifs ou des tickets non résolus et bloque l'action l'administrateur clôture les contrats et résout les tickets nécessaires, puis \textbf{reprend à l'étape 2} avec succès.
-\item L'administrateur réalise qu'il a cliqué sur le mauvais client il choisit "Annuler", ferme la boîte et \textbf{reprend à l'étape 1} avec le bon client.
+\item  Le système détecte des contrats actifs ou des tickets non résolus et bloque l'action ; l'administrateur clôture les contrats et résout les tickets nécessaires, puis \textbf{reprend à l'étape 2} avec succès.
+\item L'administrateur réalise qu'il a cliqué sur le mauvais client ; il choisit "Annuler", ferme la boîte et \textbf{reprend à l'étape 1} avec le bon client.
 \end{enumerate} \\
 
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «Désactiver client »} 
+\captionof{table}{Description textuelle du cas d’utilisation «~Désactiver client »} 
 \normalsize
 
 
@@ -236,7 +232,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\begin{longtable}{|P{4cm}|P{11.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{4cm}|p{11.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -281,7 +277,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «Ajouter projet livré »} 
+\captionof{table}{Description textuelle du cas d’utilisation «~Ajouter projet livré »} 
 \normalsize
 
 \subsection{Analyse de la fonctionnalité « Gérer Contrats »}
@@ -303,7 +299,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\begin{longtable}{|P{4cm}|P{11.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{4cm}|p{11.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -331,7 +327,7 @@ Le contrat est visible dans la liste des contrats et lié au client sélectionn�
 \item L'administrateur clique sur « Nouveau », sélectionne le mode \textit{Saisie manuelle} et renseigne les informations du contrat.
 \item L'administrateur configure le niveau de service (SLA) avec les délais de réponse et de résolution par priorité.
 \item L'administrateur valide le formulaire.
-\item Le système contrôle la cohérence des données, calcule automatiquement la TVA et le montant TTC.
+\item Le système contrôle la cohérence des données, calcule automatiquement la TVA (\textit{Taxe sur la Valeur Ajoutée}) et le montant TTC (\textit{Toutes Taxes Comprises}).
 \item Le système enregistre le contrat, crée le canal de communication associé et confirme par un message de succès.
 \end{enumerate}
 \vspace{2pt}
@@ -339,18 +335,18 @@ Le contrat est visible dans la liste des contrats et lié au client sélectionn�
 \hline
 \textbf{Scénario alternatif} &
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item  L'administrateur dépose un fichier PDF le système pré-remplit le formulaire automatiquement, l'administrateur vérifie et valide.
-\item  Le système signale qu'un contrat actif existe déjà pour ce client/projet l'administrateur choisit un autre projet ou attend l'expiration du contrat existant.
-\item  Un champ obligatoire vide, dates incohérentes ou montant invalide le système affiche l'erreur, l'administrateur corrige et \textbf{reprend à l'étape 3}.
+\item  L'administrateur dépose un fichier PDF ; le système pré-remplit le formulaire automatiquement, l'administrateur vérifie et valide.
+\item  Le système signale qu'un contrat actif existe déjà pour ce client/projet ; l'administrateur choisit un autre projet ou attend l'expiration du contrat existant.
+\item  Un champ obligatoire vide, dates incohérentes ou montant invalide ; le système affiche l'erreur, l'administrateur corrige et \textbf{reprend à l'étape 3}.
 \item le système détecte que le fichier PDF importé est un doublon 
-d'un contrat existant (détection par hash)  le système 
+d'un contrat existant (détection par hash) ; le système 
 signale le conflit, l'administrateur soumet un fichier différent et 
 \textbf{reprend à l'étape 3}.
 \end{enumerate} \\
 \hline
 
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «Créer contrat »}
+\captionof{table}{Description textuelle du cas d’utilisation «~Créer contrat »}
 \normalsize
 
 \subsubsection{Description textuelle du cas d’utilisation « Archiver contrat »}
@@ -358,7 +354,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\begin{longtable}{|P{4cm}|P{11.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{4cm}|p{11.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -395,14 +391,14 @@ Le motif d'archivage est enregistré et associé au contrat. \\
 \textbf{Scénario alternatif} &
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item L'administrateur sélectionne plusieurs contrats expirés et clique sur « Archiver la sélection » le système archive tous les contrats éligibles et affiche le nombre de contrats archivés avec succès.
-\item Le motif saisi contient moins de 10 caractères le bouton de confirmation reste désactivé, l'administrateur complète le motif et \textbf{reprend à l'étape 4}.
-\item Le système signale que le contrat est toujours actif l'administrateur revient à la liste et sélectionne un contrat expiré.
-\item Le système indique que le projet associé est en statut de maintenance l'administrateur clôture d'abord le projet, puis \textbf{reprend à l'étape 1}.
-\item Le système détecte des tickets en statut « ouvert », « en cours » ou « en revue » liés au contrat l'administrateur résout ces tickets, puis \textbf{reprend à l'étape 1}.
+\item Le motif saisi contient moins de 10 caractères ; le bouton de confirmation reste désactivé, l'administrateur complète le motif et \textbf{reprend à l'étape 4}.
+\item Le système signale que le contrat est toujours actif ; l'administrateur revient à la liste et sélectionne un contrat expiré.
+\item Le système indique que le projet associé est en statut de maintenance ; l'administrateur clôture d'abord le projet, puis \textbf{reprend à l'étape 1}.
+\item Le système détecte des tickets en statut « ouvert », « en cours » ou « en revue » liés au contrat ; l'administrateur résout ces tickets, puis \textbf{reprend à l'étape 1}.
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «Archiver contrat »}
+\captionof{table}{Description textuelle du cas d’utilisation «~Archiver contrat »}
 \normalsize
 
 \subsection{Analyse de la fonctionnalité « Suivre contrats »}
@@ -427,7 +423,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\begin{longtable}{|P{4cm}|P{11.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{4cm}|p{11.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -463,12 +459,12 @@ L'administrateur est notifié par e-mail et notification interne. \\
 \hline
 \textbf{Scénario alternatif} &
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le motif saisi contient moins de 10 caractères le bouton de confirmation reste désactivé, le client complète le motif et \textbf{reprend à l'étape 4}.
+\item Le motif saisi contient moins de 10 caractères ; le bouton de confirmation reste désactivé, le client complète le motif et \textbf{reprend à l'étape 4}.
 \item Le bouton « Demander la résiliation » est masqué pour les contrats non actifs ; le client revient à la liste et sélectionne un contrat actif.
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «Demander résiliation »}
+\captionof{table}{Description textuelle du cas d’utilisation «~Demander résiliation »}
 \normalsize
 
 
@@ -479,7 +475,7 @@ Cette section présente les choix de conception retenus pour ce sprint,
 principaux flux fonctionnels
 
 \subsection{Diagramme de séquences}
-Dans cette section, nous allons modéliser les intéractions entre l'utilisateur et le système à l'aide de diagrammes de séquences pour mieux comprendre la logique de la solution.
+Dans cette section, nous modélisons les interactions entre les acteurs et le système à l’aide de diagrammes de séquences, afin d’illustrer les flux de traitement propres à la gestion contractuelle.
 \subsubsection{Diagramme de séquences du cas d'utilisation « Demander Résiliation »}
 
 \begin{figure}[H]
@@ -532,6 +528,57 @@ Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui
 \textbf{JournalActivite} (\underline{id}, action, method, path, ipAddress, status, description, metadata, \textbf{\#idUtilisateur})
 }
 
+% ─────────────────────────────────────────────────────────────────────────────
+% RÉTROSPECTIVE DU SPRINT
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Rétrospective du Sprint}
+À la fin de ce deuxième sprint, nous avons organisé une réunion de rétrospective afin d'analyser le déroulement du travail. Le tableau \ref{tab:retrospective_sprint2} résume les points clés soulevés par l'équipe, en mettant en évidence les réussites, les difficultés rencontrées et les actions d'amélioration pour la suite du projet.
+
+\begingroup
+\renewcommand{\arraystretch}{1.4}
+\small
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{5.5cm}|p{9.5cm}|}
+\hline
+\rowcolor{secondary}
+\multicolumn{1}{|>{\centering\arraybackslash}p{5.5cm}|}{\textbf{\color{white}Question}} & \multicolumn{1}{>{\centering\arraybackslash}p{9.5cm}|}{\textbf{\color{white}Réponse}} \\
+\hline
+\endfirsthead
+\hline
+\endlastfoot
+Qu'est-ce qu'on a bien fait ? & 
+Livraison de la gestion des clients, des projets et des contrats dans les délais prévus. \newline
+Mise en place du journal d'activités pour assurer la traçabilité des opérations. \newline
+Intégration du flux de résiliation côté client et côté administrateur. \\
+\hline
+Qu'est-ce qui ne s'est pas bien passé ? & 
+La gestion des niveaux de service (SLA) par contrat a demandé plusieurs itérations avant d'aboutir à une solution stable. \newline
+La coordination entre les modules clients et contrats a nécessité des ajustements en cours de sprint. \\
+\hline
+Que devrions-nous arrêter de faire ? & 
+Développer les formulaires complexes (contrat, projet) sans maquette validée au préalable. \newline
+Laisser les tests de contrôle d'accès aux objets (vulnérabilité \textbf{IDOR} — \textit{Insecure Direct Object Reference}, qui consiste à accéder à une ressource d'un autre utilisateur en manipulant un identifiant) en fin de sprint. \\
+\hline
+Que devrions-nous commencer à faire ? & 
+Valider les règles métier des contrats (archivage, résiliation) avec le Product Owner dès le début du sprint. \newline
+Automatiser les tests de non-régression sur les modules livrés précédemment. \\
+\hline
+\end{longtable}
+\vspace{-15pt}
+\captionof{table}{Rétrospective du deuxième sprint}
+\label{tab:retrospective_sprint2}
+\endgroup
+
+\subsection{Suivi des user stories avec Notion}
+
+La figure ci-dessous présente le tableau Notion récapitulant l'ensemble des user stories 
+du deuxième  sprint, toutes marquées comme terminées à l'issue de ce sprint.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio]{Images/notion sprint 2.png}
+    \caption{Tableau Notion — User Stories du deuxième  sprint}
+    \label{fig:notion_sprint2}
+\end{figure}
 \section{Réalisation}
 \label{sec:realisation_sprint2}
 Cette section présente les principales interfaces utilisateur développées durant le deuxième sprint. Chaque interface a été conçue pour offrir une expérience claire aux différents acteurs de la plateforme.
@@ -597,7 +644,7 @@ tests end-to-end, tests de performance et tests de sécurité.
 \label{sec:tests_unitaires_sprint2}
 
 
-Les tests unitaires ont été réalisés avec \textbf{Vitest} (framework de test JavaScript/TypeScript) en isolant chaque service grâce à des mocks Prisma (simulations d'objets pour la base de données).
+Les tests unitaires ont été réalisés avec \textbf{Vitest} en isolant chaque service grâce à des mocks Prisma (simulations d'objets pour la base de données).
 
 
 \begin{itemize}[leftmargin=0pt]
@@ -642,6 +689,101 @@ doublons. Les cas suivants ont été couverts :
   {Images/test-unitaire-contrats-sprint2.png}
 \caption{Test du module Contrats}
 \label{fig:test_unitaire_sprint2}
+\end{figure}
+
+\end{itemize}
+%─────────────────────────────────────────────────────────────────────────────
+%─────────────────────────────────────────────────────────────────────────────
+\subsection{Tests d'intégration}
+\label{sec:tests_integration_sprint2}
+Les tests d'intégration valident les endpoints \textbf{REST} (\textit{Representational State Transfer}) des contrats via \textbf{Swagger UI} (interface utilisateur de documentation d'API), en interagissant directement avec le backend en cours d'exécution.
+\begin{itemize}[leftmargin=0pt]
+
+\item[$\square$] \textbf{Test du module Gestion des contrats}
+\newline \textit{Endpoints : \textbf{POST /api/contrats/:id/resilier}, \textbf{GET /api/contrats}, \textbf{GET /api/contrats/:clientId}}
+\noindent Cette suite valide le comportement des endpoints de gestion des contrats.
+\newline Les cas suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item Un contrat actif est résilié par l'administrateur avec un motif valide : l'endpoint retourne le code \textbf{200 OK} et le statut du contrat est mis à jour.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/resilier.png}
+  \caption{Test d'intégration - Résiliation d'un contrat}
+  \label{fig:test_integration_resiliation_contrat}
+  \end{figure}
+  
+  \item Un client tente d'accéder à la liste complète des contrats : l'endpoint retourne le code \textbf{403 Forbidden}, seuls ses propres contrats lui sont accessibles via \texttt{GET /api/contrats/:clientId}.
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/get client test interg sprint 2.png}
+  \caption{Test d'intégration - Accès à la liste des contrats}
+  \label{fig:test_integration_liste_contrats}
+  \end{figure}
+\end{itemize}
+\end{itemize}
+
+\subsection{Tests de sécurité}
+Les tests de sécurité du deuxième sprint ont ciblé la protection des
+données contractuelles et la prévention des accès non autorisés entre
+clients.
+
+\subsubsection{Test d'isolation des données (\textbf{IDOR} - \textit{Insecure Direct Object Reference})}
+La vulnérabilité \textbf{IDOR} consiste à accéder à une ressource appartenant à un autre utilisateur en manipulant un identifiant. Ce test a vérifié qu'un client authentifié
+ne peut pas consulter les contrats d'un autre client.
+
+Un utilisateur avec le rôle \texttt{CLIENT} a tenté d'accéder à la liste
+complète des contrats via \texttt{GET /api/contrats}. Le système a
+retourné \texttt{403 Forbidden}, confirmant que l'accès est
+restreint aux seuls contrats appartenant au client authentifié.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{Images/get client test interg1 sprint 2.png}
+\caption{Test de sécurité — isolation des données contractuelles (IDOR)}
+\end{figure}
+%─────────────────────────────────────────────────────────────────────────────
+%─────────────────────────────────────────────────────────────────────────────
+\subsubsection{Tests End-to-End}
+\label{sec:tests_e2e_contract}
+
+Les tests End-to-End de création de contrat valident le flux complet
+d'ajout d'un nouveau contrat dans un navigateur réel piloté par
+\textbf{Playwright}. Ces tests interagissent avec le frontend Next.js,
+le backend NestJS et la base de données PostgreSQL, couvrant ainsi
+l'intégralité du parcours utilisateur depuis la sélection du mode de
+création jusqu'à la validation finale du contrat.
+\newline
+
+\noindent\textbf{Bilan : les scénarios critiques du sprint ont été exécutés avec succès.}
+\vspace{6pt}
+
+\begin{itemize}[leftmargin=0pt]
+
+\item[$\square$] \textbf{Test du module Création de contrat}
+\newline \textit{3 scénarios : affichage formulaire, création valide, annulation}
+
+\noindent Cette suite valide le flux complet de création de contrat en
+simulant les actions réelles d'un utilisateur sur l'interface. Les cas
+suivants ont été couverts :
+
+\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
+  \item Accès à \texttt{/fr/contrats/nouveau} : affichage d'un dialogue proposant \textbf{Saisie Manuelle} et \textbf{Import de document}.
+  \item Choix de \textbf{Saisie Manuelle} puis clic sur \textbf{Continuer} : affichage du formulaire manuel.
+  \item Sélection d'un client (\og Ines Miled \fg{}) et d'un projet (\og app test 2 \fg{}) via les sélecteurs natifs.
+  \item Renseignement d'une date de début, d'une date de fin et d'un montant mensuel (2000).
+  \item Création d'un modèle SLA personnalisé via la modale \og Nouveau modèle SLA \fg{} : saisie du nom, enregistrement, confirmation.
+  \item Soumission du formulaire : redirection vers \texttt{/contrats} et message \og Contrat créé avec succès \fg{}.
+  \item Clic sur \textbf{Abandonner} : redirection vers la liste des contrats sans création.
+  \item Saisie d'une date de fin antérieure à la date de début : détection d'incohérence et blocage de la soumission.
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=14cm,height=14cm,keepaspectratio]
+  {Images/ExecDeTestCasesReussi-contract.png}
+\caption{Tests End-to-End — Création de contrat via Playwright}
+\label{fig:test_e2e_contract}
 \end{figure}
 
 \end{itemize}
@@ -724,102 +866,6 @@ de consultation des contrats, projets et clients.
 \caption{Capture des résultats d'exécution k6 — Test de charge Sprint 2}
 \label{fig:perf_sprint2}
 \end{figure}
-
-\subsection{Tests de sécurité}
-Les tests de sécurité du deuxième sprint ont ciblé la protection des
-données contractuelles et la prévention des accès non autorisés entre
-clients.
-
-\subsubsection{Test d'isolation des données (\textbf{IDOR} - \textit{Insecure Direct Object Reference})}
-La vulnérabilité \textbf{IDOR} consiste à accéder à une ressource appartenant à un autre utilisateur en manipulant un identifiant. Ce test a vérifié qu'un client authentifié
-ne peut pas consulter les contrats d'un autre client.
-
-Un utilisateur avec le rôle \texttt{CLIENT} a tenté d'accéder à la liste
-complète des contrats via \texttt{GET /api/contrats}. Le système a
-retourné \texttt{403 Forbidden}, confirmant que l'accès est
-restreint aux seuls contrats appartenant au client authentifié.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.5\textwidth]{Images/get client test interg1 sprint 2.png}
-\caption{Test de sécurité — isolation des données contractuelles (IDOR)}
-\end{figure}
-%─────────────────────────────────────────────────────────────────────────────
-%─────────────────────────────────────────────────────────────────────────────
-\subsection{Tests d'intégration}
-\label{sec:tests_integration_sprint2}
-Les tests d'intégration valident les endpoints \textbf{REST} (\textit{Representational State Transfer}) des contrats via \textbf{Swagger UI} (interface utilisateur de documentation d'API), en interagissant directement avec le backend en cours d'exécution.
-\begin{itemize}[leftmargin=0pt]
-
-\item[$\square$] \textbf{Test du module Gestion des contrats}
-\newline \textit{Endpoints : \textbf{POST /api/contrats/:id/resilier}, \textbf{GET /api/contrats}, \textbf{GET /api/contrats/:clientId}}
-\noindent Cette suite valide le comportement des endpoints de gestion des contrats.
-\newline Les cas suivants ont été couverts :
-
-\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item Un contrat actif est résilié par l'administrateur avec un motif valide : l'endpoint retourne le code \textbf{200 OK} et le statut du contrat est mis à jour.
-  \begin{figure}[H]
-  \centering
-  \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/resilier.png}
-  \caption{Test d'intégration - Résiliation d'un contrat}
-  \label{fig:test_integration_resiliation_contrat}
-  \end{figure}
-  
-  \item Un client tente d'accéder à la liste complète des contrats : l'endpoint retourne le code \textbf{403 Forbidden}, seuls ses propres contrats lui sont accessibles via \texttt{GET /api/contrats/:clientId}.
-  \begin{figure}[H]
-  \centering
-  \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/get client test interg sprint 2.png}
-  \caption{Test d'intégration - Accès à la liste des contrats}
-  \label{fig:test_integration_liste_contrats}
-  \end{figure}
-\end{itemize}
-
-\end{itemize}
-%─────────────────────────────────────────────────────────────────────────────
-%─────────────────────────────────────────────────────────────────────────────
-\subsubsection{Tests End-to-End (\textbf{E2E})}
-\label{sec:tests_e2e_contract}
-
-Les tests End-to-End de création de contrat valident le flux complet
-d'ajout d'un nouveau contrat dans un navigateur réel piloté par
-\textbf{Playwright}. Ces tests interagissent avec le frontend Next.js,
-le backend NestJS et la base de données PostgreSQL, couvrant ainsi
-l'intégralité du parcours utilisateur depuis la sélection du mode de
-création jusqu'à la validation finale du contrat.
-\newline
-
-\noindent\textbf{Bilan : les scénarios critiques du sprint ont été exécutés avec succès.}
-\vspace{6pt}
-
-\begin{itemize}[leftmargin=0pt]
-
-\item[$\square$] \textbf{Test du module Création de contrat}
-\newline \textit{3 scénarios : affichage formulaire, création valide, annulation}
-
-\noindent Cette suite valide le flux complet de création de contrat en
-simulant les actions réelles d'un utilisateur sur l'interface. Les cas
-suivants ont été couverts :
-
-\begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
-  \item Accès à \texttt{/fr/contrats/nouveau} : affichage d'un dialogue proposant \textbf{Saisie Manuelle} et \textbf{Import de document}.
-  \item Choix de \textbf{Saisie Manuelle} puis clic sur \textbf{Continuer} : affichage du formulaire manuel.
-  \item Sélection d'un client (\og Ines Miled \fg{}) et d'un projet (\og app test 2 \fg{}) via les sélecteurs natifs.
-  \item Renseignement d'une date de début, d'une date de fin et d'un montant mensuel (2000).
-  \item Création d'un modèle SLA personnalisé via la modale \og Nouveau modèle SLA \fg{} : saisie du nom, enregistrement, confirmation.
-  \item Soumission du formulaire : redirection vers \texttt{/contrats} et message \og Contrat créé avec succès \fg{}.
-  \item Clic sur \textbf{Abandonner} : redirection vers la liste des contrats sans création.
-  \item Saisie d'une date de fin antérieure à la date de début : détection d'incohérence et blocage de la soumission.
-\end{itemize}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=14cm,height=14cm,keepaspectratio]
-  {Images/ExecDeTestCasesReussi-contract.png}
-\caption{Tests End-to-End — Création de contrat via Playwright}
-\label{fig:test_e2e_contract}
-\end{figure}
-
-\end{itemize}
 
 %─────────────────────────────────────────────────────────────────────────────
 \section*{Conclusion}

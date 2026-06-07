@@ -5,156 +5,10 @@ Dans le chapitre précédent, nous avons mis en place la gestion des projets et 
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 1 : BACKLOG DU SPRINT 3
 % ─────────────────────────────────────────────────────────────────────────────
-\section{Réunion de planification du sprint (Sprint Planning Meeting)}
+\section{Réunion de planification du sprint}
 La planification du sprint est une étape essentielle du processus de développement, car elle permet de clarifier les fonctionnalités à implémenter, de prioriser les besoins métier et d’organiser la réalisation dans une logique incrémentale.
 \subsection{Objectifs du sprint}
 L’objectif principal de ce sprint était d’implémenter le cœur opérationnel de la plateforme de gestion des tickets, en assurant la prise en charge complète du cycle de vie d’une demande jusqu’à sa conversion en ticket, puis son traitement collaboratif par les équipes techniques. Ce sprint visait également à intégrer des mécanismes avancés de suivi du temps, de gestion des SLA, de pilotage via Kanban et d’assistance intelligente à la décision.
-
-\subsection{Intégration de l'intelligence artificielle}
-
-Dans le cadre de ce sprint, l'intégration de l'intelligence artificielle
-a constitué un axe transversal visant à automatiser et à assister plusieurs
-étapes critiques du cycle de traitement des demandes : qualification
-initiale, priorisation, analyse des blocages et capitalisation des
-connaissances. Cette intégration a été pensée comme un composant à part entière de la plateforme, permettant ainsi de fluidifier le travail des équipes tout en garantissant des réponses plus rapides et fiables.
-
-\subsubsection{Fonctionnalités développées}
-
-Le composant IA expose des services asynchrones déclenchés automatiquement
-aux moments clés du cycle de vie des demandes et des tickets, sans bloquer
-les flux principaux. Les fonctionnalités intégrées au cours de ce sprint
-sont les suivantes :
-
-\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
-    \item \textbf{Classification automatique des demandes :} à la soumission
-    d'une demande client, le service IA analyse le titre et la description
-    pour inférer le type, la priorité et la catégorie. Le résultat inclut un
-    score de confiance et un raisonnement explicatif, soumis à validation du
-    chef de projet avant application.
-    \item \textbf{Analyse des blocages :} à la déclaration d'un blocage, une
-    analyse est déclenchée en arrière-plan pour identifier la nature probable
-    de l'obstacle et proposer des actions correctives adaptées au contexte
-    du ticket.
-    \item \textbf{Génération d'un brouillon de solution :} le module génère
-    un premier jet de résolution structuré, que le développeur peut consulter,
-    modifier et soumettre depuis l'interface de détail du ticket.
-    \item \textbf{Structuration en articles de base de connaissances :} lors
-    de la résolution d'un blocage, la solution validée et l'analyse IA sont
-    fusionnées pour produire un article structuré, soumis à validation avant
-    publication dans la base de connaissances partagée.
-\end{itemize}
-
-\subsubsection{Les grands modèles de langage (LLM)}
-
-Les grands modèles de langage (\textit{Large Language Models}, LLM) sont
-des modèles entraînés sur des corpus textuels massifs, fondés sur
-l'architecture \textit{Transformer}. Ils permettent de comprendre
-l'intention d'un texte en langue naturelle et de produire des réponses
-structurées sans nécessiter d'apprentissage spécifique au domaine métier.
-Dans notre contexte, ils couvrent trois besoins : la qualification
-automatique des demandes, l'analyse des blocages techniques et la
-structuration des solutions en articles de base de connaissances.
-Afin de retenir le modèle le plus adapté, nous avons comparé les principaux
-LLM disponibles selon les critères pertinents pour notre cas d'usage :
-qualité de traitement du français technique, support natif du format JSON (\textit{JavaScript Object Notation}),
-latence et coût d'accès via API (\textit{Application Programming Interface}), comme le présente le
-tableau~\ref{tab:comparaison_llm}.
-
-\begin{table}[H]
-\centering
-\renewcommand{\arraystretch}{1.2}
-\small
-\begin{tabular}{|P{2.8cm}|P{2.3cm}|P{2.0cm}|P{2.0cm}|P{2.0cm}|P{2.0cm}|}
-\hline
-\textbf{Modèle} & \textbf{Éditeur} & \textbf{Qualité FR} &
-\textbf{JSON natif} & \textbf{Latence} & \textbf{Coût API} \\
-\hline
-GPT-4o            & OpenAI      & Excellente & Oui & Modérée     & Élevé  \\
-\hline
-Claude 3.5 Sonnet & Anthropic   & Très bonne & Oui & Modérée     & Élevé  \\
-\hline
-Gemini 1.5 Pro    & Google      & Très bonne & Oui & Variable    & Modéré \\
-\hline
-Mistral Large     & Mistral AI  & Très bonne & Oui & Faible      & Modéré \\
-\hline
-LLaMA 3.3 (70B)   & Meta / Groq & Bonne      & Oui & Très faible & Faible \\
-\hline
-\end{tabular}
-\caption{Comparaison des principaux LLM selon les critères du projet}
-\label{tab:comparaison_llm}
-\end{table}
-
-\subsubsection{Choix du modèle}
-
-À l'issue de cette analyse comparative et au regard des fonctionnalités
-à couvrir, le modèle retenu est (\textit{Large Language Model Meta AI}) \textbf{LLaMA~3.3 (70B)}, exploité via
-l'\textbf{API Groq Cloud}. Ce choix se justifie par plusieurs facteurs
-complémentaires : une latence très faible grâce aux processeurs LPU (\textit{Language Processing Unit}) de
-Groq (environ 700 tokens par seconde), le support natif du format JSON
-permettant une intégration directe avec la base de données, une qualité
-suffisante en français technique pour les cas d'usage ciblés, et un accès
-gratuit lors de la phase de développement. Par ailleurs, LLaMA étant un
-modèle open-source, il offre la possibilité d'un hébergement local à terme,
-garantissant une indépendance vis-à-vis d'un fournisseur externe.
-
-\subsubsection{Robustesse opérationnelle et gouvernance}
-
-Afin d'assurer la fiabilité du composant IA en conditions réelles,
-plusieurs mécanismes complémentaires ont été mis en place.
-
-\paragraph{Protection des données personnelles.}
-Avant toute transmission d'un texte à l'API Groq Cloud, un filtre
-détecte et masque automatiquement les informations personnelles
-identifiables : un numéro de téléphone, une adresse électronique ou
-un nom complet présents dans la description d'une demande sont
-remplacés par des marqueurs neutres avant envoi, garantissant qu'aucune
-donnée sensible ne quitte le périmètre de la plateforme.
-
-\paragraph{Cache par empreinte de contenu.}
-Pour éviter des appels redondants à l'API externe, chaque texte soumis
-à la classification est identifié par une empreinte numérique calculée
-sur son contenu normalisé. Si une demande au libellé identique a déjà
-été classifiée, le résultat est restitué directement depuis le cache
-sans solliciter le modèle, avec une durée de validité d'une heure
-réinitialisée à chaque mise à jour.
-
-\paragraph{Réessais et mécanisme de repli.}
-En cas d'erreur transitoire lors de l'appel au modèle, le service
-effectue jusqu'à deux nouvelles tentatives avec des délais croissants
-entre chaque essai. Si, après épuisement des tentatives, le score de
-confiance retourné reste inférieur au seuil minimal accepté, la
-demande est automatiquement marquée pour révision manuelle par le
-chef de projet, sans interrompre le flux de traitement.
-
-\paragraph{Limitation des appels par utilisateur.}
-Un système de quotas journaliers est appliqué par utilisateur et de
-manière globale. Lorsque le seuil d'alerte est atteint (80\% du quota),
-le système émet un avertissement interne. Au-delà du quota journalier,
-les appels supplémentaires sont rejetés avec un message explicite,
-les compteurs étant réinitialisés automatiquement à minuit.
-
-\paragraph{Traçabilité des décisions.}
-Chaque décision IA est enregistrée avec l'ensemble de ses métadonnées :
-modèle utilisé, score de confiance, raisonnement produit, feedback
-éventuel du chef de projet et horodatage. Une tâche planifiée quotidienne
-supprime les entrées de plus de quatre-vingt-dix jours conformément aux
-exigences de protection des données, tout en conservant les statistiques
-agrégées pour le suivi de la qualité du service.
-
-\subsubsection{Apport métier de l'IA}
-
-Pour le \textbf{chef de projet}, la classification automatique réduit le
-temps de qualification des demandes : plutôt que d'analyser chaque texte
-libre, il valide ou corrige une proposition déjà structurée accompagnée
-d'un raisonnement explicite, ce qui homogénéise les décisions de
-priorisation. 
-\newline Pour le \textbf{développeur}, la génération de pistes de
-résolution et de brouillons de solution accélère le déblocage sans attendre
-une intervention humaine. La structuration automatique des résolutions en
-articles enrichit progressivement la base de connaissances collective,
-réduisant les délais de résolution pour des problèmes récurrents.
-Ces apports restent complémentaires au travail humain : toute suggestion
-IA est soumise à validation avant d'être appliquée ou publiée.
 
 \section{Backlog du troisième sprint}
 \label{sec:backlog_sprint3}
@@ -195,11 +49,11 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{figure}
 
 \subsubsection{Description textuelle du cas d’utilisation « Valider demande »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Valider demande ».
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Valider demande ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -250,11 +104,11 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \normalsize
 
 \subsubsection{Description textuelle du cas d’utilisation « Demander informations complémentaires »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Demander informations complémentaires ».
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Demander informations complémentaires ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -302,11 +156,11 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \normalsize
 
 \subsubsection{Description textuelle du cas d’utilisation « Soumettre demande »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Soumettre demande ».
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Soumettre demande ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -362,12 +216,12 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \normalsize
 
 \subsubsection{Description textuelle du cas d’utilisation « Compléter demande »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Compléter demande ».
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Compléter demande ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 {\sloppy
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -431,11 +285,11 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 
 
 \subsubsection{Description textuelle du cas d’utilisation « Soumettre ticket en revue »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Soumettre ticket en revue ».
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Soumettre ticket en revue ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -490,11 +344,11 @@ et au client.
 
 
 \subsubsection{Description textuelle du cas d’utilisation « Signaler blocage »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Signaler blocage ».
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Signaler blocage ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -543,11 +397,11 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 
 
 \subsubsection{Description textuelle du cas d’utilisation « Proposer solution »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Proposer solution ».
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Proposer solution ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -595,11 +449,11 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 
 
 \subsubsection{Description textuelle du cas d’utilisation « Résoudre blocage »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Résoudre blocage ».
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Résoudre blocage ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -649,11 +503,11 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{figure}
 
 \subsubsection{Description textuelle du cas d’utilisation « Signaler problème »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Signaler problème ».
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Signaler problème ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -701,11 +555,11 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 
 
 \subsubsection{Description textuelle du cas d’utilisation « Demander extension délai »}
-La figure ci-dessous présente la description textuelle du cas d’utilisation « Demander extension délai ».
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Demander extension délai ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -772,7 +626,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{1.1}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Assigner un ticket \\
 \hline
@@ -834,7 +688,7 @@ Le diagramme ci-dessous illustre le flux d'activités relatif à la modification
 \end{figure}
 
 \subsection{Diagramme de séquences}
-Dans cette section, nous allons modéliser les intéractions entre l'utilisateur et le système à l'aide de diagrammes de séquences pour mieux comprendre la logique de la solution.
+Dans cette section, nous allons modéliser les interactions entre l'utilisateur et le système à l'aide de diagrammes de séquences pour mieux comprendre la logique de la solution.
 \subsubsection{Diagramme de séquences du cas d'utilisation « Soumettre demande »}
 
 \begin{figure}[H]
@@ -863,6 +717,152 @@ Dans cette section, nous allons modéliser les intéractions entre l'utilisateur
    % \label{fig:seq_signaler_bloquer}
 %\end{figure}
 
+
+\section{Intégration de l'intelligence artificielle}
+
+Dans le cadre de ce sprint, l'intégration de l'intelligence artificielle
+a constitué un axe transversal visant à automatiser et à assister plusieurs
+étapes critiques du cycle de traitement des demandes : qualification
+initiale, priorisation, analyse des blocages et capitalisation des
+connaissances. Cette intégration a été pensée comme un composant à part entière de la plateforme, permettant ainsi de fluidifier le travail des équipes tout en garantissant des réponses plus rapides et fiables.
+
+\subsection{Fonctionnalités développées}
+
+Le composant IA expose des services asynchrones déclenchés automatiquement
+aux moments clés du cycle de vie des demandes et des tickets, sans bloquer
+les flux principaux. Les fonctionnalités intégrées au cours de ce sprint
+sont les suivantes :
+
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
+    \item \textbf{Classification automatique des demandes :} à la soumission
+    d'une demande client, le service IA analyse le titre et la description
+    pour inférer le type, la priorité et la catégorie. Le résultat inclut un
+    score de confiance et un raisonnement explicatif, soumis à validation du
+    chef de projet avant application.
+    \item \textbf{Analyse des blocages :} à la déclaration d'un blocage, une
+    analyse est déclenchée en arrière-plan pour identifier la nature probable
+    de l'obstacle et proposer des actions correctives adaptées au contexte
+    du ticket.
+    \item \textbf{Génération d'un brouillon de solution :} le module génère
+    un premier jet de résolution structuré, que le développeur peut consulter,
+    modifier et soumettre depuis l'interface de détail du ticket.
+    \item \textbf{Structuration en articles de base de connaissances :} lors
+    de la résolution d'un blocage, la solution validée et l'analyse IA sont
+    fusionnées pour produire un article structuré, soumis à validation avant
+    publication dans la base de connaissances partagée.
+\end{itemize}
+
+\subsection{Les grands modèles de langage (LLM)}
+
+Les grands modèles de langage (\textit{Large Language Models}, LLM) sont
+des modèles entraînés sur des corpus textuels massifs, fondés sur
+l'architecture \textit{Transformer}. Ils permettent de comprendre
+l'intention d'un texte en langue naturelle et de produire des réponses
+structurées sans nécessiter d'apprentissage spécifique au domaine métier.
+Dans notre contexte, ils couvrent trois besoins : la qualification
+automatique des demandes, l'analyse des blocages techniques et la
+structuration des solutions en articles de base de connaissances.
+Afin de retenir le modèle le plus adapté, nous avons comparé les principaux
+LLM disponibles selon les critères pertinents pour notre cas d'usage :
+qualité de traitement du français technique, support natif du format JSON (\textit{JavaScript Object Notation}),
+latence et coût d'accès via API (\textit{Application Programming Interface}), comme le présente le
+tableau~\ref{tab:comparaison_llm}.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\small
+\begin{tabular}{|P{2.8cm}|P{2.3cm}|P{2.0cm}|P{2.0cm}|P{2.0cm}|P{2.0cm}|}
+\hline
+\textbf{Modèle} & \textbf{Éditeur} & \textbf{Qualité FR} &
+\textbf{JSON natif} & \textbf{Latence} & \textbf{Coût API} \\
+\hline
+GPT-4o            & OpenAI      & Excellente & Oui & Modérée     & Élevé  \\
+\hline
+Claude 3.5 Sonnet & Anthropic   & Très bonne & Oui & Modérée     & Élevé  \\
+\hline
+Gemini 1.5 Pro    & Google      & Très bonne & Oui & Variable    & Modéré \\
+\hline
+Mistral Large     & Mistral AI  & Très bonne & Oui & Faible      & Modéré \\
+\hline
+LLaMA 3.3 (70B)   & Meta / Groq & Bonne      & Oui & Très faible & Faible \\
+\hline
+\end{tabular}
+\caption{Comparaison des principaux LLM selon les critères du projet}
+\label{tab:comparaison_llm}
+\end{table}
+
+\subsection{Choix du modèle}
+
+À l'issue de cette analyse comparative et au regard des fonctionnalités
+à couvrir, le modèle retenu est (\textit{Large Language Model Meta AI}) \textbf{LLaMA~3.3 (70B)}, exploité via
+l'\textbf{API Groq Cloud}. Ce choix se justifie par plusieurs facteurs
+complémentaires : une latence très faible grâce aux processeurs LPU (\textit{Language Processing Unit}) de
+Groq (environ 700 tokens par seconde), le support natif du format JSON
+permettant une intégration directe avec la base de données, une qualité
+suffisante en français technique pour les cas d'usage ciblés, et un accès
+gratuit lors de la phase de développement. Par ailleurs, LLaMA étant un
+modèle open-source, il offre la possibilité d'un hébergement local à terme,
+garantissant une indépendance vis-à-vis d'un fournisseur externe.
+
+\subsection{Robustesse opérationnelle et gouvernance}
+
+Afin d'assurer la fiabilité du composant IA en conditions réelles,
+plusieurs mécanismes complémentaires ont été mis en place.
+
+\paragraph{Protection des données personnelles.}
+Avant toute transmission d'un texte à l'API Groq Cloud, un filtre
+détecte et masque automatiquement les informations personnelles
+identifiables : un numéro de téléphone, une adresse électronique ou
+un nom complet présents dans la description d'une demande sont
+remplacés par des marqueurs neutres avant envoi, garantissant qu'aucune
+donnée sensible ne quitte le périmètre de la plateforme.
+
+\paragraph{Cache par empreinte de contenu.}
+Pour éviter des appels redondants à l'API externe, chaque texte soumis
+à la classification est identifié par une empreinte numérique calculée
+sur son contenu normalisé. Si une demande au libellé identique a déjà
+été classifiée, le résultat est restitué directement depuis le cache
+sans solliciter le modèle, avec une durée de validité d'une heure
+réinitialisée à chaque mise à jour.
+
+\paragraph{Réessais et mécanisme de repli.}
+En cas d'erreur transitoire lors de l'appel au modèle, le service
+effectue jusqu'à deux nouvelles tentatives avec des délais croissants
+entre chaque essai. Si, après épuisement des tentatives, le score de
+confiance retourné reste inférieur au seuil minimal accepté, la
+demande est automatiquement marquée pour révision manuelle par le
+chef de projet, sans interrompre le flux de traitement.
+
+\paragraph{Limitation des appels par utilisateur.}
+Un système de quotas journaliers est appliqué par utilisateur et de
+manière globale. Lorsque le seuil d'alerte est atteint (80\% du quota),
+le système émet un avertissement interne. Au-delà du quota journalier,
+les appels supplémentaires sont rejetés avec un message explicite,
+les compteurs étant réinitialisés automatiquement à minuit.
+
+\paragraph{Traçabilité des décisions.}
+Chaque décision IA est enregistrée avec l'ensemble de ses métadonnées :
+modèle utilisé, score de confiance, raisonnement produit, feedback
+éventuel du chef de projet et horodatage. Une tâche planifiée quotidienne
+supprime les entrées de plus de quatre-vingt-dix jours conformément aux
+exigences de protection des données, tout en conservant les statistiques
+agrégées pour le suivi de la qualité du service.
+
+\subsection{Apports et impacts métiers du projet d’intelligence artificielle}
+
+Pour le \textbf{chef de projet}, la classification automatique réduit le
+temps de qualification des demandes : plutôt que d'analyser chaque texte
+libre, il valide ou corrige une proposition déjà structurée accompagnée
+d'un raisonnement explicite, ce qui homogénéise les décisions de
+priorisation. 
+\newline Pour le \textbf{développeur}, la génération de pistes de
+résolution et de brouillons de solution accélère le déblocage sans attendre
+une intervention humaine. La structuration automatique des résolutions en
+articles enrichit progressivement la base de connaissances collective,
+réduisant les délais de résolution pour des problèmes récurrents.
+Ces apports restent complémentaires au travail humain : toute suggestion
+IA est soumise à validation avant d'être appliquée ou publiée.
 
 \subsection{Diagramme de classes du troisième sprint}
 Le diagramme de classes ci-dessous présente la structure statique des
@@ -895,6 +895,58 @@ Le schéma relationnel du premier sprint s’appuie sur les relations suivantes 
 \textbf{AssignmentTicket} (\underline{\#idTicket}, \underline{\#idProfilEmploye}, idAssignment, dateDebutReelle, dateFinReelle, commentaireAssignment, progression, estBloque, raisonBlocage, feedbackDeveloppeur, technologiesUtilisees, enTravail, dureeTotaleSecondes, dateCreation, solutionProposee, solutionProposeeAt)
 \newline
 \textbf{SessionTravail} (\underline{idSessionTravail}, debut, fin, dureeSecondes, note, isManual, \textbf{\#idTicket}, \textbf{\#idProfilEmploye}, \textbf{\#idArticleKB})
+
+% ─────────────────────────────────────────────────────────────────────────────
+% RÉTROSPECTIVE DU SPRINT
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Rétrospective du Sprint}
+À la fin de ce troisième sprint, nous avons organisé une réunion de rétrospective afin d'analyser le déroulement du travail. Le tableau \ref{tab:retrospective_sprint3} résume les points clés soulevés par l'équipe, en mettant en évidence les réussites, les difficultés rencontrées et les actions d'amélioration pour la suite du projet.
+
+\begingroup
+\renewcommand{\arraystretch}{1.4}
+\small
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{5.5cm}|p{9.5cm}|}
+\hline
+\rowcolor{secondary}
+\multicolumn{1}{|>{\centering\arraybackslash}p{5.5cm}|}{\textbf{\color{white}Question}} & \multicolumn{1}{>{\centering\arraybackslash}p{9.5cm}|}{\textbf{\color{white}Réponse}} \\
+\hline
+\endfirsthead
+\hline
+\endlastfoot
+Qu'est-ce qu'on a bien fait ? & 
+Mise en place du cycle de vie complet des demandes et des tickets. \newline
+Intégration de l'intelligence artificielle pour la classification des demandes et l'analyse des blocages. \newline
+Livraison du tableau Kanban, du chronomètre et du suivi SLA en temps réel. \\
+\hline
+Qu'est-ce qui ne s'est pas bien passé ? & 
+La gestion des transitions de statut des tickets (ouvert, en cours, en revue, résolu, fermé) a généré des cas limites non anticipés lors de la conception. \newline
+Le flux de conversion des demandes en tickets a nécessité plusieurs ajustements pour synchroniser les pièces jointes et les notifications. \\
+\hline
+Que devrions-nous arrêter de faire ? & 
+Intégrer de nouvelles fonctionnalités IA sans avoir stabilisé le flux métier principal au préalable. \newline
+Repousser la rédaction de la documentation des règles de transition de statut. \\
+\hline
+Que devrions-nous commencer à faire ? & 
+Structurer les champs du formulaire de soumission des demandes pour limiter les omissions et réduire les allers-retours d'informations complémentaires. \newline
+Intégrer des tests automatisés sur les transitions d'état du Kanban et le calcul de cumul du chronomètre pour détecter les anomalies plus tôt. \\
+\hline
+\end{longtable}
+\vspace{-15pt}
+\captionof{table}{Rétrospective du troisième sprint}
+\label{tab:retrospective_sprint3}
+\endgroup
+
+\subsection{Suivi des user stories avec Notion}
+
+La figure ci-dessous présente le tableau Notion récapitulant l'ensemble des user stories 
+du troisième  sprint, toutes marquées comme terminées à l'issue de ce sprint.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio]{Images/notion sprint 3.png}
+    \caption{Tableau Notion — User Stories du troisième  sprint}
+    \label{fig:notion_sprint3}
+\end{figure}
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 4 : RÉALISATION
 % ─────────────────────────────────────────────────────────────────────────────
@@ -1030,7 +1082,7 @@ Nous avons adopté la même stratégie de tests structurée que lors des sprints
 \subsection{Tests unitaires}
 Les tests unitaires de ce troisième sprint ont été structurés par composant fonctionnel afin de garantir une traçabilité optimale. Exécutés dans un environnement isolé à l'aide de doublons de test (\textit{mocks}) pour simuler les dépendances externes, ils valident la logique métier critique du système : classification par IA, hachage MD5 (\textit{ Message Digest 5})pour la mise en cache, politiques de résilience (\textit{retry} et \textit{fallback}), cycle de vie des tickets, limitation de débit (\textit{rate limiting}) et calcul précis des SLA.
 
-subsubsection{Synthèse des résultats}
+\subsubsection{Synthèse des résultats}
 La synthèse suivante présente, pour chaque fonctionnalité majeure, les objectifs visés, le statut de couverture ainsi que les observations clés issues des rapports d'exécution locaux.
 
 \begin{description}
@@ -1184,9 +1236,9 @@ Les tests d'intégration ont été réalisés sur les endpoints principaux du sp
   \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/classificationsList.png}
   \caption{Test d’intégration - Liste des classifications IA}
   \end{figure}
-  \end{itemize}
-
-\subsubsection{Tests End-to-End (\textbf{E2E})}
+\end{itemize}
+\end{itemize}
+\subsubsection{Tests End-to-End}
 \label{sec:tests_e2e_demandesch5}
 
 Les tests End-to-End de création de demande client valident l'intégralité
@@ -1302,7 +1354,7 @@ ou à la logique métier.
 \caption{Test de sécurité — refus des transitions de statut non autorisées}
 \end{figure}
 
-\subsubsection{Test de sécurité du module IA — Anonymisation des données sensibles (PII)}
+\subsubsection{Test de sécurité du module IA — Anonymisation des données sensibles (PII) (\textit{Personally Identifiable Information})}
 Une demande contenant des informations personnelles identifiables (numéro de téléphone, adresse email, nom complet) a été soumise au module IA. La vérification des logs système confirme que ces données ont été masquées avant transmission à l'API externe Groq Cloud. Aucune information sensible ne quitte le périmètre interne.
 
 \begin{figure}[H]

@@ -1,4 +1,5 @@
-﻿
+﻿% !TEX root = ../rapport.tex
+
 \section*{Introduction}
 Dans le chapitre précédent, nous avons défini les besoins liés à notre solution et réparti les différentes tâches du projet afin que les phases de travail soient correctement planifiées.
 \newline Au cours de ce chapitre, nous présenterons les fonctionnalités liées  à la gestion des utilisateurs, à l'authentification et au contrôle d'accès basé sur les rôles (\textbf{RBAC} - \textit{Role-Based Access Control}), retenues dans le cadre du premier sprint de notre projet.
@@ -6,8 +7,8 @@ Dans le chapitre précédent, nous avons défini les besoins liés à notre solu
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 1 : BACKLOG DU SPRINT 1
 % ─────────────────────────────────────────────────────────────────────────────
-\section{Réunion de planification du sprint (Sprint Planning Meeting)}
-La planification du sprint est essentielle à la réussite de notre solution. Elle permet de clarifier les différentes fonctionnalités à implémenter lors du sprint à venir. Cette partie est efficace afin de préparer des objectifs clairs.
+\section{Réunion de planification du sprint}
+La planification du sprint est essentielle à la réussite de notre solution. Elle permet de définir un objectif clair et d'aligner l'équipe sur les priorités du sprint.
 
 \subsection{Objectifs du sprint}
 L'objectif de ce sprint est de mettre en place les fondations fonctionnelles et
@@ -17,13 +18,44 @@ et de leurs profils. Il s'agit également d'assurer un contrôle efficace des ac
 et des permissions en introduisant l'administration du système à travers la gestion
 des comptes utilisateurs, des rôles et des permissions (\textbf{RBAC}).
 
-Dans ce premier sprint, nous avons aussi défini l'identité visuelle et conçu le logo de \textbf{SolidMaint}. Le détail graphique est présenté dans le chapitre 2.
 \subsection{Backlog du premier sprint}
 \label{sec:backlog_sprint1}
-Le tableau \ref{tab:sprint_backlog} ci-dessous présente le \textbf{Sprint Backlog} (ensemble des tâches sélectionnées pour le sprint) détaillé, avec les descriptions techniques et l'effort estimé pour chaque \textit{user story} (récit utilisateur).
+Le tableau \ref{tab:backlog_sprint1_corrige} ci-dessous présente le \textbf{Sprint Backlog} (ensemble des tâches sélectionnées pour le sprint) détaillé, avec les descriptions techniques et l'effort estimé pour chaque \textit{user story} (récit utilisateur).
 \newline
 \textbf{1 : Effort faible, 2 : Effort moyen, 3 : Effort élevé}
 \input{tex/sprint_backlog_1}
+
+\begin{center}
+\small
+\begin{tikzpicture}
+  \node[
+    draw        = secondary,
+    line width  = 0.6pt,
+    fill        = pastelBlue,
+    inner xsep  = 0.8cm,
+    inner ysep  = 0.5cm,
+    text width  = 13cm,
+    align       = justify,
+    rounded corners = 4pt
+  ]{%
+    \textbf{\color{primary}Note — Estimation de l'effort par Story Points}
+    \par\vspace{4pt}
+    L'effort de chaque \textit{user story} est estimé selon une échelle de \textbf{1 à 3 points}.
+    Chaque point correspond à une unité de complexité relative prenant en compte trois dimensions :
+    la \textbf{complexité technique} (nombre d'endpoints, logique métier, intégrations),
+    la \textbf{charge de travail} (temps de développement et de test estimé)
+    et l'\textbf{incertitude} (risques liés aux dépendances ou à la nouveauté du domaine).
+    \par\vspace{4pt}
+    \begin{tabular}{@{}p{2.2cm} p{3.8cm} p{6cm}@{}}
+      \textbf{\color{primary}1 — Faible}  & Tâche bien délimitée et maîtrisée   & Endpoint CRUD standard, interface légère, pas de dépendance externe \\[2pt]
+      \textbf{\color{primary}2 — Moyen}   & Tâche de complexité modérée     & Logique métier avec validations, interaction multi-modules, tests d'intégration requis \\[2pt]
+      \textbf{\color{primary}3 — Élevé}   & Tâche complexe ou incertaine    & Architecture transverse, intégration tierce (OAuth, IA, WebSocket), sécurité critique \\
+    \end{tabular}
+    \par\vspace{4pt}
+    Ces estimations ont permis d'adapter la charge de chaque sprint et d'assurer des livraisons régulières tout au long du projet.
+  };
+\end{tikzpicture}
+\end{center}
 
 
 
@@ -51,12 +83,12 @@ Nous allons accompagner les cas d'utilisation d'un texte descriptif pour expliqu
 \subsection{Descriptions textuelles des cas d'utilisation sans raffinement}
 Dans cette partie, nous présentons les cas d'utilisation qui ne nécessitent pas de raffinement de diagramme, leur comportement étant suffisamment direct pour être décrit uniquement par leur scénario textuel.
 
-\subsubsection{Description textuelle du cas d’utilisation «S'authentifier »}
+\subsubsection{Description textuelle du cas d’utilisation «~S'authentifier »}
 Le tableau ci-dessous présente la description textuelle du cas d'utilisation « S'authentifier » :
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -109,15 +141,15 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «S'authentifier »}
+\captionof{table}{Description textuelle du cas d’utilisation «~S'authentifier »}
 \normalsize
 
-\subsubsection{Description textuelle du cas d’utilisation «Changer mot de passe »}
+\subsubsection{Description textuelle du cas d’utilisation «~Changer mot de passe »}
 Le tableau ci-dessous présente la description textuelle du cas d'utilisation « Changer le mot de passe » :
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -160,7 +192,7 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «Changer mot de passe »} 
+\captionof{table}{Description textuelle du cas d’utilisation «~Changer mot de passe »} 
 \normalsize
 
 
@@ -183,7 +215,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 {\sloppy
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -235,7 +267,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «Demander inscription »} 
+\captionof{table}{Description textuelle du cas d’utilisation «~Demander inscription »} 
 }
 \normalsize
 
@@ -257,7 +289,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -299,7 +331,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «Ajouter utilisateur »} 
+\captionof{table}{Description textuelle du cas d’utilisation «~Ajouter utilisateur »} 
 \normalsize
 
 
@@ -308,7 +340,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 
 \hline
 \endfirsthead
@@ -347,7 +379,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \hline
 
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «Désactiver utilisateur »} 
+\captionof{table}{Description textuelle du cas d’utilisation «~Désactiver utilisateur »} 
 \normalsize
 
 \subsubsection{Description textuelle du cas d’utilisation « Modifier Profil »}
@@ -355,7 +387,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 
 \hline
 \endfirsthead
@@ -397,14 +429,14 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «Modifier Profil »} 
+\captionof{table}{Description textuelle du cas d’utilisation «~Modifier Profil »} 
 \normalsize
 \subsubsection{Description textuelle du cas d’utilisation « Valider demande inscription »}
 Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Valider demande inscription ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -472,7 +504,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -525,7 +557,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \renewcommand{\arraystretch}{0.95}
 
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 
 \hline
 
@@ -609,18 +641,18 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \end{longtable}
 
-\captionof{table}{Description textuelle du cas d’utilisation «Archiver rôle »} 
+\captionof{table}{Description textuelle du cas d’utilisation «~Archiver rôle »} 
 \normalsize
 
 
 
-\subsubsection{Description textuelle du cas d’utilisation «Attribuer rôle »}
+\subsubsection{Description textuelle du cas d’utilisation «~Attribuer rôle »}
 \nopagebreak
 Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Attribuer rôle ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Attribuer rôle \\
 \hline
@@ -659,7 +691,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «Attribuer rôle »}
+\captionof{table}{Description textuelle du cas d’utilisation «~Attribuer rôle »}
 \normalsize
 
 \subsubsection{Description textuelle du cas d’utilisation « Retirer rôle »}
@@ -667,7 +699,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 
 \hline
 \endfirsthead
@@ -710,7 +742,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «Retirer rôle»} 
+\captionof{table}{Description textuelle du cas d’utilisation «~Retirer rôle~»} 
 \normalsize
 
 
@@ -734,7 +766,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 {\sloppy
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -775,7 +807,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «Attribuer permission à rôle »} 
+\captionof{table}{Description textuelle du cas d’utilisation «~Attribuer permission à rôle »} 
 }
 \normalsize
 
@@ -801,7 +833,7 @@ et à la demande d'accès via un fournisseur externe.
 
 
 \subsection{Diagramme de séquences}
-Dans cette section, nous allons modéliser les intéractions entre l'utilisateur et le système à l'aide de diagrammes de séquences pour mieux comprendre la logique de la solution.
+Dans cette section, nous allons modéliser les interactions entre l'utilisateur et le système à l'aide de diagrammes de séquences pour mieux comprendre la logique de la solution.
 \subsubsection{Diagramme de séquences du cas d'utilisation « S'authentifier »}
 
 \begin{figure}[H]
@@ -857,6 +889,57 @@ Le schéma relationnel du premier sprint s’appuie sur les relations suivantes 
 \textbf{ProfilClient} (\underline{\textbf{\#idUtilisateur}}, nomSociete, telSociete, adresseSociete, secteurActivite, logo)
 \newline
 \textbf{DemandeInscription} (\underline{idDemandeInsc}, fournisseur, statusDemandeInsc, dateCreationInsc, dateCreation, dateMiseAJour, motifRefus, \textbf{\#idUtilisateur})
+% ─────────────────────────────────────────────────────────────────────────────
+% RÉTROSPECTIVE DU SPRINT
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Rétrospective du Sprint}
+À la fin de ce premier sprint, nous avons organisé une réunion de rétrospective afin d'analyser le déroulement du travail. Le tableau \ref{tab:retrospective_sprint1} résume les points clés soulevés par l'équipe, en mettant en évidence les réussites, les difficultés rencontrées et les actions d'amélioration pour la suite du projet.
+
+\begingroup
+\renewcommand{\arraystretch}{1.4}
+\small
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{5.5cm}|p{9.5cm}|}
+\hline
+\rowcolor{secondary}
+\multicolumn{1}{|>{\centering\arraybackslash}p{5.5cm}|}{\textbf{\color{white}Question}} & \multicolumn{1}{>{\centering\arraybackslash}p{9.5cm}|}{\textbf{\color{white}Réponse}} \\
+\hline
+\endfirsthead
+\hline
+\endlastfoot
+Qu'est-ce qu'on a bien fait ? & 
+Mise en place de la gestion des accès et de la sécurité. \newline
+Implémentation réussie des règles de sécurité (blocage de compte après 3 échecs, mot de passe obligatoire à la première connexion). \newline
+Gestion des rôles permettant de restreindre les accès. \\
+\hline
+Qu'est-ce qui ne s'est pas bien passé ? & 
+Quand on changeait les droits d'un utilisateur ou qu'on bloquait son compte, la modification ne s'appliquait pas immédiatement dans l'application. \newline
+Quelques ajustements nécessaires pour garantir la mise à jour correcte des informations du profil. \\
+\hline
+Que devrions-nous arrêter de faire ? & 
+Reporter la validation des scénarios de sécurité à la toute fin du sprint. \newline
+Sous-estimer l'effort de coordination nécessaire pour tester les droits de chaque rôle. \\
+\hline
+Que devrions-nous commencer à faire ? & 
+Tester les processus d'inscription avec des utilisateurs dès les premières étapes. \newline
+Planifier des sessions régulières de vérification croisée des permissions. \\
+\hline
+\end{longtable}
+\vspace{-15pt}
+\captionof{table}{Rétrospective du premier sprint}
+\label{tab:retrospective_sprint1}
+\endgroup
+
+\subsection{Suivi des user stories avec Notion}
+
+La figure ci-dessous présente le tableau Notion récapitulant l'ensemble des user stories 
+du premier sprint, toutes marquées comme terminées à l'issue de ce sprint.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio]{Images/Notion Sprint 1.png}
+    \caption{Tableau Notion — User Stories du premier sprint}
+    \label{fig:notion_sprint1}
+\end{figure}
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 4 : RÉALISATION
 % ─────────────────────────────────────────────────────────────────────────────
@@ -952,7 +1035,7 @@ Nous avons mis en place un flux d'inscription \textit{Open Authorization} (\text
 % SECTION 5 : TESTS
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Tests et Validation}
-La phase de test est essentielle pour garantir la qualité, la fiabilité et la sécurité de la solution. Elle valide que chaque fonctionnalité répond aux exigences métier et identifie les anomalies avant la mise en production. Dans ce sprint, nous avons testé les mécanismes d'authentification, la gestion des utilisateurs et le contrôle d'accès (RBAC), mais également la résistance aux attaques courantes et la robustesse des mécanismes de sécurité (verrouillage de compte, isolation des rôles, validation des jetons JWT, scan OWASP ZAP). Pour cela, nous avons mis en œuvre une stratégie de tests couvrant non seulement les niveaux unitaire, d’intégration et end-to-end, mais aussi des tests de sécurité et des tests de performance.
+La phase de test est essentielle pour garantir la qualité, la fiabilité et la sécurité de la solution. Elle valide que chaque fonctionnalité répond aux exigences métier et identifie les anomalies avant la mise en production. Dans ce sprint, nous avons testé les mécanismes d'authentification, la gestion des utilisateurs et le contrôle d'accès (RBAC), mais également la résistance aux attaques courantes et la robustesse des mécanismes de sécurité (verrouillage de compte, isolation des rôles, validation des jetons JWT, scan OWASP ZAP (\textit{Open Web Application Security Project} -- \textit{Zed Attack Proxy}){OWASP ZAP (Open Web Application Security Project -- Zed Attack Proxy)}). Pour cela, nous avons mis en œuvre une stratégie de tests couvrant non seulement les niveaux unitaire, d’intégration et end-to-end, mais aussi des tests de sécurité et des tests de performance.
 \subsection{Stratégie de tests adoptée}
 Afin de garantir la qualité, la fiabilité et la sécurité de l'application, nous avons adopté une stratégie de tests structurée reposant sur plusieurs niveaux complémentaires : tests unitaires, tests d'intégration, tests end-to-end, tests de performance et tests de sécurité.
 
@@ -1116,7 +1199,7 @@ Lee cas suivant ont été couvert :
     \end{figure}
 \end{itemize}
 
-\subsubsection{Tests End-to-End (\textbf{E2E})}
+\subsection{Tests End-to-End }
 \label{sec:tests_e2e_demandesch3}
 
 Les tests End-to-End de création de demande client valident l'intégralité
@@ -1276,11 +1359,8 @@ d'authentification, le contrôle d'accès basé sur les rôles (RBAC)
 et la résistance aux attaques courantes, conformément à l'OWASP Top 10.
 
 \subsubsection{Test de verrouillage de compte}
-Le mécanisme anti-brute-force a été validé en soumettant trois tentatives
-de connexion consécutives avec un mot de passe erroné. À la quatrième
-tentative --- même avec le bon mot de passe --- le système retourne
-\texttt{401 Unauthorized} avec le message « Compte temporairement
-verrouillé », confirmant l'activation du verrou d'une minute.
+Le mécanisme anti-force brute a été validé : après trois échecs consécutifs, une quatrième tentative (même avec le bon mot de passe) 
+a déclenché une erreur 401 Unauthorized avec le message « Compte temporairement verrouillé », confirmant un verrouillage d'une minute.
 
 \begin{figure}[H]
 \centering
@@ -1311,7 +1391,7 @@ confirmant l'intégrité de la validation des jetons.
 \caption{Test de sécurité — refus d'accès 401 pour un token invalide}
 \end{figure}
 
-\subsubsection{Scan automatisé OWASP ZAP (\textit{Open Web Application Security Project} - \textit{Zed Attack Proxy})}
+\subsubsection{Scan automatisé \texorpdfstring{OWASP ZAP }}
 Un scan automatisé a été réalisé sur l'ensemble des endpoints exposés.
 Aucune vulnérabilité de niveau \textit{High} ou \textit{Medium} n’a été détectée.
 Les résultats obtenus indiquent uniquement l’identification des mécanismes de gestion de session, 
@@ -1322,6 +1402,7 @@ sans présence d’alertes critiques liées à la sécurité de l’application.
 \includegraphics[width=0.75\textwidth]{Images/test-secu-zap-alertes.png}
 \caption{Rapport OWASP ZAP — absence d’alertes critiques détectées}
 \end{figure}
+
 
 % ─────────────────────────────────────────────────────────────────────────────
 % CONCLUSION
@@ -1337,3 +1418,4 @@ End-to-End répartis sur trois niveaux.
 \newline
 Le chapitre suivant détaillera le deuxième sprint, consacré à la gestion
 des contrats, des projets et des clients.
+
