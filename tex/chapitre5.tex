@@ -903,7 +903,7 @@ Le schéma relationnel du premier sprint s’appuie sur les relations suivantes 
 À la fin de ce troisième sprint, nous avons organisé une réunion de rétrospective afin d'analyser le déroulement du travail. Le tableau \ref{tab:retrospective_sprint3} résume les points clés soulevés par l'équipe, en mettant en évidence les réussites, les difficultés rencontrées et les actions d'amélioration pour la suite du projet.
 
 \begingroup
-\renewcommand{\arraystretch}{1.4}
+\renewcommand{\arraystretch}{1.15}
 \small
 \begin{longtable}{|>{\columncolor{pastelBlue}}p{5.5cm}|p{9.5cm}|}
 \hline
@@ -916,7 +916,7 @@ Le schéma relationnel du premier sprint s’appuie sur les relations suivantes 
 Qu'est-ce qu'on a bien fait ? & 
 Mise en place du cycle de vie complet des demandes et des tickets. \newline
 Intégration de l'intelligence artificielle pour la classification des demandes et l'analyse des blocages. \newline
-Livraison du tableau Kanban, du chronomètre et du suivi SLA en temps réel. \\
+Développement du tableau Kanban, du chronomètre et de la synchronisation en temps réel lors de la co-édition d'un même ticket. \\
 \hline
 Qu'est-ce qui ne s'est pas bien passé ? & 
 La gestion des transitions de statut des tickets (ouvert, en cours, en revue, résolu, fermé) a généré des cas limites non anticipés lors de la conception. \newline
@@ -924,11 +924,11 @@ Le flux de conversion des demandes en tickets a nécessité plusieurs ajustement
 \hline
 Que devrions-nous arrêter de faire ? & 
 Intégrer de nouvelles fonctionnalités IA sans avoir stabilisé le flux métier principal au préalable. \newline
-Repousser la rédaction de la documentation des règles de transition de statut. \\
+Attendre la fin du sprint pour documenter les règles de changement de statut des tickets. \\
 \hline
 Que devrions-nous commencer à faire ? & 
-Structurer les champs du formulaire de soumission des demandes pour limiter les omissions et réduire les allers-retours d'informations complémentaires. \newline
-Intégrer des tests automatisés sur les transitions d'état du Kanban et le calcul de cumul du chronomètre pour détecter les anomalies plus tôt. \\
+Rendre obligatoires les choix de catégories et de priorités dans le formulaire pour forcer une meilleure qualification de la demande par le client. \newline
+Intégrer des tests automatisés sur la limitation de débit (rate limiting) et la mise en cache des requêtes IA pour garantir la stabilité du système.\\
 \hline
 \end{longtable}
 \vspace{-15pt}
@@ -936,7 +936,7 @@ Intégrer des tests automatisés sur les transitions d'état du Kanban et le cal
 \label{tab:retrospective_sprint3}
 \endgroup
 
-\subsection{Suivi des user stories avec Notion}
+\section{Suivi des user stories avec Notion}
 
 La figure ci-dessous présente le tableau Notion récapitulant l'ensemble des user stories 
 du troisième  sprint, toutes marquées comme terminées à l'issue de ce sprint.

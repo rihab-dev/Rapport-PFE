@@ -535,7 +535,7 @@ Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui
 À la fin de ce deuxième sprint, nous avons organisé une réunion de rétrospective afin d'analyser le déroulement du travail. Le tableau \ref{tab:retrospective_sprint2} résume les points clés soulevés par l'équipe, en mettant en évidence les réussites, les difficultés rencontrées et les actions d'amélioration pour la suite du projet.
 
 \begingroup
-\renewcommand{\arraystretch}{1.4}
+\renewcommand{\arraystretch}{1.15}
 \small
 \begin{longtable}{|>{\columncolor{pastelBlue}}p{5.5cm}|p{9.5cm}|}
 \hline
@@ -546,21 +546,21 @@ Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui
 \hline
 \endlastfoot
 Qu'est-ce qu'on a bien fait ? & 
-Livraison de la gestion des clients, des projets et des contrats dans les délais prévus. \newline
+Mise en place de la gestion centrale des clients et de leurs dépendances (projets et contrats). \newline
 Mise en place du journal d'activités pour assurer la traçabilité des opérations. \newline
-Intégration du flux de résiliation côté client et côté administrateur. \\
+Gestion de la création de contrat associée à l'upload direct du fichier PDF. \\
 \hline
 Qu'est-ce qui ne s'est pas bien passé ? & 
-La gestion des niveaux de service (SLA) par contrat a demandé plusieurs itérations avant d'aboutir à une solution stable. \newline
-La coordination entre les modules clients et contrats a nécessité des ajustements en cours de sprint. \\
+L'enregistrement automatique de toutes les actions de l'application dans le journal d'activités a été difficile à centraliser. \newline
+Le blocage et la désactivation des comptes clients ont nécessité trop d'ajustements pour vérifier qu'aucun projet n'était en cours. \\
 \hline
 Que devrions-nous arrêter de faire ? & 
 Développer les formulaires complexes (contrat, projet) sans maquette validée au préalable. \newline
 Laisser les tests de contrôle d'accès aux objets (vulnérabilité \textbf{IDOR} — \textit{Insecure Direct Object Reference}, qui consiste à accéder à une ressource d'un autre utilisateur en manipulant un identifiant) en fin de sprint. \\
 \hline
 Que devrions-nous commencer à faire ? & 
-Valider les règles métier des contrats (archivage, résiliation) avec le Product Owner dès le début du sprint. \newline
-Automatiser les tests de non-régression sur les modules livrés précédemment. \\
+Modéliser les cycles de vie et les règles métier des contrats (diagrammes d'états) dès le début du sprint. \newline
+Mettre en place des tests pour valider l'ensemble des fonctionnalités livrées. \\
 \hline
 \end{longtable}
 \vspace{-15pt}
@@ -568,7 +568,7 @@ Automatiser les tests de non-régression sur les modules livrés précédemment.
 \label{tab:retrospective_sprint2}
 \endgroup
 
-\subsection{Suivi des user stories avec Notion}
+\ection{Suivi des user stories avec Notion}
 
 La figure ci-dessous présente le tableau Notion récapitulant l'ensemble des user stories 
 du deuxième  sprint, toutes marquées comme terminées à l'issue de ce sprint.
