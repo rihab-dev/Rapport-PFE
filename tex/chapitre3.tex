@@ -1,4 +1,4 @@
-% !TEX root = ../rapport.tex
+﻿% !TEX root = ../rapport.tex
 
 \section*{Introduction}
 Dans le chapitre précédent, nous avons défini les besoins liés à notre solution et réparti les différentes tâches du projet afin que les phases de travail soient correctement planifiées.
@@ -865,7 +865,7 @@ Le schéma relationnel du premier sprint s’appuie sur les relations suivantes 
 À la fin de ce premier sprint, nous avons organisé une réunion de rétrospective afin d'analyser le déroulement du travail. Le tableau \ref{tab:retrospective_sprint1} résume les points clés soulevés par l'équipe, en mettant en évidence les réussites, les difficultés rencontrées et les actions d'amélioration pour la suite du projet.
 
 \begingroup
-\renewcommand{\arraystretch}{1.4}
+\renewcommand{\arraystretch}{1.15}
 \small
 \begin{longtable}{|>{\columncolor{pastelBlue}}p{5.5cm}|p{9.5cm}|}
 \hline
@@ -882,7 +882,7 @@ Gestion des rôles permettant de restreindre les accès. \\
 \hline
 Qu'est-ce qui ne s'est pas bien passé ? & 
 Quand on changeait les droits d'un utilisateur ou qu'on bloquait son compte, la modification ne s'appliquait pas immédiatement dans l'application. \newline
-Quelques ajustements nécessaires pour garantir la mise à jour correcte des informations du profil. \\
+La configuration du flux OAuth a été complexe pour bloquer l'accès aux utilisateurs en attente de validation admin\\
 \hline
 Que devrions-nous arrêter de faire ? & 
 Reporter la validation des scénarios de sécurité à la toute fin du sprint. \newline
@@ -890,7 +890,7 @@ Sous-estimer l'effort de coordination nécessaire pour tester les droits de chaq
 \hline
 Que devrions-nous commencer à faire ? & 
 Tester les processus d'inscription avec des utilisateurs dès les premières étapes. \newline
-Planifier des sessions régulières de vérification croisée des permissions. \\
+Planifier des sessions régulières de vérification des droits et des rôles. \\
 \hline
 \end{longtable}
 \vspace{-15pt}
@@ -898,7 +898,7 @@ Planifier des sessions régulières de vérification croisée des permissions. \
 \label{tab:retrospective_sprint1}
 \endgroup
 
-\subsection{Suivi des user stories avec Notion}
+\section{Suivi des user stories avec Notion}
 
 La figure ci-dessous présente le tableau Notion récapitulant l'ensemble des user stories 
 du premier sprint, toutes marquées comme terminées à l'issue de ce sprint.

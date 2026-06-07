@@ -603,7 +603,7 @@ Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui
 À la fin de ce quatrième et dernier sprint, l'équipe a tenu une réunion de rétrospective afin d'évaluer le travail accompli. Le tableau \ref{tab:retrospective_sprint4} présente les points clés de cette session, en structurant les réussites, les difficultés fonctionnelles et techniques, ainsi que les axes d'amélioration.
 
 \begingroup
-\renewcommand{\arraystretch}{1.4}
+\renewcommand{\arraystretch}{1.15}
 \small
 \begin{longtable}{|>{\columncolor{pastelBlue}}p{5.5cm}|p{9.5cm}|}
 \hline
@@ -614,26 +614,20 @@ Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui
 \hline
 \endlastfoot
 Qu'est-ce qu'on a bien fait ? & 
-Intégration du module de messagerie instantanée en temps réel et du système de notifications multicanaux (internes, courriels, push, Slack). \newline
+Intégration du module de messagerie instantanée en temps réel et du système de notifications multicanaux (emails, courriels, push, Slack). \newline
 Centralisation de la gestion documentaire avec versionnage automatique et génération automatisée des rapports d'activité. \\
 \hline
 Qu'est-ce qui ne s'est pas bien passé ? & 
-L'adaptation responsive des graphiques sur les tableaux de bord a causé des retards d'intégration. \newline
-La gestion et le stockage des messages vocaux ont nécessité des ajustements de synchronisation temps réel. \newline
-Le chargement des anciens messages lors du défilement vers le haut a provoqué des sauts visuels de l'interface. \newline
-Les temps de réponse des requêtes de filtrage sur le journal d'activités ont augmenté sous charge. \\
+Retards d'intégration sur le rendu responsive des graphiques des dashboards. \newline
+Dégradation des temps de réponse du journal d'activités sous charge. \\
 \hline
 Que devrions-nous arrêter de faire ? & 
-Concevoir des interfaces de tableaux de bord en testant le rendu uniquement sur grand écran. \newline
-Envoyer les messages vocaux au format brut (WAV) sans compression. \newline
-Réinitialiser la position du défilement (scroll) lors de l'insertion de nouveaux messages dans la liste. \newline
-Lancer des requêtes de recherche vers le serveur à chaque saisie de caractère sans délai d'attente (debounce). \\
+Multiplier les appels API classiques pour rafraîchir l'interface au lieu de s'appuyer uniquement sur les événements WebSocket en temps réel \newline
+Tester l'affichage des tableaux de bord uniquement sur grand écran. \\
 \hline
 Que devrions-nous commencer à faire ? & 
-Valider l'affichage des graphiques sur différentes résolutions d'écran. \newline
-Écrire des tests unitaires avec Vitest pour valider l'encodage des messages vocaux. \newline
-Créer des tests E2E avec Playwright pour valider le défilement et la messagerie. \newline
-Lancer des tests de charge avec k6 pour valider la performance des filtres sous charge. \\
+Valider l'affichage adaptatif des graphiques sur différentes résolutions d'écran dès la phase de maquettage. \newline
+Améliorer la rapidité d'affichage de la page du journal d'activités lorsque plusieurs utilisateurs se connectent en même temps. \\
 \hline
 \end{longtable}
 \vspace{-15pt}
