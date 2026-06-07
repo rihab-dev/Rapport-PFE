@@ -1,4 +1,5 @@
-﻿
+% !TEX root = ../rapport.tex
+
 \section*{Introduction}
 Dans le chapitre précédent, nous avons défini les besoins liés à notre solution et réparti les différentes tâches du projet afin que les phases de travail soient correctement planifiées.
 \newline Au cours de ce chapitre, nous présenterons les fonctionnalités liées  à la gestion des utilisateurs, à l'authentification et au contrôle d'accès basé sur les rôles (\textbf{RBAC} - \textit{Role-Based Access Control}), retenues dans le cadre du premier sprint de notre projet.
@@ -56,7 +57,7 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -117,7 +118,7 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -183,7 +184,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 {\sloppy
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -257,7 +258,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -308,7 +309,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 
 \hline
 \endfirsthead
@@ -355,7 +356,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 
 \hline
 \endfirsthead
@@ -404,7 +405,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -472,7 +473,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -525,7 +526,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \renewcommand{\arraystretch}{0.95}
 
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 
 \hline
 
@@ -620,7 +621,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Attribuer rôle \\
 \hline
@@ -667,7 +668,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 
 \hline
 \endfirsthead
@@ -734,7 +735,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 {\sloppy
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -857,6 +858,57 @@ Le schéma relationnel du premier sprint s’appuie sur les relations suivantes 
 \textbf{ProfilClient} (\underline{\textbf{\#idUtilisateur}}, nomSociete, telSociete, adresseSociete, secteurActivite, logo)
 \newline
 \textbf{DemandeInscription} (\underline{idDemandeInsc}, fournisseur, statusDemandeInsc, dateCreationInsc, dateCreation, dateMiseAJour, motifRefus, \textbf{\#idUtilisateur})
+% ─────────────────────────────────────────────────────────────────────────────
+% RÉTROSPECTIVE DU SPRINT
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Rétrospective du Sprint}
+À la fin de ce premier sprint, nous avons organisé une réunion de rétrospective afin d'analyser le déroulement du travail. Le tableau \ref{tab:retrospective_sprint1} résume les points clés soulevés par l'équipe, en mettant en évidence les réussites, les difficultés rencontrées et les actions d'amélioration pour la suite du projet.
+
+\begingroup
+\renewcommand{\arraystretch}{1.4}
+\small
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{5.5cm}|p{9.5cm}|}
+\hline
+\rowcolor{secondary}
+\multicolumn{1}{|>{\centering\arraybackslash}p{5.5cm}|}{\textbf{\color{white}Question}} & \multicolumn{1}{>{\centering\arraybackslash}p{9.5cm}|}{\textbf{\color{white}Réponse}} \\
+\hline
+\endfirsthead
+\hline
+\endlastfoot
+Qu'est-ce qu'on a bien fait ? & 
+Mise en place de la gestion des accès et de la sécurité. \newline
+Implémentation réussie des règles de sécurité (blocage de compte après 3 échecs, mot de passe obligatoire à la première connexion). \newline
+Gestion des rôles permettant de restreindre les accès. \\
+\hline
+Qu'est-ce qui ne s'est pas bien passé ? & 
+Quand on changeait les droits d'un utilisateur ou qu'on bloquait son compte, la modification ne s'appliquait pas immédiatement dans l'application. \newline
+Quelques ajustements nécessaires pour garantir la mise à jour correcte des informations du profil. \\
+\hline
+Que devrions-nous arrêter de faire ? & 
+Reporter la validation des scénarios de sécurité à la toute fin du sprint. \newline
+Sous-estimer l'effort de coordination nécessaire pour tester les droits de chaque rôle. \\
+\hline
+Que devrions-nous commencer à faire ? & 
+Tester les processus d'inscription avec des utilisateurs dès les premières étapes. \newline
+Planifier des sessions régulières de vérification croisée des permissions. \\
+\hline
+\end{longtable}
+\vspace{-15pt}
+\captionof{table}{Rétrospective du premier sprint}
+\label{tab:retrospective_sprint1}
+\endgroup
+
+\subsection{Suivi des user stories avec Notion}
+
+La figure ci-dessous présente le tableau Notion récapitulant l'ensemble des user stories 
+du premier sprint, toutes marquées comme terminées à l'issue de ce sprint.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio]{Images/Notion Sprint 1.png}
+    \caption{Tableau Notion — User Stories du premier sprint}
+    \label{fig:notion_sprint1}
+\end{figure}
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 4 : RÉALISATION
 % ─────────────────────────────────────────────────────────────────────────────
@@ -1311,7 +1363,7 @@ confirmant l'intégrité de la validation des jetons.
 \caption{Test de sécurité — refus d'accès 401 pour un token invalide}
 \end{figure}
 
-\subsubsection{Scan automatisé OWASP ZAP (\textit{Open Web Application Security Project} - \textit{Zed Attack Proxy})}
+\subsubsection{Scan automatisé \texorpdfstring{OWASP ZAP (\textit{Open Web Application Security Project} -- \textit{Zed Attack Proxy})}{OWASP ZAP (Open Web Application Security Project -- Zed Attack Proxy)}}
 Un scan automatisé a été réalisé sur l'ensemble des endpoints exposés.
 Aucune vulnérabilité de niveau \textit{High} ou \textit{Medium} n’a été détectée.
 Les résultats obtenus indiquent uniquement l’identification des mécanismes de gestion de session, 
@@ -1322,6 +1374,7 @@ sans présence d’alertes critiques liées à la sécurité de l’application.
 \includegraphics[width=0.75\textwidth]{Images/test-secu-zap-alertes.png}
 \caption{Rapport OWASP ZAP — absence d’alertes critiques détectées}
 \end{figure}
+
 
 % ─────────────────────────────────────────────────────────────────────────────
 % CONCLUSION
@@ -1337,3 +1390,4 @@ End-to-End répartis sur trois niveaux.
 \newline
 Le chapitre suivant détaillera le deuxième sprint, consacré à la gestion
 des contrats, des projets et des clients.
+

@@ -1,4 +1,4 @@
-﻿\section*{Introduction}
+\section*{Introduction}
 
 Ce chapitre présente le quatrième et dernier sprint du projet \textbf{SolidMaint}. Les sprints précédents nous ont permis de mettre en place les principales fonctionnalités du système : la gestion des utilisateurs, des clients, des contrats, ainsi que le traitement des demandes et des tickets. Ce sprint vient compléter la plateforme avec des fonctionnalités de collaboration et de suivi qui étaient encore manquantes.
 \newline
@@ -65,7 +65,7 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -121,7 +121,7 @@ Dans cette partie, nous présentons le raffinement des scénarios liés à la me
 \subsubsection{Description textuelle du cas d'utilisation « Envoyer message privé »}
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -175,7 +175,7 @@ Dans cette partie, nous présentons le raffinement des scénarios liés à la me
 \subsubsection{Description textuelle du cas d'utilisation « Envoyer message audio »}
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -224,7 +224,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/gererDocumentsdrawio.png}
+  \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme cas d'utilisationDocument.png}
   \caption{Raffinement du cas d'utilisation « Gérer documents »}
   \label{fig:gerer_documents}
 \end{figure}
@@ -234,7 +234,7 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -284,7 +284,7 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -304,11 +304,12 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'acteur ouvre un ticket et sélectionne l'action "Générer le PV"
-\item Le système interroge la base et charge instantanément le contexte du ticket
-\item Le système affiche la fenêtre modale du PV. Les champs client, temps passé, et la solution apportée sont affichés automatiquement sans saisie manuelle.
-\item L'acteur complète les champs libres : "Observations particulières" et "Matériel utilisé".
-\item Le système enregistre le PDF comme document définitif rattaché au ticket.
+\item Dès que le ticket passe à l'état "Résolu", le système déclenche automatiquement la génération du Procès-Verbal (PV).
+\item Le système interroge la base de données et extrait instantanément le contexte global du ticket.
+\item Les informations essentielles (client, temps passé, solution apportée) ainsi que les détails complémentaires (observations particulières et matériel utilisé) sont récupérés et insérés dans le document sans aucune saisie manuelle.
+\item Le système génère le fichier PDF de manière totalement autonome.
+\item Le système enregistre le PDF comme document définitif et le rattache automatiquement au ticket.
+
 \end{enumerate}
 \vspace{0.2cm}
 \end{minipage} \\
@@ -340,7 +341,7 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -404,7 +405,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme Consulter Notification.drawio.png}
+  \includegraphics[width=0.65\textwidth,height=0.65\textheight,keepaspectratio]{Images/Diagramme Consulter Notification.png}
   \caption{Raffinement du cas d'utilisation « Gérer notifications »}
   \label{fig:consulter_notifications}
 \end{figure}
@@ -414,7 +415,7 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -449,14 +450,13 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle du cas d'utilisation « Configurer préférences notifications »}
-\newpage
 
 \subsubsection{Description textuelle du cas d’utilisation « Configurer intégration Slack »}
 Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Configurer intégration Slack ».
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\begin{longtable}{|P{4cm}|P{11.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{4cm}|p{11.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -605,9 +605,65 @@ Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui
 }
 
 % ─────────────────────────────────────────────────────────────────────────────
-% SECTION 4 : RÉALISATION
+% SECTION 5 : RÉTROSPECTIVE DU SPRINT
 % ─────────────────────────────────────────────────────────────────────────────
+\section{Rétrospective du Sprint}
+\label{sec:retrospective_sprint4}
+À la fin de ce quatrième et dernier sprint, l'équipe a tenu une réunion de rétrospective afin d'évaluer le travail accompli. Le tableau \ref{tab:retrospective_sprint4} présente les points clés de cette session, en structurant les réussites, les difficultés fonctionnelles et techniques, ainsi que les axes d'amélioration.
 
+\begingroup
+\renewcommand{\arraystretch}{1.4}
+\small
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{5.5cm}|p{9.5cm}|}
+\hline
+\rowcolor{secondary}
+\multicolumn{1}{|>{\centering\arraybackslash}p{5.5cm}|}{\textbf{\color{white}Question}} & \multicolumn{1}{>{\centering\arraybackslash}p{9.5cm}|}{\textbf{\color{white}Réponse}} \\
+\hline
+\endfirsthead
+\hline
+\endlastfoot
+Qu'est-ce qu'on a bien fait ? & 
+Intégration du module de messagerie instantanée en temps réel et du système de notifications multicanaux (internes, courriels, push, Slack). \newline
+Centralisation de la gestion documentaire avec versionnage automatique et génération automatisée des rapports d'activité. \\
+\hline
+Qu'est-ce qui ne s'est pas bien passé ? & 
+L'adaptation responsive des graphiques sur les tableaux de bord a causé des retards d'intégration. \newline
+La gestion et le stockage des messages vocaux ont nécessité des ajustements de synchronisation temps réel. \newline
+Le chargement des anciens messages lors du défilement vers le haut a provoqué des sauts visuels de l'interface. \newline
+Les temps de réponse des requêtes de filtrage sur le journal d'activités ont augmenté sous charge. \\
+\hline
+Que devrions-nous arrêter de faire ? & 
+Concevoir des interfaces de tableaux de bord en testant le rendu uniquement sur grand écran. \newline
+Envoyer les messages vocaux au format brut (WAV) sans compression. \newline
+Réinitialiser la position du défilement (scroll) lors de l'insertion de nouveaux messages dans la liste. \newline
+Lancer des requêtes de recherche vers le serveur à chaque saisie de caractère sans délai d'attente (debounce). \\
+\hline
+Que devrions-nous commencer à faire ? & 
+Valider l'affichage des graphiques sur différentes résolutions d'écran. \newline
+Écrire des tests unitaires avec Vitest pour valider l'encodage des messages vocaux. \newline
+Créer des tests E2E avec Playwright pour valider le défilement et la messagerie. \newline
+Lancer des tests de charge avec k6 pour valider la performance des filtres sous charge. \\
+\hline
+\end{longtable}
+\vspace{-15pt}
+\captionof{table}{Rétrospective du quatrième sprint}
+\label{tab:retrospective_sprint4}
+\endgroup
+
+% ─────────────────────────────────────────────────────────────────────────────
+% SECTION 6 : RÉALISATION
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Suivi des user stories avec Notion}
+
+La figure ci-dessous présente le tableau Notion récapitulant l'ensemble des user stories 
+du quatrième sprint, toutes marquées comme terminées à l'issue de ce sprint.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio]{Images/notion sprint 4.png}
+    \caption{Tableau Notion — User Stories du quatrième sprint }
+    \label{fig:notion_sprint4}
+\end{figure}
 \section{Réalisation}
 \label{sec:realisation_sprint4}
 
@@ -795,7 +851,7 @@ Les tests d'intégration ont été effectués via \textbf{Swagger UI} et les poi
 
 \end{itemize}
 
-\subsubsection{Tests End-to-End (\textbf{E2E})}
+\subsection{Tests End-to-End (\textbf{E2E})}
 
 Les tests End-to-End ont été exécutés avec \textbf{Playwright} afin de simuler des parcours utilisateur complets dans un navigateur réel. Ils permettent de vérifier l'enchaînement réel entre l'interface Next.js, l'API NestJS et la persistance en base de données, en particulier pour les fonctionnalités transversales du sprint 4.
 
@@ -941,7 +997,7 @@ et que les fichiers dépassant la limite de 10 Mo retournent
 \includegraphics[width=0.75\textwidth]{Images/test-secu-documentaire-413.png}
 \caption{Test de sécurité — validation des fichiers uploadés}
 \end{figure}
-\end{itemize}
+
 
 % ─────────────────────────────────────────────────────────────────────────────
 % CONCLUSION DU CHAPITRE

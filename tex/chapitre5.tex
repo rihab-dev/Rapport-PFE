@@ -1,4 +1,4 @@
-﻿\section*{Introduction}
+\section*{Introduction}
 Dans le chapitre précédent, nous avons mis en place la gestion des projets et des contrats, définissant ainsi le cadre contractuel et organisationnel de notre collaboration avec les clients.
 \newline Au cours de ce chapitre, nous présentons les fonctionnalités du troisième sprint, consacré au cœur métier de la plateforme, à savoir la gestion des demandes, la gestion des tickets, le suivi du temps, le respect des SLA et l’intégration de l’intelligence artificielle. Ce sprint constitue une étape majeure dans la transformation de la solution en un véritable système de pilotage du support et du traitement des incidents.
 
@@ -10,7 +10,7 @@ La planification du sprint est une étape essentielle du processus de développe
 \subsection{Objectifs du sprint}
 L’objectif principal de ce sprint était d’implémenter le cœur opérationnel de la plateforme de gestion des tickets, en assurant la prise en charge complète du cycle de vie d’une demande jusqu’à sa conversion en ticket, puis son traitement collaboratif par les équipes techniques. Ce sprint visait également à intégrer des mécanismes avancés de suivi du temps, de gestion des SLA, de pilotage via Kanban et d’assistance intelligente à la décision.
 
-\subsection{Intégration de l'intelligence artificielle}
+\section{Intégration de l'intelligence artificielle}
 
 Dans le cadre de ce sprint, l'intégration de l'intelligence artificielle
 a constitué un axe transversal visant à automatiser et à assister plusieurs
@@ -18,7 +18,7 @@ a constitué un axe transversal visant à automatiser et à assister plusieurs
 initiale, priorisation, analyse des blocages et capitalisation des
 connaissances. Cette intégration a été pensée comme un composant à part entière de la plateforme, permettant ainsi de fluidifier le travail des équipes tout en garantissant des réponses plus rapides et fiables.
 
-\subsubsection{Fonctionnalités développées}
+\subsection{Fonctionnalités développées}
 
 Le composant IA expose des services asynchrones déclenchés automatiquement
 aux moments clés du cycle de vie des demandes et des tickets, sans bloquer
@@ -44,7 +44,7 @@ sont les suivantes :
     publication dans la base de connaissances partagée.
 \end{itemize}
 
-\subsubsection{Les grands modèles de langage (LLM)}
+\subsection{Les grands modèles de langage (LLM)}
 
 Les grands modèles de langage (\textit{Large Language Models}, LLM) sont
 des modèles entraînés sur des corpus textuels massifs, fondés sur
@@ -84,7 +84,7 @@ LLaMA 3.3 (70B)   & Meta / Groq & Bonne      & Oui & Très faible & Faible \\
 \label{tab:comparaison_llm}
 \end{table}
 
-\subsubsection{Choix du modèle}
+\subsection{Choix du modèle}
 
 À l'issue de cette analyse comparative et au regard des fonctionnalités
 à couvrir, le modèle retenu est (\textit{Large Language Model Meta AI}) \textbf{LLaMA~3.3 (70B)}, exploité via
@@ -97,7 +97,7 @@ gratuit lors de la phase de développement. Par ailleurs, LLaMA étant un
 modèle open-source, il offre la possibilité d'un hébergement local à terme,
 garantissant une indépendance vis-à-vis d'un fournisseur externe.
 
-\subsubsection{Robustesse opérationnelle et gouvernance}
+\subsection{Robustesse opérationnelle et gouvernance}
 
 Afin d'assurer la fiabilité du composant IA en conditions réelles,
 plusieurs mécanismes complémentaires ont été mis en place.
@@ -141,7 +141,7 @@ supprime les entrées de plus de quatre-vingt-dix jours conformément aux
 exigences de protection des données, tout en conservant les statistiques
 agrégées pour le suivi de la qualité du service.
 
-\subsubsection{Apport métier de l'IA}
+\subsection{Apports et impacts métiers du projet d’intelligence artificielle}
 
 Pour le \textbf{chef de projet}, la classification automatique réduit le
 temps de qualification des demandes : plutôt que d'analyser chaque texte
@@ -199,7 +199,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -254,7 +254,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -306,7 +306,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -367,7 +367,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
 {\sloppy
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -435,7 +435,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -494,7 +494,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -547,7 +547,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -599,7 +599,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -653,7 +653,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -705,7 +705,7 @@ La figure ci-dessous présente la description textuelle du cas d’utilisation �
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -772,7 +772,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{1.1}
-\begin{longtable}{|P{3.5cm}|P{10.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
 \textbf{Nom du cas d'utilisation} & Assigner un ticket \\
 \hline
@@ -895,6 +895,57 @@ Le schéma relationnel du premier sprint s’appuie sur les relations suivantes 
 \textbf{AssignmentTicket} (\underline{\#idTicket}, \underline{\#idProfilEmploye}, idAssignment, dateDebutReelle, dateFinReelle, commentaireAssignment, progression, estBloque, raisonBlocage, feedbackDeveloppeur, technologiesUtilisees, enTravail, dureeTotaleSecondes, dateCreation, solutionProposee, solutionProposeeAt)
 \newline
 \textbf{SessionTravail} (\underline{idSessionTravail}, debut, fin, dureeSecondes, note, isManual, \textbf{\#idTicket}, \textbf{\#idProfilEmploye}, \textbf{\#idArticleKB})
+% ─────────────────────────────────────────────────────────────────────────────
+% RÉTROSPECTIVE DU SPRINT
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Rétrospective du Sprint}
+À la fin de ce troisième sprint, nous avons organisé une réunion de rétrospective afin d'analyser le déroulement du travail. Le tableau \ref{tab:retrospective_sprint3} résume les points clés soulevés par l'équipe, en mettant en évidence les réussites, les difficultés rencontrées et les actions d'amélioration pour la suite du projet.
+
+\begingroup
+\renewcommand{\arraystretch}{1.4}
+\small
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{5.5cm}|p{9.5cm}|}
+\hline
+\rowcolor{secondary}
+\multicolumn{1}{|>{\centering\arraybackslash}p{5.5cm}|}{\textbf{\color{white}Question}} & \multicolumn{1}{>{\centering\arraybackslash}p{9.5cm}|}{\textbf{\color{white}Réponse}} \\
+\hline
+\endfirsthead
+\hline
+\endlastfoot
+Qu'est-ce qu'on a bien fait ? & 
+Mise en place du cycle de vie complet des demandes et des tickets. \newline
+Intégration de l'intelligence artificielle pour la classification des demandes et l'analyse des blocages. \newline
+Livraison du tableau Kanban, du chronomètre et du suivi SLA en temps réel. \\
+\hline
+Qu'est-ce qui ne s'est pas bien passé ? & 
+La gestion des transitions de statut des tickets (ouvert, en cours, en revue, résolu, fermé) a généré des cas limites non anticipés lors de la conception. \newline
+Le flux de conversion des demandes en tickets a nécessité plusieurs ajustements pour synchroniser les pièces jointes et les notifications. \\
+\hline
+Que devrions-nous arrêter de faire ? & 
+Intégrer de nouvelles fonctionnalités IA sans avoir stabilisé le flux métier principal au préalable. \newline
+Repousser la rédaction de la documentation des règles de transition de statut. \\
+\hline
+Que devrions-nous commencer à faire ? & 
+Structurer les champs du formulaire de soumission des demandes pour limiter les omissions et réduire les allers-retours d'informations complémentaires. \newline
+Intégrer des tests automatisés sur les transitions d'état du Kanban et le calcul de cumul du chronomètre pour détecter les anomalies plus tôt. \\
+\hline
+\end{longtable}
+\vspace{-15pt}
+\captionof{table}{Rétrospective du troisième sprint}
+\label{tab:retrospective_sprint3}
+\endgroup
+
+\subsection{Suivi des user stories avec Notion}
+
+La figure ci-dessous présente le tableau Notion récapitulant l'ensemble des user stories 
+du troisième  sprint, toutes marquées comme terminées à l'issue de ce sprint.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio]{Images/notion sprint 3.png}
+    \caption{Tableau Notion — User Stories du troisième  sprint}
+    \label{fig:notion_sprint3}
+\end{figure}
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 4 : RÉALISATION
 % ─────────────────────────────────────────────────────────────────────────────
@@ -1030,7 +1081,7 @@ Nous avons adopté la même stratégie de tests structurée que lors des sprints
 \subsection{Tests unitaires}
 Les tests unitaires de ce troisième sprint ont été structurés par composant fonctionnel afin de garantir une traçabilité optimale. Exécutés dans un environnement isolé à l'aide de doublons de test (\textit{mocks}) pour simuler les dépendances externes, ils valident la logique métier critique du système : classification par IA, hachage MD5 (\textit{ Message Digest 5})pour la mise en cache, politiques de résilience (\textit{retry} et \textit{fallback}), cycle de vie des tickets, limitation de débit (\textit{rate limiting}) et calcul précis des SLA.
 
-subsubsection{Synthèse des résultats}
+\subsubsection{Synthèse des résultats}
 La synthèse suivante présente, pour chaque fonctionnalité majeure, les objectifs visés, le statut de couverture ainsi que les observations clés issues des rapports d'exécution locaux.
 
 \begin{description}
@@ -1184,8 +1235,8 @@ Les tests d'intégration ont été réalisés sur les endpoints principaux du sp
   \includegraphics[width=0.8\textwidth,keepaspectratio]{Images/classificationsList.png}
   \caption{Test d’intégration - Liste des classifications IA}
   \end{figure}
-  \end{itemize}
-
+\end{itemize}
+\end{itemize}
 \subsubsection{Tests End-to-End (\textbf{E2E})}
 \label{sec:tests_e2e_demandesch5}
 

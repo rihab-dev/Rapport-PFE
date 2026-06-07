@@ -1,4 +1,4 @@
-﻿\section*{Introduction}
+\section*{Introduction}
 
 \section*{Introduction}
 
@@ -64,7 +64,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\begin{longtable}{|P{4cm}|P{11.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{4cm}|p{11.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -126,7 +126,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\begin{longtable}{|P{4cm}|P{11.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{4cm}|p{11.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -183,7 +183,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\begin{longtable}{|P{4cm}|P{11.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{4cm}|p{11.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -236,7 +236,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\begin{longtable}{|P{4cm}|P{11.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{4cm}|p{11.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -303,7 +303,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\begin{longtable}{|P{4cm}|P{11.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{4cm}|p{11.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -358,7 +358,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\begin{longtable}{|P{4cm}|P{11.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{4cm}|p{11.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -427,7 +427,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{1}
-\begin{longtable}{|P{4cm}|P{11.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{4cm}|p{11.5cm}|}
 \hline
 \endfirsthead
 \hline
@@ -532,6 +532,57 @@ Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui
 \textbf{JournalActivite} (\underline{id}, action, method, path, ipAddress, status, description, metadata, \textbf{\#idUtilisateur})
 }
 
+% ─────────────────────────────────────────────────────────────────────────────
+% RÉTROSPECTIVE DU SPRINT
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Rétrospective du Sprint}
+À la fin de ce deuxième sprint, nous avons organisé une réunion de rétrospective afin d'analyser le déroulement du travail. Le tableau \ref{tab:retrospective_sprint2} résume les points clés soulevés par l'équipe, en mettant en évidence les réussites, les difficultés rencontrées et les actions d'amélioration pour la suite du projet.
+
+\begingroup
+\renewcommand{\arraystretch}{1.4}
+\small
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{5.5cm}|p{9.5cm}|}
+\hline
+\rowcolor{secondary}
+\multicolumn{1}{|>{\centering\arraybackslash}p{5.5cm}|}{\textbf{\color{white}Question}} & \multicolumn{1}{>{\centering\arraybackslash}p{9.5cm}|}{\textbf{\color{white}Réponse}} \\
+\hline
+\endfirsthead
+\hline
+\endlastfoot
+Qu'est-ce qu'on a bien fait ? & 
+Livraison de la gestion des clients, des projets et des contrats dans les délais prévus. \newline
+Mise en place du journal d'activités pour assurer la traçabilité des opérations. \newline
+Intégration du flux de résiliation côté client et côté administrateur. \\
+\hline
+Qu'est-ce qui ne s'est pas bien passé ? & 
+La gestion des niveaux de service (SLA) par contrat a demandé plusieurs itérations avant d'aboutir à une solution stable. \newline
+La coordination entre les modules clients et contrats a nécessité des ajustements en cours de sprint. \\
+\hline
+Que devrions-nous arrêter de faire ? & 
+Développer les formulaires complexes (contrat, projet) sans maquette validée au préalable. \newline
+Laisser les tests d'isolation des données (IDOR) en fin de sprint. \\
+\hline
+Que devrions-nous commencer à faire ? & 
+Valider les règles métier des contrats (archivage, résiliation) avec le Product Owner dès le début du sprint. \newline
+Automatiser les tests de non-régression sur les modules livrés précédemment. \\
+\hline
+\end{longtable}
+\vspace{-15pt}
+\captionof{table}{Rétrospective du deuxième sprint}
+\label{tab:retrospective_sprint2}
+\endgroup
+
+\subsection{Suivi des user stories avec Notion}
+
+La figure ci-dessous présente le tableau Notion récapitulant l'ensemble des user stories 
+du deuxième  sprint, toutes marquées comme terminées à l'issue de ce sprint.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio]{Images/notion sprint 2.png}
+    \caption{Tableau Notion — User Stories du deuxième  sprint}
+    \label{fig:notion_sprint2}
+\end{figure}
 \section{Réalisation}
 \label{sec:realisation_sprint2}
 Cette section présente les principales interfaces utilisateur développées durant le deuxième sprint. Chaque interface a été conçue pour offrir une expérience claire aux différents acteurs de la plateforme.
