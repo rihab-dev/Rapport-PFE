@@ -576,32 +576,23 @@ et dépendances qui les unissent.
 Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui détaille les différentes tables de la base de données ainsi que leurs relations :
 
 \noindent
-\textbf{Utilisateur} (\underline{idUtilisateur}, nom, prenom, email, emailsSecondaires, motDePasse, numTel, photoProfil, estActif, doitChangerMotDePasse, dateCreation, dateMiseAJour, derniereConnexion)
+\textbf{CanalMembre} (\underline{\#idCanal}, \underline{\#idUtilisateur}, estMute, derniereLecture, dateAjout)
 \newline
-\textbf{JournalActivite} (\underline{id}, action, method, path, ipAddress, status, description, metadata, createdAt, \textit{\#userId})
+\textbf{Message} (\underline{idMessage}, contenu, estEdite, dateCreation, dateEdition, \textbf{\#idCanal}, \textbf{\#idUtilisateur})
 \newline
- \textbf{Message} (\underline{id}, contenu, estEdite,  dateCreation, \textbf{\textit{\#channelId}})
+\textbf{MessageHistorique} (\underline{idMessgHistorique}, contenuPrecedent, contenuNouveau, dateModification, \textbf{\#idMessage})
 \newline
- \textbf{ChannelMembre} (\underline{id}, role, estMute, estEpingle, derniereLecture, \textit{\#channelId}, \textit{\#utilisateurId})
+\textbf{Document} (\underline{idDoc}, titre, typeDoc, cheminFichier, tailleFichier, versionCourante, description, dateCreation, estArchive, dateArchivage, \textbf{\#idTicket}, \textbf{\#idContrat})
 \newline
- \textbf{MessageHistory} (\underline{id}, contenuPrecedent, contenuNouveau, dateModification, \textit{\#messageId})
+\textbf{DocumentConsultation} (\underline{\#idDoc}, \underline{\#idUtilisateur}, dateConsultation)
 \newline
- \textbf{Document} (\underline{documentId}, nomDoc, typeDoc, cheminFichier, tailleDoc, versionDoc, dateUploadDoc, commentaire, estArchive, dateArchivage,  \textit{\#ticketId}, \textit{\#contratId}, \textit{\#uploadeurId}) 
- \newline
-\textbf{DocumentConsultation} (\underline{id}, dateConsultation,\textit{\#documentId}, \textit{\#utilisateurId})
- \newline
- \textbf{Document\_PV} (\underline{\textit{\#documentId}}, dateIntervention, dateResolution, nomTechnicien, solutionApportee)
- \newline
- \textbf{DocumentVersion} (\underline{id}, nomDoc, cheminFichier, tailleDoc, numeroVersion, dateVersion, commentaire, \textit{\#documentId})
- \newline
-\textbf{Notification} (\underline{id}, type, donnees, createdAt, \textit{\#destinataireId})
+\textbf{DocumentPV} (\underline{\textbf{\#idDoc}}, dateIntervention, dateResolution)
 \newline
-\textbf{KnowledgeBaseArticle} (\underline{id}, titre, contenu, categorie, statutKB, tag, nombreUtilisations, tauxReussite, \textit{\#auteurId})
+\textbf{DocumentVersion} (\underline{idDocVersion}, cheminFichier, tailleDoc, numeroVersion, dateVersion, commentaire, \textbf{\#idDoc}, \textbf{\#idUtilisateur})
 \newline
-\textbf{Contrat} (\underline{idContrat}, referenceContrat, dateDebutContratM, dateExpirationContratM, montantMensuel, montantSemestriel, tauxTVA, montantTVA, montantTTC, typeSLA, fichierContrat, statutContratM, estArchive, dateCreation, dateMiseAJour, dateArchivage)
+\textbf{Notification} (\underline{idNotif}, titre, contenu, type, estLu, dateCreation, dateResolution, \textbf{\#idUtilisateur})
 \newline
-\textbf{ConfigurationSlack} (\underline{id}, webhookUrl, canal, notifierSurCreation, notifierSurResolution, estActif, \textit{\#contratId})
-
+\textbf{ArticleConnaissance} (\underline{idArticleKB}, titre, contenu, categorie, statutKB, tag, nombreUtilisations, tauxReussite, \textbf{\#idSolutionTicket})
 }
 
 % ─────────────────────────────────────────────────────────────────────────────
