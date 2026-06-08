@@ -1,4 +1,4 @@
-﻿% !TEX root = ../rapport.tex
+% !TEX root = ../rapport.tex
 
 \section*{Introduction}
 Dans le chapitre précédent, nous avons défini les besoins liés à notre solution et réparti les différentes tâches du projet afin que les phases de travail soient correctement planifiées.
@@ -105,9 +105,9 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \hline
 \textbf{Postcondition} & L'utilisateur est authentifié et accède à l'interface appropriée selon son rôle. Un jeton d'accès est généré en base de données. \\
 \hline
-\textbf{Scénario principal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt,series=scen_auth]
 \item Le système affiche le formulaire de connexion avec les onglets \textit{Connexion} et \textit{Inscription OAuth}.
 \item L'utilisateur choisit l'onglet \textit{Connexion}.
 \item L'utilisateur saisit son adresse e-mail et son mot de passe.
@@ -116,6 +116,12 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \item Le système vérifie l'existence du compte via l'e-mail.
 \item Le système vérifie la validité du mot de passe.
 \item Le système vérifie que le compte est actif.
+\end{enumerate}
+\vspace{0.1cm}
+\end{minipage} \\
+ &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt,resume=scen_auth]
 \item Le système récupère le profil de l'utilisateur ainsi que ses rôles et permissions.
 \item Le système met à jour la date de dernière connexion et réinitialise le compteur de tentatives infructueuses.
 \item Le système génère un jeton d'accès et un jeton de rafraîchissement.
@@ -124,7 +130,7 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \item Si tel est le cas, le système affiche une fenêtre bloquante contraignant l'utilisateur à définir un mot de passe personnel avant tout accès au tableau de bord.
 \item Le système redirige l'utilisateur vers le tableau de bord correspondant à son rôle.
 \end{enumerate}
-\vspace{0.2cm}
+\vspace{0.1cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -168,9 +174,16 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt,series=scen_auth]
 \item Le système affiche un formulaire de changement de mot de passe.
 \item L'utilisateur saisit son e-mail.
+\end{enumerate}
+\vspace{0.1cm}
+\end{minipage} \\
+ &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt,resume=scen_auth]
+
 \item L'utilisateur clique sur le bouton « Réinitialiser le mot de passe ».
 \item Le système vérifie l'existence de l'email.
 \item Le système envoie un e-mail à l'utilisateur.
@@ -180,7 +193,7 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \item Le système valide et enregistre le nouveau mot de passe.
 \item Le système envoie un e-mail de confirmation à l'utilisateur.
 \end{enumerate}
-\vspace{0.2cm}
+\vspace{0.1cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario d'exception} &
@@ -282,7 +295,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
         \caption{Diagramme de cas d'utilisation « Gérer utilisateurs »}
         \label{fig:gerer_utilisateurs}
 \end{figure}
-
+\newpage
 \subsubsection{Description textuelle du cas d’utilisation « Ajouter utilisateur »}
 
 Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Ajouter utilisateur ».
@@ -628,7 +641,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \end{enumerate} \\
 
 \hline
-
+\newpage
 \textbf{Scénario d'exception} &
 
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
@@ -719,16 +732,23 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt,series=scen_auth]
 \item L'administrateur accède au profil d'un utilisateur.
 \item Il clique sur l'icône de suppression du rôle visé.
+\end{enumerate}
+\vspace{0.1cm}
+\end{minipage} \\
+ &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt,resume=scen_auth]
+
 \item Le système affiche une demande de confirmation.
 \item L'administrateur confirme l'opération.
 \item Le système supprime le lien utilisateur-rôle.
 \item Le système notifie l'utilisateur par email et notification in-app.
 \item Le système affiche un message de succès à l'administrateur.
 \end{enumerate}
-\vspace{0.2cm}
+\vspace{0.1cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -901,7 +921,7 @@ Le schéma relationnel du premier sprint s’appuie sur les relations suivantes 
 \begin{longtable}{|>{\columncolor{pastelBlue}}p{5.5cm}|p{9.5cm}|}
 \hline
 \rowcolor{secondary}
-\multicolumn{1}{|>{\centering\arraybackslash}p{5.5cm}|}{\textbf{\color{white}Question}} & \multicolumn{1}{>{\centering\arraybackslash}p{9.5cm}|}{\textbf{\color{white}Réponse}} \\
+\multicolumn{1}{|>{\centering\arraybackslash}p{5.5cm}|}{\large\textbf{\color{white}Question}} & \multicolumn{1}{>{\centering\arraybackslash}p{9.5cm}|}{\large\textbf{\color{white}Réponse}} \\
 \hline
 \endfirsthead
 \hline
@@ -924,7 +944,7 @@ Tester les processus d'inscription avec des utilisateurs dès les premières ét
 Planifier des sessions régulières de vérification des droits et des rôles. \\
 \hline
 \end{longtable}
-\vspace{-15pt}
+\vspace{6pt}
 \captionof{table}{Rétrospective du premier sprint}
 \label{tab:retrospective_sprint1}
 \endgroup
@@ -985,7 +1005,7 @@ statut et par rôle, barre de recherche et actions rapides (modifier,
 désactiver, voir le profil).
 \begin{figure}[H]
 \centering
-\includegraphics[width=14cm,height=15cm,keepaspectratio]{Images/capture liste utilisateur.png}
+\includegraphics[width=12.5cm,height=16cm,keepaspectratio]{Images/capture liste utilisateur.png}
 \caption{Interface liste des utilisateurs}
 \label{fig:interface_users}
 \end{figure}
@@ -1360,7 +1380,7 @@ et la résistance aux attaques courantes, conformément à l'OWASP Top 10.
 
 \subsubsection{Test de verrouillage de compte}
 Le mécanisme anti-force brute a été validé : après trois échecs consécutifs, une quatrième tentative (même avec le bon mot de passe) 
-a déclenché une erreur 401 Unauthorized avec le message « Compte temporairement verrouillé », confirmant un verrouillage d'une minute.
+a déclenché une erreur 401 Unauthorized avec le message \newpage « Compte temporairement verrouillé », confirmant un verrouillage d'une minute.
 
 \begin{figure}[H]
 \centering
@@ -1391,7 +1411,7 @@ confirmant l'intégrité de la validation des jetons.
 \caption{Test de sécurité — refus d'accès 401 pour un token invalide}
 \end{figure}
 
-\subsubsection{Scan automatisé \texorpdfstring{OWASP ZAP }}
+\subsubsection{Scan automatisé \texorpdfstring{OWASP ZAP}{OWASP ZAP}}
 Un scan automatisé a été réalisé sur l'ensemble des endpoints exposés.
 Aucune vulnérabilité de niveau \textit{High} ou \textit{Medium} n’a été détectée.
 Les résultats obtenus indiquent uniquement l’identification des mécanismes de gestion de session, 
