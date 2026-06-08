@@ -410,13 +410,22 @@ Le motif d'archivage est enregistré et associé au contrat. \\
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt,series=scen_alt_contrat]
 \item L'administrateur sélectionne plusieurs contrats expirés et clique sur « Archiver la sélection » le système archive tous les contrats éligibles et affiche le nombre de contrats archivés avec succès.
 \item Le motif saisi contient moins de 10 caractères ; le bouton de confirmation reste désactivé, l'administrateur complète le motif et \textbf{reprend à l'étape 4}.
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
+ &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt,resume=scen_alt_contrat]
 \item Le système signale que le contrat est toujours actif ; l'administrateur revient à la liste et sélectionne un contrat expiré.
 \item Le système indique que le projet associé est en statut de maintenance ; l'administrateur clôture d'abord le projet, puis \textbf{reprend à l'étape 1}.
 \item Le système détecte des tickets en statut « ouvert », « en cours » ou « en revue » liés au contrat ; l'administrateur résout ces tickets, puis \textbf{reprend à l'étape 1}.
-\end{enumerate} \\
+\end{enumerate}
+\vspace{2pt}
+\end{minipage} \\
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle du cas d’utilisation «~Archiver contrat »}

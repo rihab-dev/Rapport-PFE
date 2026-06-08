@@ -40,7 +40,7 @@ Nous allons accompagner les cas d'utilisation d'un texte descriptif pour expliqu
 \subsection{Analyse de la fonctionnalité « Gérer demandes »}
 Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des demandes afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
 \subsubsection{Raffinement du cas d'utilisation « Gérer demandes »}
-Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas du gestion des demandes :
+Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour la gestion des demandes :
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.85\textwidth,keepaspectratio]{Images/gerer_demandes.png}
@@ -334,7 +334,7 @@ et au client.
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le système détecte qu'aucune session (chronomètre) n'a été enregistrée pour ce ticket. Le passage en revue est refusé et le processus s'interrompt avec erreur.
-\item Le système constate que le développeur ne fait scrupuleusement plus partie des personnes assignées (ex: désassignation forcée). L'opération est rejetée pour raison de sécurité et le processus s'interrompt.
+\item Le système constate que  le développeur ne fait plus partie des personnes assignées (ex: désassignation forcée). L'opération est rejetée pour raison de sécurité et le processus s'interrompt.
 \end{enumerate}
 \end{minipage} \\
 \hline
@@ -693,12 +693,12 @@ Dans cette section, nous allons modéliser les interactions entre l'utilisateur 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\textwidth,keepaspectratio]{Images/Soumission demande.vpd.png}
+    \includegraphics[width=0.7\textwidth,height=0.65\textheight,keepaspectratio]{Images/Soumission demande.vpd.png}
     \caption{Diagramme de séquences du cas d'utilisation « Soumettre demande »}
     \label{fig:seq_soumettre_demande}
 \end{figure}
 
-\subsubsection{Diagramme de séquences du cas d'utilisation « Valider demande »}
+\subsection{Diagramme de séquences du cas d'utilisation « Valider demande »}
 
 \begin{figure}[H]
     \centering
@@ -718,7 +718,7 @@ Dans cette section, nous allons modéliser les interactions entre l'utilisateur 
 %\end{figure}
 
 
-\section{Intégration de l'intelligence artificielle}
+\subsection{Intégration de l'intelligence artificielle}
 
 Dans le cadre de ce sprint, l'intégration de l'intelligence artificielle
 a constitué un axe transversal visant à automatiser et à assister plusieurs
@@ -726,7 +726,7 @@ a constitué un axe transversal visant à automatiser et à assister plusieurs
 initiale, priorisation, analyse des blocages et capitalisation des
 connaissances. Cette intégration a été pensée comme un composant à part entière de la plateforme, permettant ainsi de fluidifier le travail des équipes tout en garantissant des réponses plus rapides et fiables.
 
-\subsection{Fonctionnalités développées}
+\subsubsection{Fonctionnalités développées}
 
 Le composant IA expose des services asynchrones déclenchés automatiquement
 aux moments clés du cycle de vie des demandes et des tickets, sans bloquer
@@ -752,7 +752,7 @@ sont les suivantes :
     publication dans la base de connaissances partagée.
 \end{itemize}
 
-\subsection{Les grands modèles de langage (LLM)}
+\subsubsection{Les grands modèles de langage (LLM)}
 
 Les grands modèles de langage (\textit{Large Language Models}, LLM) sont
 des modèles entraînés sur des corpus textuels massifs, fondés sur
@@ -792,7 +792,7 @@ LLaMA 3.3 (70B)   & Meta / Groq & Bonne      & Oui & Très faible & Faible \\
 \label{tab:comparaison_llm}
 \end{table}
 
-\subsection{Choix du modèle}
+\subsubsection{Choix du modèle}
 
 À l'issue de cette analyse comparative et au regard des fonctionnalités
 à couvrir, le modèle retenu est (\textit{Large Language Model Meta AI}) \textbf{LLaMA~3.3 (70B)}, exploité via
@@ -805,7 +805,7 @@ gratuit lors de la phase de développement. Par ailleurs, LLaMA étant un
 modèle open-source, il offre la possibilité d'un hébergement local à terme,
 garantissant une indépendance vis-à-vis d'un fournisseur externe.
 
-\subsection{Robustesse opérationnelle et gouvernance}
+\subsubsection{Robustesse opérationnelle et gouvernance}
 
 Afin d'assurer la fiabilité du composant IA en conditions réelles,
 plusieurs mécanismes complémentaires ont été mis en place.
@@ -849,7 +849,7 @@ supprime les entrées de plus de quatre-vingt-dix jours conformément aux
 exigences de protection des données, tout en conservant les statistiques
 agrégées pour le suivi de la qualité du service.
 
-\subsection{Apports et impacts métiers du projet d’intelligence artificielle}
+\subsubsection{Apports et impacts métiers du projet d’intelligence artificielle}
 
 Pour le \textbf{chef de projet}, la classification automatique réduit le
 temps de qualification des demandes : plutôt que d'analyser chaque texte
@@ -864,7 +864,10 @@ réduisant les délais de résolution pour des problèmes récurrents.
 Ces apports restent complémentaires au travail humain : toute suggestion
 IA est soumise à validation avant d'être appliquée ou publiée.
 
-
+\subsection{Diagramme de classes du troisième sprint}
+Le diagramme de classes ci-dessous présente la structure statique des
+entités métier introduites lors de ce sprint, ainsi que les relations
+et dépendances qui les unissent.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.98\textwidth,keepaspectratio]{Images/Diagramme de classe sprint3.png}
@@ -873,7 +876,7 @@ IA est soumise à validation avant d'être appliquée ou publiée.
 \end{figure}
 
 \section{Schéma relationnel}
-Le schéma relationnel du premier sprint s’appuie sur les relations suivantes :
+Le schéma relationnel du troisième sprint s’appuie sur les relations suivantes :
 
 \noindent
 \textbf{DemandeClient} (\underline{idDemandeClient}, titreDemande, typeDemande, statutDemande, typeSLA, descriptionDemande, dateSoumission, dateCreation, dateMiseAJour, dateValidation, motifRejet, motifRequalification, echeanceInitiale, \textbf{\#idProjet})
