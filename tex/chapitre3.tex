@@ -139,7 +139,7 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \hline
 \textbf{Scénario d'exception} &
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item  Après 3 tentatives échouées, le système affiche \texttt{401 Unauthorized} et le compte est verrouillé strictement pendant 1 minute. Aucune action de l'utilisateur ne permet de forcer l'entrée.
+\item  Après 3 tentatives échouées, le compte est verrouillé strictement pendant 1 minute. Aucune action de l'utilisateur ne permet de forcer l'entrée.
 \item  Le compte a été révoqué. Le système bloque impérativement la connexion.
 \item  La demande d'inscription \textit{Open Authorization} (\textbf{OAuth}) est en « en attente ». L'accès est bloqué tant qu'un administrateur n'a pas validé.
 \end{enumerate} \\
@@ -240,7 +240,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \hline
 \textbf{Acteurs} & Visiteur \\
 \hline
-\textbf{Précondition} & Le visiteur ne possède pas de compte actif dans le système et se trouve sur la page d'authentification (\texttt{/connexion}). \\
+\textbf{Précondition} & Le visiteur ne possède pas de compte  dans le système et se trouve sur la page d'authentification. \\
 \hline
 \textbf{Postcondition} & Une demande d'inscription est enregistrée avec le statut « en attente », les administrateurs sont notifiés, et le visiteur reçoit un accusé de réception par e-mail. \\
 \hline
@@ -259,11 +259,10 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt,resume=scen_auth]
 
-\item De retour sur l'application, le système réceptionne les données \textit{Open Authorization} (\textbf{OAuth}) et vérifie l'absence de compte actif associé à l'e-mail.
+\item De retour sur l'application, le système vérifie l'absence de compte actif associé à l'e-mail.
 \item Le système crée la demande d'inscription avec le statut « en attente ».
 \item Le système notifie l'équipe d'administration par e-mail et par notification interne.
 \item Le système envoie un accusé de réception par e-mail au visiteur.
-\item Le système redirige le visiteur vers l'interface d'attente.
 \end{enumerate}
 \vspace{0.1cm}
 \end{minipage} \\
