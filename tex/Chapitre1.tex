@@ -1,6 +1,6 @@
 ﻿
 \section*{Introduction}
-Ce chapitre pose les fondations du projet en présentant le contexte organisationnel et technique de sa réalisation. Après la présentation de \textbf{SolidWall Consulting}, entreprise d'accueil du stage, nous analysons les processus actuels de gestion de maintenance et leurs limitations. L'étude comparative des solutions du marché permet d'identifier les axes d'amélioration et de définir les contours de \textbf{SolidMaint}. Enfin, nous exposons la méthodologie Scrum, le langage UML (\textit{Unified Modeling Language}) et la planification prévisionnelle du développement.
+Ce chapitre pose les fondations du projet en présentant le contexte organisationnel et technique de sa réalisation. Après la présentation de \textbf{SolidWall Consulting}, entreprise d'accueil du stage, nous analysons les processus actuels de gestion de maintenance et leurs limitations. L'étude comparative des solutions du marché permet d'identifier les axes d'amélioration et de définir les contours de \textbf{SolidMaint}. Enfin, nous exposons la méthodologie Scrum, le langage UML et la planification prévisionnelle du développement.
 
 \section{Présentation de l’organisme d’accueil} 
 « Solid Wall Consulting est une société de services informatiques, spécialisée dans le développement web, le développement mobile et l'intégration de solutions et d'infrastructures systèmes « Microsoft ». 
@@ -186,8 +186,25 @@ Actuellement, la gestion des contrats de maintenance au sein de SolidWall Consul
     \caption{Analyse comparative des solutions de gestion de maintenance du marché}
     \label{tab:comparaison_solutions}
 \end{table}
-\noindent\textbf{Note sur les coûts :} Les tarifs annuels affichés pour 10 utilisateurs sont calculés selon la formule : (Prix mensuel par utilisateur) × 10 utilisateurs × 12 mois. GLPI représente le coût du support entreprise annuel (version communautaire gratuite). Freshdesk : 15€/mois × 10 × 12 = 1800€/an. Jira SM : 20€/mois × 10 × 12 = 2400€/an. Ces montants correspondent aux offres de base et peuvent augmenter avec des fonctionnalités additionnelles, supports premium ou services de personnalisation.
-
+\begin{center}
+\small
+\begin{tikzpicture}
+  \node[
+    draw        = secondary,
+    line width  = 0.6pt,
+    fill        = pastelBlue,
+    inner xsep  = 0.8cm,
+    inner ysep  = 0.5cm,
+    text width  = 13cm,
+    align       = justify,
+    rounded corners = 4pt
+  ]{%
+    \textbf{\color{primary}Note sur les coûts}
+    \par\vspace{4pt}
+    Les tarifs annuels affichés pour 10 utilisateurs sont calculés selon la formule : (Prix mensuel par utilisateur) \(\times\) 10 utilisateurs \(\times\) 12 mois. GLPI représente le coût du support entreprise annuel (version communautaire gratuite). Freshdesk : 15€/mois \(\times\) 10 \(\times\) 12 = 1800€/an. Jira SM : 20€/mois \(\times\) 10 \(\times\) 12 = 2400€/an. Ces montants correspondent aux offres de base et peuvent augmenter avec des fonctionnalités additionnelles, supports premium ou services de personnalisation.
+  };
+\end{tikzpicture}
+\end{center}
 \subsubsection{Solution proposée}
 
 C'est dans ce cadre que s'inscrit \textbf{SolidMaint}, une 
@@ -254,7 +271,7 @@ Les valeurs du Manifeste Agile sont ici reformulées pour refléter une appropri
 \item \textbf{Privilégier les personnes et leurs interactions plutôt que les processus et les outils} : nous considérons la qualité des échanges et la réactivité de l'équipe comme des facteurs clés de succès, y compris lorsqu'un cadre méthodologique est en place.
 \item \textbf{Préférer un logiciel fonctionnel à une documentation excessive} : l'objectif est de générer rapidement des résultats tangibles, tout en gardant une documentation utile mais non envahissante.
 \item \textbf{Collaborer avec le client plutôt que négocier un contrat figé} : l'écoute des besoins réels et les retours fréquents permettent de réorienter le produit en fonction de la valeur métier, plutôt que de s'enfermer dans un cahier des charges statique.
-\item \textbf{Accepter le changement plutôt que suivre un plan immuable} : nous voyons le changement comme une opportunité d'adaptation. Le projet doit pouvoir évoluer sans sacrifier la cohérence globale ni la qualité des livraisons. \cite{agile-manifesto}
+\item \textbf{Accepter le changement plutôt que suivre un plan immuable} : nous voyons le changement comme une opportunité d'adaptation. \newline Le projet doit pouvoir évoluer sans sacrifier la cohérence globale ni la qualité des livraisons. \cite{agile-manifesto}
 \end{itemize}
 
 \subsection{Choix de la méthode de travail}
@@ -299,6 +316,7 @@ Le tableau suivant met en évidence les méthodes Agile les plus couramment util
 
 \subsubsection{Choix de la méthode Scrum}
 Scrum a été retenue comme cadre de travail pour structurer le développement en itérations courtes tout en s'adaptant aux changements fréquents. Cette méthode offre plusieurs avantages décisifs :
+\newline
 \noindent
          --\hspace{0.5cm} Collaboration continue entre l'équipe et les parties prenantes
 \newline --\hspace{0.5cm}  Adaptation rapide aux changements grâce aux cycles itératifs
@@ -322,19 +340,12 @@ Scrum repose sur trois piliers fondamentaux qui constituent sa colonne vertébra
 La structure organisationnelle de Scrum s'appuie sur trois rôles qui répartissent clairement les responsabilités entre le pilotage métier, la facilitation du cadre et la réalisation technique.
 
 \subsubsection{Product Owner}
-Le Product Owner est responsable de la valeur métier du produit. Il formalise les besoins, priorise le Product Backlog et arbitre les choix fonctionnels, \newpage pour garantir que chaque incrément livre un bénéfice réel.
-
-Dans le cadre de SolidMaint, ce rôle est assuré par \textbf{Monsieur Mejdi Dhokar}. Il porte la vision métier du projet, définit les exigences de l’application et priorise les éléments du Product Backlog en fonction des objectifs de SolidWall Consulting.
-
+Le Product Owner est responsable de la valeur métier du produit et de la vision métier du projet. Il définit les exigences de l’application et priorise les éléments \newpage du Product Backlog en fonction des objectifs de la société.
 \subsubsection{Scrum Master}
-Le Scrum Master est le garant du cadre Scrum. Il veille à ce que les pratiques agiles soient respectées, facilite les cérémonies et aide à lever les obstacles qui freinent l'équipe.
-
-Sur ce projet, ce rôle est assuré par \textbf{Madame Maissa Ben Fredj}, encadrante en entreprise. Elle anime les points de synchronisation et veille à la bonne application des principes agiles au quotidien.
-
+Le Scrum Master est le garant du cadre Scrum. Il veille à ce que les pratiques agiles soient respectées, facilite les événements et aide à lever les obstacles qui freinent l’équipe.
 \subsubsection{Les développeurs}
-L'équipe de développement est chargée de la réalisation opérationnelle : conception, configuration, développement et tests. Elle transforme les besoins priorisés en incréments fonctionnels prêts à être validés.
-
-Pour SolidMaint, ce rôle est assuré par Rihab Chourou et Eya Gharbi, qui prennent en charge l’ensemble des travaux techniques du projet.
+L’équipe de développement est chargée de la réalisation opérationnelle : conception, configuration,
+développement et tests. Elle transforme les besoins priorisés en incréments fonctionnels prêts à être validés.
 
 \subsection{Événements Scrum}
 Les événements Scrum constituent des points de synchronisation structurés qui rythment l'exécution, entretiennent la discipline itérative, et incarnent les trois piliers de transparence, d'inspection et d'adaptation. Chaque événement possède une durée maximale prescrite et sert un objectif métier bien défini.
@@ -363,7 +374,7 @@ Les artéfacts Scrum matérialisent et expriment le travail, la valeur livrée e
     \end{figure}
     
    
-\section{Langage de modélisation UML – Unified Modeling Language}
+\section{Langage de modélisation UML}
 « Le langage de modélisation unifié (UML) est un langage permettant de spécifier, visualiser, construire et documenter les artefacts des systèmes logiciels, ainsi que de modéliser des systèmes métier et d'autres systèmes non logiciels. L'UML représente un ensemble de bonnes pratiques d'ingénierie qui ont fait leurs preuves dans la modélisation de systèmes vastes et complexes. » \cite{omg-uml-importance}
 
 \begin{figure}[H]

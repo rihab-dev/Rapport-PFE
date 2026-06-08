@@ -1,6 +1,13 @@
-﻿\section*{Introduction}
-Dans le chapitre précédent, nous avons mis en place la gestion des projets et des contrats, définissant ainsi le cadre contractuel et organisationnel de notre collaboration avec les clients.
-\newline Au cours de ce chapitre, nous présentons les fonctionnalités du troisième sprint, consacré au cœur métier de la plateforme, à savoir la gestion des demandes, la gestion des tickets, le suivi du temps, le respect des SLA et l’intégration de l’intelligence artificielle. Ce sprint constitue une étape majeure dans la transformation de la solution en un véritable système de pilotage du support et du traitement des incidents.
+\section*{Introduction}
+Dans le chapitre précédent, nous avons mis en place la gestion des projets et
+des contrats, définissant ainsi le cadre contractuel et organisationnel de
+notre collaboration avec les clients.
+\newline Au cours de ce chapitre, nous présentons les fonctionnalités de ce
+sprint, consacré au cœur métier de la plateforme, à savoir la gestion des
+demandes, la gestion des tickets, le suivi du temps, le respect des SLA et
+l'intégration de l'intelligence artificielle. Ce sprint constitue une étape
+majeure dans la transformation de la solution en un véritable système de
+pilotage du support et du traitement des incidents.
 
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 1 : BACKLOG DU SPRINT 3
@@ -10,7 +17,7 @@ La planification du sprint est une étape essentielle du processus de développe
 \subsection{Objectifs du sprint}
 L’objectif principal de ce sprint était d’implémenter le cœur opérationnel de la plateforme de gestion des tickets, en assurant la prise en charge complète du cycle de vie d’une demande jusqu’à sa conversion en ticket, puis son traitement collaboratif par les équipes techniques. Ce sprint visait également à intégrer des mécanismes avancés de suivi du temps, de gestion des SLA, de pilotage via Kanban et d’assistance intelligente à la décision.
 
-\section{Backlog du troisième sprint}
+\subsection{Backlog du troisième sprint}
 \label{sec:backlog_sprint3}
 
 Voici l’ensemble des user stories retenues pour ce sprint, correspondant aux épics liés à la gestion des demandes, à la gestion des tickets et à l’intelligence artificielle.
@@ -22,9 +29,10 @@ Voici l’ensemble des user stories retenues pour ce sprint, correspondant aux �
 % SECTION 2 : ANALYSE
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Analyse}
+\label{sec:analyse_sprint3}
 Dans le cadre de ce sprint, l’analyse fonctionnelle a consisté à formaliser les interactions entre les différents acteurs et les modules métiers de la solution. Cette étape a permis de traduire les besoins exprimés dans le backlog en cas d’utilisation concrets, en tenant compte des contraintes de sécurité, de validation, de priorisation et de traçabilité.
 
-\label{sec:analyse_sprint3}
+
 
 \subsection{Diagramme de cas d'utilisation du troisième sprint}
 La figure ci-dessous présente le diagramme de cas d’utilisation du troisième sprint.
@@ -53,7 +61,8 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
+% Largeurs légèrement réduites (3.2 + 10.3) pour éliminer les Overfull \hbox
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.2cm}|p{10.3cm}|}
 \hline
 \endfirsthead
 \hline
@@ -68,35 +77,39 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \hline
 \textbf{Précondition} & La demande est au statut « En attente » ou « Infos requises ». L'acteur dispose de la permission de validation. \\
 \hline
-\textbf{Postcondition} & La demande passe au statut « Convertie » ; un ticket est créé automatiquement avec le statut « Ouvert ». Toute requalification effectuée est historisée et les parties prenantes sont notifiées. L'assignation du ticket sera effectuée ultérieurement. \\
+\textbf{Postcondition} & La demande passe au statut « Convertie » \newline un ticket est créé automatiquement avec le statut « Ouvert ». \newline Toute requalification effectuée est historisée et les parties prenantes sont notifiées. \newline L'assignation du ticket sera effectuée ultérieurement. \\
 \hline
 \textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-    \item Le chef de projet sélectionne une demande en attente depuis la liste ou son détail.
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=2pt,itemsep=1pt,series=scen_valider]    \item Le chef de projet sélectionne une demande en attente depuis la liste ou son détail.
     \item Il conserve les informations initiales ou requalifie le type et/ou la priorité (éventuellement suggérés par l'IA).
     \item Il valide la demande.
     \item Le système vérifie les permissions et l'existence d'un contrat actif couvrant le projet.
     \item Le système met à jour la demande au statut « Convertie ».
+    \end{enumerate} \\ % Fin de la ligne, LaTeX coupe ici proprement !
+
+% =========================================================
+% SCÉNARIO NOMINAL : PARTIE 2 (SUR LA PAGE SUIVANTE)
+% =========================================================
+ &
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=2pt,itemsep=1pt,resume=scen_valider]
     \item Le système crée automatiquement un ticket lié à la demande avec le statut « Ouvert ».
     \item Le système transfère les pièces jointes de la demande vers les documents du ticket.
-    \item Le système notifie le client et les utilisateurs concernés.
-    \item L'assignation du ticket est réalisée dans un second temps via le module de gestion des tickets.
-\end{enumerate}
-\end{minipage} \\
+          \item Le système notifie le client et les utilisateurs concernés.    
+
+\end{enumerate}\\
 \hline
 \textbf{Scénario alternatif} &
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-    \item Le validateur modifie le type de demande et/ou la priorité avant de valider  les modifications sont enregistrées et historisées simultanément à la validation.
-    \item Si la priorité est reclassée en critique, un commentaire de justification est requis  le validateur saisit le commentaire et \textbf{reprend à l'étape 3}.
-    \item Le commentaire saisi est trop court ou vide  le système signale l'erreur, le validateur complète le commentaire et \textbf{reprend à l'étape 3}.
+  \item Le validateur modifie le type de demande et/ou la priorité avant de valider ; les modifications sont enregistrées et historisées simultanément à la validation.
+  \item Si la priorité est reclassée en critique, un commentaire de justification est requis : le validateur saisit le commentaire et \textbf{reprend à l'étape 3}.
+  \item Le commentaire saisi est trop court ou vide : le système signale l'erreur, le validateur complète le commentaire et \textbf{reprend à l'étape 3}.
 \end{enumerate} \\
 \hline
 \textbf{Scénario d'exception} &
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-    \item Le système détecte des droits insuffisants  l'opération est rejetée et le cas d'utilisation est interrompu.
-    \item La demande est déjà au statut « Convertie » ou « Rejetée »  le système lève une exception bloquante, aucune modification n'est possible.
-    \item Aucun contrat actif ne couvre le projet de la demande  le système refuse la validation, le validateur ne peut pas créer un contrat sur place.
+    \item Le système détecte des droits insuffisants : l'opération est rejetée et le cas d'utilisation est interrompu.
+    \item La demande est déjà au statut « Convertie » ou « Rejetée » : le système lève une exception bloquante, aucune modification n'est possible.
+    \item Aucun contrat actif ne couvre le projet de la demande : le système refuse la validation, le validateur ne peut pas créer un contrat sur place.
 \end{enumerate} \\
 \hline
 \end{longtable}
@@ -197,8 +210,8 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le système signale que le projet sélectionné n'est plus éligible  le client sélectionne un autre projet actif et \textbf{reprend à l'étape 3}.
-\item Le système rejette le fichier (format non autorisé ou taille dépassée)  le client supprime le fichier, joint un fichier conforme et \textbf{reprend à l'étape 5}.
+\item Le système signale que le projet sélectionné n'est plus éligible : le client sélectionne un autre projet actif et \textbf{reprend à l'étape 3}.
+\item Le système rejette le fichier (format non autorisé ou taille dépassée) : le client supprime le fichier, joint un fichier conforme et \textbf{reprend à l'étape 5}.
 \item Les fichiers joints sont associés à la demande et contrôlés par le système.
 \end{enumerate}
 \end{minipage} \\
@@ -206,8 +219,8 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item  Le client a déjà soumis une demande du même type sur le même projet dans les 24 heures  le système bloque la création de manière irréversible jusqu'à l'expiration du délai.
-\item Le nombre maximal de demandes en attente est atteint  le système refuse la soumission tant que des demandes existantes ne sont pas traitées.
+\item  Le client a déjà soumis une demande du même type sur le même projet dans les 24 heures : le système bloque la création de manière irréversible jusqu'à l'expiration du délai.
+\item Le nombre maximal de demandes en attente est atteint : le système refuse la soumission tant que des demandes existantes ne sont pas traitées.
 \end{enumerate}
 \end{minipage} \\
 \hline
@@ -254,15 +267,15 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item \textbf{Envois successifs :} si la demande repasse au statut « Infos requises » suite à une nouvelle demande du responsable, le client peut soumettre un nouveau complément  chaque envoi est historisé et notifie les acteurs concernés.
+\item \textbf{Envois successifs :} si la demande repasse au statut « Infos requises » suite à une nouvelle demande du responsable, le client peut soumettre un nouveau complément : chaque envoi est historisé et notifie les acteurs concernés.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le statut de la demande a changé depuis l'ouverture du formulaire et n'est plus « Infos requises »  le système lève une exception bloquante et refuse l'opération.
-\item Une erreur technique survient lors de la persistance des données  le système informe le client d'un problème technique et l'opération est interrompue.
+\item Le statut de la demande a changé depuis l'ouverture du formulaire et n'est plus « Infos requises » : le système lève une exception bloquante et refuse l'opération.
+\item Une erreur technique survient lors de la persistance des données : le système informe le client d'un problème technique et l'opération est interrompue.
 \end{enumerate}
 \end{minipage} \\
 \hline
@@ -384,11 +397,18 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \hline
 \textbf{Scénario d'exception} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\begin{enumerate}[label=E\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt,series=scen_auth]
 \item L’acteur n’est pas le développeur assigné à l’assignation : le système lève une exception « Forbidden » et rejette le signalement.
 \item (Sans exemption) Le temps de travail effectif ou la progression sont insuffisants ($<$ 30 min): la demande est rejetée.
+\end{enumerate}
+\vspace{0.1cm}
+\end{minipage} \\
+ &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=E\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt,resume=scen_auth]
 \item Un blocage non résolu existe déjà sur cette assignation : le nouveau signalement est interdit et le processus s’interrompt.
 \end{enumerate}
+\vspace{0.1cm}
 \end{minipage} \\
 \hline
 \end{longtable}
@@ -672,32 +692,29 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 % SECTION 3 : CONCEPTION
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Conception}
-Cette section présente les choix de conception retenus pour ce sprint,
-à travers les diagrammes d'activités et de séquences modélisant les
-principaux flux fonctionnels.
-
+Cette section présente les diagrammes d'activités et de séquences
+modélisant les principaux flux fonctionnels du sprint.
 \subsection{Diagramme d'activités « Modifier chronomètre »}
-Le diagramme ci-dessous illustre le flux d'activités relatif à la modification du chronomètre dans le cadre du traitement des tickets assignés. 
-
+La figure ci-dessous présente le flux d'activités relatif à la modification du chronomètre.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.90\textwidth,height=0.65\textheight,
+    \includegraphics[width=0.9\textwidth,
     keepaspectratio]{Images/Diagramme_activite_gerer_cronometre.drawio.png}
     \caption{Diagramme d'activités « Modifier chronomètre »}
     \label{fig:activite_ticket}
 \end{figure}
-
+\newpage 
 \subsection{Diagramme de séquences}
 Dans cette section, nous allons modéliser les interactions entre l'utilisateur et le système à l'aide de diagrammes de séquences pour mieux comprendre la logique de la solution.
 \subsubsection{Diagramme de séquences du cas d'utilisation « Soumettre demande »}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth,height=0.65\textheight,keepaspectratio]{Images/Soumission demande.vpd.png}
+    \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{Images/Soumission demande.vpd.png}
     \caption{Diagramme de séquences du cas d'utilisation « Soumettre demande »}
     \label{fig:seq_soumettre_demande}
 \end{figure}
-
+\newpage 
 \subsection{Diagramme de séquences du cas d'utilisation « Valider demande »}
 
 \begin{figure}[H]
@@ -724,7 +741,8 @@ Dans le cadre de ce sprint, l'intégration de l'intelligence artificielle
 a constitué un axe transversal visant à automatiser et à assister plusieurs
 étapes critiques du cycle de traitement des demandes : qualification
 initiale, priorisation, analyse des blocages et capitalisation des
-connaissances. Cette intégration a été pensée comme un composant à part entière de la plateforme, permettant ainsi de fluidifier le travail des équipes tout en garantissant des réponses plus rapides et fiables.
+connaissances. Cette intégration a été pensée comme un composant à part entière de la plateforme, 
+permettant ainsi de fluidifier le travail des équipes tout en garantissant des réponses plus rapides et fiables.
 
 \subsubsection{Fonctionnalités développées}
 
@@ -754,11 +772,10 @@ sont les suivantes :
 
 \subsubsection{Les grands modèles de langage (LLM)}
 
-Les grands modèles de langage (\textit{Large Language Models}, LLM) sont
-des modèles entraînés sur des corpus textuels massifs, fondés sur
-l'architecture \textit{Transformer}. Ils permettent de comprendre
-l'intention d'un texte en langue naturelle et de produire des réponses
-structurées sans nécessiter d'apprentissage spécifique au domaine métier.
+Un grand modèle de langage (\textit{Large Language Models}, LLM) repose sur l'architecture \textit{Transformer} et apprend à partir de très
+grandes quantités de texte. Grâce à cet apprentissage, il interprète une consigne rédigée en
+langage naturel et renvoie une réponse structurée, sans avoir besoin d'être entraîné spécifiquement
+sur le domaine de l'entreprise.
 Dans notre contexte, ils couvrent trois besoins : la qualification
 automatique des demandes, l'analyse des blocages techniques et la
 structuration des solutions en articles de base de connaissances.
@@ -767,6 +784,26 @@ LLM disponibles selon les critères pertinents pour notre cas d'usage :
 qualité de traitement du français technique, support natif du format JSON (\textit{JavaScript Object Notation}),
 latence et coût d'accès via API (\textit{Application Programming Interface}), comme le présente le
 tableau~\ref{tab:comparaison_llm}.
+
+\begin{center}
+\small
+\begin{tikzpicture}
+  \node[
+    draw        = secondary,
+    line width  = 0.6pt,
+    fill        = pastelBlue,
+    inner xsep  = 0.8cm,
+    inner ysep  = 0.5cm,
+    text width  = 13cm,
+    align       = justify,
+    rounded corners = 4pt
+  ]{%
+    \textbf{\color{primary}Note — Architecture \textit{Transformer}}
+    \par\vspace{4pt}
+    Le \textit{Transformer} est un modèle de réseau de neurones qui lit un texte en analysant simultanément tous ses mots, plutôt que mot par mot. Il détermine quels mots sont liés entre eux grâce à un mécanisme appelé \textit{attention}. C'est cette capacité à saisir le sens global d'une phrase qui permet aux LLM de comprendre des demandes rédigées en langage naturel et d'y répondre de façon structurée.
+  };
+\end{tikzpicture}
+\end{center}
 
 \begin{table}[H]
 \centering
@@ -795,22 +832,25 @@ LLaMA 3.3 (70B)   & Meta / Groq & Bonne      & Oui & Très faible & Faible \\
 \subsubsection{Choix du modèle}
 
 À l'issue de cette analyse comparative et au regard des fonctionnalités
-à couvrir, le modèle retenu est (\textit{Large Language Model Meta AI}) \textbf{LLaMA~3.3 (70B)}, exploité via
-l'\textbf{API Groq Cloud}. Ce choix se justifie par plusieurs facteurs
-complémentaires : une latence très faible grâce aux processeurs LPU (\textit{Language Processing Unit}) de
-Groq (environ 700 tokens par seconde), le support natif du format JSON
-permettant une intégration directe avec la base de données, une qualité
-suffisante en français technique pour les cas d'usage ciblés, et un accès
-gratuit lors de la phase de développement. Par ailleurs, LLaMA étant un
-modèle open-source, il offre la possibilité d'un hébergement local à terme,
-garantissant une indépendance vis-à-vis d'un fournisseur externe.
+à couvrir, le modèle retenu est \textbf{LLaMA~3.3 (70B)} (\textit{Large
+Language Model Meta AI}), exploité via l'\textbf{API Groq Cloud}. Ce choix
+se justifie par plusieurs facteurs complémentaires : une latence très faible
+grâce aux processeurs LPU (\textit{Language Processing Unit}) de Groq
+(environ 700 tokens par seconde), le support natif du format JSON permettant
+une intégration directe avec la base de données, une qualité suffisante en
+français technique pour les cas d'usage ciblés, et un accès gratuit lors de
+la phase de développement. Cette technologie permet d'interpréter la demande
+sans phase d'apprentissage préalable et reste simple à faire évoluer.
+Par ailleurs, LLaMA étant un modèle open-source, il offre la possibilité
+d'un hébergement local à terme, garantissant une indépendance vis-à-vis
+d'un fournisseur externe.
 
 \subsubsection{Robustesse opérationnelle et gouvernance}
 
 Afin d'assurer la fiabilité du composant IA en conditions réelles,
 plusieurs mécanismes complémentaires ont été mis en place.
 
-\paragraph{Protection des données personnelles.}
+\paragraph{Protection des données personnelles :}
 Avant toute transmission d'un texte à l'API Groq Cloud, un filtre
 détecte et masque automatiquement les informations personnelles
 identifiables : un numéro de téléphone, une adresse électronique ou
@@ -818,30 +858,32 @@ un nom complet présents dans la description d'une demande sont
 remplacés par des marqueurs neutres avant envoi, garantissant qu'aucune
 donnée sensible ne quitte le périmètre de la plateforme.
 
-\paragraph{Cache par empreinte de contenu.}
-Pour éviter des appels redondants à l'API externe, chaque texte soumis
-à la classification est identifié par une empreinte numérique calculée
-sur son contenu normalisé. Si une demande au libellé identique a déjà
+\paragraph{Cache par empreinte de contenu :}
+Pour éviter des appels redondants à l'API externe, chaque texte soumis à la classification est condensé en une empreinte
+de longueur fixe calculée par hachage de son contenu normalisé, ce qui
+permet de détecter toute soumission identique sans comparer les textes
+bruts. Si une demande au libellé identique a déjà
 été classifiée, le résultat est restitué directement depuis le cache
-sans solliciter le modèle, avec une durée de validité d'une heure
-réinitialisée à chaque mise à jour.
+sans solliciter le modèle, avec une durée de validité (\textit{TTL(Time To Live)}) d'une heure, réinitialisée
+à chaque nouvelle soumission du même contenu.
 
-\paragraph{Réessais et mécanisme de repli.}
-En cas d'erreur transitoire lors de l'appel au modèle, le service
-effectue jusqu'à deux nouvelles tentatives avec des délais croissants
-entre chaque essai. Si, après épuisement des tentatives, le score de
+\paragraph{Réessais et mécanisme de repli :}
+En cas d'erreur transitoire lors de l'appel au modèle, le service effectue jusqu'à deux nouvelles tentatives, chaque délai
+d'attente étant doublé par rapport au précédent (\textit{backoff}
+exponentiel), afin d'absorber les indisponibilités transitoires sans
+saturer l'API externe. Si, après épuisement des tentatives, le score de
 confiance retourné reste inférieur au seuil minimal accepté, la
 demande est automatiquement marquée pour révision manuelle par le
 chef de projet, sans interrompre le flux de traitement.
 
-\paragraph{Limitation des appels par utilisateur.}
+\paragraph{Limitation des appels par utilisateur :}
 Un système de quotas journaliers est appliqué par utilisateur et de
 manière globale. Lorsque le seuil d'alerte est atteint (80\% du quota),
 le système émet un avertissement interne. Au-delà du quota journalier,
 les appels supplémentaires sont rejetés avec un message explicite,
 les compteurs étant réinitialisés automatiquement à minuit.
 
-\paragraph{Traçabilité des décisions.}
+\paragraph{Traçabilité des décisions :}
 Chaque décision IA est enregistrée avec l'ensemble de ses métadonnées :
 modèle utilisé, score de confiance, raisonnement produit, feedback
 éventuel du chef de projet et horodatage. Une tâche planifiée quotidienne
@@ -849,20 +891,6 @@ supprime les entrées de plus de quatre-vingt-dix jours conformément aux
 exigences de protection des données, tout en conservant les statistiques
 agrégées pour le suivi de la qualité du service.
 
-\subsubsection{Apports et impacts métiers du projet d’intelligence artificielle}
-
-Pour le \textbf{chef de projet}, la classification automatique réduit le
-temps de qualification des demandes : plutôt que d'analyser chaque texte
-libre, il valide ou corrige une proposition déjà structurée accompagnée
-d'un raisonnement explicite, ce qui homogénéise les décisions de
-priorisation. 
-\newline Pour le \textbf{développeur}, la génération de pistes de
-résolution et de brouillons de solution accélère le déblocage sans attendre
-une intervention humaine. La structuration automatique des résolutions en
-articles enrichit progressivement la base de connaissances collective,
-réduisant les délais de résolution pour des problèmes récurrents.
-Ces apports restent complémentaires au travail humain : toute suggestion
-IA est soumise à validation avant d'être appliquée ou publiée.
 
 \subsection{Diagramme de classes du troisième sprint}
 Le diagramme de classes ci-dessous présente la structure statique des
@@ -879,11 +907,11 @@ et dépendances qui les unissent.
 Le schéma relationnel du troisième sprint s’appuie sur les relations suivantes :
 
 \noindent
-\textbf{DemandeClient} (\underline{idDemandeClient}, titreDemande, typeDemande, statutDemande, typeSLA, descriptionDemande, dateSoumission, dateCreation, dateMiseAJour, dateValidation, motifRejet, motifRequalification, echeanceInitiale, \textbf{\#idProjet})
+\textbf{DemandeClient} (\underline{idDemandeClient}, titreDemande, typeDemande, statutDemande, descriptionDemande, dateSoumission, dateCreation, dateMiseAJour, dateValidation, motifRejet, motifRequalification, echeanceInitiale, \textbf{\#idProjet})
 \newline
 \textbf{DemandeClassificationIA} (\underline{idDemandeClassifIA}, categorieAuto, typeAuto, prioriteAuto, scoreConfiance, entitesExtraites, urgenceDetectee, estUtiliseeValidation, estCorrigeeParAgent, feedbackAgent, dateClassification, modeleUtilise, \textbf{\#idDemandeClient})
 \newline
-\textbf{Ticket} (\underline{idTicket}, titreTicket, typeSLA, statutTicket, categorieTicket, descriptionTicket, dateCreationTicket, dateMiseAJourTicket, dateResolutionTicket, delaiReponse, delaiResolution, dateEcheanceResponse, dateEcheanceResolution, slaReponseExpire, slaResolutionExpire, extensionDemandee, extensionMotif, extensionDemandeeAt, extensionAccordee, alerteSLAEnvoyee, scoreUrgenceIA, nombreTicketsBloquesParCelui, nombreUtilisateursAffectes, \textbf{\#idDemandeClient}, \textbf{\#idContrat}, \textbf{\#idProjet})
+\textbf{Ticket} (\underline{idTicket}, titreTicket, statutTicket, categorieTicket, descriptionTicket, dateCreationTicket, dateMiseAJourTicket, dateResolutionTicket, delaiReponse, delaiResolution, dateEcheanceResponse, dateEcheanceResolution, slaReponseExpire, slaResolutionExpire, extensionDemandee, extensionMotif, extensionDemandeeAt, extensionAccordee, alerteSLAEnvoyee, scoreUrgenceIA, nombreTicketsBloquesParCelui, nombreUtilisateursAffectes, \textbf{\#idDemandeClient}, \textbf{\#idContrat}, \textbf{\#idProjet})
 \newline
 \textbf{SolutionTicket} (\underline{idSolutionTicket}, solutionSuggeree, scoreConfiance, estAcceptee, feedbackUtilisateur, tempsResolution, dateCreation, \textbf{\#idTicket})
 \newline
@@ -891,10 +919,9 @@ Le schéma relationnel du troisième sprint s’appuie sur les relations suivant
 \newline
 \textbf{TicketClassification} (\underline{idTicketClassif}, categorieAuto, prioriteAuto, typeAuto, scoreConfiance, urgenceDetectee, entitesExtraites, estValidee, dateClassification, \textbf{\#idTicket})
 \newline
-\textbf{AssignmentTicket} (\underline{\#idTicket}, \underline{\#idProfilEmploye}, idAssignment, dateDebutReelle, dateFinReelle, commentaireAssignment, progression, estBloque, raisonBlocage, feedbackDeveloppeur, technologiesUtilisees, enTravail, dureeTotaleSecondes, dateCreation, solutionProposee, solutionProposeeAt)
+\textbf{AssignmentTicket} (\underline{\#idTicket}, \underline{\#idProfilEmploye}, dateDebutReelle, dateFinReelle, commentaireAssignment, progression, estBloque, raisonBlocage, feedbackDeveloppeur, technologiesUtilisees, enTravail, dureeTotaleSecondes, dateCreation, solutionProposee, solutionProposeeAt)
 \newline
 \textbf{SessionTravail} (\underline{idSessionTravail}, debut, fin, dureeSecondes, note, isManual, \textbf{\#idTicket}, \textbf{\#idProfilEmploye}, \textbf{\#idArticleKB})
-
 % ─────────────────────────────────────────────────────────────────────────────
 % RÉTROSPECTIVE DU SPRINT
 % ─────────────────────────────────────────────────────────────────────────────
@@ -902,12 +929,15 @@ Le schéma relationnel du troisième sprint s’appuie sur les relations suivant
 À la fin de ce troisième sprint, nous avons organisé une réunion de rétrospective afin d'analyser le déroulement du travail. Le tableau \ref{tab:retrospective_sprint3} résume les points clés soulevés par l'équipe, en mettant en évidence les réussites, les difficultés rencontrées et les actions d'amélioration pour la suite du projet.
 
 \begingroup
-\renewcommand{\arraystretch}{1.15}
+\renewcommand{\arraystretch}{1.15} % Garde un bel espace pour le reste du tableau
 \small
-\begin{longtable}{|>{\columncolor{pastelBlue}}p{5.5cm}|p{9.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{4cm}|p{9.5cm}|}
 \hline
 \rowcolor{secondary}
-\multicolumn{1}{|>{\centering\arraybackslash}p{5.5cm}|}{\large\textbf{\color{white}Question}} & \multicolumn{1}{>{\centering\arraybackslash}p{9.5cm}|}{\large\textbf{\color{white}Réponse}} \\
+% On utilise \vrule pour contrôler précisément la hauteur (hauteur=0pt, profondeur=0pt)
+% Cela neutralise l'excès de hauteur du header
+\multicolumn{1}{|>{\centering\arraybackslash}p{4cm}|}{\textbf{\color{white}Question}} & 
+\multicolumn{1}{>{\centering\arraybackslash}p{9.5cm}|}{\textbf{\color{white}Réponse}} \tabularnewline
 \hline
 \endfirsthead
 \hline
@@ -954,7 +984,7 @@ du troisième  sprint, toutes marquées comme terminées à l'issue de ce sprin
 Cette section présente les principales interfaces utilisateur développées durant le troisième sprint. Chaque interface a été conçue pour offrir une expérience adaptée aux différents acteurs de la plateforme.
 
 \subsection{Interface de gestion des demandes}
- Cette interface présente la vue liste des demandes en version arabe, illustrant le support multilingue et l'adaptation automatique de la mise en page de droite à gauche. Elle intègre une barre de recherche globale et un système de filtrage multicritère pour cibler rapidement les tickets. Le tableau affiche de façon détaillée le demandeur, le projet concerné avec son chef responsable, la date de création relative, ainsi que des indicateurs visuels colorés pour identifier instantanément le type de demande, son niveau de priorité et son statut actuel. 
+Conformément aux exigences non fonctionnelles, cette interface en version arabe illustre la gestion du multilinguisme et de l'affichage de droite à gauche (\textit{RTL}). Elle intègre une recherche globale, un filtrage multicritère et un tableau détaillé (demandeur, projet, responsable, date), complété par des indicateurs visuels pour identifier rapidement le type, la priorité et le statut de la demande.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,keepaspectratio]{Images/interface Liste demandes .png}
@@ -1001,13 +1031,55 @@ Nous avons mis en place une interface permettant au chef de projet d'assigner de
 \end{figure}
 
 \subsection{Interface de détail ticket}
-Dans la vue détaillée d'un ticket, le développeur assigné peut démarrer automatiquement un chronomètre lors de la première ouverture du ticket, enregistrer ses sessions de travail, les mettre en pause ou les arrêter. L'interface affiche l'historique complet des actions et les discussions de l'équipe. Un composant dédié présente en temps réel la durée accumulée et l'avancement par rapport au délai SLA.
+La vue détaillée d'un ticket répond aux critères de réactivité en temps réel et de flexibilité. L'interface présentée sur la Figure~\ref{fig:vue_ticket_globale} est organisée en plusieurs onglets fonctionnels : Discussion, Temps passé, Fichiers partagés et Historique. L'onglet « Temps passé » permet au développeur de piloter ses sessions de travail grâce à un chronomètre automatique, tandis que l'onglet « Discussion » centralise les échanges collaboratifs. Cette structure garantit une visibilité complète sur l'historique des actions, les documents partagés et le suivi en temps réel du respect des délais SLA.
+
+Enfin, la Figure~\ref{fig:ticket_mobile} illustre la version mobile de cette interface, prouvant son adaptabilité (\textit{responsive design}) sur tous les écrans.
+
 \begin{figure}[H]
-\centering
-\includegraphics[width=14cm,keepaspectratio]{Images/Interface DetailTicket.png}
-\caption{Interface de détail d'un ticket}
-\label{fig:Interface de détail ticket}
+
+    \centering
+
+    \begin{subfigure}{0.95\textwidth}
+
+        \centering
+
+        \includegraphics[width=14cm,keepaspectratio]{images/Interface DetailTicket.png} 
+
+        \caption{Interface de détail d'un ticket (Desktop)}
+
+        \label{fig:ticket_comments}
+
+    \end{subfigure}
+
+    
+
+    \vspace{0.8cm} % Un petit espace vertical pour séparer proprement les deux vues
+
+    
+
+    \begin{subfigure}{0.38\textwidth}
+
+        \centering
+
+        \includegraphics[width=\textwidth]{images/mobile.png}
+
+        \caption{Interface de détail d'un ticket (Mobile)}
+
+        \label{fig:ticket_mobile}
+
+    \end{subfigure}
+
+    
+
+    \input{ } % Force une bonne séparation logique avant le grand caption
+
+    \caption{Vue détaillée du ticket et gestion du temps réel SLA}
+
+    \label{fig:vue_ticket_globale}
+
 \end{figure}
+
+
 
 \subsection{Interface de génération de suggestion de solution par IA}
 Nous avons mis en place une fonctionnalité permettant aux développeurs assignés à un ticket de générer collaborativement une suggestion de solution assistée par intelligence artificielle. En cliquant sur « Générer par l'IA », le système propose un brouillon structuré. Tous les membres de l'équipe assignée voient cette suggestion en temps réel et peuvent simultanément la modifier, l'enrichir ou proposer des alternatives via WebSockets. Une fois la solution validée collectivement, elle peut être soumise. Cette approche favorise l'intelligence collective et accélère la résolution des tickets complexes.
@@ -1071,7 +1143,7 @@ accélérant ainsi la résolution et capitalisant sur l'expérience collective.
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 5 : TESTS
 % ─────────────────────────────────────────────────────────────────────────────
-\section{Tests et Validation}
+\section{Tests et validation}
 \label{sec:tests_sprint3}
 
 La phase de test a permis de vérifier la conformité du sprint 3 aux exigences métier, fonctionnelles et techniques. Elle a également permis de valider les mécanismes de validation des demandes, les transitions d'état des tickets, le calcul des SLA ainsi que l'intégration de l'intelligence artificielle.
@@ -1079,7 +1151,7 @@ La phase de test a permis de vérifier la conformité du sprint 3 aux exigences 
 Nous avons adopté la même stratégie de tests structurée que lors des sprints précédents, reposant sur plusieurs niveaux complémentaires : tests unitaires, tests d'intégration, tests end-to-end, tests de performance et tests de sécurité.
 
 \subsection{Tests unitaires}
-Les tests unitaires de ce troisième sprint ont été structurés par composant fonctionnel afin de garantir une traçabilité optimale. Exécutés dans un environnement isolé à l'aide de doublons de test (\textit{mocks}) pour simuler les dépendances externes, ils valident la logique métier critique du système : classification par IA, hachage MD5 (\textit{ Message Digest 5})pour la mise en cache, politiques de résilience (\textit{retry} et \textit{fallback}), cycle de vie des tickets, limitation de débit (\textit{rate limiting}) et calcul précis des SLA.
+Les tests unitaires de ce sprint ont été structurés par composant fonctionnel afin de garantir une traçabilité optimale. Exécutés dans un environnement isolé à l'aide de doublons de test (\textit{mocks}) pour simuler les dépendances externes, ils valident la logique métier critique du système : classification par IA, hachage MD5 (\textit{ Message Digest 5})pour la mise en cache, politiques de résilience (\textit{retry} et \textit{fallback}), cycle de vie des tickets, limitation de débit (\textit{rate limiting}) et calcul précis des SLA.
 
 \subsubsection{Synthèse des résultats}
 La synthèse suivante présente, pour chaque fonctionnalité majeure, les objectifs visés, le statut de couverture ainsi que les observations clés issues des rapports d'exécution locaux.
@@ -1151,15 +1223,24 @@ La synthèse suivante présente, pour chaque fonctionnalité majeure, les object
     \end{figure}
 \end{description}
 
+\vspace{4pt}
+\noindent\footnotesize\textit{Note : les taux de couverture sont mesurés sur la base des tests Vitest exécutés localement.}\normalsize
+
 \subsection{Tests d'intégration}
-Les tests d'intégration ont été réalisés sur les endpoints principaux du sprint.
+Les tests d'intégration ont pour objectif de valider les échanges entre
+les différentes couches de l'application (contrôleur, service et base de données) en testant les endpoints REST dans leur ensemble. Ces tests sont
+effectués en soumettant des requêtes HTTP réelles contre le backend en cours
+d'exécution via \textbf{Swagger UI}, ce qui permet de vérifier le comportement
+de l'API dans des conditions proches de la production.
 
 \begin{itemize}[leftmargin=0pt]
 
 \item[$\square$] \textbf{Test du module demandes (Validation des demandes)}
-\newline \textit{Endpoints : \textbf{PATCH /api/demandes/:id/valider}, \textbf{PATCH /api/demandes/:id/rejeter}}
+\newline \textit{Endpoints testés : \texttt{PATCH /api/demandes/:id/valider}, \texttt{PATCH /api/demandes/:id/rejeter}}
 \noindent Cette suite valide le comportement complet des endpoints de validation et de rejet des demandes par le chef de projet.
-\newline Les cas suivants ont été couverts :
+
+\vspace{4pt}
+\noindent Les cas suivants ont été couverts :
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
   \item Une demande valide est approuvée par le chef de projet : l'endpoint retourne le code \textbf{200 OK} et le statut de la demande passe à \texttt{CONVERTIE} avec création automatique d'un ticket.
@@ -1180,9 +1261,11 @@ Les tests d'intégration ont été réalisés sur les endpoints principaux du sp
 \end{itemize}
 
 \item[$\square$] \textbf{Test du module IA (Classification IA)}
-\newline \textit{Endpoints : \textbf{GET /api/ai/demandes/:id/suggestions}, \textbf{POST /api/ai/demandes/:id/feedback}, \textbf{POST /api/ai/demandes/:id/reclassify}}
+\newline \textit{Endpoints testés : \texttt{GET /api/ai/demandes/:id/suggestions}, \texttt{POST /api/ai/demandes/:id/feedback}, \texttt{POST /api/ai/demandes/:id/reclassify}}
 \noindent Cette suite valide le comportement des endpoints de classification automatique via Groq Cloud, de réception des feedbacks utilisateur et de reclassification.
-\newline Les cas suivants ont été couverts :
+
+\vspace{4pt}
+\noindent Les cas suivants ont été couverts :
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
   \item Une demande est soumise à l'IA pour classification automatique : l'endpoint retourne la catégorie prédite (\texttt{typeDemande}) et la priorité avec un niveau de confiance.
@@ -1210,9 +1293,11 @@ Les tests d'intégration ont été réalisés sur les endpoints principaux du sp
 \end{itemize}
 
 \item[$\square$] \textbf{Test du module IA (Connectivité, workflow complet et monitoring)}
-\newline \textit{Endpoints : \textbf{GET /api/ai-test/groq/health}, \textbf{GET /api/ai-test/workflow/full-test}, \textbf{GET /api/ai-test/classifications/list}}
+\newline \textit{Endpoints testés : \texttt{GET /api/ai-test/groq/health}, \texttt{GET /api/ai-test/workflow/full-test}, \texttt{GET /api/ai-test/classifications/list}}
 \noindent Cette suite valide la connexion à Groq Cloud, l’exécution du pipeline complet de classification IA, et la consultation des analyses persistées.
-\newline Les cas suivants ont été couverts :
+
+\vspace{4pt}
+\noindent Les cas suivants ont été couverts :
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
   \item La connectivité à Groq Cloud est vérifiée : l’endpoint \texttt{groq/health} retourne la liste des modèles disponibles (Llama, Qwen, etc.) avec leurs caractéristiques (fenêtre de contexte, tokens maximum).
@@ -1237,16 +1322,11 @@ Les tests d'intégration ont été réalisés sur les endpoints principaux du sp
   \end{figure}
 \end{itemize}
 \end{itemize}
-\subsubsection{Tests End-to-End}
+
+\subsection{Tests End-to-End}
 \label{sec:tests_e2e_demandesch5}
 
-Les tests End-to-End de création de demande client valident l'intégralité
-du flux fonctionnel d'ajout d'une nouvelle demande au sein d'un navigateur
-réel instrumenté par \textbf{Playwright}. Ces tests interagissent
-conjointement avec le frontend Next.js, le backend NestJS et la base de
-données PostgreSQL, couvrant ainsi l'ensemble du parcours utilisateur,
-depuis l'authentification préalable jusqu'à la validation finale de la
-demande.
+La validation E2E du troisième sprint couvre les flux métier les plus complexes de la plateforme : la création et la soumission d'une demande par un client, la validation de cette demande par le chef de projet avec assistance IA, ainsi que le signalement et la résolution de blocages sur un ticket en cours.
 \newline
 
 \noindent\textbf{Bilan : les scénarios critiques du sprint ont été exécutés avec succès.}
@@ -1353,7 +1433,7 @@ ou à la logique métier.
 \caption{Test de sécurité — refus des transitions de statut non autorisées}
 \end{figure}
 
-\subsubsection{Test de sécurité du module IA — Anonymisation des données sensibles (PII) (\textit{Personally Identifiable Information})}
+\subsubsection{Test de sécurité du module IA — Anonymisation des données sensibles (PII)}
 Une demande contenant des informations personnelles identifiables (numéro de téléphone, adresse email, nom complet) a été soumise au module IA. La vérification des logs système confirme que ces données ont été masquées avant transmission à l'API externe Groq Cloud. Aucune information sensible ne quitte le périmètre interne.
 
 \begin{figure}[H]
@@ -1394,9 +1474,9 @@ de 4 minutes 30 secondes selon cinq phases distinctes :
 
 Les points d'accès ciblés par ce test de charge sont :
 \begin{itemize}
-    \item \textbf{GET /api/tickets} : Liste paginée des tickets (limit=15) incluant
+    \item \texttt{GET /api/tickets} : Liste paginée des tickets (limit=15) incluant
           les relations contrat, projet, assignments et métadonnées SLA.
-    \item \textbf{GET /api/demandes} : Liste paginée des demandes client (limit=20)
+    \item \texttt{GET /api/demandes} : Liste paginée des demandes client (limit=20)
           avec leurs pièces jointes et informations de validation.
 \end{itemize}
 
@@ -1428,7 +1508,7 @@ Percentile 95 (p95) - GET /api/demandes & 444,85 ms \\
 \hline
 Taux d'erreur applicatif & 0,00 \% \\
 \hline
-Débit moyen des requêtes & 8,79 req/s (\textit{requêtes par seconde})\\
+Débit moyen des requêtes & 8,79 req/s \\
 \hline
 Itérations totales & 1 202 \\
 \hline
@@ -1460,6 +1540,17 @@ de la plateforme sous une activité soutenue.
 \label{fig:perf_sprint3}
 \end{figure}
 
+
 \section*{Conclusion}
-Ce troisième sprint a permis d’implémenter le noyau fonctionnel de la solution. En combinant workflow métier, suivi temporel, gestion des SLA, visualisation Kanban et assistance intelligente, la plateforme franchit une étape décisive vers un système complet de support et de pilotage des demandes.
-\par Ce sprint met en évidence la dimension opérationnelle du projet, tout en renforçant sa robustesse technique, sa traçabilité et sa valeur métier.
+Ce chapitre a présenté le développement du troisième sprint de la plateforme
+\textbf{SolidMaint}. Nous avons mis en place le noyau fonctionnel de la
+solution : la gestion complète des demandes et des tickets, le suivi du temps,
+le respect des SLA, la visualisation Kanban et l'intégration de l'intelligence
+artificielle pour la classification automatique et l'assistance à la résolution.
+L'ensemble de ces fonctionnalités a été validé par une série de tests
+unitaires, d'intégration, end-to-end, de performance et de sécurité
+répartis sur cinq niveaux.
+\newline
+Le chapitre suivant présentera le quatrième et dernier sprint, dédié aux
+fonctionnalités transversales : calendrier, tableaux de bord, messagerie
+interne et centre de notifications.

@@ -135,7 +135,26 @@
 
 \newcolumntype{P}[1]{>{\RaggedRight\arraybackslash}p{#1}}
 
+% Supprime le titre interne de \tableofcontents / \listoffigures / \listoftables
 \renewcommand{\contentsname}{}
+\renewcommand{\listfigurename}{}
+\renewcommand{\listtablename}{}
+% Patch : empêcher le \chapter* interne et les \clearpage/\cleardoublepage de provoquer un saut de page
+\makeatletter
+\let\saved@schapter\@schapter
+\let\saved@clearpage\clearpage
+\let\saved@cleardoublepage\cleardoublepage
+\newcommand{\notocchapterbreak}{%
+  \renewcommand{\@schapter}[1]{}%  neutralise le \chapter* interne
+  \renewcommand{\clearpage}{}%     neutralise le saut de page
+  \renewcommand{\cleardoublepage}{}% neutralise le saut de page
+}
+\newcommand{\restoretocchapterbreak}{%
+  \let\@schapter\saved@schapter%   restaure le comportement normal
+  \let\clearpage\saved@clearpage
+  \let\cleardoublepage\saved@cleardoublepage
+}
+\makeatother
 
 % ============================================================
 %  RENDRE \chapter INVISIBLE
@@ -315,10 +334,10 @@
 }
 
 \geometry{
-    top=2cm,
-    bottom=2cm,
-    left=2cm,
-    right=2cm,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=3cm,
     headheight=25pt
 }
 \setstretch{1.5}
@@ -399,7 +418,9 @@
 \vspace{0.5cm}
 \end{center}
 \dominitoc
+\notocchapterbreak
 \tableofcontents
+\restoretocchapterbreak
 \markboth{}{}%
 \cleardoublepage
 
@@ -424,7 +445,9 @@
 \end{tikzpicture}
 \vspace{0.5cm}
 \end{center}
+\notocchapterbreak
 \listoffigures
+\restoretocchapterbreak
 \markboth{}{}%
 \cleardoublepage
 
@@ -450,7 +473,9 @@
 \end{tikzpicture}
 \vspace{0.5cm}
 \end{center}
+\notocchapterbreak
 \listoftables
+\restoretocchapterbreak
 \markboth{}{}%
 \cleardoublepage
 
@@ -496,8 +521,8 @@
 \cleardoublepage
 
 % ---- Chapitre 6 ----
-\hiddenpart{Sprint 4 -- La Transparence opérationnelle}
-\chaptercover{6}{Sprint 4 -- La Transparence opérationnelle}
+\hiddenpart{Sprint 4 -- La Transparence Opérationnelle}
+\chaptercover{6}{Sprint 4 -- La Transparence Opérationnelle}
 \input{tex/chapitre6}
 \cleardoublepage
 

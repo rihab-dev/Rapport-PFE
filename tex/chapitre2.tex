@@ -244,7 +244,7 @@ demandes et tickets incluant suivi du temps, SLA et tableau Kanban.
   \item Moteur d'\textbf{IA} (\textit{Intelligence Artificielle}) pour classification automatique des demandes et assistance intelligente
 \end{itemize}
 
-\subsubsection{Sprint 4 -- La Transparence opérationnelle}
+\subsubsection{Sprint 4 -- La Transparence Opérationnelle}
 \textbf{Période :} du 25 avril au 22 mai (\textbf{3 semaines})
 \par\noindent\textbf{Objectif du sprint :} Finaliser les fonctionnalités avancées de
 collaboration, de gestion documentaire, de notifications multicanales et de
@@ -303,6 +303,7 @@ La figure ci-dessous illustre cette planification :
 Cette section présente l'environnement matériel et logiciel utilisé dans le cadre du développement de la plateforme.
 
 \subsection{Environnement matériel}
+Le tableau suivant récapitule les caractéristiques des postes de travail utilisés tout au long du développement du projet.
 \begin{table}[H]
 \centering
 \renewcommand{\arraystretch}{1.6}
@@ -330,7 +331,7 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
 \end{table}
 
 \subsection{Environnement logiciel}
-
+Voici les choix technologiques et logiciels retenus pour l'ensemble du cycle de vie de la plateforme \textbf{SolidMaint}.
 \subsubsection{Langages de programmation et frameworks}
 \vspace{12pt}
 
@@ -460,7 +461,7 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
 \end{minipage}\par\vspace{10pt}}
 
 \cadretechPrisma{Images/prisma.png}{%
-  \textbf{Prisma ORM (\textit{Object-Relational Mapping}) v7 :} « est un ORM (\textit{Object-Relational Mapping}) open source de nouvelle génération qui offre
+  \textbf{Prisma ORM v7 :} « est un ORM (\textit{Object-Relational Mapping}) open source de nouvelle génération qui offre
   un accès rapide et sécurisé aux bases de données PostgreSQL, MySQL et autres. Il
   fournit un client typé généré automatiquement à partir du schéma de données,
   garantissant la sécurité des types à la compilation et des requêtes SQL optimisées
@@ -475,7 +476,7 @@ Système d'exploitation     & Windows 10 Professionnel N 64-bit   & Windows 10 P
 \end{minipage}\par\vspace{10pt}}
 
 \cadretechPostgres{Images/postgres.png}{%
-  \textbf{PostgreSQL 16 :} « est un système de gestion de bases de données objet-relationnelles (SGBD-OR — \textit{Système de Gestion de Bases de Données} objet-relationnelles) (\textit{Système de Gestion de Bases de Données}) open source. Il a été pionnier dans de nombreux
+  \textbf{PostgreSQL 16 :} « est un Système de Gestion de Bases de Données objet-relationnelles (\textbf{SGBD-OR}) open source. Il a été pionnier dans de nombreux
   concepts qui ne sont devenus disponibles que bien plus tard dans certains systèmes
   de bases de données commerciaux. Il est reconnu pour sa robustesse, sa conformité
   aux standards SQL et ses performances sur de grands volumes de données. » \cite{postgresql}}
@@ -649,7 +650,7 @@ traçabilité.
 %─────────────────────────────────────────────────────────────────────────────
 \newpage
 \section{Architecture de l'application}
-
+L'architecture de la plateforme \textbf{SolidMaint} repose sur deux piliers : une approche physique pour la distribution des composants sur l'infrastructure, et une approche logique pour l'organisation interne du code.
 \subsection{Architecture physique}
 L'architecture système est un ensemble de décisions de conception qui définit
 l'interaction des composants entre eux. Le choix de l'architecture est très sensible

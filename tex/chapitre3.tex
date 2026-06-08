@@ -1,9 +1,8 @@
-% !TEX root = ../rapport.tex
+﻿% !TEX root = ../rapport.tex
 
 \section*{Introduction}
 Dans le chapitre précédent, nous avons défini les besoins liés à notre solution et réparti les différentes tâches du projet afin que les phases de travail soient correctement planifiées.
 \newline Au cours de ce chapitre, nous présenterons les fonctionnalités liées  à la gestion des utilisateurs, à l'authentification et au contrôle d'accès basé sur les rôles (\textbf{RBAC} - \textit{Role-Based Access Control}), retenues dans le cadre du premier sprint de notre projet.
-
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 1 : BACKLOG DU SPRINT 1
 % ─────────────────────────────────────────────────────────────────────────────
@@ -40,23 +39,18 @@ Le tableau \ref{tab:backlog_sprint1_corrige} ci-dessous présente le \textbf{Spr
   ]{%
     \textbf{\color{primary}Note — Estimation de l'effort par Story Points}
     \par\vspace{4pt}
-    L'effort de chaque \textit{user story} est estimé selon une échelle de \textbf{1 à 3 points}.
-    Chaque point correspond à une unité de complexité relative prenant en compte trois dimensions :
-    la \textbf{complexité technique} (nombre d'endpoints, logique métier, intégrations),
-    la \textbf{charge de travail} (temps de développement et de test estimé)
-    et l'\textbf{incertitude} (risques liés aux dépendances ou à la nouveauté du domaine).
+    L'effort de chaque \textit{user story} est estimé selon une échelle de \textbf{1 à 3 points}. Chaque point correspond à une unité de complexité relative prenant en compte la complexité technique, la charge de travail et l'incertitude.
     \par\vspace{4pt}
-    \begin{tabular}{@{}p{2.2cm} p{3.8cm} p{6cm}@{}}
-      \textbf{\color{primary}1 — Faible}  & Tâche bien délimitée et maîtrisée   & Endpoint CRUD standard, interface légère, pas de dépendance externe \\[2pt]
-      \textbf{\color{primary}2 — Moyen}   & Tâche de complexité modérée     & Logique métier avec validations, interaction multi-modules, tests d'intégration requis \\[2pt]
-      \textbf{\color{primary}3 — Élevé}   & Tâche complexe ou incertaine    & Architecture transverse, intégration tierce (OAuth, IA, WebSocket), sécurité critique \\
-    \end{tabular}
+    \textbf{\color{primary}1 — Faible} : Tâche bien délimitée et maîtrisée.
+    \par\vspace{4pt}
+    \textbf{\color{primary}2 — Moyen} : Tâche de complexité modérée.
+    \par\vspace{4pt}
+    \textbf{\color{primary}3 — Élevé} : Tâche complexe ou incertaine.
     \par\vspace{4pt}
     Ces estimations ont permis d'adapter la charge de chaque sprint et d'assurer des livraisons régulières tout au long du projet.
   };
 \end{tikzpicture}
 \end{center}
-
 
 
 % ─────────────────────────────────────────────────────────────────────────────
@@ -103,13 +97,12 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \hline
 \textbf{Précondition} & L'utilisateur possède un compte valide dans le système. \\
 \hline
-\textbf{Postcondition} & L'utilisateur est authentifié et accède à l'interface appropriée selon son rôle. Un jeton d'accès est généré en base de données. \\
+\textbf{Postcondition} & L'utilisateur est authentifié et accède à l'interface appropriée selon son rôle.  Un jeton d'accès JWT et un jeton de rafraîchissement sont générés et transmis au client. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt,series=scen_auth]
-\item Le système affiche le formulaire de connexion avec les onglets \textit{Connexion} et \textit{Inscription OAuth}.
-\item L'utilisateur choisit l'onglet \textit{Connexion}.
+\item Le système affiche le formulaire de connexion.
 \item L'utilisateur saisit son adresse e-mail et son mot de passe.
 \item L'utilisateur valide la connexion.
 \item Le système vérifie si le compte est temporairement verrouillé.
@@ -134,9 +127,14 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item  Si l'adresse e-mail ou le mot de passe est invalide, le système affiche une erreur. L'utilisateur corrige ses identifiants et retente la connexion.
-\item La période de verrouillage de 1 minute est écoulée. L'utilisateur retente la connexion. Le système constate que le déverrouillage est automatique, réactive le compte et autorise une nouvelle tentative.
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=2pt,itemsep=1pt,series=scen_alt]
+  \item  Si l'adresse e-mail ou le mot de passe est invalide, le système affiche une erreur. L'utilisateur corrige ses identifiants et retente la connexion.
+\end{enumerate} \\* % Le '*' empêche de couper juste ici si c'est trop moche
+
+% On crée une ligne invisible à gauche pour continuer la liste proprement
+ & 
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=2pt,itemsep=1pt,resume=scen_alt]
+  \item La période de verrouillage de 1 minute est écoulée. L'utilisateur retente la connexion. Le système constate que le déverrouillage est automatique, réactive le compte et autorise une nouvelle tentative.
 \end{enumerate} \\
 \hline
 \textbf{Scénario d'exception} &
@@ -150,8 +148,8 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \captionof{table}{Description textuelle du cas d’utilisation «~S'authentifier »}
 \normalsize
 
-\subsubsection{Description textuelle du cas d’utilisation «~Changer mot de passe »}
-Le tableau ci-dessous présente la description textuelle du cas d'utilisation « Changer le mot de passe » :
+\subsubsection{Description textuelle du cas d’utilisation « Réinitialiser mot de passe »}
+Le tableau ci-dessous présente la description textuelle du cas d'utilisation « Réinitialiser mot de passe » :
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -164,7 +162,7 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \endfoot
 \hline
 \endlastfoot
-\textbf{Nom du cas d'utilisation} & Changer mot de passe \\
+\textbf{Nom du cas d'utilisation} & Réinitialiser mot de passe \\
 \hline
 \textbf{Acteurs} & Utilisateurs \\
 \hline
@@ -196,6 +194,7 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \vspace{0.1cm}
 \end{minipage} \\
 \hline
+\pagebreak
 \textbf{Scénario d'exception} &
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item L'utilisateur saisit un e-mail qui ne correspond à aucun compte existant.
@@ -205,7 +204,7 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «~Changer mot de passe »} 
+\captionof{table}{Description textuelle du cas d’utilisation « Réinitialiser mot de passe »} 
 \normalsize
 
 
@@ -247,19 +246,26 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt,series=scen_auth]
 \item Le système affiche la page d'authentification avec deux onglets : \textit{Connexion} et \textit{Demander l'accès}.
 \item Le visiteur choisit l'onglet \textit{Demander l'accès}.
 \item Le visiteur sélectionne son rôle cible parmi les profils disponibles.
 \item Le visiteur sélectionne un fournisseur externe (Google ou GitHub).
 \item Le système redirige le visiteur vers le fournisseur pour s'authentifier et autoriser l'accès à son profil.
+\end{enumerate}
+\vspace{0.1cm}
+\end{minipage} \\
+ &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt,resume=scen_auth]
+
 \item De retour sur l'application, le système réceptionne les données \textit{Open Authorization} (\textbf{OAuth}) et vérifie l'absence de compte actif associé à l'e-mail.
 \item Le système crée la demande d'inscription avec le statut « en attente ».
 \item Le système notifie l'équipe d'administration par e-mail et par notification interne.
 \item Le système envoie un accusé de réception par e-mail au visiteur.
 \item Le système redirige le visiteur vers l'interface d'attente.
 \end{enumerate}
-\vspace{0.2cm}
+\vspace{0.1cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
@@ -283,167 +289,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \captionof{table}{Description textuelle du cas d’utilisation «~Demander inscription »} 
 }
 \normalsize
-
-\subsection{Analyse de la fonctionnalité « Gérer utilisateurs »}
-Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des utilisateurs afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
-\subsubsection{Raffinement du cas d’utilisation « Gérer utilisateurs »}
-Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de gestion des utilisateurs :    
-
-\begin{figure}[H]
-        \centering
-        \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/Gérer utilisateur.drawio.png}
-        \caption{Diagramme de cas d'utilisation « Gérer utilisateurs »}
-        \label{fig:gerer_utilisateurs}
-\end{figure}
-\newpage
-\subsubsection{Description textuelle du cas d’utilisation « Ajouter utilisateur »}
-
-Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Ajouter utilisateur ».
-
-\footnotesize
-\renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-
-\textbf{Nom du cas d'utilisation} & Ajouter utilisateur \\
-\hline
-\textbf{Acteurs} & Administrateur \\
-\hline
-\textbf{Précondition} & L'administrateur est connecté et dispose des droits de création de compte. \\
-\hline
-\textbf{Postcondition} & Le compte est créé en base de données avec un mot de passe temporaire, et l'utilisateur reçoit ses identifiants par courriel. \\
-\hline
-\textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
-\item L'administrateur ouvre le formulaire d'ajout.
-    \item Il saisit les informations de la première étape (nom, prénom, email, téléphone, date de naissance, rôle).
-    \item Il clique sur « Suivant ». Le système valide les champs.
-    \item Il complète la deuxième étape (poste, spécialisation, date d'embauche) si le rôle n'est pas « Client ».
-    \item Il valide le formulaire. Le système vérifie que l'email n'est pas déjà utilisé.
-    \item Le système génère automatiquement un mot de passe temporaire.
-    \item Le système crée le compte, l'assigne au rôle choisi, et crée le profil correspondant.
-    \item Un email de bienvenue contenant le mot de passe temporaire et un lien de réinitialisation est envoyé.
-    \item L'administrateur reçoit une confirmation visuelle et la liste des utilisateurs se met à jour.
-\end{enumerate}
-\vspace{0.2cm}
-\end{minipage} \\
-\hline
-\textbf{Scénario alternatif} &
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'administrateur oublie un champ obligatoire ou saisit un format incorrect (email invalide, date de naissance dans le futur, âge inférieur à 18 ans). Le système signale le champ erroné avec un message d'erreur. L'administrateur corrige et valide à nouveau.
-\item L'adresse e-mail est déjà attribuée à un autre compte. Le système affiche une alerte. L'administrateur change l'adresse e-mail pour continuer.
-\item L'administrateur sélectionne le rôle « Client ». Le système saute la deuxième étape (saisie du poste et de la date d'embauche) et passe directement à la création du compte.
-\end{enumerate} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «~Ajouter utilisateur »} 
-\normalsize
-
-
-\subsubsection{Description textuelle du cas d’utilisation « Désactiver utilisateur »}
-Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Désactiver utilisateur ».
-
-\footnotesize
-\renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
-
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-\textbf{Nom du cas d'utilisation} & Désactiver utilisateur \\
-\hline
-\textbf{Acteurs} & Administrateur \\
-\hline
-\textbf{Précondition} & L'administrateur est authentifié, possède la permission requise, et le compte visé est actif. \\
-\hline
-\textbf{Postcondition} & Le compte devient inactif et l'utilisateur en est notifié par e-mail. \\
-\hline
-\textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
-    \item L'administrateur sélectionne un compte actif dans la liste.
-    \item Il clique sur l'action « Désactiver ».
-    \item Le système vérifie si l'utilisateur possède des tickets actifs (aucun trouvé).
-    \item Le système affiche une confirmation simple.
-    \item L'administrateur valide son choix.
-    \item Le système désactive le compte en base et envoie la notification e-mail.
-\end{enumerate}
-\vspace{0.2cm}
-\end{minipage} \\
-\hline
-\textbf{Scénario alternatif} &
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item  L'utilisateur ciblé possède des tickets actifs. Le système ouvre une modale de réassignation. L'administrateur répartit les tickets, puis valide, permettant à la désactivation d'aboutir.
-\item  L'administrateur décide finalement de fermer la fenêtre modale (Annuler). L'opération s'interrompt proprement, le compte reste actif.
-\end{enumerate} \\
-\hline
-
-\end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «~Désactiver utilisateur »} 
-\normalsize
-
-\subsubsection{Description textuelle du cas d’utilisation « Modifier Profil »}
-Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Modifier Profil ».
-
-\footnotesize
-\renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
-
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-\textbf{Nom du cas d'utilisation} & Modifier Profil \\
-\hline
-\textbf{Acteurs} &Utilisateur \\
-\hline
-\textbf{Précondition} & L'utilisateur est connecté et consulte sa propre page profil. \\
-\hline
-\textbf{Postcondition} & Les informations sont mises à jour en base de données et, en cas de mot de passe changé, un e-mail de notification est envoyé. \\
-\hline
-\textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}
-\begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
-    \item L'utilisateur se rend sur la page « Mon profil ».
-    \item Il met à jour ses informations personnelles (photo, coordonnées, e-mails).
-    \item Il valide le formulaire pour enregistrer les changements.
-    \item S'il change de mot de passe, il saisit son mot de passe actuel, puis le nouveau.
-    \item Le système valide les données et met à jour le profil en base.
-    \item L'utilisateur reçoit une confirmation de succès à l'écran.
-\end{enumerate}
-\vspace{0.2cm}
-\end{minipage} \\
-\hline
-\textbf{Scénario alternatif} &
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item  Si le nouvel e-mail fourni est déjà pris par un autre compte, le système rejette la saisie. L'utilisateur saisit une adresse différente et revalide.
-\item  Lors du changement de mot de passe, le mot de passe actuel fourni est faux. L'utilisateur rectifie le mot de passe pour réussir.\end{enumerate} \\
-\hline
-\textbf{Scénario d'exception} &
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item  Bien que l'utilisateur soit connecté, son profil a été supprimé ou désactivé par un administrateur à la seconde précédente . L'enregistrement est impossible et la session est stoppée.
-\end{enumerate} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «~Modifier Profil »} 
-\normalsize
 \subsubsection{Description textuelle du cas d’utilisation « Valider demande inscription »}
 Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Valider demande inscription ».
 
@@ -466,7 +311,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \hline
 \textbf{Postcondition} & Le compte utilisateur est créé et activé, la demande est marquée « approuvée », et l'utilisateur est notifié \\
 \hline
-\textbf{Scénario principal} &
+\textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
 \item L'administrateur accède au module de gestion des demandes d'inscription.
@@ -817,12 +662,12 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \hline
 \textbf{Scénario alternatif} &
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'administrateur se trompe et coche une permission que le rôle possède déjà. À la soumission, le système refuse avec une erreur de validation. L'administrateur décoche la permission fautive et relance la sauvegarde avec succès.
+\item L'administrateur se trompe et coche une permission que le rôle possède déjà. À la soumission, le système refuse avec une erreur de validation. 
 \end{enumerate} \\
 \hline
 \textbf{Scénario d'exception} &
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'identifiant du rôle ciblé n'existe pas ou plus dans la base de données au moment de validater. L'opération est définitivement bloquée en erreur.
+\item L'identifiant du rôle ciblé n'existe pas ou plus dans la base de données au moment de la validation. L'opération est définitivement bloquée en erreur.
 \item  Une permission sélectionnée par l'administrateur s'avère introuvable côté serveur lors de l'enregistrement. Le système rejette l'attribution globale.
 \end{enumerate} \\
 \hline
@@ -831,7 +676,165 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 }
 \normalsize
 
+\subsection{Analyse de la fonctionnalité « Gérer utilisateurs »}
+Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des utilisateurs afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des interactions.
+\subsubsection{Raffinement du cas d’utilisation « Gérer utilisateurs »}
+Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de gestion des utilisateurs :    
 
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/Gérer utilisateur.drawio.png}
+        \caption{Diagramme de cas d'utilisation « Gérer utilisateurs »}
+        \label{fig:gerer_utilisateurs}
+\end{figure}
+\subsubsection{Description textuelle du cas d’utilisation « Ajouter utilisateur »}
+
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Ajouter utilisateur ».
+
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+
+\textbf{Nom du cas d'utilisation} & Ajouter utilisateur \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Précondition} & L'administrateur est connecté et dispose des droits de création de compte. \\
+\hline
+\textbf{Postcondition} & Le compte est créé en base de données avec un mot de passe temporaire, et l'utilisateur reçoit ses identifiants par courriel. \\
+\hline
+\textbf{Scénario nominal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
+\item L'administrateur ouvre le formulaire d'ajout.
+    \item Il saisit les informations de la première étape (nom, prénom, email, téléphone, date de naissance, rôle).
+    \item Il clique sur « Suivant ». Le système valide les champs.
+    \item Il complète la deuxième étape (poste, spécialisation, date d'embauche) si le rôle n'est pas « Client ».
+    \item Il valide le formulaire. Le système vérifie que l'email n'est pas déjà utilisé.
+    \item Le système génère automatiquement un mot de passe temporaire.
+    \item Le système crée le compte, l'assigne au rôle choisi, et crée le profil correspondant.
+    \item Un email de bienvenue contenant le mot de passe temporaire et un lien de réinitialisation est envoyé.
+    \item L'administrateur reçoit une confirmation visuelle et la liste des utilisateurs se met à jour.
+\end{enumerate}
+\vspace{0.2cm}
+\end{minipage} \\
+\hline
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item L'administrateur oublie un champ obligatoire ou saisit un format incorrect (email invalide, date de naissance dans le futur, âge inférieur à 18 ans). Le système signale le champ erroné avec un message d'erreur. L'administrateur corrige et valide à nouveau.
+\item L'adresse e-mail est déjà attribuée à un autre compte. Le système affiche une alerte. L'administrateur change l'adresse e-mail pour continuer.
+\item L'administrateur sélectionne le rôle « Client ». Le système saute la deuxième étape (saisie du poste et de la date d'embauche) et passe directement à la création du compte.
+\end{enumerate} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d’utilisation «~Ajouter utilisateur »} 
+\normalsize
+
+
+\subsubsection{Description textuelle du cas d’utilisation « Désactiver utilisateur »}
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Désactiver utilisateur ».
+
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
+
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Désactiver utilisateur \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Précondition} & L'administrateur est authentifié, possède la permission requise, et le compte visé est actif. \\
+\hline
+\textbf{Postcondition} & Le compte devient inactif et l'utilisateur en est notifié par e-mail. \\
+\hline
+\textbf{Scénario nominal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
+    \item L'administrateur sélectionne un compte actif dans la liste.
+    \item Il clique sur l'action « Désactiver ».
+    \item Le système vérifie si l'utilisateur possède des tickets actifs (aucun trouvé).
+    \item Le système affiche une confirmation simple.
+    \item L'administrateur valide son choix.
+    \item Le système désactive le compte en base et envoie la notification e-mail.
+\end{enumerate}
+\vspace{0.2cm}
+\end{minipage} \\
+\hline
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item  L'utilisateur ciblé possède des tickets actifs. Le système ouvre une modale de réassignation. L'administrateur répartit les tickets, puis valide, permettant à la désactivation d'aboutir.
+\item  L'administrateur décide finalement de fermer la fenêtre modale (Annuler). L'opération s'interrompt proprement, le compte reste actif.
+\end{enumerate} \\
+\hline
+
+\end{longtable}
+\captionof{table}{Description textuelle du cas d’utilisation «~Désactiver utilisateur »} 
+\normalsize
+
+\subsubsection{Description textuelle du cas d’utilisation « Modifier Profil »}
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Modifier Profil ».
+
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
+
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Modifier Profil \\
+\hline
+\textbf{Acteurs} &Utilisateur \\
+\hline
+\textbf{Précondition} & L'utilisateur est connecté et consulte sa propre page profil. \\
+\hline
+\textbf{Postcondition} & Les informations sont mises à jour en base de données et, en cas de mot de passe changé, un e-mail de notification est envoyé. \\
+\hline
+\textbf{Scénario nominal} &
+\begin{minipage}[t]{\linewidth}
+\begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
+    \item L'utilisateur se rend sur la page « Mon profil ».
+    \item Il met à jour ses informations personnelles (photo, coordonnées, e-mails).
+    \item Il valide le formulaire pour enregistrer les changements.
+    \item S'il change de mot de passe, il saisit son mot de passe actuel, puis le nouveau.
+    \item Le système valide les données et met à jour le profil en base.
+    \item L'utilisateur reçoit une confirmation de succès à l'écran.
+\end{enumerate}
+\vspace{0.2cm}
+\end{minipage} \\
+\hline
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item  Si le nouvel e-mail fourni est déjà pris par un autre compte, le système rejette la saisie. L'utilisateur saisit une adresse différente et revalide.
+\item  Lors du changement de mot de passe, le mot de passe actuel fourni est faux. L'utilisateur rectifie le mot de passe pour réussir.\end{enumerate} \\
+\hline
+\textbf{Scénario d'exception} &
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item  Bien que l'utilisateur soit connecté, son profil a été supprimé ou désactivé par un administrateur à la seconde précédente . L'enregistrement est impossible et la session est stoppée.
+\end{enumerate} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d’utilisation «~Modifier Profil »} 
+\normalsize
 
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 3 : CONCEPTION
@@ -841,7 +844,7 @@ Cette section présente les choix de conception retenus pour ce sprint,
 à travers les diagrammes d'activités et de séquences modélisant les
 principaux flux fonctionnels
 
-\subsection{Diagramme d'activités « Authentification et Demander accés via fournisseur externe »}
+\subsection{Diagramme d'activités « Authentification et demande d'accès via fournisseur externe »}
 Le diagramme ci-dessous illustre le flux d'activités relatif à l'authentification
 et à la demande d'accès via un fournisseur externe.
 \begin{figure}[H]
@@ -861,15 +864,6 @@ Dans cette section, nous allons modéliser les interactions entre l'utilisateur 
         \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag seq auth.png}
         \caption{Diagramme de séquences du cas d'utilisation « S'authentifier »}
         \label{fig:auth_sequence}
-\end{figure}
-
-\subsubsection{Diagramme de séquences du cas d'utilisation « Mot de passe oublié »}
-
-\begin{figure}[H]
-        \centering
-        \includegraphics[width=0.85\textwidth,height=0.95\textheight,keepaspectratio]{Images/Diagramme changer Mot de passe.png}
-        \caption{Diagramme de séquences du cas d'utilisation « Mot de passe oublié »}
-        \label{fig:password_reset_sequence}
 \end{figure}
 
 \subsubsection{Diagramme de séquences du cas d'utilisation « Désactiver utilisateur »}
@@ -906,22 +900,28 @@ Le schéma relationnel du premier sprint s’appuie sur les relations suivantes 
 \newline
 \textbf{ProfilEmploye} (\underline{\textbf{\#idUtilisateur}}, matricule, dateEmbauche, poste, specialisation, anneesExperience, disponibilite, competences)
 \newline
+\textbf{Competence} (\underline{idCompetence}, nomCompetence)
+\newline
+\textbf{EmployeCompetence} (\underline{\#idUtilisateur}, \underline{\#idCompetence}, niveau)
+\newline
 \textbf{ProfilClient} (\underline{\textbf{\#idUtilisateur}}, nomSociete, telSociete, adresseSociete, secteurActivite, logo)
 \newline
-\textbf{DemandeInscription} (\underline{idDemandeInsc}, fournisseur, statusDemandeInsc, dateCreationInsc, dateCreation, dateMiseAJour, motifRefus, \textbf{\#idUtilisateur})
-% ─────────────────────────────────────────────────────────────────────────────
+\textbf{DemandeInscription} (\underline{idDemandeInsc}, fournisseur, statusDemandeInsc, dateCreation, dateMiseAJour, motifRefus, \textbf{\#idUtilisateur})% ─────────────────────────────────────────────────────────────────────────────
 % RÉTROSPECTIVE DU SPRINT
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Rétrospective du Sprint}
 À la fin de ce premier sprint, nous avons organisé une réunion de rétrospective afin d'analyser le déroulement du travail. Le tableau \ref{tab:retrospective_sprint1} résume les points clés soulevés par l'équipe, en mettant en évidence les réussites, les difficultés rencontrées et les actions d'amélioration pour la suite du projet.
 
 \begingroup
-\renewcommand{\arraystretch}{1.15}
+\renewcommand{\arraystretch}{1.15} % Garde un bel espace pour le reste du tableau
 \small
-\begin{longtable}{|>{\columncolor{pastelBlue}}p{5.5cm}|p{9.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{4cm}|p{9.5cm}|}
 \hline
 \rowcolor{secondary}
-\multicolumn{1}{|>{\centering\arraybackslash}p{5.5cm}|}{\large\textbf{\color{white}Question}} & \multicolumn{1}{>{\centering\arraybackslash}p{9.5cm}|}{\large\textbf{\color{white}Réponse}} \\
+% On utilise \vrule pour contrôler précisément la hauteur (hauteur=0pt, profondeur=0pt)
+% Cela neutralise l'excès de hauteur du header
+\multicolumn{1}{|>{\centering\arraybackslash}p{4cm}|}{\textbf{\color{white}Question}} & 
+\multicolumn{1}{>{\centering\arraybackslash}p{9.5cm}|}{\textbf{\color{white}Réponse}} \tabularnewline
 \hline
 \endfirsthead
 \hline
@@ -975,17 +975,19 @@ Nous avons mis en place une interface de connexion qui propose deux modes d'auth
 
 \begin{figure}[H]
 \centering
+\includegraphics[width=11cm,height=11cm,keepaspectratio]{Images/capture home.png}
+\caption{Interface d'accueil (home)}
+\label{fig:interface_home}
+\end{figure}
+
+\begin{figure}[H]
+\centering
 \includegraphics[width=10cm,height=10cm,keepaspectratio]{Images/capture authentification.png}
 \caption{Interface de connexion}
 \label{fig:interface_connexion}
 \end{figure}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=10cm,height=10cm,keepaspectratio]{Images/capture home.png}
-\caption{Interface d'accueil (home)}
-\label{fig:interface_home}
-\end{figure}
+
 
 
 \subsection{Interface de réinitialisation du mot de passe}
@@ -1034,7 +1036,7 @@ Nous avons mis en place une interface complète de gestion des rôles et permiss
 
 
 \subsection{Interface de gestion des demandes d'accès via fournisseur externe}
-Nous avons mis en place un flux d'inscription \textit{Open Authorization} (\textbf{OAuth}) en deux étapes. D'abord, l'utilisateur peut demander l'accès via son fournisseur externe (Google, GitHub) afin de s'inscrire facilement sans créer de mot de passe (Figure \ref{fig:oauth_user_demande}). Ensuite, l'administrateur consulte dans une interface dédiée les demandes en attente, visualise les informations récupérées via \textit{Open Authorization} (\textbf{OAuth}), et peut approuver ou refuser chaque demande avec un motif de refus facultatif (Figure \ref{fig:oauth_admin_validation}). Ce processus permet à l'utilisateur de s'inscrire simplement tout en laissant à l'administrateur un contrôle rigoureux des inscriptions.
+Nous avons mis en place un flux d'inscription \textit{Open Authorization} (\textbf{OAuth}) en deux étapes. D'abord, l'utilisateur peut demander l'accès via son fournisseur externe (Google, GitHub) afin de s'inscrire facilement sans créer de mot de passe (Figure \ref{fig:oauth_user_demande}). Ensuite, l'administrateur consulte dans une interface dédiée les demandes en attente, visualise les informations récupérées via (\textbf{OAuth}), et peut approuver ou refuser chaque demande avec un motif de refus facultatif (Figure \ref{fig:oauth_admin_validation}). Ce processus permet à l'utilisateur de s'inscrire simplement tout en laissant à l'administrateur un contrôle rigoureux des inscriptions.
 
 \begin{figure}[H]
 \centering
@@ -1054,10 +1056,21 @@ Nous avons mis en place un flux d'inscription \textit{Open Authorization} (\text
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 5 : TESTS
 % ─────────────────────────────────────────────────────────────────────────────
-\section{Tests et Validation}
-La phase de test est essentielle pour garantir la qualité, la fiabilité et la sécurité de la solution. Elle valide que chaque fonctionnalité répond aux exigences métier et identifie les anomalies avant la mise en production. Dans ce sprint, nous avons testé les mécanismes d'authentification, la gestion des utilisateurs et le contrôle d'accès (RBAC), mais également la résistance aux attaques courantes et la robustesse des mécanismes de sécurité (verrouillage de compte, isolation des rôles, validation des jetons JWT, scan OWASP ZAP (\textit{Open Web Application Security Project} -- \textit{Zed Attack Proxy}){OWASP ZAP (Open Web Application Security Project -- Zed Attack Proxy)}). Pour cela, nous avons mis en œuvre une stratégie de tests couvrant non seulement les niveaux unitaire, d’intégration et end-to-end, mais aussi des tests de sécurité et des tests de performance.
+\section{Tests et validation}
+La phase de test est essentielle pour garantir la qualité, la fiabilité 
+et la sécurité de la solution. Elle valide que chaque fonctionnalité 
+répond aux exigences métier et identifie les anomalies avant la mise en 
+production. Dans ce sprint, les mécanismes d'authentification, la gestion 
+des utilisateurs et le contrôle d'accès (RBAC) ont été soumis à une 
+batterie de tests, couvrant également la résistance aux attaques courantes 
+et la robustesse des dispositifs de sécurité : verrouillage de compte, 
+isolation des rôles, validation des jetons JWT et scan OWASP ZAP (\textit{Open Web Application Security Project} -- \textit{Zed Attack Proxy}).
+
 \subsection{Stratégie de tests adoptée}
-Afin de garantir la qualité, la fiabilité et la sécurité de l'application, nous avons adopté une stratégie de tests structurée reposant sur plusieurs niveaux complémentaires : tests unitaires, tests d'intégration, tests end-to-end, tests de performance et tests de sécurité.
+Afin de garantir la qualité, la fiabilité et la sécurité de l'application, 
+une stratégie de tests structurée a été adoptée, reposant sur cinq niveaux 
+complémentaires : tests unitaires, tests d'intégration, tests end-to-end, 
+tests de performance et tests de sécurité.
 
 \subsection{Tests unitaires}
 \label{sec:tests_unitaires}
@@ -1070,15 +1083,15 @@ modules prioritaires ont été couverts : l'authentification, le contrôle
 d'accès basé sur les rôles (RBAC) et la gestion des clients.
 
 \vspace{6pt}
-
+\newpage
 \begin{itemize}[leftmargin=0pt]
 
 % ── 1. Authentification ───────────────────────────────────────────────────────
 \item[$\square$] \textbf{Test du module Authentification}
 \newline
-\textbf{Méthodes : \textbf{login()}} 
-\textbf{demanderReinitialisationMotDePasse()} 
-\textbf{reinitialiserMotDePasse()}
+\textbf{Méthodes :} \texttt{login()}
+\texttt{demanderReinitialisationMotDePasse()}
+\texttt{reinitialiserMotDePasse()}
 
 \noindent Cette suite valide le processus d'authentification classique,
 la génération des jetons JWT et le mécanisme de réinitialisation du mot
@@ -1114,9 +1127,9 @@ de passe. Les cas suivants ont été couverts :
 % ── 2. RBAC ───────────────────────────────────────────────────────────────────
 \item[$\square$] \textbf{Test du module Gestion des rôles et permissions (RBAC)}
 \newline
-\textbf{Méthodes :} \textbf{creerPermission()},
-\textbf{attribuerRoleUtilisateur()},
-\textbf{obtenirRolesEtPermissions()}
+\textbf{Méthodes :} \texttt{creerPermission()},
+\texttt{attribuerRoleUtilisateur()},
+\texttt{obtenirRolesEtPermissions()}
 \newline
 \noindent Cette suite valide les règles d'exclusivité des rôles, l'unicité
 des permissions et l'intégrité des références.
@@ -1161,15 +1174,15 @@ Les cas suivants ont été couverts :
 \label{sec:tests_integration}
 
 Les tests d'intégration ont pour objectif de valider les échanges entre
-les différentes couches de l'application (contrôleur, service et base de
-données) en testant les endpoints REST dans leur ensemble. Ces tests sont effectués via \textbf{Swagger UI} (interface utilisateur de documentation d'API), en soumettant des requêtes HTTP réelles
-contre le backend en cours d'exécution, ce qui permet de vérifier le
-comportement de l'API dans des conditions proches de la production.
+les différentes couches de l'application (contrôleur, service et base de données) en testant les endpoints REST dans leur ensemble. Ces tests sont
+effectués en soumettant des requêtes HTTP réelles contre le backend en cours
+d'exécution via \textbf{Swagger UI}, ce qui permet de vérifier le comportement
+de l'API dans des conditions proches de la production.
 
 \begin{itemize}[leftmargin=0pt]
 
 \item[$\square$] \textbf{Test du module Authentification}
-\newline  \textit{Endpoint : \textbf{POST /api/auth/login}} 
+\newline  \textit{Endpoint : \texttt{POST /api/auth/login}} 
 \noindent Cette suite valide le comportement complet de l'endpoint de
 connexion, notamment le retour des jetons d'authentification, des rôles,
 des permissions associées et la gestion des codes d'erreur HTTP selon les
@@ -1204,9 +1217,9 @@ différents cas d'entrée.
 \end{figure}
 
 \item[$\square$] \textbf{Test du module Gestion du profil}
-\newline  \textit{Endpoint : \textbf{PUT /api/profil}} 
+\newline  \textit{Endpoint : \texttt{PUT /api/profil}} 
  
-\noindent Cette suite de tests vise à valider le bon fonctionnement de la méthode \textbf{modifierProfil()} exposée via l'endpoint \textbf{PUT /api/profil}, qui permet à un utilisateur de mettre à jour les informations de son profil.
+\noindent Cette suite de tests vise à valider le bon fonctionnement de la méthode \texttt{modifierProfil()} exposée via l'endpoint \texttt{PUT /api/profil}, qui permet à un utilisateur de mettre à jour les informations de son profil.
 \newline
 Lee cas suivant ont été couvert :
 \begin{itemize}
@@ -1320,9 +1333,9 @@ pour une durée totale de 2 minutes (avec une période de tolérance
 \textit{graceful ramp-down} et \textit{stop} de 30 secondes), atteignant 
 un pic de 20 utilisateurs simultanés.
 
-Les endpoints ciblés sont \textbf{POST /api/auth/login} (génération des
+Les endpoints ciblés sont \texttt{POST /api/auth/login} (génération des
 jetons JWT, récupération des rôles et permissions) et
-\textbf{GET /api/users} (consultation de la liste des utilisateurs par
+\texttt{GET /api/users} (consultation de la liste des utilisateurs par
 un administrateur authentifié).
 
 \subsubsection{Résultats obtenus}
@@ -1429,13 +1442,11 @@ sans présence d’alertes critiques liées à la sécurité de l’application.
 % ─────────────────────────────────────────────────────────────────────────────
 \section*{Conclusion}
 Ce chapitre a présenté le développement du premier sprint de la plateforme
-\textbf{SolidMaint}. Nous avons mis en place la gestion de l'authentification 
-par \textit{JSON Web Token} (\textbf{JWT}) avec les boutons \textit{Open Authorization} 
-(\textbf{OAuth}) Google et GitHub, ainsi que la gestion des
+\textbf{SolidMaint}. Nous avons mis en place la gestion de l'authentification
+par \textit{JSON Web Token} (\textbf{JWT})ainsi que le flux d'inscription via fournisseurs d'identité externes (Google et GitHub) et la gestion des
 rôles et permissions (RBAC). L'ensemble de ces fonctionnalités a été
-validé par une série de tests unitaires, d'intégration et
-End-to-End répartis sur trois niveaux.
+validé par une série de tests unitaires, d'intégration, end-to-end,
+de performance et de sécurité répartis sur cinq niveaux.
 \newline
 Le chapitre suivant détaillera le deuxième sprint, consacré à la gestion
 des contrats, des projets et des clients.
-

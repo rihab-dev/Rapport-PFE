@@ -18,7 +18,6 @@ La réunion de planification du deuxième sprint nous a permis de définir les o
 
 \subsection{Objectif du Sprint}
 Ce sprint vise à développer la gestion complète des clients, des projets et des contrats de maintenance, à intégrer le suivi des engagements SLA, à faciliter la collaboration via l'affectation des équipes aux projets, et à implémenter le journal d'activités pour assurer la traçabilité complète des opérations.
-Dans ce deuxième sprint, nous avons également défini l'identité visuelle de \textbf{SolidMaint}, incluant la conception de son logo, présentée dans le chapitre 2.
 
 
 \subsubsection{Backlog du deuxième sprint}
@@ -542,7 +541,7 @@ Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui
 \noindent
 \textbf{Projet} (\underline{idProjet}, nomProjet, descriptionProjet, ProjetTag, statutP, dateDebutP, dateFinP, dateCreationP, dateMiseAJourP, \textbf{\#idProfilClient})
 \newline
-\textbf{Contrat} (\underline{idContrat}, referenceContrat, dateDebutContratM, dateExpirationContratM, montantMensuel, montantSemestriel, tauxTVA, montantTVA, montantTTC, typeSLA, fichierContrat, statutContrat, estArchive, dateCreation, dateMiseAJour, dateArchivage, \textbf{\#idProjet})
+\textbf{Contrat} (\underline{idContrat}, referenceContrat, dateDebutContratM, dateExpirationContratM, montantMensuel, montantSemestriel, tauxTVA, montantTVA, montantTTC, fichierContrat, statutContrat, estArchive, dateCreation, dateMiseAJour, dateArchivage, \textbf{\#idProjet})
 \newline
 \textbf{SLAGlobal} (\underline{idSLAGlobal}, typeSLA, description, dateCreation, dateMiseAJour)
 \newline
@@ -564,12 +563,15 @@ Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui
 À la fin de ce deuxième sprint, nous avons organisé une réunion de rétrospective afin d'analyser le déroulement du travail. Le tableau \ref{tab:retrospective_sprint2} résume les points clés soulevés par l'équipe, en mettant en évidence les réussites, les difficultés rencontrées et les actions d'amélioration pour la suite du projet.
 
 \begingroup
-\renewcommand{\arraystretch}{1.15}
+\renewcommand{\arraystretch}{1.15} % Garde un bel espace pour le reste du tableau
 \small
-\begin{longtable}{|>{\columncolor{pastelBlue}}p{5.5cm}|p{9.5cm}|}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{4cm}|p{9.5cm}|}
 \hline
 \rowcolor{secondary}
-\multicolumn{1}{|>{\centering\arraybackslash}p{5.5cm}|}{\large\textbf{\color{white}Question}} & \multicolumn{1}{>{\centering\arraybackslash}p{9.5cm}|}{\large\textbf{\color{white}Réponse}} \\
+% On utilise \vrule pour contrôler précisément la hauteur (hauteur=0pt, profondeur=0pt)
+% Cela neutralise l'excès de hauteur du header
+\multicolumn{1}{|>{\centering\arraybackslash}p{4cm}|}{\textbf{\color{white}Question}} & 
+\multicolumn{1}{>{\centering\arraybackslash}p{9.5cm}|}{\textbf{\color{white}Réponse}} \tabularnewline
 \hline
 \endfirsthead
 \hline
@@ -614,7 +616,8 @@ Cette section présente les principales interfaces utilisateur développées dur
 
 
 \subsection{Interface de la liste des clients}
-Nous avons mis en place cette interface pour rassembler tous les clients au même endroit, ce qui permet à l'administrateur et au chef de projet de les consulter facilement. Pour optimiser la navigation, le tableau est équipé d'une barre de recherche et de plusieurs filtres. Des boutons d'actions rapides ont également été ajoutés pour accéder directement aux détails d'un compte.
+L'interface de gestion des clients centralise toutes les informations nécessaires à l'administrateur et au chef de projet. Illustrée en mode sombre (\textit{Dark Mode}) sur Figure ci-dessous, elle répond aux exigences d'ergonomie et de confort visuel. Pour faciliter la navigation, le tableau intègre une barre de recherche, des filtres multicritères ainsi 
+que des boutons d'actions rapides permettant d'accéder directement aux détails des comptes.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/capture liste client.png}
@@ -660,14 +663,14 @@ Nous avons mis en place cette interface pour centraliser les interactions de fin
 \label{fig:interface_satisfaction_client}
 \end{figure}
 
-\section{Tests et Validation}
+\section{Tests et validation}
 \label{sec:tests_sprint2}
 
 La phase de test du deuxième sprint valide les fonctionnalités de gestion
 des contrats, des projets et de la traçabilité. Nous avons adopté la même
 stratégie de tests structurée que lors du premier sprint, reposant sur
 plusieurs niveaux complémentaires : tests unitaires, tests d'intégration,
-tests end-to-end, tests de performance et tests de sécurité.
+tests end-to-end, tests de sécurité et tests de performance.
 
 \subsection{Tests unitaires}
 \label{sec:tests_unitaires_sprint2}
@@ -688,28 +691,28 @@ doublons. Les cas suivants ont été couverts :
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
   \item Des données valides sont soumises : le contrat est créé avec une
-    référence au format  -\{suffixe\} et le
-    statut  .
-  \item Le client fourni est inexistant : une  
+    référence au format \texttt{CTR-AAAA-NNNN} et le
+    statut \texttt{ACTIF}.
+  \item Le client fourni est inexistant : une \texttt{NotFoundException}
     est levée.
-  \item Le projet fourni est inexistant : une  
+  \item Le projet fourni est inexistant : une \texttt{NotFoundException}
     est levée.
   \item Le projet n'appartient pas au client sélectionné : une
-      est levée.
+    \texttt{BadRequestException} est levée.
   \item Un contrat similaire existe déjà pour ce projet : une
-      est levée.
+    \texttt{ConflictException} est levée.
   \item La date de début est antérieure à aujourd'hui : une
-      est levée avec le message
+    \texttt{BadRequestException} est levée avec le message
     « ne peut pas être dans le passé ».
   \item La date d'expiration est antérieure à la date de début : une
-      est levée avec le message
+    \texttt{BadRequestException} est levée avec le message
     « doit être postérieure à la date de début ».
   \item Le montant mensuel est nul ou négatif : une
-      est levée avec le message
+    \texttt{BadRequestException} est levée avec le message
     « doit être supérieur à 0 ».
   \item Un montant valide est soumis : le montant est enregistré
     correctement.
-  \item La référence générée respecte le format  .
+  \item La référence générée respecte le format \texttt{CTR-AAAA-NNNN}.
 \end{itemize}
 
 \begin{figure}[H]
@@ -725,11 +728,11 @@ doublons. Les cas suivants ont été couverts :
 %─────────────────────────────────────────────────────────────────────────────
 \subsection{Tests d'intégration}
 \label{sec:tests_integration_sprint2}
-Les tests d'intégration valident les endpoints \textbf{REST} (\textit{Representational State Transfer}) des contrats via \textbf{Swagger UI} (interface utilisateur de documentation d'API), en interagissant directement avec le backend en cours d'exécution.
+Les tests d'intégration valident les endpoints \textbf{REST} (\textit{Representational State Transfer}) des contrats via \textbf{Swagger UI}, en interagissant directement avec le backend en cours d'exécution.
 \begin{itemize}[leftmargin=0pt]
 
 \item[$\square$] \textbf{Test du module Gestion des contrats}
-\newline \textit{Endpoints : \textbf{POST /api/contrats/:id/resilier}, \textbf{GET /api/contrats}, \textbf{GET /api/contrats/:clientId}}
+\newline \textit{Endpoints testés : \texttt{POST /api/contrats/:id/resilier}, \texttt{GET /api/contrats}, \texttt{GET /api/contrats/:clientId}}
 \noindent Cette suite valide le comportement des endpoints de gestion des contrats.
 \newline Les cas suivants ont été couverts :
 
@@ -752,28 +755,9 @@ Les tests d'intégration valident les endpoints \textbf{REST} (\textit{Represent
 \end{itemize}
 \end{itemize}
 
-\subsection{Tests de sécurité}
-Les tests de sécurité du deuxième sprint ont ciblé la protection des
-données contractuelles et la prévention des accès non autorisés entre
-clients.
-
-\subsubsection{Test d'isolation des données (\textbf{IDOR} - \textit{Insecure Direct Object Reference})}
-La vulnérabilité \textbf{IDOR} consiste à accéder à une ressource appartenant à un autre utilisateur en manipulant un identifiant. Ce test a vérifié qu'un client authentifié
-ne peut pas consulter les contrats d'un autre client.
-
-Un utilisateur avec le rôle \texttt{CLIENT} a tenté d'accéder à la liste
-complète des contrats via \texttt{GET /api/contrats}. Le système a
-retourné \texttt{403 Forbidden}, confirmant que l'accès est
-restreint aux seuls contrats appartenant au client authentifié.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.5\textwidth]{Images/get client test interg1 sprint 2.png}
-\caption{Test de sécurité — isolation des données contractuelles (IDOR)}
-\end{figure}
 %─────────────────────────────────────────────────────────────────────────────
 %─────────────────────────────────────────────────────────────────────────────
-\subsubsection{Tests End-to-End}
+\subsection{Tests End-to-End}
 \label{sec:tests_e2e_contract}
 
 Les tests End-to-End de création de contrat valident le flux complet
@@ -817,6 +801,27 @@ suivants ont été couverts :
 
 \end{itemize}
 
+\subsection{Tests de sécurité}
+Les tests de sécurité du deuxième sprint ont ciblé la protection des
+données contractuelles et la prévention des accès non autorisés entre
+clients.
+
+\subsubsection{Test d'isolation des données (\textbf{IDOR} - \textit{Insecure Direct Object Reference})}
+La vulnérabilité \textbf{IDOR} consiste à accéder à une ressource appartenant à un autre utilisateur en manipulant un identifiant. Ce test a vérifié qu'un client authentifié
+ne peut pas consulter les contrats d'un autre client.
+
+Un utilisateur avec le rôle \texttt{CLIENT} a tenté d'accéder à la liste
+complète des contrats via \texttt{GET /api/contrats}. Le système a
+retourné \texttt{403 Forbidden}, confirmant que l'accès est
+restreint aux seuls contrats appartenant au client authentifié.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{Images/get client test interg1 sprint 2.png}
+\caption{Test de sécurité — isolation des données contractuelles (IDOR)}
+\end{figure}
+
+
 \subsection{Tests de performance}
 \label{sec:tests_performance_sprint2}
 
@@ -828,7 +833,7 @@ Le scénario modélise une forte activité concurrentielle sur les modules de ge
 
 Le profil de charge est configuré pour atteindre un pic de \textbf{50 utilisateurs virtuels simultanés (VUs)} répartis sur une durée totale de 3 minutes selon quatre phases distinctes :
 \begin{itemize}
-    \item \textbf{Chauffe (Ramp-up) :} Montée progressive à 20 VUs en 30 secondes.
+    \item \textbf{Chauffe (Warm-up) :} Montée progressive à 20 VUs en 30 secondes.
     \item \textbf{Montée en charge :} Progression jusqu'au pic de 50 VUs en 1 minute.
     \item \textbf{Pic de charge (Plateau) :} Maintien de l'activité à 50 VUs stables pendant 1 minute.
     \item \textbf{Descente (Ramp-down) :} Retour progressif à 0 VU en 30 secondes.
@@ -836,9 +841,9 @@ Le profil de charge est configuré pour atteindre un pic de \textbf{50 utilisate
 
 Les points d'accès ciblés par ce test de charge sont :
 \begin{itemize}
-    \item \textbf{GET /api/contrats} : Liste globale paginée incluant les relations clients et les décomptes projets.
-    \item \textbf{GET /api/projets} : Liste des projets d'ingénierie actifs.
-    \item \textbf{GET /api/clients} : Extraction des fiches de comptes clients de la structure.
+    \item \texttt{GET /api/contrats} : Liste globale paginée incluant les relations clients et les décomptes projets.
+    \item \texttt{GET /api/projets} : Liste des projets d'ingénierie actifs.
+    \item \texttt{GET /api/clients} : Extraction des fiches de comptes clients de la structure.
 \end{itemize}
 
 \subsubsection{Résultats obtenus}
@@ -904,8 +909,9 @@ Ce chapitre a présenté le développement du deuxième sprint de la plateforme
 contrats de maintenance avec leurs configurations SLA, l'intégration Slack
 par contrat, la gestion des projets et de leurs équipes, ainsi que le
 journal d'activités assurant la traçabilité de toutes les opérations.
-L'ensemble de ces fonctionnalités a été validé par une série de tests répartis sur
-trois niveaux.
+L'ensemble de ces fonctionnalités a été validé par une série de tests
+unitaires, d'intégration, end-to-end, de performance et de sécurité
+répartis sur cinq niveaux.
 \newline
 Le chapitre suivant détaillera l'implémentation du troisième sprint,
 consacré au cœur opérationnel de la plateforme : la gestion des demandes
