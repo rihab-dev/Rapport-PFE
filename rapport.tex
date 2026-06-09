@@ -49,18 +49,22 @@
 \renewcommand{\cfttoctitlefont}{\relax\vspace*{-2cm}}
 \renewcommand{\cftaftertoctitle}{}
 
-% --- Alignements exacts calqués sur l'image de référence ---
-\setlength{\cftchapindent}{-5pt}   % légèrement à gauche de la marge
-\setlength{\cftchapnumwidth}{72pt} % largeur pour le préfixe «Chapitre N»
+% --- Hiérarchie visuelle progressive (cascade) ---
+% Chapitre : texte à -5pt (flush gauche)
+\setlength{\cftchapindent}{-5pt}
+\setlength{\cftchapnumwidth}{72pt}
 
-\setlength{\cftsecindent}{28pt}
-\setlength{\cftsecnumwidth}{36pt}
+% Section   : numéro à 20pt, texte à 50pt
+\setlength{\cftsecindent}{20pt}
+\setlength{\cftsecnumwidth}{30pt}
 
-\setlength{\cftsubsecindent}{64pt}   
-\setlength{\cftsubsecnumwidth}{36pt}
+% Subsection : numéro à 50pt (= texte section), texte à 78pt
+\setlength{\cftsubsecindent}{50pt}
+\setlength{\cftsubsecnumwidth}{28pt}
 
-\setlength{\cftsubsubsecindent}{100pt} 
-\setlength{\cftsubsubsecnumwidth}{46pt}
+% Subsubsection : numéro à 78pt (= texte subsec), texte à 118pt
+\setlength{\cftsubsubsecindent}{78pt}
+\setlength{\cftsubsubsecnumwidth}{40pt}
 
 % --- Espacements verticaux hiérarchiques ---
 \setlength{\cftbeforechapskip}{14pt plus 1pt minus 1pt}
