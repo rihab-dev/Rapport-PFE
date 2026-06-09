@@ -430,79 +430,15 @@ Le motif d'archivage est enregistré et associé au contrat. \\
 \captionof{table}{Description textuelle du cas d’utilisation «~Archiver contrat »}
 \normalsize
 
-\subsection{Analyse de la fonctionnalité « Suivre contrats »}
-
-Dans cette partie, nous allons présenter les cas d'utilisation relatifs au
-suivi des contrats par le client afin de comprendre les interactions
-disponibles depuis son espace personnel.
-
-\subsubsection{Raffinement du cas d'utilisation « Suivre Contrats »}
-Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné pour le cas de suivi des contrats :
-
-\begin{figure}[H]
-        \centering
-        \includegraphics[width=0.80\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme gerer contrat Client.drawio.png}
-        \caption{Raffinement du cas d'utilisation « Suivre Contrats »}
-        \label{fig:suivre_contrats}
-\end{figure}
-
-\subsubsection{Description textuelle du cas d’utilisation « Demander résiliation »}
-Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Demander résiliation ».
-
-\footnotesize
-\renewcommand{\arraystretch}{1}
-\begin{longtable}{|>{\columncolor{pastelBlue}}p{4cm}|p{11.5cm}|}
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-\textbf{Nom du cas d'utilisation} & Demander résiliation \\
-\hline
-\textbf{Acteurs} & Client \\
-\hline
-\textbf{Précondition} &
-L'utilisateur est authentifié.\newline
-Le contrat est actif et appartient au client. \\
-\hline
-\textbf{Postcondition} &
-La demande de résiliation est enregistrée et le contrat passe au statut « résiliation en attente ».\newline
-L'administrateur est notifié par e-mail et notification interne. \\
-\hline
-\textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., leftmargin=*]
-\item Le client consulte la liste de ses contrats.
-\item Le client clique sur le menu d'options (les 3 points) d'un contrat actif et sélectionne « Demander la résiliation ».
-\item Le système affiche un formulaire de saisie du motif.
-\item Le client saisit un motif (minimum 10 caractères) et confirme.
-\item Le système enregistre la demande et notifie les administrateurs.
-\item Le système affiche un message de confirmation au client.
-\end{enumerate}
-\vspace{2pt}
-\end{minipage} \\
-\hline
-\textbf{Scénario alternatif} &
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le motif saisi contient moins de 10 caractères ; le bouton de confirmation reste désactivé, le client complète le motif et \textbf{reprend à l'étape 4}.
-\item Le bouton « Demander la résiliation » est masqué pour les contrats non actifs ; le client revient à la liste et sélectionne un contrat actif.
-\end{enumerate} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «~Demander résiliation »}
-\normalsize
 
 
 
 \section{Conception}
 Cette section présente les choix de conception retenus pour ce sprint,
-à travers les diagrammes d'activité et de séquences modélisant les
+à travers le diagramme de séquences modélisant les
 principaux flux fonctionnels
 
-\subsection{Diagramme de séquences}
+\subsection{Diagrammes de séquences}
 Dans cette section, nous modélisons les interactions entre les acteurs et le système à l’aide de diagrammes de séquences, afin d’illustrer les flux de traitement propres à la gestion contractuelle.
 \subsubsection{Diagramme de séquences du cas d'utilisation « Demander Résiliation »}
 

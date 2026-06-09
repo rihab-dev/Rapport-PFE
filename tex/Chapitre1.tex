@@ -92,7 +92,7 @@ Le suivi des interventions repose au quotidien sur des fils de discussion par e-
             \newline
 
     \item  \textcolor{bleuPerso} {Étude de l'existant à l'échelle internationale}~\newline
-            Avant de concevoir notre propre solution, nous allons étudier les solutions disponibles sur le marché afin d'analyser les fonctionnalités proposées. Cette démarche permet d'identifier les bonnes pratiques et d'orienter efficacement le développement de notre système.\newline
+            Avant de développer notre propre solution, nous allons étudier les solutions disponibles sur le marché afin d'analyser les fonctionnalités proposées. Cette démarche permet d'identifier les bonnes pratiques et d'orienter efficacement le développement de notre système.\newline
             Dans ce cadre, nous avons étudié plusieurs solutions existantes couvrant différents segments du marché : solutions open-source, solutions \textbf{SaaS} (\textit{Software as a Service}) et solutions enterprise.
 \vspace{0.4cm}
                   \newline \noindent  --\hspace{0.5cm}  \textbf{GLPI (Gestionnaire Libre de Parc Informatique)}\par\smallskip
@@ -154,7 +154,7 @@ Actuellement, la gestion des contrats de maintenance au sein de SolidWall Consul
     Les solutions du marché souffrent d'une architecture modulaire générant des coûts cachés. De nombreuses fonctionnalités avancées nécessitent des extensions payantes supplémentaires. Les mises à jour engendrent des problèmes de compatibilité, et l'intégration avec des systèmes existants nécessite souvent des développements spécifiques onéreux.
     \end{itemize}
 \end{enumerate}
-\subsubsection{Tableau comparative des solutions}
+\subsubsection{Tableau comparatif des solutions}
 \begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.4}
@@ -186,25 +186,7 @@ Actuellement, la gestion des contrats de maintenance au sein de SolidWall Consul
     \caption{Analyse comparative des solutions de gestion de maintenance du marché}
     \label{tab:comparaison_solutions}
 \end{table}
-\begin{center}
-\small
-\begin{tikzpicture}
-  \node[
-    draw        = secondary,
-    line width  = 0.6pt,
-    fill        = pastelBlue,
-    inner xsep  = 0.8cm,
-    inner ysep  = 0.5cm,
-    text width  = 13cm,
-    align       = justify,
-    rounded corners = 4pt
-  ]{%
-    \textbf{\color{primary}Note sur les coûts}
-    \par\vspace{4pt}
-    Les tarifs annuels affichés pour 10 utilisateurs sont calculés selon la formule : (Prix mensuel par utilisateur) \(\times\) 10 utilisateurs \(\times\) 12 mois. GLPI représente le coût du support entreprise annuel (version communautaire gratuite). Freshdesk : 15€/mois \(\times\) 10 \(\times\) 12 = 1800€/an. Jira SM : 20€/mois \(\times\) 10 \(\times\) 12 = 2400€/an. Ces montants correspondent aux offres de base et peuvent augmenter avec des fonctionnalités additionnelles, supports premium ou services de personnalisation.
-  };
-\end{tikzpicture}
-\end{center}
+\noindent \textbf{Note sur les coûts —} Les tarifs annuels affichés pour 10 utilisateurs sont calculés selon la formule suivante : $\text{Prix mensuel par utilisateur} \times 10\text{ utilisateurs} \times 12\text{ mois}$. Dans cette évaluation, GLPI représente uniquement le coût du support entreprise annuel, sa version communautaire étant gratuite. Pour Freshdesk, le calcul s'établit à $15\text{€/mois} \times 10 \times 12 = 1800\text{€/an}$, tandis que pour Jira Service Management (Jira SM), il s'élève à $20\text{€/mois} \times 10 \times 12 = 2400\text{€/an}$. Il est à noter que ces montants correspondent aux offres de base et sont susceptibles d'augmenter avec l'ajout de fonctionnalités optionnelles, de supports premium ou de services de personnalisation.
 \subsubsection{Solution proposée}
 
 C'est dans ce cadre que s'inscrit \textbf{SolidMaint}, une 
@@ -246,11 +228,11 @@ d'un environnement unifié, fiable et évolutif, permettant à
 \textbf{SolidWall Consulting} d'améliorer sa réactivité et 
 de renforcer la qualité de ses prestations.
 
-\section{Méthodologie adaptée}
+\section{Choix du framework de gestion de projet}
 \label{sec:methodologie}
 Le choix méthodologique est déterminant pour la réussite d'un projet de développement. Une méthodologie appropriée structure le travail, optimise la gestion des ressources et garantit la qualité du livrable dans le respect des délais impartis.
 
-\subsection{Méthodologie classique (cycle en V / cascade)}
+\subsection{Méthodologie classique }
 La méthodologie classique s'appuie sur une planification prédictive et une exécution séquentielle : chaque phase est définie au préalable, puis réalisée de l'analyse des besoins à la mise en production. Cette stratégie offre une maîtrise élevée des livrables, des délais et des coûts lorsque les exigences sont stables et que le périmètre évolue peu.
 
 Cependant, cette rigidité expose le projet à des retours en arrière coûteux dès qu'une correction ou un nouveau besoin apparaît après la conception. Le cycle en V met en lumière cette logique en associant systématiquement chaque phase de conception à une phase de validation, ce qui privilégie la conformité au détriment de l'adaptabilité.\cite{brandenbourg-gestion}
@@ -274,8 +256,7 @@ Les valeurs du Manifeste Agile sont ici reformulées pour refléter une appropri
 \item \textbf{Accepter le changement plutôt que suivre un plan immuable} : nous voyons le changement comme une opportunité d'adaptation. \newline Le projet doit pouvoir évoluer sans sacrifier la cohérence globale ni la qualité des livraisons. \cite{agile-manifesto}
 \end{itemize}
 
-\subsection{Choix de la méthode de travail}
-Après avoir présenté les différentes approches et méthodes de gestion de projet, il convient de justifier les choix retenus dans le cadre de ce travail.
+
 \subsubsection{Choix de l’approche Agile}
 Le domaine de la maintenance impose des besoins variables et imprévisibles, rendant impossible une planification exhaustive. Cette réalité justifie l'adoption d'une méthodologie agile privilégiant la flexibilité et la collaboration continue avec les clients. Parmi les méthodes disponibles, Scrum offre le cadre itératif le plus adapté à notre contexte.
 

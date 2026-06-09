@@ -15,8 +15,11 @@ pilotage du support et du traitement des incidents.
 \section{Réunion de planification du sprint}
 La planification du sprint est une étape essentielle du processus de développement, car elle permet de clarifier les fonctionnalités à implémenter, de prioriser les besoins métier et d’organiser la réalisation dans une logique incrémentale.
 \subsection{Objectifs du sprint}
-L’objectif principal de ce sprint était d’implémenter le cœur opérationnel de la plateforme de gestion des tickets, en assurant la prise en charge complète du cycle de vie d’une demande jusqu’à sa conversion en ticket, puis son traitement collaboratif par les équipes techniques. Ce sprint visait également à intégrer des mécanismes avancés de suivi du temps, de gestion des SLA, de pilotage via Kanban et d’assistance intelligente à la décision.
-
+Ce sprint visait également à intégrer des mécanismes avancés de suivi 
+du temps, de gestion des SLA, de pilotage via Kanban, ainsi qu'une 
+assistance intelligente à la décision dans laquelle l'intelligence 
+artificielle analyse, suggère et structure, tandis que l'humain 
+valide et décide.
 \subsection{Backlog du troisième sprint}
 \label{sec:backlog_sprint3}
 
@@ -704,7 +707,7 @@ La figure ci-dessous présente le flux d'activités relatif à la modification d
     \label{fig:activite_ticket}
 \end{figure}
 \newpage 
-\subsection{Diagramme de séquences}
+\subsection{Diagrammes de séquences}
 Dans cette section, nous allons modéliser les interactions entre l'utilisateur et le système à l'aide de diagrammes de séquences pour mieux comprendre la logique de la solution.
 \subsubsection{Diagramme de séquences du cas d'utilisation « Soumettre demande »}
 
@@ -785,26 +788,7 @@ qualité de traitement du français technique, support natif du format JSON (\te
 latence et coût d'accès via API (\textit{Application Programming Interface}), comme le présente le
 tableau~\ref{tab:comparaison_llm}.
 
-\begin{center}
-\small
-\begin{tikzpicture}
-  \node[
-    draw        = secondary,
-    line width  = 0.6pt,
-    fill        = pastelBlue,
-    inner xsep  = 0.8cm,
-    inner ysep  = 0.5cm,
-    text width  = 13cm,
-    align       = justify,
-    rounded corners = 4pt
-  ]{%
-    \textbf{\color{primary}Note — Architecture \textit{Transformer}}
-    \par\vspace{4pt}
-    Le \textit{Transformer} est un modèle de réseau de neurones qui lit un texte en analysant simultanément tous ses mots, plutôt que mot par mot. Il détermine quels mots sont liés entre eux grâce à un mécanisme appelé \textit{attention}. C'est cette capacité à saisir le sens global d'une phrase qui permet aux LLM de comprendre des demandes rédigées en langage naturel et d'y répondre de façon structurée.
-  };
-\end{tikzpicture}
-\end{center}
-
+\noindent \textbf{Note — Architecture \textit{Transformer} :} Le \textit{Transformer} est un modèle de réseau de neurones qui lit un texte en analysant simultanément tous ses mots, plutôt que mot par mot. Il détermine quels mots sont liés entre eux grâce à un mécanisme appelé \textit{attention}. C'est cette capacité à saisir le sens global d'une phrase qui permet aux LLM de comprendre des demandes rédigées en langage naturel et d'y répondre de façon structurée.
 \begin{table}[H]
 \centering
 \renewcommand{\arraystretch}{1.2}
@@ -891,6 +875,69 @@ supprime les entrées de plus de quatre-vingt-dix jours conformément aux
 exigences de protection des données, tout en conservant les statistiques
 agrégées pour le suivi de la qualité du service.
 
+\subsubsection{Développement du module IA}
+
+Le module IA a été développé en \textbf{NestJS} (TypeScript) et intégré au backend
+
+principal sous la forme d'un module dédié, regroupant plusieurs services
+
+à responsabilité unique. Cette organisation suit le principe de séparation
+
+des responsabilités et tire parti du système d'injection de dépendances
+
+natif du framework.
+
+\paragraph{Architecture du module :}
+
+Le module regroupe plusieurs services distincts, chacun couvrant une
+
+responsabilité précise : l'accès à l'API Groq Cloud et le parsing des
+
+réponses, la gestion du cache en mémoire par empreinte de contenu, la
+
+fusion des analyses IA avec les solutions humaines pour produire les
+
+articles de base de connaissances, la suggestion d'articles pertinents
+
+par scoring heuristique sans recours au modèle, et enfin la traçabilité
+
+des décisions par persistance des métadonnées en base de données.
+
+\paragraph{Construction des prompts :}
+
+Chaque fonctionnalité repose sur un prompt système dédié, transmis au
+
+modèle via le paramètre \texttt{system} de l'API. Les instructions
+
+décomposent la tâche en étapes ordonnées et imposent un format de sortie
+
+strict, JSON pour la classification et un format structuré pour les articles de base de connaissances pour les articles de base
+
+de connaissances, sans préambule, afin de permettre une exploitation
+
+directe des réponses. La température est fixée à 0,3 pour l'ensemble des
+
+appels, de façon à favoriser des réponses factuelles et reproductibles.
+
+\paragraph{Flux d'appel et intégration :}
+
+Tout appel au modèle suit une séquence en quatre étapes. Le texte soumis
+
+est d'abord normalisé et condensé en une empreinte de longueur fixe par hachage de son contenu ; si une entrée valide existe en cache, le résultat est retourné sans appel réseau. Dans
+
+le cas contraire, la requête est transmise à l'API Groq avec le paramètre
+
+\texttt{response\_format: \{ type: "json\_object" \}} activé pour les
+
+sorties structurées. La réponse est ensuite parsée et validée : un score
+
+de confiance inférieur au seuil défini entraîne un marquage automatique
+
+pour révision manuelle. Enfin, le résultat est mis en cache et une entrée
+
+d'audit est persistée. L'ensemble des services interagit avec la base de
+
+données en cohérence avec le reste de la plateforme.
 
 \subsection{Diagramme de classes du troisième sprint}
 Le diagramme de classes ci-dessous présente la structure statique des

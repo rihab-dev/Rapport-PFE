@@ -34,6 +34,7 @@
 \usepackage{float}
 
 \usepackage{multirow}
+\usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{setspace}
 \usepackage{fancyhdr}
@@ -50,22 +51,22 @@
 
 % --- Alignements exacts calqués sur l'image de référence ---
 \setlength{\cftchapindent}{0pt}
-\setlength{\cftchapnumwidth}{22pt} 
+\setlength{\cftchapnumwidth}{28pt} 
 
-\setlength{\cftsecindent}{22pt}
-\setlength{\cftsecnumwidth}{28pt}
+\setlength{\cftsecindent}{28pt}
+\setlength{\cftsecnumwidth}{36pt}
 
-\setlength{\cftsubsecindent}{50pt}   
-\setlength{\cftsubsecnumwidth}{32pt}
+\setlength{\cftsubsecindent}{64pt}   
+\setlength{\cftsubsecnumwidth}{36pt}
 
-\setlength{\cftsubsubsecindent}{82pt} 
-\setlength{\cftsubsubsecnumwidth}{42pt}
+\setlength{\cftsubsubsecindent}{100pt} 
+\setlength{\cftsubsubsecnumwidth}{46pt}
 
 % --- Espacements verticaux hiérarchiques ---
 \setlength{\cftbeforechapskip}{14pt plus 1pt minus 1pt}
-\setlength{\cftbeforesecskip}{10pt plus 1pt}
-\setlength{\cftbeforesubsecskip}{8pt plus 1pt}
-\setlength{\cftbeforesubsubsecskip}{6pt}
+\setlength{\cftbeforesecskip}{8pt plus 1pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+\setlength{\cftbeforesubsubsecskip}{1pt}
 
 % Style et couleurs uniformes (noir et même taille) de la hiérarchie
 \renewcommand{\cftchapfont}{\normalsize\bfseries\color{black}}
@@ -106,7 +107,23 @@
 % ============================================================
 %  MINITOC — sommaire par chapitre
 % ============================================================
+% Save tocloft TOC entry formatting before minitoc loading
+\makeatletter
+\let\normal@chapter\l@chapter
+\let\normal@section\l@section
+\let\normal@subsection\l@subsection
+\let\normal@subsubsection\l@subsubsection
+\makeatother
+
 \usepackage[french]{minitoc}
+
+% Restore tocloft TOC entry formatting after minitoc loading
+\makeatletter
+\let\l@chapter\normal@chapter
+\let\l@section\normal@section
+\let\l@subsection\normal@subsection
+\let\l@subsubsection\normal@subsubsection
+\makeatother
 \mtcsetdepth{minitoc}{1}
 \mtcsetrules{minitoc}{off}
 \mtcsetfont{minitoc}{*}{\small\rmfamily\color{primary}}

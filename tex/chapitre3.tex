@@ -24,35 +24,16 @@ Le tableau \ref{tab:backlog_sprint1_corrige} ci-dessous présente le \textbf{Spr
 \textbf{1 : Effort faible, 2 : Effort moyen, 3 : Effort élevé}
 \input{tex/sprint_backlog_1}
 
-\begin{center}
-\small
-\begin{tikzpicture}
-  \node[
-    draw        = secondary,
-    line width  = 0.6pt,
-    fill        = pastelBlue,
-    inner xsep  = 0.8cm,
-    inner ysep  = 0.5cm,
-    text width  = 13cm,
-    align       = justify,
-    rounded corners = 4pt
-  ]{%
-    \textbf{\color{primary}Note — Estimation de l'effort par Story Points}
-    \par\vspace{4pt}
-    L'effort de chaque \textit{user story} est estimé selon une échelle de \textbf{1 à 3 points}. Chaque point correspond à une unité de complexité relative prenant en compte la complexité technique, la charge de travail et l'incertitude.
-    \par\vspace{4pt}
-    \textbf{\color{primary}1 — Faible} : Tâche bien délimitée et maîtrisée.
-    \par\vspace{4pt}
-    \textbf{\color{primary}2 — Moyen} : Tâche de complexité modérée.
-    \par\vspace{4pt}
-    \textbf{\color{primary}3 — Élevé} : Tâche complexe ou incertaine.
-    \par\vspace{4pt}
-    Ces estimations ont permis d'adapter la charge de chaque sprint et d'assurer des livraisons régulières tout au long du projet.
-  };
-\end{tikzpicture}
-\end{center}
+\noindent \textbf{Note — Estimation de l'effort par Story Points :} 
+L'effort de chaque \textit{user story} est estimé selon une échelle de 1 à 3 points. Chaque point correspond à une unité de complexité relative prenant en compte la complexité technique, la charge de travail et l'incertitude.
 
+\begin{itemize}[label=\textbullet]
+    \item \textbf{1 — Faible :} Tâche bien délimitée et maîtrisée.
+    \item \textbf{2 — Moyen :} Tâche de complexité modérée.
+    \item \textbf{3 — Élevé :} Tâche complexe ou incertaine.
+\end{itemize}
 
+\noindent Ces estimations ont permis d'adapter la charge de chaque sprint et d'assurer des livraisons régulières tout au long du projet.
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 2 : ANALYSE
 % ─────────────────────────────────────────────────────────────────────────────
@@ -221,127 +202,9 @@ Au cours de cette partie, nous allons analyser les sous-cas d'utilisation pour l
         \label{fig:oauth_refinement}
 \end{figure}
 
-\subsubsection{Description textuelle du cas d’utilisation « Demander inscription »}
-Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Demander inscription ».
 
-\footnotesize
-\renewcommand{\arraystretch}{0.95}
-{\sloppy
-\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-\textbf{Nom du cas d'utilisation} & Demander inscription \\
-\hline
-\textbf{Acteurs} & Visiteur \\
-\hline
-\textbf{Précondition} & Le visiteur ne possède pas de compte  dans le système et se trouve sur la page d'authentification. \\
-\hline
-\textbf{Postcondition} & Une demande d'inscription est enregistrée avec le statut « en attente », les administrateurs sont notifiés, et le visiteur reçoit un accusé de réception par e-mail. \\
-\hline
-\textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt,series=scen_auth]
-\item Le système affiche la page d'authentification avec deux onglets : \textit{Connexion} et \textit{Demander l'accès}.
-\item Le visiteur choisit l'onglet \textit{Demander l'accès}.
-\item Le visiteur sélectionne son rôle cible parmi les profils disponibles.
-\item Le visiteur sélectionne un fournisseur externe (Google ou GitHub).
-\item Le système redirige le visiteur vers le fournisseur pour s'authentifier et autoriser l'accès à son profil.
-\end{enumerate}
-\vspace{0.1cm}
-\end{minipage} \\
- &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt,resume=scen_auth]
-
-\item De retour sur l'application, le système vérifie l'absence de compte actif associé à l'e-mail.
-\item Le système crée la demande d'inscription avec le statut « en attente ».
-\item Le système notifie l'équipe d'administration par e-mail et par notification interne.
-\item Le système envoie un accusé de réception par e-mail au visiteur.
-\end{enumerate}
-\vspace{0.1cm}
-\end{minipage} \\
-\hline
-\textbf{Scénario alternatif} &
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le système détecte un compte actif associé à l'e-mail \textit{Open Authorization} (\textbf{OAuth}) avec le rôle demandé. Il ne crée pas de demande et invite le visiteur à se connecter directement. \textit{Résolution gracieuse.}
-\item Le système détecte un compte actif avec un rôle différent. Il crée une demande de changement de rôle et notifie les administrateurs. \textit{Résolution gracieuse.}
-\item Le système détecte un compte actif avec un rôle différent et une demande antérieure déjà \textbf{approuvée} pour ce même rôle différent. Il bloque la création d'une nouvelle demande et invite le visiteur à contacter l'administrateur pour l'ajout du nouveau rôle. \textit{Résolution gracieuse.}
-\item Le système détecte un compte actif avec un rôle différent et une demande antérieure \textbf{approuvée} portant sur le rôle demandé. Il bloque la création d'une nouvelle demande et invite le visiteur à se connecter via l'onglet \textit{Connexion}. \textit{Résolution gracieuse.}
-\item Le système détecte une demande déjà en attente pour cet e-mail. Il bloque la création du doublon et informe le visiteur de l'état de sa demande. \textit{Résolution gracieuse.}
-\item Le système détecte une demande antérieurement refusée. Il la renouvelle, notifie les administrateurs et confirme au visiteur. \textit{Succès alternatif.}
-\end{enumerate} \\
-\hline
-\textbf{Scénario d'exception} &
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le visiteur annule l'autorisation côté fournisseur. Le système avorte l'opération et le ramène à la page de connexion avec un message d'erreur. \textit{Échec de l'action.}
-\item Le fournisseur ne transmet pas l'e-mail du visiteur. Le système bloque l'inscription et affiche un message explicatif. \textit{Arrêt du processus.}
-\item Le fournisseur externe est indisponible. Le système affiche une erreur réseau et ramène le visiteur à la connexion. \textit{Arrêt du processus.}
-\end{enumerate} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «~Demander inscription »} 
-}
 \normalsize
-\subsubsection{Description textuelle du cas d’utilisation « Valider demande inscription »}
-Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Valider demande inscription ».
 
-\footnotesize
-\renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-\textbf{Nom du cas d'utilisation} & Valider demande inscription \\
-\hline
-\textbf{Acteurs} & Administrateur \\
-\hline
-\textbf{Précondition} & L'administrateur est authentifié et possède la permission de traiter les demandes d'inscription \\
-\hline
-\textbf{Postcondition} & Le compte utilisateur est créé et activé, la demande est marquée « approuvée », et l'utilisateur est notifié \\
-\hline
-\textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
-\item L'administrateur accède au module de gestion des demandes d'inscription.
-\item Le système affiche la liste des demandes en attente.
-\item L'administrateur sélectionne une demande à traiter.
-\item Le système affiche les informations du demandeur récupérées via \textit{Open Authorization} (\textbf{OAuth}).
-\item L'administrateur clique sur « Approuver ».
-\item Le système crée le compte utilisateur à partir des informations de la demande.
-\item Le système attribue le rôle correspondant à l'utilisateur.
-\item Le système marque la demande comme « approuvée ».
-\item Le système envoie un e-mail de confirmation à l'utilisateur.
-\item Le système affiche un message de succès à l'administrateur.
-\end{enumerate}
-\vspace{0.2cm}
-\end{minipage} \\
-\hline
-\textbf{Scénario alternatif} &
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item  L'administrateur choisit de refuser l'accès. Il saisit un motif de refus qui remplace l'approbation, la demande est alors rejetée.
-\item  Le système détecte qu'il manque un champ essentiel. L'administrateur saisit l'information manquante et valide à nouveau la demande.
-\end{enumerate} \\
-\hline
-\textbf{Scénario d'exception} &
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item  L'e-mail de la demande est déjà attribué à un compte actif dans le système. L'application bloque automatiquement la conversion pour cause d'unicité.
-\item  Une autre session a déjà statué sur cette demande, le clic de validation échoue définitivement.
-\end{enumerate} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Valider demande inscription »} 
-\normalsize
 
 \subsection{Analyse de la fonctionnalité « Gérer rôles »}
 Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des rôles afin de comprendre les principales fonctionnalités du système, ce qui permet d'avoir une vue globale des
@@ -356,56 +219,6 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \label{fig:gerer_roles}
 \end{figure}
 
-\subsubsection{Description textuelle de cas d'utilisation « Ajouter rôle »}
-Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Ajouter rôle ».
-
-\footnotesize
-\renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-\textbf{Nom du cas d'utilisation} & Ajouter rôle \\
-\hline
-\textbf{Acteurs} & Administrateur \\
-\hline
-\textbf{Précondition} & L'utilisateur est authentifié.
-\newline
-L'utilisateur possède la permission de créer des rôles.
-\newline
-La liste des rôles est affichée. \\
-\hline
-\textbf{Postcondition} & Le rôle est ajouté. \\
-\hline
-\textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
-\item L'administrateur clique sur le bouton « Nouveau rôle ».
-\item Le système affiche le formulaire d'ajout.
-\item L'administrateur saisit le nom du rôle et sa description.
-\item L'administrateur valide le formulaire en cliquant sur « Créer le rôle ».
-\item Le système enregistre le nouveau rôle.
-\item Le système attribue automatiquement les permissions de base.
-\item Le système affiche le message de succès.
-\end{enumerate}
-\vspace{0.2cm}
-\end{minipage} \\
-\hline
-\textbf{Scénario alternatif} &
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'administrateur a rempli un champ invalide ou a laissé un champ obligatoire vide. Le système signale le champ fautif, l'administrateur le corrige et valide à nouveau.
-\item L'administrateur saisit un nom de rôle déjà existant. Le système affiche une alerte, l'administrateur modifie le nom et réessaie.
-\end{enumerate} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Ajouter rôle »}
-\normalsize
-\vspace{-0.3cm}
 
 \subsubsection{Description textuelle du cas d’utilisation « Archiver rôle »}
 Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Archiver rôle ».
@@ -440,7 +253,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \hline
 
-\textbf{Précondition} & L'administrateur est authentifié et possède la permission de gestion des rôles. \\
+\textbf{Précondition} & L’administrateur est authentifié et possède les permissions de gestion des rôles. \\
 
 \hline
 
@@ -480,7 +293,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \item  le système détecte que le rôle est encore utilisé et bloque l'archivage. L'administrateur retire ce rôle aux utilisateurs liés, puis relance avec succès l'archivage.
 
-\item  l'administrateur ferme la boîte de confirmation. L'opération est annulée proprement.
+
 
 \end{enumerate} \\
 
@@ -535,11 +348,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \vspace{0.2cm}
 \end{minipage} \\
 \hline
-\textbf{Scénario alternatif} &
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item  L'administrateur ferme la fenêtre sans valider. Aucune attribution n'est effectuée.
-\end{enumerate} \\
-\hline
 \textbf{Scénario d'exception} &
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item  Le système détecte une combinaison interdite (\texttt{CLIENT} avec \texttt{CHEF\_PROJET}, \texttt{DEVELOPPEUR} ou \texttt{ADMIN}). L'attribution est définitivement rejetée.
@@ -551,8 +359,8 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \captionof{table}{Description textuelle du cas d’utilisation «~Attribuer rôle »}
 \normalsize
 
-\subsubsection{Description textuelle du cas d’utilisation « Retirer rôle »}
-Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Retirer rôle  ».
+\subsubsection{Description textuelle du cas d'utilisation « Retirer rôle »}
+Le tableau ci-dessous présente la description textuelle du cas d'utilisation « Retirer rôle  ».
 
 \footnotesize
 \renewcommand{\arraystretch}{0.95}
@@ -585,10 +393,9 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
  &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt,resume=scen_auth]
-
 \item Le système affiche une demande de confirmation.
 \item L'administrateur confirme l'opération.
-\item Le système supprime le lien utilisateur-rôle.
+\item Le système retire le rôle de l'utilisateur.
 \item Le système notifie l'utilisateur par email et notification in-app.
 \item Le système affiche un message de succès à l'administrateur.
 \end{enumerate}
@@ -597,18 +404,17 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \hline
 \textbf{Scénario alternatif} &
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'administrateur ferme la confirmation. L'opération est annulée proprement.
+\item Le rôle ciblé est le dernier rôle de l'utilisateur : le système bloque l'opération et avertit l'administrateur qu'un utilisateur doit conserver au moins un rôle.
 \end{enumerate} \\
 \hline
 \textbf{Scénario d'exception} &
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item  Le lien ciblé n'existe pas en base de données (ex: supprimé par une action concurrente). Le système bloque définitivement l'opération.
+\item Le lien ciblé n'existe pas en base de données (ex: supprimé par une action concurrente). Le système bloque définitivement l'opération.
 \end{enumerate} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «~Retirer rôle~»} 
+\captionof{table}{Description textuelle du cas d'utilisation «~Retirer rôle~»}
 \normalsize
-
 
 \subsection{Analyse de la fonctionnalité « Gérer permissions »}
 Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des permissions afin
@@ -834,7 +640,60 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \end{longtable}
 \captionof{table}{Description textuelle du cas d’utilisation «~Modifier Profil »} 
 \normalsize
+\subsubsection{Description textuelle du cas d’utilisation « Valider demande inscription »}
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Valider demande inscription ».
 
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
+\hline
+\endfirsthead
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\textbf{Nom du cas d'utilisation} & Valider demande inscription \\
+\hline
+\textbf{Acteurs} & Administrateur \\
+\hline
+\textbf{Précondition} & L'administrateur est authentifié et possède la permission de traiter les demandes d'inscription \\
+\hline
+\textbf{Postcondition} & Le compte utilisateur est créé et activé, la demande est marquée « approuvée », et l'utilisateur est notifié \\
+\hline
+\textbf{Scénario nominal} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
+\item L'administrateur accède au module de gestion des demandes d'inscription.
+\item Le système affiche la liste des demandes en attente.
+\item L'administrateur sélectionne une demande à traiter.
+\item Le système affiche les informations du demandeur récupérées via \textit{Open Authorization} (\textbf{OAuth}).
+\item L'administrateur clique sur « Approuver ».
+\item Le système crée le compte utilisateur à partir des informations de la demande.
+\item Le système attribue le rôle correspondant à l'utilisateur.
+\item Le système marque la demande comme « approuvée ».
+\item Le système envoie un e-mail de confirmation à l'utilisateur.
+\item Le système affiche un message de succès à l'administrateur.
+\end{enumerate}
+\vspace{0.2cm}
+\end{minipage} \\
+\hline
+\textbf{Scénario alternatif} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item  L'administrateur choisit de refuser l'accès. Il saisit un motif de refus qui remplace l'approbation, la demande est alors rejetée.
+\item  Le système détecte qu'il manque un champ essentiel. L'administrateur saisit l'information manquante et valide à nouveau la demande.
+\end{enumerate} \\
+\hline
+\textbf{Scénario d'exception} &
+\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item  L'e-mail de la demande est déjà attribué à un compte actif dans le système. L'application bloque automatiquement la conversion pour cause d'unicité.
+\item  Une autre session a déjà statué sur cette demande, le clic de validation échoue définitivement.
+\end{enumerate} \\
+\hline
+\end{longtable}
+\captionof{table}{Description textuelle du cas d’utilisation « Valider demande inscription »} 
+\normalsize
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 3 : CONCEPTION
 % ─────────────────────────────────────────────────────────────────────────────
@@ -843,18 +702,17 @@ Cette section présente les choix de conception retenus pour ce sprint,
 à travers les diagrammes d'activités et de séquences modélisant les
 principaux flux fonctionnels
 
-\subsection{Diagramme d'activités « Authentification et demande d'accès via fournisseur externe »}
-Le diagramme ci-dessous illustre le flux d'activités relatif à l'authentification
-et à la demande d'accès via un fournisseur externe.
+\subsection{Diagramme d'activités « S'inscrire »}
+Le diagramme ci-dessous illustre le flux d'activités relatif à la fonctionnalité d'inscription.
 \begin{figure}[H]
         \centering
-        \includegraphics[width=0.9\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_activites_demande_insc.png}
+        \includegraphics[width=0.95\textwidth,height=0.80\textheight,keepaspectratio]{Images/diag_activites_demande_insc.png}
         \caption{Diagramme d’activités d’authentification et d’inscription}
         \label{fig:oauth_activity_diagram}
 \end{figure}
 
 
-\subsection{Diagramme de séquences}
+\subsection{Diagrammes de séquences}
 Dans cette section, nous allons modéliser les interactions entre l'utilisateur et le système à l'aide de diagrammes de séquences pour mieux comprendre la logique de la solution.
 \subsubsection{Diagramme de séquences du cas d'utilisation « S'authentifier »}
 

@@ -2,16 +2,20 @@
 \arrayrulecolor{black}
 \renewcommand{\arraystretch}{1.2}
 \small
+\setlength{\tabcolsep}{3pt}
 
 % Au début de la longtable, remplace l'en-tête par :
-\begin{longtable}{|C{1cm}|C{2.8cm}|M{1.2cm}|>{\raggedright\arraybackslash}p{4.7cm}|>{\raggedright\arraybackslash}p{4.5cm}|M{1.3cm}|}
+\begin{longtable}{|C{0.7cm}|C{2.5cm}|M{0.8cm}|>{\raggedright\arraybackslash}p{4.2cm}|>{\raggedright\arraybackslash}p{4cm}|M{1.1cm}|}
 
-   
+   \hline
     \rowcolor{lightblue}
     \textbf{ID Epic} & \textbf{Épic} & \textbf{ID US} & \multicolumn{1}{c|}{\textbf{User Story}} & \multicolumn{1}{c|}{\textbf{Critères d'acceptation}} & \textbf{Priorité} \\
     \hline
     \endfirsthead
 
+    \hline
+    \rowcolor{lightblue}
+    \textbf{ID Epic} & \textbf{Épic} & \textbf{ID US} & \multicolumn{1}{c|}{\textbf{User Story}} & \multicolumn{1}{c|}{\textbf{Critères d'acceptation}} & \textbf{Priorité} \\
     \hline
     \endhead
 
