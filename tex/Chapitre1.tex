@@ -19,6 +19,7 @@ Forte d'une équipe dynamique et diversifiée et de profils reconnus, l’entrep
 \newpage
 \section{Cadre du projet}
 \label{sec:cadre_projet}
+Cette partie présente le contexte général du projet et l'étude de l'existant, au niveau interne et international, afin de justifier la solution proposée.
 \subsection{Contexte du projet}
 Dans le cadre de notre projet de fin d’études (PFE) à l’\textbf{Institut Supérieur des Études Technologiques de Radès} (ISET), nous avons effectué un stage de quatre mois au sein de \textbf{SolidWall Consulting}, du 02 février au 31 mai 2026.
 Notre mission consiste à concevoir et à réaliser une application web de gestion des contrats de maintenance.
@@ -28,11 +29,8 @@ Cette solution vise à automatiser et à centraliser l’ensemble du processus m
 % === CHAPITRE 1 : ANALYSE DE L'EXISTANT ===
 \subsection{Analyse de l'existant}
 Pour mieux comprendre les besoins, nous allons étudier les solutions existantes à deux niveaux : celles déjà en place au sein de l'entreprise \textbf{SolidWall Consulting}, puis celles utilisées dans le monde.
-
-
 \subsubsection{Étude de l'existant}
 L'étude de l'existant constitue une étape fondamentale de notre démarche projet. Elle permet d'identifier les processus actuels, d'analyser leurs limitations et de définir les axes d'amélioration nécessaires pour concevoir une solution adaptée aux besoins de SolidWall Consulting.
-\newline
 \begin{enumerate}[label=\textcolor{bleuPerso}{\alph*)}, labelsep=0.5em]
             \item   \textcolor{bleuPerso} {Étude de l'existant au niveau de l'entreprise}~\newline
             \noindent
@@ -94,8 +92,8 @@ Le suivi des interventions repose au quotidien sur des fils de discussion par e-
     \item  \textcolor{bleuPerso} {Étude de l'existant à l'échelle internationale}~\newline
             Avant de développer notre propre solution, nous allons étudier les solutions disponibles sur le marché afin d'analyser les fonctionnalités proposées. Cette démarche permet d'identifier les bonnes pratiques et d'orienter efficacement le développement de notre système.\newline
             Dans ce cadre, nous avons étudié plusieurs solutions existantes couvrant différents segments du marché : solutions open-source, solutions \textbf{SaaS} (\textit{Software as a Service}) et solutions enterprise.
-\vspace{0.4cm}
-                  \newline \noindent  --\hspace{0.5cm}  \textbf{GLPI (Gestionnaire Libre de Parc Informatique)}\par\smallskip
+\newpage
+\noindent  --\hspace{0.5cm}  \textbf{GLPI (Gestionnaire Libre de Parc Informatique)}\par\smallskip
 GLPI, lancée en 2003 et maintenue par l’éditeur français Teclib, est une solution open-source de référence pour la gestion des services informatiques et des infrastructures. Elle permet de gérer le parc informatique avec inventaire, licences et cycle de vie des actifs, tout en offrant un centre de services pour le traitement des incidents et des demandes, le suivi des SLA et le maintien d’une base de connaissances conforme aux bonnes pratiques \textbf{ITSM} (\textit{Information Technology Service Management}). La version communautaire est gratuite en on-premise sous licence GPLv3+, tandis que des abonnements payants sont disponibles pour un support cloud managé ou une assistance professionnelle. \cite{glpi} 
                     \begin{figure}[H]
                             \centering
@@ -144,7 +142,7 @@ Actuellement, la gestion des contrats de maintenance au sein de SolidWall Consul
     \item \noindent\textbf{Complexité d'utilisation et courbe d'apprentissage}
     
     Les solutions existantes présentent une complexité d'usage importante. GLPI nécessite une formation de 2 à 3 jours pour les administrateurs avec une interface peu intuitive. Jira Service Management requiert une connaissance approfondie de l'écosystème Atlassian, créant une dépendance technique majeure.
-    
+    \newpage
     \item \noindent\textbf{Coût des licences et investissement financier}
     
     L'investissement financier représente un obstacle majeur pour l'adoption des solutions existantes. Les tarifs varient considérablement selon les offres : Freshdesk propose ses offres payantes à partir de 15€ par agent et par mois, tandis que Jira Service Management est tarifé à 20~€/agent/mois. GLPI, bien que gratuit en version communautaire, nécessite un minimum de 1500€ par an pour accéder au support entreprise. Pour une équipe de 10 utilisateurs, le coût annuel total s'élève ainsi à 1800€ pour Freshdesk, 2400€ pour Jira Service Management et 1500€ pour GLPI avec support.
@@ -186,7 +184,9 @@ Actuellement, la gestion des contrats de maintenance au sein de SolidWall Consul
     \caption{Analyse comparative des solutions de gestion de maintenance du marché}
     \label{tab:comparaison_solutions}
 \end{table}
-\noindent \textbf{Note sur les coûts —} Les tarifs annuels affichés pour 10 utilisateurs sont calculés selon la formule suivante : $\text{Prix mensuel par utilisateur} \times 10\text{ utilisateurs} \times 12\text{ mois}$. Dans cette évaluation, GLPI représente uniquement le coût du support entreprise annuel, sa version communautaire étant gratuite. Pour Freshdesk, le calcul s'établit à $15\text{€/mois} \times 10 \times 12 = 1800\text{€/an}$, tandis que pour Jira Service Management (Jira SM), il s'élève à $20\text{€/mois} \times 10 \times 12 = 2400\text{€/an}$. Il est à noter que ces montants correspondent aux offres de base et sont susceptibles d'augmenter avec l'ajout de fonctionnalités optionnelles, de supports premium ou de services de personnalisation.
+\newpage
+\smallskip
+\noindent\textit{\textbf{Remarque sur les coûts} — Les tarifs annuels présentés pour 10 utilisateurs correspondent aux offres de base : 1~800~€/an pour Freshdesk, 2~400~€/an pour Jira SM, et 1~500~€/an pour le support entreprise de GLPI (dont la version communautaire reste gratuite). Ces montants excluent les fonctionnalités optionnelles, les supports premium et les frais de personnalisation.}
 \subsubsection{Solution proposée}
 
 C'est dans ce cadre que s'inscrit \textbf{SolidMaint}, une 
@@ -245,16 +245,9 @@ L'approche repose sur une progression linéaire où chaque étape sert de fondat
 \subsection{Méthodologie Agile}
 L'approche agile s'appuie sur une progression itérative et sur l'apprentissage continu. Plutôt que de figer l'ensemble du périmètre en début de projet, elle privilégie des cycles de travail courts qui permettent de valider des fonctionnalités opérationnelles et de réajuster les priorités selon les retours métiers. Cette dynamique permet au projet de rester proche des attentes des utilisateurs et de limiter les écarts entre les besoins réels et les livrables.
 
-Dans le contexte de SolidMaint, l'agilité renforce la capacité à intégrer rapidement de nouvelles demandes ou des corrections, tout en maintenant un rythme de livraison régulier. Ce mode de travail favorise une collaboration étroite entre l'équipe de développement, le Product Owner et les parties prenantes, et transforme le changement en levier d'amélioration plutôt qu'en source de retard. \cite{agile-manifesto}
+Dans le contexte de SolidMaint, l'agilité renforce la capacité à intégrer rapidement de nouvelles demandes ou des corrections, tout en maintenant un rythme de livraison régulier. Ce mode de travail favorise une collaboration étroite entre l'équipe de développement, le Product Owner et les parties prenantes, et transforme le changement en levier  \newline d'amélioration plutôt qu'en source de retard. \cite{agile-manifesto}
 
-\subsubsection{Les valeurs agiles}
-Les valeurs du Manifeste Agile sont ici reformulées pour refléter une appropriation concrète du projet.
-\begin{itemize}[label=\textbullet, left=0pt, nosep]
-\item \textbf{Privilégier les personnes et leurs interactions plutôt que les processus et les outils} : nous considérons la qualité des échanges et la réactivité de l'équipe comme des facteurs clés de succès, y compris lorsqu'un cadre méthodologique est en place.
-\item \textbf{Préférer un logiciel fonctionnel à une documentation excessive} : l'objectif est de générer rapidement des résultats tangibles, tout en gardant une documentation utile mais non envahissante.
-\item \textbf{Collaborer avec le client plutôt que négocier un contrat figé} : l'écoute des besoins réels et les retours fréquents permettent de réorienter le produit en fonction de la valeur métier, plutôt que de s'enfermer dans un cahier des charges statique.
-\item \textbf{Accepter le changement plutôt que suivre un plan immuable} : nous voyons le changement comme une opportunité d'adaptation. \newline Le projet doit pouvoir évoluer sans sacrifier la cohérence globale ni la qualité des livraisons. \cite{agile-manifesto}
-\end{itemize}
+
 
 
 \subsubsection{Choix de l’approche Agile}
@@ -320,7 +313,7 @@ Scrum repose sur trois piliers fondamentaux qui constituent sa colonne vertébra
 La structure organisationnelle de Scrum s'appuie sur trois rôles qui répartissent clairement les responsabilités entre le pilotage métier, la facilitation du cadre et la réalisation technique.
 
 \subsubsection{Product Owner}
-Le Product Owner est responsable de la valeur métier du produit et de la vision métier du projet. Il définit les exigences de l’application et priorise les éléments \newpage du Product Backlog en fonction des objectifs de la société.
+Le Product Owner est responsable de la valeur métier du produit et de la vision métier du projet. Il définit les exigences de l’application et priorise les éléments du Product Backlog en fonction des objectifs de la société.
 \subsubsection{Scrum Master}
 Le Scrum Master est le garant du cadre Scrum. Il veille à ce que les pratiques agiles soient respectées, facilite les événements et aide à lever les obstacles qui freinent l’équipe.
 \subsubsection{Les développeurs}
@@ -349,7 +342,7 @@ Les artéfacts Scrum matérialisent et expriment le travail, la valeur livrée e
 
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.6\textwidth,keepaspectratio]{Images/processus_scrum.png}
+        \includegraphics[width=0.75\textwidth,keepaspectratio]{Images/processus_scrum.png}
         \caption{Cycle de vie Scrum}
     \end{figure}
     

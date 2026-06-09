@@ -411,27 +411,26 @@ et dépendances qui les unissent.
 
 \section{Schéma relationnel}
 \label{sec:schema_sprint2}
-{\sloppy
+
 Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui détaille les différentes tables de la base de données ainsi que leurs relations :
 
-\noindent
-\textbf{Projet} (\underline{idProjet}, nomProjet, descriptionProjet, ProjetTag, statutP, dateDebutP, dateFinP, dateCreationP, dateMiseAJourP, \textbf{\#idProfilClient})
-\newline
-\textbf{Contrat} (\underline{idContrat}, referenceContrat, dateDebutContratM, dateExpirationContratM, montantMensuel, montantSemestriel, tauxTVA, montantTVA, montantTTC, fichierContrat, statutContrat, estArchive, dateCreation, dateMiseAJour, dateArchivage, \textbf{\#idProjet})
-\newline
-\textbf{SLAGlobal} (\underline{idSLAGlobal}, typeSLA, description, dateCreation, dateMiseAJour)
-\newline
-\textbf{SLAContrat} (\underline{idSLAContrat}, motifPersonnalisation, dateCreation, dateMiseAJour, \textbf{\#idContrat}, \textbf{\#idSLAGlobal})
-\newline
-\textbf{ConfigurationSlack} (\underline{id ConfigurationSlack }, webhookUrl, canal, notifierSurCreation, notifierSurResolution, estActif, \textbf{\#idContrat})
-\newline
-\textbf{MembreProjet} (\underline{\#idProjet, \#idProfilEmploye}, rolesDansProjet, dateAffectation, dateDebut, dateFin, statut, motifRefus)
-\newpage
-\textbf{FeedbackExpirationContrat} (\underline{idFeedback}, note, commentaire, RaisonNonRenouvellement, souhaitRenouveler, dateCreation, \textbf{\#idContrat})
-\newline
-\textbf{JournalActivite} (\underline{id JournalActivite }, action, method, path, ipAddress, status, description, metadata, \textbf{\#idUtilisateur})
-}
-
+\begin{description}[font=\bfseries, leftmargin=4.8cm, style=sameline, noitemsep]
+    \item[Projet] (\underline{idProjet}, nomProjet, descriptionProjet, ProjetTag, statutP, dateDebutP, dateFinP, dateCreationP, dateMiseAJourP, \textbf{\#idProfilClient})
+    
+    \item[Contrat] (\underline{idContrat}, referenceContrat, dateDebutContratM, dateExpirationContratM, montantMensuel, montantSemestriel, tauxTVA, montantTVA, montantTTC, fichierContrat, statutContrat, estArchive, dateCreation, dateMiseAJour, dateArchivage, \textbf{\#idProjet})
+    
+    \item[SLAGlobal] (\underline{idSLAGlobal}, typeSLA, description, dateCreation, dateMiseAJour)
+    
+    \item[SLAContrat] (\underline{idSLAContrat}, motifPersonnalisation, dateCreation, dateMiseAJour, \textbf{\#idContrat}, \textbf{\#idSLAGlobal})
+    
+    \item[ConfigurationSlack] (\underline{idConfigurationSlack}, webhookUrl, canal, notifierSurCreation, notifierSurResolution, estActif, \textbf{\#idContrat})
+    
+    \item[MembreProjet] (\underline{\#idProjet, \#idProfilEmploye}, rolesDansProjet, dateAffectation, dateDebut, dateFin, statut, motifRefus)
+    
+    \item[FeedbackExpirationContrat] (\underline{idFeedback}, note, commentaire, RaisonNonRenouvellement, souhaitRenouveler, dateCreation, \textbf{\#idContrat})
+    
+    \item[JournalActivite] (\underline{idJournalActivite}, action, method, path, ipAddress, status, description, metadata, \textbf{\#idUtilisateur})
+\end{description}
 % ─────────────────────────────────────────────────────────────────────────────
 % RÉTROSPECTIVE DU SPRINT
 % ─────────────────────────────────────────────────────────────────────────────

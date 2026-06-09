@@ -21,14 +21,14 @@ d'un rôle défini. L'analyse du domaine métier de \textbf{SolidMaint} a permis
 d'identifier six acteurs principaux, dont les rôles et périmètres d'action sont
 présentés dans le tableau suivant :
 
-\begin{table}[H]
-\centering
 \renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.28\textwidth}
+\begin{xltabular}{\textwidth}{|>{\raggedright\arraybackslash}p{0.28\textwidth}
                               |>{\raggedright\arraybackslash}X|}
 \hline
 \rowcolor{blue!20}\textbf{Acteur} & \textbf{Rôle} \\
 \hline
+\endhead % Répète automatiquement cette entête si le tableau passe à la page suivante
+
 Visiteur      & Soumet une demande de création de compte via OAuth (Google, GitHub)
                 et attend la validation par un administrateur. \\
 \hline
@@ -51,11 +51,9 @@ Administrateur & Gère les utilisateurs, rôles, permissions, clients, projets e
                  contrats. Configure les SLA, supervise les tableaux de bord et
                  administre l'ensemble du système. \\
 \hline
-\end{tabularx}
 \caption{Acteurs du système SolidMaint et leurs rôles}
 \label{tab:acteurs}
-\end{table}
-
+\end{xltabular}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.9\textwidth,keepaspectratio]{Images/acteurs.png}
@@ -70,7 +68,7 @@ opérations que la plateforme doit être capable d'exécuter pour répondre aux 
 métier de SolidWall Consulting.
 
 \input{tex/etude_fonctionnalite}
-
+\newpage
 \subsection{Identification des besoins non fonctionnels}
 Afin de garantir la qualité logicielle, la robustesse et la pérennité de la plateforme, plusieurs exigences non fonctionnelles ont été définies et prises en compte lors de la conception et du développement :
 
@@ -81,7 +79,7 @@ L'interface utilisateur doit offrir une utilisabilité optimale, caractérisée 
 
 \item \textbf{Sécurité :} 
 Le système doit assurer une protection rigoureuse de l'application et des données à travers des mécanismes d'authentification forte, une gestion stricte des autorisations basée sur les rôles (RBAC), et le chiffrement des informations sensibles. La traçabilité des actions critiques doit être garantie par un système de journalisation (\textit{logging}) permanent afin de permettre l'audit des événements et de détecter toute anomalie ou tentative d'accès non autorisé.
-\newpage
+
 \item \textbf{Performance et Évolutivité :} 
 Afin de garantir des latences minimales, même sous affluence critique, l'architecture doit intégrer des stratégies d'optimisation de l'accès aux données (mise en cache, requêtes optimisées) prenant en compte la sollicitation liée à l'opération d'indexation, tout en supportant une montée en charge progressive.
 
@@ -293,7 +291,7 @@ La figure ci-dessous illustre cette planification :
 %─────────────────────────────────────────────────────────────────────────────
 % SECTION IV : ENVIRONNEMENT DE DÉVELOPPEMENT
 %─────────────────────────────────────────────────────────────────────────────
-\newpage
+
 \section{Environnement de Développement}
 \label{sec:environnement}
 Cette section présente l'environnement matériel et logiciel utilisé dans le cadre du développement de la plateforme.
@@ -644,7 +642,6 @@ traçabilité.
 %─────────────────────────────────────────────────────────────────────────────
 % SECTION V : ARCHITECTURE DE L'APPLICATION
 %─────────────────────────────────────────────────────────────────────────────
-\newpage
 \section{Architecture de l'application}
 L'architecture de la plateforme \textbf{SolidMaint} repose sur deux piliers : une approche physique pour la distribution des composants sur l'infrastructure, et une approche logique pour l'organisation interne du code.
 \subsection{Architecture physique}

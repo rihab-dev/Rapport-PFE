@@ -120,7 +120,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \captionof{table}{Description textuelle du cas d’utilisation « Valider demande »}
 \normalsize
 
-\subsubsection{Description textuelle du cas d’utilisation « Demander informations complémentaires »}
+\subsection[Description textuelle du cas d’utilisation \\ « Demander informations complémentaires »]{Description textuelle du cas d’utilisation « Demander informations complémentaires »}
 Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Demander informations complémentaires ».
 
 \footnotesize
@@ -905,22 +905,23 @@ Le diagramme de classes ci-dessous présente la structure statique des entités 
 \label{sec:schema_sprint3}
 Le schéma relationnel du troisième sprint s’appuie sur les relations suivantes :
 
-\noindent
-\textbf{DemandeClient} (\underline{idDemandeClient}, titreDemande, typeDemande, statutDemande, descriptionDemande, dateSoumission, dateCreation, dateMiseAJour, dateValidation, motifRejet, motifRequalification, echeanceInitiale, \textbf{\#idProjet})
-\newline
-\textbf{DemandeClassificationIA} (\underline{idDemandeClassifIA}, categorieAuto, typeAuto, prioriteAuto, scoreConfiance, entitesExtraites, urgenceDetectee, estUtiliseeValidation, estCorrigeeParAgent, feedbackAgent, dateClassification, modeleUtilise, \textbf{\#idDemandeClient})
-\newline
-\textbf{Ticket} (\underline{idTicket}, titreTicket, statutTicket, categorieTicket, descriptionTicket, dateCreationTicket, dateMiseAJourTicket, dateResolutionTicket, delaiReponse, delaiResolution, dateEcheanceResponse, dateEcheanceResolution, slaReponseExpire, slaResolutionExpire, extensionDemandee, extensionMotif, extensionDemandeeAt, extensionAccordee, alerteSLAEnvoyee, scoreUrgenceIA, nombreTicketsBloquesParCelui, nombreUtilisateursAffectes, \textbf{\#idDemandeClient}, \textbf{\#idContrat}, \textbf{\#idProjet})
-\newline
-\textbf{SolutionTicket} (\underline{idSolutionTicket}, solutionSuggeree, scoreConfiance, estAcceptee, feedbackUtilisateur, tempsResolution, dateCreation, \textbf{\#idTicket})
-\newline
-\textbf{ArticleConnaissance} (\underline{idArticleKB}, titre, contenu, categorie, statutKB, tag, nombreUtilisations, tauxReussite, \textbf{\#idSolutionTicket})
-\newline
-\textbf{TicketClassification} (\underline{idTicketClassif}, categorieAuto, prioriteAuto, typeAuto, scoreConfiance, urgenceDetectee, entitesExtraites, estValidee, dateClassification, \textbf{\#idTicket})
-\newline
-\textbf{AssignmentTicket} (\underline{\#idTicket, \#idProfilEmploye}, dateDebutReelle, dateFinReelle, commentaireAssignment, progression, estBloque, raisonBlocage, feedbackDeveloppeur, technologiesUtilisees, enTravail, dureeTotaleSecondes, dateCreation, solutionProposee, solutionProposeeAt)
-\newline
-\textbf{SessionTravail} (\underline{idSessionTravail}, debut, fin, dureeSecondes, note, isManual, \textbf{\#idTicket}, \textbf{\#idProfilEmploye}, \textbf{\#idArticleKB})
+\begin{description}[font=\bfseries, leftmargin=4.6cm, style=sameline, noitemsep]
+    \item[DemandeClient] (\underline{idDemandeClient}, titreDemande, typeDemande, statutDemande, descriptionDemande, dateSoumission, dateCreation, dateMiseAJour, dateValidation, motifRejet, motifRequalification, echeanceInitiale, \textbf{\#idProjet})
+    
+    \item[DemandeClassificationIA] (\underline{idDemandeClassifIA}, categorieAuto, typeAuto, prioriteAuto, scoreConfiance, entitesExtraites, urgenceDetectee, estUtiliseeValidation, estCorrigeeParAgent, feedbackAgent, dateClassification, modeleUtilise, \textbf{\#idDemandeClient})
+    
+    \item[Ticket] (\underline{idTicket}, titreTicket, statutTicket, categorieTicket, descriptionTicket, dateCreationTicket, dateMiseAJourTicket, dateResolutionTicket, delaiReponse, delaiResolution, dateEcheanceResponse, dateEcheanceResolution, slaReponseExpire, slaResolutionExpire, extensionDemandee, extensionMotif, extensionDemandeeAt, extensionAccordee, alerteSLAEnvoyee, scoreUrgenceIA, nombreTicketsBloquesParCelui, nombreUtilisateursAffectes, \textbf{\#idDemandeClient}, \textbf{\#idContrat}, \textbf{\#idProjet})
+    
+    \item[SolutionTicket] (\underline{idSolutionTicket}, solutionSuggeree, scoreConfiance, estAcceptee, feedbackUtilisateur, tempsResolution, dateCreation, \textbf{\#idTicket})
+    
+    \item[ArticleConnaissance] (\underline{idArticleKB}, titre, contenu, categorie, statutKB, tag, nombreUtilisations, tauxReussite, \textbf{\#idSolutionTicket})
+    
+    \item[TicketClassification] (\underline{idTicketClassif}, categorieAuto, prioriteAuto, typeAuto, scoreConfiance, urgenceDetectee, entitesExtraites, estValidee, dateClassification, \textbf{\#idTicket})
+    
+    \item[AssignmentTicket] (\underline{\#idTicket, \#idProfilEmploye}, dateDebutReelle, dateFinReelle, commentaireAssignment, progression, estBloque, raisonBlocage, feedbackDeveloppeur, technologiesUtilisees, enTravail, dureeTotaleSecondes, dateCreation, solutionProposee, solutionProposeeAt)
+    
+    \item[SessionTravail] (\underline{idSessionTravail}, debut, fin, dureeSecondes, note, isManual, \textbf{\#idTicket}, \textbf{\#idProfilEmploye}, \textbf{\#idArticleKB})
+\end{description}
 % ─────────────────────────────────────────────────────────────────────────────
 % RÉTROSPECTIVE DU SPRINT
 % ─────────────────────────────────────────────────────────────────────────────

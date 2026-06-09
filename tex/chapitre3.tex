@@ -641,25 +641,28 @@ et dépendances qui les unissent.
 \section{Schéma relationnel}
 \label{sec:schema_sprint1}
 Le schéma relationnel du premier sprint s’appuie sur les relations suivantes :
-\textbf{Utilisateur} (\underline{idUtilisateur}, nom, prenom, email, emailsSecondaires, motDePasse, numTel, photoProfil, estActif, doitChangerMotDePasse, dateCreation, dateMiseAJour, derniereConnexion)
-\newline
-\textbf{Role} (\underline{idRole}, nomRole, description, roleSysteme, estArchive, dateCreation)
-\newline
-\textbf{Permission} (\underline{idPermission}, codePermission, description)
-\newline
-\textbf{UtilisateurRole} (\underline{\#idUtilisateur, \#idRole}, dateAttribution, description)
-\newline
-\textbf{RolePermission} (\underline{\#idRole, \#idPermission}, description)
-\newline
-\textbf{ProfilEmploye} (\underline{\textbf{\#idUtilisateur}}, matricule, dateEmbauche, poste, specialisation, anneesExperience, disponibilite, competences)
-\newline
-\textbf{Competence} (\underline{idCompetence}, nomCompetence)
-\newline
-\textbf{EmployeCompetence} (\underline{\#idUtilisateur, \#idCompetence}, niveau)
-\newline
-\textbf{ProfilClient} (\underline{\textbf{\#idUtilisateur}}, nomSociete, telSociete, adresseSociete, secteurActivite, logo)
-\newline
-\textbf{DemandeInscription} (\underline{idDemandeInsc}, fournisseur, statusDemandeInsc, dateCreation, dateMiseAJour, motifRefus, \textbf{\#idUtilisateur})% ─────────────────────────────────────────────────────────────────────────────
+
+\begin{description}[font=\bfseries, leftmargin=4.2cm, style=sameline, noitemsep]
+    \item[Utilisateur] (\underline{idUtilisateur}, nom, prenom, email, emailsSecondaires, motDePasse, numTel, photoProfil, estActif, doitChangerMotDePasse, dateCreation, dateMiseAJour, derniereConnexion)
+    
+    \item[Role] (\underline{idRole}, nomRole, description, roleSysteme, estArchive, dateCreation)
+    
+    \item[Permission] (\underline{idPermission}, codePermission, description)
+    
+    \item[UtilisateurRole] (\underline{\#idUtilisateur, \#idRole}, dateAttribution, description)
+    
+    \item[RolePermission] (\underline{\#idRole, \#idPermission}, description)
+    
+    \item[ProfilEmploye] (\underline{\textbf{\#idUtilisateur}}, matricule, dateEmbauche, poste, specialisation, anneesExperience, disponibilite, competences)
+    
+    \item[Competence] (\underline{idCompetence}, nomCompetence)
+    
+    \item[EmployeCompetence] (\underline{\#idUtilisateur, \#idCompetence}, niveau)
+    
+    \item[ProfilClient] (\underline{\textbf{\#idUtilisateur}}, nomSociete, telSociete, adresseSociete, secteurActivite, logo)
+    
+    \item[DemandeInscription] (\underline{idDemandeInsc}, fournisseur, statusDemandeInsc, dateCreation, dateMiseAJour, motifRefus, \textbf{\#idUtilisateur})
+\end{description}
 % RÉTROSPECTIVE DU SPRINT
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Rétrospective du Sprint}
@@ -1148,7 +1151,7 @@ et la résistance aux attaques courantes, conformément à l'OWASP Top 10.
 
 \subsubsection{Test de verrouillage de compte}
 Le mécanisme anti-force brute a été validé : après trois échecs consécutifs, une quatrième tentative (même avec le bon mot de passe) 
-a déclenché une erreur 401 Unauthorized avec le message \newpage « Compte temporairement verrouillé », confirmant un verrouillage d'une minute.
+a déclenché une erreur 401 Unauthorized avec le message « Compte temporairement verrouillé », confirmant un verrouillage d'une minute.
 
 \begin{figure}[H]
 \centering

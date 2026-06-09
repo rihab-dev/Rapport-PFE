@@ -408,7 +408,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
   \label{fig:consulter_notifications}
 \end{figure}
 
-\subsubsection{Description textuelle du cas d'utilisation « Configurer préférences notifications »}
+\subsection[Description textuelle du cas d’utilisation \\ « Configurer préférences notifications »]{Description textuelle du cas d’utilisation « Configurer préférences notifications »}
 Le tableau ci-dessous présente la description textuelle du cas d'utilisation « Configurer préférences notifications ».
 
 \footnotesize
@@ -549,36 +549,27 @@ et dépendances qui les unissent.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=18cm,height=18cm,keepaspectratio]{Images/Diagramme classe sprint 4.png}
+\includegraphics[width=18cm,height=16cm,keepaspectratio]{Images/Diagramme classe sprint 4.png}
 \caption{Diagramme de classes du quatrième sprint}
 \label{fig:diag_classe_sprint4}
 \end{figure}
 
 \section{Schéma relationnel}
 \label{sec:schema_sprint4}
-{\sloppy
+
 Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui détaille les différentes tables de la base de données ainsi que leurs relations :
 
-\noindent
-\textbf{CanalMembre} (\underline{\#idCanal, \#idUtilisateur}, estMute, derniereLecture, dateAjout)
-\newline
-\textbf{Message} (\underline{idMessage}, contenu, estEdite, dateCreation, dateEdition, \textbf{\#idCanal}, \textbf{\#idUtilisateur})
-\newline
-\textbf{MessageHistorique} (\underline{idMessgHistorique}, contenuPrecedent, contenuNouveau, dateModification, \textbf{\#idMessage})
-\newline
-\textbf{Document} (\underline{idDoc}, titre, typeDoc, cheminFichier, tailleFichier, versionCourante, description, dateCreation, estArchive, dateArchivage, \textbf{\#idTicket}, \textbf{\#idContrat})
-\newline
-\textbf{DocumentConsultation} (\underline{\#idDoc, \#idUtilisateur}, dateConsultation)
-\newline
-\textbf{DocumentPV} (\underline{\textbf{\#idDoc}}, dateIntervention, dateResolution)
-\newline
-\textbf{DocumentVersion} (\underline{idDocVersion}, cheminFichier, tailleDoc, numeroVersion, dateVersion, commentaire, \textbf{\#idDoc}, \textbf{\#idUtilisateur})
-\newline
-\textbf{Notification} (\underline{idNotif}, titre, contenu, type, estLu, dateCreation, dateResolution, \textbf{\#idUtilisateur})
-\newline
-\textbf{ArticleConnaissance} (\underline{idArticleKB}, titre, contenu, categorie, statutKB, tag, nombreUtilisations, tauxReussite, \textbf{\#idSolutionTicket})
-}
-
+\begin{description}[font=\bfseries, leftmargin=3.8cm, style=sameline, noitemsep]
+    \item[CanalMembre] (\underline{\#idCanal, \#idUtilisateur}, estMute, derniereLecture, dateAjout)
+    \item[Message] (\underline{idMessage}, contenu, estEdite, dateCreation, dateEdition, \textbf{\#idCanal}, \textbf{\#idUtilisateur})
+    \item[MessageHistorique] (\underline{idMessgHistorique}, contenuPrecedent, contenuNouveau, dateModification, \textbf{\#idMessage})
+    \item[Document] (\underline{idDoc}, titre, typeDoc, cheminFichier, tailleFichier, versionCourante, description, dateCreation, estArchive, dateArchivage, \textbf{\#idTicket}, \textbf{\#idContrat})
+    \item[DocumentConsultation] (\underline{\#idDoc, \#idUtilisateur}, dateConsultation)
+    \item[DocumentPV] (\underline{\textbf{\#idDoc}}, dateIntervention, dateResolution)
+    \item[DocumentVersion] (\underline{idDocVersion}, cheminFichier, tailleDoc, numeroVersion, dateVersion, commentaire, \textbf{\#idDoc}, \textbf{\#idUtilisateur})
+    \item[Notification] (\underline{idNotif}, titre, contenu, type, estLu, dateCreation, dateResolution, \textbf{\#idUtilisateur})
+    \item[ArticleConnaissance] (\underline{idArticleKB}, titre, contenu, categorie, statutKB, tag, nombreUtilisations, tauxReussite, \textbf{\#idSolutionTicket})
+\end{description}
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 5 : RÉTROSPECTIVE DU SPRINT
 % ─────────────────────────────────────────────────────────────────────────────
