@@ -50,8 +50,8 @@
 \renewcommand{\cftaftertoctitle}{}
 
 % --- Alignements exacts calqués sur l'image de référence ---
-\setlength{\cftchapindent}{0pt}
-\setlength{\cftchapnumwidth}{28pt} 
+\setlength{\cftchapindent}{-5pt}   % légèrement à gauche de la marge
+\setlength{\cftchapnumwidth}{72pt} % largeur pour le préfixe «Chapitre N»
 
 \setlength{\cftsecindent}{28pt}
 \setlength{\cftsecnumwidth}{36pt}
@@ -197,7 +197,7 @@
 \newcommand{\chaptercover}[3]{%
   \newpage
   \refstepcounter{chapter}%
-  \addcontentsline{toc}{chapter}{\protect\numberline{\thechapter}#2}%
+  \addcontentsline{toc}{chapter}{Chapitre #1\hspace{0.7em}#2}%
   \chaptermark{#2}%
   \thispagestyle{empty}%
   \begin{tikzpicture}[remember picture, overlay]

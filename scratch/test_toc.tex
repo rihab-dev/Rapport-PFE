@@ -1,0 +1,17 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage[titles]{tocloft}
+\usepackage{hyperref}
+\usepackage[french]{minitoc}
+
+% Numérotation personnalisée
+\renewcommand{\thechapter}{\Roman{chapter}}
+
+\begin{document}
+\dominitoc
+\tableofcontents
+\newpage
+\refstepcounter{chapter}
+\addcontentsline{toc}{chapter}{Test Chapter Title}
+\null
+\newpage
+\end{document}
