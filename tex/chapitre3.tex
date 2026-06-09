@@ -7,6 +7,7 @@ Dans le chapitre précédent, nous avons défini les besoins liés à notre solu
 % SECTION 1 : BACKLOG DU SPRINT 1
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Réunion de planification du sprint}
+\label{sec:planning_sprint1}
 La planification du sprint est essentielle à la réussite de notre solution. Elle permet de définir un objectif clair et d'aligner l'équipe sur les priorités du sprint.
 
 \subsection{Objectifs du sprint}
@@ -39,9 +40,9 @@ L'effort de chaque \textit{user story} est estimé selon une échelle de 1 à 3 
 % ─────────────────────────────────────────────────────────────────────────────
 
 \section{Analyse}
+\label{sec:analyse_sprint1}
 Dans le processus de développement, l'analyse joue un rôle important ; elle permet d'identifier les exigences du système et de traduire les besoins exprimés en spécifications claires et cohérentes.
 C'est pourquoi nous allons présenter les diagrammes ainsi que les tableaux descriptifs des cas d'utilisation.
-\label{sec:analyse_sprint1}
 
 \subsection{Diagramme des cas d'utilisation du premier sprint}
 
@@ -156,13 +157,6 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt,series=scen_auth]
 \item Le système affiche un formulaire de changement de mot de passe.
 \item L'utilisateur saisit son e-mail.
-\end{enumerate}
-\vspace{0.1cm}
-\end{minipage} \\
- &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt,resume=scen_auth]
-
 \item L'utilisateur clique sur le bouton « Réinitialiser le mot de passe ».
 \item Le système vérifie l'existence de l'email.
 \item Le système envoie un e-mail à l'utilisateur.
@@ -175,7 +169,6 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \vspace{0.1cm}
 \end{minipage} \\
 \hline
-\pagebreak
 \textbf{Scénario d'exception} &
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item L'utilisateur saisit un e-mail qui ne correspond à aucun compte existant.
@@ -298,7 +291,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \end{enumerate} \\
 
 \hline
-\newpage
 \textbf{Scénario d'exception} &
 
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
@@ -459,15 +451,15 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \item L'administrateur accède à la fiche détaillée d'un rôle.
 \item Il ouvre l'interface d'assignation des permissions.
 \item Il sélectionne explicitement des permissions manquantes.
-\item L'administrateur valide sa sélection.
-\item Le système enregistre les liaisons en base et confirme le succès.
+\item Le système enregistre les liaisons en base.
+\item Le système confirme le succès.
 \end{enumerate}
 \vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénario alternatif} &
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'administrateur se trompe et coche une permission que le rôle possède déjà. À la soumission, le système refuse avec une erreur de validation. 
+\item L'administrateur se trompe et choisit une permission que le rôle possède déjà. À la soumission, le système refuse avec une erreur de validation. 
 \end{enumerate} \\
 \hline
 \textbf{Scénario d'exception} &
@@ -520,12 +512,14 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
 \item L'administrateur ouvre le formulaire d'ajout.
-    \item Il saisit les informations de la première étape (nom, prénom, email, téléphone, date de naissance, rôle).
-    \item Il clique sur « Suivant ». Le système valide les champs.
-    \item Il complète la deuxième étape (poste, spécialisation, date d'embauche) si le rôle n'est pas « Client ».
-    \item Il valide le formulaire. Le système vérifie que l'email n'est pas déjà utilisé.
+    \item L'administrateur saisit les informations de la première étape (nom, prénom, email, téléphone, date de naissance, rôle).
+    \item Le système valide les champs.
+    \item L'administrateur clique sur « Suivant ». 
+    \item L'administrateur complète la deuxième étape (poste, spécialisation, date d'embauche).
+    \item  Le système vérifie que l'email n'est pas déjà utilisé.
+    \item L’administrateur clique sur le bouton pour valider.
     \item Le système génère automatiquement un mot de passe temporaire.
-    \item Le système crée le compte, l'assigne au rôle choisi, et crée le profil correspondant.
+    \item Le système crée le compte.
     \item Un email de bienvenue contenant le mot de passe temporaire et un lien de réinitialisation est envoyé.
     \item L'administrateur reçoit une confirmation visuelle et la liste des utilisateurs se met à jour.
 \end{enumerate}
@@ -536,9 +530,13 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item L'administrateur oublie un champ obligatoire ou saisit un format incorrect (email invalide, date de naissance dans le futur, âge inférieur à 18 ans). Le système signale le champ erroné avec un message d'erreur. L'administrateur corrige et valide à nouveau.
 \item L'adresse e-mail est déjà attribuée à un autre compte. Le système affiche une alerte. L'administrateur change l'adresse e-mail pour continuer.
-\item L'administrateur sélectionne le rôle « Client ». Le système saute la deuxième étape (saisie du poste et de la date d'embauche) et passe directement à la création du compte.
+
 \end{enumerate} \\
 \hline
+\textbf{Scénario d'exception} &
+\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
+\item Si le rôle sélectionné est introuvable en base de données, l'opération échoue et le cas s'arrête
+\end{enumerate}
 \end{longtable}
 \captionof{table}{Description textuelle du cas d’utilisation «~Ajouter utilisateur »} 
 \normalsize
@@ -572,10 +570,11 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
     \item L'administrateur sélectionne un compte actif dans la liste.
     \item Il clique sur l'action « Désactiver ».
-    \item Le système vérifie si l'utilisateur possède des tickets actifs (aucun trouvé).
+    \item Le système vérifie si l’utilisateur possède des tâches actives
     \item Le système affiche une confirmation simple.
     \item L'administrateur valide son choix.
-    \item Le système désactive le compte en base et envoie la notification e-mail.
+    \item Le système désactive le compte en base.
+    \item Le système envoie la notification e-mail.
 \end{enumerate}
 \vspace{0.2cm}
 \end{minipage} \\
@@ -583,7 +582,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \textbf{Scénario alternatif} &
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item  L'utilisateur ciblé possède des tickets actifs. Le système ouvre une modale de réassignation. L'administrateur répartit les tickets, puis valide, permettant à la désactivation d'aboutir.
-\item  L'administrateur décide finalement de fermer la fenêtre modale (Annuler). L'opération s'interrompt proprement, le compte reste actif.
 \end{enumerate} \\
 \hline
 
@@ -591,115 +589,12 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \captionof{table}{Description textuelle du cas d’utilisation «~Désactiver utilisateur »} 
 \normalsize
 
-\subsubsection{Description textuelle du cas d’utilisation « Modifier Profil »}
-Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Modifier Profil ».
 
-\footnotesize
-\renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
-
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-\textbf{Nom du cas d'utilisation} & Modifier Profil \\
-\hline
-\textbf{Acteurs} &Utilisateur \\
-\hline
-\textbf{Précondition} & L'utilisateur est connecté et consulte sa propre page profil. \\
-\hline
-\textbf{Postcondition} & Les informations sont mises à jour en base de données et, en cas de mot de passe changé, un e-mail de notification est envoyé. \\
-\hline
-\textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}
-\begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
-    \item L'utilisateur se rend sur la page « Mon profil ».
-    \item Il met à jour ses informations personnelles (photo, coordonnées, e-mails).
-    \item Il valide le formulaire pour enregistrer les changements.
-    \item S'il change de mot de passe, il saisit son mot de passe actuel, puis le nouveau.
-    \item Le système valide les données et met à jour le profil en base.
-    \item L'utilisateur reçoit une confirmation de succès à l'écran.
-\end{enumerate}
-\vspace{0.2cm}
-\end{minipage} \\
-\hline
-\textbf{Scénario alternatif} &
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item  Si le nouvel e-mail fourni est déjà pris par un autre compte, le système rejette la saisie. L'utilisateur saisit une adresse différente et revalide.
-\item  Lors du changement de mot de passe, le mot de passe actuel fourni est faux. L'utilisateur rectifie le mot de passe pour réussir.\end{enumerate} \\
-\hline
-\textbf{Scénario d'exception} &
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item  Bien que l'utilisateur soit connecté, son profil a été supprimé ou désactivé par un administrateur à la seconde précédente . L'enregistrement est impossible et la session est stoppée.
-\end{enumerate} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «~Modifier Profil »} 
-\normalsize
-\subsubsection{Description textuelle du cas d’utilisation « Valider demande inscription »}
-Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Valider demande inscription ».
-
-\footnotesize
-\renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-\textbf{Nom du cas d'utilisation} & Valider demande inscription \\
-\hline
-\textbf{Acteurs} & Administrateur \\
-\hline
-\textbf{Précondition} & L'administrateur est authentifié et possède la permission de traiter les demandes d'inscription \\
-\hline
-\textbf{Postcondition} & Le compte utilisateur est créé et activé, la demande est marquée « approuvée », et l'utilisateur est notifié \\
-\hline
-\textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., leftmargin=0.6cm, nosep, itemsep=1pt]
-\item L'administrateur accède au module de gestion des demandes d'inscription.
-\item Le système affiche la liste des demandes en attente.
-\item L'administrateur sélectionne une demande à traiter.
-\item Le système affiche les informations du demandeur récupérées via \textit{Open Authorization} (\textbf{OAuth}).
-\item L'administrateur clique sur « Approuver ».
-\item Le système crée le compte utilisateur à partir des informations de la demande.
-\item Le système attribue le rôle correspondant à l'utilisateur.
-\item Le système marque la demande comme « approuvée ».
-\item Le système envoie un e-mail de confirmation à l'utilisateur.
-\item Le système affiche un message de succès à l'administrateur.
-\end{enumerate}
-\vspace{0.2cm}
-\end{minipage} \\
-\hline
-\textbf{Scénario alternatif} &
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item  L'administrateur choisit de refuser l'accès. Il saisit un motif de refus qui remplace l'approbation, la demande est alors rejetée.
-\item  Le système détecte qu'il manque un champ essentiel. L'administrateur saisit l'information manquante et valide à nouveau la demande.
-\end{enumerate} \\
-\hline
-\textbf{Scénario d'exception} &
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item  L'e-mail de la demande est déjà attribué à un compte actif dans le système. L'application bloque automatiquement la conversion pour cause d'unicité.
-\item  Une autre session a déjà statué sur cette demande, le clic de validation échoue définitivement.
-\end{enumerate} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Valider demande inscription »} 
-\normalsize
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 3 : CONCEPTION
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Conception}
-Cette section présente les choix de conception retenus pour ce sprint,
-à travers les diagrammes d'activités et de séquences modélisant les
+\label{sec:conception_sprint1}
 principaux flux fonctionnels
 
 \subsection{Diagramme d'activités « S'inscrire »}
@@ -727,7 +622,7 @@ Dans cette section, nous allons modéliser les interactions entre l'utilisateur 
 
 \begin{figure}[H]
         \centering
-        \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diaggramme de séquence de Désactiver utilisateur.png}
+        \includegraphics[width=0.95\textwidth,height=0.85\textheight,keepaspectratio]{Images/Diaggramme de séquence de Désactiver utilisateur.png}
         \caption{Diagramme de séquences du cas d'utilisation « Désactiver utilisateur »}
         \label{fig:deactivate_user_sequence}
 \end{figure}
@@ -744,6 +639,7 @@ et dépendances qui les unissent.
 \end{figure}
 
 \section{Schéma relationnel}
+\label{sec:schema_sprint1}
 Le schéma relationnel du premier sprint s’appuie sur les relations suivantes :
 \textbf{Utilisateur} (\underline{idUtilisateur}, nom, prenom, email, emailsSecondaires, motDePasse, numTel, photoProfil, estActif, doitChangerMotDePasse, dateCreation, dateMiseAJour, derniereConnexion)
 \newline
@@ -751,15 +647,15 @@ Le schéma relationnel du premier sprint s’appuie sur les relations suivantes 
 \newline
 \textbf{Permission} (\underline{idPermission}, codePermission, description)
 \newline
-\textbf{UtilisateurRole} (\underline{\#idUtilisateur}, \underline{\#idRole}, dateAttribution, description)
+\textbf{UtilisateurRole} (\underline{\#idUtilisateur, \#idRole}, dateAttribution, description)
 \newline
-\textbf{RolePermission} (\underline{\#idRole}, \underline{\#idPermission}, description)
+\textbf{RolePermission} (\underline{\#idRole, \#idPermission}, description)
 \newline
 \textbf{ProfilEmploye} (\underline{\textbf{\#idUtilisateur}}, matricule, dateEmbauche, poste, specialisation, anneesExperience, disponibilite, competences)
 \newline
 \textbf{Competence} (\underline{idCompetence}, nomCompetence)
 \newline
-\textbf{EmployeCompetence} (\underline{\#idUtilisateur}, \underline{\#idCompetence}, niveau)
+\textbf{EmployeCompetence} (\underline{\#idUtilisateur, \#idCompetence}, niveau)
 \newline
 \textbf{ProfilClient} (\underline{\textbf{\#idUtilisateur}}, nomSociete, telSociete, adresseSociete, secteurActivite, logo)
 \newline
@@ -767,6 +663,7 @@ Le schéma relationnel du premier sprint s’appuie sur les relations suivantes 
 % RÉTROSPECTIVE DU SPRINT
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Rétrospective du Sprint}
+\label{sec:retro_sprint1}
 À la fin de ce premier sprint, nous avons organisé une réunion de rétrospective afin d'analyser le déroulement du travail. Le tableau \ref{tab:retrospective_sprint1} résume les points clés soulevés par l'équipe, en mettant en évidence les réussites, les difficultés rencontrées et les actions d'amélioration pour la suite du projet.
 
 \begingroup
@@ -807,6 +704,7 @@ Planifier des sessions régulières de vérification des droits et des rôles. \
 \endgroup
 
 \section{Suivi des user stories avec Notion}
+\label{sec:notion_sprint1}
 
 La figure ci-dessous présente le tableau Notion récapitulant l'ensemble des user stories 
 du premier sprint, toutes marquées comme terminées à l'issue de ce sprint.

@@ -1,4 +1,4 @@
-\section*{Introduction}
+﻿\section*{Introduction}
 
 Dans le chapitre précédent, nous avons mis en place les fondations du
 système : l'authentification, la gestion des utilisateurs avec leurs rôles
@@ -14,6 +14,7 @@ journal d'activités.
 % SECTION 1 : BACKLOG DU SPRINT 2
 % ------------------------------------------------------------------
 \section{Réunion de planification du sprint}
+\label{sec:planning_sprint2}
 La réunion de planification du deuxième sprint nous a permis de définir les objectifs à atteindre durant les trois prochaines semaines. Nous avons sélectionné les user stories prioritaires et estimé l'effort nécessaire pour chacune d'elles. Cette étape est importante pour que toute l'équipe comprenne bien le travail à réaliser.
 
 \subsection{Objectif du Sprint}
@@ -33,7 +34,6 @@ Le tableau ci-dessous présente le \textbf{Sprint Backlog} (ensemble des tâches
 % SECTION 2 : ANALYSE
 
 \section{Analyse}
-
 \label{sec:analyse_sprint2}
 
 Dans cette section, nous analysons les fonctionnalités développées durant ce sprint en formalisant les interactions entre les acteurs et les différents modules du système à travers des cas d'utilisation détaillés, accompagnés de leurs tableaux de description textuelle.
@@ -51,56 +51,6 @@ La figure ci-dessous présente le diagramme de cas d'utilisation du deuxième sp
 Pour bien détailler ces interactions, nous allons accompagner chaque cas d'utilisation par une description textuelle qui montre son scénario et ses exceptions, avec parfois un diagramme de raffinement.
 
 
-\subsection{Descriptions textuelles des cas d'utilisation sans raffinement}
-Dans cette partie, nous présentons les cas d'utilisation qui ne nécessitent pas de raffinement de diagramme, leur comportement étant suffisamment direct pour être décrit uniquement par leur scénario textuel.
-
-\subsubsection{Description textuelle du cas d’utilisation « Consulter journal d'activités »}
-Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Consulter journal d'activités ».
-
-\footnotesize
-\renewcommand{\arraystretch}{1}
-\begin{longtable}{|>{\columncolor{pastelBlue}}p{4cm}|p{11.5cm}|}
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-\textbf{Nom du cas d'utilisation} & Consulter journal d'activités \\
-\hline
-\textbf{Acteurs} & Administrateur \\
-\hline
-\textbf{Précondition} &
-L'utilisateur est authentifié.\newline
-L'utilisateur possède la permission de consulter le journal d'activités. \\
-\hline
-\textbf{Postcondition} &
-Le journal d'activités est affiché avec les filtres appliqués. \\
-\hline
-\textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., leftmargin=*]
-\item L'administrateur accède à la section « Journal d'activités ».
-\item Le système affiche la liste paginée des logs triés par date décroissante, avec pour chaque entrée : la date, l'utilisateur, l'action, le type d'entité, la méthode HTTP, le chemin et le statut.
-\item L'administrateur applique des filtres : par utilisateur, par type d'entité, par action, par statut, ou par plage de dates.
-\item Le système filtre et met à jour la liste en temps réel.
-\item L'administrateur clique sur une entrée pour consulter ses détails complets, incluant les métadonnées associées.
-\end{enumerate}
-\vspace{2pt}
-\end{minipage} \\
-\hline
-\textbf{Scénario alternatif} &
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Aucun log ne correspond aux filtres appliqués ; le système affiche un message « Aucun résultat trouvé », l'administrateur modifie ou réinitialise les filtres et \textbf{reprend à l'étape 3}.
-\item L'administrateur choisit d'afficher les statistiques globales : le système présente le total du jour, le taux de succès, les utilisateurs uniques, les actions les plus fréquentes et l'activité par heure.
-\item L'administrateur sélectionne un utilisateur spécifique ; le système affiche son activité des 30 derniers jours, son taux de succès et les entités les plus actives.
-\end{enumerate} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation «~Consulter journal d'activités »}
-\normalsize
 
 \subsection{Analyse de la fonctionnalité « Gérer clients »}
 Dans cette partie, nous allons présenter les cas d'utilisation relatifs à la gestion des clients afin
@@ -135,13 +85,10 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \textbf{Acteurs} & Administrateur \\
 \hline
 \textbf{Précondition} &
-L'utilisateur est authentifié.\newline
-La liste des clients est accessible. \\
+L'utilisateur est authentifié et accède à la liste des clients.\\
 \hline
 \textbf{Postcondition} &
-Le client est créé et enregistré dans le système.\newline
-Le profil client associé est initialisé.\newline
-Un message de confirmation est affiché. \\
+Le client est créé et initialisé dans le système, et un message de confirmation s'affiche. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -159,8 +106,9 @@ Un message de confirmation est affiché. \\
 \item Le système peut récupérer automatiquement l'adresse via un service de géocodage, si cette fonctionnalité est activée.
 \item L'administrateur valide le formulaire.
 \item Le système vérifie la validité des données et l'unicité de l'e-mail.
-\item Le système enregistre le client et son profil en base de données.
-\item Le système envoie un e-mail de bienvenue, affiche un message de succès et met à jour la liste.
+\item Le système enregistre le client en base de données.
+\item Le système envoie un e-mail de bienvenue.
+\item Le système affiche un message de succès et met à jour la liste.
 \end{enumerate}
 \vspace{0.1cm}
 \end{minipage} \\
@@ -174,7 +122,7 @@ Un message de confirmation est affiché. \\
 \hline
 \textbf{Scénario d'exception} &
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Si le rôle système "CLIENT" est introuvable en base de données l'opération échoue et le cas s'arrête
+\item Si le rôle "CLIENT" est introuvable en base de données l'opération échoue et le cas s'arrête
 \end{enumerate} \\
 \hline
 \end{longtable}
@@ -230,10 +178,8 @@ Le client à désactiver doit être actuellement actif. \\
 \hline
 \textbf{Scénario alternatif} &
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item  Le système détecte des contrats actifs ou des tickets non résolus et bloque l'action ; l'administrateur clôture les contrats et résout les tickets nécessaires, puis \textbf{reprend à l'étape 2} avec succès.
-\item L'administrateur réalise qu'il a cliqué sur le mauvais client ; il choisit "Annuler", ferme la boîte et \textbf{reprend à l'étape 1} avec le bon client.
+\item  Le système détecte des contrats ou des demandes actifs ou des tickets non résolus et bloque l'action ; l'administrateur clôture les contrats et résout les tickets nécessaires, puis \textbf{reprend à l'étape 2} avec succès.
 \end{enumerate} \\
-
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle du cas d’utilisation «~Désactiver client »} 
@@ -265,7 +211,8 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt,series=scen_auth]
-\item L'administrateur clique sur « Ajouter projet » ; le système affiche un formulaire en deux étapes.
+\item L'administrateur clique sur « Ajouter projet »
+\item le système affiche un formulaire en deux étapes.
 \item L'administrateur renseigne le nom, la description, les tags et les trois dates obligatoires (début, fin et livraison), toutes antérieures à la date du jour.
 \item L'administrateur passe à l'étape suivante et sélectionne le chef de projet ainsi qu'au moins un membre de l'équipe ayant réalisé le projet.
 \end{enumerate}
@@ -277,7 +224,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 
 \item L'administrateur soumet le formulaire.
 \item Le système vérifie la cohérence des dates, l'unicité du nom du projet et l'existence des intervenants.
-\item Le système enregistre le projet, crée les membres associés et incrémente les statistiques de projets terminés des membres actifs.
+\item Le système enregistre le projet.
 \item Le système confirme l'ajout par un message de succès.
 \end{enumerate}
 \vspace{0.1cm}
@@ -285,15 +232,10 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \hline
 \textbf{Scénario alternatif} &
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Une date est manquante, dans le futur ou incohérente (ex. fin antérieure au début). Le système affiche un message d'erreur ; l'administrateur corrige et \textbf{reprend à l'étape 4}.
-\item L'administrateur soumet sans chef de projet ou sans membre d'équipe. Le système bloque l'envoi et affiche un message ; l'administrateur complète sa saisie et \textbf{reprend à l'étape 4}.
-\item Le nom du projet existe déjà pour ce client. Le système signale le conflit ; l'administrateur modifie le nom et \textbf{reprend à l'étape 4}.
-\item L'administrateur active l'option « Créer un contrat ». Le système redirige vers le formulaire de contrat pré-rempli après la création du projet. \textit{Succès alternatif.}
-\end{enumerate} \\
-\hline
-\textbf{Scénario d'exception} &
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le profil du client ou un intervenant (chef de projet, membre) est introuvable en base. Le système lève une exception et annule la transaction ; l'opération s'arrête définitivement.
+\item Une date est manquante, dans le futur ou incohérente (ex. fin antérieure au début). Le système affiche un message d'erreur ; l'administrateur corrige et \textbf{reprend à l'étape 5}.
+\item Le nom du projet existe déjà pour ce client. Le système signale le conflit ; l'administrateur modifie le nom et \textbf{reprend à l'étape 5}.
+\item L'administrateur soumet sans chef de projet ou sans membre d'équipe. Le système bloque l'envoi et affiche un message ; l'administrateur complète sa saisie et \textbf{reprend à l'étape 5}.
+\item L'administrateur active l'option « Créer un contrat ». Le système redirige vers le formulaire de contrat pré-rempli après la création du projet.
 \end{enumerate} \\
 \hline
 \end{longtable}
@@ -333,22 +275,21 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \textbf{Acteurs} & Administrateur \\
 \hline
 \textbf{Précondition} &
-L'utilisateur est authentifié.\newline
-L'utilisateur possède la permission de créer des contrats.\newline
-La liste des contrats est accessible. \\
+L'utilisateur authentifié possède la permission de créer des contrats et accède à leur liste. \\
 \hline
 \textbf{Postcondition} &
-Le contrat est enregistré avec le statut « actif » et une référence générée automatiquement.\newline
-Le contrat est visible dans la liste des contrats et lié au client sélectionné. \\
+Le contrat est enregistré comme « actif » avec une référence automatique, puis lié au client et affiché dans la liste. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., leftmargin=*]
-\item L'administrateur clique sur « Nouveau », sélectionne le mode \textit{Saisie manuelle} et renseigne les informations du contrat.
+\item L'administrateur clique sur « Nouveau ».
+\item L'administrateur sélectionne le mode \textit{Saisie manuelle} et renseigne les informations du contrat.
 \item L'administrateur configure le niveau de service (SLA) avec les délais de réponse et de résolution par priorité.
 \item L'administrateur valide le formulaire.
 \item Le système contrôle la cohérence des données, calcule automatiquement la TVA (\textit{Taxe sur la Valeur Ajoutée}) et le montant TTC (\textit{Toutes Taxes Comprises}).
-\item Le système enregistre le contrat, crée le canal de communication associé et confirme par un message de succès.
+\item Le système enregistre le contrat.
+\item Le système confirme par un message de succès.
 \end{enumerate}
 \vspace{2pt}
 \end{minipage} \\
@@ -357,7 +298,7 @@ Le contrat est visible dans la liste des contrats et lié au client sélectionn�
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item  L'administrateur dépose un fichier PDF ; le système pré-remplit le formulaire automatiquement, l'administrateur vérifie et valide.
 \item  Le système signale qu'un contrat actif existe déjà pour ce client/projet ; l'administrateur choisit un autre projet ou attend l'expiration du contrat existant.
-\item  Un champ obligatoire vide, dates incohérentes ou montant invalide ; le système affiche l'erreur, l'administrateur corrige et \textbf{reprend à l'étape 3}.
+\item  Un champ obligatoire vide, dates incohérentes ou montant invalide ; le système affiche l'erreur, l'administrateur corrige et \textbf{reprend à l'étape 4}.
 \item le système détecte que le fichier PDF importé est un doublon 
 d'un contrat existant (détection par hash) ; le système 
 signale le conflit, l'administrateur soumet un fichier différent et 
@@ -388,13 +329,10 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \textbf{Acteurs} & Administrateur \\
 \hline
 \textbf{Précondition} &
-L'utilisateur est authentifié.\newline
-L'utilisateur possède la permission d'archiver des contrats.\newline
-Le contrat est expiré et non encore archivé. \\
+L'utilisateur authentifié dispose de la permission d'archiver ce contrat expiré. \\
 \hline
 \textbf{Postcondition} &
-Le contrat est marqué comme archivé et n'apparaît plus dans la liste principale.\newline
-Le motif d'archivage est enregistré et associé au contrat. \\
+Le contrat est marqué comme archivé avec son motif et n’apparaît plus dans la liste principale. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -421,7 +359,7 @@ Le motif d'archivage est enregistré et associé au contrat. \\
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt,resume=scen_alt_contrat]
 \item Le système signale que le contrat est toujours actif ; l'administrateur revient à la liste et sélectionne un contrat expiré.
 \item Le système indique que le projet associé est en statut de maintenance ; l'administrateur clôture d'abord le projet, puis \textbf{reprend à l'étape 1}.
-\item Le système détecte des tickets en statut « ouvert », « en cours » ou « en revue » liés au contrat ; l'administrateur résout ces tickets, puis \textbf{reprend à l'étape 1}.
+\item Le système détecte des tickets actif: l'administrateur archive le contrat tout en maintenant ces tickets actifs, ce qui bloque la création de nouvelles demandes.
 \end{enumerate}
 \vspace{2pt}
 \end{minipage} \\
@@ -434,6 +372,7 @@ Le motif d'archivage est enregistré et associé au contrat. \\
 
 
 \section{Conception}
+\label{sec:conception_sprint2}
 Cette section présente les choix de conception retenus pour ce sprint,
 à travers le diagramme de séquences modélisant les
 principaux flux fonctionnels
@@ -471,6 +410,7 @@ et dépendances qui les unissent.
 \end{figure}
 
 \section{Schéma relationnel}
+\label{sec:schema_sprint2}
 {\sloppy
 Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui détaille les différentes tables de la base de données ainsi que leurs relations :
 
@@ -483,13 +423,13 @@ Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui
 \newline
 \textbf{SLAContrat} (\underline{idSLAContrat}, motifPersonnalisation, dateCreation, dateMiseAJour, \textbf{\#idContrat}, \textbf{\#idSLAGlobal})
 \newline
-\textbf{ConfigurationSlack} (\underline{id}, webhookUrl, canal, notifierSurCreation, notifierSurResolution, estActif, \textbf{\#idContrat})
+\textbf{ConfigurationSlack} (\underline{id ConfigurationSlack }, webhookUrl, canal, notifierSurCreation, notifierSurResolution, estActif, \textbf{\#idContrat})
 \newline
-\textbf{MembreProjet} (\underline{\#idProjet}, \underline{\#idProfilEmploye}, rolesDansProjet, dateAffectation, dateDebut, dateFin, statut, motifRefus)
+\textbf{MembreProjet} (\underline{\#idProjet, \#idProfilEmploye}, rolesDansProjet, dateAffectation, dateDebut, dateFin, statut, motifRefus)
 \newpage
 \textbf{FeedbackExpirationContrat} (\underline{idFeedback}, note, commentaire, RaisonNonRenouvellement, souhaitRenouveler, dateCreation, \textbf{\#idContrat})
 \newline
-\textbf{JournalActivite} (\underline{id}, action, method, path, ipAddress, status, description, metadata, \textbf{\#idUtilisateur})
+\textbf{JournalActivite} (\underline{id JournalActivite }, action, method, path, ipAddress, status, description, metadata, \textbf{\#idUtilisateur})
 }
 
 % ─────────────────────────────────────────────────────────────────────────────
@@ -500,6 +440,7 @@ Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui
 
 \begingroup
 \renewcommand{\arraystretch}{1.15} % Garde un bel espace pour le reste du tableau
+\label{sec:retro_sprint2}
 \small
 \begin{longtable}{|>{\columncolor{pastelBlue}}p{4cm}|p{9.5cm}|}
 \hline
@@ -534,12 +475,12 @@ Mettre en place des tests pour valider l'ensemble des fonctionnalités livrées.
 \captionof{table}{Rétrospective du deuxième sprint}
 \label{tab:retrospective_sprint2}
 \endgroup
-\newpage
 \section{Suivi des user stories avec Notion}
 
 La figure ci-dessous présente le tableau Notion récapitulant l'ensemble des user stories 
 du deuxième  sprint, toutes marquées comme terminées à l'issue de ce sprint.
 
+\label{sec:notion_sprint2}
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,keepaspectratio]{Images/notion sprint 2.png}

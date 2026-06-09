@@ -130,6 +130,12 @@
 \mtcsetfont{minitoc}{section}{\normalsize\bfseries\rmfamily\color{primary}}
 \mtcsetfont{minitoc}{subsection}{\small\rmfamily\color{secondary}}
 \renewcommand{\mtctitle}{}
+% Correctif hyperref+minitoc : chaque \section pose une ancre précise
+% via \phantomsection avant l'incrémentation du compteur
+\makeatletter
+\let\orig@section\section
+\renewcommand{\section}{\phantomsection\orig@section}
+\makeatother
 \usepackage{xurl}
 \usepackage[protrusion=true, expansion=false]{microtype}
 \usepackage{tabularx}
@@ -176,20 +182,22 @@
 % ============================================================
 %  RENDRE \chapter INVISIBLE
 % ============================================================
+% \hiddenpart prépare le compteur minitoc AVANT la page de couverture
+% afin que \minitoc lise le bon fichier .mtcN
 \makeatletter
 \newcommand{\hiddenpart}[1]{%
-  \refstepcounter{chapter}%
-  \addcontentsline{toc}{chapter}{\protect\numberline{\thechapter}#1}%
-  \chaptermark{#1}%
-  \mtcaddchapter% ajouter l'entrée xchapter au TOC et incrémenter le compteur minitoc
+  \mtcaddchapter%
 }
 \makeatother
 
 % ============================================================
 %  COMMANDE PAGE DE SÉPARATION — LOSANGES + TITRE + SOMMAIRE
 % ============================================================
-\newcommand{\chaptercover}[2]{%
+\newcommand{\chaptercover}[3]{%
   \newpage
+  \refstepcounter{chapter}%
+  \addcontentsline{toc}{chapter}{\protect\numberline{\thechapter}#2}%
+  \chaptermark{#2}%
   \thispagestyle{empty}%
   \begin{tikzpicture}[remember picture, overlay]
 
@@ -250,7 +258,7 @@
           text width=0.70\paperwidth,
           align=center]
       at ([yshift=0.21\paperheight] current page.center)
-      {\hyphenpenalty=10000\exhyphenpenalty=10000 #2};
+      {\hyphenpenalty=10000\exhyphenpenalty=10000 #3};
 
     % --- Ornement séparateur entre titre et sommaire ---
     \node[anchor=center, inner sep=0pt]
@@ -280,6 +288,8 @@
   % ---- Sommaire du chapitre dans la moitié basse ----
   \vspace*{0.48\textheight}
   \begin{adjustwidth}{2cm}{2cm}
+    \setcounter{mtc}{\value{chapter}}%
+    \addtocounter{mtc}{1}%
     \minitoc
   \end{adjustwidth}
   \newpage
@@ -355,7 +365,7 @@
     bottom=2.5cm,
     left=3cm,
     right=3cm,
-    headheight=25pt
+    headheight=36pt
 }
 \setstretch{1.5}
 
@@ -407,6 +417,7 @@
 \newcommand{\fg}{~»}
 
 \begin{document}
+\dominitoc
 
 \pagenumbering{gobble}
 % Page de garde
@@ -434,7 +445,6 @@
 \end{tikzpicture}
 \vspace{0.5cm}
 \end{center}
-\dominitoc
 \notocchapterbreak
 \tableofcontents
 \restoretocchapterbreak
@@ -506,43 +516,36 @@
 
 % Introduction
 \input{tex/Introduction_General}
-
 % ---- Chapitre 1 ----
-\hiddenpart{Cadre général du projet}
-\chaptercover{1}{Cadre général du projet}
+\chaptercover{1}{Cadre général du projet}{Cadre général du projet}
 \input{tex/Chapitre1}
 \cleardoublepage
 
 % ---- Chapitre 2 ----
-\hiddenpart{Préparation du projet}
-\chaptercover{2}{Préparation du projet}
+\chaptercover{2}{Préparation du projet}{Préparation du projet}
 \input{tex/chapitre2}
 \cleardoublepage
 
 % ---- Chapitre 3 ----
-\hiddenpart{Sprint 1 -- Socle Sécurité et Contrôle d'Accès}
-\chaptercover{3}{Sprint 1 -- Socle Sécurité et Contrôle d'Accès}
+\chaptercover{3}{Sprint 1 -- Socle Sécurité et Contrôle d'Accès}{Sprint 1 \\ Socle Sécurité et Contrôle d'Accès}
 \input{tex/chapitre3}
 \cleardoublepage
 
 % ---- Chapitre 4 ----
-\hiddenpart{Sprint 2 -- Gestion Contractuelle et Traçabilité}
-\chaptercover{4}{Sprint 2 -- Gestion Contractuelle et Traçabilité}
+\chaptercover{4}{Sprint 2 -- Gestion Contractuelle et Traçabilité}{Sprint 2 \\ Gestion Contractuelle et Traçabilité}
 \input{tex/chapitre4}
 \cleardoublepage
 
 % ---- Chapitre 5 ----
-\hiddenpart{Sprint 3 -- Gestion Opérationnelle et Assistance IA}
-\chaptercover{5}{Sprint 3 -- Gestion Opérationnelle et Assistance IA}
+\chaptercover{5}{Sprint 3 -- Gestion Opérationnelle et Assistance IA}{Sprint 3 \\ Gestion Opérationnelle et Assistance IA}
 \input{tex/chapitre5}
 \cleardoublepage
 
 % ---- Chapitre 6 ----
-\hiddenpart{Sprint 4 -- La Transparence Opérationnelle}
-\chaptercover{6}{Sprint 4 -- La Transparence Opérationnelle}
+\chaptercover{6}{Sprint 4 -- Communication et Suivi Opérationnel}{Sprint 4 \\ Communication et Suivi Opérationnel
+}
 \input{tex/chapitre6}
 \cleardoublepage
-
 \input{tex/Conclusion_General}
 \newpage
 \input{tex/webographie}

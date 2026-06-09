@@ -1,4 +1,4 @@
-\section*{Introduction}
+﻿\section*{Introduction}
 
 Ce chapitre présente le quatrième et dernier sprint du projet \textbf{SolidMaint}. Les sprints précédents nous ont permis de mettre en place les principales fonctionnalités du système : la gestion des utilisateurs, des clients, des contrats, ainsi que le traitement des demandes et des tickets. Ce sprint vient compléter la plateforme avec des fonctionnalités de collaboration et de suivi qui étaient encore manquantes.
 \newline
@@ -10,6 +10,7 @@ Dans ce chapitre, nous présentons donc les fonctionnalités développées duran
 % ─────────────────────────────────────────────────────────────────────────────
 
 \section{Réunion de planification du sprint}
+\label{sec:planning_sprint4}
 La réunion de planification du quatrième sprint nous a permis de définir les objectifs à atteindre durant les trois dernières semaines de développement. Nous avons sélectionné les user stories prioritaires correspondant aux fonctionnalités de collaboration, de suivi et de communication, et nous avons estimé l'effort nécessaire pour chacune d'elles. Cette étape est déterminante pour garantir que l'ensemble de l'équipe partage une vision commune du travail à accomplir et que les livrables finaux répondent aux exigences exprimées dans le product backlog.
 
 \subsection{Objectif du Sprint}
@@ -29,9 +30,8 @@ Le tableau ci-dessous présente le Sprint Backlog détaillé avec les descriptio
 % ─────────────────────────────────────────────────────────────────────────────
 
 \section{Analyse}
-Dans le cadre de ce sprint, l'analyse fonctionnelle a consisté à formaliser les interactions entre les différents acteurs et les modules métiers de la solution. Cette étape a permis de traduire les besoins exprimés dans le backlog en cas d'utilisation concrets, en tenant compte des contraintes de temps réel, de traçabilité, de sécurité et de personnalisation par rôle.
-
 \label{sec:analyse_sprint4}
+Dans le cadre de ce sprint, l'analyse fonctionnelle a consisté à formaliser les interactions entre les différents acteurs et les modules métiers de la solution. Cette étape a permis de traduire les besoins exprimés dans le backlog en cas d'utilisation concrets, en tenant compte des contraintes de temps réel, de traçabilité, de sécurité et de personnalisation par rôle.
 
 \subsection{Diagramme de cas d'utilisation du quatrième sprint}
 La figure ci-dessous présente le diagramme de cas d'utilisation du quatrième sprint.
@@ -555,11 +555,12 @@ et dépendances qui les unissent.
 \end{figure}
 
 \section{Schéma relationnel}
+\label{sec:schema_sprint4}
 {\sloppy
 Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui détaille les différentes tables de la base de données ainsi que leurs relations :
 
 \noindent
-\textbf{CanalMembre} (\underline{\#idCanal}, \underline{\#idUtilisateur}, estMute, derniereLecture, dateAjout)
+\textbf{CanalMembre} (\underline{\#idCanal, \#idUtilisateur}, estMute, derniereLecture, dateAjout)
 \newline
 \textbf{Message} (\underline{idMessage}, contenu, estEdite, dateCreation, dateEdition, \textbf{\#idCanal}, \textbf{\#idUtilisateur})
 \newline
@@ -567,7 +568,7 @@ Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui
 \newline
 \textbf{Document} (\underline{idDoc}, titre, typeDoc, cheminFichier, tailleFichier, versionCourante, description, dateCreation, estArchive, dateArchivage, \textbf{\#idTicket}, \textbf{\#idContrat})
 \newline
-\textbf{DocumentConsultation} (\underline{\#idDoc}, \underline{\#idUtilisateur}, dateConsultation)
+\textbf{DocumentConsultation} (\underline{\#idDoc, \#idUtilisateur}, dateConsultation)
 \newline
 \textbf{DocumentPV} (\underline{\textbf{\#idDoc}}, dateIntervention, dateResolution)
 \newline
@@ -625,6 +626,7 @@ Améliorer la rapidité d'affichage de la page du journal d'activités lorsque p
 % SECTION 6 : RÉALISATION
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Suivi des user stories avec Notion}
+\label{sec:notion_sprint4}
 
 La figure ci-dessous présente le tableau Notion récapitulant l'ensemble des user stories 
 du quatrième sprint, toutes marquées comme terminées à l'issue de ce sprint.

@@ -1,4 +1,4 @@
-\section*{Introduction}
+﻿\section*{Introduction}
 Dans le chapitre précédent, nous avons mis en place la gestion des projets et
 des contrats, définissant ainsi le cadre contractuel et organisationnel de
 notre collaboration avec les clients.
@@ -13,6 +13,7 @@ pilotage du support et du traitement des incidents.
 % SECTION 1 : BACKLOG DU SPRINT 3
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Réunion de planification du sprint}
+\label{sec:planning_sprint3}
 La planification du sprint est une étape essentielle du processus de développement, car elle permet de clarifier les fonctionnalités à implémenter, de prioriser les besoins métier et d’organiser la réalisation dans une logique incrémentale.
 \subsection{Objectifs du sprint}
 Ce sprint visait également à intégrer des mécanismes avancés de suivi 
@@ -139,7 +140,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \hline
 \textbf{Précondition} & L'acteur est authentifié et dispose des droits pour solliciter des compléments ; la demande est accessible. \\
 \hline
-\textbf{Postcondition} & Un message de demande d'information est enregistré dans l'historique ; le statut de la demande passe en attente d'informations ; le propriétaire de la demande est notifié. \\
+\textbf{Postcondition} & La demande est convertie en ticket « Ouvert », les parties prenantes sont notifiées, et l'assignation se fera plus tard. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -695,6 +696,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 % SECTION 3 : CONCEPTION
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Conception}
+\label{sec:conception_sprint3}
 Cette section présente les diagrammes d'activités et de séquences
 modélisant les principaux flux fonctionnels du sprint.
 \subsection{Diagramme d'activités « Modifier chronomètre »}
@@ -706,7 +708,6 @@ La figure ci-dessous présente le flux d'activités relatif à la modification d
     \caption{Diagramme d'activités « Modifier chronomètre »}
     \label{fig:activite_ticket}
 \end{figure}
-\newpage 
 \subsection{Diagrammes de séquences}
 Dans cette section, nous allons modéliser les interactions entre l'utilisateur et le système à l'aide de diagrammes de séquences pour mieux comprendre la logique de la solution.
 \subsubsection{Diagramme de séquences du cas d'utilisation « Soumettre demande »}
@@ -877,80 +878,31 @@ agrégées pour le suivi de la qualité du service.
 
 \subsubsection{Développement du module IA}
 
-Le module IA a été développé en \textbf{NestJS} (TypeScript) et intégré au backend
-
-principal sous la forme d'un module dédié, regroupant plusieurs services
-
-à responsabilité unique. Cette organisation suit le principe de séparation
-
-des responsabilités et tire parti du système d'injection de dépendances
-
-natif du framework.
+Le module IA a été développé en \textbf{NestJS} (TypeScript) et intégré au backend principal sous la forme d'un module dédié, regroupant plusieurs services à responsabilité unique. Cette organisation suit le principe de séparation des responsabilités et tire parti du système d'injection de dépendances natif du framework.
 
 \paragraph{Architecture du module :}
 
-Le module regroupe plusieurs services distincts, chacun couvrant une
-
-responsabilité précise : l'accès à l'API Groq Cloud et le parsing des
-
-réponses, la gestion du cache en mémoire par empreinte de contenu, la
-
-fusion des analyses IA avec les solutions humaines pour produire les
-
-articles de base de connaissances, la suggestion d'articles pertinents
-
-par scoring heuristique sans recours au modèle, et enfin la traçabilité
-
-des décisions par persistance des métadonnées en base de données.
+Le module regroupe plusieurs services distincts, chacun couvrant une responsabilité précise : l'accès à l'API Groq Cloud et le parsing des réponses, la gestion du cache en mémoire par empreinte de contenu, la fusion des analyses IA avec les solutions humaines pour produire les articles de base de connaissances, la suggestion d'articles pertinents par scoring heuristique sans recours au modèle, et enfin la traçabilité des décisions par persistance des métadonnées en base de données.
 
 \paragraph{Construction des prompts :}
 
-Chaque fonctionnalité repose sur un prompt système dédié, transmis au
-
-modèle via le paramètre \texttt{system} de l'API. Les instructions
-
-décomposent la tâche en étapes ordonnées et imposent un format de sortie
-
-strict, JSON pour la classification et un format structuré pour les articles de base de connaissances pour les articles de base
-
-de connaissances, sans préambule, afin de permettre une exploitation
-
-directe des réponses. La température est fixée à 0,3 pour l'ensemble des
-
-appels, de façon à favoriser des réponses factuelles et reproductibles.
+Chaque fonctionnalité repose sur un prompt système dédié, transmis au modèle via le paramètre \texttt{system} de l'API. Les instructions décomposent la tâche en étapes ordonnées et imposent un format de sortie strict, JSON pour la classification et un format structuré pour les articles de base de connaissances pour les articles de base de connaissances, sans préambule, afin de permettre une exploitation directe des réponses. La température est fixée à 0,3 pour l'ensemble des appels, de façon à favoriser des réponses factuelles et reproductibles.
 
 \paragraph{Flux d'appel et intégration :}
 
-Tout appel au modèle suit une séquence en quatre étapes. Le texte soumis
-
-est d'abord normalisé et condensé en une empreinte de longueur fixe par hachage de son contenu ; si une entrée valide existe en cache, le résultat est retourné sans appel réseau. Dans
-
-le cas contraire, la requête est transmise à l'API Groq avec le paramètre
-
-\texttt{response\_format: \{ type: "json\_object" \}} activé pour les
-
-sorties structurées. La réponse est ensuite parsée et validée : un score
-
-de confiance inférieur au seuil défini entraîne un marquage automatique
-
-pour révision manuelle. Enfin, le résultat est mis en cache et une entrée
-
-d'audit est persistée. L'ensemble des services interagit avec la base de
-
-données en cohérence avec le reste de la plateforme.
+Tout appel au modèle suit une séquence en quatre étapes. Le texte soumis est d'abord normalisé et condensé en une empreinte de longueur fixe par hachage de son contenu ; si une entrée valide existe en cache, le résultat est retourné sans appel réseau. Dans le cas contraire, la requête est transmise à l'API Groq avec le paramètre \texttt{response\_format: \{ type: "json\_object" \}} activé pour les sorties structurées. La réponse est ensuite parsée et validée : un score de confiance inférieur au seuil défini entraîne un marquage automatique pour révision manuelle. Enfin, le résultat est mis en cache et une entrée d'audit est persistée. L'ensemble des services interagit avec la base de données en cohérence avec le reste de la plateforme.
 
 \subsection{Diagramme de classes du troisième sprint}
-Le diagramme de classes ci-dessous présente la structure statique des
-entités métier introduites lors de ce sprint, ainsi que les relations
-et dépendances qui les unissent.
+Le diagramme de classes ci-dessous présente la structure statique des entités métier introduites lors de ce sprint, ainsi que les relations et dépendances qui les unissent.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.98\textwidth,keepaspectratio]{Images/Diagramme de classe sprint3.png}
+    \includegraphics[width=18cm,height=18cm,keepaspectratio]{Images/Diagramme de classe sprint3.png}
     \caption{Diagramme de classes du troisième sprint}
     \label{fig:diag_classe_sprint3}
 \end{figure}
 
 \section{Schéma relationnel}
+\label{sec:schema_sprint3}
 Le schéma relationnel du troisième sprint s’appuie sur les relations suivantes :
 
 \noindent
@@ -966,13 +918,14 @@ Le schéma relationnel du troisième sprint s’appuie sur les relations suivant
 \newline
 \textbf{TicketClassification} (\underline{idTicketClassif}, categorieAuto, prioriteAuto, typeAuto, scoreConfiance, urgenceDetectee, entitesExtraites, estValidee, dateClassification, \textbf{\#idTicket})
 \newline
-\textbf{AssignmentTicket} (\underline{\#idTicket}, \underline{\#idProfilEmploye}, dateDebutReelle, dateFinReelle, commentaireAssignment, progression, estBloque, raisonBlocage, feedbackDeveloppeur, technologiesUtilisees, enTravail, dureeTotaleSecondes, dateCreation, solutionProposee, solutionProposeeAt)
+\textbf{AssignmentTicket} (\underline{\#idTicket, \#idProfilEmploye}, dateDebutReelle, dateFinReelle, commentaireAssignment, progression, estBloque, raisonBlocage, feedbackDeveloppeur, technologiesUtilisees, enTravail, dureeTotaleSecondes, dateCreation, solutionProposee, solutionProposeeAt)
 \newline
 \textbf{SessionTravail} (\underline{idSessionTravail}, debut, fin, dureeSecondes, note, isManual, \textbf{\#idTicket}, \textbf{\#idProfilEmploye}, \textbf{\#idArticleKB})
 % ─────────────────────────────────────────────────────────────────────────────
 % RÉTROSPECTIVE DU SPRINT
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Rétrospective du Sprint}
+\label{sec:retro_sprint3}
 À la fin de ce troisième sprint, nous avons organisé une réunion de rétrospective afin d'analyser le déroulement du travail. Le tableau \ref{tab:retrospective_sprint3} résume les points clés soulevés par l'équipe, en mettant en évidence les réussites, les difficultés rencontrées et les actions d'amélioration pour la suite du projet.
 
 \begingroup
@@ -1013,6 +966,7 @@ Intégrer des tests automatisés sur la limitation de débit (rate limiting) et 
 \endgroup
 
 \section{Suivi des user stories avec Notion}
+\label{sec:notion_sprint3}
 
 La figure ci-dessous présente le tableau Notion récapitulant l'ensemble des user stories 
 du troisième  sprint, toutes marquées comme terminées à l'issue de ce sprint.
