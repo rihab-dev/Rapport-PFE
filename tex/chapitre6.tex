@@ -559,17 +559,23 @@ et dépendances qui les unissent.
 
 Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui détaille les différentes tables de la base de données ainsi que leurs relations :
 
-\begin{description}[font=\bfseries, leftmargin=3.8cm, style=sameline, noitemsep]
-    \item[CanalMembre] (\underline{\#idCanal, \#idUtilisateur}, estMute, derniereLecture, dateAjout)
-    \item[Message] (\underline{idMessage}, contenu, estEdite, dateCreation, dateEdition, \textbf{\#idCanal}, \textbf{\#idUtilisateur})
-    \item[MessageHistorique] (\underline{idMessgHistorique}, contenuPrecedent, contenuNouveau, dateModification, \textbf{\#idMessage})
-    \item[Document] (\underline{idDoc}, titre, typeDoc, cheminFichier, tailleFichier, versionCourante, description, dateCreation, estArchive, dateArchivage, \textbf{\#idTicket}, \textbf{\#idContrat})
-    \item[DocumentConsultation] (\underline{\#idDoc, \#idUtilisateur}, dateConsultation)
-    \item[DocumentPV] (\underline{\textbf{\#idDoc}}, dateIntervention, dateResolution)
-    \item[DocumentVersion] (\underline{idDocVersion}, cheminFichier, tailleDoc, numeroVersion, dateVersion, commentaire, \textbf{\#idDoc}, \textbf{\#idUtilisateur})
-    \item[Notification] (\underline{idNotif}, titre, contenu, type, estLu, dateCreation, dateResolution, \textbf{\#idUtilisateur})
-    \item[ArticleConnaissance] (\underline{idArticleKB}, titre, contenu, categorie, statutKB, tag, nombreUtilisations, tauxReussite, \textbf{\#idSolutionTicket})
-\end{description}
+\noindent\textbf{CanalMembre} (\underline{\#idCanal, \#idUtilisateur}, estMute, derniereLecture, dateAjout)
+
+\noindent\textbf{Message} (\underline{idMessage}, contenu, estEdite, dateCreation, dateEdition, \textbf{\#idCanal}, \textbf{\#idUtilisateur})
+
+\noindent\textbf{MessageHistorique} (\underline{idMessgHistorique}, contenuPrecedent, contenuNouveau, dateModification, \textbf{\#idMessage})
+
+\noindent\textbf{Document} (\underline{idDoc}, titre, typeDoc, cheminFichier, tailleFichier, versionCourante, description, dateCreation, estArchive, dateArchivage, \textbf{\#idTicket}, \textbf{\#idContrat})
+
+\noindent\textbf{DocumentConsultation} (\underline{\#idDoc, \#idUtilisateur}, dateConsultation)
+
+\noindent\textbf{DocumentPV} (\underline{\textbf{\#idDoc}}, dateIntervention, dateResolution)
+
+\noindent\textbf{DocumentVersion} (\underline{idDocVersion}, cheminFichier, tailleDoc, numeroVersion, dateVersion, commentaire, \textbf{\#idDoc}, \textbf{\#idUtilisateur})
+
+\noindent\textbf{Notification} (\underline{idNotif}, titre, contenu, type, estLu, dateCreation, dateResolution, \textbf{\#idUtilisateur})
+
+\noindent\textbf{ArticleConnaissance} (\underline{idArticleKB}, titre, contenu, categorie, statutKB, tag, nombreUtilisations, tauxReussite, \textbf{\#idSolutionTicket})
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 5 : RÉTROSPECTIVE DU SPRINT
 % ─────────────────────────────────────────────────────────────────────────────
@@ -600,12 +606,10 @@ Retards d'intégration sur le rendu responsive des graphiques des dashboards. \n
 Dégradation des temps de réponse du journal d'activités sous charge. \\
 \hline
 Que devrions-nous arrêter de faire ? & 
-Multiplier les appels API classiques pour rafraîchir l'interface au lieu de s'appuyer uniquement sur les événements WebSocket en temps réel \newline
-Tester l'affichage des tableaux de bord uniquement sur grand écran. \\
+Valider l'affichage des tableaux de bord et des graphiques uniquement sur grand écran, sans tester les résolutions intermédiaires dès la phase d'intégration. \\
 \hline
-Que devrions-nous commencer à faire ? & 
-Valider l'affichage adaptatif des graphiques sur différentes résolutions d'écran dès la phase de maquettage. \newline
-Améliorer la rapidité d'affichage de la page du journal d'activités lorsque plusieurs utilisateurs se connectent en même temps. \\
+Que devrions-nous commencer à faire ? &
+Intégrer la vérification du rendu adaptatif des graphiques dès la phase de maquettage, afin d'éviter les retouches en fin de sprint. \\
 \hline
 \end{longtable}
 \vspace{6pt}

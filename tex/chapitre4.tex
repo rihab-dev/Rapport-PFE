@@ -414,60 +414,60 @@ et dépendances qui les unissent.
 
 Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui détaille les différentes tables de la base de données ainsi que leurs relations :
 
-\begin{description}[font=\bfseries, leftmargin=4.8cm, style=sameline, noitemsep]
-    \item[Projet] (\underline{idProjet}, nomProjet, descriptionProjet, ProjetTag, statutP, dateDebutP, dateFinP, dateCreationP, dateMiseAJourP, \textbf{\#idProfilClient})
-    
-    \item[Contrat] (\underline{idContrat}, referenceContrat, dateDebutContratM, dateExpirationContratM, montantMensuel, montantSemestriel, tauxTVA, montantTVA, montantTTC, fichierContrat, statutContrat, estArchive, dateCreation, dateMiseAJour, dateArchivage, \textbf{\#idProjet})
-    
-    \item[SLAGlobal] (\underline{idSLAGlobal}, typeSLA, description, dateCreation, dateMiseAJour)
-    
-    \item[SLAContrat] (\underline{idSLAContrat}, motifPersonnalisation, dateCreation, dateMiseAJour, \textbf{\#idContrat}, \textbf{\#idSLAGlobal})
-    
-    \item[ConfigurationSlack] (\underline{idConfigurationSlack}, webhookUrl, canal, notifierSurCreation, notifierSurResolution, estActif, \textbf{\#idContrat})
-    
-    \item[MembreProjet] (\underline{\#idProjet, \#idProfilEmploye}, rolesDansProjet, dateAffectation, dateDebut, dateFin, statut, motifRefus)
-    
-    \item[FeedbackExpirationContrat] (\underline{idFeedback}, note, commentaire, RaisonNonRenouvellement, souhaitRenouveler, dateCreation, \textbf{\#idContrat})
-    
-    \item[JournalActivite] (\underline{idJournalActivite}, action, method, path, ipAddress, status, description, metadata, \textbf{\#idUtilisateur})
-\end{description}
+\noindent\textbf{Projet} (\underline{idProjet}, nomProjet, descriptionProjet, ProjetTag, statutP, dateDebutP, dateFinP, dateCreationP, dateMiseAJourP, \textbf{\#idProfilClient})
+
+\noindent\textbf{Contrat} (\underline{idContrat}, referenceContrat, dateDebutContratM, dateExpirationContratM, montantMensuel, montantSemestriel, tauxTVA, montantTVA, montantTTC, fichierContrat, statutContratM, estArchive, dateCreation, dateMiseAJour, dateArchivage, \textbf{\#idProjet}, \textbf{\#idProfilClient})
+
+\noindent\textbf{SLAGlobal} (\underline{idConfig}, description)
+
+\noindent\textbf{SLAContrat} (\underline{idConfig}, motifPersonnalisation, dateCreation, dateMiseAJour)
+
+\noindent\textbf{ConfigurationSLA} (\underline{idConfig})
+
+\noindent\textbf{ReglesDelaisSLA} (\underline{idRegles}, delaiReponseMin, delaiResolutionMin, typeSLA, dateCreation, dateMiseAJour, \textbf{\#idConfig})
+
+\noindent\textbf{ConfigurationSlack} (\underline{idConfigurationSlack}, webhookUrl, canal, notifierSurCreation, notifierSurResolution, estActif, \textbf{\#idContrat})
+
+\noindent\textbf{MembreProjet} (\underline{\#idProjet, \#idProfilEmploye}, rolesDansProjet, dateAffectation, dateDebut, dateFin, statut, motifRefus)
+
+\noindent\textbf{FeedbackExpirationContrat} (\underline{idFeedback}, note, commentaire, RaisonNonRenouvellement, souhaitRenouveler, dateCreation, \textbf{\#idContrat})
+
+\noindent\textbf{JournalActivite} (\underline{idJournalActivite}, action, method, path, ipAddress, status, description, metadata, \textbf{\#idUtilisateur})
 % ─────────────────────────────────────────────────────────────────────────────
 % RÉTROSPECTIVE DU SPRINT
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Rétrospective du Sprint}
+\label{sec:retro_sprint2}
 À la fin de ce deuxième sprint, nous avons organisé une réunion de rétrospective afin d'analyser le déroulement du travail. Le tableau \ref{tab:retrospective_sprint2} résume les points clés soulevés par l'équipe, en mettant en évidence les réussites, les difficultés rencontrées et les actions d'amélioration pour la suite du projet.
 
 \begingroup
 \renewcommand{\arraystretch}{1.15} % Garde un bel espace pour le reste du tableau
-\label{sec:retro_sprint2}
+
 \small
 \begin{longtable}{|>{\columncolor{pastelBlue}}p{4cm}|p{9.5cm}|}
 \hline
 \rowcolor{secondary}
-% On utilise \vrule pour contrôler précisément la hauteur (hauteur=0pt, profondeur=0pt)
-% Cela neutralise l'excès de hauteur du header
 \multicolumn{1}{|>{\centering\arraybackslash}p{4cm}|}{\textbf{\color{white}Question}} & 
 \multicolumn{1}{>{\centering\arraybackslash}p{9.5cm}|}{\textbf{\color{white}Réponse}} \tabularnewline
 \hline
 \endfirsthead
 \hline
+\endhead
+\hline
 \endlastfoot
 Qu'est-ce qu'on a bien fait ? & 
-Mise en place de la gestion centrale des clients et de leurs dépendances (projets et contrats). \newline
+Mise en place de la gestion des clients et de leurs dépendances (projets et contrats). \newline
 Mise en place du journal d'activités pour assurer la traçabilité des opérations. \newline
 Gestion de la création de contrat associée à l'upload direct du fichier PDF. \\
 \hline
 Qu'est-ce qui ne s'est pas bien passé ? & 
-L'enregistrement automatique de toutes les actions de l'application dans le journal d'activités a été difficile à centraliser. \newline
-Le blocage et la désactivation des comptes clients ont nécessité trop d'ajustements pour vérifier qu'aucun projet n'était en cours. \\
+L'enregistrement automatique de toutes les actions de l'application dans le journal d'activités a été difficile à centraliser. \\
 \hline
 Que devrions-nous arrêter de faire ? & 
-Développer les formulaires complexes (contrat, projet) sans maquette validée au préalable. \newline
-Laisser les tests de contrôle d'accès aux objets (vulnérabilité \textbf{IDOR} — \textit{Insecure Direct Object Reference}, qui consiste à accéder à une ressource d'un autre utilisateur en manipulant un identifiant) en fin de sprint. \\
+Implémenter la désactivation d'un client sans avoir anticipé les dépendances (contrats actifs, tickets en cours). \\   % ← ajouté
 \hline
-Que devrions-nous commencer à faire ? & 
-Modéliser les cycles de vie et les règles métier des contrats (diagrammes d'états) dès le début du sprint. \newline
-Mettre en place des tests pour valider l'ensemble des fonctionnalités livrées. \\
+Que devrions-nous commencer à faire ? &
+Analyser et documenter les règles de blocage avant de coder une fonctionnalité critique. \\   % ← ajouté
 \hline
 \end{longtable}
 \vspace{6pt}
@@ -511,8 +511,8 @@ Nous avons conçu une interface de consultation du profil client organisée en s
 \label{fig:interface_profil_client}
 \end{figure}
 
-\subsection{Interface d’historique et de traçabilité}
-Nous avons mis en place cette interface d'historique uniquement pour l'administrateur, dans le but de sécuriser l'application. Elle centralise toutes les actions des utilisateurs, ce qui permet d'auditer facilement chaque modification et de garder la maîtrise complète du système.
+\subsection{Interface d’historique et de journal d'activités}
+Nous avons mis en place l'interface de Journal d'activités, exclusivement accessible à l'Administrateur, afin de renforcer la sécurité et la traçabilité de l'application. Elle centralise et affiche toutes les actions des utilisateurs (créations, modifications, consultations), permettant ainsi d'auditer facilement chaque événement et de garantir une maîtrise complète du système.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/capture historique.png}
@@ -530,14 +530,6 @@ Nous avons mis en place cette interface pour regrouper tous les contrats de main
 \label{fig:interface_liste_contrats}
 \end{figure}
 
-\subsection{Interface de satisfaction client}
-Nous avons mis en place cette interface pour centraliser les interactions de fin de cycle avec le client. D'une part, elle lui permet d'évaluer la qualité du support en laissant une note et un commentaire. D'autre part, le client peut y exprimer son intention de renouveler son contrat avant son expiration. Pour le chef de projet et l'administrateur, ces données remontent directement dans l'historique et sur la fiche du contrat, leur permettant de mesurer la satisfaction globale et d'anticiper les renouvellements de manière proactive.
-\begin{figure}[H]
-\centering
-\includegraphics[width=13cm,height=13cm,keepaspectratio]{Images/Interface Feedback client.png}
-\caption{Interface de satisfaction client}
-\label{fig:interface_satisfaction_client}
-\end{figure}
 
 \section{Tests et validation}
 \label{sec:tests_sprint2}

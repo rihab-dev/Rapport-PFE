@@ -81,7 +81,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \hline
 \textbf{Précondition} & La demande est au statut « En attente » ou « Infos requises ». L'acteur dispose de la permission de validation. \\
 \hline
-\textbf{Postcondition} & La demande passe au statut « Convertie » \newline un ticket est créé automatiquement avec le statut « Ouvert ». \newline Toute requalification effectuée est historisée et les parties prenantes sont notifiées. \newline L'assignation du ticket sera effectuée ultérieurement. \\
+\textbf{Postcondition} &La demande devient un ticket « Ouvert », l'historique des modifications est enregistré, les personnes concernées sont prévenues et l'attribution se fera plus tard. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=2pt,itemsep=1pt,series=scen_valider]    \item Le chef de projet sélectionne une demande en attente depuis la liste ou son détail.
@@ -97,8 +97,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
  &
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=2pt,itemsep=1pt,resume=scen_valider]
     \item Le système crée automatiquement un ticket lié à la demande avec le statut « Ouvert ».
-    \item Le système transfère les pièces jointes de la demande vers les documents du ticket.
-          \item Le système notifie le client et les utilisateurs concernés.    
+    \item Le système notifie le client et les utilisateurs concernés.    
 
 \end{enumerate}\\
 \hline
@@ -111,65 +110,12 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \hline
 \textbf{Scénario d'exception} &
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-    \item Le système détecte des droits insuffisants : l'opération est rejetée et le cas d'utilisation est interrompu.
     \item La demande est déjà au statut « Convertie » ou « Rejetée » : le système lève une exception bloquante, aucune modification n'est possible.
     \item Aucun contrat actif ne couvre le projet de la demande : le système refuse la validation, le validateur ne peut pas créer un contrat sur place.
 \end{enumerate} \\
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle du cas d’utilisation « Valider demande »}
-\normalsize
-
-\subsection[Description textuelle du cas d’utilisation \\ « Demander informations complémentaires »]{Description textuelle du cas d’utilisation « Demander informations complémentaires »}
-Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Demander informations complémentaires ».
-
-\footnotesize
-\renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-\textbf{Nom du cas d'utilisation} & Demander informations complémentaires \\
-\hline
-\textbf{Acteurs} & Chef de projet, Administrateur \\
-\hline
-\textbf{Précondition} & L'acteur est authentifié et dispose des droits pour solliciter des compléments ; la demande est accessible. \\
-\hline
-\textbf{Postcondition} & La demande est convertie en ticket « Ouvert », les parties prenantes sont notifiées, et l'assignation se fera plus tard. \\
-\hline
-\textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'acteur identifie un besoin d'informations supplémentaires pour analyser la demande.
-\item L'acteur saisit le motif et les éléments attendus puis envoie la demande d'informations.
-\item Le système enregistre la requête dans l'historique et modifie le statut de la demande pour indiquer qu'elle attend des informations.
-\item Le système notifie le propriétaire de la demande et les parties prenantes.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario alternatif} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'acteur enrichit le motif avec des exemples ou des documents attendus. Le système intègre l'ensemble du motif dans le commentaire créé dans l'historique de la demande. Le scénario reprend à l'étape 3.
-\item La demande est déjà dans l'état INFOS REQUISES. Le système autorise néanmoins la soumission et crée un nouveau commentaire dans l'historique. Le scénario reprend à l'étape 3.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario d'exception} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le système détecte que les droits de l'acteur ont été révoqués depuis sa connexion. La soumission est rejetée avec un message d'erreur d'autorisation ; l'acteur ne peut pas poursuivre sans reconnexion.
-\item Une défaillance technique empêche l'enregistrement de la requête. Le système affiche un message d'échec, journalise l'incident et interrompt le cas d'utilisation sans modifier le statut de la demande.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Demander informations complémentaires »}
 \normalsize
 
 \subsubsection{Description textuelle du cas d’utilisation « Soumettre demande »}
@@ -258,20 +204,15 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le client localise sa demande en statut « Infos requises » dans la liste et clique sur le bouton de complétion.
+\item Le client localise sa demande en statut « Infos requises » dans la liste.
+\item Il clique sur le bouton de complétion.
 \item Le système présente un formulaire permettant de saisir une description complémentaire.
-\item Le client saisit les informations demandées et confirme l'envoi.
+\item Le client saisit les informations demandées.
+\item Il confirme l'envoi.
 \item Le système vérifie que la demande est toujours au statut « Infos requises » et que le client en est le propriétaire.
-\item Le système enregistre la description complémentaire, crée une entrée de commentaire et repasse la demande au statut « En attente ».
+\item Le système sauvegarde les détails, ajoute un commentaire et remet la demande « En attente ».
 \item Le système notifie le chef de projet et les administrateurs.
 \item Le client reçoit une confirmation de la prise en compte de son envoi.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario alternatif} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item \textbf{Envois successifs :} si la demande repasse au statut « Infos requises » suite à une nouvelle demande du responsable, le client peut soumettre un nouveau complément : chaque envoi est historisé et notifie les acteurs concernés.
 \end{enumerate}
 \end{minipage} \\
 \hline
@@ -279,7 +220,6 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item Le statut de la demande a changé depuis l'ouverture du formulaire et n'est plus « Infos requises » : le système lève une exception bloquante et refuse l'opération.
-\item Une erreur technique survient lors de la persistance des données : le système informe le client d'un problème technique et l'opération est interrompue.
 \end{enumerate}
 \end{minipage} \\
 \hline
@@ -330,7 +270,8 @@ et au client.
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
-\item Le développeur renseigne la solution technique et actionne la soumission « En revue ».
+\item Le développeur valide ou modifie la solution pré-remplie.
+\item Le développeur lance la soumission « En revue ».
 \item Le système valide les conditions d'exécution (assignation du développeur, présence d'un temps de travail effectif).
 \item Le système clôture automatiquement toutes les sessions de travail encore ouvertes sur le ticket.
 \item Le système calcule la durée effective de chaque session en déduisant les temps de pause.
@@ -343,7 +284,7 @@ et au client.
 \textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le système détecte que la solution obligatoire est invalide ($<$ 5 caractères). Un avertissement bloque la soumission. Le développeur corrige sa saisie et le scénario reprend à l'étape 1.
+\item Le système détecte que la solution obligatoire est invalide ($<$ 5 caractères). Un avertissement bloque la soumission. Le développeur corrige sa saisie et le scénario reprend à \textbf{l'étape 1}.
 \end{enumerate}
 \end{minipage} \\
 \hline
@@ -380,7 +321,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \hline
 \textbf{Précondition} & Le ticket est dans l’état « En cours » ou « Ouvert ». Le développeur est authentifié et assigné. Une session de travail est active ou a été démarrée. Aucun autre blocage non résolu n’est en cours sur l’assignation.  \\
 \hline
-\textbf{Postcondition} & Un blocage est enregistré sur l’assignation. Une analyse automatique par IA est déclenchée. Un brouillon d’article pour la base de connaissances est créé. Le chef de projet, l’équipe et les administrateurs sont notifiés. \\
+\textbf{Postcondition} & Un blocage est enregistré sur l’assignation. Une analyse automatique par IA est déclenchée. Un brouillon d’article pour la base de connaissances est créé. L’équipe et les administrateurs sont notifiés. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -403,17 +344,11 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=E\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt,series=scen_auth]
 \item L’acteur n’est pas le développeur assigné à l’assignation : le système lève une exception « Forbidden » et rejette le signalement.
-\item (Sans exemption) Le temps de travail effectif ou la progression sont insuffisants ($<$ 30 min): la demande est rejetée.
+\item  Le temps de travail effectif ou la progression sont insuffisants ($<$ 30 min): la demande est rejetée.
 \end{enumerate}
 \vspace{0.1cm}
 \end{minipage} \\
- &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=E\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt,resume=scen_auth]
-\item Un blocage non résolu existe déjà sur cette assignation : le nouveau signalement est interdit et le processus s’interrompt.
-\end{enumerate}
-\vspace{0.1cm}
-\end{minipage} \\
+
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle du cas d’utilisation « Signaler blocage »}
@@ -445,10 +380,13 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
-\item Un membre autorisé consulte l’assignation bloquée et clique sur « Proposer une solution ».
+\item Un membre autorisé consulte l’assignation bloquée.
+\item Il clique sur « Proposer ».
 \item Le système vérifie que l’acteur n’est pas le développeur bloqué et qu’il a les droits nécessaires.
-\item L’acteur rédige la solution et valide l’envoi.
-\item Le système enregistre la proposition, historise l’événement et notifie le développeur bloqué.
+\item L’acteur rédige la solution.
+\item Il valide l’envoi.
+\item Le système enregistre la proposition, historise l’événement.
+\item Le système notifie le développeur bloqué.
 \end{enumerate}
 \end{minipage} \\
 \hline
@@ -546,14 +484,13 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \hline
 \textbf{Précondition} & Le ticket est dans l'état « Résolu ». Le client est authentifié et est le propriétaire du ticket. \\
 \hline
-\textbf{Postcondition} & Le ticket reste au statut « Résolu ». Sa date de résolution est réinitialisée, suspendant la clôture automatique. Un commentaire d'alerte et une entrée \texttt{RESOLUTION\_REJECTED} sont inscrits dans l'historique du ticket. \\
+\textbf{Postcondition} & Le ticket reste au statut « Résolu ». Sa date de résolution est réinitialisée, suspendant la clôture automatique. Un commentaire d'alerte inscrit dans l'historique du ticket. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
-\item Le client accède à son ticket résolu et actionne la fonctionnalité « Signaler un problème non résolu ».
+\item Le client accède clique sur « Signaler un problème ».
 \item Il rédige la description de la persistance de l'anomalie dans le formulaire et valide la soumission.
-\item Le système vérifie l'intégrité de la requête (statut valide du ticket, appartenance au client authentifié).
 \item Le système enregistre l'action, génère un commentaire interne automatique et purge la date de résolution pour suspendre la clôture automatique.
 \item Le système notifie le chef de projet par email et alerte in-app, et notifie l'équipe de développeurs assignée.
 \end{enumerate}
@@ -562,14 +499,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le système détecte que la description est vide ou inférieure à 10 caractères. La soumission est bloquée côté interface, un message d'erreur s'affiche sur le formulaire, et le client corrige sa saisie. Le scénario reprend à l'étape 2.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario d'exception} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le système constate que le ticket n'est plus au statut « Résolu » (ex : il a été fermé définitivement en parallèle). Le signalement est rejeté par le serveur avant toute écriture et le processus s'interrompt avec une erreur retournée au client.
+\item Le système détecte que la description est vide ou inférieure à 10 caractères. La soumission est bloquée côté interface, un message d'erreur s'affiche sur le formulaire, et le client corrige sa saisie. Le scénario reprend à \textbf{l'étape 2}.
 \end{enumerate}
 \end{minipage} \\
 \hline
@@ -603,10 +533,9 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep, leftmargin=0.6cm, topsep=0pt, itemsep=1pt]
-\item Le client accède à la page de détail du ticket résolu et actionne le bouton « Demander une extension ».
+\item Le client clique sur « Demander une extension ».
 \item Le système affiche un formulaire de saisie du motif de la demande.
 \item Le client saisit son motif et valide la soumission.
-\item Le système vérifie l'intégrité de la requête (statut du ticket, propriété du client, unicité de la demande, longueur minimale du motif).
 \item Le système enregistre la demande, accorde automatiquement l'extension de 7 jours, insère un commentaire et crée une trace dans l'historique.
 \item Le système notifie les développeurs assignés de l'extension accordée.
 \end{enumerate}
@@ -615,14 +544,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le système détecte que le motif saisi est vide ou inférieur au minimum requis (10 caractères). La soumission est bloquée, un message d'erreur s'affiche, et le client corrige sa saisie. Le scénario reprend à l'étape 3.
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario d'exception} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le système constate que le ticket n'est plus au statut « Résolu ». La demande est rejetée par le serveur avant toute écriture et le processus s'interrompt avec une erreur retournée au client.
+\item Le système détecte que le motif saisi est vide ou inférieur au minimum requis (10 caractères). La soumission est bloquée, un message d'erreur s'affiche, et le client corrige sa saisie. Le scénario reprend à \textbf{l'étape 3}.
 \end{enumerate}
 \end{minipage} \\
 \hline
@@ -645,14 +567,14 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 \end{figure}
 
 
-\subsubsection{Description textuelle du cas d’utilisation « Assigner un ticket »}
-Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Assigner un ticket ».
+\subsubsection{Description textuelle du cas d’utilisation « Assigner ticket »}
+Le tableau ci-dessous présente la description textuelle du cas d’utilisation « Assigner ticket ».
 
 \footnotesize
 \renewcommand{\arraystretch}{1.1}
 \begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
 \hline
-\textbf{Nom du cas d'utilisation} & Assigner un ticket \\
+\textbf{Nom du cas d'utilisation} & Assigner ticket \\
 \hline
 \textbf{Acteurs} & Chef de projet, Administrateur \\
 \hline
@@ -675,20 +597,12 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \textbf{Scénarios alternatifs} & 
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=2pt,itemsep=3pt]
-  \item \textbf{Dérogation pour urgence ou dépassement SLA (Étape 5) :} Si le ticket présente un SLA dépassé ou une criticité majeure (ex. attente supérieure à 2h), le système autorise exceptionnellement le dépassement du quota de charge et poursuit à l'étape 6.
-  \item \textbf{Blocage pour surcharge nominale (Étape 5) :} Si la limite de tickets actifs du développeur est atteinte hors contexte d'urgence, le système interrompt l'affectation et invite l'utilisateur à sélectionner un autre agent (retour à l'étape 4).
-\end{enumerate}
-\end{minipage} \\
-\hline
-\textbf{Scénario d'exception} & 
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=2pt,itemsep=2pt]
-  \item Assignation concurrente ou doublon (Étape 6) : Si le système détecte qu'un autre gestionnaire a assigné ce même profil simultanément, l'opération est annulée, un message d'erreur s'affiche et le flux est abandonné.
+  \item Si la limite de tickets est atteinte hors urgence à \textbf{l'étape 5}, l'affectation est bloquée pour retourner à \textbf{l'étape 4}.
 \end{enumerate}
 \end{minipage} \\
 \hline
 \end{longtable}
-\captionof{table}{Description textuelle du cas d’utilisation « Assigner un ticket »}
+\captionof{table}{Description textuelle du cas d’utilisation « Assigner ticket »}
 \normalsize
 
 
@@ -745,51 +659,33 @@ Dans le cadre de ce sprint, l'intégration de l'intelligence artificielle
 a constitué un axe transversal visant à automatiser et à assister plusieurs
 étapes critiques du cycle de traitement des demandes : qualification
 initiale, priorisation, analyse des blocages et capitalisation des
-connaissances. Cette intégration a été pensée comme un composant à part entière de la plateforme, 
-permettant ainsi de fluidifier le travail des équipes tout en garantissant des réponses plus rapides et fiables.
+connaissances. Cette intégration a été conçue comme un composant à part
+entière de la plateforme, permettant de fluidifier le travail des équipes
+tout en garantissant des réponses plus rapides et fiables. L'objectif
+n'est pas de substituer la décision humaine, mais d'en améliorer la
+qualité et la rapidité en fournissant des suggestions contextualisées,
+accompagnées d'un niveau de confiance et d'un raisonnement explicatif.
 
-\subsubsection{Fonctionnalités développées}
-
-Le composant IA expose des services asynchrones déclenchés automatiquement
-aux moments clés du cycle de vie des demandes et des tickets, sans bloquer
-les flux principaux. Les fonctionnalités intégrées au cours de ce sprint
-sont les suivantes :
-
-\begin{itemize}[nosep,leftmargin=1.6cm,topsep=0pt,itemsep=2pt,label=$\bullet$]
-    \item \textbf{Classification automatique des demandes :} à la soumission
-    d'une demande client, le service IA analyse le titre et la description
-    pour inférer le type, la priorité et la catégorie. Le résultat inclut un
-    score de confiance et un raisonnement explicatif, soumis à validation du
-    chef de projet avant application.
-    \item \textbf{Analyse des blocages :} à la déclaration d'un blocage, une
-    analyse est déclenchée en arrière-plan pour identifier la nature probable
-    de l'obstacle et proposer des actions correctives adaptées au contexte
-    du ticket.
-    \item \textbf{Génération d'un brouillon de solution :} le module génère
-    un premier jet de résolution structuré, que le développeur peut consulter,
-    modifier et soumettre depuis l'interface de détail du ticket.
-    \item \textbf{Structuration en articles de base de connaissances :} lors
-    de la résolution d'un blocage, la solution validée et l'analyse IA sont
-    fusionnées pour produire un article structuré, soumis à validation avant
-    publication dans la base de connaissances partagée.
-\end{itemize}
 
 \subsubsection{Les grands modèles de langage (LLM)}
 
-Un grand modèle de langage (\textit{Large Language Models}, LLM) repose sur l'architecture \textit{Transformer} et apprend à partir de très
-grandes quantités de texte. Grâce à cet apprentissage, il interprète une consigne rédigée en
-langage naturel et renvoie une réponse structurée, sans avoir besoin d'être entraîné spécifiquement
-sur le domaine de l'entreprise.
-Dans notre contexte, ils couvrent trois besoins : la qualification
-automatique des demandes, l'analyse des blocages techniques et la
-structuration des solutions en articles de base de connaissances.
-Afin de retenir le modèle le plus adapté, nous avons comparé les principaux
-LLM disponibles selon les critères pertinents pour notre cas d'usage :
-qualité de traitement du français technique, support natif du format JSON (\textit{JavaScript Object Notation}),
-latence et coût d'accès via API (\textit{Application Programming Interface}), comme le présente le
-tableau~\ref{tab:comparaison_llm}.
+Un grand modèle de langage (\textit{Large Language Model}, LLM) repose
+sur l'architecture \textit{Transformer} et apprend à partir de très
+larges corpus textuels multilingues. Grâce à cet apprentissage, il
+interprète une consigne rédigée en langage naturel et renvoie une réponse
+structurée, sans avoir besoin d'être entraîné spécifiquement sur le
+domaine de l'entreprise.
 
-\noindent \textbf{Note — Architecture \textit{Transformer} :} Le \textit{Transformer} est un modèle de réseau de neurones qui lit un texte en analysant simultanément tous ses mots, plutôt que mot par mot. Il détermine quels mots sont liés entre eux grâce à un mécanisme appelé \textit{attention}. C'est cette capacité à saisir le sens global d'une phrase qui permet aux LLM de comprendre des demandes rédigées en langage naturel et d'y répondre de façon structurée.
+
+\noindent Dans notre contexte, les LLM couvrent trois besoins principaux :
+la qualification automatique des demandes, l'analyse des blocages
+techniques et la structuration des solutions en articles de base de
+connaissances. Afin de retenir le modèle le plus adapté, nous avons
+comparé les principaux LLM disponibles selon les critères pertinents
+pour notre cas d'usage : qualité de traitement du français technique,
+support natif du format JSON, latence et coût d'accès via API, comme
+le présente le tableau~\ref{tab:comparaison_llm}.
+
 \begin{table}[H]
 \centering
 \renewcommand{\arraystretch}{1.2}
@@ -807,66 +703,142 @@ Gemini 1.5 Pro    & Google      & Très bonne & Oui & Variable    & Modéré \\
 \hline
 Mistral Large     & Mistral AI  & Très bonne & Oui & Faible      & Modéré \\
 \hline
-LLaMA 3.3 (70B)   & Meta / Groq & Bonne      & Oui & Très faible & Faible \\
+LLaMA 3.3 (70B)   & Meta / Groq & Bonne      & Oui & Très faible & Gratuit\\
 \hline
 \end{tabular}
 \caption{Comparaison des principaux LLM selon les critères du projet}
 \label{tab:comparaison_llm}
 \end{table}
 
+\subsubsection{Justification du recours aux LLM face aux approches classiques}
+
+Le recours à un LLM plutôt qu'à une approche de classification supervisée
+classique résulte d'une analyse comparative des contraintes métier et
+techniques propres au projet SolidMaint.
+
+\paragraph{Limites des approches classiques :}
+
+Les classifieurs supervisés traditionnels --- modèles TF-IDF
+(\textit{Term Frequency – Inverse Document Frequency}) couplés à un
+SVM (\textit{Support Vector Machine}), ou réseaux de neurones
+convolutifs (\textit{CNN}) entraînés sur corpus fixe --- imposent
+trois prérequis incompatibles avec le contexte de la plateforme :
+
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=2pt,itemsep=3pt,label=$\bullet$]
+    \item \textbf{Un corpus annoté volumineux :} les demandes clients,
+    hétérogènes par nature (incidents, évolutions, blocages
+    administratifs), ne constituent pas, en phase de démarrage, un
+    jeu d'entraînement suffisant pour garantir une généralisation robuste.
+    \item \textbf{Une distribution stable des classes :} tout nouveau type
+    de demande non représenté à l'entraînement dégrade les performances
+    sans possibilité de réentraînement continu en production.
+    \item \textbf{Une langue unique :} la plateforme exige la prise en
+    charge simultanée du français, de l'arabe et de l'anglais, ce qu'un
+    modèle monolingue entraîné localement ne peut garantir sans
+    multiplication des pipelines de traitement.
+\end{itemize}
+
+\paragraph{Avantages déterminants des LLM :}
+
+Un LLM pré-entraîné sur de larges corpus multilingues apporte une
+compréhension sémantique profonde dès le premier appel, sans phase
+d'apprentissage spécifique au domaine. Ses atouts dans notre contexte
+sont les suivants :
+
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=2pt,itemsep=3pt,label=$\bullet$]
+    \item \textbf{Généralisation immédiate :} capacité à inférer type,
+    priorité et catégorie depuis une description libre, même imprécise
+    ou multilingue, sans données d'entraînement propres au domaine.
+    \item \textbf{Sortie structurée native :} génération directe de JSON
+    valide via le paramètre \texttt{response\_format}, compatible avec
+    le schéma de la base de données sans post-traitement fragile.
+    \item \textbf{Raisonnement explicatif :} production d'une
+    justification textuelle accompagnant chaque prédiction, renforçant
+    la confiance du chef de projet lors de la validation et assurant la
+    traçabilité des décisions.
+    \item \textbf{Évolutivité sans réentraînement :} l'ajout d'un
+    nouveau type de demande se traduit par une modification du prompt
+    système, sans cycle d'annotation ni de réentraînement.
+\end{itemize}
+
+\paragraph{Contreparties assumées et mesures d'atténuation :}
+
+Ce choix implique une dépendance à une API externe et une latence
+supérieure à celle d'un modèle embarqué. Ces risques sont atténués par :
+le cache MD5 (\textit{TTL} 1h) qui évite les appels redondants sur des
+demandes identiques, la politique de réessais avec backoff exponentiel
+qui absorbe les indisponibilités transitoires, et la nature open-source
+de LLaMA~3.3 qui offre une voie de migration vers un hébergement local
+à terme, garantissant l'indépendance vis-à-vis de tout fournisseur
+externe.
+
 \subsubsection{Choix du modèle}
 
 À l'issue de cette analyse comparative et au regard des fonctionnalités
 à couvrir, le modèle retenu est \textbf{LLaMA~3.3 (70B)} (\textit{Large
-Language Model Meta AI}), exploité via l'\textbf{API Groq Cloud}. Ce choix
-se justifie par plusieurs facteurs complémentaires : une latence très faible
-grâce aux processeurs LPU (\textit{Language Processing Unit}) de Groq
-(environ 700 tokens par seconde), le support natif du format JSON permettant
-une intégration directe avec la base de données, une qualité suffisante en
-français technique pour les cas d'usage ciblés, et un accès gratuit lors de
-la phase de développement. Cette technologie permet d'interpréter la demande
-sans phase d'apprentissage préalable et reste simple à faire évoluer.
-Par ailleurs, LLaMA étant un modèle open-source, il offre la possibilité
-d'un hébergement local à terme, garantissant une indépendance vis-à-vis
+Language Model Meta AI}), exploité via l'\textbf{API Groq Cloud}. Ce
+choix se justifie par plusieurs facteurs complémentaires : une latence
+très faible grâce aux processeurs LPU (\textit{Language Processing Unit})
+de Groq (environ 700 tokens par seconde), le support natif du format JSON
+permettant une intégration directe avec la base de données, une qualité
+suffisante en français technique pour les cas d'usage ciblés, et un
+accès gratuit lors de la phase de développement. Par ailleurs,
+LLaMA étant un modèle open-source, il offre la possibilité d'un
+hébergement local à terme, garantissant une indépendance vis-à-vis
 d'un fournisseur externe.
 
 \subsubsection{Robustesse opérationnelle et gouvernance}
 
 Afin d'assurer la fiabilité du composant IA en conditions réelles,
-plusieurs mécanismes complémentaires ont été mis en place.
+plusieurs mécanismes complémentaires ont été mis en place. La
+figure~\ref{fig:robustesse_ia} illustre l'architecture complète du
+pipeline de traitement d'une demande par le module IA, depuis la
+réception du texte brut jusqu'à la restitution du résultat classifié,
+en faisant apparaître chacun de ces mécanismes.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth,keepaspectratio]{Images/shema.png}
+    \caption{Pipeline de robustesse du module IA --- du texte brut à la
+    classification structurée}
+    \label{fig:robustesse_ia}
+\end{figure}
+
+Le pipeline s'articule en sept étapes successives et complémentaires,
+décrites ci-après.
 
 \paragraph{Protection des données personnelles :}
 Avant toute transmission d'un texte à l'API Groq Cloud, un filtre
 détecte et masque automatiquement les informations personnelles
-identifiables : un numéro de téléphone, une adresse électronique ou
-un nom complet présents dans la description d'une demande sont
-remplacés par des marqueurs neutres avant envoi, garantissant qu'aucune
-donnée sensible ne quitte le périmètre de la plateforme.
+identifiables (PII) : numéros de téléphone, adresses électroniques et
+noms complets présents dans la description d'une demande sont remplacés
+par des marqueurs neutres avant envoi, garantissant qu'aucune donnée
+sensible ne quitte le périmètre de la plateforme.
 
 \paragraph{Cache par empreinte de contenu :}
-Pour éviter des appels redondants à l'API externe, chaque texte soumis à la classification est condensé en une empreinte
-de longueur fixe calculée par hachage de son contenu normalisé, ce qui
-permet de détecter toute soumission identique sans comparer les textes
-bruts. Si une demande au libellé identique a déjà
-été classifiée, le résultat est restitué directement depuis le cache
-sans solliciter le modèle, avec une durée de validité (\textit{TTL(Time To Live)}) d'une heure, réinitialisée
-à chaque nouvelle soumission du même contenu.
+Pour éviter des appels redondants à l'API externe, chaque texte soumis
+à la classification est condensé en une empreinte de longueur fixe
+calculée par hachage MD5 de son contenu normalisé. Si une demande au
+libellé identique a déjà été classifiée, le résultat est restitué
+directement depuis le cache sans solliciter le modèle, avec une durée
+de validité (\textit{TTL}) d'une heure, réinitialisée à chaque nouvelle
+soumission du même contenu.
 
 \paragraph{Réessais et mécanisme de repli :}
-En cas d'erreur transitoire lors de l'appel au modèle, le service effectue jusqu'à deux nouvelles tentatives, chaque délai
-d'attente étant doublé par rapport au précédent (\textit{backoff}
-exponentiel), afin d'absorber les indisponibilités transitoires sans
-saturer l'API externe. Si, après épuisement des tentatives, le score de
-confiance retourné reste inférieur au seuil minimal accepté, la
-demande est automatiquement marquée pour révision manuelle par le
-chef de projet, sans interrompre le flux de traitement.
+En cas d'erreur transitoire lors de l'appel au modèle, le service
+effectue jusqu'à deux nouvelles tentatives avec backoff exponentiel,
+afin d'absorber les indisponibilités sans saturer l'API externe. Si,
+après épuisement des tentatives, le score de confiance retourné reste
+inférieur au seuil minimal accepté, la demande est automatiquement
+marquée pour révision manuelle par le chef de projet, sans interrompre
+le flux de traitement.
 
 \paragraph{Limitation des appels par utilisateur :}
 Un système de quotas journaliers est appliqué par utilisateur et de
-manière globale. Lorsque le seuil d'alerte est atteint (80\% du quota),
-le système émet un avertissement interne. Au-delà du quota journalier,
-les appels supplémentaires sont rejetés avec un message explicite,
-les compteurs étant réinitialisés automatiquement à minuit.
+manière globale. Lorsque le seuil d'alerte est atteint (80\,\% du
+quota), le système émet un avertissement interne. Au-delà du quota
+journalier, les appels supplémentaires sont rejetés avec un message
+explicite, les compteurs étant réinitialisés automatiquement à minuit.
 
 \paragraph{Traçabilité des décisions :}
 Chaque décision IA est enregistrée avec l'ensemble de ses métadonnées :
@@ -878,19 +850,39 @@ agrégées pour le suivi de la qualité du service.
 
 \subsubsection{Développement du module IA}
 
-Le module IA a été développé en \textbf{NestJS} (TypeScript) et intégré au backend principal sous la forme d'un module dédié, regroupant plusieurs services à responsabilité unique. Cette organisation suit le principe de séparation des responsabilités et tire parti du système d'injection de dépendances natif du framework.
+Le module IA a été développé en \textbf{NestJS} (TypeScript) et intégré
+au backend principal sous la forme d'un module dédié, regroupant plusieurs
+services à responsabilité unique. Cette organisation suit le principe de
+séparation des responsabilités (\textit{Single Responsibility Principle})
+et tire parti du système d'injection de dépendances natif du framework.
 
 \paragraph{Architecture du module :}
-
-Le module regroupe plusieurs services distincts, chacun couvrant une responsabilité précise : l'accès à l'API Groq Cloud et le parsing des réponses, la gestion du cache en mémoire par empreinte de contenu, la fusion des analyses IA avec les solutions humaines pour produire les articles de base de connaissances, la suggestion d'articles pertinents par scoring heuristique sans recours au modèle, et enfin la traçabilité des décisions par persistance des métadonnées en base de données.
+Le module regroupe plusieurs services distincts, chacun couvrant une
+responsabilité précise : l'accès à l'API Groq Cloud et le parsing des
+réponses, la gestion du cache en mémoire par empreinte de contenu, la
+fusion des analyses IA avec les solutions humaines pour produire les
+articles de base de connaissances, la suggestion d'articles pertinents
+par scoring heuristique, et la traçabilité des décisions par persistance
+des métadonnées en base de données.
 
 \paragraph{Construction des prompts :}
-
-Chaque fonctionnalité repose sur un prompt système dédié, transmis au modèle via le paramètre \texttt{system} de l'API. Les instructions décomposent la tâche en étapes ordonnées et imposent un format de sortie strict, JSON pour la classification et un format structuré pour les articles de base de connaissances pour les articles de base de connaissances, sans préambule, afin de permettre une exploitation directe des réponses. La température est fixée à 0,3 pour l'ensemble des appels, de façon à favoriser des réponses factuelles et reproductibles.
+Chaque fonctionnalité repose sur un prompt système dédié, transmis au
+modèle via le paramètre \texttt{system} de l'API. Les instructions
+décomposent la tâche en étapes ordonnées et imposent un format de sortie
+strict en JSON, sans préambule, afin de permettre une exploitation directe
+des réponses. La température est fixée à 0,3 pour l'ensemble des appels,
+de façon à favoriser des réponses factuelles et reproductibles.
 
 \paragraph{Flux d'appel et intégration :}
-
-Tout appel au modèle suit une séquence en quatre étapes. Le texte soumis est d'abord normalisé et condensé en une empreinte de longueur fixe par hachage de son contenu ; si une entrée valide existe en cache, le résultat est retourné sans appel réseau. Dans le cas contraire, la requête est transmise à l'API Groq avec le paramètre \texttt{response\_format: \{ type: "json\_object" \}} activé pour les sorties structurées. La réponse est ensuite parsée et validée : un score de confiance inférieur au seuil défini entraîne un marquage automatique pour révision manuelle. Enfin, le résultat est mis en cache et une entrée d'audit est persistée. L'ensemble des services interagit avec la base de données en cohérence avec le reste de la plateforme.
+Tout appel au modèle suit une séquence en quatre étapes. Le texte est
+d'abord normalisé et condensé en une empreinte MD5 ; si une entrée valide
+existe en cache, le résultat est retourné sans appel réseau. Dans le cas
+contraire, la requête est transmise à l'API Groq avec le paramètre
+\texttt{response\_format: \{ type: "json\_object" \}} activé. La réponse
+est ensuite parsée et validée : un score de confiance inférieur au seuil
+défini entraîne un marquage automatique pour révision manuelle. Enfin,
+le résultat est mis en cache et une entrée d'audit est persistée en base
+de données.
 
 \subsection{Diagramme de classes du troisième sprint}
 Le diagramme de classes ci-dessous présente la structure statique des entités métier introduites lors de ce sprint, ainsi que les relations et dépendances qui les unissent.
@@ -905,23 +897,21 @@ Le diagramme de classes ci-dessous présente la structure statique des entités 
 \label{sec:schema_sprint3}
 Le schéma relationnel du troisième sprint s’appuie sur les relations suivantes :
 
-\begin{description}[font=\bfseries, leftmargin=4.6cm, style=sameline, noitemsep]
-    \item[DemandeClient] (\underline{idDemandeClient}, titreDemande, typeDemande, statutDemande, descriptionDemande, dateSoumission, dateCreation, dateMiseAJour, dateValidation, motifRejet, motifRequalification, echeanceInitiale, \textbf{\#idProjet})
-    
-    \item[DemandeClassificationIA] (\underline{idDemandeClassifIA}, categorieAuto, typeAuto, prioriteAuto, scoreConfiance, entitesExtraites, urgenceDetectee, estUtiliseeValidation, estCorrigeeParAgent, feedbackAgent, dateClassification, modeleUtilise, \textbf{\#idDemandeClient})
-    
-    \item[Ticket] (\underline{idTicket}, titreTicket, statutTicket, categorieTicket, descriptionTicket, dateCreationTicket, dateMiseAJourTicket, dateResolutionTicket, delaiReponse, delaiResolution, dateEcheanceResponse, dateEcheanceResolution, slaReponseExpire, slaResolutionExpire, extensionDemandee, extensionMotif, extensionDemandeeAt, extensionAccordee, alerteSLAEnvoyee, scoreUrgenceIA, nombreTicketsBloquesParCelui, nombreUtilisateursAffectes, \textbf{\#idDemandeClient}, \textbf{\#idContrat}, \textbf{\#idProjet})
-    
-    \item[SolutionTicket] (\underline{idSolutionTicket}, solutionSuggeree, scoreConfiance, estAcceptee, feedbackUtilisateur, tempsResolution, dateCreation, \textbf{\#idTicket})
-    
-    \item[ArticleConnaissance] (\underline{idArticleKB}, titre, contenu, categorie, statutKB, tag, nombreUtilisations, tauxReussite, \textbf{\#idSolutionTicket})
-    
-    \item[TicketClassification] (\underline{idTicketClassif}, categorieAuto, prioriteAuto, typeAuto, scoreConfiance, urgenceDetectee, entitesExtraites, estValidee, dateClassification, \textbf{\#idTicket})
-    
-    \item[AssignmentTicket] (\underline{\#idTicket, \#idProfilEmploye}, dateDebutReelle, dateFinReelle, commentaireAssignment, progression, estBloque, raisonBlocage, feedbackDeveloppeur, technologiesUtilisees, enTravail, dureeTotaleSecondes, dateCreation, solutionProposee, solutionProposeeAt)
-    
-    \item[SessionTravail] (\underline{idSessionTravail}, debut, fin, dureeSecondes, note, isManual, \textbf{\#idTicket}, \textbf{\#idProfilEmploye}, \textbf{\#idArticleKB})
-\end{description}
+\noindent\textbf{DemandeClient} (\underline{idDemandeClient}, titreDemande, typeDemande, statutDemande, descriptionDemande, dateSoumission, dateCreation, dateMiseAJour, dateValidation, motifRejet, motifRequalification, echeanceInitiale, \textbf{\#idProjet})
+
+\noindent\textbf{DemandeClassificationIA} (\underline{idDemandeClassifIA}, categorieAuto, typeAuto, prioriteAuto, scoreConfiance, entitesExtraites, urgenceDetectee, estUtiliseeValidation, estCorrigeeParAgent, feedbackAgent, dateClassification, modeleUtilise, \textbf{\#idDemandeClient})
+
+\noindent\textbf{Ticket} (\underline{idTicket}, titreTicket, statutTicket, categorieTicket, descriptionTicket, dateCreationTicket, dateMiseAJourTicket, dateResolutionTicket, delaiReponse, delaiResolution, dateEcheanceResponse, dateEcheanceResolution, slaReponseExpire, slaResolutionExpire, extensionDemandee, extensionMotif, extensionDemandeeAt, extensionAccordee, alerteSLAEnvoyee, scoreUrgenceIA, nombreTicketsBloquesParCelui, nombreUtilisateursAffectes, \textbf{\#idDemandeClient}, \textbf{\#idContrat}, \textbf{\#idProjet})
+
+\noindent\textbf{SolutionTicket} (\underline{idSolutionTicket}, solutionSuggeree, scoreConfiance, estAcceptee, feedbackUtilisateur, tempsResolution, dateCreation, \textbf{\#idTicket})
+
+\noindent\textbf{ArticleConnaissance} (\underline{idArticleKB}, titre, contenu, categorie, statutKB, tag, nombreUtilisations, tauxReussite, \textbf{\#idSolutionTicket})
+
+\noindent\textbf{TicketClassification} (\underline{idTicketClassif}, categorieAuto, prioriteAuto, typeAuto, scoreConfiance, urgenceDetectee, entitesExtraites, estValidee, dateClassification, \textbf{\#idTicket})
+
+\noindent\textbf{AssignmentTicket} (\underline{\#idTicket, \#idProfilEmploye}, dateDebutReelle, dateFinReelle, commentaireAssignment, progression, estBloque, raisonBlocage, feedbackDeveloppeur, technologiesUtilisees, enTravail, dureeTotaleSecondes, dateCreation, solutionProposee, solutionProposeeAt)
+
+\noindent\textbf{SessionTravail} (\underline{idSessionTravail}, debut, fin, dureeSecondes, note, isManual, \textbf{\#idTicket}, \textbf{\#idProfilEmploye}, \textbf{\#idArticleKB})
 % ─────────────────────────────────────────────────────────────────────────────
 % RÉTROSPECTIVE DU SPRINT
 % ─────────────────────────────────────────────────────────────────────────────
@@ -941,6 +931,8 @@ Le schéma relationnel du troisième sprint s’appuie sur les relations suivant
 \multicolumn{1}{>{\centering\arraybackslash}p{9.5cm}|}{\textbf{\color{white}Réponse}} \tabularnewline
 \hline
 \endfirsthead
+\hline          % ← ajouté ici
+\endhead
 \hline
 \endlastfoot
 Qu'est-ce qu'on a bien fait ? & 
@@ -953,12 +945,10 @@ La gestion des transitions de statut des tickets (ouvert, en cours, en revue, r�
 Le flux de conversion des demandes en tickets a nécessité plusieurs ajustements pour synchroniser les pièces jointes et les notifications. \\
 \hline
 Que devrions-nous arrêter de faire ? & 
-Intégrer de nouvelles fonctionnalités IA sans avoir stabilisé le flux métier principal au préalable. \newline
-Attendre la fin du sprint pour documenter les règles de changement de statut des tickets. \\
+Intégrer l'IA en parallèle d'un flux de tickets encore instable, ce qui a généré des corrections croisées et des retards.\\
 \hline
-Que devrions-nous commencer à faire ? & 
-Rendre obligatoires les choix de catégories et de priorités dans le formulaire pour forcer une meilleure qualification de la demande par le client. \newline
-Intégrer des tests automatisés sur la limitation de débit (rate limiting) et la mise en cache des requêtes IA pour garantir la stabilité du système.\\
+Que devrions-nous commencer à faire ? &
+Verrouiller les règles de transition et les cas limites du cycle de vie des tickets avant d'ajouter l'assistance intelligente.\\
 \hline
 \end{longtable}
 \vspace{6pt}

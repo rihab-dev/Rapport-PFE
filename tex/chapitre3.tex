@@ -25,16 +25,9 @@ Le tableau \ref{tab:backlog_sprint1_corrige} ci-dessous présente le \textbf{Spr
 \textbf{1 : Effort faible, 2 : Effort moyen, 3 : Effort élevé}
 \input{tex/sprint_backlog_1}
 
-\noindent \textbf{Note — Estimation de l'effort par Story Points :} 
-L'effort de chaque \textit{user story} est estimé selon une échelle de 1 à 3 points. Chaque point correspond à une unité de complexité relative prenant en compte la complexité technique, la charge de travail et l'incertitude.
-
-\begin{itemize}[label=\textbullet]
-    \item \textbf{1 — Faible :} Tâche bien délimitée et maîtrisée.
-    \item \textbf{2 — Moyen :} Tâche de complexité modérée.
-    \item \textbf{3 — Élevé :} Tâche complexe ou incertaine.
-\end{itemize}
-
-\noindent Ces estimations ont permis d'adapter la charge de chaque sprint et d'assurer des livraisons régulières tout au long du projet.
+\noindent\textbf{Note :} L'effort est estimé sur une échelle de 1 à 3 points (complexité, charge et incertitude) :
+\newline \textbf{1 — Faible :} tâche bien délimitée. \quad \textbf{2 — Moyen :} complexité modérée. \quad \textbf{3 — Élevé :} tâche complexe ou incertaine.
+Ces estimations ont permis d'adapter la charge de chaque sprint et d'assurer des livraisons régulières.
 % ─────────────────────────────────────────────────────────────────────────────
 % SECTION 2 : ANALYSE
 % ─────────────────────────────────────────────────────────────────────────────
@@ -642,27 +635,25 @@ et dépendances qui les unissent.
 \label{sec:schema_sprint1}
 Le schéma relationnel du premier sprint s’appuie sur les relations suivantes :
 
-\begin{description}[font=\bfseries, leftmargin=4.2cm, style=sameline, noitemsep]
-    \item[Utilisateur] (\underline{idUtilisateur}, nom, prenom, email, emailsSecondaires, motDePasse, numTel, photoProfil, estActif, doitChangerMotDePasse, dateCreation, dateMiseAJour, derniereConnexion)
-    
-    \item[Role] (\underline{idRole}, nomRole, description, roleSysteme, estArchive, dateCreation)
-    
-    \item[Permission] (\underline{idPermission}, codePermission, description)
-    
-    \item[UtilisateurRole] (\underline{\#idUtilisateur, \#idRole}, dateAttribution, description)
-    
-    \item[RolePermission] (\underline{\#idRole, \#idPermission}, description)
-    
-    \item[ProfilEmploye] (\underline{\textbf{\#idUtilisateur}}, matricule, dateEmbauche, poste, specialisation, anneesExperience, disponibilite, competences)
-    
-    \item[Competence] (\underline{idCompetence}, nomCompetence)
-    
-    \item[EmployeCompetence] (\underline{\#idUtilisateur, \#idCompetence}, niveau)
-    
-    \item[ProfilClient] (\underline{\textbf{\#idUtilisateur}}, nomSociete, telSociete, adresseSociete, secteurActivite, logo)
-    
-    \item[DemandeInscription] (\underline{idDemandeInsc}, fournisseur, statusDemandeInsc, dateCreation, dateMiseAJour, motifRefus, \textbf{\#idUtilisateur})
-\end{description}
+\noindent\textbf{Utilisateur} (\underline{idUtilisateur}, nom, prenom, email, emailsSecondaires, motDePasse, numTel, photoProfil, estActif, doitChangerMotDePasse, dateCreation, dateMiseAJour, derniereConnexion)
+
+\noindent\textbf{Role} (\underline{idRole}, nomRole, description, roleSysteme, estArchive, dateCreation)
+
+\noindent\textbf{Permission} (\underline{idPermission}, codePermission, description)
+
+\noindent\textbf{UtilisateurRole} (\underline{\#idUtilisateur, \#idRole}, dateAttribution, description)
+
+\noindent\textbf{RolePermission} (\underline{\#idRole, \#idPermission}, description)
+
+\noindent\textbf{ProfilEmploye} (\underline{\textbf{\#idUtilisateur}}, matricule, dateEmbauche, poste, specialisation, anneesExperience, disponibilite, competences)
+
+\noindent\textbf{Competence} (\underline{idCompetence}, nomCompetence)
+
+\noindent\textbf{EmployeCompetence} (\underline{\#idUtilisateur, \#idCompetence}, niveau)
+
+\noindent\textbf{ProfilClient} (\underline{\textbf{\#idUtilisateur}}, nomSociete, telSociete, adresseSociete, secteurActivite, logo)
+
+\noindent\textbf{DemandeInscription} (\underline{idDemandeInsc}, fournisseur, statusDemandeInsc, dateCreation, dateMiseAJour, motifRefus, \textbf{\#idUtilisateur})
 % RÉTROSPECTIVE DU SPRINT
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Rétrospective du Sprint}
@@ -689,16 +680,13 @@ Implémentation réussie des règles de sécurité (blocage de compte après 3 �
 Gestion des rôles permettant de restreindre les accès. \\
 \hline
 Qu'est-ce qui ne s'est pas bien passé ? & 
-Quand on changeait les droits d'un utilisateur ou qu'on bloquait son compte, la modification ne s'appliquait pas immédiatement dans l'application. \newline
-La configuration du flux OAuth a été complexe pour bloquer l'accès aux utilisateurs en attente de validation admin\\
+La configuration du flux OAuth a été complexe pour bloquer l'accès aux utilisateurs en attente de validation admin.\\
 \hline
-Que devrions-nous arrêter de faire ? & 
-Reporter la validation des scénarios de sécurité à la toute fin du sprint. \newline
-Sous-estimer l'effort de coordination nécessaire pour tester les droits de chaque rôle. \\
+Que devrions-nous arrêter de faire ? &
+Valider les scénarios de sécurité uniquement en toute fin de sprint, alors qu'une validation en cours de développement aurait détecté les ajustements plus tôt. \\
 \hline
-Que devrions-nous commencer à faire ? & 
-Tester les processus d'inscription avec des utilisateurs dès les premières étapes. \newline
-Planifier des sessions régulières de vérification des droits et des rôles. \\
+Que devrions-nous commencer à faire ? &
+Prévoir une session de vérification des droits et des rôles en milieu de sprint plutôt qu'en fin, afin de réduire les derniers ajustements. \\
 \hline
 \end{longtable}
 \vspace{6pt}
@@ -754,7 +742,7 @@ recevoir un lien de réinitialisation valable 1 heure.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=10cm,height=10cm,keepaspectratio]{Images/page reinitialiser mot de passe.PNG}
+\includegraphics[width=10cm,height=7cm,keepaspectratio]{Images/page reinitialiser mot de passe.PNG}
 \caption{Interface de réinitialisation du mot de passe}
 \label{fig:interface_reset}
 \end{figure}
