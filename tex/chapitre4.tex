@@ -122,7 +122,7 @@ Le client est créé et initialisé dans le système, et un message de confirmat
 \hline
 \textbf{Scénario d'exception} &
 \begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Si le rôle "CLIENT" est introuvable en base de données l'opération échoue et le cas s'arrête
+\item Si le rôle « CLIENT » est introuvable en base de données l'opération échoue et le cas s'arrête.
 \end{enumerate} \\
 \hline
 \end{longtable}
@@ -146,12 +146,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \hline
 \textbf{Acteurs} & Administrateur \\
 \hline
-\textbf{Précondition} & L'utilisateur est authentifié.\newline
-L'utilisateur possède la permission de désactiver les clients.\newline
-Liste des clients affichée.\newline
-Le client à désactiver doit être actuellement actif. \\
-\hline
-\textbf{Postcondition} & Le compte client est désactivé. \\
+\textbf{Précondition} & L'utilisateur est authentifié, possède la permission de désactiver les clients et se trouve sur la liste des clients affichée, où le client ciblé doit être actuellement actif. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -212,7 +207,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt,series=scen_auth]
 \item L'administrateur clique sur « Ajouter projet »
-\item le système affiche un formulaire en deux étapes.
+\item Le système affiche un formulaire en deux étapes.
 \item L'administrateur renseigne le nom, la description, les tags et les trois dates obligatoires (début, fin et livraison), toutes antérieures à la date du jour.
 \item L'administrateur passe à l'étape suivante et sélectionne le chef de projet ainsi qu'au moins un membre de l'équipe ayant réalisé le projet.
 \end{enumerate}
@@ -299,7 +294,7 @@ Le contrat est enregistré comme « actif » avec une référence automatique, p
 \item  L'administrateur dépose un fichier PDF ; le système pré-remplit le formulaire automatiquement, l'administrateur vérifie et valide.
 \item  Le système signale qu'un contrat actif existe déjà pour ce client/projet ; l'administrateur choisit un autre projet ou attend l'expiration du contrat existant.
 \item  Un champ obligatoire vide, dates incohérentes ou montant invalide ; le système affiche l'erreur, l'administrateur corrige et \textbf{reprend à l'étape 4}.
-\item le système détecte que le fichier PDF importé est un doublon 
+\item Le système détecte que le fichier PDF importé est un doublon 
 d'un contrat existant (détection par hash) ; le système 
 signale le conflit, l'administrateur soumet un fichier différent et 
 \textbf{reprend à l'étape 3}.
@@ -367,9 +362,6 @@ Le contrat est marqué comme archivé avec son motif et n’apparaît plus dans 
 \end{longtable}
 \captionof{table}{Description textuelle du cas d’utilisation «~Archiver contrat »}
 \normalsize
-
-
-
 
 \section{Conception}
 \label{sec:conception_sprint2}
@@ -492,7 +484,7 @@ Cette section présente les principales interfaces utilisateur développées dur
 
 
 \subsection{Interface de la liste des clients}
-L'interface de gestion des clients centralise toutes les informations nécessaires à l'administrateur et au chef de projet. Illustrée en mode sombre (\textit{Dark Mode}) sur Figure ci-dessous, elle répond aux exigences d'ergonomie et de confort visuel. Pour faciliter la navigation, le tableau intègre une barre de recherche, des filtres multicritères ainsi 
+L'interface de gestion des clients centralise toutes les informations nécessaires à l'administrateur et au chef de projet (Figure \ref{fig:interface_liste_clients}). Illustrée en mode sombre (\textit{Dark Mode}) sur Figure ci-dessous, elle répond aux exigences d'ergonomie et de confort visuel. Pour faciliter la navigation, le tableau intègre une barre de recherche, des filtres multicritères ainsi 
 que des boutons d'actions rapides permettant d'accéder directement aux détails des comptes.
 \begin{figure}[H]
 \centering
@@ -502,7 +494,7 @@ que des boutons d'actions rapides permettant d'accéder directement aux détails
 \end{figure}
 
 \subsection{Interface du profil client détaillé}
-Nous avons conçu une interface de consultation du profil client organisée en sections thématiques : informations générales, logo de l'entreprise, adresse, liste des projets associés, contrats, demandes, tickets et documents. Cette vue permet aux chefs de projet et administrateurs d'accéder en un coup d'œil à l'ensemble des données consolidées d'un client.
+Nous avons conçu une interface de consultation du profil client organisée en sections thématiques : informations générales, logo de l'entreprise, adresse, liste des projets associés, contrats, demandes, tickets et documents (Figure \ref{fig:interface_profil_client}). Cette vue permet aux chefs de projet et administrateurs d'accéder en un coup d'œil à l'ensemble des données consolidées d'un client.
 
 \begin{figure}[H]
 \centering
@@ -512,7 +504,7 @@ Nous avons conçu une interface de consultation du profil client organisée en s
 \end{figure}
 
 \subsection{Interface d’historique et de journal d'activités}
-Nous avons mis en place l'interface de Journal d'activités, exclusivement accessible à l'Administrateur, afin de renforcer la sécurité et la traçabilité de l'application. Elle centralise et affiche toutes les actions des utilisateurs (créations, modifications, consultations), permettant ainsi d'auditer facilement chaque événement et de garantir une maîtrise complète du système.
+Nous avons mis en place l'interface de Journal d'activités, exclusivement accessible à l'Administrateur (Figure \ref{fig:interface_historique}), afin de renforcer la sécurité et la traçabilité de l'application. Elle centralise et affiche toutes les actions des utilisateurs (créations, modifications, consultations), permettant ainsi d'auditer facilement chaque événement et de garantir une maîtrise complète du système.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/capture historique.png}
@@ -522,7 +514,7 @@ Nous avons mis en place l'interface de Journal d'activités, exclusivement acces
 
 
 \subsection{Interface de la liste des contrats}
-Nous avons mis en place cette interface pour regrouper tous les contrats de maintenance en un seul endroit. L'idée était d'offrir à l'administrateur une vue claire et globale. Et pour que la navigation reste agréable même avec beaucoup de données, nous avons prévu des filtres de recherche qui s'avèrent très pratiques pour retrouver facilement le contrat d'un client.
+Nous avons mis en place cette interface pour regrouper tous les contrats de maintenance en un seul endroit (Figure \ref{fig:interface_liste_contrats}). L'idée était d'offrir à l'administrateur une vue claire et globale. Et pour que la navigation reste agréable même avec beaucoup de données, nous avons prévu des filtres de recherche qui s'avèrent très pratiques pour retrouver facilement le contrat d'un client.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/capture liste contrat.png}

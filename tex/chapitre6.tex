@@ -112,7 +112,7 @@ Dans cette partie, nous présentons le raffinement des scénarios liés à la me
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.85\textwidth,height=0.85\textheight,keepaspectratio]{Images/Diagramme cas d'utilisationMessagerie.png}
+  \includegraphics[width=0.90\textwidth,height=0.90\textheight,keepaspectratio]{Images/Diagramme cas d'utilisationMessagerie.png}
   \caption{Raffinement du cas d'utilisation « Gérer messagerie »}
   \label{fig:gerer_messagerie}
 \end{figure}
@@ -222,7 +222,7 @@ Au cours de cette partie, nous allons analyser chaque cas d'utilisation raffiné
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/Diagramme cas d'utilisationDocument.png}
+  \includegraphics[width=0.90\textwidth,height=0.80\textheight,keepaspectratio]{Images/Diagramme cas d'utilisationDocument.png}
   \caption{Raffinement du cas d'utilisation « Gérer documents »}
   \label{fig:gerer_documents}
 \end{figure}
@@ -245,8 +245,7 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \hline
 \textbf{Acteurs} & Utilisateur \\
 \hline
-\textbf{Précondition} & L'utilisateur est authentifié.
-\newline  Le ticket ou contrat concerné existe et n'est pas archivé. \\
+\textbf{Précondition} & L'utilisateur est authentifié, le ticket ou contrat concerné existe et n'est pas archivé. \\
 \hline
 \textbf{Postcondition} &  Le fichier est stocké physiquement sur le serveur, un enregistrement Document est créé en base de données et la liste des documents associée au ticket ou au contrat est mise à jour.  \\
 \hline
@@ -265,63 +264,14 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \textbf{Scénario alternatif} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Le Client joint des fichiers lors de la création d'une demande. Ils sont stockés initialement comme PieceJointe. Lors de la validation par l'Admin, ils sont automatiquement convertis en Document liés au ticket final.
-\item Si un fichier dépasse 10 Mo, le système bloque l'upload avant l'envoi et affiche une alerte visuelle à l'utilisateur.
-\item Sur un même ticket ou contrat, si un nouveau fichier porte le même nom qu'un document existant, le système crée une nouvelle version (V2, V3...) au lieu d'écraser l'existant, conservant ainsi l'historique complet.
+\item Le Client joint des fichiers lors de la création d'une demande. Ils sont directement stockés et enregistrés en tant que PieceJointe liés au ticket.
+\item Si un fichier dépasse 10 Mo, le système bloque l'upload avant l'envoi.
 \end{enumerate}
 \vspace{0.2cm}
 \end{minipage} \\
 \hline
 \end{longtable}
 \captionof{table}{Description textuelle du cas d'utilisation «  Ajouter document »}
-\normalsize
-
-
-\subsubsection{Description textuelle du cas d'utilisation « Générer document PV »}
-Le tableau ci-dessous présente la description textuelle du cas d'utilisation « Générer document PV ».
-
-\footnotesize
-\renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|>{\columncolor{pastelBlue}}p{3.5cm}|p{10.5cm}|}
-\hline
-\endfirsthead
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-\textbf{Nom du cas d'utilisation} & Générer document PV \\
-\hline
-\textbf{Acteurs} & Administrateur, Chef de projet, Développeur\\
-\hline
-\textbf{Précondition} & L'utilisateur est authentifié et possède les droits de résolution sur le ticket. \\
-\hline
-\textbf{Postcondition} & Un document PDF est ajouté à l'historique documentaire du ticket. \\
-\hline
-\textbf{Scénario nominal} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Dès que le ticket passe à l'état "Résolu", le système déclenche automatiquement la génération du Procès-Verbal (PV).
-\item Le système interroge la base de données et extrait instantanément le contexte global du ticket.
-\item Les informations essentielles (client, temps passé, solution apportée) ainsi que les détails complémentaires (observations particulières et matériel utilisé) sont récupérés et insérés dans le document sans aucune saisie manuelle.
-\item Le système génère le fichier PDF de manière totalement autonome.
-\item Le système enregistre le PDF comme document définitif et le rattache automatiquement au ticket.
-
-\end{enumerate}
-\vspace{0.2cm}
-\end{minipage} \\
-\hline
-\textbf{Scénario alternatif} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item l'acteur saisit ses observations dans le champ "Observations particulières" ou "Matériel utilisé" puis réalise qu'il a fait une faute de frappe ou oublié une information. Il modifie directement le texte dans la zone de saisie avant de cliquer sur le bouton. Le système accepte la nouvelle saisie et génère le PDF avec les données corrigées.
-\end{enumerate}
-\vspace{0.2cm}
-\end{minipage} \\
-\hline
-\end{longtable}
-\captionof{table}{Description textuelle du cas d'utilisation « Générer document PV »}
 \normalsize
 
 \subsubsection{Raffinement du cas d'utilisation « Gérer base de connaissances »}
@@ -359,11 +309,11 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'utilisateur ouvre la page de la base de connaissances.
 \item Il clique sur le bouton « Nouvel article ».
 \item Il saisit le titre de l'article, choisit une catégorie, ajoute éventuellement des tags, puis rédige le contenu.
 \item Il clique sur le bouton « Publier ».
-\item Le système vérifie les données et enregistre l'article.
+\item Le système vérifie les données.
+\item Le système enregistre l'article.
 \item Le système affiche un message de succès.
 \item La liste des articles est rafraîchie automatiquement.
 \end{enumerate}
@@ -374,17 +324,6 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
 \item L'utilisateur clique sur « Utiliser le template » ; le système génère automatiquement un contenu de base pour faciliter la rédaction.
-\item L'utilisateur choisit « Autre » comme catégorie ; le système affiche un champ de saisie libre pour définir une catégorie personnalisée.
-\item L'utilisateur clique sur « Annuler » ou ferme la fenêtre ; le système abandonne la création sans enregistrer l'article.
-\end{enumerate}
-\vspace{0.2cm}
-\end{minipage} \\
-\hline
-\textbf{Scénario d'exception} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{enumerate}[label=E\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item Les données sont invalides: le système refuse l'enregistrement et affiche un message d'erreur.
-\item L'utilisateur ne possède pas les droits requis: le système bloque la création.
 \end{enumerate}
 \vspace{0.2cm}
 \end{minipage} \\
@@ -433,17 +372,18 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'acteur accède à la page \textbf{Profil} et sélectionne l'onglet \textbf{Notifications}.
-\item Le système charge et affiche les préférences regroupées en 4 catégories repliées : \textit{Tickets, Demandes, Projets, Contrats}.
-\item L'acteur clique sur une catégorie pour la déplier et consulte les types d'événements associés, chacun accompagné de son interrupteur.
-\item L'acteur désactive un type d'événement en basculant son interrupteur à \textbf{INACTIF}.
+\item L'acteur accède à la page Profil et sélectionne l'onglet Notifications.
+\item Le système affiche les préférences regroupées par catégories repliées.
+\item L'acteur clique sur une catégorie pour la déplier.
+\item L'acteur consulte les types d'événements associés, chacun accompagné de son interrupteur.
+\item L'acteur désactive un type d'événement en basculant son interrupteur à « inactif ».
 \end{enumerate}
 \vspace{0.2cm}
 \end{minipage} \\
 \hline
 \textbf{Scénarios alternatifs} &
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item L'acteur clique par erreur sur l'interrupteur global \textit{« Tout désactiver »} : toutes les catégories passent à \textbf{INACTIF}. Il re-clique pour tout réactiver ; le système rétablit toutes les préférences et affiche un toast de confirmation.
+\item L'acteur clique par erreur sur l'interrupteur global \textit{« Tout désactiver »} : toutes les catégories passent à « inactif ». Il re-clique pour tout réactiver ; le système rétablit toutes les préférences et affiche un toast de confirmation.
 \end{enumerate} \\
 \hline
 \end{longtable}
@@ -468,12 +408,10 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \textbf{Acteurs} & Administrateur \\
 \hline
 \textbf{Précondition} &
-L'administrateur est authentifié.\newline
-Un contrat est sélectionné. \\
+L'administrateur est authentifié et un contrat est sélectionné. \\
 \hline
 \textbf{Postcondition} &
-La configuration Slack est enregistrée et liée au contrat.\newline
-Les notifications sont actives selon les préférences choisies. \\
+La configuration Slack est enregistrée et liée au contrat et les notifications sont actives selon les préférences choisies. \\
 \hline
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -490,9 +428,9 @@ Les notifications sont actives selon les préférences choisies. \\
 \hline
 \textbf{Scénario alternatif} &
 \begin{enumerate}[label=A\arabic*.,nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt]
-\item  le système détecte qu'une configuration Slack existe déjà pour ce contrat et pré-remplit le formulaire ; l'administrateur modifie les champs souhaités et clique sur « Mettre à jour ».
-\item  après sauvegarde, l'administrateur clique sur « Tester » ; le système envoie un message de test sur le canal Slack configuré.
-\item  l'URL du webhook est incorrecte ou inaccessible : le système affiche un message d'échec, l'administrateur corrige l'URL et \textbf{reprend à l'étape 3}.
+\item  Le système détecte qu'une configuration Slack existe déjà pour ce contrat et pré-remplit le formulaire ; l'administrateur modifie les champs souhaités et clique sur « Mettre à jour ».
+\item  Après sauvegarde, l'administrateur clique sur « Tester » ; le système envoie un message de test sur le canal Slack configuré.
+\item  L'URL du webhook est incorrecte ou inaccessible : le système affiche un message d'échec, l'administrateur corrige l'URL et \textbf{reprend à l'étape 3}.
 
 \end{enumerate} \\
 \hline
@@ -512,13 +450,13 @@ Cette section présente les choix de conception retenus pour ce sprint,
 principaux flux fonctionnels
 
 \subsection{Diagrammes de séquences}
-Dans cette section, modélisons les interactions entre les acteurs et le système, à l'aide de diagrammes de séquences, afin de détailler les flux de collaboration et de communication en temps réel.
+Dans cette section, nous modélisons les interactions entre les acteurs et le système, à l'aide de diagrammes de séquences, afin de détailler les flux de collaboration et de communication en temps réel.
 
 \subsubsection{Diagramme de séquences du cas d'utilisation « Envoyer message multimédia »}
 
 \begin{figure}[H]
         \centering
-  \includegraphics[width=0.85\textwidth,height=0.75\textheight,keepaspectratio]{Images/diag_seq_envoyer_message.png}
+  \includegraphics[width=0.90\textwidth,height=0.80\textheight,keepaspectratio]{Images/diag_seq_envoyer_message.png}
         \caption{Diagramme de séquences du cas d'utilisation « Envoyer message multimédia »}
         \label{fig:seq_envoyer_message}
 \end{figure}
@@ -599,17 +537,17 @@ Nous présentons ci-dessous le schéma relationnel réalisé pour ce sprint, qui
 \endlastfoot
 Qu'est-ce qu'on a bien fait ? & 
 Intégration du module de messagerie instantanée en temps réel et du système de notifications multicanaux (emails, courriels, push, Slack). \newline
-Centralisation de la gestion documentaire avec versionnage automatique et génération automatisée des rapports d'activité. \\
+Centralisation de la gestion documentaire avec versionnage automatique et génération automatisée des rapports d'activité et des tableaux de bord. \\
 \hline
 Qu'est-ce qui ne s'est pas bien passé ? & 
-Retards d'intégration sur le rendu responsive des graphiques des dashboards. \newline
 Dégradation des temps de réponse du journal d'activités sous charge. \\
 \hline
 Que devrions-nous arrêter de faire ? & 
 Valider l'affichage des tableaux de bord et des graphiques uniquement sur grand écran, sans tester les résolutions intermédiaires dès la phase d'intégration. \\
 \hline
 Que devrions-nous commencer à faire ? &
-Intégrer la vérification du rendu adaptatif des graphiques dès la phase de maquettage, afin d'éviter les retouches en fin de sprint. \\
+Améliorer la rapidité d’affichage de la page du journal d’activités
+lorsque plusieurs utilisateurs se connectent en même temps.
 \hline
 \end{longtable}
 \vspace{6pt}
@@ -638,7 +576,7 @@ du quatrième sprint, toutes marquées comme terminées à l'issue de ce sprint.
 Cette section présente les principales interfaces utilisateur développées durant le quatrième sprint. Chaque interface a été conçue pour offrir une expérience claire aux différents acteurs de la plateforme.
 \subsection{Interface de la liste des documents}
 
-Nous avons mis en place cette interface de liste documents liés aux contrats et aux tickets en un seul endroit. Elle permet de rechercher, filtrer par source, consulter, télécharger ou remplacer un fichier par une nouvelle version. L'administrateur peut également archiver et restaurer des documents.
+Cette interface centralise la gestion de l'ensemble des documents liés aux contrats et aux tickets (Figure \ref{fig:Interface de liste des documents}). Elle permet de rechercher, filtrer les fichiers par source, les consulter, les télécharger ou les remplacer par une nouvelle version. De plus, les administrateurs disposent de privilèges spécifiques pour archiver et restaurer ces documents.
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/Interface Document.png}
@@ -647,7 +585,7 @@ Nous avons mis en place cette interface de liste documents liés aux contrats et
 \end{figure}
 
 \subsection{Interface du tableau de bord administrateur}
-Nous avons mis en place cette interface de tableau de bord afin d’offrir à l'administrateur une vue globale sur l'activité de la plateforme. Il affiche les indicateurs clés, les demandes en attente, les contrats bientôt expirés et les tickets récents. Un rapport mensuel peut aussi être généré et exporté en PDF.
+Cette interface de tableau de bord offre à l'administrateur une vue globale sur l'activité de la plateforme (Figure \ref{fig:Interface du tableau de bord administrateur}). Elle centralise les indicateurs clés de performance, les demandes en attente, les contrats proches de leur expiration et les tickets récents. De plus, un rapport mensuel d'activité peut être généré et exporté directement au format PDF.
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/Interface dashboard admin.png}
@@ -656,23 +594,16 @@ Nous avons mis en place cette interface de tableau de bord afin d’offrir à l'
 \end{figure}
 
 \subsection{Interface du tableau de bord de chef de projet}
-Nous avons mis en place cette interface de tableau de bord permettant au chef de projet 
-de suivre en temps réel les indicateurs clés de son activité : projets en maintenance, 
-demandes en attente, tickets ouverts, taux SLA, ainsi que des graphiques d'avancement 
-des tickets, d'évolution mensuelle et de synthèse par projet, avec la possibilité de 
-générer un rapport exportable au format PDF.. 
+Cette interface de tableau de bord permet au chef de projet de suivre les indicateurs clés de son activité : projets en maintenance, demandes en attente, tickets ouverts et respect du taux SLA (Figure \ref{fig:Interface du tableau de bord de chef de projet}). Elle intègre des graphiques d'avancement des tickets, d'évolution mensuelle et de synthèse par projet, tout en offrant la possibilité de générer un rapport complet exportable au format PDF.
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/Interface Dashboard Chef de projet.png}
-    \caption{Interface du tableau de chef de projet}
-    \label{fig:Interface du tableau de chef de projet}
+    \caption{Interface du tableau de bord de chef de projet}
+    \label{fig:Interface du tableau de bord de chef de projet}
 \end{figure}
 
 \subsection{Interface de suivi des activités}
-Nous avons mis en place cette interface de journal d'activités de l'utilisateur connecté. 
-Elle permet de rechercher et de filtrer les entrées par période (aujourd'hui, 7 derniers jours, 
-30 derniers jours ou tout afficher), par type d'action et par entité, de consulter les détails 
-d'une action, ainsi que d'exporter les entrées sélectionnées au format CSV.
+Cette interface de journal d'activités retrace l'historique des actions de l'utilisateur connecté (Figure \ref{fig:Interface de suivi des activités}). Elle permet de rechercher et de filtrer les entrées selon plusieurs critères : par période (journée, 7 derniers jours, 30 derniers jours ou historique complet), par type d'action et par entité. De plus, l'utilisateur peut consulter les détails d'une opération et exporter les données sélectionnées au format CSV.
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/Interface ses activite.png}
@@ -681,11 +612,7 @@ d'une action, ainsi que d'exporter les entrées sélectionnées au format CSV.
 \end{figure}
 
 \subsection{Interface de l'historique d'un ticket}
-Nous avons mis en place cette interface d'historique d'un ticket sous forme de timeline 
-chronologique. Elle permet de consulter l'ensemble des événements liés au ticket, de filtrer 
-par type (toutes les entrées, audit, actions, commentaires ou sessions de travail), de 
-rechercher par mot-clé, de filtrer par acteur, et d'exporter l'historique au format JSON 
-ou CSV.
+Cette interface retrace l'historique d'un ticket sous la forme d'une frise chronologique dynamique (Figure \ref{fig:Interface de l'historique d'un ticket}). Elle centralise l'ensemble des événements liés au ticket et offre des fonctionnalités de recherche par mot-clé ainsi que des filtres multicritères : par acteur et par type d'événement (\textit{audit}, actions, commentaires ou sessions de travail). De plus, l'utilisateur a la possibilité d'exporter l'intégralité de cet historique aux formats JSON ou CSV.
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/historique ticket.png}
@@ -696,7 +623,7 @@ ou CSV.
 \subsection{Interface de messagerie}
 
 Nous avons mis en place cette interface de messagerie interne organisée en canaux thématiques 
-(généraux, tickets et messages directs). Elle permet d'envoyer des 
+(généraux, tickets et messages directs) (Figure \ref{fig:Interface de messagerie}). Elle permet d'envoyer des 
 messages texte, des fichiers et des messages vocaux, de mentionner des membres, d'enregistrer
 des messages importants, de réagir aux messages avec des émojis et d'initier des conversations 
 directes entre utilisateurs.
@@ -708,10 +635,7 @@ directes entre utilisateurs.
 \end{figure}
 
 \subsection{Interface du calendrier}
-Nous avons mis en place cette interface de calendrier proposant une vue mensuelle et une vue 
-agenda de type Gantt. La vue Gantt représente la charge de travail de chaque développeur sous 
-forme de barres horizontales par couloir. Elle affiche la progression, le statut et les 
-échéances des tickets assignés, avec la possibilité de naviguer par jour, semaine ou mois.
+Cette interface de calendrier propose une vue mensuelle ainsi qu'une vue agenda de type Gantt (Figure \ref{fig:Interface du calendrier}). La vue Gantt modélise la charge de travail de chaque développeur sous forme de barres horizontales. Elle affiche la progression, le statut et les échéances des tickets assignés, tout en offrant une navigation flexible par jour, semaine ou mois.
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/Interface calendrier.png}
@@ -720,14 +644,7 @@ forme de barres horizontales par couloir. Elle affiche la progression, le statut
 \end{figure}
 
 \subsection{Interface du centre de notifications}
-Nous avons mis en place un système de notifications multicanaux permettant à chaque 
-utilisateur d'être alerté en temps réel selon ses préférences. Les notifications 
-in-app s'affichent directement dans la barre de navigation avec un compteur de 
-messages non lus ; les notifications email sont envoyées automatiquement pour les 
-événements critiques ; les notifications push navigateur alertent l'utilisateur même 
-hors de l'application ; enfin, l'intégration Slack permet de relier les alertes 
-sur un canal dédié, configurable par contrat. Chaque utilisateur peut personnaliser 
-ses préférences par type d'événement depuis son profil.
+Le système de notifications multicanaux alerte les utilisateurs en temps réel selon leurs préférences (Figure \ref{fig:Interface du centre de notifications}). Les alertes s'affichent directement dans l'application (\textit{in-app}) ou par e-mail pour les événements critiques. Elles peuvent aussi être envoyées par notifications \textit{push} sur le navigateur ou directement sur un canal \textit{Slack} dédié à un contrat. Depuis son profil, chaque utilisateur choisit librement comment recevoir ces alertes pour chaque type d'événement.
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/Interface notifications.png}
@@ -755,7 +672,7 @@ Les modules testés en priorité couvrent la messagerie et les notifications, qu
 
 \item[$\square$] \textbf{Test du module Messagerie}
 
-\noindent Cette suite valide l'envoi, la modification, la suppression et l'épinglage des messages, ainsi que la gestion des pièces jointes et des mentions. Les cas suivants ont été couverts :
+\noindent Cette suite valide l'envoi, la modification, la suppression et l'enregistrement  des messages, ainsi que la gestion des pièces jointes et des mentions. Les cas suivants ont été couverts :
 
 \begin{itemize}[label=$\bullet$, nosep, itemsep=2pt]
   \item Un message valide est enregistré et diffusé en temps réel aux participants du canal.

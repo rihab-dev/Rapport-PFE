@@ -1,15 +1,12 @@
 ﻿\section*{Introduction}
-Ce chapitre présente l'analyse et la spécification des besoins de notre plateforme
-\textbf{SolidMaint}. Nous identifierons les acteurs du système et leurs besoins
-fonctionnels et non fonctionnels, puis procéderons à la modélisation UML. Nous
-détaillerons ensuite l'approche de pilotage Scrum avec la planification des sprints,
-et présenterons l'environnement de développement ainsi que l'architecture technique
-de l'application.
+Ce chapitre présente l’analyse et la spécification des besoins de la plateforme \textbf{SolidMaint}. 
+Nous y identifions les acteurs du système ainsi que leurs besoins fonctionnels et non fonctionnels, avant de procéder à leur modélisation à l’aide d’UML. 
+Nous détaillons ensuite l’approche de gestion de projet adoptée, basée sur Scrum, ainsi que la planification des sprints. 
+Enfin, nous présentons l’environnement de développement et l’architecture technique de l’application.
 
 \section{Spécification des besoins}
 \label{sec:specification_besoins}
-L'étape de spécification des besoins est importante pour prouver qu'un besoin réel
-existe, elle permet de définir explicitement les objectifs à atteindre.
+L'étape de spécification des besoins est importante pour justifier qu'un besoin réel existe, elle permet de définir explicitement les objectifs à atteindre.
 \newline
 Pour cela nous allons identifier les acteurs, leurs besoins fonctionnels et les
 besoins non fonctionnels.
@@ -123,9 +120,8 @@ bien défini.
 \label{sec:pilotage_scrum}
 
 \subsection{Rôles de SCRUM}
-Dans notre projet, Monsieur Mejdi Dhokar sera le Product Owner, Madame Maissa Ben
-Fredj et Imen Msakni seront les Scrum Master, et nous, Rihab Chourou et Eya Gharbi, formons l'équipe
-de développement.
+Dans notre projet, Monsieur Mejdi Dhokar est le Product Owner, Madame Maïssa Ben Fredj et Imen Msakni assurent le rôle de Scrum Masters, 
+tandis que nous, Rihab Chourou et Eya Gharbi, constituons l’équipe de développement.
 
 \begin{figure}[H]
 \centering
@@ -641,8 +637,8 @@ maintenance, de la sécurité et de la traçabilité des interventions.
 \section{Architecture de l'application}
 L'architecture de la plateforme \textbf{SolidMaint} repose sur deux piliers : une approche physique pour la distribution des composants sur l'infrastructure, et une approche logique pour l'organisation interne du code.
 \subsection{Architecture physique}
-L'architecture système est un ensemble de décisions de conception qui définit
-l'interaction des composants entre eux. Le choix de l'architecture est très sensible
+L'architecture système désigne un ensemble de décisions de conception qui définit
+l'interaction des composants entre eux. Le choix de l'architecture est très important
 car elle permet d'optimiser les performances du système et facilite son évolution en
 fonction des volumes de données.
 La figure ci-dessous montre l'architecture physique de notre application :
@@ -655,7 +651,7 @@ La figure ci-dessous montre l'architecture physique de notre application :
 \end{figure}
 
 \subsection{Architecture logique}
-Nous avons choisi comme architecture logicielle l'\textbf{architecture monolithique
+L'architecture logicielle retenue est l'\textbf{architecture monolithique
 modulaire}. Ce choix est basé sur la combinaison entre la simplicité et la robustesse
 des applications monolithiques traditionnelles, tout en bénéficiant de la clarté
 structurelle des architectures orientées modules.
@@ -666,7 +662,7 @@ indépendants. Elle consiste à diviser le système en plusieurs modules fonctio
 cohésifs, chacun encapsulant sa propre logique métier, ses contrôleurs, ses services
 et ses DTOs.
 
-Nous avons choisi cette architecture afin de maintenir l'indépendance des modules et
+Cette architecture a été privilégiée car elle permet de maintenir l'indépendance des modules et
 d'obtenir une grande cohésion, une encapsulation des données, ainsi qu'une
 focalisation sur les fonctionnalités métiers, tout en conservant la simplicité de
 déploiement d'un monolithe.

@@ -16,7 +16,7 @@ pilotage du support et du traitement des incidents.
 \label{sec:planning_sprint3}
 La planification du sprint est une étape essentielle du processus de développement, car elle permet de clarifier les fonctionnalités à implémenter, de prioriser les besoins métier et d’organiser la réalisation dans une logique incrémentale.
 \subsection{Objectifs du sprint}
-Ce sprint visait également à intégrer des mécanismes avancés de suivi 
+Ce sprint vise également à intégre des mécanismes avancés de suivi 
 du temps, de gestion des SLA, de pilotage via Kanban, ainsi qu'une 
 assistance intelligente à la décision dans laquelle l'intelligence 
 artificielle analyse, suggère et structure, tandis que l'humain 
@@ -344,7 +344,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=E\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt,series=scen_auth]
 \item L’acteur n’est pas le développeur assigné à l’assignation : le système lève une exception « Forbidden » et rejette le signalement.
-\item  Le temps de travail effectif ou la progression sont insuffisants ($<$ 30 min): la demande est rejetée.
+\item Le temps de travail effectif ou la progression sont insuffisants ($<$ 30 min): la demande est rejetée.
 \end{enumerate}
 \vspace{0.1cm}
 \end{minipage} \\
@@ -655,36 +655,35 @@ Dans cette section, nous allons modéliser les interactions entre l'utilisateur 
 
 \subsection{Intégration de l'intelligence artificielle}
 
-Dans le cadre de ce sprint, l'intégration de l'intelligence artificielle
-a constitué un axe transversal visant à automatiser et à assister plusieurs
-étapes critiques du cycle de traitement des demandes : qualification
-initiale, priorisation, analyse des blocages et capitalisation des
-connaissances. Cette intégration a été conçue comme un composant à part
-entière de la plateforme, permettant de fluidifier le travail des équipes
-tout en garantissant des réponses plus rapides et fiables. L'objectif
-n'est pas de substituer la décision humaine, mais d'en améliorer la
-qualité et la rapidité en fournissant des suggestions contextualisées,
-accompagnées d'un niveau de confiance et d'un raisonnement explicatif.
-
+Dans le cadre de ce sprint, l'intelligence artificielle a été intégrée
+en tant qu'axe transversal au sein de la plateforme SolidMaint. Cette
+intégration couvre plusieurs étapes critiques du cycle de traitement
+des demandes, à savoir la qualification initiale, la priorisation,
+l'analyse des blocages et la capitalisation des connaissances. Il
+convient de souligner que l'objectif poursuivi n'est pas de substituer
+la décision humaine, mais d'en améliorer la qualité et la rapidité
+en fournissant des suggestions contextualisées, accompagnées d'un
+score de confiance et d'un raisonnement explicatif.
 
 \subsubsection{Les grands modèles de langage (LLM)}
 
-Un grand modèle de langage (\textit{Large Language Model}, LLM) repose
-sur l'architecture \textit{Transformer} et apprend à partir de très
-larges corpus textuels multilingues. Grâce à cet apprentissage, il
-interprète une consigne rédigée en langage naturel et renvoie une réponse
-structurée, sans avoir besoin d'être entraîné spécifiquement sur le
-domaine de l'entreprise.
+Un grand modèle de langage (\textit{Large Language Model}, LLM) est
+un modèle neuronal fondé sur l'architecture \textit{Transformer},
+entraîné sur de larges corpus textuels multilingues. Il est capable
+d'interpréter une instruction rédigée en langage naturel et de
+produire une réponse structurée, sans nécessiter un entraînement
+spécifique au domaine d'application.
 
-
-\noindent Dans notre contexte, les LLM couvrent trois besoins principaux :
-la qualification automatique des demandes, l'analyse des blocages
-techniques et la structuration des solutions en articles de base de
-connaissances. Afin de retenir le modèle le plus adapté, nous avons
-comparé les principaux LLM disponibles selon les critères pertinents
-pour notre cas d'usage : qualité de traitement du français technique,
-support natif du format JSON, latence et coût d'accès via API, comme
-le présente le tableau~\ref{tab:comparaison_llm}.
+\noindent Dans le cadre de ce projet, les LLM répondent à trois
+besoins fonctionnels distincts : la qualification automatique des
+demandes d'intervention, l'analyse des blocages techniques signalés
+par les développeurs, et la structuration des solutions validées
+en articles de base de connaissances. Afin de sélectionner le modèle
+le plus adapté, une comparaison des principaux LLM disponibles a été
+effectuée selon quatre critères : la qualité du traitement en français
+technique, le support natif du format JSON, la latence et le coût
+d'accès via API. Le tableau~\ref{tab:comparaison_llm} synthétise
+les résultats de cette comparaison.
 
 \begin{table}[H]
 \centering
@@ -710,179 +709,194 @@ LLaMA 3.3 (70B)   & Meta / Groq & Bonne      & Oui & Très faible & Gratuit\\
 \label{tab:comparaison_llm}
 \end{table}
 
-\subsubsection{Justification du recours aux LLM face aux approches classiques}
+\subsubsection{Justification du recours aux LLM face aux approches
+classiques}
 
-Le recours à un LLM plutôt qu'à une approche de classification supervisée
-classique résulte d'une analyse comparative des contraintes métier et
-techniques propres au projet SolidMaint.
+Le recours à un LLM résulte d'une analyse comparative des contraintes
+métier et techniques propres à la plateforme SolidMaint, confrontées
+aux limites des approches de classification supervisée classiques.
 
 \paragraph{Limites des approches classiques :}
 
-Les classifieurs supervisés traditionnels --- modèles TF-IDF
-(\textit{Term Frequency – Inverse Document Frequency}) couplés à un
-SVM (\textit{Support Vector Machine}), ou réseaux de neurones
-convolutifs (\textit{CNN}) entraînés sur corpus fixe --- imposent
-trois prérequis incompatibles avec le contexte de la plateforme :
+Les classifieurs supervisés traditionnels, tels que les modèles
+TF-IDF (\textit{Term Frequency – Inverse Document Frequency})
+couplés à un SVM (\textit{Support Vector Machine}), ou les réseaux
+de neurones convolutifs (\textit{CNN}) entraînés sur corpus fixe,
+imposent trois prérequis incompatibles avec le contexte du projet :
 
-\begin{itemize}[nosep,leftmargin=1.6cm,topsep=2pt,itemsep=3pt,label=$\bullet$]
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=2pt,itemsep=3pt,
+label=$\bullet$]
     \item \textbf{Un corpus annoté volumineux :} les demandes clients,
-    hétérogènes par nature (incidents, évolutions, blocages
-    administratifs), ne constituent pas, en phase de démarrage, un
-    jeu d'entraînement suffisant pour garantir une généralisation robuste.
-    \item \textbf{Une distribution stable des classes :} tout nouveau type
-    de demande non représenté à l'entraînement dégrade les performances
-    sans possibilité de réentraînement continu en production.
-    \item \textbf{Une langue unique :} la plateforme exige la prise en
-    charge simultanée du français, de l'arabe et de l'anglais, ce qu'un
-    modèle monolingue entraîné localement ne peut garantir sans
-    multiplication des pipelines de traitement.
+    hétérogènes par nature, ne constituent pas, en phase de démarrage,
+    un jeu d'entraînement suffisant pour garantir une généralisation
+    robuste du modèle.
+    \item \textbf{Une distribution stable des classes :} l'apparition
+    d'un nouveau type de demande non représenté lors de l'entraînement
+    dégrade les performances du classifieur sans possibilité de
+    réentraînement continu en production.
+    \item \textbf{Une contrainte monolingue :} la plateforme devant
+    prendre en charge simultanément le français, l'arabe et l'anglais,
+    un modèle monolingue entraîné localement ne peut répondre à cette
+    exigence sans multiplication des pipelines de traitement.
 \end{itemize}
 
 \paragraph{Avantages déterminants des LLM :}
 
-Un LLM pré-entraîné sur de larges corpus multilingues apporte une
-compréhension sémantique profonde dès le premier appel, sans phase
-d'apprentissage spécifique au domaine. Ses atouts dans notre contexte
-sont les suivants :
+Un LLM pré-entraîné sur de larges corpus multilingues offre une
+compréhension sémantique approfondie dès le premier appel, sans
+nécessiter de phase d'apprentissage spécifique au domaine. Dans le
+cadre de ce projet, ses avantages se déclinent comme suit :
 
-\begin{itemize}[nosep,leftmargin=1.6cm,topsep=2pt,itemsep=3pt,label=$\bullet$]
-    \item \textbf{Généralisation immédiate :} capacité à inférer type,
-    priorité et catégorie depuis une description libre, même imprécise
-    ou multilingue, sans données d'entraînement propres au domaine.
-    \item \textbf{Sortie structurée native :} génération directe de JSON
-    valide via le paramètre \texttt{response\_format}, compatible avec
-    le schéma de la base de données sans post-traitement fragile.
+\begin{itemize}[nosep,leftmargin=1.6cm,topsep=2pt,itemsep=3pt,
+label=$\bullet$]
+    \item \textbf{Généralisation immédiate :} capacité à inférer le
+    type, la priorité et la catégorie d'une demande à partir d'une
+    description libre, même imprécise ou multilingue, sans données
+    d'entraînement propres au domaine.
+    \item \textbf{Sortie structurée native :} génération directe d'un
+    objet JSON valide via le paramètre \texttt{response\_format},
+    directement compatible avec le schéma de la base de données, sans
+    recours à un post-traitement fragile.
     \item \textbf{Raisonnement explicatif :} production d'une
     justification textuelle accompagnant chaque prédiction, renforçant
-    la confiance du chef de projet lors de la validation et assurant la
-    traçabilité des décisions.
-    \item \textbf{Évolutivité sans réentraînement :} l'ajout d'un
-    nouveau type de demande se traduit par une modification du prompt
-    système, sans cycle d'annotation ni de réentraînement.
+    la confiance du chef de projet lors de la validation et assurant
+    la traçabilité des décisions automatisées.
+    \item \textbf{Évolutivité sans réentraînement :} l'introduction
+    d'un nouveau type de demande se traduit par une simple modification
+    du prompt système, sans cycle d'annotation ni de réentraînement.
 \end{itemize}
 
 \paragraph{Contreparties assumées et mesures d'atténuation :}
 
-Ce choix implique une dépendance à une API externe et une latence
-supérieure à celle d'un modèle embarqué. Ces risques sont atténués par :
-le cache MD5 (\textit{TTL} 1h) qui évite les appels redondants sur des
-demandes identiques, la politique de réessais avec backoff exponentiel
-qui absorbe les indisponibilités transitoires, et la nature open-source
-de LLaMA~3.3 qui offre une voie de migration vers un hébergement local
-à terme, garantissant l'indépendance vis-à-vis de tout fournisseur
-externe.
+Ce choix induit une dépendance à une API externe ainsi qu'une latence
+supérieure à celle d'un modèle embarqué. Ces risques sont atténués
+par les mécanismes de robustesse détaillés dans la section suivante :
+la mise en cache par empreinte de contenu, la politique de réessais
+avec backoff exponentiel, et le contrôle des quotas journaliers.
 
 \subsubsection{Choix du modèle}
 
-À l'issue de cette analyse comparative et au regard des fonctionnalités
-à couvrir, le modèle retenu est \textbf{LLaMA~3.3 (70B)} (\textit{Large
-Language Model Meta AI}), exploité via l'\textbf{API Groq Cloud}. Ce
-choix se justifie par plusieurs facteurs complémentaires : une latence
-très faible grâce aux processeurs LPU (\textit{Language Processing Unit})
-de Groq (environ 700 tokens par seconde), le support natif du format JSON
-permettant une intégration directe avec la base de données, une qualité
-suffisante en français technique pour les cas d'usage ciblés, et un
-accès gratuit lors de la phase de développement. Par ailleurs,
-LLaMA étant un modèle open-source, il offre la possibilité d'un
-hébergement local à terme, garantissant une indépendance vis-à-vis
-d'un fournisseur externe.
+À l'issue de cette analyse comparative, le modèle retenu est
+\textbf{LLaMA~3.3 (70B)} (\textit{Large Language Model Meta AI}),
+exploité via l'\textbf{API Groq Cloud}. Ce choix repose sur quatre
+critères complémentaires : une latence très faible rendue possible
+par les processeurs LPU (\textit{Language Processing Unit}) de Groq
+atteignant environ 700 tokens par seconde, un support natif du format
+JSON permettant une intégration directe avec la base de données, une
+qualité de traitement suffisante en français technique pour les cas
+d'usage ciblés, et un accès gratuit durant la phase de développement.
+La nature open-source du modèle offre en outre la possibilité d'un
+hébergement local à terme, garantissant l'indépendance de la
+plateforme vis-à-vis de tout fournisseur externe.
 
 \subsubsection{Robustesse opérationnelle et gouvernance}
 
-Afin d'assurer la fiabilité du composant IA en conditions réelles,
-plusieurs mécanismes complémentaires ont été mis en place. La
-figure~\ref{fig:robustesse_ia} illustre l'architecture complète du
-pipeline de traitement d'une demande par le module IA, depuis la
-réception du texte brut jusqu'à la restitution du résultat classifié,
-en faisant apparaître chacun de ces mécanismes.
+Afin de garantir la fiabilité du composant IA en conditions réelles
+d'exploitation, plusieurs mécanismes complémentaires ont été mis en
+œuvre. La figure~\ref{fig:robustesse_ia} illustre l'architecture du pipeline de traitement, depuis la réception du texte
+brut jusqu'à la restitution du résultat classifié, en faisant
+apparaître l'ensemble de ces mécanismes.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.92\textwidth,keepaspectratio]{Images/shema.png}
-    \caption{Pipeline de robustesse du module IA --- du texte brut à la
-    classification structurée}
+    \caption{Pipeline de robustesse du module IA --- du texte brut à
+    la classification structurée}
     \label{fig:robustesse_ia}
 \end{figure}
 
-Le pipeline s'articule en sept étapes successives et complémentaires,
-décrites ci-après.
-
 \paragraph{Protection des données personnelles :}
-Avant toute transmission d'un texte à l'API Groq Cloud, un filtre
-détecte et masque automatiquement les informations personnelles
-identifiables (PII) : numéros de téléphone, adresses électroniques et
-noms complets présents dans la description d'une demande sont remplacés
-par des marqueurs neutres avant envoi, garantissant qu'aucune donnée
+Préalablement à toute transmission d'un texte vers l'API Groq Cloud,
+un filtre détecte et masque automatiquement les informations
+personnelles identifiables (PII) présentes dans la description d'une
+demande, à savoir les numéros de téléphone, les adresses
+électroniques et les noms complets. Ces données sont remplacées par
+des marqueurs neutres avant envoi, garantissant qu'aucune information
 sensible ne quitte le périmètre de la plateforme.
 
 \paragraph{Cache par empreinte de contenu :}
-Pour éviter des appels redondants à l'API externe, chaque texte soumis
-à la classification est condensé en une empreinte de longueur fixe
-calculée par hachage MD5 de son contenu normalisé. Si une demande au
-libellé identique a déjà été classifiée, le résultat est restitué
-directement depuis le cache sans solliciter le modèle, avec une durée
-de validité (\textit{TTL}) d'une heure, réinitialisée à chaque nouvelle
-soumission du même contenu.
+Afin d'éviter les appels redondants vers l'API externe, chaque texte
+soumis à la classification est condensé en une empreinte de longueur
+fixe calculée par hachage MD5 de son contenu normalisé. Lorsqu'une
+demande au libellé identique a déjà été classifiée, le résultat est
+restitué directement depuis le cache, avec une durée de validité
+(\textit{TTL}) d'une heure. Le cache est nettoyé automatiquement
+lorsque le nombre d'entrées dépasse mille, afin de prévenir toute
+saturation mémoire.
 
 \paragraph{Réessais et mécanisme de repli :}
 En cas d'erreur transitoire lors de l'appel au modèle, le service
-effectue jusqu'à deux nouvelles tentatives avec backoff exponentiel,
-afin d'absorber les indisponibilités sans saturer l'API externe. Si,
-après épuisement des tentatives, le score de confiance retourné reste
-inférieur au seuil minimal accepté, la demande est automatiquement
-marquée pour révision manuelle par le chef de projet, sans interrompre
-le flux de traitement.
+effectue jusqu'à deux nouvelles tentatives avec backoff exponentiel
+(1\,s puis 2\,s), afin d'absorber les indisponibilités sans saturer
+l'API externe. Les erreurs d'authentification (HTTP 401, 403) sont
+exclues du mécanisme de retry et propagées immédiatement. Lorsque
+le score de confiance retourné demeure inférieur au seuil défini,
+la demande est automatiquement marquée pour révision manuelle par
+le chef de projet, sans interrompre le flux de traitement global.
 
 \paragraph{Limitation des appels par utilisateur :}
-Un système de quotas journaliers est appliqué par utilisateur et de
-manière globale. Lorsque le seuil d'alerte est atteint (80\,\% du
-quota), le système émet un avertissement interne. Au-delà du quota
-journalier, les appels supplémentaires sont rejetés avec un message
-explicite, les compteurs étant réinitialisés automatiquement à minuit.
+Un système de quotas journaliers est appliqué à la fois par
+utilisateur et au niveau global de la plateforme. Lorsque le seuil
+d'alerte est atteint à hauteur de 80\,\% du quota, un avertissement
+interne est émis. Au-delà du quota journalier, les appels
+supplémentaires sont rejetés avec un message explicite, les compteurs
+étant réinitialisés automatiquement à minuit.
 
 \paragraph{Traçabilité des décisions :}
-Chaque décision IA est enregistrée avec l'ensemble de ses métadonnées :
-modèle utilisé, score de confiance, raisonnement produit, feedback
-éventuel du chef de projet et horodatage. Une tâche planifiée quotidienne
-supprime les entrées de plus de quatre-vingt-dix jours conformément aux
-exigences de protection des données, tout en conservant les statistiques
-agrégées pour le suivi de la qualité du service.
+Chaque décision produite par le module IA est enregistrée avec
+l'ensemble de ses métadonnées : modèle utilisé, score de confiance,
+raisonnement généré, feedback éventuel du chef de projet et
+horodatage. Une tâche planifiée quotidienne supprime les entrées
+de plus de quatre-vingt-dix jours conformément aux exigences de
+protection des données, tout en conservant les statistiques agrégées
+nécessaires au suivi de la qualité du service.
 
 \subsubsection{Développement du module IA}
 
-Le module IA a été développé en \textbf{NestJS} (TypeScript) et intégré
-au backend principal sous la forme d'un module dédié, regroupant plusieurs
-services à responsabilité unique. Cette organisation suit le principe de
-séparation des responsabilités (\textit{Single Responsibility Principle})
-et tire parti du système d'injection de dépendances natif du framework.
+Le module IA a été développé en \textbf{NestJS} (TypeScript) et
+intégré au backend principal sous la forme d'un module dédié. Son
+architecture repose sur le principe de séparation des responsabilités
+(\textit{Single Responsibility Principle}) et tire parti du système
+d'injection de dépendances natif du framework.
 
 \paragraph{Architecture du module :}
-Le module regroupe plusieurs services distincts, chacun couvrant une
-responsabilité précise : l'accès à l'API Groq Cloud et le parsing des
-réponses, la gestion du cache en mémoire par empreinte de contenu, la
-fusion des analyses IA avec les solutions humaines pour produire les
-articles de base de connaissances, la suggestion d'articles pertinents
-par scoring heuristique, et la traçabilité des décisions par persistance
-des métadonnées en base de données.
+Le module se compose de plusieurs services distincts, chacun couvrant
+une responsabilité précise : l'accès à l'API Groq Cloud et le parsing
+des réponses, la gestion du cache en mémoire par empreinte de contenu,
+la fusion des analyses IA avec les solutions humaines pour la
+production des articles de base de connaissances, la suggestion
+d'articles pertinents par scoring heuristique, ainsi que la
+persistance des métadonnées de traçabilité en base de données.
 
 \paragraph{Construction des prompts :}
-Chaque fonctionnalité repose sur un prompt système dédié, transmis au
-modèle via le paramètre \texttt{system} de l'API. Les instructions
-décomposent la tâche en étapes ordonnées et imposent un format de sortie
-strict en JSON, sans préambule, afin de permettre une exploitation directe
-des réponses. La température est fixée à 0,3 pour l'ensemble des appels,
-de façon à favoriser des réponses factuelles et reproductibles.
+Chaque fonctionnalité repose sur un prompt système dédié, transmis
+via le paramètre \texttt{system} de l'API, intégrant un mécanisme
+de \textit{few-shot learning} à deux exemples pour améliorer la
+précision de la classification. La température est fixée à 0,1
+pour l'ensemble des appels, de manière à favoriser des réponses
+strictement factuelles et reproductibles.
+
+\paragraph{Personnalisation par contexte utilisateur :}
+Afin d'améliorer la précision des classifications, chaque prompt
+est enrichi avec des informations propres au client : le dernier
+type de demande classifié, la priorité moyenne observée et le
+secteur d'activité. Ce contexte est mis en cache pendant une heure
+et récupéré via une requête unique en base de données, limitant
+ainsi l'overhead de chaque appel à cinquante à quatre-vingts
+tokens supplémentaires pour un gain de précision estimé à
+vingt à vingt-cinq pourcent.
 
 \paragraph{Flux d'appel et intégration :}
-Tout appel au modèle suit une séquence en quatre étapes. Le texte est
-d'abord normalisé et condensé en une empreinte MD5 ; si une entrée valide
-existe en cache, le résultat est retourné sans appel réseau. Dans le cas
-contraire, la requête est transmise à l'API Groq avec le paramètre
-\texttt{response\_format: \{ type: "json\_object" \}} activé. La réponse
-est ensuite parsée et validée : un score de confiance inférieur au seuil
-défini entraîne un marquage automatique pour révision manuelle. Enfin,
-le résultat est mis en cache et une entrée d'audit est persistée en base
-de données.
+Tout appel au modèle suit une séquence structurée en quatre étapes.
+Le cache est d'abord consulté selon le mécanisme décrit
+précédemment ; si une entrée valide existe, le résultat est retourné
+sans appel réseau. Dans le cas contraire, la requête est transmise
+à l'API Groq avec le paramètre
+\texttt{response\_format: \{ type: "json\_object" \}} activé. La
+réponse est ensuite parsée et validée : un score de confiance
+inférieur au seuil défini entraîne un marquage automatique pour
+révision manuelle. Enfin, le résultat est mis en cache et une
+entrée d'audit est persistée en base de données.
 
 \subsection{Diagramme de classes du troisième sprint}
 Le diagramme de classes ci-dessous présente la structure statique des entités métier introduites lors de ce sprint, ainsi que les relations et dépendances qui les unissent.
@@ -941,7 +955,6 @@ Intégration de l'intelligence artificielle pour la classification des demandes 
 Développement du tableau Kanban, du chronomètre et de la synchronisation en temps réel lors de la co-édition d'un même ticket. \\
 \hline
 Qu'est-ce qui ne s'est pas bien passé ? & 
-La gestion des transitions de statut des tickets (ouvert, en cours, en revue, résolu, fermé) a généré des cas limites non anticipés lors de la conception. \newline
 Le flux de conversion des demandes en tickets a nécessité plusieurs ajustements pour synchroniser les pièces jointes et les notifications. \\
 \hline
 Que devrions-nous arrêter de faire ? & 
@@ -976,7 +989,7 @@ du troisième  sprint, toutes marquées comme terminées à l'issue de ce sprin
 Cette section présente les principales interfaces utilisateur développées durant le troisième sprint. Chaque interface a été conçue pour offrir une expérience adaptée aux différents acteurs de la plateforme.
 
 \subsection{Interface de gestion des demandes}
-Conformément aux exigences non fonctionnelles, cette interface en version arabe illustre la gestion du multilinguisme et de l'affichage de droite à gauche (\textit{RTL}). Elle intègre une recherche globale, un filtrage multicritère et un tableau détaillé (demandeur, projet, responsable, date), complété par des indicateurs visuels pour identifier rapidement le type, la priorité et le statut de la demande.
+Conformément aux exigences non fonctionnelles, cette interface en version arabe illustre la gestion du multilinguisme et de l'affichage de droite à gauche (Figure \ref{fig:Interface de gestion des demandes}). Elle intègre une recherche globale, un filtrage multicritère et un tableau détaillé, complété par des indicateurs visuels pour identifier rapidement le type, la priorité et le statut de la demande.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,keepaspectratio]{Images/interface Liste demandes .png}
@@ -987,7 +1000,7 @@ Conformément aux exigences non fonctionnelles, cette interface en version arabe
 \subsection{Interface de validation des demandes avec assistance IA}
 Cette interface permet au chef de projet de traiter chaque demande reçue~: il peut 
 la valider et la convertir en ticket, demander des informations complémentaires au 
-client, ou la rejeter en motivant sa décision. Lors de la validation, le système 
+client, ou la rejeter en motivant sa décision (Figure \ref{fig:Interface Valider_Demande}). Lors de la validation, le système 
 d'intelligence artificielle propose automatiquement une catégorie, un type et un niveau 
 de priorité, accompagnés d'un score de confiance et d'un raisonnement explicatif. Ces suggestions peuvent être acceptées ou corrigées avant la conversion de la demande en ticket.
 \begin{figure}[H]
@@ -998,13 +1011,7 @@ de priorité, accompagnés d'un score de confiance et d'un raisonnement explicat
 \end{figure}
 
 \subsection{Interface de gestion des tickets }
-Nous avons développé cette interface proposant trois modes de visualisation~: un 
-tableau Kanban, une vue liste et une file de priorité. La vue Kanban regroupe les 
-tickets par statut et permet le changement d'état par glisser-déposer, avec une 
-validation obligatoire (commentaire et solution en cas de résolution). Les 
-administrateurs et les chefs de projet voient tous les tickets de leurs périmètres, 
-tandis que les développeurs n'accèdent qu'à leurs tickets assignés. Des indicateurs 
-visuels signalent les dépassements de délai SLA et les blocages actifs.
+Cette interface propose trois modes de visualisation : un tableau Kanban, une vue en liste (Figure \ref{fig:Interface de gestion des tickets}) et une file de priorité. Le tableau Kanban regroupe les tickets par statut et permet le changement d'état par glisser-déposer, conditionné par une validation obligatoire (saisie d'un commentaire et d'une solution lors de la clôture).L'accès aux données est restreint selon les rôles : les administrateurs et les chefs de projet supervisent l'ensemble des tickets de leur périmètre, tandis que les développeurs accèdent uniquement aux tâches qui leur sont assignées. De plus, des indicateurs visuels mettent en évidence les dépassements de délai SLA et les blocages actifs.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,keepaspectratio]{Images/Interface liste ticket.png}
@@ -1013,7 +1020,7 @@ visuels signalent les dépassements de délai SLA et les blocages actifs.
 \end{figure}
 
 \subsection{Interface d'assignation des développeurs}
-Nous avons mis en place une interface permettant au chef de projet d'assigner des développeurs à un ticket. La modale affiche les développeurs recommandés et les autres développeurs, avec pour chacun : nom, niveau, nombre de tickets actifs et planning hebdomadaire. Un bouton « Assigner » permet d'affecter le développeur. Trois développeurs maximum peuvent être assignés par ticket.
+Nous avons mis en place une interface permettant au chef de projet d'assigner des développeurs à un ticket (Figure \ref{fig:interface_assigner_developpeurs}). La modale affiche les développeurs recommandés et les autres développeurs, avec pour chacun : nom, niveau, nombre de tickets actifs et planning hebdomadaire. Un bouton « Assigner » permet d'affecter le développeur. Trois développeurs maximum peuvent être assignés par ticket.
 
 \begin{figure}[H]
 \centering
@@ -1074,7 +1081,7 @@ Enfin, la Figure~\ref{fig:ticket_mobile} illustre la version mobile de cette int
 
 
 \subsection{Interface de génération de suggestion de solution par IA}
-Nous avons mis en place une fonctionnalité permettant aux développeurs assignés à un ticket de générer collaborativement une suggestion de solution assistée par intelligence artificielle. En cliquant sur « Générer par l'IA », le système propose un brouillon structuré. Tous les membres de l'équipe assignée voient cette suggestion en temps réel et peuvent simultanément la modifier, l'enrichir ou proposer des alternatives via WebSockets. Une fois la solution validée collectivement, elle peut être soumise. Cette approche favorise l'intelligence collective et accélère la résolution des tickets complexes.
+Le système permet aux développeurs assignés à un ticket de générer collaborativement une solution assistée par intelligence artificielle (Figure \ref{fig:interface_generation_solution_ia}). En cliquant sur « Générer », le système propose un brouillon structuré. Tous les membres de l'équipe assignée voient cette suggestion en temps réel et peuvent simultanément la modifier, l'enrichir ou proposer des alternatives via WebSockets. Une fois la solution validée collectivement, elle peut être soumise. Cette approche favorise l'intelligence collective et accélère la résolution des tickets complexes.
 
 \begin{figure}[H]
 \centering
@@ -1084,14 +1091,9 @@ Nous avons mis en place une fonctionnalité permettant aux développeurs assign�
 \end{figure}
 
 \subsection{Interface de priorisation intelligente des tickets}
-Nous avons mis en place une file de priorité qui trie automatiquement les
-tickets actifs selon un score d'urgence calculé en temps réel. Ce score
-combine la priorité contractuelle du ticket (\textit{critique}, \textit{majeur},
-\textit{mineur}) et le taux du délai SLA écoulé, faisant remonter en tête
-les tickets les plus critiques, notamment ceux dont le délai est dépassé,
-sans aucune intervention manuelle. Pour les développeurs, cette file
-constitue leur tableau de bord de travail quotidien~; pour les chefs de
-projet, elle facilite la supervision et la validation par ordre d'urgence.
+Une file d'attente dynamique trie automatiquement les tickets actifs selon un score d'urgence calculé en temps réel (Figure \ref{fig:interface_priorisation}). Ce score combine la priorité contractuelle du ticket (\textit{critique}, \textit{majeur}, \textit{mineur}) et le pourcentage du délai SLA écoulé, faisant remonter instantanément en tête les incidents critiques ou en dépassement de délai. 
+
+Cette file centralise l'activité : elle sert de tableau de bord quotidien pour les développeurs et permet aux chefs de projet de superviser et de valider les interventions par ordre d'urgence, sans aucune action manuelle.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,keepaspectratio]{Images/Interface priotite.png}
@@ -1099,16 +1101,7 @@ projet, elle facilite la supervision et la validation par ordre d'urgence.
  \label{fig:Interface priorisation}
 \end{figure}
 \subsection{Interface d'analyse et de gestion des blocages}
-Lorsqu'un développeur rencontre un obstacle l'empêchant de progresser sur
-un ticket, il peut signaler un blocage en précisant son type et sa priorité. Le chef
-de projet est alors notifié en temps réel. Un membre de l'équipe peut
-proposer une solution, que le développeur bloqué accepte ou rejette avec
-un motif. En cas de validation, le blocage est levé automatiquement et
-la solution est soumise à la base de connaissances pour enrichissement. La
-plateforme intègre également un brouillon de solution assisté par
-intelligence artificielle, permettant au développeur de générer une
-proposition initiale à partir de la description du ticket et des articles
-de la base de connaissances
+Lorsqu'un développeur signale un blocage sur un ticket, l'équipe et le chef de projet sont immédiatement notifiés. Un collaborateur peut alors proposer une solution : si elle est acceptée, le blocage est levé et la base de connaissances est enrichie (Figure \ref{fig:Interface_blocages_IA}). De plus, une IA peut analyser le problème pour générer automatiquement un brouillon de solution.
 \begin{figure}[H]
   \centering
   \includegraphics[width=14cm,keepaspectratio]{Images/Interface Developpeur Brouillon IA.png}
@@ -1117,14 +1110,9 @@ de la base de connaissances
 \end{figure}
 
 \subsection{Interface de capitalisation des connaissances}
-Nous avons mis en place cette interface pour constituer une base de connaissances
-partagée et consultable par l'ensemble de l'équipe technique. Les articles sont
-générés semi-automatiquement à partir des solutions validées lors de la
-résolution des blocages, enrichis et reformulés par le module d'intelligence
-artificielle avant d'être soumis à validation par un administrateur. Les
-développeurs peuvent rechercher des articles existants directement depuis la
-vue de détail d'un ticket lorsqu'ils rencontrent un problème similaire,
-accélérant ainsi la résolution et capitalisant sur l'expérience collective.
+Cette interface centralise une base de connaissances partagée et consultable par l'ensemble de l'équipe technique (Figure \ref{fig:interface_kb}). Les articles y sont générés semi-automatiquement selon deux flux : d'une part, à partir des solutions validées lors de la résolution des blocages et, d'autre part, dès la clôture définitive d'un ticket. Avant leur publication, ces brouillons sont enrichis et reformulés par un module d'intelligence artificielle, puis soumis à la validation d'un administrateur. De plus, les administrateurs et les chefs de projet ont la possibilité de créer manuellement de nouveaux articles.
+
+Depuis la vue détaillée d'un ticket, les développeurs peuvent rechercher directement les articles existants liés à un problème similaire. Ce mécanisme accélère la résolution des incidents en capitalisant efficacement sur l'expérience collective.
 
 \begin{figure}[H]
   \centering

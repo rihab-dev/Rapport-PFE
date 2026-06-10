@@ -1,6 +1,7 @@
 \subsubsection{Authentification et Gestion de Compte}
 
-Ce module assure l'authentification sécurisée via identifiants classiques ou OAuth 2.0 (Google, GitHub) avec gestion automatique des jetons d'accès. Lors de la première connexion, le système impose un changement de mot de passe pour les comptes créés par un administrateur. Un processus de réinitialisation obligatoire bloque l'accès à l'application jusqu'à la définition d'un mot de passe personnel, garantissant que seul l'utilisateur légitime détient les informations d'authentification définitives.
+Ce module assure l'authentification sécurisée via identifiants classiques ou OAuth 2.0 (Google, GitHub) avec gestion automatique des jetons d'accès. Lors de la première connexion, le système impose un changement de mot de passe pour les comptes créés par un administrateur. Un processus de réinitialisation obligatoire bloque l'accès à l'application jusqu'à la définition d'un mot de passe personnel, garantissant que seul l'utilisateur légitime détient les informations d'authentification définitives.La figure~\ref{fig:authentification_gestion_compte} illustre les 
+fonctionnalités offertes par ce module.
 
 \begin{figure}[H]
     \centering
@@ -13,7 +14,8 @@ Ce module assure l'authentification sécurisée via identifiants classiques ou O
 
 \subsubsection{Gestion des Utilisateurs et Demandes d'Inscription}
 
-Ce module permet aux administrateurs de gérer le cycle de vie complet des comptes utilisateurs avec création automatisée, gestion des profils et contrôle des activations/désactivations. Le traitement des demandes d'inscription s'effectue via une interface centralisée permettant approbation, rejet ou mise en attente avec notifications automatiques.
+Ce module permet aux administrateurs de gérer le cycle de vie complet des comptes utilisateurs avec création automatisée, gestion des profils et contrôle des activations/désactivations. Le traitement des demandes d'inscription s'effectue via une interface centralisée permettant approbation, rejet ou mise en attente avec notifications automatiques.La figure~\ref{fig:gestion_utilisateurs} illustre les fonctionnalités 
+couvertes par ce module.
 
 \begin{figure}[H]
     \centering
@@ -26,7 +28,8 @@ Ce module permet aux administrateurs de gérer le cycle de vie complet des compt
 
 \subsubsection{Système de Rôles et Permissions}
 
-Les droits sont gérés par rôles selon un modèle RBAC (Role-Based Access Control) : chaque rôle regroupe un ensemble de permissions, ce qui permet d’attribuer finement les accès. La conception modulaire permet aux administrateurs de créer des rôles personnalisés en combinant dynamiquement les permissions existantes selon les besoins organisationnels spécifiques. Cette flexibilité permet d'ajuster les autorisations d'un rôle sans impact sur les autres configurations, facilitant l'évolution du système de sécurité.
+Les droits sont gérés par rôles selon un modèle RBAC (Role-Based Access Control) : chaque rôle regroupe un ensemble de permissions, ce qui permet d’attribuer finement les accès. La conception modulaire permet aux administrateurs de créer des rôles personnalisés en combinant dynamiquement les permissions existantes selon les besoins organisationnels spécifiques. Cette flexibilité permet d'ajuster les autorisations d'un rôle sans impact sur les autres configurations, facilitant l'évolution du système de sécurité.La figure~\ref{fig:roles_permissions} illustre l'organisation des 
+rôles et permissions au sein de ce module.
 
 \begin{figure}[H]
     \centering
@@ -39,7 +42,8 @@ Les droits sont gérés par rôles selon un modèle RBAC (Role-Based Access Cont
 
 \subsubsection{Gestion des Clients et Projets}
 
-Ce module centralise la gestion des clients avec création automatisée des comptes. Le système génère des organigrammes visuels et interactifs pour chaque projet, présentant la hiérarchie complète (client, chef de projet, équipe) avec accès direct aux coordonnées de tous les interlocuteurs. Cette visualisation facilite l'identification rapide des contacts et optimise la communication en cas de problème.
+Ce module centralise la gestion des clients avec création automatisée des comptes. Le système génère des organigrammes visuels et interactifs pour chaque projet, présentant la hiérarchie complète (client, chef de projet, équipe) avec accès direct aux coordonnées de tous les interlocuteurs. Cette visualisation facilite l'identification rapide des contacts et optimise la communication en cas de problème.La figure~\ref{fig:gestion_clients} illustre les fonctionnalités 
+de ce module.
 
 \begin{figure}[H]
     \centering
@@ -50,7 +54,8 @@ Ce module centralise la gestion des clients avec création automatisée des comp
 
 \subsubsection{Gestion des Contrats de Maintenance}
 
-Ce module automatise le cycle de vie complet des contrats de maintenance avec système d'alertes préventives échelonnées. L'import de contrats s'effectue à partir de fichiers PDF, avec extraction automatique de données pour pré-remplir les formulaires de création.
+Ce module automatise le cycle de vie complet des contrats de maintenance avec système d'alertes préventives échelonnées. L'import de contrats s'effectue à partir de fichiers PDF, avec extraction automatique de données pour pré-remplir les formulaires de création.La figure~\ref{fig:gestion_contrats} illustre les fonctionnalités 
+de ce module.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/gestion_contrat.png}
@@ -60,7 +65,9 @@ Ce module automatise le cycle de vie complet des contrats de maintenance avec sy
 
 \subsubsection{Gestion des Demandes d'Intervention}
 
-Ce module structure la soumission des demandes d'intervention avec vérification automatique de couverture contractuelle et validation des types d'intervention éligibles. Le processus de validation intègre un système de relance automatique garantissant le traitement dans les délais impartis avec escalade vers les responsables en cas de dépassement des seuils temporels.
+Ce module structure la soumission des demandes d'intervention avec vérification automatique de couverture contractuelle et validation des types d'intervention éligibles. Le processus de validation intègre un système de relance automatique garantissant le traitement dans les délais impartis avec escalade vers les responsables en cas de dépassement des seuils temporels.La figure~\ref{fig:gestion_demandes} illustre les fonctionnalités 
+de ce module.
+
 
 \begin{figure}[H]
     \centering
@@ -74,8 +81,14 @@ Ce module structure la soumission des demandes d'intervention avec vérification
 Ce module recommande automatiquement les développeurs les plus adaptés à un ticket, permet de suivre le temps de travail via chronométrage, et de signaler des blocages avec analyse automatique par IA. Les solutions sont proposées collaborativement entre membres de l'équipe. La soumission en revue déclenche la clôture automatique des sessions et le calcul du temps cumulé. Après validation par le chef de projet, le client peut fermer le ticket, signaler un problème persistant, ou obtenir une extension automatique de sept jours.
 \subsubsection{Tableaux de Bord, Traçabilité et Documentation}
 
-Ce module offre des tableaux de bord personnalisés par rôle avec indicateurs clés de performance. Il maintient un historique exhaustif de toutes les opérations avec traçabilité complète et système de notifications multicanaux (web, email, Slack). La génération automatique de procès-verbaux PDF s'effectue à partir des informations de tickets lors de la résolution, produisant une documentation contractuelle structurée.
-
+Ce module offre des tableaux de bord personnalisés par rôle avec indicateurs 
+clés de performance, comme l'illustre la figure~\ref{fig:dashboard}. Il maintient 
+un historique exhaustif de toutes les opérations avec traçabilité complète, 
+tel que présenté dans la figure~\ref{fig:suivi_tracabilite}. Le système de 
+notifications multicanaux (web, email, Slack) est illustré par la 
+figure~\ref{fig:notifications}. La génération automatique de procès-verbaux 
+PDF s'effectue à partir des informations de tickets lors de la résolution, 
+produisant une documentation contractuelle structurée.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth,keepaspectratio]{Images/dashboard.png}

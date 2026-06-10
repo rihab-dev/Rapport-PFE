@@ -148,7 +148,7 @@ Le tableau ci-dessous présente la description textuelle du cas d'utilisation «
 \textbf{Scénario nominal} &
 \begin{minipage}[t]{\linewidth}\raggedright
 \begin{enumerate}[label=\arabic*., nosep,leftmargin=0.6cm,topsep=0pt,itemsep=1pt,series=scen_auth]
-\item Le système affiche un formulaire de changement de mot de passe.
+\item Le système affiche un formulaire de réinitialisation de mot de passe.
 \item L'utilisateur saisit son e-mail.
 \item L'utilisateur clique sur le bouton « Réinitialiser le mot de passe ».
 \item Le système vérifie l'existence de l'email.
@@ -588,8 +588,7 @@ Le tableau ci-dessous présente la description textuelle du cas d’utilisation 
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Conception}
 \label{sec:conception_sprint1}
-principaux flux fonctionnels
-
+Cette section présente les principaux diagrammes de conception modélisant les flux fonctionnels du premier sprint.
 \subsection{Diagramme d'activités « S'inscrire »}
 Le diagramme ci-dessous illustre le flux d'activités relatif à la fonctionnalité d'inscription.
 \begin{figure}[H]
@@ -714,11 +713,8 @@ du premier sprint, toutes marquées comme terminées à l'issue de ce sprint.
 \label{sec:realisation_sprint1}
 Cette section présente les principales interfaces utilisateur développées durant le premier sprint. Chaque interface a été conçue pour offrir une expérience claire aux différents acteurs de la plateforme.
 
-\subsection{Interfaces de connexion et d'accueil}
-Nous avons mis en place une interface de connexion qui propose deux modes d'authentification : le formulaire classique (e-mail + mot de passe) et les boutons OAuth (Google, GitHub). En cas de compte inexistant, le visiteur est redirigé vers un flux de demande d'inscription.
-
-\noindent Une fois authentifié, l'utilisateur accède à l'interface d'accueil (\textit{home}) qui présente les fonctionnalités principales de l'application (tableau de bord, navigation, accès rapides, etc.).
-
+\subsection{Interfaces d'accueil et de connexion}
+L'interface d'accueil constitue la page publique de la plateforme, accessible aux utilisateurs non authentifiés. Elle présente globalement les fonctionnalités principales de l'application et propose deux actions : l'accès à la connexion ou le visionnage d'une démonstration via un bouton dédié (\textit{"Voir démo"}). L'interface de connexion propose ensuite deux modes d'authentification : un formulaire classique (e-mail et mot de passe) et une authentification via des services tiers (\textit{OAuth} Google et GitHub). Si le compte n'existe pas, le visiteur est redirigé vers un flux de demande d'inscription.
 \begin{figure}[H]
 \centering
 \includegraphics[width=11cm,height=11cm,keepaspectratio]{Images/capture home.png}
@@ -737,8 +733,7 @@ Nous avons mis en place une interface de connexion qui propose deux modes d'auth
 
 
 \subsection{Interface de réinitialisation du mot de passe}
-Nous avons mis en place cette interface de réinitialisation du mot de passe, qui permet à l'utilisateur de saisir son adresse e-mail pour
-recevoir un lien de réinitialisation valable 1 heure.
+Cette interface de réinitialisation de mot de passe permet à l'utilisateur de saisir son adresse e-mail (Figure \ref{fig:interface_reset}) afin de recevoir un lien de récupération sécurisé, valide pendant une heure.
 
 \begin{figure}[H]
 \centering
@@ -748,9 +743,7 @@ recevoir un lien de réinitialisation valable 1 heure.
 \end{figure}
 
 \subsection{Interface de gestion des utilisateurs}
-Nous avons mis en place cette interface pour que l'administrateur puisse gérer les utilisateurs. Elle propose une vue en grille ou en liste, avec filtres par
-statut et par rôle, barre de recherche et actions rapides (modifier,
-désactiver, voir le profil).
+Cette interface permet à l'administrateur de gérer l'ensemble des utilisateurs de la plateforme (Figure \ref{fig:interface_users}). Elle propose un affichage au choix, en grille ou en liste, complété par une barre de recherche et des filtres par statut et par rôle. De plus, des actions rapides sont directement accessibles pour modifier, désactiver ou consulter le profil d'un utilisateur.
 \begin{figure}[H]
 \centering
 \includegraphics[width=12.5cm,height=16cm,keepaspectratio]{Images/capture liste utilisateur.png}
@@ -760,12 +753,7 @@ désactiver, voir le profil).
 
 
 \subsection{Interface de gestion des rôles et permissions}
-Nous avons mis en place une interface complète de gestion des rôles et permissions. Celle-ci se compose de deux vues principales :
-
-\noindent\textbf{Liste des rôles :} Cette vue permet de visualiser l'ensemble des rôles existants, d'en ajouter de nouveaux, d'en modifier ou archiver/restaurer.
-
-\noindent\textbf{Matrice des permissions :} Cette vue affiche les rôles en colonnes et les catégories de permissions en lignes, avec des cases à cocher pour une attribution visuelle et intuitive des droits.
-
+Cette interface centralise la gestion des rôles et des permissions à travers deux fonctionnalités principales. D'une part, la liste des rôles permet de visualiser, créer, modifier, archiver ou restaurer les profils utilisateurs (Figure \ref{fig:liste_roles}). D'autre part, la matrice des permissions croise les rôles en colonnes et les droits en lignes (Figure \ref{fig:matrice_permissions}), permettant une attribution visuelle et intuitive des accès grâce à des cases à cocher.
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm,height=14cm,keepaspectratio]{Images/liste roles.png}
@@ -782,8 +770,7 @@ Nous avons mis en place une interface complète de gestion des rôles et permiss
 
 
 \subsection{Interface de gestion des demandes d'accès via fournisseur externe}
-Nous avons mis en place un flux d'inscription \textit{Open Authorization} (\textbf{OAuth}) en deux étapes. D'abord, l'utilisateur peut demander l'accès via son fournisseur externe (Google, GitHub) afin de s'inscrire facilement sans créer de mot de passe (Figure \ref{fig:oauth_user_demande}). Ensuite, l'administrateur consulte dans une interface dédiée les demandes en attente, visualise les informations récupérées via (\textbf{OAuth}), et peut approuver ou refuser chaque demande avec un motif de refus facultatif (Figure \ref{fig:oauth_admin_validation}). Ce processus permet à l'utilisateur de s'inscrire simplement tout en laissant à l'administrateur un contrôle rigoureux des inscriptions.
-
+Le flux d'inscription via \textit{Open Authorization} (\textbf{OAuth}) se déroule en deux étapes distinctes (Figure \ref{fig:oauth_user_demande}). Dans un premier temps, l'utilisateur sollicite un accès à l'application via un fournisseur externe tel que Google ou GitHub (Figure \ref{fig:oauth_user_demande}). Dans un second temps, l'administrateur centralise ces demandes sur une interface dédiée où il examine les informations récupérées. Il peut alors approuver l'accès ou rejeter la demande en spécifiant, si nécessaire, un motif de refus (Figure \ref{fig:oauth_admin_validation}). Ce mécanisme concilie la simplicité d'inscription pour l'utilisateur et un contrôle d'accès rigoureux pour l'administrateur.
 \begin{figure}[H]
 \centering
 \includegraphics[width=11cm,height=11cm,keepaspectratio]{Images/demande inscription user.png}
@@ -851,7 +838,7 @@ de passe. Les cas suivants ont été couverts :
     connexion est rejetée avec le code \texttt{401 Unauthorized}.
   \item Le mot de passe fourni est incorrect : la connexion est rejetée
     avec le code \texttt{401 Unauthorized}.
-  \item L'utilisateur échoue l'authentification \textbf{3 fois
+  \item L'utilisateur échoue à s'authentifier \textbf{3 fois
     consécutives} : le compte est verrouillé automatiquement pendant
     \textbf{1 minute} (\texttt{maxLoginAttempts = 3}).
   \item L'utilisateur tente de se connecter alors que son compte est
@@ -967,7 +954,7 @@ différents cas d'entrée.
  
 \noindent Cette suite de tests vise à valider le bon fonctionnement de la méthode \texttt{modifierProfil()} exposée via l'endpoint \texttt{PUT /api/profil}, qui permet à un utilisateur de mettre à jour les informations de son profil.
 \newline
-Lee cas suivant ont été couvert :
+Les cas suivants ont été couverts :
 \begin{itemize}
 \item[$\bullet$] Cas où l'e-mail fourni dans la requête ne respecte pas le format attendu.
 \end{itemize}
